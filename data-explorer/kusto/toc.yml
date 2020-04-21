@@ -1,0 +1,1321 @@
+- name: Accueil
+  href: ./index.md
+- name: Langage de requête
+  href: ./query/index.md
+  items:
+    - name: Vue d’ensemble
+      items:
+        - name: Requête Kusto
+          href: ./query/index.md
+        - name: Didacticiel
+          href: ./query/tutorial.md
+        - name: Exemples
+          href: ./query/samples.md
+        - name: Meilleures pratiques
+          href: ./query/best-practices.md
+        - name: Requêtes entre plusieurs bases de données et clusters
+          href: ./query/cross-cluster-or-database-queries.md
+    - name: Entités
+      items:
+        - name: Types d’entités
+          href: ./query/schema-entities/index.md
+        - name: Noms d’entité
+          href: ./query/schema-entities/entity-names.md
+        - name: Tables
+          href: ./query/schema-entities/tables.md
+        - name: Colonnes
+          href: ./query/schema-entities/columns.md
+        - name: Fonctions stockées
+          href: ./query/schema-entities/stored-functions.md
+        - name: Tables externes
+          href: ./query/schema-entities/externaltables.md
+    - name: Types de données
+      items:
+        - name: Vue d’ensemble des types de données scalaires
+          href: ./query/scalar-data-types/index.md
+        - name: bool
+          href: ./query/scalar-data-types/bool.md
+        - name: DATETIME
+          href: ./query/scalar-data-types/datetime.md
+        - name: Décimal
+          href: ./query/scalar-data-types/decimal.md
+        - name: dynamique
+          href: ./query/scalar-data-types/dynamic.md
+        - name: guid
+          href: ./query/scalar-data-types/guid.md
+        - name: int
+          href: ./query/scalar-data-types/int.md
+        - name: long
+          href: ./query/scalar-data-types/long.md
+        - name: real
+          href: ./query/scalar-data-types/real.md
+        - name: string
+          href: ./query/scalar-data-types/string.md
+        - name: intervalle de temps
+          href: ./query/scalar-data-types/timespan.md
+        - name: Valeurs Null
+          href: ./query/scalar-data-types/null-values.md
+    - name: Fonctions
+      items:
+        - name: Types de fonction
+          href: ./query/functions/index.md
+        - name: Fonctions définies par l’utilisateur
+          href: ./query/functions/user-defined-functions.md
+    - name: Instructions de requête
+      items:
+        - name: Types d’instruction de requête
+          href: ./query/statements.md
+        - name: 'Alias, instruction'
+          href: ./query/aliasstatement.md
+        - name: 'Let, instruction'
+          href: ./query/letstatement.md
+        - name: 'Pattern, instruction'
+          href: ./query/patternstatement.md
+        - name: Instruction des paramètres de requête
+          href: ./query/queryparametersstatement.md
+        - name: 'Restrict, instruction'
+          href: ./query/restrictstatement.md
+        - name: 'Set, instruction'
+          href: ./query/setstatement.md
+        - name: Instructions d’expression tabulaire
+          href: ./query/tabularexpressionstatements.md
+        - name: Lots
+          href: ./query/batches.md
+    - name: Opérateurs tabulaires
+      items:
+        - name: Données tabulaires
+          href: ./query/queries.md
+        - name: opérateur as
+          href: ./query/asoperator.md
+        - name: 'consume, opérateur'
+          href: ./query/consumeoperator.md
+        - name: opérateur count
+          href: ./query/countoperator.md
+        - name: opérateur DataTable
+          href: ./query/datatableoperator.md
+        - name: opérateur distinct
+          href: ./query/distinctoperator.md
+        - name: opérateur evaluate
+          items:
+            - name: 'evaluate plugin, opérateur'
+              href: ./query/evaluateoperator.md
+            - name: autocluster
+              href: ./query/autoclusterplugin.md
+            - name: bag_unpack
+              href: ./query/bag-unpackplugin.md
+            - name: basket
+              href: ./query/basketplugin.md
+            - name: dcount_intersect
+              href: ./query/dcount-intersect-plugin.md
+            - name: diffpatterns
+              href: ./query/diffpatternsplugin.md
+            - name: diffpatterns_text
+              href: ./query/diffpatterns-textplugin.md
+            - name: infer_storage_schema
+              href: ./query/inferstorageschemaplugin.md
+            - name: narrow
+              href: ./query/narrowplugin.md
+            - name: pivot
+              href: ./query/pivotplugin.md
+            - name: preview
+              href: ./query/previewplugin.md
+            - name: python
+              href: ./query/pythonplugin.md
+            - name: R
+              href: ./query/rplugin.md
+            - name: rolling_percentile
+              href: ./query/rolling-percentile-plugin.md
+            - name: schema_merge
+              href: ./query/schemamergeplugin.md
+            - name: sql_request
+              href: ./query/sqlrequestplugin.md
+            - name: sequence_detect
+              href: ./query/sequence-detect-plugin.md
+        - name: opérateur extend
+          href: ./query/extendoperator.md
+        - name: 'externaldata, opérateur'
+          href: ./query/externaldata-operator.md
+        - name: 'facet, opérateur'
+          href: ./query/facetoperator.md
+        - name: Opérateur find
+          href: ./query/findoperator.md
+        - name: 'fork, opérateur'
+          href: ./query/forkoperator.md
+        - name: opérateur getschema
+          href: ./query/getschemaoperator.md
+        - name: 'invoke, opérateur'
+          href: ./query/invokeoperator.md
+        - name: opérateur join
+          items:
+            - name: vue d’ensemble de l’opérateur join
+              href: ./query/joinoperator.md
+            - name: lecture aléatoire
+              href: ./query/shufflequery.md
+            - name: Jointure entre clusters
+              href: ./query/joincrosscluster.md
+            - name: Jonction de diffusion
+              href: ./query/broadcastjoin.md
+            - name: Jointure de fenêtre de temps
+              href: ./query/join-timewindow.md
+        - name: opérateur limit
+          href: ./query/limitoperator.md
+        - name: 'lookup, opérateur'
+          href: ./query/lookupoperator.md
+        - name: opérateur make-series
+          href: ./query/make-seriesoperator.md
+        - name: 'mv-apply, opérateur'
+          href: ./query/mv-applyoperator.md
+        - name: 'mv-expand, opérateur'
+          href: ./query/mvexpandoperator.md
+        - name: 'order, opérateur'
+          href: ./query/orderoperator.md
+        - name: opérateur project
+          href: ./query/projectoperator.md
+        - name: opérateur project-away
+          href: ./query/projectawayoperator.md
+        - name: 'project-rename, opérateur'
+          href: ./query/projectrenameoperator.md
+        - name: 'project-reorder, opérateur'
+          href: ./query/projectreorderoperator.md
+        - name: opérateur parse
+          href: ./query/parseoperator.md
+        - name: Opérateur parse-where
+          href: ./query/parsewhereoperator.md
+        - name: 'partition, opérateur'
+          href: ./query/partitionoperator.md
+        - name: 'print, opérateur'
+          href: ./query/printoperator.md
+        - name: opérateur range
+          href: ./query/rangeoperator.md
+        - name: opérateur reduce
+          href: ./query/reduceoperator.md
+        - name: 'render, opérateur'
+          href: ./query/renderoperator.md
+        - name: opérateur d’échantillon
+          href: ./query/sampleoperator.md
+        - name: opérateur sample-distinct
+          href: ./query/sampledistinctoperator.md
+        - name: opérateur search
+          href: ./query/searchoperator.md
+        - name: 'serialize, opérateur'
+          href: ./query/serializeoperator.md
+        - name: opérateur sort
+          href: ./query/sortoperator.md
+        - name: opérateur summarize
+          items:
+            - name: vue d’ensemble de l’opérateur summarize
+              href: ./query/summarizeoperator.md
+            - name: Utilisation de hll() et de tdigest()
+              href: ./query/usinghlltdigest.md
+            - name: lecture aléatoire
+              href: ./query/shufflequery.md
+        - name: opérateur take
+          href: ./query/takeoperator.md
+        - name: opérateur top
+          href: ./query/topoperator.md
+        - name: Opérateur top-nested
+          href: ./query/topnestedoperator.md
+        - name: 'top-hitters, opérateur'
+          href: ./query/tophittersoperator.md
+        - name: opérateur union
+          href: ./query/unionoperator.md
+        - name: opérateur where
+          href: ./query/whereoperator.md
+    - name: Fonctions spéciales
+      items:
+        - name: cluster()
+          href: ./query/clusterfunction.md
+        - name: database()
+          href: ./query/databasefunction.md
+        - name: external_table()
+          href: ./query/externaltablefunction.md
+        - name: materialize()
+          href: ./query/materializefunction.md
+        - name: table()
+          href: ./query/tablefunction.md
+        - name: toscalar()
+          href: ./query/toscalarfunction.md
+    - name: Opérateurs scalaires
+      items:
+        - name: Opérateurs de bits (binaires)
+          href: ./query/binoperators.md
+        - name: Arithmétique DateTime/TimeSpan
+          href: ./query/datetime-timespan-arithmetic.md
+        - name: Opérateurs logiques (binaires)
+          href: ./query/logicaloperators.md
+        - name: Opérateurs numériques
+          href: ./query/numoperators.md
+        - name: Opérateurs de chaîne
+          href: ./query/datatypes-string-operators.md
+        - name: 'between, opérateur'
+          href: ./query/betweenoperator.md
+        - name: 'not-between, opérateur (!between)'
+          href: ./query/notbetweenoperator.md
+        - name: 'in et !in, opérateurs'
+          href: ./query/inoperator.md
+        - name: 'has_any, opérateur'
+          href: ./query/has-anyoperator.md
+    - name: Fonctions scalaires
+      items:
+        - name: Types de fonction scalaire
+          href: ./query/scalarfunctions.md
+        - name: abs()
+          href: ./query/abs-function.md
+        - name: acos()
+          href: ./query/acosfunction.md
+        - name: ago()
+          href: ./query/agofunction.md
+        - name: array_concat()
+          href: ./query/arrayconcatfunction.md
+        - name: array_iif()
+          href: ./query/arrayifffunction.md
+        - name: array_index_of()
+          href: ./query/arrayindexoffunction.md
+        - name: array_length()
+          href: ./query/arraylengthfunction.md
+        - name: array_rotate_left()
+          href: ./query/array_rotate_leftfunction.md
+        - name: array_rotate_right()
+          href: ./query/array_rotate_rightfunction.md
+        - name: array_shift_left()
+          href: ./query/array_shift_leftfunction.md
+        - name: array_shift_right()
+          href: ./query/array_shift_rightfunction.md
+        - name: array_slice()
+          href: ./query/arrayslicefunction.md
+        - name: array_split()
+          href: ./query/arraysplitfunction.md
+        - name: asin()
+          href: ./query/asinfunction.md
+        - name: assert()
+          href: ./query/assert-function.md
+        - name: atan()
+          href: ./query/atanfunction.md
+        - name: atan2()
+          href: ./query/atan2function.md
+        - name: bag_keys()
+          href: ./query/bagkeysfunction.md
+        - name: base64_decode_toarray()
+          href: ./query/base64_decode_toarrayfunction.md
+        - name: base64_decode_tostring()
+          href: ./query/base64_decode_tostringfunction.md
+        - name: base64_encode_fromarray()
+          href: ./query/base64_encode_fromarrayfunction.md
+        - name: base64_encode_tostring()
+          href: ./query/base64_encode_tostringfunction.md
+        - name: beta_cdf()
+          href: ./query/beta-cdffunction.md
+        - name: beta_inv()
+          href: ./query/beta-invfunction.md
+        - name: beta_pdf()
+          href: ./query/beta-pdffunction.md
+        - name: bin()
+          href: ./query/binfunction.md
+        - name: bin_at()
+          href: ./query/binatfunction.md
+        - name: bin_auto()
+          href: ./query/bin-autofunction.md
+        - name: binary_and()
+          href: ./query/binary-andfunction.md
+        - name: binary_not()
+          href: ./query/binary-notfunction.md
+        - name: binary_or()
+          href: ./query/binary-orfunction.md
+        - name: binary_shift_left()
+          href: ./query/binary-shift-leftfunction.md
+        - name: binary_shift_right()
+          href: ./query/binary-shift-rightfunction.md
+        - name: binary_xor()
+          href: ./query/binary-xorfunction.md
+        - name: bitset_count_ones()
+          href: ./query/bitset-count-onesfunction.md
+        - name: case()
+          href: ./query/casefunction.md
+        - name: ceiling()
+          href: ./query/ceilingfunction.md
+        - name: coalesce()
+          href: ./query/coalescefunction.md
+        - name: column_ifexists()
+          href: ./query/columnifexists.md
+        - name: cos()
+          href: ./query/cosfunction.md
+        - name: cot()
+          href: ./query/cotfunction.md
+        - name: countof()
+          href: ./query/countoffunction.md
+        - name: current_cluster_endpoint()
+          href: ./query/current-cluster-endpoint-function.md
+        - name: current_cursor()
+          href: ./query/cursorcurrent.md
+        - name: current_database()
+          href: ./query/current-database-function.md
+        - name: current_principal()
+          href: ./query/current-principalfunction.md
+        - name: current_principal_details()
+          href: ./query/current-principal-detailsfunction.md
+        - name: current_principal_is_member_of()
+          href: ./query/current-principal-ismemberoffunction.md
+        - name: cursor_after()
+          href: ./query/cursorafterfunction.md
+        - name: cursor_before_or_at()
+          href: ./query/cursorbeforeoratfunction.md
+        - name: cursor_current()
+          href: ./query/cursorcurrent.md
+        - name: datetime_add()
+          href: ./query/datetime-addfunction.md
+        - name: datetime_diff()
+          href: ./query/datetime-difffunction.md
+        - name: datetime_part()
+          href: ./query/datetime-partfunction.md
+        - name: dayofmonth()
+          href: ./query/dayofmonthfunction.md
+        - name: dayofweek()
+          href: ./query/dayofweekfunction.md
+        - name: dayofyear()
+          href: ./query/dayofyearfunction.md
+        - name: dcount_hll()
+          href: ./query/dcount-hllfunction.md
+        - name: degrees()
+          href: ./query/degreesfunction.md
+        - name: endofday()
+          href: ./query/endofdayfunction.md
+        - name: endofmonth()
+          href: ./query/endofmonthfunction.md
+        - name: endofweek()
+          href: ./query/endofweekfunction.md
+        - name: endofyear()
+          href: ./query/endofyearfunction.md
+        - name: estimate_data_size()
+          href: ./query/estimate-data-sizefunction.md
+        - name: exp()
+          href: ./query/exp-function.md
+        - name: exp10()
+          href: ./query/exp10-function.md
+        - name: exp2()
+          href: ./query/exp2-function.md
+        - name: extent_id()
+          href: ./query/extentidfunction.md
+        - name: extent_tags()
+          href: ./query/extenttagsfunction.md
+        - name: extract()
+          href: ./query/extractfunction.md
+        - name: extract_all()
+          href: ./query/extractallfunction.md
+        - name: extractjson()
+          href: ./query/extractjsonfunction.md
+        - name: floor()
+          href: ./query/floorfunction.md
+        - name: format_bytes()
+          href: ./query/format-bytesfunction.md
+        - name: format_datetime()
+          href: ./query/format-datetimefunction.md
+        - name: format_timespan()
+          href: ./query/format-timespanfunction.md
+        - name: gamma()
+          href: ./query/gammafunction.md
+        - name: getmonth()
+          href: ./query/getmonthfunction.md
+        - name: gettype()
+          href: ./query/gettypefunction.md
+        - name: getyear()
+          href: ./query/getyearfunction.md
+        - name: hash()
+          href: ./query/hashfunction.md
+        - name: hash_combine()
+          href: ./query/hash_combinefunction.md
+        - name: hash_many()
+          href: ./query/hash_manyfunction.md
+        - name: hash_sha256()
+          href: ./query/sha256hashfunction.md
+        - name: hll_merge()
+          href: ./query/hllmergefunction.md
+        - name: hourofday()
+          href: ./query/hourofdayfunction.md
+        - name: iif()
+          href: ./query/iiffunction.md
+        - name: indexof()
+          href: ./query/indexoffunction.md
+        - name: indexof_regex()
+          href: ./query/indexofregexfunction.md
+        - name: ingestion_time()
+          href: ./query/ingestiontimefunction.md
+        - name: ipv4_compare
+          href: ./query/ipv4-comparefunction.md
+        - name: ipv4_is_match
+          href: ./query/ipv4-is-matchfunction.md
+        - name: isascii()
+          href: ./query/isascii.md
+        - name: isempty()
+          href: ./query/isemptyfunction.md
+        - name: isfinite()
+          href: ./query/isfinitefunction.md
+        - name: isinf()
+          href: ./query/isinffunction.md
+        - name: isnan()
+          href: ./query/isnanfunction.md
+        - name: 'isnotempty(), notempty()'
+          href: ./query/isnotemptyfunction.md
+        - name: 'isnotnull(), notempty()'
+          href: ./query/isnotnullfunction.md
+        - name: isnull()
+          href: ./query/isnullfunction.md
+        - name: isutf8()
+          href: ./query/isutf8.md
+        - name: log()
+          href: ./query/log-function.md
+        - name: log10()
+          href: ./query/log10-function.md
+        - name: log2()
+          href: ./query/log2-function.md
+        - name: loggamma()
+          href: ./query/loggammafunction.md
+        - name: make_datetime()
+          href: ./query/make-datetimefunction.md
+        - name: make_string()
+          href: ./query/makestringfunction.md
+        - name: make_timespan()
+          href: ./query/make-timespanfunction.md
+        - name: max_of()
+          href: ./query/max-offunction.md
+        - name: min_of()
+          href: ./query/min-offunction.md
+        - name: monthofyear()
+          href: ./query/monthofyearfunction.md
+        - name: new_guid()
+          href: ./query/newguidfunction.md
+        - name: not()
+          href: ./query/notfunction.md
+        - name: now()
+          href: ./query/nowfunction.md
+        - name: pack()
+          href: ./query/packfunction.md
+        - name: pack_all()
+          href: ./query/packallfunction.md
+        - name: pack_array()
+          href: ./query/packarrayfunction.md
+        - name: pack_dictionary()
+          href: ./query/packdictionaryfunction.md
+        - name: parse_csv()
+          href: ./query/parsecsvfunction.md
+        - name: parse_ipv4()
+          href: ./query/parse-ipv4function.md
+        - name: parse_ipv4_mask()
+          href: ./query/parse-ipv4-maskfunction.md
+        - name: parse_json()
+          href: ./query/parsejsonfunction.md
+        - name: parse_path()
+          href: ./query/parsepathfunction.md
+        - name: parse_url()
+          href: ./query/parseurlfunction.md
+        - name: parse_urlquery()
+          href: ./query/parseurlqueryfunction.md
+        - name: parse_user_agent()
+          href: ./query/parse-useragentfunction.md
+        - name: parse_version()
+          href: ./query/parse-versionfunction.md
+        - name: parse_xml()
+          href: ./query/parse-xmlfunction.md
+        - name: percentile_tdigest()
+          href: ./query/percentile-tdigestfunction.md
+        - name: percentrank_tdigest()
+          href: ./query/percentrank-tdigestfunction.md
+        - name: pi()
+          href: ./query/pifunction.md
+        - name: pow()
+          href: ./query/powfunction.md
+        - name: radians()
+          href: ./query/radiansfunction.md
+        - name: rand()
+          href: ./query/randfunction.md
+        - name: range()
+          href: ./query/rangefunction.md
+        - name: rank_tdigest()
+          href: ./query/rank-tdigest.md
+        - name: repeat()
+          href: ./query/repeatfunction.md
+        - name: replace()
+          href: ./query/replacefunction.md
+        - name: reverse()
+          href: ./query/reversefunction.md
+        - name: round()
+          href: ./query/roundfunction.md
+        - name: set_difference()
+          href: ./query/setdifferencefunction.md
+        - name: set_has_element()
+          href: ./query/sethaselementfunction.md
+        - name: set_intersect()
+          href: ./query/setintersectfunction.md
+        - name: set_union()
+          href: ./query/setunionfunction.md
+        - name: sign()
+          href: ./query/signfunction.md
+        - name: sin()
+          href: ./query/sinfunction.md
+        - name: split()
+          href: ./query/splitfunction.md
+        - name: sqrt()
+          href: ./query/sqrtfunction.md
+        - name: startofday()
+          href: ./query/startofdayfunction.md
+        - name: startofmonth()
+          href: ./query/startofmonthfunction.md
+        - name: startofweek()
+          href: ./query/startofweekfunction.md
+        - name: startofyear()
+          href: ./query/startofyearfunction.md
+        - name: strcat()
+          href: ./query/strcatfunction.md
+        - name: strcat_array()
+          href: ./query/strcat-arrayfunction.md
+        - name: strcat_delim()
+          href: ./query/strcat-delimfunction.md
+        - name: strcmp()
+          href: ./query/strcmpfunction.md
+        - name: string_size()
+          href: ./query/stringsizefunction.md
+        - name: strlen()
+          href: ./query/strlenfunction.md
+        - name: strrep()
+          href: ./query/strrepfunction.md
+        - name: substring()
+          href: ./query/substringfunction.md
+        - name: tan()
+          href: ./query/tanfunction.md
+        - name: tdigest_merge()
+          href: ./query/tdigest-mergefunction.md
+        - name: to_utf8()
+          href: ./query/toutf8function.md
+        - name: tobool()
+          href: ./query/toboolfunction.md
+        - name: todatetime()
+          href: ./query/todatetimefunction.md
+        - name: todecimal()
+          href: ./query/todecimalfunction.md
+        - name: todouble()
+          href: ./query/todoublefunction.md
+        - name: todynamic()
+          href: ./query/todynamicfunction.md
+        - name: toguid()
+          href: ./query/toguidfunction.md
+        - name: tohex()
+          href: ./query/tohexfunction.md
+        - name: toint()
+          href: ./query/tointfunction.md
+        - name: tolong()
+          href: ./query/tolongfunction.md
+        - name: tolower()
+          href: ./query/tolowerfunction.md
+        - name: toreal()
+          href: ./query/todoublefunction.md
+        - name: tostring()
+          href: ./query/tostringfunction.md
+        - name: totimespan()
+          href: ./query/totimespanfunction.md
+        - name: toupper()
+          href: ./query/toupperfunction.md
+        - name: translate()
+          href: ./query/translatefunction.md
+        - name: treepath()
+          href: ./query/treepathfunction.md
+        - name: trim()
+          href: ./query/trimfunction.md
+        - name: trim_end()
+          href: ./query/trimendfunction.md
+        - name: trim_start()
+          href: ./query/trimstartfunction.md
+        - name: unixtime_microseconds_todatetime()
+          href: ./query/unixtime-microseconds-todatetimefunction.md
+        - name: unixtime_milliseconds_todatetime()
+          href: ./query/unixtime-milliseconds-todatetimefunction.md
+        - name: unixtime_nanoseconds_todatetime()
+          href: ./query/unixtime-nanoseconds-todatetimefunction.md
+        - name: unixtime_seconds_todatetime()
+          href: ./query/unixtime-seconds-todatetimefunction.md
+        - name: url_decode()
+          href: ./query/urldecodefunction.md
+        - name: url_encode()
+          href: ./query/urlencodefunction.md
+        - name: url_encode_component()
+          href: ./query/urlencodecomponentfunction.md
+        - name: weekofyear()
+          href: ./query/weekofyearfunction.md
+        - name: welch_test()
+          href: ./query/welch-testfunction.md
+        - name: zip()
+          href: ./query/zipfunction.md
+    - name: Fonctions d’agrégation
+      items:
+        - name: any()
+          href: ./query/any-aggfunction.md
+        - name: anyif()
+          href: ./query/anyif-aggfunction.md
+        - name: arg_max()
+          href: ./query/arg-max-aggfunction.md
+        - name: arg_min()
+          href: ./query/arg-min-aggfunction.md
+        - name: avg()
+          href: ./query/avg-aggfunction.md
+        - name: avgif()
+          href: ./query/avgif-aggfunction.md
+        - name: binary_all_and
+          href: ./query/binary-all-and-aggfunction.md
+        - name: binary_all_or
+          href: ./query/binary-all-or-aggfunction.md
+        - name: binary_all_xor
+          href: ./query/binary-all-xor-aggfunction.md
+        - name: buildschema()
+          href: ./query/buildschema-aggfunction.md
+        - name: count()
+          href: ./query/count-aggfunction.md
+        - name: countif()
+          href: ./query/countif-aggfunction.md
+        - name: dcount()
+          href: ./query/dcount-aggfunction.md
+        - name: dcountif()
+          href: ./query/dcountif-aggfunction.md
+        - name: hll()
+          href: ./query/hll-aggfunction.md
+        - name: hll_merge()
+          href: ./query/hll-merge-aggfunction.md
+        - name: make_bag()
+          href: ./query/make-bag-aggfunction.md
+        - name: make_bag_if()
+          href: ./query/make-bag-if-aggfunction.md
+        - name: make_list()
+          href: ./query/makelist-aggfunction.md
+        - name: make_list_if()
+          href: ./query/makelistif-aggfunction.md
+        - name: make_list_with_nulls()
+          href: ./query/make-list-with-nulls-aggfunction.md
+        - name: make_set()
+          href: ./query/makeset-aggfunction.md
+        - name: make_set_if()
+          href: ./query/makesetif-aggfunction.md
+        - name: max()
+          href: ./query/max-aggfunction.md
+        - name: maxif()
+          href: ./query/maxif-aggfunction.md
+        - name: min()
+          href: ./query/min-aggfunction.md
+        - name: minif()
+          href: ./query/minif-aggfunction.md
+        - name: percentiles()
+          href: ./query/percentiles-aggfunction.md
+        - name: stdev()
+          href: ./query/stdev-aggfunction.md
+        - name: stdevif()
+          href: ./query/stdevif-aggfunction.md
+        - name: stdevp()
+          href: ./query/stdevp-aggfunction.md
+        - name: sum()
+          href: ./query/sum-aggfunction.md
+        - name: sumif()
+          href: ./query/sumif-aggfunction.md
+        - name: tdigest()
+          href: ./query/tdigest-aggfunction.md
+        - name: tdigest_merge()
+          href: ./query/tdigest-merge-aggfunction.md
+        - name: variance()
+          href: ./query/variance-aggfunction.md
+        - name: varianceif()
+          href: ./query/varianceif-aggfunction.md
+        - name: variancep()
+          href: ./query/variancep-aggfunction.md
+    - name: Fonctions Windows
+      items:
+        - name: Vue d’ensemble des fonctions de fenêtre
+          href: ./query/windowsfunctions.md
+        - name: next()
+          href: ./query/nextfunction.md
+        - name: prev()
+          href: ./query/prevfunction.md
+        - name: row_cumsum()
+          href: ./query/rowcumsumfunction.md
+        - name: row_number()
+          href: ./query/rownumberfunction.md
+        - name: row_window_session()
+          href: ./query/row-window-session-function.md
+    - name: Agrégations des fenêtres dynamiques
+      items:
+        - name: rolling_percentile()
+          href: ./query/rolling-percentile-plugin.md
+    - name: Analyse des séries chronologiques
+      items:
+        - name: opérateur make-series
+          href: ./query/make-seriesoperator.md
+        - name: series_add()
+          href: ./query/series-addfunction.md
+        - name: series_decompose()
+          href: ./query/series-decomposefunction.md
+        - name: series_decompose_anomalies()
+          href: ./query/series-decompose-anomaliesfunction.md
+        - name: series_decompose_forecast()
+          href: ./query/series-decompose-forecastfunction.md
+        - name: series_divide()
+          href: ./query/series-dividefunction.md
+        - name: series_equals()
+          href: ./query/series-equalsfunction.md
+        - name: series_fill_backward()
+          href: ./query/series-fill-backwardfunction.md
+        - name: series_fill_const()
+          href: ./query/series-fill-constfunction.md
+        - name: series_fill_forward()
+          href: ./query/series-fill-forwardfunction.md
+        - name: series_fill_linear()
+          href: ./query/series-fill-linearfunction.md
+        - name: series_fir()
+          href: ./query/series-firfunction.md
+        - name: series_fit_2lines()
+          href: ./query/series-fit-2linesfunction.md
+        - name: series_fit_2lines_dynamic()
+          href: ./query/series-fit-2lines-dynamicfunction.md
+        - name: series_fit_line()
+          href: ./query/series-fit-linefunction.md
+        - name: series_fit_line_dynamic()
+          href: ./query/series-fit-line-dynamicfunction.md
+        - name: series_greater()
+          href: ./query/series-greaterfunction.md
+        - name: series_greater_equals()
+          href: ./query/series-greater-equalsfunction.md
+        - name: series_iir()
+          href: ./query/series-iirfunction.md
+        - name: series_less()
+          href: ./query/series-lessfunction.md
+        - name: series_less_equals()
+          href: ./query/series-less-equalsfunction.md
+        - name: series_multiply()
+          href: ./query/series-multiplyfunction.md
+        - name: series_not_equals()
+          href: ./query/series-not-equalsfunction.md
+        - name: series_outliers()
+          href: ./query/series-outliersfunction.md
+        - name: series_pearson_correlation()
+          href: ./query/series-pearson-correlationfunction.md
+        - name: series_periods_detect()
+          href: ./query/series-periods-detectfunction.md
+        - name: series_periods_validate()
+          href: ./query/series-periods-validatefunction.md
+        - name: series_seasonal()
+          href: ./query/series-seasonalfunction.md
+        - name: series_stats()
+          href: ./query/series-statsfunction.md
+        - name: series_stats_dynamic()
+          href: ./query/series-stats-dynamicfunction.md
+        - name: series_subtract()
+          href: ./query/series-subtractfunction.md
+        - name: vue d’ensemble de l’analyse des séries chronologiques
+          href: ./query/machine-learning-and-tsa.md
+    - name: Machine Learning
+      items:
+        - name: autocluster
+          href: ./query/autoclusterplugin.md
+        - name: basket
+          href: ./query/basketplugin.md
+        - name: diffpatterns
+          href: ./query/diffpatternsplugin.md
+        - name: diffpatterns_text
+          href: ./query/diffpatterns-textplugin.md
+    - name: Géospatial
+      items:
+        - name: geo_distance_2points()
+          href: ./query/geo-distance-2points-function.md
+        - name: geo_distance_point_to_line()
+          href: ./query/geo-distance-point-to-line-function.md
+        - name: geo_geohash_to_central_point()
+          href: ./query/geo-geohash-to-central-point-function.md
+        - name: geo_point_in_circle()
+          href: ./query/geo-point-in-circle-function.md
+        - name: geo_point_in_polygon()
+          href: ./query/geo-point-in-polygon-function.md
+        - name: geo_point_to_geohash()
+          href: ./query/geo-point-to-geohash-function.md
+        - name: geo_point_to_s2cell()
+          href: ./query/geo-point-to-s2cell-function.md
+        - name: geo_s2cell_to_central_point()
+          href: ./query/geo-s2cell-to-central-point-function.md
+    - name: Analyse des utilisateurs
+      items:
+        - name: Plug-ins de l’analytique des utilisateurs
+          href: ./query/useranalytics.md
+        - name: Nombre d’utilisateurs actifs
+          href: ./query/active-users-count-plugin.md
+        - name: 'Métriques sur le nombre d’activités (valeurs totales, valeurs distinctes, nouvelles valeurs)'
+          href: ./query/activity-counts-metrics-plugin.md
+        - name: 'Engagement des activités (UAQ, WAU, UAM)'
+          href: ./query/activity-engagement-plugin.md
+        - name: 'Métriques sur les activités (conservation, évolution, nouvelles valeurs)'
+          href: ./query/activity-metrics-plugin.md
+        - name: 'Métriques sur les activités - Nouveau (conservation, évolution, nouvelles valeurs)'
+          href: ./query/new-activity-metrics-plugin.md
+        - name: Achèvement de la séquence d’entonnoir
+          href: ./query/funnel-sequence-completion-plugin.md
+        - name: Séquence d’entonnoir
+          href: ./query/funnel-sequence-plugin.md
+        - name: Nombre de sessions
+          href: ./query/session-count-plugin.md
+        - name: Nombre de fenêtres glissantes
+          href: ./query/sliding-window-counts-plugin.md
+    - name: Documentation de référence sur le langage de requête Kusto
+      items:
+        - name: Syntaxe RE2
+          href: ./query/re2.md
+        - name: Aide-mémoire SQL vers Kusto
+          href: ./query/sqlcheatsheet.md
+- name: Concepts
+  href: ./concepts/index.md
+  items:
+    - name: Prise en main
+      href: ./concepts/index.md
+      items:
+        - name: Bacs à sable
+          href: ./concepts/sandboxes.md
+    - name: Erreurs et divers
+      items:
+        - name: Limites de requête
+          href: ./concepts/querylimits.md
+        - name: Échecs des requêtes partielles
+          href: ./concepts/partialqueryfailures.md
+          items:
+            - name: Troncation des résultats
+              href: ./concepts/resulttruncation.md
+            - name: Perte de contrôle des requêtes
+              href: ./concepts/runawayqueries.md
+            - name: Dépassement de capacité
+              href: ./concepts/overflow.md
+        - name: Requêtes interclusters et changements du schéma
+          href: ./concepts/crossclusterandschemachanges.md
+        - name: Cohérence des requêtes
+          href: ./concepts/queryconsistency.md
+        - name: Erreurs dans le code natif
+          href: ./concepts/errorsinnativecode.md
+        - name: Tables de faits et de dimension
+          href: ./concepts/fact-and-dimension-tables.md
+- name: Gestion
+  href: ./management/index.md
+  items:
+    - name: Vue d’ensemble
+      href: ./management/index.md
+      items:
+        - name: Meilleures pratiques
+          href: ./management/best-practices.md
+    - name: schéma
+      href: ./management/schema.md
+      items:
+        - name: Bases de données
+          href: ./management/databases.md
+          items:
+            - name: .show databases
+              href: ./management/show-databases.md
+            - name: .show database
+              href: ./management/show-database.md
+            - name: .show cluster database
+              href: ./management/show-cluster-database.md
+            - name: .alter database
+              href: ./management/alter-database.md
+            - name: .drop database
+              href: ./management/drop-database.md
+            - name: .show database schema
+              href: ./management/show-schema-database.md
+        - name: Tables
+          items:
+            - name: Vue d’ensemble des tables
+              href: ./management/tables.md
+            - name: .alter merge table
+              href: ./management/alter-table-command.md
+            - name: .alter table
+              href: ./management/alter-table-command.md
+            - name: .alter table docstring
+              href: ./management/alter-table-docstring-command.md
+            - name: .alter table folder
+              href: ./management/alter-table-folder-command.md
+            - name: .alter ingestion mapping
+              href: ./management/alter-ingestion-mapping-command.md
+            - name: .create ingestion mapping
+              href: ./management/create-ingestion-mapping-command.md
+            - name: .drop ingestion mapping
+              href: ./management/drop-ingestion-mapping-command.md
+            - name: .show ingestion mapping
+              href: ./management/show-ingestion-mapping-command.md
+            - name: .create table
+              href: ./management/create-table-command.md
+            - name: .create tables
+              href: ./management/create-tables-command.md
+            - name: .drop table(s)
+              href: ./management/drop-table-command.md
+            - name: .rename table
+              href: ./management/rename-table-command.md
+            - name: .show table
+              href: ./management/show-tables-command.md
+            - name: .undo drop table
+              href: ./management/undo-drop-table-command.md
+            - name: .show table details
+              href: ./management/show-table-details-command.md
+            - name: .show table schema
+              href: ./management/show-table-schema-command.md
+        - name: Colonnes
+          items:
+            - name: Vue d’ensemble des colonnes
+              href: ./management/columns.md
+            - name: .alter column
+              href: ./management/alter-column.md
+            - name: .alter-merge table column-docstrings
+              href: ./management/alter-merge-table-column.md
+            - name: .drop column
+              href: ./management/drop-column.md
+            - name: .rename column(s)
+              href: ./management/rename-column.md
+        - name: Mappages
+          href: ./management/mappings.md
+        - name: Fonctions
+          items:
+            - name: Vue d’ensemble des fonctions
+              href: ./management/functions.md
+            - name: .alter function
+              href: ./management/alter-function.md
+            - name: .alter docstring function
+              href: ./management/alter-docstring-function.md
+            - name: .alter folder function
+              href: ./management/alter-folder-function.md
+            - name: .create function
+              href: ./management/create-function.md
+            - name: .create-or-alter function
+              href: ./management/create-alter-function.md
+            - name: .drop function
+              href: ./management/drop-function.md
+            - name: .show function
+              href: ./management/show-function.md
+    - name: Stratégies
+      items:
+        - name: Vue d’ensemble des stratégies
+          href: ./management/policies.md
+        - name: Stratégie de cache
+          items:
+            - name: Stratégie de cache
+              href: ./management/cachepolicy.md
+            - name: Commande de stratégie de cache
+              href: ./management/cache-policy.md
+        - name: Stratégie sur le moment de l’ingestion
+          items:
+            - name: Stratégie sur le moment de l’ingestion
+              href: ./management/ingestiontimepolicy.md
+            - name: Commande sur le moment de l’ingestion
+              href: ./management/ingestiontime-policy.md
+        - name: Stratégie de rétention
+          items:
+            - name: Stratégie de rétention
+              href: ./management/retentionpolicy.md
+            - name: Commande sur la stratégie de rétention
+              href: ./management/retention-policy.md
+        - name: Stratégie RowLevelSecurity
+          items:
+            - name: Stratégie de sécurité au niveau des lignes
+              href: ./management/rowlevelsecuritypolicy.md
+            - name: Commande de stratégie row_level_security
+              href: ./management/row-level-security-policy.md
+        - name: Stratégie RowOrder
+          items:
+            - name: Stratégie sur l’ordre des lignes
+              href: ./management/roworderpolicy.md
+            - name: Commande RowOrder
+              href: ./management/roworder-policy.md
+        - name: Mettre à jour la stratégie
+          items:
+            - name: Mettre à jour la stratégie
+              href: ./management/updatepolicy.md
+            - name: Commande de stratégie de mise à jour
+              href: ./management/update-policy.md
+        - name: Stratégie de traitement par lot
+          items:
+            - name: Stratégie de traitement par lot de l’ingestion
+              href: ./management/batchingpolicy.md
+            - name: Commande de stratégie de traitement par lot de l’ingestion
+              href: ./management/batching-policy.md
+        - name: Stratégie de fusion
+          items:
+            - name: Stratégie de fusion
+              href: ./management/mergepolicy.md
+            - name: Commande de stratégie de fusion
+              href: ./management/merge-policy.md
+        - name: Stratégie de partitionnement
+          items:
+            - name: Stratégie de partitionnement
+              href: ./management/partitioningpolicy.md
+            - name: Commande de stratégie de partitionnement
+              href: ./management/partitioning-policy.md
+        - name: Stratégie RestrictedViewAccess
+          items:
+            - name: Stratégie RestrictedViewAccess
+              href: ./management/restrictedviewaccesspolicy.md
+            - name: Commande de stratégie restricted_view_access
+              href: ./management/restrictedviewaccess-policy.md
+        - name: Stratégie de bac à sable
+          items:
+            - name: Stratégie de bac à sable
+              href: ./management/sandboxpolicy.md
+            - name: Commande de stratégie de bac à sable
+              href: ./management/sandbox-policy.md
+        - name: Stratégie de partitionnement
+          items:
+            - name: Stratégie de partitionnement
+              href: ./management/shardingpolicy.md
+            - name: Commande de stratégie de sharding
+              href: ./management/sharding-policy.md
+        - name: Stratégie d’ingestion en streaming
+          items:
+            - name: Stratégie d’ingestion en streaming
+              href: ./management/streamingingestionpolicy.md
+            - name: Commande de stratégie streamingingestion
+              href: ./management/streamingingestion-policy.md
+        - name: Stratégie de légende
+          href: ./management/calloutpolicy.md
+        - name: Stratégie de capacité
+          items:
+            - name: Stratégie de capacité
+              href: ./management/capacitypolicy.md
+            - name: Commande de stratégie de capacité
+              href: ./management/capacity-policy.md
+    - name: Rôles de sécurité
+      href: ./management/security-roles.md
+    - name: Ingestion de données
+      href: ./management/data-ingestion/index.md
+      items:
+        - name: Ingestion à partir du stockage
+          href: ./management/data-ingestion/ingest-from-storage.md
+        - name: Ingestion à partir d’une requête
+          href: ./management/data-ingestion/ingest-from-query.md
+        - name: Ingestion inline
+          href: ./management/data-ingestion/ingest-inline.md
+        - name: Ingérer à partir du stockage avec un abonnement Event Grid
+          href: ./management/data-ingestion/eventgrid.md
+        - name: Ingérer à partir d’Event Hub
+          href: ./management/data-ingestion/eventhub.md
+        - name: Ingérer à partir d’IoT Hub
+          href: ./management/data-ingestion/iothub.md
+    - name: Exportation de données
+      href: ./management/data-export/index.md
+      items:
+        - name: Vers le stockage cloud
+          href: ./management/data-export/export-data-to-storage.md
+        - name: Vers une table SQL
+          href: ./management/data-export/export-data-to-sql.md
+        - name: Vers une table externe
+          href: ./management/data-export/export-data-to-an-external-table.md
+        - name: Exportation de données continue
+          href: ./management/data-export/continuous-data-export.md
+    - name: Curseurs de base de données
+      href: ./management/databasecursor.md
+    - name: Informations système
+      href: ./management/systeminfo.md
+      items:
+        - name: Diagnostics
+          href: ./management/diagnostics.md
+        - name: Journal
+          href: ./management/journal.md
+        - name: Requêtes
+          href: ./management/queries.md
+        - name: Commandes
+          href: ./management/commands.md
+        - name: Commandes et requêtes
+          href: ./management/commands-and-queries.md
+        - name: Échecs d’ingestion
+          href: ./management/ingestionfailures.md
+        - name: Opérations
+          href: ./management/operations.md
+    - name: Contrôle d’accès
+      href: ./management/access-control/index.md
+      items:
+        - name: Identities
+          href: ./management/access-control/principals-and-identity-providers.md
+        - name: AAD
+          href: ./management/access-control/aad.md
+        - name: Rôles du principal
+          href: ./management/access-control/role-based-authorization.md
+        - name: "Procédure d’authentification\_AAD"
+          href: ./management/access-control/how-to-authenticate-with-aad.md
+        - name: "Procédure de provisionnement d’une application\_AAD"
+          href: ./management/access-control/how-to-provision-aad-app.md
+    - name: Gestion avancée des données
+      items:
+        - name: Vue d’ensemble des étendues (partitions de données)
+          href: ./management/extents-overview.md
+        - name: Commandes d’étendues
+          href: ./management/extents-commands.md
+        - name: Abonné aux clusters
+          href: ./management/cluster-follower.md
+        - name: Vidage des données
+          href: ./management/../concepts/data-purge.md
+- name: API
+  href: ./api/index.md
+  items:
+    - name: Vue d’ensemble
+      href: ./api/index.md
+      items:
+        - name: Bibliothèques clientes
+          href: ./api/client-libraries.md
+        - name: Chaînes de connexion
+          href: ./api/connection-strings/index.md
+          items:
+            - name: Chaînes de connexion Kusto
+              href: ./api/connection-strings/kusto.md
+            - name: Chaînes de connexion de stockage
+              href: ./api/connection-strings/storage.md
+    - name: API REST
+      href: ./api/rest/index.md
+      items:
+        - name: Authentification
+          href: ./api/rest/authentication.md
+        - name: Requête HTTP d’interrogation ou de gestion
+          href: ./api/rest/request.md
+        - name: Réponse HTTP d’interrogation ou de gestion
+          href: ./api/rest/response.md
+        - name: "Réponse HTTP d’interrogation\_v2"
+          href: ./api/rest/response2.md
+        - name: Interface utilisateur (liens ciblés)
+          href: ./api/rest/deeplink.md
+        - name: Ingestion de streaming
+          href: ./api/rest/streaming-ingest.md
+    - name: 'MS-TDS (SQL, ADO.NET, JDBC, ODBC)'
+      href: ./api/tds/index.md
+      items:
+        - name: T-SQL
+          href: ./api/tds/t-sql.md
+        - name: KQL over TDS
+          href: ./api/tds/tdskql.md
+        - name: Clients
+          href: ./api/tds/clients.md
+        - name: Serveur lié
+          href: ./api/tds/linkedserver.md
+        - name: AAD
+          href: ./api/tds/aad.md
+        - name: Problèmes connus
+          href: ./api/tds/sqlknownissues.md
+    - name: Kit de développement logiciel (SDK) .NET
+      items:
+        - name: Général
+          items:
+            - name: À propos du SDK
+              href: ./api/netfx/about-the-sdk.md
+            - name: Contrôle du traçage
+              href: ./api/netfx/controlling-tracing.md
+        - name: Kusto.Data
+          href: ./api/netfx/about-kusto-data.md
+          items:
+            - name: 'Propriétés des requêtes, ClientRequestProperties'
+              href: ./api/netfx/request-properties.md
+        - name: Kusto.Ingest
+          href: ./api/netfx/about-kusto-ingest.md
+          items:
+            - name: Autorisations
+              href: ./api/netfx/kusto-ingest-client-permissions.md
+            - name: Informations de référence sur le client
+              href: ./api/netfx/kusto-ingest-client-reference.md
+            - name: Exceptions
+              href: ./api/netfx/kusto-ingest-client-errors.md
+            - name: État de l’opération
+              href: ./api/netfx/kusto-ingest-client-status.md
+            - name: Bonnes pratiques
+              href: ./api/netfx/kusto-ingest-best-practices.md
+            - name: Exemples de code
+              href: ./api/netfx/kusto-ingest-client-examples.md
+            - name: Procédure d’ingestion des données
+              href: ./api/netfx/kusto-ingest-queued-ingest-sample.md
+            - name: Procédure d’ingestion des données avec l’API REST
+              href: ./api/netfx/kusto-ingest-client-rest.md
+    - name: Kit de développement logiciel (SDK) Python
+      items:
+        - name: azure-kusto-python
+          href: ./api/python/kusto-python-client-library.md
+    - name: SDK R
+      items:
+        - name: azure-kusto-r
+          href: ./api/r/kusto-r-client-library.md
+    - name: Kit de développement logiciel (SDK) Java
+      items:
+        - name: azure-kusto-java
+          href: ./api/java/kusto-java-client-library.md
+    - name: SDK Node
+      items:
+        - name: azure-kusto-node
+          href: ./api/node/kusto-node-client-library.md
+    - name: Kit de développement logiciel (SDK) Go
+      items:
+        - name: azure-kusto-go
+          href: ./api/golang/kusto-golang-client-library.md
+    - name: PowerShell
+      items:
+        - name: Appel de Kusto à partir de PowerShell
+          href: ./api/powershell/powershell.md
+    - name: Intégration de l’IDE Monaco
+      items:
+        - name: Vue d’ensemble de monaco-kusto
+          href: ./api/monaco/monaco-kusto.md
+        - name: Incorporer l’expérience utilisateur web dans un iFrame
+          href: ./api/monaco/host-web-ux-in-iframe.md
+- name: Outils
+  href: ./tools/index.md
+  items:
+    - name: Vue d’ensemble des outils
+      href: ./tools/index.md
+    - name: Requête ad hoc
+      items:
+        - name: Kusto.Explorer
+          href: ./tools/kusto-explorer.md
+          items:
+            - name: Options Kusto Explorer
+              href: ./tools/kusto-explorer-options.md
+            - name: Raccourcis clavier
+              href: ./tools/kusto-explorer-shortcuts.md
+            - name: Refactorisation de code
+              href: ./tools/kusto-explorer-refactor.md
+            - name: Navigation dans le code
+              href: ./tools/kusto-explorer-codenav.md
+            - name: Analyseur de code
+              href: ./tools/kusto-explorer-code-analyzer.md
+        - name: Interface utilisateur web
+          href: 'https://docs.microsoft.com/azure/data-explorer/web-query-data'
+        - name: Kusto.Cli
+          href: ./tools/kusto-cli.md
+    - name: 'Visualisations, tableaux de bord et création de rapports'
+      items:
+        - name: Azure Notebooks
+          href: 'https://docs.microsoft.com/azure/data-explorer/azure-notebooks'
+        - name: Excel
+          items:
+            - name: Requête vide Excel
+              href: 'https://docs.microsoft.com/azure/data-explorer/excel-blank-query'
+            - name: Connecteur Excel
+              href: 'https://docs.microsoft.com/azure/data-explorer/excel-connector'
+        - name: Grafana
+          href: 'https://docs.microsoft.com/azure/data-explorer/grafana'
+        - name: Power BI
+          items:
+            - name: "Bonnes pratiques pour Power\_BI"
+              href: 'https://docs.microsoft.com/azure/data-explorer/power-bi-best-practices'
+            - name: "Connecteur Power\_BI"
+              href: 'https://docs.microsoft.com/azure/data-explorer/power-bi-connector'
+            - name: "Requête importée Power\_BI"
+              href: 'https://docs.microsoft.com/azure/data-explorer/power-bi-imported-query'
+            - name: Requête SQL Power BI
+              href: 'https://docs.microsoft.com/azure/data-explorer/power-bi-sql-query'
+    - name: Orchestration
+      items:
+        - name: Microsoft Flow (préversion)
+          items:
+            - name: "Connecteur Microsoft\_Flow"
+              href: 'https://docs.microsoft.com/azure/data-explorer/flow'
+            - name: "Exemples d’utilisation du connecteur Microsoft\_Flow"
+              href: 'https://docs.microsoft.com/azure/data-explorer/flow-usage'
+        - name: Microsoft Logic Apps (préversion)
+          href: ./tools/logicapps.md
+    - name: Ingestion de données
+      items:
+        - name: LightIngest
+          href: 'https://docs.microsoft.com/azure/data-explorer/lightingest'
+        - name: Connecteur Apache Spark
+          href: 'https://docs.microsoft.com/azure/data-explorer/spark-connector'
+    - name: Intégration du contrôle de code source
+      items:
+        - name: Synchroniser Kusto
+          href: ./tools/synckusto.md
+        - name: Azure Pipelines/DevOps
+          href: 'https://docs.microsoft.com/azure/data-explorer/devops'
