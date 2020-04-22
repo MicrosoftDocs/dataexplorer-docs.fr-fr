@@ -1,0 +1,154 @@
+### YamlMime:Landing
+title: Documentation Azure Data Explorer
+summary: Azure Data Explorer est un service d’analytique données rapide et complètement managé pour l’analyse en temps réel de gros volumes de données diffusées en continu par des applications, des sites web, des appareils IoT, etc. Vous pouvez utiliser Azure Data Explorer pour collecter, stocker et analyser diverses données en vue d’améliorer les produits et l’expérience des clients, ainsi que de superviser les appareils et de booster les opérations.
+metadata:
+  title: Documentation Azure Data Explorer
+  description: L’Explorateur de données Azure est une plateforme cloud d’analytique des journaux d’activité optimisée pour les requêtes Big Data ad hoc.
+  ms.service: data-explorer
+  ms.topic: landing-page
+  author: orspod
+  ms.author: orspodek
+  ms.date: 03/19/2020
+  ms.openlocfilehash: a685cc0f12d86534274e4c4aaff87587885db572
+  ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+  ms.translationtype: HT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/15/2020
+  ms.locfileid: "81490580"
+landingContent:
+- title: À propos d’Azure Data Explorer
+  linkLists:
+  - linkListType: overview
+    links:
+    - text: Qu’est-ce que l’Explorateur de données Azure ?
+      url: data-explorer-overview.md
+  - linkListType: video
+    links:
+    - text: Qu’est-ce que l’Explorateur de données Azure ? (19:47)
+      url: https://youtu.be/D_AJk2lAepw
+    - text: 'Pluralsight : Les bases du langage de requête Kusto (KQL)'
+      url: https://www.pluralsight.com/courses/kusto-query-language-kql-from-scratch
+- title: Créer un cluster et une base de données
+  linkLists:
+  - linkListType: quickstart
+    links:
+    - text: Créer un cluster et une base de données
+      url: create-cluster-database-portal.md
+  - linkListType: how-to-guide
+    links:
+    - text: Python
+      url: create-cluster-database-python.md
+    - text: Modèle Azure Resource Manager
+      url: create-cluster-database-resource-manager.md
+    - text: C#
+      url: create-cluster-database-csharp.md
+    - text: PowerShell
+      url: create-cluster-database-powershell.md
+    - text: Azure CLI
+      url: create-cluster-database-cli.md
+- title: Ingérer des données dans Azure Data Explorer
+  linkLists:
+  - linkListType: concept
+    links:
+    - text: Vue d’ensemble de l’ingestion de données
+      url: ingest-data-overview.md
+  - linkListType: quickstart
+    links:
+    - text: Ingérer des exemples de données
+      url: ingest-sample-data.md
+  - linkListType: how-to-guide
+    links:
+    - text: Ingestion en un clic
+      url: ingest-data-one-click.md
+    - text: Ingestion de streaming
+      url: ingest-data-streaming.md
+    - text: Python
+      url: python-ingest-data.md
+    - text: Event Hub avec le portail Azure
+      url: ingest-data-event-hub.md
+    - text: Event Grid avec le portail Azure
+      url: ingest-data-event-grid.md
+    - text: Installer et utiliser LightIngest
+      url: lightingest.md
+- title: Interroger des données
+  linkLists:
+  - linkListType: quickstart
+    links:
+    - text: Interroger des données avec l’interface utilisateur web
+      url: web-query-data.md
+  - linkListType: tutorial
+    links:
+    - text: Écrire des requêtes KQL
+      url: write-queries.md
+  - linkListType: how-to-guide
+    links:
+    - text: Interroger des données dans Azure Data Lake
+      url: data-lake-query-data.md
+    - text: Interroger des données à l’aide de Python
+      url: python-query-data.md
+    - text: Analyse de série chronologique
+      url: time-series-analysis.md
+  - linkListType: reference
+    links:
+    - text: Aide-mémoire sur KQL
+      url: kql-quick-reference.md
+    - text: Langage de requête Kusto
+      url: kusto/query/index.md
+- title: Visualiser les données
+  linkLists:
+  - linkListType: concept
+    links:
+    - text: Vue d’ensemble de la visualisation de données
+      url: viz-overview.md
+  - linkListType: how-to-guide
+    links:
+    - text: Connecteur Power BI
+      url: power-bi-connector.md
+    - text: Grafana
+      url: grafana.md
+    - text: Connecteur ODBC
+      url: connect-odbc.md
+    - text: Tableau
+      url: tableau.md
+    - text: Kibana (connecteur K2Bridge)
+      url: k2bridge.md
+    - text: Redash
+      url: redash.md
+    - text: Sisense
+      url: sisense.md
+- title: Intégrer aux autres outils
+  linkLists:
+  - linkListType: how-to-guide
+    links:
+    - text: Intégration à Data Factory
+      url: data-factory-integration.md
+    - text: Connecteur Apache Spark
+      url: spark-connector.md
+    - text: Connecteur Microsoft Flow
+      url: flow.md
+    - text: Azure DevOps
+      url: devops.md
+- title: Gérer et superviser des ressources et des données
+  linkLists:
+  - linkListType: how-to-guide
+    links:
+    - text: Gérer la mise à l’échelle horizontale des clusters
+      url: manage-cluster-horizontal-scaling.md
+    - text: Gérer la mise à l’échelle verticale des clusters
+      url: manage-cluster-vertical-scaling.md
+    - text: Bases de données d’abonné
+      url: follower.md
+    - text: Gérer des autorisations de base de données
+      url: manage-database-permissions.md
+    - text: Utiliser des métriques pour superviser l’intégrité du cluster
+      url: using-metrics.md
+    - text: Utiliser des journaux de diagnostic pour superviser l’ingestion
+      url: using-diagnostic-logs.md
+- title: Informations de référence
+  linkLists:
+  - linkListType: reference
+    links:
+    - text: Commandes de gestion
+      url: kusto/management/index.md
+    - text: API Azure Data Explorer
+      url: kusto/api/index.md
