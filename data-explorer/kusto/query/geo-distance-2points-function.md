@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/11/2020
-ms.openlocfilehash: 4b63ffaee8123b4ee281426f30f757fbe5165e75
-ms.sourcegitcommit: 436cd515ea0d83d46e3ac6328670ee78b64ccb05
+ms.openlocfilehash: 30a26bbcc57ecde2ac3beeeb1483b953a0cc5820
+ms.sourcegitcommit: 29018b3db4ea7d015b1afa65d49ecf918cdff3d6
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81663702"
+ms.lasthandoff: 04/22/2020
+ms.locfileid: "82030148"
 ---
 # <a name="geo_distance_2points"></a>geo_distance_2points()
 
@@ -42,7 +42,8 @@ La distance la plus courte, en mètres, entre deux emplacements géographiques s
 
 L’exemple suivant trouve la distance la plus courte entre Seattle et Los Angeles.
 
-:::image type="content" source="images/queries/geo/distance_2points_seattle_los_angeles.png" alt-text="Distance entre Seattle et Los Angeles":::
+
+:::image type="content" source="images/geo-distance-2points-function/distance_2points_seattle_los_angeles.png" alt-text="Distance entre Seattle et Los Angeles":::
 
 ```kusto
 print distance_in_meters = geo_distance_2points(-122.407628, 47.578557, -118.275287, 34.019056)
@@ -54,7 +55,7 @@ print distance_in_meters = geo_distance_2points(-122.407628, 47.578557, -118.275
 
 Voici une approximation du chemin le plus court de Seattle à Londres. La ligne se compose de coordonnées le long de la LineString et à moins de 500 mètres de celui-ci.
 
-:::image type="content" source="images/queries/geo/line_seattle_london.png" alt-text="Seattle à Londres LineString":::
+:::image type="content" source="images/geo-distance-2points-function/line_seattle_london.png" alt-text="Seattle à Londres LineString":::
 
 ```kusto
 range i from 1 to 1000000 step 1

@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-zone_pivot_group_filename: kusto/zone-pivot-groups.json
+zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 06655cc260f23b8812450513f85bec63c33f1775
-ms.sourcegitcommit: 857e7062c00a3ccff3c7085375d5c077936afaa5
+ms.openlocfilehash: d815a75b241f7779a5f4ee9cae626c38ed54f9f4
+ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81524410"
+ms.lasthandoff: 04/22/2020
+ms.locfileid: "81765996"
 ---
 # <a name="r-plugin-preview"></a>R plugin (Avant-première)
 
@@ -83,10 +83,8 @@ typeof(*, fx:double),               //  Output schema: append a new fx column to
 )
 | render linechart 
 ```
-![texte de remplacement](./images/samples/sine-demo.png "sine-démo")
 
-
-
+:::image type="content" source="images/samples/sine-demo.png" alt-text="Démo de Sine":::
 
 ### <a name="performance-tips"></a>Conseils sur les performances
 

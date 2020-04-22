@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 49d024d1deecd8e0c7bf16eda9917cd237fe6319
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 460ad9cfca4f97e6735d30a4d47d6384581e7af7
+ms.sourcegitcommit: 29018b3db4ea7d015b1afa65d49ecf918cdff3d6
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81523271"
+ms.lasthandoff: 04/22/2020
+ms.locfileid: "82029986"
 ---
 # <a name="data-purge"></a>Vidage des données
 
@@ -90,6 +90,7 @@ La commande de purge peut être invoquée de deux façons pour des scénarios d�
 1. Invocation programmatique : Une seule étape qui est destinée à être invoquée par les demandes. L’appel de cette commande déclenche directement la séquence d’exécution de purge.
 
     **Syntaxe**
+
      ```kusto
      .purge table [TableName] records in database [DatabaseName] with (noregrets='true') <| [Predicate]
      ```
@@ -101,6 +102,7 @@ La commande de purge peut être invoquée de deux façons pour des scénarios d�
     <!-- If query times-out on DM endpoint (default timeout is 10 minutes), it is recommended to use the [engine `whatif` command](#purge-whatif-command) directly againt the engine endpoint while increasing the [server timeout limit](../concepts/querylimits.md#limit-on-request-execution-time-timeout). Only after you have verified the expected results using the engine whatif command, issue the purge command via the DM endpoint using the 'noregrets' option. -->
 
      **Syntaxe**
+
      ```kusto
      // Step #1 - retrieve a verification token (no records will be purged until step #2 is executed)
      .purge table [TableName] records in database [DatabaseName] <| [Predicate]
@@ -256,8 +258,6 @@ Statut - 'Terminé' indique l’achèvement réussi de la première phase de l�
 * ClientRequestId - ID d’activité client de la demande de purge DM. 
 * Principal - identité de l’émetteur de commandement de purge.
 
-
-
 ## <a name="purging-an-entire-table"></a>Purger une table entière
 Purger une table comprend laisser tomber la table, et le marquer comme purgé de sorte que le processus de suppression dure décrit dans le [processus de purge](#purge-process) fonctionne sur elle. Laisser tomber une table sans purger ne supprime pas tous ses artefacts de stockage (supprimé selon la stratégie de rétention dure initialement mis sur la table). La `purge table allrecords` commande est rapide et efficace et est de loin préférable au processus d’enregistrement de purge, le cas échéant pour votre scénario. 
 
@@ -270,6 +270,7 @@ Semblable à['.purge table records ](#purge-table-tablename-records-command)' co
 1. Invocation programmatique (étape unique) :
 
      **Syntaxe**
+
      ```kusto
      .purge table [TableName] in database [DatabaseName] allrecords with (noregrets='true')
      ```
@@ -277,6 +278,7 @@ Semblable à['.purge table records ](#purge-table-tablename-records-command)' co
 2. Invocation humaine (deux étapes):
 
      **Syntaxe**
+
      ```kusto
      // Step #1 - retrieve a verification token (the table will not be purged until step #2 is executed)
      .purge table [TableName] in database [DatabaseName] allrecords
@@ -287,7 +289,7 @@ Semblable à['.purge table records ](#purge-table-tablename-records-command)' co
 
     |Paramètres  |Description  |
     |---------|---------|
-    |**nom_base_de_données**   |   Nom de la base de données.      |
+    |**DatabaseName**   |   Nom de la base de données.      |
     |**TableName**     |     Nom de la table.    |
     |**noregrets noregrets**    |     Si défini, déclenche une activation en une seule étape.    |
     |**vérificationtoken**     |  Dans le scénario d’activation en deux étapes **(noregrets** n’est pas défini), ce jeton peut être utilisé pour exécuter la deuxième étape et de commettre l’action. Si **le jet de vérification** n’est pas spécifié, il déclenchera la première étape de la commande, dans laquelle un jeton est retourné, de passer à la commande et d’effectuer l’étape de la commande #2.|
@@ -312,6 +314,7 @@ Semblable à['.purge table records ](#purge-table-tablename-records-command)' co
     .purge table MyTable in database MyDatabase allrecords 
     with (verificationtoken='eyJTZXJ2aWNlTmFtZSI6IkVuZ2luZS1pdHNhZ3VpIiwiRGF0YWJhc2VOYW1lIjoiQXp1cmVTdG9yYWdlTG9ncyIsIlRhYmxlTmFtZSI6IkF6dXJlU3RvcmFnZUxvZ3MiLCJQcmVkaWNhdGUiOiIgd2hlcmUgU2VydmVyTGF0ZW5jeSA9PSAyNSJ9')
     ```
+    
     La sortie est la même que la sortie de commande des tables de démonstration (retournée sans la table purgée).
 
     **Sortie**
