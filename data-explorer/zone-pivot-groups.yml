@@ -1,0 +1,17 @@
+### YamlMime:ZonePivotGroups
+groups:
+- id: kql-flavors
+  title: Saveurs du langage de requête Kusto
+  prompt: Sélectionner votre service Azure
+  pivots:
+  - id: azuredataexplorer
+    title: Explorateur de données Azure
+  - id: azuremonitor
+    title: Azure Monitor
+metadata:
+  ms.openlocfilehash: e41f8e74785e3154795dfc8abc19fae23b63c16e
+  ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+  ms.translationtype: HT
+  ms.contentlocale: fr-FR
+  ms.lasthandoff: 04/15/2020
+  ms.locfileid: "81492377"
