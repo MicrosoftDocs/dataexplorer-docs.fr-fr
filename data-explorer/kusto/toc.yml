@@ -83,7 +83,7 @@
           href: ./query/batches.md
     - name: Opérateurs tabulaires
       items:
-        - name: Données tabulaires
+        - name: données tabulaires
           href: ./query/queries.md
         - name: opérateur as
           href: ./query/asoperator.md
@@ -739,8 +739,10 @@
       items:
         - name: rolling_percentile()
           href: ./query/rolling-percentile-plugin.md
-    - name: Analyse des séries chronologiques
+    - name: Analyse de série chronologique
       items:
+        - name: Vue d’ensemble de l’analyse des séries chronologiques
+          href: ./query/machine-learning-and-tsa.md
         - name: opérateur make-series
           href: ./query/make-seriesoperator.md
         - name: series_add()
@@ -803,8 +805,6 @@
           href: ./query/series-stats-dynamicfunction.md
         - name: series_subtract()
           href: ./query/series-subtractfunction.md
-        - name: vue d’ensemble de l’analyse des séries chronologiques
-          href: ./query/machine-learning-and-tsa.md
     - name: Machine Learning
       items:
         - name: autocluster
