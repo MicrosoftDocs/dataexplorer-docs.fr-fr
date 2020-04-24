@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 857756b5be76746c65f58d0d8269c341e6217564
-ms.sourcegitcommit: 2e63c7c668c8a6200f99f18e39c3677fcba01453
+ms.openlocfilehash: ad255c6930e76628a5187fa8d321e3445dbb5f99
+ms.sourcegitcommit: fbe298e88542c0dcea0f491bb53ac427f850f729
 ms.translationtype: MT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 04/24/2020
-ms.locfileid: "82117673"
+ms.locfileid: "82138864"
 ---
 # <a name="data-partitioning-policy-preview"></a>Stratégie de partitionnement des données (préversion)
 
@@ -25,7 +25,8 @@ La stratégie de partitionnement définit si et comment les [étendues (données
 L’objectif principal de la stratégie est d’améliorer les performances des requêtes qui sont limitées à un petit sous-ensemble de valeurs dans la ou les colonnes partitionnées.
 Un avantage potentiel secondaire est une meilleure compression des données.
 
-Bien qu’il n’existe aucune limite codée en dur définie sur la quantité de tables sur lesquelles la stratégie peut être définie, chaque table supplémentaire ajoute une surcharge au processus de partitionnement des données en arrière-plan qui s’exécute sur les nœuds du cluster et peut nécessiter des ressources supplémentaires à partir du cluster. pour plus d’informations, voir [ci-dessous](#capacity).
+> [!WARNING]
+> Bien qu’il n’y ait aucune limite codée en dur définie sur la quantité de tables sur lesquelles la stratégie peut être définie, chaque table supplémentaire ajoute une surcharge au processus de partitionnement des données en arrière-plan qui s’exécute sur les nœuds du cluster et peut nécessiter des ressources supplémentaires à partir du cluster-voir [capacité](#capacity).
 
 ## <a name="partition-keys"></a>Clés de partition
 
@@ -202,8 +203,8 @@ La sortie comprend les éléments suivants :
 
 #### <a name="capacity"></a>Capacité
 
-* Au fur et à mesure que le processus de partitionnement des données entraîne la création d’extensions supplémentaires, vous devrez peut-être augmenter la [capacité de fusion des extensions](../management/capacitypolicy.md#extents-merge-capacity) du cluster afin que le processus de fusion d' [étendues](../management/extents-overview.md) puisse continuer.
-* Si elle est requise (par exemple, en cas de débit d’ingestion élevé et/ou d’un nombre suffisant de tables nécessitant un partitionnement), la capacité de la [partition des extensions](../management/capacitypolicy.md#extents-partition-capacity) du cluster peut être augmentée pour permettre l’exécution d’un plus grand nombre d’opérations de partitionnement simultanées.
+* Au fur et à mesure que le processus de partitionnement des données entraîne la création d’extensions supplémentaires, vous devrez peut-être augmenter la [capacité de fusion des étendues](../management/capacitypolicy.md#extents-merge-capacity) du cluster pour que le processus de fusion d' [étendues](../management/extents-overview.md) puisse continuer.
+* Si elle est requise (par exemple, en cas de débit d’ingestion élevé et/ou d’un nombre suffisant de tables nécessitant un partitionnement), la capacité de la [partition](../management/capacitypolicy.md#extents-partition-capacity) du cluster peut être augmentée (progressivement et linéaire) pour permettre l’exécution d’un plus grand nombre d’opérations de partitionnement simultanées.
   * Si l’augmentation du partitionnement entraîne une augmentation significative de l’utilisation des ressources du cluster, augmentez ou diminuez la taille du cluster, soit manuellement, soit en activant la mise à l’échelle automatique.
 
 ### <a name="outliers-in-partitioned-columns"></a>Valeurs hors norme dans les colonnes partitionnées
