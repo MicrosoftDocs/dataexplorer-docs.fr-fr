@@ -1,6 +1,6 @@
 ---
-title: Python plugin - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit Python plugin dans Azure Data Explorer.
+title: Plug-in Python-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit le plug-in Python dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,69 +10,69 @@ ms.topic: reference
 ms.date: 04/01/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 5192474779fb712595ff1c25785892bb543fda84
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 5ceafde1361c87d368237d0f8c71ad8d0708aec1
+ms.sourcegitcommit: e1e35431374f2e8b515bbe2a50cd916462741f49
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81765715"
+ms.lasthandoff: 04/23/2020
+ms.locfileid: "82108505"
 ---
 # <a name="python-plugin"></a>Plug-in Python
 
 ::: zone pivot="azuredataexplorer"
 
-Le plugin Python exécute une fonction définie par l’utilisateur (UDF) à l’aide d’un script Python. Le script Python obtient des données tabulaires comme son entrée, et devrait produire une sortie tabulaire.
-Le temps d’exécution du plugin est hébergé dans [des bacs](../concepts/sandboxes.md)à sable, fonctionnant sur les nœuds du cluster.
+Le plug-in Python exécute une fonction définie par l’utilisateur (UDF) à l’aide d’un script Python. Le script Python obtient les données tabulaires en tant qu’entrée et est censé produire une sortie tabulaire.
+Le runtime du plug-in est hébergé dans les [bacs à sable (sandbox](../concepts/sandboxes.md)), en cours d’exécution sur les nœuds du cluster.
 
 ## <a name="syntax"></a>Syntaxe
 
-*T* `|` `per_node` `python(` *output_schema* `,` *script* `,` *script_parameters*`,` *external_artifacts*[ `=` `single`( | )] output_schema script [ script_parameters ] [ external_artifacts ] `evaluate` `hint.distribution``)`
+*T* `|` `single``,` *script* *output_schema* `,` *external_artifacts*[`hint.distribution` (`per_node`)] `python(`output_schema script [`,` *script_parameters*] [external_artifacts] |  `evaluate` `=``)`
 
 ## <a name="arguments"></a>Arguments
 
-* *output_schema*: Un `type` littéral qui définit le schéma de sortie des données tabulaires, retournés par le code Python.
-    * Le format `typeof(`est: *ColumnName* `:` *ColumnType* [, ...] `)`, par `typeof(col1:string, col2:long)`exemple: .
-    * Pour étendre le schéma d’entrée, utilisez la syntaxe suivante :`typeof(*, col1:string, col2:long)`
-* *script*: `string` Un texte littéral qui est le script Python valide à exécuter.
-* *script_parameters*: Un `dynamic` littéral optionnel, qui est un sac de propriété de paires de nom/valeur à transmettre au script Python comme dictionnaire réservé `kargs` (voir les variables Python [réservées).](#reserved-python-variables)
-* *hint.distribution*: Un indice optionnel pour l’exécution du plugin à distribuer sur plusieurs nœuds cluster.
+* *output_schema*: `type` littéral qui définit le schéma de sortie des données tabulaires, retourné par le code Python.
+    * Le format est : `typeof(` *ColumnName* `:` *ColumnType* [,...] `)`, par exemple : `typeof(col1:string, col2:long)`.
+    * Pour étendre le schéma d’entrée, utilisez la syntaxe suivante :`typeof(*, col1:string, col2:long)`
+* *script*: `string` littéral qui est le script Python valide à exécuter.
+* *script_parameters*: un littéral `dynamic` facultatif, qui est un conteneur de propriétés de paires nom/valeur à passer au script Python en tant que dictionnaire `kargs` réservé (consultez [variables python réservées](#reserved-python-variables)).
+* *hint. distribution*: indication facultative pour que l’exécution du plug-in soit distribuée sur plusieurs nœuds de cluster.
   * La valeur par défaut est `single`.
-  * `single`: Une seule instance du script s’exécutera sur l’ensemble des données de requête.
-  * `per_node`: Si la requête avant la distribution du bloc Python est distribuée, une instance du script s’exécutera sur chaque nœud sur les données qu’il contient.
-* *external_artifacts*: Un littéral optionnel `dynamic` qui est un sac de nom de propriété & paires d’URL pour les artefacts qui sont accessibles à partir du stockage en nuage et peuvent être mis à la disposition du script à utiliser au moment de l’exécution.
-  * Les URL mentionnées dans ce sac de propriété sont tenues de :
-  * Soyez inclus dans la [politique d’appel](../management/calloutpolicy.md)du cluster .
-    2. Etre dans un endroit accessible au public, ou fournir les informations d’identification nécessaires, comme expliqué dans [les chaînes de connexion de stockage](../api/connection-strings/storage.md).
-  * Les artefacts sont mis à la disposition du script `.\Temp`à consommer à partir d’un répertoire temporaire local, et les noms fournis dans le sac de propriété sont utilisés comme noms de fichiers locaux (voir [l’exemple](#examples) ci-dessous).
-  * Pour plus d’informations, voir [l’annexe](#appendix-installing-packages-for-the-python-plugin) ci-dessous.
+  * `single`: Une seule instance du script est exécutée sur l’ensemble des données de la requête.
+  * `per_node`: Si la requête avant le bloc Python est distribuée, une instance du script s’exécutera sur chaque nœud sur les données qu’elle contient.
+* *external_artifacts*: un littéral `dynamic` facultatif qui est un jeu de propriétés nom & paires d’URL pour les artefacts accessibles depuis le stockage cloud et pouvant être mis à la disposition du script à utiliser au moment de l’exécution.
+  * Les URL référencées dans ce conteneur de propriétés sont requises pour :
+  * Inclus dans la [stratégie de légende](../management/calloutpolicy.md)du cluster.
+    2. Se trouve dans un emplacement disponible publiquement ou fournissez les informations d’identification nécessaires, comme expliqué dans [chaînes de connexion de stockage](../api/connection-strings/storage.md).
+  * Les artefacts sont rendus disponibles pour le script à utiliser à partir d’un répertoire `.\Temp`temporaire local,, et les noms fournis dans le conteneur de propriétés sont utilisés comme noms de fichiers locaux (Voir l' [exemple](#examples) ci-dessous).
+  * Pour plus d’informations, consultez [l’annexe](#appendix-installing-packages-for-the-python-plugin) ci-dessous.
 
-## <a name="reserved-python-variables"></a>Variables Python réservées
+## <a name="reserved-python-variables"></a>Variables python réservées
 
-Les variables suivantes sont réservées à l’interaction entre le langage de requête Kusto et le code Python :
+Les variables suivantes sont réservées pour l’interaction entre le langage de requête Kusto et le code Python :
 
-* `df`: Les données tabulaires `T` d’entrée `pandas` (les valeurs ci-dessus), en tant que DataFrame.
-* `kargs`: La valeur de *l’argument script_parameters,* en tant que dictionnaire Python.
-* `result`: `pandas` Un DataFrame créé par le script Python dont la valeur devient les données tabulaires qui est envoyée à l’opérateur de requête Kusto qui suit le plugin.
+* `df`: Données tabulaires d’entrée (les valeurs `T` ci-dessus), `pandas` en tant que tableau.
+* `kargs`: La valeur de l’argument *script_parameters* , sous la forme d’un dictionnaire Python.
+* `result`: `pandas` Tableau créé par le script Python dont la valeur devient les données tabulaires qui sont envoyées à l’opérateur de requête Kusto qui suit le plug-in.
 
 ## <a name="onboarding"></a>Mise en route
 
-* Le plugin est désactivé par défaut.
-* Les conditions préalables pour permettre le plugin sont énumérées [ici.](../concepts/sandboxes.md#prerequisites)
-* Activez ou désactivez le plugin du [portail Azure dans l’onglet **Configuration** de votre cluster](https://docs.microsoft.com/azure/data-explorer/language-extensions).
+* Le plug-in est désactivé par défaut.
+* Les conditions préalables à l’activation du plug-in sont répertoriées [ici](../concepts/sandboxes.md#prerequisites).
+* Activez ou désactivez le plug-in dans le [portail Azure sous l’onglet **configuration** de votre cluster](https://docs.microsoft.com/azure/data-explorer/language-extensions).
 
-## <a name="notes-and-limitations"></a>Notes et limitations
+## <a name="notes-and-limitations"></a>Remarques et limitations
 
-* L’image de bac à sable Python est basée sur la distribution *Anaconda 5.2.0* avec le moteur *Python 3.6.*
-  La liste de ses paquets peut être trouvée [ici](http://docs.anaconda.com/anaconda/packages/old-pkg-lists/5.2.0/py3.6_win-64/) (un petit pourcentage de paquets peut être incompatible avec les limitations appliquées par le bac à sable dans lequel le plugin est exécuté).
-* L’image Python contient également `tensorflow` `keras`des `torch` `hdbscan`paquets ML courants: , , , `xgboost` et d’autres paquets utiles.
-* Le plugin importe *numpy* (comme `np`) & `pd` *pandas* (par défaut.  Vous pouvez importer d’autres modules au besoin.
-* **[Ingestion des](../management/data-ingestion/ingest-from-query.md) stratégies de requête et [de mise à jour](../management/updatepolicy.md)**
-  * Il est possible d’utiliser le plugin dans les requêtes qui sont:
-      1. Défini comme faisant partie d’une stratégie de mise à jour, dont le tableau source est ingéré à l’aide d’ingestion *non-streaming.*
-      2. Exécutez-vous dans le cadre d’une commande qui ingérer à partir d’une requête (par exemple `.set-or-append`).
-  * Dans les deux cas ci-dessus, il est recommandé de vérifier que le volume et la fréquence de l’ingestion, ainsi que la complexité et l’utilisation des ressources de la logique Python sont alignés avec [les limites sandbox](../concepts/sandboxes.md#limitations), et les ressources disponibles de la grappe.
-    Ne pas le faire peut entraîner [des erreurs de limitation](../concepts/sandboxes.md#errors).
-  * Il *n’est pas* possible d’utiliser le plugin dans une requête qui est définie comme faisant partie d’une stratégie de mise à jour, dont le tableau source est ingéré à l’aide de [l’ingestion en continu](https://docs.microsoft.com/azure/data-explorer/ingest-data-streaming).
+* L’image Python sandbox est basée sur la distribution *Anaconda 5.2.0* avec le moteur *python 3,6* .
+  La liste de ses packages est disponible [ici](http://docs.anaconda.com/anaconda/packages/old-pkg-lists/5.2.0/py3.6_win-64/) (un petit pourcentage de packages peut être incompatible avec les limitations imposées par le bac à sable (sandbox) dans lequel le plug-in est exécuté).
+* L’image Python contient également des packages ml communs `tensorflow`: `keras`, `torch`, `hdbscan`, `xgboost` et d’autres packages utiles.
+* Le plug- *numpy* in importe numpy `np`(comme) & *pandas* (AS `pd`) par défaut.  Vous pouvez importer d’autres modules en fonction des besoins.
+* **Ingestion [des stratégies de requête et de](../management/data-ingestion/ingest-from-query.md) [mise à jour](../management/updatepolicy.md)**
+  * Il est possible d’utiliser le plug-in dans les requêtes suivantes :
+      1. Défini dans le cadre d’une stratégie de mise à jour, dont la table source est ingérée pour l’utilisation de la *non-diffusion en continu* .
+      2. Exécuter dans le cadre d’une commande qui est ingérée à partir d' `.set-or-append`une requête (par exemple,).
+  * Dans les deux cas, il est recommandé de vérifier que le volume et la fréquence de l’ingestion, ainsi que la complexité et l’utilisation des ressources de la logique Python sont alignés avec les [limitations du bac à sable (sandbox](../concepts/sandboxes.md#limitations)) et les ressources disponibles du cluster.
+    Dans le cas contraire, vous risquez de provoquer des [Erreurs de limitation](../concepts/sandboxes.md#errors).
+  * Il n’est *pas* possible d’utiliser le plug-in dans une requête qui est définie dans le cadre d’une stratégie de mise à jour, dont la table source est ingérée à l’aide de l’ingestion de [diffusion en continu](https://docs.microsoft.com/azure/data-explorer/ingest-data-streaming).
 
 ## <a name="examples"></a>Exemples
 
@@ -92,7 +92,7 @@ typeof(*, fx:double),               //  Output schema: append a new fx column to
 )
 | render linechart 
 ```
-:::image type="content" source="images/samples/sine-demo.png" alt-text="démo sine":::
+:::image type="content" source="images/samples/sine-demo.png" alt-text="démonstration sinus":::
 
 ```kusto
 print "This is an example for using 'external_artifacts'"
@@ -121,11 +121,11 @@ print "This is an example for using 'external_artifacts'"
 
 ## <a name="performance-tips"></a>Conseils sur les performances
 
-* Réduisez l’ensemble de données d’entrée du plugin à la quantité minimale requise (colonnes/lignes).
-    * Utilisez des filtres sur l’ensemble de données source, si possible, avec le langage de requête de Kusto.
-    * Pour effectuer un calcul sur un sous-ensemble des colonnes sources, ne projetez que ces colonnes avant d’invoquer le plugin.
+* Réduisez le jeu de données d’entrée du plug-in sur la quantité minimale requise (colonnes/lignes).
+    * Utilisez des filtres sur le jeu de données source, si possible, avec le langage de requête de Kusto.
+    * Pour effectuer un calcul sur un sous-ensemble des colonnes sources, projetez uniquement cette colonne avant d’appeler le plug-in.
 * Utilisez `hint.distribution = per_node` chaque fois que la logique de votre script est distribuable.
-    * Vous pouvez également utiliser [l’opérateur](partitionoperator.md) de partition pour le partage de l’ensemble de données d’entrée.
+    * Vous pouvez également utiliser l' [opérateur de partition](partitionoperator.md) pour partitionner le jeu de données d’entrée.
 * Utilisez le langage de requête de Kusto, dans la mesure du possible, pour implémenter la logique de votre script Python.
 
     Exemple :
@@ -144,11 +144,11 @@ print "This is an example for using 'external_artifacts'"
 
 ## <a name="usage-tips"></a>Conseils d’utilisation
 
-* Pour générer des cordes multi-lignes `Kusto.Explorer`contenant le script Python en , copiez votre script Python à partir de votre éditeur Python préféré (*Jupyter*, *Visual Studio Code*, *PyCharm*, etc.), puis soit:
-    * Appuyez sur *F2* pour ouvrir la fenêtre **Edit in Python.** Collez le script dans cette fenêtre. Sélectionnez **OK**. Le script sera décoré de citations et de nouvelles lignes (il est donc valable dans Kusto) et automatiquement collé dans l’onglet requête.
-    * Coller le code Python directement dans l’onglet requête, sélectionnez ces lignes et appuyez sur *Ctrl-K*, clé chaude *Ctrl-S* pour les décorer comme ci-dessus (pour inverser la presse *Ctrl-K*, clé chaude *Ctrl-M).* [Voici](../tools/kusto-explorer-shortcuts.md#query-editor) la liste complète des raccourcis De Requête Editor.
-* Pour éviter les conflits entre les délimitations de cordes Kusto`'`et les littérals de cordes Python, nous vous`"`recommandons d’utiliser des caractères de citation unique () pour les littérals de cordes Kusto dans les requêtes Kusto, et les caractères de double citation () pour les littérals de cordes Python dans les scripts Python.
-* Utilisez [l’opérateur de données externes](externaldata-operator.md) pour obtenir le contenu d’un script que vous avez stocké dans un emplacement externe, comme le stockage Azure Blob.
+* Pour générer des chaînes multilignes contenant le script Python `Kusto.Explorer`dans, copiez votre script Python à partir de votre éditeur Python favori (*Jupyter*, *Visual Studio code*, *PyCharm*, etc.), puis :
+    * Appuyez sur *F2* pour ouvrir la fenêtre **modifier dans python** . Collez le script dans cette fenêtre. Sélectionnez **OK**. Le script sera décoré avec des guillemets et de nouvelles lignes (il est donc valide dans Kusto) et collé automatiquement dans l’onglet requête.
+    * Collez le code python directement sous l’onglet requête, sélectionnez ces lignes et appuyez sur *CTRL + k*, *CTRL + S* touche d’accès rapide pour les décorer comme indiqué ci-dessus (pour les inverser, appuyez sur *CTRL + k*, *Ctrl + M* touche d’accès rapide). [Voici](../tools/kusto-explorer-shortcuts.md#query-editor) la liste complète des raccourcis de l’éditeur de requête.
+* Pour éviter les conflits entre les délimiteurs de chaîne Kusto et les littéraux de chaîne Python, nous vous`'`recommandons d’utiliser des guillemets simples () pour les littéraux de chaîne`"`Kusto dans des requêtes Kusto et des guillemets doubles () pour les littéraux de chaîne python dans les scripts Python.
+* Utilisez l' [opérateur ExternalData](externaldata-operator.md) pour obtenir le contenu d’un script que vous avez stocké dans un emplacement externe, tel que le stockage d’objets BLOB Azure.
   
     **Exemple**
 
@@ -165,52 +165,52 @@ print "This is an example for using 'external_artifacts'"
     | render linechart 
     ```
 
-## <a name="appendix-installing-packages-for-the-python-plugin"></a>Annexe: Installation de paquets pour le plugin Python
+## <a name="appendix-installing-packages-for-the-python-plugin"></a>Annexe : installation de packages pour le plug-in Python
 
-Vous devrez peut-être vous installer lui-même le paquet(s) en raison de l’une des raisons suivantes :
+Vous devrez peut-être installer automatiquement le ou les packages pour l’une des raisons suivantes :
 
-* Le paquet est privé et est le vôtre.
-* Le paquet est public mais n’est pas inclus dans l’image de base du plugin.
+* Le package est privé et est votre propre.
+* Le package est public, mais n’est pas inclus dans l’image de base du plug-in.
 
-Vous pouvez installer des paquets en suivant ces étapes :
+Vous pouvez installer des packages en procédant comme suit :
 
-1. Préalable unique :
+1. Prérequis à usage unique :
   
-  a. Créez un contenant blob pour accueillir le paquet(s), de préférence dans la même région que votre cluster.
-    * Par exemple https://artifcatswestus.blob.core.windows.net/python : (en supposant que votre cluster se trouve dans l’ouest des États-Unis)
+  a. Créez un conteneur d’objets BLOB pour héberger le ou les packages, de préférence dans la même région que votre cluster.
+    * Par exemple : `https://artifcatswestus.blob.core.windows.net/python` (en supposant que votre cluster se trouve dans l’ouest des États-Unis)
   
-  b. Modifier la [politique Callout](../management/calloutpolicy.md) du cluster pour permettre l’accès à cet emplacement.
-    * Cela nécessite [des autorisations AllDatabasesAdmin.](../management/access-control/role-based-authorization.md)
-    * Par exemple, pour permettre l’accès https://artifcatswestus.blob.core.windows.net/pythonà un blob situé dans , la commande de courir est:
+  b. Modifiez la stratégie de [légende](../management/calloutpolicy.md) du cluster pour permettre l’accès à cet emplacement.
+    * Cela nécessite des autorisations [AllDatabasesAdmin](../management/access-control/role-based-authorization.md) .
+    * Par exemple, pour activer l’accès à un objet BLOB `https://artifcatswestus.blob.core.windows.net/python`situé dans, la commande à exécuter est la suivante :
 
       ```kusto
       .alter-merge cluster policy callout @'[ { "CalloutType": "sandbox_artifacts", "CalloutUriRegex": "artifcatswestus\\.blob\\.core\\.windows\\.net/python/","CanCall": true } ]'
       ```
 
-2. Pour les forfaits publics (en [PyPi](https://pypi.org/) ou sur d’autres canaux) a. Téléchargez le forfait et ses dépendances.
-  b. Si nécessaire, compilez`*.whl`aux fichiers de roue ( ) :
-    * D’une fenêtre cmd (dans votre environnement Python local) courir:
+2. Pour les packages publics (dans [PyPi](https://pypi.org/) ou d’autres canaux) a. Téléchargez le package et ses dépendances.
+  b. Si nécessaire, compilez-`*.whl`les dans les fichiers Wheel () :
+    * Dans une fenêtre cmd (dans votre environnement python local), exécutez :
       ```python
       pip wheel [-w download-dir] package-name.
       ```
 
-3. Créez un fichier zip contenant le paquet requis et ses dépendances :
+3. Créez un fichier zip contenant le package requis et ses dépendances :
 
-    * Pour les forfaits publics : zip les fichiers qui ont été téléchargés dans l’étape précédente.
+    * Pour les packages publics : compressez les fichiers qui ont été téléchargés à l’étape précédente.
     * Remarques :
-        * Assurez-vous de `.whl` zip les fichiers eux-mêmes et *non pas* leur dossier parent.
-        * Vous pouvez `.whl` sauter des fichiers pour les paquets qui existent déjà avec la même version dans l’image sandbox de base.
-    * Pour les forfaits privés : zip le dossier de l’emballage et ceux de ses dépendances
+        * Veillez à compresser les `.whl` fichiers eux-mêmes et *non* leur dossier parent.
+        * Vous pouvez ignorer `.whl` les fichiers pour les packages qui existent déjà avec la même version dans l’image de bac à sable (sandbox) de base.
+    * Pour les packages privés : compresser le dossier du package et ceux de ses dépendances
 
-4. Téléchargez le fichier zippé sur un blob dans l’emplacement des artefacts (de l’étape 1.).
+4. Chargez le fichier zippé dans un objet blob à l’emplacement artefacts (à partir de l’étape 1).
 
-5. Appeler `python` le plugin:
-    * Spécifiez le `external_artifacts` paramètre avec un sac de nom et une référence au fichier zip (URL du blob).
-    * Dans votre code python `Zipackage` en `sandbox_utils` ligne: `install()` importer et appeler sa méthode avec le nom du fichier zip.
+5. Appel du `python` plug-in :
+    * Spécifiez `external_artifacts` le paramètre avec un conteneur de propriétés de nom et une référence au fichier zip (l’URL de l’objet BLOB).
+    * Dans votre code python inline : importez `Zipackage` à partir de `sandbox_utils` et appelez sa `install()` méthode avec le nom du fichier. zip.
 
 ### <a name="example"></a>Exemple
 
-Installation du paquet [Faker](https://pypi.org/project/Faker/) qui génère de fausses données :
+Installation du package [factice](https://pypi.org/project/Faker/) qui génère des données factices :
 
 ```kusto
 range Id from 1 to 3 step 1 
@@ -238,6 +238,6 @@ range Id from 1 to 3 step 1
 
 ::: zone pivot="azuremonitor"
 
-Ce n’est pas pris en charge dans Azure Monitor
+Cela n’est pas pris en charge dans Azure Monitor
 
 ::: zone-end
