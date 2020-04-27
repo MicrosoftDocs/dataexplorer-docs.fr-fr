@@ -7,12 +7,12 @@ ms.reviewer: michazag
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 1/14/2020
-ms.openlocfilehash: 0c8d1add5f5f72ad96475df67ec2ff20bc9364c0
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 6e7879948fb7683210859c84970f31bc5adb4a90
+ms.sourcegitcommit: e1e35431374f2e8b515bbe2a50cd916462741f49
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492389"
+ms.lasthandoff: 04/23/2020
+ms.locfileid: "82108318"
 ---
 # <a name="azure-data-explorer-connector-for-apache-spark"></a>Connecteur Azure Data Explorer pour Apache Spark
 
@@ -103,9 +103,9 @@ Pour en savoir plus, consultez la section relative à [l’utilisation des conne
 
 Le connecteur Azure Data Explorer pour Spark vous permet de vous authentifier auprès d’Azure Active Directory (Azure AD) à l’aide de l’une des méthodes suivantes :
 * Avec une [application Azure AD](#azure-ad-application-authentication)
-* Avec un [jeton d’accès Azure AD](https://github.com/Azure/azure-kusto-spark/blob/dev/docs/Authentication.md#direct-authentication-with-access-token)
-* Avec l’[authentification de l’appareil](https://github.com/Azure/azure-kusto-spark/blob/dev/docs/Authentication.md#device-authentication) (pour les scénarios autres que les scénarios de production)
-* Un coffre de clés [Azure Key Vault](https://github.com/Azure/azure-kusto-spark/blob/dev/docs/Authentication.md#key-vault) Pour accéder à la ressource Key Vault, installez le package azure-keyvault et entrez les informations d’identification de l’application.
+* Avec un [jeton d’accès Azure AD](https://github.com/Azure/azure-kusto-spark/blob/master/docs/Authentication.md#direct-authentication-with-access-token)
+* Avec l’[authentification de l’appareil](https://github.com/Azure/azure-kusto-spark/blob/master/docs/Authentication.md#device-authentication) (pour les scénarios autres que les scénarios de production)
+* Un coffre de clés [Azure Key Vault](https://github.com/Azure/azure-kusto-spark/blob/master/docs/Authentication.md#key-vault) Pour accéder à la ressource Key Vault, installez le package azure-keyvault et entrez les informations d’identification de l’application.
 
 ### <a name="azure-ad-application-authentication"></a>Authentification de l’application Azure AD
 
