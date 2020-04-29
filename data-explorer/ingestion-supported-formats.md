@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/19/2020
-ms.openlocfilehash: 530fc02c58b719f29ef43b118fad1ce8f207337b
-ms.sourcegitcommit: 653bfb3edf32553c52ef36b339c8b80713a601b0
+ms.openlocfilehash: 93451dd1237905754ac834cb335f5d8a02157ac7
+ms.sourcegitcommit: 29018b3db4ea7d015b1afa65d49ecf918cdff3d6
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81494549"
+ms.lasthandoff: 04/22/2020
+ms.locfileid: "82030053"
 ---
 # <a name="data-formats-supported-by-azure-data-explorer-for-ingestion"></a>Formats de données pris en charge par Azure Data Explorer pour l’ingestion
 
@@ -50,7 +50,7 @@ Par exemple :
 * `MyData.csv.zip` indique un objet blob ou un fichier au format CSV, compressé avec ZIP (archive ou fichier unique)
 * `MyData.csv.gz` indique un objet blob ou un fichier au format CSV, compressé avec GZip
 
-Les noms d’objets blob ou de fichiers qui n’incluent pas les extensions de format mais simplement la compression (par exemple, ) sont également pris en charge. Dans ce cas, le format de fichier doit être spécifié en tant que propriété d’ingestion, car il ne peut pas être déduit.
+Les noms d’objets blob ou de fichiers qui n’incluent pas les extensions de format mais simplement la compression (par exemple, `MyData.zip`) sont également pris en charge. Dans ce cas, le format de fichier doit être spécifié en tant que propriété d’ingestion, car il ne peut pas être déduit.
 
 > [!NOTE]
 > Certains formats de compression assurent le suivi de l’extension de fichier d’origine dans le cadre du flux compressé. Cette extension est généralement ignorée lors du processus de vérification du format de fichier. S’il n’est pas possible de déterminer le format de fichier à partir du nom de l’objet blob ou du fichier (compressé), vous devez le spécifier par le biais de la propriété d’ingestion `format`.
