@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 04/01/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 5ceafde1361c87d368237d0f8c71ad8d0708aec1
-ms.sourcegitcommit: e1e35431374f2e8b515bbe2a50cd916462741f49
+ms.openlocfilehash: 6b33ee0ed9535d512c909dd8de124fc8b1770cee
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82108505"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82618987"
 ---
 # <a name="python-plugin"></a>Plug-in Python
 
@@ -92,7 +92,8 @@ typeof(*, fx:double),               //  Output schema: append a new fx column to
 )
 | render linechart 
 ```
-:::image type="content" source="images/samples/sine-demo.png" alt-text="démonstration sinus":::
+
+:::image type="content" source="images/plugin/sine-demo.png" alt-text="démonstration sinus" border="false":::
 
 ```kusto
 print "This is an example for using 'external_artifacts'"
@@ -128,7 +129,7 @@ print "This is an example for using 'external_artifacts'"
     * Vous pouvez également utiliser l' [opérateur de partition](partitionoperator.md) pour partitionner le jeu de données d’entrée.
 * Utilisez le langage de requête de Kusto, dans la mesure du possible, pour implémenter la logique de votre script Python.
 
-    Exemple :
+    Exemple :
 
     ```kusto    
     .show operations
@@ -208,7 +209,7 @@ Vous pouvez installer des packages en procédant comme suit :
     * Spécifiez `external_artifacts` le paramètre avec un conteneur de propriétés de nom et une référence au fichier zip (l’URL de l’objet BLOB).
     * Dans votre code python inline : importez `Zipackage` à partir de `sandbox_utils` et appelez sa `install()` méthode avec le nom du fichier. zip.
 
-### <a name="example"></a>Exemple
+### <a name="example"></a> Exemple
 
 Installation du package [factice](https://pypi.org/project/Faker/) qui génère des données factices :
 

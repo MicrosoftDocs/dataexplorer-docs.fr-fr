@@ -1,6 +1,6 @@
 ---
-title: series_decompose_forecast() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit series_decompose_forecast() dans Azure Data Explorer.
+title: series_decompose_forecast ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit series_decompose_forecast () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,51 +8,51 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/26/2019
-ms.openlocfilehash: 67f464949bbc432e73932c4d8bff8290ef8f0f8f
-ms.sourcegitcommit: 436cd515ea0d83d46e3ac6328670ee78b64ccb05
+ms.openlocfilehash: 97f87a7390ab099886e84642b2eb46a8087b6da9
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81663542"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82618839"
 ---
 # <a name="series_decompose_forecast"></a>series_decompose_forecast()
 
 Prévisions basées sur la décomposition des séries.
 
-Prend une expression contenant une série (tableau numérique dynamique) comme entrée et de prédire les valeurs des derniers points de fuite (se référer à [series_decompose](series-decomposefunction.md) pour plus de détails sur la méthode de décomposition).
+Prend une expression contenant une série (tableau numérique dynamique) comme entrée et prédit les valeurs des derniers points de fin (reportez-vous à [series_decompose](series-decomposefunction.md) pour plus d’informations sur la méthode de décomposition).
  
 **Syntaxe**
 
-`series_decompose_forecast(`*Série* `,` *Points* `[,` *Seasonality* `,` *Trend* `,` *Seasonality_threshold*`])`
+`series_decompose_forecast(`*Seasonality_threshold* de *Seasonality* `,` *Trend* tendance`,` des *points* `[,` de *série* `,``])`
 
 **Arguments**
 
-* *Série*: Cellule de tableau dynamique qui est un éventail de valeurs numériques. Typiquement la sortie résultante des opérateurs [de série](make-seriesoperator.md) ou [de make_list.](makelist-aggfunction.md)
-* *Points*: Integer précisant le nombre de points à la fin de la série à prévoir (prévisions). Ces points sont exclus du processus d’apprentissage (régression).
-* *Saisonnalité*: Un integer contrôlant l’analyse saisonnière, contenant l’un des éléments suivants :
-    * -1 : auto-détection de la saisonnalité à [l’aide de series_periods_detect](series-periods-detectfunction.md) (par défaut). 
-    * période : integer positif, précisant la période prévue en nombre de bacs. Par exemple, si la série est dans 1h poubelles, une période hebdomadaire est de 168 bacs.
-    * 0: pas de saisonnalité (sauter l’extraction de ce composant).   
-* *Tendance*: Une chaîne contrôlant l’analyse de tendance, contenant l’une des suivantes :
-    * "linefit": extraire le composant tendance à l’aide de la régression linéaire (par défaut).    
-    * "avg": définir la composante tendance comme moyenne(x).
-    * "aucun": pas de tendance, sauter l’extraction de ce composant.   
-* *Seasonality_threshold*: Le seuil de la saisonnalité lorsque *la saisonnalité* est réglée `0.6`pour détecter automatiquement, le seuil de score par défaut est . Pour plus d’informations, voir [series_periods_detect](series-periods-detectfunction.md).
+* *Série*: cellule de tableau dynamique qui est un tableau de valeurs numériques. En général, le résultat des opérateurs [Make-Series](make-seriesoperator.md) ou [make_list](makelist-aggfunction.md) .
+* *Points*: entier spécifiant le nombre de points à la fin de la série à prédire (prévision). Ces points sont exclus du processus d’apprentissage (régression).
+* Caractère *saisonnier*: un entier contrôlant l’analyse saisonnière, contenant l’un des éléments suivants :
+    * -1 : détection automatique du caractère saisonnier à l’aide de [series_periods_detect](series-periods-detectfunction.md) (valeur par défaut). 
+    * period : entier positif, qui spécifie la période attendue en nombre d’emplacements. Par exemple, si la série est dans des emplacements 1H, une période hebdomadaire est de 168 emplacements.
+    * 0 : pas de caractère saisonnier (ignorer l’extraction de ce composant).   
+* *Tendance*: chaîne contrôlant l’analyse des tendances, contenant l’un des éléments suivants :
+    * « linefit » : extraction du composant de tendance à l’aide de la régression linéaire (par défaut).    
+    * « AVG » : définir le composant de tendance comme moyenne (x).
+    * « None » : aucune tendance. ignorez l’extraction de ce composant.   
+* *Seasonality_threshold*: le seuil du score saisonnier lorsque le caractère *saisonnier* est défini sur détection automatique, le seuil de score `0.6`par défaut est. Pour plus d’informations, consultez [series_periods_detect](series-periods-detectfunction.md).
 
-**Retour**
+**Renvoi**
 
- Un tableau dynamique avec la série prévisionnée
+ Tableau dynamique avec la série prévue
   
 
 **Remarques**
 
-* La gamme dynamique de la série d’entrées originale devrait inclure un *nombre* de points à prévoir, cela se fait généralement en utilisant la série [de make-et](make-seriesoperator.md) en spécifiant l’heure de fin dans la plage qui comprend le délai de prévision.
+* Le tableau dynamique de la série d’entrée d’origine doit inclure un emplacement de *points* de nombre à prévoir. pour ce faire, utilisez la [série make](make-seriesoperator.md) et spécifiez l’heure de fin dans la plage qui inclut la période à prévoir.
     
-* Soit la saisonnalité et / ou la tendance doit être activée, sinon la fonction est redondante et retourne juste une série remplie de zéros.
+* Les fonctions saisonnier et/ou tendance doivent être activées ; sinon, la fonction est redondante et retourne simplement une série remplie de zéros.
 
 **Exemple**
 
-Dans l’exemple suivant, nous produisons une série de 4 semaines dans un grain `make-series` horaire avec une saisonnalité hebdomadaire et une petite tendance à la hausse, nous utilisons ensuite et ajoutons une autre semaine vide à la série. `series_decompose_forecast`est appelé avec une semaine (24-7 points), il détecte automatiquement la saisonnalité et la tendance et génère une prévision de l’ensemble de la période de 5 semaines. 
+Dans l’exemple suivant, nous générons une série de 4 semaines dans un grain horaire avec un caractère saisonnier hebdomadaire et une petite tendance vers le `make-series` haut, nous utilisons et ajoutons une autre semaine vide à la série. `series_decompose_forecast`est appelé avec une semaine (24 * 7 points), il détecte automatiquement le caractère saisonnier et la tendance et génère une prévision de l’intégralité de la période de 5 semaines. 
 
 ```kusto
 let ts=range t from 1 to 24*7*4 step 1 // generate 4 weeks of hourly data
@@ -66,4 +66,4 @@ ts
 | render timechart 
 ```
 
-:::image type="content" source="images/samples/series-decompose-forecast.png" alt-text="Prévisions de décomposition de la série":::
+:::image type="content" source="images/series-decompose-forecastfunction/series-decompose-forecast.png" alt-text="Plan de décomposition de série":::

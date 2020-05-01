@@ -1,6 +1,6 @@
 ---
-title: résumé opérateur - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit l’opérateur de résumé dans Azure Data Explorer.
+title: synthèse de l’opérateur-Explorateur de données Azure | Microsoft Docs
+description: Cet article décrit l’opérateur de synthèse dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/20/2020
-ms.openlocfilehash: ed1808f173d0f779c84f9405987d7395de833120
-ms.sourcegitcommit: 436cd515ea0d83d46e3ac6328670ee78b64ccb05
+ms.openlocfilehash: e81afc50c752ac1b673bcaac38a77c2712ce9ff4
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81663218"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82619009"
 ---
 # <a name="summarize-operator"></a>opérateur summarize
 
@@ -23,7 +23,7 @@ Génère une table qui agrège le contenu de la table d’entrée.
 T | summarize count(), avg(price) by fruit, supplier
 ```
 
-Un tableau qui montre le nombre et le prix moyen de chaque fruit de chaque fournisseur. Il ya une rangée dans la sortie pour chaque combinaison distincte de fruits et de fournisseur. Les colonnes de sortie montrent le nombre, le prix moyen, les fruits et le fournisseur. Toutes les autres colonnes d’entrée sont supprimées.
+Un tableau qui indique le nombre et le prix moyen de chaque fruit de chaque fournisseur. La sortie contient une ligne pour chaque combinaison de fruits et de fournisseurs. Les colonnes de sortie indiquent le nombre, le prix moyen, le fruit et le fournisseur. Toutes les autres colonnes d’entrée sont supprimées.
 
 ```kusto
 T | summarize count() by price_range=bin(price, 10.0)
@@ -33,75 +33,75 @@ Une table indiquant le nombre d’éléments ayant un prix dans chaque intervall
 
 **Syntaxe**
 
-*T* `| summarize` [[*Colonne* `=`]`,` *Agrégation* [...]] [`by` [*Colonne* `=`] *GroupExpression* [...]]`,`
+*T* `| summarize` [[*colonne* `=`] *agrégation* [`,` ...]] [`by` [*Colonne* `=`] *GroupExpression* [`,` ...]]
 
 **Arguments**
 
 * *Column :* nom facultatif d’une colonne de résultats. Prend par défaut un nom dérivé de l’expression.
-* *Agrégation:* Un appel à une [fonction d’agrégation](summarizeoperator.md#list-of-aggregation-functions) telle que `count()` ou `avg()`, avec des noms de colonne comme arguments. Voir la [liste des fonctions d’agrégation](summarizeoperator.md#list-of-aggregation-functions).
+* *Agrégation :* Appel à une [fonction d’agrégation](summarizeoperator.md#list-of-aggregation-functions) telle que `count()` ou `avg()`, avec les noms de colonnes comme arguments. Voir la [liste des fonctions d’agrégation](summarizeoperator.md#list-of-aggregation-functions).
 * *GroupExpression* : expression sur les colonnes, qui fournit un ensemble de valeurs distinctes. En général, il s’agit d’un nom de colonne qui fournit déjà un ensemble restreint de valeurs, ou de `bin()` avec une colonne numérique ou horaire en tant qu’argument. 
 
 > [!NOTE]
-> Lorsque le tableau d’entrée est vide, la sortie dépend de *l’utilisation de GroupExpression* :
+> Lorsque la table d’entrée est vide, la sortie varie selon que *GroupExpression* est utilisé :
 >
-> * Si *GroupExpression n’est* pas fourni, la sortie sera une seule ligne (vide).
-> * Si *GroupExpression* est fourni, la sortie n’aura pas de lignes.
+> * Si *GroupExpression* n’est pas fourni, la sortie est une ligne unique (vide).
+> * Si *GroupExpression* est fourni, la sortie n’a pas de ligne.
 
 **Retourne**
 
 Les lignes d’entrée sont organisées en groupes ayant les mêmes valeurs que les expressions `by` . Ensuite, les fonctions d’agrégation spécifiées sont calculées sur chaque groupe, générant une ligne pour chaque groupe. Le résultat contient les colonnes `by` et au moins une colonne pour chaque agrégation calculée. (Certaines fonctions d’agrégation retournent plusieurs colonnes.)
 
-Le résultat a autant de lignes qu’il y a des combinaisons distinctes de `by` valeurs (qui peuvent être nulles). S’il n’y a pas de clés de groupe fournies, le résultat a un seul enregistrement.
+Le résultat contient autant de lignes qu’il y a de combinaisons `by` de valeurs distinctes (qui peuvent être null). Si aucune clé de groupe n’est fournie, le résultat comporte un seul enregistrement.
 
-Pour résumer sur les gammes `bin()` de valeurs numériques, utilisez-le pour réduire les plages à des valeurs discrètes.
+Pour résumer des plages de valeurs numériques, utilisez `bin()` pour réduire les plages aux valeurs discrètes.
 
 > [!NOTE]
 > * Bien que vous puissiez fournir des expressions arbitraires pour les expressions d’agrégation et de regroupement, il est plus efficace d’utiliser des noms de colonne simples ou d’appliquer `bin()` à une colonne numérique.
-> * Les bacs horaires automatiques pour les colonnes de date n’est plus pris en charge. Utilisez plutôt le binning explicite. Par exemple : `summarize by bin(timestamp, 1h)`.
+> * Les emplacements horaires automatiques pour les colonnes DateTime ne sont plus pris en charge. Utilisez à la place compartimentage explicite. Par exemple : `summarize by bin(timestamp, 1h)`.
 
 ## <a name="list-of-aggregation-functions"></a>Liste des fonctions d’agrégation
 
 |Fonction|Description|
 |--------|-----------|
-|[n’importe(importe))](any-aggfunction.md)|Retourne une valeur aléatoire non vide pour le groupe|
-|[anyif()](anyif-aggfunction.md)|Retourne une valeur aléatoire non vide pour le groupe (avec prédicat)|
-|[arg_max()](arg-max-aggfunction.md)|Renvoie une ou plusieurs expressions lorsque l’argument est maximisé|
-|[arg_min()](arg-min-aggfunction.md)|Renvoie une ou plusieurs expressions lorsque l’argument est minimisé|
-|[avg()](avg-aggfunction.md)|Rendements d’une valeur moyenne dans l’ensemble du groupe|
-|[avgif()](avgif-aggfunction.md)|Rendements d’une valeur moyenne dans l’ensemble du groupe (avec prédicat)|
-|[binary_all_and](binary-all-and-aggfunction.md)|Retourne la valeur agrégée à l’aide du binaire `AND` du groupe|
-|[binary_all_or](binary-all-or-aggfunction.md)|Retourne la valeur agrégée à l’aide du binaire `OR` du groupe|
-|[binary_all_xor](binary-all-xor-aggfunction.md)|Retourne la valeur agrégée à l’aide du binaire `XOR` du groupe|
-|[buildschema()](buildschema-aggfunction.md)|Retourne le schéma minimal qui admet `dynamic` toutes les valeurs de l’entrée|
-|[compter()](count-aggfunction.md)|Retourne un décompte du groupe|
-|[countif()](countif-aggfunction.md)|Retourne un compte avec le prédicat du groupe|
-|[dcount()](dcount-aggfunction.md)|Renvoie un nombre distinct approximatif des éléments du groupe|
-|[dcountif()](dcountif-aggfunction.md)|Renvoie un nombre distinct approximatif des éléments du groupe (avec prédicat)|
-|[make_bag()](make-bag-aggfunction.md)|Retourne un sac de propriété de valeurs dynamiques au sein du groupe|
-|[make_bag_if()](make-bag-if-aggfunction.md)|Retourne un sac de propriété de valeurs dynamiques au sein du groupe (avec prédicat)|
-|[make_list()](makelist-aggfunction.md)|Retourne une liste de toutes les valeurs au sein du groupe|
-|[make_list_if()](makelistif-aggfunction.md)|Retourne une liste de toutes les valeurs au sein du groupe (avec prédicat)|
-|[make_list_with_nulls()](make-list-with-nulls-aggfunction.md)|Retourne une liste de toutes les valeurs au sein du groupe, y compris les valeurs nulles|
-|[make_set()](makeset-aggfunction.md)|Retourne un ensemble de valeurs distinctes au sein du groupe|
-|[make_set_if()](makesetif-aggfunction.md)|Retourne un ensemble de valeurs distinctes au sein du groupe (avec prédicat)|
-|[max()](max-aggfunction.md)|Retourne la valeur maximale dans l’ensemble du groupe|
-|[maxif()](maxif-aggfunction.md)|Retourne la valeur maximale dans l’ensemble du groupe (avec prédicat)|
-|[min()](min-aggfunction.md)|Retourne la valeur minimale dans l’ensemble du groupe|
-|[minif()](minif-aggfunction.md)|Retourne la valeur minimale dans l’ensemble du groupe (avec prédicat)|
-|[percentiles()](percentiles-aggfunction.md)|Retourne l’approximatif percentile du groupe|
-|[percentiles_array()](percentiles-aggfunction.md)|Retourne les centiles approximatifs du groupe|
-|[percentilesw ()](percentiles-aggfunction.md)|Retourne l’approximatif percentile pondéré du groupe|
-|[percentilesw_array()](percentiles-aggfunction.md)|Retourne les percentiles pondérés approximatifs du groupe|
-|[stdev()](stdev-aggfunction.md)|Retourne l’écart standard dans l’ensemble du groupe|
-|[stdevif()](stdevif-aggfunction.md)|Retourne l’écart standard à travers le groupe (avec prédicat)|
-|[sum()](sum-aggfunction.md)|Retourne la somme des éléments avec le groupe|
-|[sumif()](sumif-aggfunction.md)|Retourne la somme des éléments avec le groupe (avec prédicat)|
-|[variance()](variance-aggfunction.md)|Retourne l’écart à travers le groupe|
-|[varianceif()](varianceif-aggfunction.md)|Retourne la variance à travers le groupe (avec prédicate)|
+|[Any ()](any-aggfunction.md)|Retourne une valeur non vide aléatoire pour le groupe|
+|[anyif()](anyif-aggfunction.md)|Retourne une valeur non vide aléatoire pour le groupe (prédicat with)|
+|[arg_max()](arg-max-aggfunction.md)|Retourne une ou plusieurs expressions lorsque l’argument est agrandi|
+|[arg_min()](arg-min-aggfunction.md)|Retourne une ou plusieurs expressions lorsque l’argument est réduit|
+|[Moy ()](avg-aggfunction.md)|Retourne une valeur moyenne dans le groupe|
+|[avgif()](avgif-aggfunction.md)|Retourne une valeur moyenne dans le groupe (avec le prédicat)|
+|[binary_all_and](binary-all-and-aggfunction.md)|Retourne une valeur agrégée à l' `AND` aide du binaire du groupe.|
+|[binary_all_or](binary-all-or-aggfunction.md)|Retourne une valeur agrégée à l' `OR` aide du binaire du groupe.|
+|[binary_all_xor](binary-all-xor-aggfunction.md)|Retourne une valeur agrégée à l' `XOR` aide du binaire du groupe.|
+|[buildschema()](buildschema-aggfunction.md)|Retourne le schéma minimal qui admet toutes les valeurs de l' `dynamic` entrée|
+|[Count ()](count-aggfunction.md)|Retourne le nombre de groupes|
+|[countif()](countif-aggfunction.md)|Retourne un nombre avec le prédicat du groupe.|
+|[dcount()](dcount-aggfunction.md)|Retourne un nombre approximatif distinct des éléments de groupe|
+|[dcountif()](dcountif-aggfunction.md)|Retourne un nombre approximatif distinct des éléments de groupe (prédicat with)|
+|[make_bag()](make-bag-aggfunction.md)|Retourne un jeu de propriétés de valeurs dynamiques dans le groupe|
+|[make_bag_if()](make-bag-if-aggfunction.md)|Retourne un jeu de propriétés de valeurs dynamiques dans le groupe (prédicat with)|
+|[make_list()](makelist-aggfunction.md)|Retourne une liste de toutes les valeurs dans le groupe|
+|[make_list_if()](makelistif-aggfunction.md)|Retourne une liste de toutes les valeurs dans le groupe (prédicat with)|
+|[make_list_with_nulls()](make-list-with-nulls-aggfunction.md)|Retourne une liste de toutes les valeurs dans le groupe, y compris les valeurs null|
+|[make_set()](makeset-aggfunction.md)|Retourne un jeu de valeurs distinctes dans le groupe|
+|[make_set_if()](makesetif-aggfunction.md)|Retourne un jeu de valeurs distinctes au sein du groupe (prédicat with)|
+|[Max ()](max-aggfunction.md)|Retourne la valeur maximale dans le groupe|
+|[maxif()](maxif-aggfunction.md)|Retourne la valeur maximale dans le groupe (avec le prédicat)|
+|[min ()](min-aggfunction.md)|Retourne la valeur minimale dans le groupe|
+|[minif()](minif-aggfunction.md)|Retourne la valeur minimale dans le groupe (avec le prédicat)|
+|[percentiles()](percentiles-aggfunction.md)|Retourne le centile approximatif du groupe|
+|[percentiles_array ()](percentiles-aggfunction.md)|Retourne les centiles approximatifs du groupe|
+|[percentilesw()](percentiles-aggfunction.md)|Retourne le centile pondéré approximatif du groupe|
+|[percentilesw_array ()](percentiles-aggfunction.md)|Retourne les centile pondérés approximatifs du groupe|
+|[ECARTYPE ()](stdev-aggfunction.md)|Retourne l’écart type de l’ensemble du groupe|
+|[stdevif()](stdevif-aggfunction.md)|Retourne l’écart type de l’ensemble du groupe (avec le prédicat)|
+|[Sum ()](sum-aggfunction.md)|Retourne la somme des éléments avec le groupe|
+|[sumif()](sumif-aggfunction.md)|Retourne la somme des éléments avec le groupe (prédicat with)|
+|[variance ()](variance-aggfunction.md)|Retourne la variance dans le groupe|
+|[varianceif()](varianceif-aggfunction.md)|Retourne la variance dans le groupe (avec le prédicat)|
 
 ## <a name="aggregates-default-values"></a>Agrège les valeurs par défaut
 
-Le tableau suivant résume les valeurs par défaut des agrégations :
+Le tableau suivant récapitule les valeurs par défaut des agrégations :
 
 Opérateur       |Valeur par défaut                         
 ---------------|------------------------------------
@@ -109,15 +109,15 @@ Opérateur       |Valeur par défaut
  `make_bag()`, `make_bag_if()`, `make_list()`, `make_list_if()`, `make_set()`, `make_set_if()` |    tableau dynamique vide ([])          
  Tous les autres          |   null                           
 
- Lors de l’utilisation de ces agrégats sur les entités qui comprend des valeurs nulles, les valeurs nulles seront ignorées et ne participeront pas au calcul (voir les exemples ci-dessous).
+ Lorsque vous utilisez ces agrégats sur des entités qui incluent des valeurs NULL, les valeurs NULL sont ignorées et ne participent pas au calcul (voir les exemples ci-dessous).
 
 ## <a name="examples"></a>Exemples
 
-![texte de remplacement](./Images/aggregations/01.png "01")
+:::image type="content" source="images/summarizeoperator/summarize-price-by-supplier.png" alt-text="Résumer le prix par fruit et fournisseur":::
 
 **Exemple**
 
-Déterminez quelles combinaisons `CompletionStatus` uniques et `ActivityType` il y a dans un tableau. Il n’y a pas de fonctions d’agrégation, juste des clés de groupe. La sortie affichera simplement les colonnes pour ces résultats:
+Déterminez les combinaisons uniques `ActivityType` de `CompletionStatus` et de dans une table. Il n’existe aucune fonction d’agrégation, mais uniquement des clés de regroupement. La sortie affiche simplement les colonnes de ces résultats :
 
 ```kusto
 Activities | summarize by ActivityType, completionStatus
@@ -132,7 +132,7 @@ Activities | summarize by ActivityType, completionStatus
 
 **Exemple**
 
-Trouve le délai minimum et maximal de tous les enregistrements dans le tableau des activités. Comme il n’y a pas de clause group by, la sortie contient une seule ligne :
+Recherche l’horodateur minimal et maximal de tous les enregistrements dans la table des activités. Comme il n’y a pas de clause group by, la sortie contient une seule ligne :
 
 ```kusto
 Activities | summarize Min = min(Timestamp), Max = max(Timestamp)
@@ -144,7 +144,7 @@ Activities | summarize Min = min(Timestamp), Max = max(Timestamp)
 
 **Exemple**
 
-Créer une rangée pour chaque continent, montrant un compte des villes dans lesquelles les activités se produisent. Étant donné qu’il y a peu de valeurs pour le « continent », aucune fonction de regroupement n’est nécessaire dans la clause « par » :
+Créez une ligne pour chaque continent, en indiquant le nombre de villes dans lesquelles les activités se produisent. Comme il y a peu de valeurs pour « continent », aucune fonction de regroupement n’est nécessaire dans la clause « by » :
 
     Activities | summarize cities=dcount(city) by continent
 
@@ -157,7 +157,7 @@ Créer une rangée pour chaque continent, montrant un compte des villes dans les
 
 **Exemple**
 
-L’exemple suivant calcule un histogramme pour chaque type d’activité. Parce `Duration` que a `bin` de nombreuses valeurs, utiliser pour regrouper ses valeurs en intervalles de 10 minutes:
+L’exemple suivant calcule un histogramme pour chaque type d’activité. Étant `Duration` donné que a de nombreuses `bin` valeurs, utilisez pour regrouper ses valeurs en intervalles de 10 minutes :
 
 ```kusto
 Activities | summarize count() by ActivityType, length=bin(Duration, 10m)
@@ -173,11 +173,11 @@ Activities | summarize count() by ActivityType, length=bin(Duration, 10m)
 |`2876`|`singing`|`0:20:00.000`
 |...
 
-**Exemple pour les valeurs par défaut d’agrégats**
+**Exemple pour les valeurs par défaut des agrégats**
 
-Lorsque l’entrée de l’opérateur `summarize` a au moins une clé de groupe vide par groupe, son résultat est vide, aussi.
+Lorsque l’entrée de `summarize` l’opérateur a au moins une clé Group-by vide, le résultat est vide.
 
-Lorsque l’entrée de `summarize` l’opérateur n’a pas de clé de groupe vide, `summarize`le résultat est les valeurs par défaut des agrégats utilisés dans le :
+Lorsque l’entrée de `summarize` l’opérateur n’a pas de clé Group-by vide, les valeurs par défaut des agrégats utilisés dans le `summarize`sont les suivantes :
 
 ```kusto
 range x from 1 to 10 step 1
@@ -209,7 +209,7 @@ range x from 1 to 10 step 1
 |---|---|
 |[]|[]|
 
-L’avg agrégé résume tous les non-nulls et ne compte que ceux qui ont participé au calcul (ne tiendra pas compte des nuls).
+L’agrégat calcule la somme de toutes les valeurs non null et compte uniquement celles qui ont participé au calcul (n’acceptent pas les valeurs NULL en compte).
 
 ```kusto
 range x from 1 to 2 step 1
@@ -221,7 +221,7 @@ range x from 1 to 2 step 1
 |---|---|
 |5|5|
 
-Le décompte régulier comptera les nuls : 
+Le nombre régulier compte les valeurs NULL : 
 
 ```kusto
 range x from 1 to 2 step 1
@@ -241,4 +241,4 @@ range x from 1 to 2 step 1
 
 |set_y|set_y1|
 |---|---|
-|[5.0]|[5.0]|
+|[5,0]|[5,0]|

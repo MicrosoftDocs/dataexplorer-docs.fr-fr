@@ -1,6 +1,6 @@
 ---
-title: series_decompose_anomalies() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit series_decompose_anomalies () dans Azure Data Explorer.
+title: series_decompose_anomalies ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit series_decompose_anomalies () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,62 +8,62 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/28/2019
-ms.openlocfilehash: 7d9ca0585b40a97d21690f908a50de5be493c412
-ms.sourcegitcommit: 436cd515ea0d83d46e3ac6328670ee78b64ccb05
+ms.openlocfilehash: 51ac499690323b1d2bafb4dc20ab7773f5c99c63
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81663626"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82618888"
 ---
 # <a name="series_decompose_anomalies"></a>series_decompose_anomalies()
 
-Détection d’anomalies basée sur la décomposition des séries (se référer à [series_decompose))](series-decomposefunction.md)) 
+Détection des anomalies basée sur la décomposition des séries (reportez-vous à [series_decompose ()](series-decomposefunction.md)) 
 
-Prend une expression contenant une série (tableau numérique dynamique) comme entrée et extraire des points anormaux avec des scores.
+Prend une expression contenant une série (tableau numérique dynamique) comme entrée et extrait des points anormaux avec des scores.
 
 **Syntaxe**
 
-`series_decompose_anomalies (`*Série* `[, ` *Seuil* `,` *Seasonality* `,` *Trend* `, ` *Test_points* `, ` *AD_method* `,` *Seasonality_threshold*`])`
+`series_decompose_anomalies (`*Tendance* à la tendance`, ` des *seuils* `,` *Seasonality* `,` de *série* `[, ` *Test_points* `, ` *AD_method* `,` *Seasonality_threshold*`])`
 
 **Arguments**
 
-* *Série*: Cellule de tableau dynamique qui est un éventail de valeurs numériques, généralement la sortie résultante des opérateurs [de série](make-seriesoperator.md) ou [de make_list](makelist-aggfunction.md)
-* *Seuil*: Seuil d’anomalie, défaut 1.5 (valeur k) pour détecter les anomalies légères ou plus fortes
-* *Saisonnalité*: Un integer contrôlant l’analyse saisonnière, contenant soit
-    * -1: saisonnalité autodétec (en utilisant [series_periods_detect](series-periods-detectfunction.md)) [par défaut] 
-    * 0: pas de saisonnalité (c.-à-d. sauter l’extraction de ce composant)
-    * période : integer positif, précisant la période prévue dans le nombre d’unités de bacs. Par exemple, si la série est dans 1h poubelles, une période hebdomadaire est de 168 bacs
-* *Tendance*: Une chaîne contrôlant l’analyse de tendance, contenant soit    
-    * "avg": définir la composante tendance comme moyenne de la série [par défaut]
-    * "aucun": pas de tendance, sauter l’extraction de ce composant 
-    * "linefit": extraire le composant de tendance à l’aide de la régression linéaire
-* *Test_points*: 0 [par défaut] ou integer positif, précisant le nombre de points à la fin de la série à exclure du processus d’apprentissage (régression). Ce paramètre doit être fixé à l’objectif de prévision
-* *AD_method*: Une chaîne contrôlant la méthode de détection d’anomalies (voir [series_outliers)](series-outliersfunction.md)sur la série temporelle résiduelle, contenant soit    
-    * "ctukey": [Test de clôture Tukey](https://en.wikipedia.org/wiki/Outlier#Tukey's_fences) avec la gamme personnalisée 10th-90th percentile [par défaut]
-    * "tukey": [Test de clôture tukey](https://en.wikipedia.org/wiki/Outlier#Tukey's_fences) avec la gamme standard 25e-75e percentile
-* *Seasonality_threshold*: Le seuil de la saisonnalité lorsque *la saisonnalité* est réglée pour `0.6` s’autodétection, le seuil de score par défaut est (pour plus de détails voir: [series_periods_detect](series-periods-detectfunction.md))
+* *Série*: cellule de tableau dynamique qui est un tableau de valeurs numériques, généralement le résultat des opérateurs [Make-Series](make-seriesoperator.md) ou [make_list](makelist-aggfunction.md)
+* *Seuil*: seuil d’anomalies, 1,5 par défaut (valeur k) pour la détection des anomalies légères ou plus fortes
+* Caractère *saisonnier*: un entier contrôlant l’analyse saisonnière, contenant soit
+    * -1 : détection automatique du caractère saisonnier (à l’aide de [series_periods_detect](series-periods-detectfunction.md)) [Default] 
+    * 0 : aucun caractère saisonnier (c’est-à-dire ignorer l’extraction de ce composant)
+    * period : entier positif, qui spécifie la période attendue en nombre d’unités d’emplacements. Par exemple, si la série est dans des emplacements 1H, une période hebdomadaire est de 168 emplacements
+* *Tendance*: chaîne contrôlant l’analyse des tendances, contenant soit    
+    * « AVG » : définir le composant de tendance en moyenne des séries [par défaut]
+    * « None » : aucune tendance, ignorer l’extraction de ce composant 
+    * « linefit » : extraction du composant de tendance à l’aide de la régression linéaire
+* *Test_points*: 0 [Default] ou un entier positif spécifiant le nombre de points à la fin de la série à exclure du processus d’apprentissage (régression). Ce paramètre doit être défini à des fins de prévision
+* *AD_method*: chaîne contrôlant la méthode de détection des anomalies (consultez [series_outliers](series-outliersfunction.md)) sur les séries chronologiques résiduelles, contenant soit    
+    * « ctukey » : [test de la limite de Tukey](https://en.wikipedia.org/wiki/Outlier#Tukey's_fences) avec une plage de centile personnalisée du dixième au dixième [par défaut]
+    * « Tukey » : [test de la limite de Tukey](https://en.wikipedia.org/wiki/Outlier#Tukey's_fences) avec une plage de centile standard de 25-75e
+* *Seasonality_threshold*: le seuil du score saisonnier lorsque le caractère *saisonnier* est défini sur détection automatique, le seuil du `0.6` score par défaut est (pour plus d’informations, consultez : [series_periods_detect](series-periods-detectfunction.md))
 
 
-**Retour**
+**Renvoi**
 
- La fonction renvoie la série respective suivante :
+ La fonction retourne les séries correspondantes suivantes :
 
-* `ad_flag`: une série ternaire contenant respectivement une 1, -1, 0) marquant une anomalie de haut en bas/pas
+* `ad_flag`: série ternaire contenant (+ 1,-1, 0) marquage/baisse/aucune anomalie, respectivement
 * `ad_score`: score d’anomalie
-* `baseline`: la valeur prévue de la série selon la décomposition
+* `baseline`: valeur prédite de la série en fonction de la décomposition
 
 **En savoir plus sur l’algorithme**
 
-Cette fonction suit ces étapes :
-1. Appels [series_decompose()](series-decomposefunction.md) avec les paramètres respectifs pour créer la série de base et de résidus
-2. Calcule ad_score série en appliquant [series_outliers()](series-outliersfunction.md) avec la méthode de détection des anomalies choisie sur la série résiduelle
-3. Calcule la série ad_flag en appliquant le seuil sur le ad_score pour marquer respectivement la hausse/baisse/l’absence d’anomalie
+Cette fonction suit les étapes suivantes :
+1. Appelle [series_decompose ()](series-decomposefunction.md) avec les paramètres respectifs pour créer la série de lignes de base et les résidus.
+2. Calcule ad_score série en appliquant [series_outliers ()](series-outliersfunction.md) avec la méthode de détection d’anomalies choisie sur la série des résidus
+3. Calcule la série de ad_flag en appliquant le seuil sur la ad_score à marquer/baisser/pas d’anomalie, respectivement
  
 **Exemples**
 
-**1. Détecter les anomalies dans la saisonnalité hebdomadaire**
+**1. détection des anomalies dans le caractère saisonnier hebdomadaire**
 
-Dans l’exemple suivant, nous générons une série avec une saisonnalité hebdomadaire, nous y ajoutons ensuite quelques valeurs aberrantes. `series_decompose_anomalies`détecte automatiquement la saisonnalité et génère une ligne de base qui capture le modèle répétitif. Les valeurs aberrantes que nous avons ajoutées peuvent être clairement repérées dans le composant ad_score.
+Dans l’exemple suivant, nous générons une série avec un caractère saisonnier hebdomadaire, puis nous y ajoutons quelques valeurs hors norme. `series_decompose_anomalies`détecte automatiquement le caractère saisonnier et génère une ligne de base qui capture le modèle répétitif. Les valeurs hors norme que nous avons ajoutées peuvent être clairement repérées dans le composant ad_score.
 
 ```kusto
 let ts=range t from 1 to 24*7*5 step 1 
@@ -77,11 +77,11 @@ ts
 | render timechart  
 ```
 
-:::image type="content" source="images/samples/series-decompose-anomalies1.png" alt-text="Anomalies de décomposition de série 1":::
+:::image type="content" source="images/series-decompose-anomaliesfunction/weekly-seasonality-outliers.png" alt-text="Caractère saisonnier hebdomadaire présentant les lignes de base et les valeurs hors norme" border="false":::
 
-**2. Détecter les anomalies dans la saisonnalité hebdomadaire avec tendance**
+**2. détection des anomalies dans le caractère saisonnier hebdomadaire avec tendance**
 
-Dans cet exemple, nous ajoutons une tendance à la série de l’exemple précédent. Tout d’abord, nous courons `series_decompose_anomalies` avec `avg` les paramètres par défaut dans lesquels la valeur par défaut de tendance ne prend que la moyenne et ne calcule pas la tendance, nous pouvons voir que la ligne de base générée ne contient pas la tendance et est moins précis par rapport à l’exemple précédent, par conséquent, certaines des valeurs aberrantes que nous avons inséré dans les données ne sont pas détectés en raison de la variance plus élevée.
+Dans cet exemple, nous ajoutons une tendance à la série de l’exemple précédent. Tout d’abord, `series_decompose_anomalies` nous exécutons avec les paramètres par défaut `avg` dans lesquels la valeur par défaut de tendance prend uniquement en compte la moyenne et ne calcule pas la tendance. nous pouvons voir que la ligne de base générée ne contient pas la tendance et qu’elle est moins précise que l’exemple précédent. par conséquent, certaines des valeurs hors norme que nous avons insérées dans les données ne sont pas détectées
 
 ```kusto
 let ts=range t from 1 to 24*7*5 step 1 
@@ -96,9 +96,10 @@ ts
 series_multiply(10, series_decompose_anomalies_y_ad_flag) // multiply by 10 for visualization purposes
 | render timechart   
 ```
-:::image type="content" source="images/samples/series-decompose-anomalies2.png" alt-text="Anomalies de décomposition de série 2":::
 
-Ensuite, nous jouons le même exemple, mais puisque `linefit` nous nous attendons à une tendance dans la série, nous spécifions dans le paramètre de tendance. Nous pouvons voir que la ligne de base est beaucoup plus proche de la série d’entrées. Toutes les valeurs aberrantes que nous avons insérées sont détectées, ainsi que quelques faux positifs (voir l’exemple suivant sur l’accordage du seuil).
+:::image type="content" source="images/series-decompose-anomaliesfunction/weekly-seasonality-outliers-with-trend.png" alt-text="Résultats saisonniers hebdomadaires avec tendance" border="false":::
+
+Ensuite, nous exécutons le même exemple, mais étant donné que nous attendions une tendance dans la `linefit` série, nous spécifions dans le paramètre Trend. Nous pouvons voir que la ligne de base est plus proche de la série d’entrée. Tous les valeurs hors norme que nous avons insérées sont détectées, ainsi que des faux positifs (Voir l’exemple suivant sur le réglage du seuil).
 
 ```kusto
 let ts=range t from 1 to 24*7*5 step 1 
@@ -114,11 +115,11 @@ series_multiply(10, series_decompose_anomalies_y_ad_flag) // multiply by 10 for 
 | render timechart  
 ```
 
-:::image type="content" source="images/samples/series-decompose-anomalies3.png" alt-text="Anomalies de décomposition de série 3":::
+:::image type="content" source="images/series-decompose-anomaliesfunction/weekly-seasonality-linefit-trend.png" alt-text="Anomalies saisonnieres hebdomadaires avec tendance linefit" border="false":::
 
-**3. Modifier le seuil de détection des anomalies**
+**3. modification du seuil de détection des anomalies**
 
-Dans l’exemple précédent, quelques points bruyants ont été détectés comme anomalies, dans cet exemple, nous augmentons le seuil de détection des anomalies d’un défaut de 1,5 à 2,5 la plage interpercentile de sorte que seules des anomalies plus fortes sont détectées. Nous pouvons voir que maintenant seules les valeurs aberrantes que nous avons insérées dans les données sont détectées.
+Dans l’exemple précédent, quelques points bruyants ont été détectés comme des anomalies. dans cet exemple, nous augmentons le seuil de détection des anomalies d’une valeur par défaut de 1,5 à 2,5 la plage intercentile afin que seules les anomalies plus fortes soient détectées. Nous pouvons voir que seules les valeurs hors norme que nous avons insérées dans les données sont détectées.
 
 ```kusto
 let ts=range t from 1 to 24*7*5 step 1 
@@ -134,4 +135,5 @@ series_multiply(10, series_decompose_anomalies_y_ad_flag) // multiply by 10 for 
 | render timechart  
 ```
 
-:::image type="content" source="images/samples/series-decompose-anomalies4.png" alt-text="Anomalies de décomposition de série 4":::
+:::image type="content" source="images/series-decompose-anomaliesfunction/weekly-seasonality-higher-threshold.png" alt-text="Série hebdomadaire d’anomalies avec un seuil d’anomalies plus élevé" border="false":::
+

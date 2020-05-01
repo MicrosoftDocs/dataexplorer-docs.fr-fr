@@ -1,6 +1,6 @@
 ---
-title: stdevp() (fonction d’agrégation) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit stdevp() (fonction d’agrégation) dans Azure Data Explorer.
+title: STDEVP () (fonction d’agrégation)-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit StDevP () (fonction d’agrégation) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,34 +8,34 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 0549c15ec9e2435d242f210e6dfc2163796e5f39
-ms.sourcegitcommit: 436cd515ea0d83d46e3ac6328670ee78b64ccb05
+ms.openlocfilehash: baafca4d8d5711d55838bceae817c36ecb0edd6f
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81663206"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82618567"
 ---
-# <a name="stdevp-aggregation-function"></a>stdevp() (fonction d’agrégation)
+# <a name="stdevp-aggregation-function"></a>STDEVP () (fonction d’agrégation)
 
-Calcule l’écart standard *d’Expr* à travers le groupe, considérant le groupe comme une [population](https://en.wikipedia.org/wiki/Statistical_population). 
+Calcule l’écart type de *expr* au sein du groupe, en considérant le groupe comme un [remplissage](https://en.wikipedia.org/wiki/Statistical_population). 
 
-* Formule utilisée :
+* Formule utilisée :
 
-:::image type="content" source="images/aggregations/stdev-population.png" alt-text="Population de Stdev":::
+:::image type="content" source="images/stdevp-aggfunction/stdev-population.png" alt-text="Remplissage ECARTYPE":::
 
-* Ne peut être utilisé que dans le contexte de l’agrégation à l’intérieur [résumer](summarizeoperator.md)
+* Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 
 **Syntaxe**
 
-résumer `stdevp(` *Expr*`)`
+`stdevp(`résumer *expr*`)`
 
 **Arguments**
 
-* *Expr*: Expression qui sera utilisée pour le calcul de l’agrégation. 
+* *Expr*: expression qui sera utilisée pour le calcul de l’agrégation. 
 
 **Retourne**
 
-La valeur d’écart standard *d’Expr* dans l’ensemble du groupe.
+Valeur d’écart type de *expr* dans le groupe.
  
 **Exemples**
 
@@ -47,4 +47,4 @@ range x from 1 to 5 step 1
 
 |list_x|stdevp_x|
 |---|---|
-|[ 1, 2, 3, 4, 5]|1.4142135623731|
+|[1, 2, 3, 4, 5]|1.4142135623731|

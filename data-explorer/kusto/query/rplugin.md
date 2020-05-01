@@ -1,6 +1,6 @@
 ---
-title: R plugin (Avant-première) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit R plugin (Preview) dans Azure Data Explorer.
+title: Plug-in R (version préliminaire)-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit le plug-in R (version préliminaire) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,59 +10,59 @@ ms.topic: reference
 ms.date: 04/01/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: d815a75b241f7779a5f4ee9cae626c38ed54f9f4
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 514c67133980c9ab1c38b65cc51e4592dcb15eda
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81765996"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82618958"
 ---
-# <a name="r-plugin-preview"></a>R plugin (Avant-première)
+# <a name="r-plugin-preview"></a>Plug-in R (version préliminaire)
 
 ::: zone pivot="azuredataexplorer"
 
-Le plugin R exécute une fonction définie par l’utilisateur (UDF) à l’aide d’un script R. Le script R obtient des données tabulaires comme son entrée, et devrait produire la sortie tabulaire.
-Le temps d’exécution du plugin est hébergé dans un bac à [sable,](../concepts/sandboxes.md)un environnement isolé et sécurisé fonctionnant sur les nœuds du cluster.
+Le plug-in R exécute une fonction définie par l’utilisateur (UDF) à l’aide d’un script R. Le script R obtient les données tabulaires en tant qu’entrée et est censé produire une sortie tabulaire.
+Le runtime du plug-in est hébergé dans un [bac à sable (sandbox](../concepts/sandboxes.md)), un environnement isolé et sécurisé s’exécutant sur les nœuds du cluster.
 
 ### <a name="syntax"></a>Syntaxe
 
-*T* `|` `=` `single` `r(` *output_schema* `,` *script* `,` [`hint.distribution` ( | )] output_schema script [ script_parameters ] *script_parameters* `evaluate` `per_node``)`
+*T* `|` `per_node``,` *script_parameters* *output_schema* *script* [`hint.distribution` (`single`)] `r(`output_schema`,` script [script_parameters] `evaluate` `=`  | `)`
 
 
 ### <a name="arguments"></a>Arguments
 
-* *output_schema*: Un `type` littéral qui définit le schéma de sortie des données tabulaires, retourné par le code R.
-    * Le format `typeof(`est: *ColumnName* `:` *ColumnType* [, ...] `)`, par `typeof(col1:string, col2:long)`exemple: .
-    * Pour étendre le schéma d’entrée, `typeof(*, col1:string, col2:long)`utilisez la syntaxe suivante : .
-* *script*: `string` Un texte littéral qui est le script R valide à exécuter.
-* *script_parameters*: Un littéral optionnel `dynamic` qui est un sac de propriété de paires `kargs` de nom/valeur à transmettre au script R comme dictionnaire réservé (voir [variables reservantes R).](#reserved-r-variables)
-* *hint.distribution*: Un indice optionnel pour l’exécution du plugin à distribuer sur plusieurs nœuds cluster.
+* *output_schema*: `type` littéral qui définit le schéma de sortie des données tabulaires, retourné par le code R.
+    * Le format est : `typeof(` *ColumnName* `:` *ColumnType* [,...] `)`, par exemple : `typeof(col1:string, col2:long)`.
+    * Pour étendre le schéma d’entrée, utilisez la syntaxe suivante `typeof(*, col1:string, col2:long)`:.
+* *script*: `string` littéral qui est le script R valide à exécuter.
+* *script_parameters*: un littéral `dynamic` facultatif qui est un conteneur de propriétés de paires nom/valeur à passer au script R comme dictionnaire réservé `kargs` (consultez [variables R réservées](#reserved-r-variables)).
+* *hint. distribution*: indication facultative pour que l’exécution du plug-in soit distribuée sur plusieurs nœuds de cluster.
    Par défaut : `single`.
-    * `single`: Une seule instance du script s’exécutera sur l’ensemble des données de requête.
-    * `per_node`: Si la requête avant la distribution du bloc R est distribuée, une instance du script s’exécutera sur chaque nœud sur les données qu’il contient.
+    * `single`: Une seule instance du script est exécutée sur l’ensemble des données de la requête.
+    * `per_node`: Si la requête avant le bloc R est distribuée, une instance du script s’exécutera sur chaque nœud sur les données qu’elle contient.
 
 
-### <a name="reserved-r-variables"></a>Variables reservantes reS
+### <a name="reserved-r-variables"></a>Variables R réservées
 
-Les variables suivantes sont réservées à l’interaction entre kusto Query Language et le code R :
+Les variables suivantes sont réservées pour l’interaction entre le langage de requête Kusto et le code R :
 
-* `df`: Les données tabulaires `T` d’entrée (les valeurs ci-dessus), comme un R DataFrame.
-* `kargs`: La valeur de *l’argument script_parameters,* en tant que dictionnaire R.
-* `result`: Un DataFrame R créé par le script R, dont la valeur devient les données tabulaires qui est envoyée à n’importe quel opérateur de requête Kusto qui suit le plugin.
+* `df`: Données tabulaires d’entrée (les valeurs `T` ci-dessus), en tant que R tableau.
+* `kargs`: Valeur de l’argument *script_parameters* , sous la forme d’un dictionnaire R.
+* `result`: R tableau créé par le script R, dont la valeur devient les données tabulaires qui sont envoyées à n’importe quel opérateur de requête Kusto qui suit le plug-in.
 
 ### <a name="onboarding"></a>Mise en route
 
 
-* Le plugin est désactivé par défaut.
-    * *Vous souhaitez activer le plugin sur votre cluster ?*
+* Le plug-in est désactivé par défaut.
+    * *Vous souhaitez activer le plug-in sur votre cluster ?*
         
-        * Dans le portail Azure, au sein de votre cluster Azure Data Explorer, sélectionnez **Nouvelle demande de support** dans le menu de gauche.
-        * Désactiver le plugin nécessite l’ouverture d’un billet de soutien ainsi.
+        * Dans le Portail Azure, au sein de votre cluster Azure Explorateur de données, sélectionnez **nouvelle demande de support** dans le menu de gauche.
+        * La désactivation du plug-in nécessite également l’ouverture d’un ticket de support.
 
-### <a name="notes-and-limitations"></a>Notes et limitations
+### <a name="notes-and-limitations"></a>Remarques et limitations
 
-* L’image de bac à sable R est basée sur *R 3.4.4 pour Windows*, et comprend des paquets de [Anaconda R Essentials bundle](https://docs.anaconda.com/anaconda/packages/r-language-pkg-docs/).
-* Le bac à sable R limite l’accès au réseau, donc le code R ne peut pas installer dynamiquement des paquets supplémentaires qui ne sont pas inclus dans l’image. Ouvrez une **nouvelle demande de support** dans le portail Azure si vous avez besoin de forfaits spécifiques.
+* L’image R sandbox est basée sur *r 3.4.4 pour Windows*et comprend des packages de l' [offre groupée r Essentials de Anaconda](https://docs.anaconda.com/anaconda/packages/r-language-pkg-docs/).
+* Le bac à sable (sandbox) R limite l’accès au réseau. par conséquent, le code R ne peut pas installer de manière dynamique des packages supplémentaires qui ne sont pas inclus dans l’image. Ouvrez une **nouvelle demande de support** dans le portail Azure si vous avez besoin de packages spécifiques.
 
 
 ### <a name="examples"></a>Exemples
@@ -84,16 +84,16 @@ typeof(*, fx:double),               //  Output schema: append a new fx column to
 | render linechart 
 ```
 
-:::image type="content" source="images/samples/sine-demo.png" alt-text="Démo de Sine":::
+:::image type="content" source="images/plugin/sine-demo.png" alt-text="Démonstration sinus" border="false":::
 
 ### <a name="performance-tips"></a>Conseils sur les performances
 
-* Réduisez l’ensemble de données d’entrée du plugin à la quantité minimale requise (colonnes/lignes).
-    * Utilisez des filtres sur l’ensemble de données source, si possible, en utilisant la langue de requête Kusto.
-    * Pour effectuer un calcul sur un sous-ensemble des colonnes sources, ne projetez que ces colonnes avant d’invoquer le plugin.
+* Réduisez le jeu de données d’entrée du plug-in sur la quantité minimale requise (colonnes/lignes).
+    * Utilisez des filtres sur le jeu de données source, lorsque cela est possible, à l’aide du langage de requête Kusto.
+    * Pour effectuer un calcul sur un sous-ensemble des colonnes sources, projetez uniquement cette colonne avant d’appeler le plug-in.
 * Utilisez `hint.distribution = per_node` chaque fois que la logique de votre script est distribuable.
-    * Vous pouvez également utiliser [l’opérateur](partitionoperator.md) de partition pour le partage de l’ensemble de données d’entrée.
-* Dans la mesure du possible, utilisez le langage Kusto Query pour implémenter la logique de votre script R.
+    * Vous pouvez également utiliser l' [opérateur de partition](partitionoperator.md) pour partitionner le jeu de données d’entrée.
+* Dans la mesure du possible, utilisez le langage de requête Kusto pour implémenter la logique de votre script R.
 
     Par exemple :
 
@@ -111,8 +111,8 @@ typeof(*, fx:double),               //  Output schema: append a new fx column to
 
 ### <a name="usage-tips"></a>Conseils d’utilisation
 
-* Pour éviter les conflits entre les délimitations de cordes Kusto`'`et ceux de R, nous vous recommandons d’utiliser des`"`caractères de citation unique () pour les littérals de chaîne Kusto dans les requêtes Kusto, et les caractères de double citation () pour les littérals de cordes R dans les scripts R.
-* Utilisez [l’opérateur de données externes](externaldata-operator.md) pour obtenir le contenu d’un script que vous avez stocké dans un emplacement externe, comme le stockage de blob Azure, un référentiel GitHub public, etc.
+* Pour éviter les conflits entre les délimiteurs de chaîne Kusto et R, nous vous recommandons d’utiliser des`'`guillemets simples () pour les littéraux de chaîne Kusto dans des requêtes`"`Kusto et des guillemets doubles () pour les littéraux de chaîne R dans les scripts r.
+* Utilisez l' [opérateur ExternalData](externaldata-operator.md) pour obtenir le contenu d’un script que vous avez stocké dans un emplacement externe, tel qu’un stockage d’objets BLOB Azure, un référentiel GitHub public, etc.
   
   Par exemple :
 
@@ -135,7 +135,7 @@ typeof(*, fx:double),               //  Output schema: append a new fx column to
 
 ::: zone pivot="azuremonitor"
 
-Ce n’est pas pris en charge dans Azure Monitor
+Cela n’est pas pris en charge dans Azure Monitor
 
 ::: zone-end
 
