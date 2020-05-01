@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: ad255c6930e76628a5187fa8d321e3445dbb5f99
-ms.sourcegitcommit: fbe298e88542c0dcea0f491bb53ac427f850f729
+ms.openlocfilehash: e03ff6fe7ffb65d11b59cc98f150df617d42932d
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82138864"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82616369"
 ---
 # <a name="data-partitioning-policy-preview"></a>Stratégie de partitionnement des données (préversion)
 
@@ -39,7 +39,7 @@ Les types de clés de partition suivants sont pris en charge :
 
 ### <a name="hash-partition-key"></a>Clé de partition de hachage
 
-L’application d’une clé de partition `string`de hachage sur une colonne typée dans une table est appropriée lorsque la *majorité* des requêtes`==`utilisent `in()`des filtres d’égalité `string`(,) sur une colonne de *grande dimension*, `application_ID`telle `tenant_ID` que `user_ID`, ou.
+L’application d’une clé de partition `string`de hachage sur une colonne de type de table est appropriée lorsque la *majorité* des requêtes utilisent`==`des `in()`filtres d’égalité ( `string`,) sur une colonne de *grande dimension* (10 m ou supérieure), `application_ID`telle `tenant_ID` que `user_ID`, ou.
 
 * Une fonction de hachage-modulo est utilisée pour partitionner les données.
 * Toutes les étendues *homogènes* (partitionnées) appartenant à la même partition sont affectées au même nœud de données.
@@ -63,7 +63,7 @@ L’application d’une clé de partition `string`de hachage sur une colonne typ
   * La valeur doit être un entier positif.
   * La valeur recommandée (et par défaut, si non spécifié) `1`est.
 
-#### <a name="example"></a>Exemple
+#### <a name="example"></a> Exemple
 
 Voici une clé de partition de hachage sur une `string`colonne de type typée nommée `tenant_id`.
 
@@ -93,7 +93,7 @@ L’application d’une clé de partition DateTime de `datetime`plage uniforme s
 * `Reference`constante `datetime` scalaire de type qui indique un point fixe dans le temps selon lequel les partitions DateTime sont alignées.
   * S’il existe des enregistrements dans lesquels la clé de partition `null` DateTime a des valeurs, leur valeur de partition est définie `Reference`sur la valeur de.
 
-#### <a name="example"></a>Exemple
+#### <a name="example"></a> Exemple
 
 Voici une clé de partition de plage DateTime uniforme sur une `datetime`colonne typée nommée`timestamp`
 
@@ -132,7 +132,7 @@ La stratégie de partitionnement des données comporte les propriétés principa
   * Cette propriété est *facultative* . si elle n’est pas spécifiée, la stratégie prend effet sur les données ingérées après l’application de la stratégie.
   * Toutes les étendues non homogènes (non partitionnées) qui sont liées pour être bientôt supprimées en raison de la rétention (autrement dit, leur heure de création précède la 90% de la période de suppression effective de la table) est ignorée par le processus de partitionnement.
 
-### <a name="example"></a>Exemple
+### <a name="example"></a> Exemple
 
 Voici un objet de stratégie de partitionnement de données avec deux clés de partition :
 1. Une clé de partition de hachage `string`sur une colonne de `tenant_id`type typée nommée.

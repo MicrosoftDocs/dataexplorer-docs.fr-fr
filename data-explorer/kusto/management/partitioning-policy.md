@@ -1,6 +1,6 @@
 ---
-title: Gestion des politiques de partitionnement des données - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la gestion des politiques de partitionnement des données dans Azure Data Explorer.
+title: Gestion de la stratégie de partitionnement des données-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit la gestion des stratégies de partitionnement des données dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/04/2020
-ms.openlocfilehash: 0e1ff783195f26adf7f98e511ca155f43609098c
-ms.sourcegitcommit: 436cd515ea0d83d46e3ac6328670ee78b64ccb05
+ms.openlocfilehash: 1ad9b359422b51084f1be1c64d27d656313d9296
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81663965"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82616318"
 ---
-# <a name="data-partitioning-policy-management"></a>Gestion des politiques de partage des données
+# <a name="data-partitioning-policy-management"></a>Gestion des stratégies de partitionnement des données
 
-La politique de partage des données est détaillée [ici](../management/partitioningpolicy.md).
+La stratégie de partitionnement des données est détaillée [ici](../management/partitioningpolicy.md).
 
-## <a name="show-policy"></a>montrer la politique
+## <a name="show-policy"></a>afficher la stratégie
 
 ```kusto
 .show table [table_name] policy partitioning
 ```
 
-La `.show` commande affiche la politique de partitionnement qui est appliquée sur la table.
+La `.show` commande affiche la stratégie de partitionnement appliquée à la table.
 
 ### <a name="output"></a>Output
 
 |Nom de stratégie | Nom de l’entité | Stratégie | Entités enfants | Type d'entité
 |---|---|---|---|---
-|DonnéesPartition | Nom de la table | Sérialisation JSON de l’objet politique | null | Table de charge de travail
+|DataPartitioning | Nom de la table | Sérialisation JSON de l’objet de stratégie | null | Table de charge de travail
 
-## <a name="alter-and-alter-merge-policy"></a>modifier et modifier la politique
+## <a name="alter-and-alter-merge-policy"></a>stratégie ALTER et ALTER-Merge
 
 ```kusto
 .alter table [table_name] policy partitioning @'policy object, serialized as JSON'
@@ -41,15 +41,15 @@ La `.show` commande affiche la politique de partitionnement qui est appliquée s
 .alter-merge table [table_name] policy partitioning @'partial policy object, serialized as JSON'
 ```
 
-La `.alter` commande permet de modifier la politique de partitionnement qui est appliquée sur la table.
+La `.alter` commande permet de modifier la stratégie de partitionnement appliquée à la table.
 
-La commande nécessite des autorisations [DatabaseAdmin.](access-control/role-based-authorization.md)
+La commande requiert des autorisations [DatabaseAdmin](access-control/role-based-authorization.md) .
 
-Les modifications apportées à la politique pourraient prendre jusqu’à 1 heure pour entrer en vigueur.
+La prise en compte des modifications apportées à la stratégie peut prendre jusqu’à 1 heure.
 
 ### <a name="examples"></a>Exemples
 
-#### <a name="setting-all-properties-of-the-policy-explicitly-at-table-level"></a>Définir explicitement toutes les propriétés de la politique au niveau de la table
+#### <a name="setting-all-properties-of-the-policy-explicitly-at-table-level"></a>Définition explicite de toutes les propriétés de la stratégie au niveau de la table
 
 ```kusto
 .alter table [table_name] policy partitioning @'{'
@@ -74,18 +74,18 @@ Les modifications apportées à la politique pourraient prendre jusqu’à 1 heu
 '}'
 ```
 
-#### <a name="setting-a-specific-property-of-the-policy-explicitly-at-table-level"></a>Établir explicitement une propriété spécifique de la politique au niveau de la table
+#### <a name="setting-a-specific-property-of-the-policy-explicitly-at-table-level"></a>Définition explicite d’une propriété spécifique de la stratégie au niveau de la table
 
-Pour définir `EffectiveDateTime` la stratégie à une valeur différente, utilisez la commande suivante :
+Pour définir la `EffectiveDateTime` valeur de la stratégie sur une autre valeur, utilisez la commande suivante :
 
 ```kusto
-.alter table [table_name] policy partitioning @'{"EffectiveDateTime":"2020-01-01"}'
+.alter-merge table [table_name] policy partitioning @'{"EffectiveDateTime":"2020-01-01"}'
 ```
 
-## <a name="delete-policy"></a>supprimer la politique
+## <a name="delete-policy"></a>supprimer la stratégie
 
 ```kusto
 .delete table [table_name] policy partitioning
 ```
 
-La `.delete` commande supprime la politique de partitionnement de la table donnée.
+La `.delete` commande supprime la stratégie de partitionnement de la table donnée.

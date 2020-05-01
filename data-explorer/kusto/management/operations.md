@@ -1,6 +1,6 @@
 ---
-title: Gestion des opérations - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la gestion des opérations dans Azure Data Explorer.
+title: Gestion des opérations-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit Operations Management dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,71 +8,71 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 01f30a8d391948d5466ef76b2951d55aa6084e15
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: e4e373cd694de989b2bbef8058aaf1c8b3ca3025
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81520687"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82616471"
 ---
 # <a name="operations-management"></a>Gestion des opérations
 
-## <a name="show-operations"></a>.afficher les opérations
+## <a name="show-operations"></a>. afficher les opérations
 
-`.show``operations` commande renvoie un tableau avec toutes les opérations administratives, à la fois en cours d’exécution et terminée, qui ont été exécutés au cours des deux dernières semaines (qui est actuellement la configuration de la période de conservation).
+`.show``operations` la commande retourne une table avec toutes les opérations administratives, en cours d’exécution et terminées, qui ont été exécutées au cours des deux dernières semaines (qui est actuellement la configuration de la période de rétention).
 
 **Syntaxe**
 
 |||
 |---|---| 
-|`.show` `operations`              |Renvoie toutes les opérations traitées par le cluster ou le traitement 
-|`.show``operations` *OpérationId*|Retourne l’état de l’opération pour une pièce d’identité spécifique 
-|`.show``operations` `,` *OperationId2* `,` *OperationId1* OpérationId1 OperationId2 ...) `(`|Retours de l’état des opérations pour des DIU spécifiques
+|`.show` `operations`              |Retourne toutes les opérations que le cluster a traitées ou est en cours de traitement 
+|`.show``operations` *OperationId*|Retourne l’état de l’opération pour un ID spécifique 
+|`.show``operations` `,` *OperationId1* OperationId1 OperationId2`,` ...) *OperationId2* `(`|Retourne l’état des opérations pour des ID spécifiques
 
 **Résultats**
  
 |Paramètre de sortie |Type |Description 
 |---|---|---
-|Id |String |Opération Identifier.
-|Opération |String |Admin commande alias 
-|NodeId |String |Si la commande a une exécution à distance (par exemple DataIngestPull) - NodeId contiendra l’id du nœud à distance exécutant 
-|StartedOn |DateTime |Date/heure (dans UTC) lorsque l’opération a commencé 
-|LastUpdatedOn |DateTime |Date/heure (dans UTC) lorsque l’opération a été mise à jour pour la dernière fois (peut être soit un pas à l’intérieur de l’opération, soit une étape d’achèvement) 
+|Id |String |Identificateur de l’opération.
+|Opération |String |Alias de la commande admin 
+|NodeId |String |Si la commande a une exécution à distance (par exemple, DataIngestPull)-NodeId contient l’ID du nœud distant en cours d’exécution 
+|StartedOn |DateTime |Date/heure (au format UTC) de début de l’opération 
+|LastUpdatedOn |DateTime |Date/heure (au format UTC) de la dernière mise à jour de l’opération (peut être une étape à l’intérieur de l’opération ou une étape d’achèvement) 
 |Duration |DateTime |TimeSpan entre LastUpdateOn et StartedOn 
-|State |String |État de commandement : peut avoir des valeurs de « InProgress », « Complété » ou « Échec » 
-|Statut |String |Chaîne d’aide supplémentaire qui détient soit des erreurs pour les opérations ratées 
+|State |String |État de la commande : peut avoir les valeurs « en cours », « terminé » ou « échec » 
+|Statut |String |Chaîne d’aide supplémentaire qui contient des erreurs pour les opérations ayant échoué 
  
 **Exemple**
  
-|Id |Opération |ID du nœud |Commencé sur |Dernière mise à jour sur |Duration |State |Statut 
+|Id |Opération |ID du nœud |Démarré le |Dernière mise à jour le |Duration |State |Statut 
 |--|--|--|--|--|--|--|--
-|3827def6-0773-4f2a-859e-c02cf395deaf |SchemaShow (SchemaShow) | |2015-01-06 08:47:01.0000000 |2015-01-06 08:47:01.0000000 |0001-01-01 00:00:00.0000000 |Completed | 
-|841fafa4-076a-4cba-9300-4836da0d9c75 |DataIngestPull (en anglais) |Kusto.Azure.Svc_IN_1 |2015-01-06 08:47:02.0000000 |2015-01-06 08:48:19.0000000 |0001-01-01 00:01:17.0000000 |Completed | 
-|e198c519-5263-4629-a158-8d68f7a1022f |OperationsShow (en) | |2015-01-06 08:47:18.0000000 |2015-01-06 08:47:18.0000000 |0001-01-01 00:00:00.0000000 |Completed | 
-|a9f287a1-f3e6-4154-ad18-b86438da0929 |ExtentsDrop (en) | |2015-01-11 08:41:01.0000000 |0001-01-01 00:00:00.0000000 |0001-01-01 00:00:00.0000000 |InProgress | 
-|9edb3ecc-f4b4-4738-87e1-648eed2bd998 |DataIngestPull (en anglais) | |2015-01-10 14:57:41.0000000 |2015-01-10 14:57:41.0000000 |0001-01-01 00:00:00.0000000 |Échec |La collecte a été modifiée; l’opération d’énumération ne peut pas s’exécuter. 
+|3827def6-0773-4f2a-859e-c02cf395deaf |SchemaShow | |2015-01-06 08:47:01.0000000 |2015-01-06 08:47:01.0000000 |0001-01-01 00:00:00.0000000 |Completed | 
+|841fafa4-076a-4cba-9300-4836da0d9c75 |DataIngestPull |Kusto. Azure. Svc_IN_1 |2015-01-06 08:47:02.0000000 |2015-01-06 08:48:19.0000000 |0001-01-01 00:01:17.0000000 |Completed | 
+|e198c519-5263-4629-a158-8d68f7a1022f |OperationsShow | |2015-01-06 08:47:18.0000000 |2015-01-06 08:47:18.0000000 |0001-01-01 00:00:00.0000000 |Completed | 
+|a9f287a1-f3e6-4154-ad18-b86438da0929 |ExtentsDrop | |2015-01-11 08:41:01.0000000 |0001-01-01 00:00:00.0000000 |0001-01-01 00:00:00.0000000 |InProgress | 
+|9edb3ecc-f4b4-4738-87e1-648eed2bd998 |DataIngestPull | |2015-01-10 14:57:41.0000000 |2015-01-10 14:57:41.0000000 |0001-01-01 00:00:00.0000000 |Échec |La collection a été modifiée ; l’opération d’énumération ne peut pas s’exécuter. 
 
-## <a name="show-operation-details"></a>.afficher les détails de l’opération
+## <a name="show-operation-details"></a>. afficher les détails de l’opération
 
-Les opérations peuvent (d’option) persister leurs résultats, et celles-ci peuvent être récupérées lorsque l’opération est terminée à l’aide de la `.show` `operation``details` 
+Les opérations peuvent (éventuellement) conserver leurs résultats, et elles peuvent être récupérées lorsque l’opération est terminée à `.show` `operation` l’aide de l’option`details` 
 
 **Remarques :**
 
-* Toutes les commandes de contrôle ne persistent pas leurs résultats, et celles qui le font `async` habituellement par défaut sur des exécutions asynchrones seulement (en utilisant le mot clé). S’il vous plaît rechercher la documentation pour la commande spécifique et vérifier si elle le fait (voir, par exemple [l’exportation de données](data-export/index.md)). 
-* Le schéma de `.show` `operations` `details` sortie de la commande est le même schéma retourné de l’exécution synchrone de la commande. 
-* `.show` `operation` La `details` commande ne peut être invoquée qu’après la fin de l’opération. Utilisez la [commande des opérations d’exposition](#show-operations)) pour vérifier l’état de l’opération avant d’invoquer cette commande. 
+* Toutes les commandes de contrôle ne conservent pas leurs résultats, et celles qui le font habituellement par défaut sur les exécutions asynchrones uniquement (à l’aide du `async` mot clé). Recherchez la commande spécifique dans la documentation et vérifiez si elle ne le fait pas (voir, par exemple, [exporter des données](data-export/index.md)). 
+* Le schéma de sortie de `.show` `operations` `details` la commande est le même que celui retourné par l’exécution synchrone de la commande. 
+* `.show` `operation` La `details` commande ne peut être appelée qu’une fois l’opération terminée avec succès. Utilisez la [commande Afficher les opérations](#show-operations)) pour vérifier l’état de l’opération avant d’appeler cette commande. 
 
 **Syntaxe**
 
-`.show``operation` *OpérationId*`details`
+`.show``operation` *OperationId*`details`
 
 **Résultats**
 
-Le résultat est différent par type d’opération et correspond au schéma du résultat de l’opération, lorsqu’il est exécuté de façon synchronisée. 
+Le résultat est différent selon le type d’opération et correspond au schéma du résultat de l’opération lorsqu’il est exécuté de façon synchrone. 
 
 **Exemples**
 
-*L’OpérationId* dans cet exemple est celle qui est revenue d’une exécution asynchrone de l’une des commandes [d’exportation](../management/data-export/index.md) de données.
+Dans cet exemple, le *OperationId* est un retourné à partir d’une exécution asynchrone de l’une des commandes d' [exportation de données](../management/data-export/index.md) .
 
 ```kusto 
 .export 
@@ -84,15 +84,16 @@ Le résultat est différent par type d’opération et correspond au schéma du 
   <| myLogs 
 
 ```
-Le commandement d’exportation async a retourné l’id d’opération suivant :
 
-|OpérationId|
+La commande d’exportation asynchrone a retourné l’ID d’opération suivant :
+
+|OperationId|
 |---|
 |56e51622-eb49-4d1a-b896-06a03178efcd|
 
-Cette pièce d’identité d’opération peut être utilisée lorsque la commande est terminée pour interroger les blobs exportés, comme suit : 
+Cet ID d’opération peut être utilisé lorsque la commande est terminée pour interroger les objets BLOB exportés, comme suit : 
 
-```
+```kusto
 .show operation 56e51622-eb49-4d1a-b896-06a03178efcd details 
 ```
 

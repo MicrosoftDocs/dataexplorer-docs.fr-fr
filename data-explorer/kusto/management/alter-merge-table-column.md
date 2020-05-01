@@ -1,6 +1,6 @@
 ---
-title: alter-fusion table colonne-docstrings - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit les documents de colonnes de table alter-fusion dans Azure Data Explorer.
+title: ALTER-Merge table Column-docstrings-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit ALTER-Merge table Column-docstrings dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,39 +8,39 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 75d298f35a215af5da443f673278e4a252c24cc9
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 7dd36181be1140d3960369b1c8a5284ed55e48f5
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81522387"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82616488"
 ---
-# <a name="alter-merge-table-column-docstrings"></a>alter-fusion de table colonne-docstrings
+# <a name="alter-merge-table-column-docstrings"></a>ALTER-Merge, colonne de table-docstrings
 
-Définit `docstring` la propriété d’une ou plusieurs colonnes de la table spécifiée. Les colonnes non définies explicitement **conservent** leur valeur existante pour cette propriété, si elles en ont une.
+Définit la `docstring` propriété d’une ou plusieurs colonnes de la table spécifiée. Les colonnes qui ne sont pas définies explicitement **conservent** leur valeur existante pour cette propriété, si elles en ont une.
 
-Pour modifier la colonne de table- docstring, voir [ci-dessous](#alter-table-column-docstrings).
+Pour ALTER TABLE Column-DocString, voir [ci-dessous](#alter-table-column-docstrings).
 
 **Syntaxe**
 
-`.alter-merge``table` *TableName* `column-docstring` `(` *Col1* `:` *Docstring1* [`,` *Col2* `:` *Docstring2*]...`)`
+`.alter-merge``table` *TableName* `:` *Docstring1* *Col1* `:` *Docstring2*col1 Docstring1 [`,` col2 Docstring2]... *Col2* `column-docstring` `(``)`
 
 **Exemple** 
 
-```
+```kusto
 .alter-merge table Table1 column-docstrings (Column1:"DocString1", Column2:"DocString2")
 ```
 
-## <a name="alter-table-column-docstrings"></a>modifier les colonnes de table-docstrings
+## <a name="alter-table-column-docstrings"></a>ALTER TABLE Column-docstrings
 
-Définit `docstring` la propriété d’une ou plusieurs colonnes de la table spécifiée. Colonnes non explicitement définies auront cette propriété **enlevée**.
+Définit la `docstring` propriété d’une ou plusieurs colonnes de la table spécifiée. Cette propriété est **supprimée**des colonnes qui ne sont pas explicitement définies.
 
 **Syntaxe**
 
-`.alter``table` *TableName* `column-docstring` `(` *Col1* `:` *Docstring1* [`,` *Col2* `:` *Docstring2*]...`)`
+`.alter``table` *TableName* `:` *Docstring1* *Col1* `:` *Docstring2*col1 Docstring1 [`,` col2 Docstring2]... *Col2* `column-docstring` `(``)`
 
 **Exemple** 
 
-```
+```kusto
 .alter table Table1 column-docstrings (Column1:"DocString1", Column2:"DocString2")
 ```

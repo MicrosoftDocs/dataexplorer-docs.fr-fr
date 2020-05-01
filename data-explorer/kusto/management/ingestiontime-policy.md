@@ -1,6 +1,6 @@
 ---
-title: Politique IngestionTime - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la politique IngestionTime dans Azure Data Explorer.
+title: Gestion de la stratégie Kusto IngestionTime-Azure Explorateur de données
+description: Cet article décrit la stratégie IngestionTime dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,42 +8,42 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: c42da570b961595be1fbcae352fe121d8b6f59ea
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 907c6ddf84d772f800fce45d3c1245bbd11b0c85
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81520891"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82616454"
 ---
 # <a name="ingestiontime-policy"></a>Stratégie sur le moment de l’ingestion
 
 La stratégie IngestionTime est une stratégie facultative définie sur les tables (elle est activée par défaut).
-il fournit le temps approximatif de l’ingestion des enregistrements dans un tableau.
+Il fournit le temps approximatif d’ingestion des enregistrements dans une table.
 
-La valeur du temps d’ingestion `ingestion_time()` peut être consultée au moment de la requête à l’aide de la fonction.
+La valeur du temps d’ingestion est accessible au moment `ingestion_time()` de la requête à l’aide de la fonction.
 
 ```kusto
 T | extend ingestionTime = ingestion_time()
 ```
 
-Pour activer/désactiver la politique :
+Pour activer/désactiver la stratégie :
 ```kusto
 .alter table table_name policy ingestiontime true
 ```
 
-Pour activer/désactiver la politique de plusieurs tableaux :
+Pour activer/désactiver la stratégie de plusieurs tables :
 ```kusto
 .alter tables (table_name [, ...]) policy ingestiontime true
 ```
 
-Pour voir la politique :
+Pour afficher la stratégie :
 ```kusto
 .show table table_name policy ingestiontime  
 
 .show table * policy ingestiontime  
 ```
 
-Supprimer la stratégie (égale à la désactivation) :
+Pour supprimer la stratégie (égale à la désactivation) :
 ```kusto
 .delete table table_name policy ingestiontime  
 ```

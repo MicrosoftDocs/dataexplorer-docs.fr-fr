@@ -1,6 +1,6 @@
 ---
-title: .afficher les schémas de bases de données - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit .show bases de données schémas dans Azure Data Explorer.
+title: . afficher le schéma des bases de données-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit le schéma. afficher les bases de données dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,42 +8,42 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 212aaf428e03190226a17509c97e9acd1394d2b1
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 90a48ec3a830e754bf823712ca7016d162474a39
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81519803"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82616981"
 ---
-# <a name="show-databases-schema"></a>.afficher les bases de données schéma
+# <a name="show-databases-schema"></a>. afficher le schéma des bases de données
 
-Retourne une liste plate de la structure des bases de données sélectionnées avec toutes leurs tables et colonnes dans une seule table ou un objet JSON.
-Lorsqu’elle est utilisée avec une version, la base de données n’est retournée que si c’est une version ultérieure que la version fournie.
+Retourne une liste plate de la structure des bases de données sélectionnées avec toutes leurs tables et colonnes dans une table ou un objet JSON unique.
+Lorsqu’elle est utilisée avec une version, la base de données est retournée uniquement s’il s’agit d’une version ultérieure à la version fournie.
 
 > [!NOTE]
-> La version ne doit être fournie qu’en format "vMM.mm". MM représente la version principale et mm représentent la version mineure.
+> La version doit être fournie uniquement au format « vMM.mm ». MM représente la version principale et mm la version mineure.
 
-`.show``database` *DatabaseName* `schema` `details`[`if_later_than` ] [ *"Version"*] 
+`.show``database` *DatabaseName* DatabaseName `schema` [`details`] [`if_later_than` *« version »*] 
 
-`.show``database` *DatabaseName* `schema` `if_later_than` [ *"Version"*] `as``json`
+`.show``database` *DatabaseName* DatabaseName `schema` [`if_later_than` *"version"*] `as``json`
  
-`.show``databases` `,` DatabaseName1 ... *DatabaseName1* `(` `)` `schema` [`details` | `as` `json`]
+`.show``databases` `,` *DatabaseName1* DatabaseName1 `(` ... `)` `schema` [`details` | `as` `json`]
  
-`.show``databases` `,` *"Version"* *DatabaseName1* DatabaseName1 if_later_than "Version" ... `(` `)` `schema` [`details` | `as` `json`]
+`.show``databases` *"Version"* `,` *DatabaseName1* DatabaseName1 if_later_than "version"... `(` `)` `schema` [`details` | `as` `json`]
 
 **Exemple** 
  
-La base de données 'TestDB' a 1 table appelée 'Events'.
+La base de données « TestDB » a 1 table appelée « Events ».
 
-```
+```kusto
 .show database TestDB schema 
 ```
 
 **Exemple de sortie**
 
-|nom_base_de_données|TableName|ColumnName|ColumnType|IsDefaultTable|IsDefaultColumn|PrettyName (En)|Version
+|nom_base_de_données|TableName|ColumnName|ColumnType|IsDefaultTable|IsDefaultColumn|PrettyName|Version
 |---|---|---|---|---|---|---|--- 
-|TestDB||||False|False||v.1.1       
+|TestDB||||False|False||v. 1.1       
 |TestDB|Événements|||True|False||       
 |TestDB|Événements| Nom|System.String|True|False||     
 |TestDB|Événements| StartTime|  System.DateTime|True|False||    
@@ -53,14 +53,14 @@ La base de données 'TestDB' a 1 table appelée 'Events'.
 
 **Exemple** 
  
-```
+```kusto
 .show database TestDB schema if_later_than "v1.0" 
 ```
 **Exemple de sortie**
 
-|nom_base_de_données|TableName|ColumnName|ColumnType|IsDefaultTable|IsDefaultColumn|PrettyName (En)|Version
+|nom_base_de_données|TableName|ColumnName|ColumnType|IsDefaultTable|IsDefaultColumn|PrettyName|Version
 |---|---|---|---|---|---|---|--- 
-|TestDB||||False|False||v.1.1       
+|TestDB||||False|False||v. 1.1       
 |TestDB|Événements|||True|False||       
 |TestDB|Événements| Nom|System.String|True|False||     
 |TestDB|Événements| StartTime|  System.DateTime|True|False||    
@@ -68,11 +68,11 @@ La base de données 'TestDB' a 1 table appelée 'Events'.
 |TestDB|Événements| City|   System.String|True| False||     
 |TestDB|Événements| SessionId|  System.Int32|True|  True||  
 
-Étant donné qu’une version inférieure à la version actuelle de la base de données a été fournie, le schéma « TestDB » a été retourné. Fournir une version égale ou supérieure aurait généré un résultat vide.
+Étant donné qu’une version antérieure à la version actuelle de la base de données a été fournie, le schéma « TestDB » a été retourné. Le fait de fournir une version égale ou supérieure aurait généré un résultat vide.
 
 **Exemple** 
  
-```
+```kusto
 .show database TestDB schema as json
 ```
 
