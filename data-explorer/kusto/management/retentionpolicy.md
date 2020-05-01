@@ -1,6 +1,6 @@
 ---
-title: Politique de rétention - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la politique de rétention dans Azure Data Explorer.
+title: La stratégie de rétention Kusto contrôle la manière dont les données sont supprimées-Azure Explorateur de données
+description: Cet article décrit la stratégie de rétention dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,65 +8,65 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 81e08b6e007a6e3c669e7138e1d36ae1e701d442
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 5254f2daee767f51111f2ac3d1be07b7f2bb09f4
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81520313"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82617389"
 ---
 # <a name="retention-policy"></a>Stratégie de rétention
 
-La stratégie de conservation contrôle automatiquement le mécanisme par lequel les données sont supprimées des tables.
-Une telle suppression est généralement utile pour les données qui se jet dans un tableau en permanence dont la pertinence est basée sur l’âge. Par exemple, la politique de rétention peut être utilisée pour un tableau qui contient des événements diagnostiques qui peuvent devenir inintéressants après deux semaines.
+La stratégie de rétention contrôle le mécanisme par lequel les données sont supprimées automatiquement des tables.
+Cette suppression est généralement utile pour les données qui circulent dans une table en continu dont la pertinence est basée sur l’âge. Par exemple, la stratégie de rétention peut être utilisée pour une table qui contient des événements de diagnostic qui peuvent devenir inintéressants au bout de deux semaines.
 
-La stratégie de rétention peut être configurée pour une table spécifique ou pour toute une base de données (auquel cas elle s’applique à toutes les tables de la base de données qui ne remplacent pas la stratégie).
+La stratégie de rétention peut être configurée pour une table spécifique ou pour une base de données entière (auquel cas elle s’applique à toutes les tables de la base de données qui ne remplacent pas la stratégie).
 
-La mise en place d’une politique de rétention est importante pour les grappes qui ingéré continuellement des données, ce qui limitera les coûts.
+La configuration d’une stratégie de rétention est importante pour les clusters qui ingèrent en continu des données, ce qui limite les coûts.
 
-Les données « extérieures » à la politique de conservation sont admissibles à l’élimination. Kusto ne garantit pas quand la suppression se produit (ainsi les données peuvent « s’attarder » même si la politique de conservation a été déclenchée).
+Les données « en dehors » de la stratégie de rétention peuvent être supprimées. Kusto ne garantit pas le moment où la suppression se produit (par conséquent, les données peuvent être « en veille » même si la stratégie de rétention a été déclenchée).
 
-La politique de conservation est le plus souvent définie pour limiter l’âge des données depuis l’ingestion (voir [SoftDeletePeriod](#the-policy-object), ci-dessous).
+La stratégie de rétention est généralement définie pour limiter l’ancienneté des données depuis la réception (voir [SoftDeletePeriod](#the-policy-object), ci-dessous).
 
 > [!NOTE]
-> * Le temps de suppression est imprécis. Le système garantit que les données ne seront pas supprimées avant que la limite ne soit dépassée, mais la suppression n’est pas immédiate à la suite de ce point.
-> * Une période de suppression souple de 0 peut être définie dans le cadre d’une politique de conservation au niveau de la table (mais pas dans le cadre d’une politique de conservation au niveau de la base de données).
->   * Lorsque cela est fait, les données ingérées ne seront pas validées à la table source, évitant ainsi la nécessité de poursuivre les données.
+> * L’heure de suppression est imprécise. Le système garantit que les données ne seront pas supprimées avant que la limite soit dépassée, mais la suppression n’est pas immédiate après ce point.
+> * Une période de suppression réversible de 0 peut être définie dans le cadre d’une stratégie de rétention au niveau de la table (mais pas dans le cadre d’une stratégie de rétention au niveau de la base de données).
+>   * Une fois cette opération effectuée, les données ingérées ne sont pas validées dans la table source, ce qui évite d’avoir à conserver les données.
 >   * Une telle configuration est utile principalement lorsque les données sont ingérées dans une table.
->   Une stratégie de [mise à jour](updatepolicy.md) transactionnelle est utilisée pour la transformer et rediriger la sortie en un autre tableau.
+>   Une [stratégie de mise à jour](updatepolicy.md) transactionnelle est utilisée pour la transformer et rediriger la sortie vers une autre table.
 
-## <a name="the-policy-object"></a>L’objet de la politique
+## <a name="the-policy-object"></a>Objet de stratégie
 
-Une politique de conservation comprend les propriétés suivantes :
+Une stratégie de rétention comprend les propriétés suivantes :
 
 * **SoftDeletePeriod**:
-    * Un laps de temps pour lequel il est garanti que les données sont conservées disponibles à la requête, mesurée depuis le moment où elles ont été ingérées.
+    * Intervalle de temps pour lequel il est garanti que les données sont conservées disponibles pour la requête, mesurées depuis le moment où elles ont été ingérées.
     * La valeur par défaut est `100 years`.
-    * Lors de la modification de la période de suppression d’un tableau ou d’une base de données, la nouvelle valeur s’applique à la fois aux données existantes et nouvelles.
-* **Récupération :**
-    * Récupération des données (activée/désactivée) après la suppression des données
+    * Lors de la modification de la période de suppression réversible d’une table ou d’une base de données, la nouvelle valeur s’applique à la fois aux données existantes et nouvelles.
+* **Récupération**:
+    * Récupération de données (activée/désactivée) après la suppression des données
     * La valeur par défaut est `enabled`
-    * Si elles `enabled`sont définies, les données seront récupérables pendant 14 jours après la suppression
+    * Si la valeur `enabled`est, les données seront récupérables pendant 14 jours après la suppression
 
 ## <a name="control-commands"></a>Commandes de contrôle
 
-* Utilisez [la conservation de la politique .show](../management/retention-policy.md) pour afficher la politique de conservation actuelle d’une base de données ou d’un tableau.
-* Utilisez [la conservation de la stratégie .alter](../management/retention-policy.md) pour modifier la politique de conservation actuelle d’une base de données ou d’un tableau.
+* Utilisez [. afficher la rétention](../management/retention-policy.md) de la stratégie pour afficher la stratégie de rétention actuelle d’une base de données ou d’une table.
+* Utilisez la [rétention](../management/retention-policy.md) de la stratégie pour modifier la stratégie de rétention actuelle d’une base de données ou d’une table.
 
 ## <a name="defaults"></a>Valeurs par défaut
 
-Par défaut, lorsqu’une base de données ou une table est créée, elle n’a pas de stratégie de conservation définie.
-Dans les cas courants, la base de données est créée et a immédiatement sa politique de rétention définie par son créateur en fonction des exigences connues.
-Lors de l’exécution d’une [commande de spectacle](../management/retention-policy.md) pour la politique `Policy` de `null`conservation d’une base de données ou d’une table qui n’a pas eu son ensemble de politique, apparaît comme .
+Par défaut, lorsqu’une base de données ou une table est créée, aucune stratégie de rétention n’est définie.
+Dans les cas courants, la base de données est créée et sa stratégie de rétention est immédiatement définie par son créateur conformément aux exigences connues.
+Lors de l’exécution d’une [commande show](../management/retention-policy.md) pour la stratégie de rétention d’une base de données ou `Policy` d’une `null`table dont la stratégie n’a pas été définie, s’affiche sous la forme.
 
-La stratégie de rétention par défaut (avec les valeurs par défaut mentionnées ci-dessus) peut être appliquée à l’aide de la commande suivante :
+La stratégie de rétention par défaut (avec les valeurs par défaut mentionnées ci-dessus) peut être appliquée à l’aide de la commande suivante :
 
 ```kusto
 .alter database DatabaseName policy retention "{}"
 .alter table TableName policy retention "{}"
 ```
 
-Ces résultats avec l’objet de stratégie suivant appliqué à la base de données ou au tableau :
+Ces résultats sont appliqués avec l’objet de stratégie suivant appliqué à la base de données ou à la table :
 
 ```kusto
 {
@@ -74,7 +74,7 @@ Ces résultats avec l’objet de stratégie suivant appliqué à la base de donn
 }
 ```
 
-L’élimination de la politique de conservation d’une base de données ou d’une table peut être effectuée à l’aide de la commande suivante :
+L’effacement de la stratégie de rétention d’une base de données ou d’une table peut être effectué à l’aide de la commande suivante :
 
 ```kusto
 .delete database DatabaseName policy retention
@@ -83,11 +83,11 @@ L’élimination de la politique de conservation d’une base de données ou d�
 
 ## <a name="examples"></a>Exemples
 
-Compte tenu de votre `MyDatabase`cluster `MyTable1`a `MyTable2` une base de données nommée , avec des tables , et`MySpecialTable`
+Étant donné que votre cluster a une `MyDatabase`base de données `MyTable1`nommée `MyTable2` , avec des tables et`MySpecialTable`
 
-**1. Définir toutes les tables de la base de données pour avoir une période de suppression souple de 7 jours et la récupération désactivée**:
+**1. définition de toutes les tables de la base de données pour qu’elles aient une période de suppression réversible de 7 jours et une récupération désactivée**:
 
-* *Option 1 (Recommandé)*: Définissez une politique de conservation au niveau de la base de données avec une période de suppression souple de sept jours et la récupération désactivée, et vérifiez qu’il n’y a pas de stratégie de niveau de table définie.
+* *Option 1 (recommandée)*: définissez une stratégie de rétention au niveau de la base de données avec une période de suppression réversible de sept jours et une capacité de récupération désactivée, et vérifiez qu’aucune stratégie de niveau table n’est définie.
 
 ```kusto
 .delete table MyTable1 policy retention        // optional, only if the table previously had its policy set
@@ -96,7 +96,7 @@ Compte tenu de votre `MyDatabase`cluster `MyTable1`a `MyTable2` une base de donn
 .alter-merge database MyDatabase policy retention softdelete = 7d recoverability = disabled
 ```
 
-* *Option 2*: Pour chaque table, définissez une politique de rétention au niveau de la table avec une période de suppression souple de sept jours et la récupération désactivée.
+* *Option 2*: pour chaque table, définissez une stratégie de rétention au niveau de la table avec une période de suppression réversible de sept jours et une récupération désactivée.
 
 ```kusto
 .alter-merge table MyTable1 policy retention softdelete = 7d recoverability = disabled
@@ -104,9 +104,9 @@ Compte tenu de votre `MyDatabase`cluster `MyTable1`a `MyTable2` une base de donn
 .alter-merge table MySpecialTable policy retention softdelete = 7d recoverability = disabled
 ```
 
-**2. Réglage `MyTable1` `MyTable2` des tables , pour avoir une période de suppression `MySpecialTable` douce de 7 jours et la récupération activée, et réglé pour avoir une période de suppression douce de 14 jours et la récupération désactivée:**
+**2. définition de `MyTable1`tables `MyTable2` , pour avoir une période de suppression réversible de 7 jours et une capacité de récupération activée, `MySpecialTable` et définie pour avoir une période de suppression réversible de 14 jours et une capacité de récupération désactivée**:
 
-* *Option 1 (Recommandé)*: Définissez une politique de conservation au niveau de la base de données avec une période de suppression souple de sept `MySpecialTable`jours et la récupération activée, et définissez une politique de rétention au niveau de la table avec une période de suppression de 14 jours et une récupération désactivée pour .
+* *Option 1 (recommandée)*: définissez une stratégie de rétention au niveau de la base de données avec une période de suppression réversible de sept jours et une récupération activée, puis définissez une stratégie de rétention de niveau table avec une période de suppression réversible `MySpecialTable`de 14 jours et une capacité de récupération désactivée pour.
 
 ```kusto
 .delete table MyTable1 policy retention   // optional, only if the table previously had its policy set
@@ -115,7 +115,7 @@ Compte tenu de votre `MyDatabase`cluster `MyTable1`a `MyTable2` une base de donn
 .alter-merge table MySpecialTable policy retention softdelete = 14d recoverability = enabled
 ```
 
-* *Option 2*: Pour chaque table, définissez une politique de rétention au niveau de la table avec la période de suppression souple et la récupération souhaitées.
+* *Option 2*: pour chaque table, définissez une stratégie de rétention au niveau de la table avec la période de suppression réversible souhaitée et la capacité de récupération.
 
 ```kusto
 .alter-merge table MyTable1 policy retention softdelete = 7d recoverability = disabled
@@ -123,9 +123,9 @@ Compte tenu de votre `MyDatabase`cluster `MyTable1`a `MyTable2` une base de donn
 .alter-merge table MySpecialTable policy retention softdelete = 14d recoverability = enabled
 ```
 
-**3. Réglage `MyTable1` `MyTable2` des tables , pour avoir une période `MySpecialTable` de suppression douce de 7 jours, et ont gardé ses données indéfiniment**:
+**3. définition de `MyTable1`tables `MyTable2` , pour avoir une période de suppression réversible de 7 jours et `MySpecialTable` conserver ses données indéfiniment**:
 
-* *Option 1*: Définissez une politique de conservation au niveau de la base de données avec une période de suppression souple de sept `MySpecialTable`jours, et définissez une politique de conservation au niveau de la table avec une période de suppression de 100 ans (la politique de rétention par défaut) pour .
+* *Option 1*: définissez une stratégie de rétention au niveau de la base de données avec une période de suppression réversible de sept jours et définissez une stratégie de rétention au niveau de la table avec une période de suppression `MySpecialTable`réversible de 100 ans (la stratégie de rétention par défaut) pour.
 
 ```kusto
 .delete table MyTable1 policy retention   // optional, only if the table previously had its policy set
@@ -134,7 +134,7 @@ Compte tenu de votre `MyDatabase`cluster `MyTable1`a `MyTable2` une base de donn
 .alter table MySpecialTable policy retention "{}" // this sets the default retention policy
 ```
 
-* *Option 2*: `MyTable1` `MyTable2`Pour les tables , , définissez une politique de rétention au niveau de la table avec `MySpecialTable` la période de suppression souple souhaitée de sept jours, et vérifiez que la stratégie de base de données et de table pour ne sont pas définies.
+* *Option 2*: pour les `MyTable1`tables `MyTable2`,, définissez une stratégie de rétention au niveau de la table avec la période de suppression réversible souhaitée de sept jours et vérifiez que la stratégie au niveau de `MySpecialTable` la base de données et de la table n’est pas définie.
 
 ```kusto
 .delete database MyDatabase policy retention   // optional, only if the database previously had its policy set
@@ -143,7 +143,7 @@ Compte tenu de votre `MyDatabase`cluster `MyTable1`a `MyTable2` une base de donn
 .alter-merge table MyTable2 policy retention softdelete = 7d
 ```
 
-* *Option 3*: `MyTable1` `MyTable2`Pour les tables , , définissez une politique de rétention au niveau de la table avec la période de suppression souple souhaitée de sept jours. Pour `MySpecialTable`la table, définissez une politique de conservation au niveau de la table avec une période de suppression souple de 100 ans (la politique de rétention par défaut).
+* *Option 3*: pour les `MyTable1`tables `MyTable2`,, définissez une stratégie de rétention au niveau de la table avec la période de suppression réversible souhaitée de sept jours. Pour table `MySpecialTable`, définissez une stratégie de rétention au niveau de la table avec une période de suppression réversible de 100 ans (la stratégie de rétention par défaut).
 
 ```kusto
 .alter-merge table MyTable1 policy retention softdelete = 7d

@@ -1,6 +1,6 @@
 ---
-title: Réponse de Requête V2 HTTP - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit La réponse de Query V2 HTTP dans Azure Data Explorer.
+title: Réponse HTTP de requête v2-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit la réponse HTTP de la requête v2 dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,31 +8,31 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/11/2020
-ms.openlocfilehash: cca9b8381c7c59993c1e9071c46f34c1754d2429
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 86a56d77005b2c6b5c9d38bbec85eebfbcb481dc
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81524308"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82617899"
 ---
-# <a name="query-v2-http-response"></a>Réponse de Requête V2 HTTP
+# <a name="query-v2-http-response"></a>Réponse HTTP de la requête v2
 
-Si le code d’état est de 200, le corps de réponse est un tableau JSON.
-Chaque objet JSON dans le tableau est appelé un _cadre_.
+Si le code d’État est 200, le corps de la réponse est un tableau JSON.
+Chaque objet JSON du tableau est appelé _Frame_.
 
-Il existe 7 types d’images :
+Il existe plusieurs types de frames :
 
-1. DataSetHeader (en anglais)
-2. Tête de table
-3. TableFragment
-4. TableProgresse
-5. TableCompletion
-6. DataTable
-7. DataSetCompletion
+* [DataSetHeader](#datasetheader)
+* [TableHeader](#tableheader)
+* [TableFragment](#tablefragment)
+* [TableProgress](#tableprogress)
+* [TableCompletion](#tablecompletion)
+* [Tables](#datatable)
+* [DataSetCompletion](#datasetcompletion)
 
-## <a name="datasetheader"></a>DataSetHeader (en anglais) 
+## <a name="datasetheader"></a>DataSetHeader 
 
-C’est toujours la première image dans l’ensemble de données et apparaît exactement une fois.
+Le `DataSetHeader` frame est toujours le premier dans le jeu de données et apparaît exactement une fois.
 
 ```json
 {
@@ -43,21 +43,24 @@ C’est toujours la première image dans l’ensemble de données et apparaît e
 
 Où :
 
-1. `Version`détient la version du protocole. La version actuelle est `v2.0`.
-2. `IsProgressive`est un drapeau boolean qui indique si cet ensemble de données contient des cadres progressifs. Un cadre progressif est l’un des éléments suivants :
-    1. `TableHeader`: Contient des informations générales sur la table
-    2. `TableFragment`: Contient un éclat de données rectangluar de la table
-    3. `TableProgress`: Contient les progrès en pourcentage (0-100)
-    4. `TableCompletion`: Marques que c’est le dernier cadre de la table.
+* `Version`version du protocole. La version actuelle est `v2.0`.
+* `IsProgressive`indicateur booléen qui indique si ce jeu de données contient des trames progressives. 
+   Une image progressive est l’une des suivantes :
+   
+     | Frame             | Description                                    |
+     |-------------------| -----------------------------------------------|
+     | `TableHeader`     | Contient des informations générales sur la table.   |
+     | `TableFragment`   | Contient un partition de données rectangulaire de la table |
+     | `TableProgress`   | Contient la progression en pourcentage (0-100)       |
+     | `TableCompletion` | Indique que ce frame est le dernier      |
         
-    Les quatre cadres ci-dessus sont utilisés ensemble pour décrire une table.
-    Si ce drapeau n’est pas réglé, alors chaque table de l’ensemble sera sérialisée à l’aide d’un seul cadre :
-      1. `DataTable`: Contient toutes les informations dont le client a besoin sur un seul tableau dans l’ensemble de données.
+    Les frames ci-dessus décrivent une table.
+    Si l' `IsProgressive` indicateur n’a pas la valeur true, chaque table de l’ensemble est sérialisée à l’aide d’un seul Frame :
+* `DataTable`: Contient toutes les informations dont le client a besoin sur une seule table dans le jeu de données.
 
+## <a name="tableheader"></a>TableHeader
 
-## <a name="tableheader"></a>Tête de table
-
-Les requêtes qui `results_progressive_enabled` sont émises avec l’option définie pour être vraies peuvent inclure ce cadre. Après ce tableau, les clients doivent `TableFragment` s’attendre à une séquence entrelacée de et `TableProgress` des cadres, suivie d’un `TableCompletion` cadre. Après quoi, plus aucun cadre lié à cette table ne sera envoyé.
+Les requêtes effectuées avec l’option `results_progressive_enabled` ayant la valeur true peuvent inclure ce frame. À la suite de ce tableau, les clients peuvent s’attendre `TableFragment` à `TableProgress` une séquence d’entrelacement des frames et. Le cadre final de la table est `TableCompletion`.
 
 ```json
 {
@@ -70,19 +73,20 @@ Les requêtes qui `results_progressive_enabled` sont émises avec l’option dé
 
 Où :
 
-1. `TableId`est l’id unique de la table.
-2. `TableKind`est le genre de la table, qui peut être l’un des éléments suivants:
+* `TableId`ID unique de la table.
+* `TableKind`est l’un des éléments suivants :
 
-      * PrimaireResult
-      * Information sur la conformité
-      * QueryTraceLog (en)
-      * QueryPerfLog (en)
-      * TableOfContents
-      * QueryProperties
-      * Plan de requête
-      * Unknown
-3. `TableName`est le nom de la table.
-4. `Columns`est un tableau décrivant le schéma de la table:
+    * PrimaryResult
+    * QueryCompletionInformation
+    * QueryTraceLog
+    * QueryPerfLog
+    * TableOfContents
+    * QueryProperties
+    * QueryPlan
+    * Unknown
+      
+* `TableName`nom de la table.
+* `Columns`est un tableau décrivant le schéma de la table.
 
 ```json
 {
@@ -90,11 +94,12 @@ Où :
     "ColumnType": string,
 }
 ```
-Les types de colonnes prises en charge sont décrits [ici](../../query/scalar-data-types/index.md).
+
+Les types de colonnes pris en charge sont décrits [ici](../../query/scalar-data-types/index.md).
 
 ## <a name="tablefragment"></a>TableFragment
 
-Ce cadre contient un fragment de données rectangulaires de la table. En plus des données réelles, `TableFragmentType` ce cadre contient une propriété, qui indique au client ce qu’il faut faire avec le fragment (il peut soit être annexé à des fragments existants, ou les remplacer tous ensemble).
+Le `TableFragment` frame contient un fragment de données rectangulaires de la table. En plus des données réelles, ce frame contient également une `TableFragmentType` propriété qui indique au client ce qu’il faut faire avec le fragment. Le fragment est ajouté aux fragments existants ou les remplace.
 
 ```json
 {
@@ -107,17 +112,20 @@ Ce cadre contient un fragment de données rectangulaires de la table. En plus de
 
 Où :
 
-1. `TableId`est l’id unique de la table.
-2. `FieldCount`est le nombre de colonnes dans le tableau
-3. `TableFragmentType`décrit ce que le client devrait faire avec ce fragment. Il peut s'agir d'une des méthodes suivantes :
-      * DataAppend (en)
-      * DataReplace (en)
-4. `Rows`est un tableau bidimensionnel qui contient les données fragment.
+* `TableId`ID unique de la table.
+* `FieldCount`nombre de colonnes de la table.
+* `TableFragmentType`décrit ce que le client doit faire avec ce fragment. 
+    `TableFragmentType`est l’un des éléments suivants :
+    
+    * DataAppend
+    * DataReplace
+      
+* `Rows`est un tableau à deux dimensions qui contient les données du fragment.
 
-## <a name="tableprogress"></a>TableProgresse
+## <a name="tableprogress"></a>TableProgress
 
-Ce cadre peut entrelacer avec le `TableFragment` cadre décrit ci-dessus.
-Le seul but est d’informer le client sur les progrès de la requête.
+Le `TableProgress` Frame peut entrelacer le `TableFragment` Frame décrit ci-dessus.
+Son seul but est d’informer le client de la progression de la requête.
 
 ```json
 {
@@ -128,12 +136,12 @@ Le seul but est d’informer le client sur les progrès de la requête.
 
 Où :
 
-1. `TableId`est l’id unique de la table.
-2. `TableProgress`est le progrès en pourcentage (0--100).
+* `TableId`ID unique de la table.
+* `TableProgress`progression en pourcentage (0--100).
 
 ## <a name="tablecompletion"></a>TableCompletion
 
-Les `TableCompletion` cadres marquent la fin de la transmission de la table. Plus aucun cadre lié à cette table ne sera envoyé.
+Le `TableCompletion` cadre marque la fin de la transmission de la table. Aucun autre frame lié à cette table ne sera envoyé.
 
 ```json
 {
@@ -144,41 +152,38 @@ Les `TableCompletion` cadres marquent la fin de la transmission de la table. Plu
 
 Où :
 
-1. `TableId`est l’id unique de la table.
-2. `RowCount`est le nombre final de rangées dans le tableau.
+* `TableId`ID unique de la table.
+* `RowCount`nombre total de lignes dans la table.
 
 ## <a name="datatable"></a>DataTable
 
-Les requêtes qui `EnableProgressiveQuery` sont émises avec le drapeau mis à faux`TableHeader` `TableFragment`n’incluront aucun des 4 cadres précédents ( , `TableProgress` , et `TableCompletion`). Au lieu de cela, chaque tableau de l’ensemble de données sera transmis à l’aide d’un seul cadre, le `DataTable` cadre, qui contient toutes les informations dont le client a besoin pour lire la table.
+Les requêtes émises avec l' `EnableProgressiveQuery` indicateur défini sur false n’incluent pas les frames`TableHeader`( `TableFragment`, `TableProgress`, et `TableCompletion`). Au lieu de cela, chaque table du jeu de données est transmise à l’aide du `DataTable` frame qui contient toutes les informations dont le client a besoin pour lire la table.
 
 ```json
 {
     "TableId": Number,
-
     "TableKind": string,
-
     "TableName": string,
-
     "Columns": Array,
-
     "Rows": Array,
 }
 ```    
 
 Où :
 
-1. `TableId`est l’id unique de la table.
-2. `TableKind`est le genre de la table, qui peut être l’un des éléments suivants:
+* `TableId`ID unique de la table.
+* `TableKind`est l’un des éléments suivants :
 
-      * PrimaireResult
-      * Information sur la conformité
-      * QueryTraceLog (en)
-      * QueryPerfLog (en)
-      * QueryProperties
-      * Plan de requête
-      * Unknown
-3. `TableName`est le nom de la table.
-4. `Columns`est un tableau décrivant le schéma de la table:
+    * PrimaryResult
+    * QueryCompletionInformation
+    * QueryTraceLog
+    * QueryPerfLog
+    * QueryProperties
+    * QueryPlan
+    * Unknown
+      
+* `TableName`nom de la table.
+* `Columns`est un tableau qui décrit le schéma de la table et comprend les éléments suivants :
 
 ```json
 {
@@ -186,18 +191,20 @@ Où :
     "ColumnType": string,
 }
 ```
-4. `Rows`est un tableau bidimensionnel qui contient les données de la table.
 
-### <a name="the-meaning-of-tables-in-the-response"></a>Le sens des tableaux dans la réponse
+* `Rows`est un tableau à deux dimensions qui contient les données de la table.
 
-* `PrimaryResult`- Le principal résultat tabulaire de la requête. Pour chaque [énoncé d’expression tabulaire,](../../query/tabularexpressionstatements.md)un ou plusieurs tableaux sont émis en ordre, représentant les résultats produits par l’énoncé (il peut y avoir plusieurs tableaux de ce type en raison de lots et [d’opérateurs](../../query/forkoperator.md)de fourchettes). [batches](../../query/batches.md)
-* `QueryCompletionInformation`- fournit des informations supplémentaires sur l’exécution de la requête elle-même, telles que la question de savoir si elle a été complétée avec succès ou non, et quelles étaient les ressources consommées par la requête (semblable au tableau QueryStatus dans la réponse v1). 
-* `QueryProperties`- fournit des valeurs supplémentaires telles que les instructions de visualisation du client (émis, par exemple, pour refléter les informations dans [l’opérateur de rendu](../../query/renderoperator.md)) et les informations [de curseur de base de données).](../../management/databasecursor.md)
-* `QueryTraceLog`- informations de journal de trace de performance (retourné lors de la mise en place de perftrace dans [les propriétés de demande client](../netfx/request-properties.md)).
+### <a name="the-meaning-of-tables-in-the-response"></a>Signification des tables dans la réponse
+
+* `PrimaryResult`: Résultat tabulaire principal de la requête. Pour chaque [instruction d’expression tabulaire](../../query/tabularexpressionstatements.md), une ou plusieurs tables sont générées dans l’ordre, représentant les résultats produits par l’instruction. Il peut y avoir plusieurs tables de ce type en raison des [lots](../../query/batches.md) et des [opérateurs de fourche](../../query/forkoperator.md).
+* `QueryCompletionInformation`-Fournit des informations supplémentaires sur l’exécution de la requête, par exemple si elle s’est terminée avec succès ou non, et quelles sont les ressources consommées par la requête (semblable à la table QueryStatus dans la réponse v1). 
+* `QueryProperties`-Fournit des valeurs supplémentaires telles que des instructions de visualisation du client (émises, par exemple, pour refléter les informations dans l' [opérateur Render](../../query/renderoperator.md)) et des informations sur le [curseur de la base de données](../../management/databasecursor.md) ).
+* `QueryTraceLog`-Les informations du journal de suivi des performances `perftrace` (renvoyées lorsque dans les propriétés de la [demande du client](../netfx/request-properties.md) ont la valeur true).
 
 ## <a name="datasetcompletion"></a>DataSetCompletion
 
-Il s’agit du cadre final de l’ensemble de données.
+Le `DataSetCompletion` frame est le dernier dans le jeu de données.
+
 ```json
 {
     "HasErrors": Boolean,
@@ -208,6 +215,6 @@ Il s’agit du cadre final de l’ensemble de données.
 
 Où :
 
-1. `HasErrors`est vrai si il y avait des erreurs générant l’ensemble de données.
-2. `Cancelled`est vrai si la demande qui a conduit à la génération de l’ensemble de données a été annulée à mi-chemin. 
-3. `OneApiErrors`ne se `HasErrors` transmet que si c’est vrai. Pour une description `OneApiErrors` du format, voir l’article 7.10.2 [ici](https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md).
+* `HasErrors`a la valeur true si des erreurs se sont produites lors de la génération du jeu de données.
+* `Cancelled`a la valeur true si la requête qui a conduit à la génération du jeu de données a été annulée avant d’être terminée. 
+* `OneApiErrors`est retourné uniquement si `HasErrors` a la valeur true. Pour obtenir une description du `OneApiErrors` format, consultez la section 7.10.2 [ici](https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md).

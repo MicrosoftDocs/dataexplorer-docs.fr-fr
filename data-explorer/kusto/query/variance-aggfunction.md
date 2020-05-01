@@ -1,6 +1,6 @@
 ---
-title: variance() (fonction d’agrégation) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la variance () (fonction d’agrégation) dans Azure Data Explorer.
+title: variance () (fonction d’agrégation)-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit la variance () (fonction d’agrégation) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,32 +8,34 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 5b1d2ea47060ecede855a3fb419bbbfe2bf0b538
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 9f8afae2413d65618cf6b6e2f400df2500b06078
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81504707"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82618041"
 ---
-# <a name="variance-aggregation-function"></a>variance() (fonction d’agrégation)
+# <a name="variance-aggregation-function"></a>variance () (fonction d’agrégation)
 
-Calcule l’écart *d’Expr* à travers le groupe, considérant le groupe comme un [échantillon](https://en.wikipedia.org/wiki/Sample_%28statistics%29). 
+Calcule la variance de *expr* dans le groupe, en considérant le groupe comme un [échantillon](https://en.wikipedia.org/wiki/Sample_%28statistics%29). 
 
-* Formule utilisée : ![texte alt](./images/aggregations/variance-sample.png "échantillon de variance")
+* Formule utilisée :
 
-* Ne peut être utilisé que dans le contexte de l’agrégation à l’intérieur [résumer](summarizeoperator.md)
+:::image type="content" source="images/variance-aggfunction/variance-sample.png" alt-text="Exemple variance":::
+
+* Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 
 **Syntaxe**
 
-résumer `variance(` *Expr*`)`
+`variance(`résumer *expr*`)`
 
 **Arguments**
 
-* *Expr*: Expression qui sera utilisée pour le calcul de l’agrégation. 
+* *Expr*: expression qui sera utilisée pour le calcul de l’agrégation. 
 
 **Retourne**
 
-La valeur de variance *d’Expr* à travers le groupe.
+Valeur de variance de *expr* dans le groupe.
  
 **Exemples**
 
@@ -44,4 +46,4 @@ range x from 1 to 5 step 1
 
 |list_x|variance_x|
 |---|---|
-|[ 1, 2, 3, 4, 5]|2.5|
+|[1, 2, 3, 4, 5]|2.5|

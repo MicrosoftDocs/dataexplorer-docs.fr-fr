@@ -1,6 +1,6 @@
 ---
-title: .créer la cartographie de l’ingestion - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit .créer la cartographie d’ingestion dans Azure Data Explorer.
+title: . créer un mappage d’ingestion-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit. créer un mappage d’ingestion dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,27 +8,27 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/04/2020
-ms.openlocfilehash: 10e656b074516ad8b0018e627d9904251aebbf10
-ms.sourcegitcommit: e94be7045d71a0435b4171ca3a7c30455e6dfa57
+ms.openlocfilehash: 84ab277f5b0d4d1b2e09d31fb7c1254786affe6d
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81744499"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82617729"
 ---
 # <a name="create-ingestion-mapping"></a>.create ingestion mapping
 
-Crée une cartographie d’ingestion qui est associée à une table spécifique et un format spécifique.
+Crée un mappage d’ingestion associé à une table spécifique et à un format spécifique.
 
 **Syntaxe**
 
-`.create``table` *TableName* `ingestion` *MappingKind MappingName* `mapping` *MappingName* *MappingFormattedAsJson*
+`.create``table` *TableName* TableName `ingestion` *MappingKind* MappingKind `mapping` *MappingName* *MappingFormattedAsJson*
 
 > [!NOTE]
-> * Une fois créée, la cartographie peut être référencée par son nom dans les commandes d’ingestion, au lieu de spécifier la cartographie complète dans le cadre de la commande.
-> * Les valeurs valables `CSV`pour `JSON` `avro` _MappingKind_ sont : , , , `parquet`et`orc`
-> * Si une cartographie du même nom existe déjà pour la table :
->    * `.create`échouera
->    * `.create-or-alter`modifiera la cartographie existante
+> * Une fois créé, le mappage peut être référencé par son nom dans les commandes d’ingestion, au lieu de spécifier le mappage complet dans le cadre de la commande.
+> * Les valeurs valides pour _MappingKind_ sont `JSON`: `avro` `CSV`, `parquet`,, et`orc`
+> * Si un mappage portant le même nom existe déjà pour la table :
+>    * `.create`échoue
+>    * `.create-or-alter`va modifier le mappage existant
  
 **Exemple** 
  
@@ -50,4 +50,7 @@ Crée une cartographie d’ingestion qui est associée à une table spécifique 
 
 | Nom     | Type | Mappage                                                                                                                                                                          |
 |----------|------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| cartographie1 | CSV  | ["Name":"rownumber","DataType":"int","CsvDataType":null,"Ordinal":0":ConstValue":null', "Name":"rowguid","DataType":"string","CsvDataType":null,"Ordinal":1,"ConstValue":null |
+| mapping1 | CSV  | [{« Name » : « RowNumber », « DataType » : « int », « CsvDataType » : null, « ordinal » : 0, « ConstValue » : null}, {« Name » : « rowguid », « DataType » : « String », « CsvDataType » : null, « ordinal » : 1, « ConstValue » : NULL}] |
+
+## <a name="next-steps"></a>Étapes suivantes
+Pour plus d’informations sur le mappage d’ingestion, consultez [mappages de données](mappings.md).

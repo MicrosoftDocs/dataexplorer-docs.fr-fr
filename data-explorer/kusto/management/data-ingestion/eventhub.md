@@ -1,6 +1,6 @@
 ---
-title: Ingest from Event Hub - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit Ingest de Event Hub dans Azure Data Explorer.
+title: Réception à partir d’Event Hub-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit la réception à partir d’Event Hub dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,49 +8,49 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: ddb218e707152f529e5b547ffe06c4d3c7614811
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: fac9fd9f218948928e4f91d0d1aa056affcebd11
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81521503"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82617661"
 ---
-# <a name="ingest-from-event-hub"></a>Ingest de Event Hub
+# <a name="ingest-from-event-hub"></a>Ingérer à partir d’Event Hub
 
-[Azure Event Hubs](https://docs.microsoft.com/azure/event-hubs/event-hubs-about) est une plateforme de streaming big data et un service d’ingestion d’événements. Azure Data Explorer offre une ingestion continue de Hubs Event gérés par le client. 
+[Azure Event hubs](https://docs.microsoft.com/azure/event-hubs/event-hubs-about) est une plateforme de diffusion en continu Big Data et un service d’ingestion des événements. Azure Explorateur de données offre une ingestion continue des Event Hubs gérés par le client. 
 
 ## <a name="data-format"></a>Format de données
 
-* Les données sont lues à partir du Event Hub sous forme d’objets [EventData.](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata?view=azure-dotnet)
-* La charge utile d’événement peut contenir un ou plusieurs enregistrements à ingérer, dans l’un des [formats pris en charge par Azure Data Explorer](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats).
-* Les données peuvent `GZip` être compressées à l’aide d’algorithme de compression. Doit être `Compression` spécifié comme [propriété d’ingestion](#ingestion-properties).
+* Les données sont lues à partir du hub d’événements sous forme d’objets [EventData](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata?view=azure-dotnet) .
+* La charge utile d’un événement peut contenir un ou plusieurs enregistrements à ingérer, dans l’un des [formats pris en charge par Azure Explorateur de données](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats).
+* Les données peuvent être compressées à l’aide de l' `GZip` algorithme de compression. Doit être spécifié en `Compression` tant que [propriété](#ingestion-properties)d’ingestion.
 
 > [!Note]
-> * La compression des données n’est pas prise en charge pour les formats compressés (Avro, Parquet, ORC).
-> * Les [propriétés personnalisées](#event-system-properties-mapping) de système d’encodage et d’intégration ne sont pas prises en charge sur les données compressées.
+> * La compression des données n’est pas prise en charge pour les formats compressés (Avro, parquet, ORC).
+> * L’encodage personnalisé et les [Propriétés système](#event-system-properties-mapping) incorporées ne sont pas pris en charge sur les données compressées.
 
 ## <a name="ingestion-properties"></a>Propriétés d’ingestion
 
-Les propriétés d’ingestion instruisent le processus d’ingestion. Où acheminer les données et comment les traiter. Vous pouvez spécifier les [propriétés Ingestion](https://docs.microsoft.com/azure/data-explorer/ingestion-properties) de l’ingestion des événements à l’aide de [l’EventData.Properties](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties). Vous pouvez définir les propriétés suivantes :
+Les propriétés d’ingestion indiquent au processus d’ingestion. Où acheminer les données et comment les traiter. Vous pouvez spécifier les [Propriétés](https://docs.microsoft.com/azure/data-explorer/ingestion-properties) d’ingestion de l’ingestion des événements à l’aide de [EventData. Properties](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties). Vous pouvez définir les propriétés suivantes :
 
 |Propriété |Description|
 |---|---|
-| Table de charge de travail | Nom (sensible au cas) de la table cible existante. Remplace l’ensemble `Table` sur `Data Connection` la lame. |
-| Format | Format de données. Remplace l’ensemble `Data format` sur `Data Connection` la lame. |
-| IngestionMappingReference | Nom de la [cartographie d’ingestion](../create-ingestion-mapping-command.md) existante à utiliser. Remplace l’ensemble `Column mapping` sur `Data Connection` la lame.|
-| Compression | Compression de `None` données, `GZip` (par défaut) ou compression.|
-| Encodage |  L’encodage des données, la valeur par défaut est UTF8. Peut être l’un des [encodages supportés .NET](https://docs.microsoft.com/dotnet/api/system.text.encoding?view=netframework-4.8#remarks). |
+| Table de charge de travail | Nom (sensible à la casse) de la table cible existante. Remplace le `Table` défini sur le `Data Connection` panneau. |
+| Format | Format de données. Remplace le `Data format` défini sur le `Data Connection` panneau. |
+| IngestionMappingReference | Nom du [mappage](../create-ingestion-mapping-command.md) d’ingestion existant à utiliser. Remplace le `Column mapping` défini sur le `Data Connection` panneau.|
+| Compression | Compression de données `None` , (valeur par `GZip` défaut) ou compression.|
+| Encodage |  L’encodage des données, la valeur par défaut est UTF8. Il peut s’agir de l’un des [encodages .net pris en charge](https://docs.microsoft.com/dotnet/api/system.text.encoding?view=netframework-4.8#remarks). |
 
 <!--| Database | Name of the existing target database.|-->
 <!--| Tags | String representing [tags](https://docs.microsoft.com/azure/kusto/management/extents-overview#extent-tagging) that will be attached to resulting extent. |-->
 
-## <a name="events-routing"></a>Itinéraire d’événements
+## <a name="events-routing"></a>Routage des événements
 
-Lors de la configuration d’une connexion Event Hub au cluster Azure Data Explorer, vous spécifiez les propriétés de la table cible (nom de table, format de données, compression et cartographie). Il s’agit du routage par défaut `static routing`pour vos données, également appelé .
-Vous pouvez également spécifier les propriétés de table cible pour chaque événement, en utilisant les propriétés de l’événement. La connexion permettra d’acheminer dynamiquement les données comme spécifié dans le [EventData.Properties](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties), l’emporter sur les propriétés statiques pour cet événement.
+Lors de la configuration d’une connexion de hub d’événements à Azure Explorateur de données cluster, vous spécifiez les propriétés de la table cible (nom de table, format de données, compression et mappage). Il s’agit du routage par défaut pour vos données, également appelé `static routing`.
+Vous pouvez également spécifier des propriétés de la table cible pour chaque événement, à l’aide des propriétés de l’événement. La connexion achemine dynamiquement les données telles qu’elles sont spécifiées dans [EventData. Properties](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties), en remplaçant les propriétés statiques de cet événement.
 
-Dans l’échantillon suivant, définissez les détails `WeatherMetrics`du moyeu d’événement et envoyez des données métriques météorologiques à la table.
-Les données `json` sont en format. `mapping1`est prédéfinis `WeatherMetrics`sur la table :
+Dans l’exemple suivant, définissez Event Hub détails et envoyez les données de métriques `WeatherMetrics`météorologiques à la table.
+Les données sont `json` au format. `mapping1`est prédéfini sur la table `WeatherMetrics`:
 
 ```csharp
 var eventHubNamespaceConnectionString=<connection_string>;
@@ -74,36 +74,36 @@ eventHubClient.Close();
 
 ## <a name="event-system-properties-mapping"></a>Mappage des propriétés du système d’événements
 
-Les propriétés du système sont une collection utilisée pour stocker les propriétés qui sont définies par le service Event Hubs, au moment où l’événement est enqueued. La connexion Azure Data Explorer Event Hub intégrera les propriétés sélectionnées dans l’atterrissage de données dans votre table.
+Les propriétés système sont un regroupement utilisé pour stocker les propriétés définies par le service Event Hubs, au moment où l’événement est mis en file d’attente. La connexion Azure Explorateur de données Event Hub incorpore les propriétés sélectionnées dans le lancement des données dans votre table.
 
 > [!Note]
-> * Les propriétés du système sont prises en charge pour les événements à un seul enregistrement.
-> * Les propriétés du système ne sont pas prises en charge sur les données compressées.
-> * Pour `csv` la cartographie, les propriétés sont ajoutées au début de l’enregistrement dans l’ordre indiqué dans le tableau ci-dessous. Pour `json` la cartographie, les propriétés sont ajoutées en fonction des noms de propriété dans le tableau suivant.
+> * Les propriétés système sont prises en charge pour les événements à enregistrement unique.
+> * Les propriétés système ne sont pas prises en charge sur les données compressées.
+> * Pour `csv` le mappage, les propriétés sont ajoutées au début de l’enregistrement dans l’ordre indiqué dans le tableau ci-dessous. Pour `json` le mappage, les propriétés sont ajoutées en fonction des noms de propriété dans le tableau suivant.
 
 ### <a name="event-hub-expose-the-following-system-properties"></a>Event Hub expose les propriétés système suivantes
 
 |Propriété |Type de données |Description|
 |---|---|---|
-| x-opt-enqueued-time |DATETIME | UTC heure où l’événement a été enqueued. |
-| x-opt-sequence-number |long | Le numéro de séquence logique de l’événement dans le flux de partition du Event Hub.
-| x-opt-offset |string | Le décalage de l’événement par rapport au flux de partition Event Hub. L’identifiant offset est unique dans une partition du flux Event Hub. |
-| x-opt-éditeur |string | Le nom de l’éditeur si le message a été envoyé à un point de terminaison de l’éditeur. |
-| x-opt-partition-key |string |La clé de partition de la partition correspondante qui a stocké l’événement. |
+| x-opt-enqueued-time |DATETIME | Heure UTC à laquelle l’événement a été mis en file d’attente. |
+| x-opt-sequence-number |long | Numéro de séquence logique de l’événement dans le flux de partition du concentrateur d’événements.
+| x-opt-offset |string | Décalage de l’événement par rapport au flux de partition du concentrateur d’événements. L’identificateur de décalage est unique au sein d’une partition du flux de concentrateur d’événements. |
+| x-opt-serveur de publication |string | Nom de l’éditeur si le message a été envoyé à un point de terminaison de serveur de publication. |
+| x-opt-partition-key |string |Clé de partition de la partition correspondante qui a stocké l’événement. |
 
-Si vous avez sélectionné **les propriétés du système Event** dans la section Source de **données** de la table, vous devez inclure les propriétés dans le schéma de table et la cartographie.
+Si vous avez sélectionné **Propriétés du système d’événements** dans la section source de **données** de la table, vous devez inclure les propriétés dans le schéma et le mappage de la table.
 
 **Exemple de schéma de table**
 
-Si vos données comprennent`Timespan` `Metric`trois `Value`colonnes ( , `x-opt-enqueued-time` , `x-opt-offset`et ) et les propriétés que vous incluez sont et, créer ou modifier le schéma de table en utilisant cette commande:
+Si vos données incluent trois colonnes (`Timespan`, `Metric`et `Value`) et que les propriétés que vous incluez sont `x-opt-enqueued-time` et `x-opt-offset`, créez ou modifiez le schéma de la table à l’aide de cette commande :
 
 ```kusto
     .create-merge table TestTable (TimeStamp: datetime, Metric: string, Value: int, EventHubEnqueuedTime:datetime, EventHubOffset:long)
 ```
 
-**Exemple de cartographie CSV**
+**Exemple de mappage de fichier CSV**
 
-Exécutez les commandes suivantes pour ajouter des données au début de l’enregistrement. Valeurs ordinaires de note : les propriétés sont ajoutées au début de l’enregistrement dans l’ordre indiqué dans le tableau ci-dessus. Ceci est important pour la cartographie CSV où lesordinaux de colonne changeront en fonction des propriétés du système qui sont cartographiées.
+Exécutez les commandes suivantes pour ajouter des données au début de l’enregistrement. Notez les valeurs ordinales : les propriétés sont ajoutées au début de l’enregistrement dans l’ordre indiqué dans le tableau ci-dessus. Cela est important pour le mappage de volumes partagés de cluster dans lequel les ordinaux de colonne changent en fonction des propriétés système mappées.
 
 ```kusto
     .create table TestTable ingestion csv mapping "CsvMapping1"
@@ -116,9 +116,9 @@ Exécutez les commandes suivantes pour ajouter des données au début de l’enr
     ']'
 ```
  
-**Exemple de cartographie JSON**
+**Exemple de mappage JSON**
 
-Les données sont ajoutées en utilisant les noms des propriétés du système tels qu’ils apparaissent dans la liste des propriétés du **système d’événements** de lame de **connexion données.** Exécutez ces commandes :
+Les données sont ajoutées à l’aide des noms de propriétés système tels qu’ils apparaissent dans la liste des **Propriétés système des événements** du panneau **connexion de données** . Exécutez les commandes suivantes :
 
 ```kusto
     .create table TestTable ingestion json mapping "JsonMapping1"
@@ -134,34 +134,34 @@ Les données sont ajoutées en utilisant les noms des propriétés du système t
 ## <a name="create-event-hub-connection"></a>Créer une connexion de hub d’événements
 
 > [!Note]
-> Pour de meilleures performances, créez toutes les ressources dans la même région que le cluster Azure Data Explorer.
+> Pour des performances optimales, créez toutes les ressources dans la même région que le cluster Azure Explorateur de données.
 
 ### <a name="create-an-event-hub"></a>Création d’un concentrateur d’événements
 
-Si vous n’en avez pas déjà, [créez un hub d’événement.](https://docs.microsoft.com/azure/event-hubs/event-hubs-create) Un modèle peut être trouvé dans le guide de création [d’un hub d’événements.](https://docs.microsoft.com/azure/data-explorer/ingest-data-event-hub#create-an-event-hub)
+Si vous n’en avez pas déjà un, [créez un Event Hub](https://docs.microsoft.com/azure/event-hubs/event-hubs-create). Un modèle est disponible dans le Guide de création d' [un Event Hub](https://docs.microsoft.com/azure/data-explorer/ingest-data-event-hub#create-an-event-hub) .
 
 > [!Note]
 > * Le nombre de partitions n’est pas modifiable. Lorsque vous le définissez, tenez compte de la mise à l’échelle sur le long terme.
-> * Le groupe de *consommateurs doit* être uniqe par consommateur. Créer un groupe de consommateurs dédié à la connexion Azure Data Explorer.
+> * Le groupe de consommateurs *doit* être uniqe par consommateur. Créez un groupe de consommateurs dédié à la connexion Azure Explorateur de données.
 
-### <a name="data-ingestion-connection-to-azure-data-explorer"></a>Connexion d’ingestion de données à Azure Data Explorer
+### <a name="data-ingestion-connection-to-azure-data-explorer"></a>Connexion d’ingestion de données à Azure Explorateur de données
 
-* Via Azure Portal: [Connectez-vous au hub de l’événement](https://docs.microsoft.com/azure/data-explorer/ingest-data-event-hub#connect-to-the-event-hub).
-* Utilisation de la gestion Azure Data Explorer .NET SDK: [Ajouter une connexion de données Event Hub](https://docs.microsoft.com/azure/data-explorer/data-connection-event-hub-csharp#add-an-event-hub-data-connection)
-* Utilisation de Python SDK, gestion d’Azure Data Explorer : [Ajoutez une connexion de données Event Hub](https://docs.microsoft.com/azure/data-explorer/data-connection-event-hub-python#add-an-event-hub-data-connection)
-* Avec le modèle ARM : [modèle Azure Resource Manager pour l’ajout d’une connexion de données Event Hub](https://docs.microsoft.com/azure/data-explorer/data-connection-event-hub-resource-manager#azure-resource-manager-template-for-adding-an-event-hub-data-connection)
-
-> [!Note]
-> Si **mes données incluent des informations de routage** sélectionnées, vous *devez* fournir les informations de [routage](#events-routing) nécessaires dans le cadre des propriétés d’événements.
+* Via le portail Azure : [Connectez-vous au Event Hub](https://docs.microsoft.com/azure/data-explorer/ingest-data-event-hub#connect-to-the-event-hub).
+* Utilisation du kit de développement logiciel (SDK) Azure Explorateur de données Management .NET : [Ajouter une connexion de données Event Hub](https://docs.microsoft.com/azure/data-explorer/data-connection-event-hub-csharp#add-an-event-hub-data-connection)
+* Utilisation du kit de développement logiciel (SDK) python Azure Explorateur de données Management : [Ajouter une connexion de données Event Hub](https://docs.microsoft.com/azure/data-explorer/data-connection-event-hub-python#add-an-event-hub-data-connection)
+* Avec le modèle ARM : [Azure Resource Manager modèle pour l’ajout d’une connexion de données Event Hub](https://docs.microsoft.com/azure/data-explorer/data-connection-event-hub-resource-manager#azure-resource-manager-template-for-adding-an-event-hub-data-connection)
 
 > [!Note]
-> Une fois la connexion définie, elle ingérer des données à partir d’événements ensemencés après son temps de création.
+> Si **mes données incluent** des informations de routage sélectionnées, vous *devez* fournir les informations de [routage](#events-routing) nécessaires dans le cadre des propriétés des événements.
+
+> [!Note]
+> Une fois la connexion définie, les données sont ingérées à partir des événements mis en file d’attente après l’heure de leur création.
 
 #### <a name="generating-data"></a>Génération de données
 
-* Consultez [l’application d’échantillon](https://github.com/Azure-Samples/event-hubs-dotnet-ingest) qui génère des données et les envoie à un hub d’événements.
+* Consultez l' [exemple d’application](https://github.com/Azure-Samples/event-hubs-dotnet-ingest) qui génère des données et les envoie à un Event Hub.
 
-Un événement peut contenir un ou plusieurs enregistrements, jusqu’à sa limite de taille. Dans l’échantillon suivant, nous envoyons deux événements, chacun a 5 enregistrements annexés:
+Un événement peut contenir un ou plusieurs enregistrements, jusqu’à sa limite de taille. Dans l’exemple suivant, nous envoyons deux événements, chacun avec 5 enregistrements ajoutés :
 
 ```csharp
 var events = new List<EventData>();

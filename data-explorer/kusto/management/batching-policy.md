@@ -1,6 +1,6 @@
 ---
-title: Politique d’ingestionBatching - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la politique d’IngestionBatching dans Azure Data Explorer.
+title: Gestion de la stratégie Kusto IngestionBatching-Azure Explorateur de données
+description: Cet article décrit la stratégie IngestionBatching dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,43 +8,43 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 232767e390669a08312f10d3999d19264fb29f26
-ms.sourcegitcommit: e94be7045d71a0435b4171ca3a7c30455e6dfa57
+ms.openlocfilehash: e9823fd0cd44dd2e5bd0731cc59086961ce86d8c
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81744289"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82617763"
 ---
-# <a name="ingestionbatching-policy"></a>Politique d’ingestionBatching
+# <a name="ingestionbatching-policy"></a>Stratégie IngestionBatching
 
-La [politique d’ingestionBatching](batchingpolicy.md) est un objet de stratégie qui détermine quand l’agrégation de données doit cesser pendant l’ingestion de données selon les paramètres spécifiés.
+La [stratégie ingestionBatching](batchingpolicy.md) est un objet de stratégie qui détermine à quel moment l’agrégation de données doit s’arrêter pendant l’ingestion des données en fonction des paramètres spécifiés.
 
-La stratégie peut `null`être définie à , auquel cas les valeurs par défaut sont utilisées, en définissant la durée maximale de lotage à: 5 minutes, 1000 éléments et une taille totale de lot de 1G ou la valeur de cluster par défaut définie par Kusto.
+La stratégie peut avoir la valeur `null`, auquel cas les valeurs par défaut sont utilisées, en affectant à la durée maximale de traitement par lot la valeur : 5 minutes, 1000 éléments et une taille de lot totale de 1g ou la valeur de cluster par défaut définie par Kusto.
 
-Si la stratégie n’est pas définie pour une certaine entité, elle cherchera une politique de niveau de hiérarchie plus élevée, si tous sont configurés pour annuler la valeur par défaut sera utilisé. 
+Si la stratégie n’est pas définie pour une certaine entité, elle recherche une stratégie supérieure au niveau de la hiérarchie, si toutes sont définies sur null, la valeur par défaut est utilisée. 
 
 La stratégie a une limite inférieure de 10 secondes et il n’est pas recommandé d’utiliser des valeurs supérieures à 15 minutes.
 
-## <a name="displaying-the-ingestionbatching-policy"></a>Affichage de la politique IngestionBatching
+## <a name="displaying-the-ingestionbatching-policy"></a>Affichage de la stratégie IngestionBatching
 
-La stratégie peut être définie sur une base de données ou une table, et est affichée en utilisant l’une des commandes suivantes :
+La stratégie peut être définie sur une base de données ou une table, et est affichée à l’aide de l’une des commandes suivantes :
 
-* `.show``database` *DatabaseName (en)* `policy``ingestionbatching`
-* `.show``table` *DatabaseName*`.`*TableName* `policy``ingestionbatching`
+* `.show``database` *DatabaseName* DatabaseName `policy``ingestionbatching`
+* `.show``table` *DatabaseName*DatabaseName`.`*TableName* , table `policy``ingestionbatching`
 
-## <a name="altering-the-ingestionbatching-policy"></a>Modification de la politique d’ingestionBatching
+## <a name="altering-the-ingestionbatching-policy"></a>Modification de la stratégie IngestionBatching
 
 ```kusto
 .alter <entity_type> <database_or_table_name> policy ingestionbatching @'<ingestionbatching policy json>'
 ```
 
-Modification de la politique IngestionBatching pour plusieurs tables (dans le même contexte de base de données) :
+Modification de la stratégie IngestionBatching pour plusieurs tables (dans le même contexte de base de données) :
 
 ```kusto
 .alter tables (table_name [, ...]) policy ingestionbatching @'<ingestionbatching policy json>'
 ```
 
-Politique d’ingestionBatching :
+Stratégie IngestionBatching :
 
 ```kusto
 {
@@ -55,12 +55,12 @@ Politique d’ingestionBatching :
 ```
 
 * `entity_type`: table, base de données
-* `database_or_table`: si l’entité est table ou base de données, son nom doit être spécifié dans la commande comme suit - 
+* `database_or_table`: si l’entité est une table ou une base de données, son nom doit être spécifié dans la commande comme suit : 
   - `database_name` ou 
   - `database_name.table_name` ou 
-  - `table_name`(lorsqu’elle est en cours d’exécution dans le contexte de la base de données spécifique)
+  - `table_name`(en cas d’exécution dans le contexte de la base de données spécifique)
 
-## <a name="deleting-the-ingestionbatching-policy"></a>Suppression de la politique d’ingestionBatching
+## <a name="deleting-the-ingestionbatching-policy"></a>Suppression de la stratégie IngestionBatching
 
 ```kusto
 .delete <entity_type> <database_or_table_name> policy ingestionbatching

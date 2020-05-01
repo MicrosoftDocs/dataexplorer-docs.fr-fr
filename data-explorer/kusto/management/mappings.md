@@ -1,6 +1,6 @@
 ---
-title: Cartographies de données - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit les cartographies de données dans Azure Data Explorer.
+title: Mappages de données-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit les mappages de données dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,47 +8,47 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 0d94815eedfd551a09a979c57c68baf125abec40
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 2a3b402c04d5d1af85b2c2a042a23fbade7e2524
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81520772"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82617644"
 ---
-# <a name="data-mappings"></a>Cartographie des données
+# <a name="data-mappings"></a>Mappages de données
 
-Les cartographies de données sont utilisées pendant l’ingestion pour cartographier les données entrantes vers les colonnes à l’intérieur des tables Kusto.
+Les mappages de données sont utilisés lors de l’ingestion pour mapper les données entrantes aux colonnes dans les tables Kusto.
 
-Kusto prend en charge différents `row-oriented` types de cartes, à la `column-oriented` fois (CSV, JSON et AVRO), et (Parquet).
+Kusto prend en charge différents types de mappages `row-oriented` (CSV, JSON et Avro) et `column-oriented` (parquet).
 
-Chaque élément de la liste de cartographie est construit à partir de trois propriétés :
-
-|Propriété|Description|
-|----|--|
-|`column`|Nom de colonne cible dans la table de Kusto|
-|`datatype`| (Facultatif) Datatype avec lequel créer la colonne cartographiée si elle n’existe pas déjà dans la table Kusto|
-|`Properties`|(Facultatif) Sac de propriété contenant des propriétés spécifiques pour chaque cartographie telle que décrite dans chaque section ci-dessous.
-
-
-Toutes les cartes peuvent être [pré-créées](create-ingestion-mapping-command.md) et peuvent être `ingestionMappingReference` référencées à partir de la commande ingéreuse à l’aide de paramètres.
-
-## <a name="csv-mapping"></a>Cartographie CSV
-
-Lorsque le fichier source est un CSV (ou n’importe quel format délimeter séparé) et son schéma ne correspond pas au schéma actuel de la table Kusto, un CSV cartographie les cartes du schéma de fichiers au schéma de table Kusto. Si le tableau n’existe pas à Kusto, il sera créé selon cette cartographie. Si certains champs de la cartographie sont manquants dans le tableau, ils seront ajoutés. 
-
-La cartographie CSV peut être appliquée sur tous les formats séparés par les délimitants : CSV, TSV, PSV, SCSV et SOHsv.
-
-Chaque élément de la liste décrit une cartographie pour une colonne spécifique, et peut contenir les propriétés suivantes:
+Chaque élément de la liste de mappage est construit à partir de trois propriétés :
 
 |Propriété|Description|
 |----|--|
-|`ordinal`|Le numéro de commande de colonne dans CSV|
-|`constantValue`|(Facultatif) La valeur constante à utiliser pour une colonne au lieu d’une certaine valeur à l’intérieur du CSV|
+|`column`|Nom de la colonne cible dans la table Kusto|
+|`datatype`| Facultatif Type de données avec lequel créer la colonne mappée si elle n’existe pas déjà dans la table Kusto|
+|`Properties`|Facultatif Conteneur de propriétés contenant des propriétés spécifiques pour chaque mappage, comme décrit dans chaque section ci-dessous.
+
+
+Tous les mappages peuvent être [créés au préalable](create-ingestion-mapping-command.md) et peuvent être référencés à partir de la `ingestionMappingReference` commande de réception à l’aide de paramètres.
+
+## <a name="csv-mapping"></a>Mappage CSV
+
+Lorsque le fichier source est un fichier CSV (ou tout format séparé par des délimiteur) et que son schéma ne correspond pas au schéma de la table Kusto actuel, un mappage CSV est mappé du schéma de fichier au schéma de la table Kusto. Si la table n’existe pas dans Kusto, elle sera créée en fonction de ce mappage. Si certains champs du mappage sont absents de la table, ils sont ajoutés. 
+
+Le mappage de volumes partagés de cluster peut être appliqué à tous les formats séparés par des délimiteurs : CSV, TSV, PSV, SCSV et SOHsv.
+
+Chaque élément de la liste décrit un mappage pour une colonne spécifique et peut contenir les propriétés suivantes :
+
+|Propriété|Description|
+|----|--|
+|`ordinal`|Numéro d’ordre des colonnes au format CSV|
+|`constantValue`|Facultatif Valeur de constante à utiliser pour une colonne au lieu d’une valeur dans le CSV|
 
 > [!NOTE]
 > `Ordinal`et `ConstantValue` s’excluent mutuellement.
 
-### <a name="example-of-the-csv-mapping"></a>Exemple de la cartographie CSV
+### <a name="example-of-the-csv-mapping"></a>Exemple de mappage de volumes partagés de cluster
 
 ``` json
 [
@@ -65,10 +65,11 @@ Chaque élément de la liste décrit une cartographie pour une colonne spécifiq
 ```
 
 > [!NOTE]
-> Lorsque la cartographie ci-dessus `.ingest` est fournie dans le cadre de la commande de contrôle, elle est sérialisée sous forme de chaîne JSON.
+> Lorsque le mappage ci-dessus est fourni dans le `.ingest` cadre de la commande de contrôle, il est sérialisé en tant que chaîne JSON.
 
-* Lorsque la cartographie [ci-dessus est pré-créée,](create-ingestion-mapping-command.md) elle peut être référencée dans la commande de `.ingest` contrôle :
-```
+* Lorsque le mappage ci-dessus est [créé au préalable](create-ingestion-mapping-command.md) , il peut être référencé `.ingest` dans la commande de contrôle :
+
+```kusto
 .ingest into Table123 (@"source1", @"source2")
     with 
     (
@@ -77,9 +78,9 @@ Chaque élément de la liste décrit une cartographie pour une colonne spécifiq
     )
 ```
 
-* Lorsque la cartographie ci-dessus `.ingest` est fournie dans le cadre de la commande de contrôle, elle est sérialisée sous forme de chaîne JSON :
+* Lorsque le mappage ci-dessus est fourni dans le `.ingest` cadre de la commande de contrôle, il est sérialisé en tant que chaîne JSON :
 
-```
+```kusto
 .ingest into Table123 (@"source1", @"source2")
     with 
     (
@@ -92,9 +93,9 @@ Chaque élément de la liste décrit une cartographie pour une colonne spécifiq
     )
 ```
 
-**Note:** Le format de cartographie `Properties` suivant, sans le sac de propriété, est actuellement pris en charge, mais peut être déprécié à l’avenir.
+**Remarque :** Le format de mappage suivant, sans `Properties` conteneur de propriété, est actuellement pris en charge, mais peut être déconseillé à l’avenir.
 
-```
+```kusto
 .ingest into Table123 (@"source1", @"source2")
     with 
     (
@@ -107,18 +108,18 @@ Chaque élément de la liste décrit une cartographie pour une colonne spécifiq
     )
 ```
 
-## <a name="json-mapping"></a>Cartographie JSON
+## <a name="json-mapping"></a>Mappage JSON
 
-Lorsque le fichier source est en format JSON, le contenu du fichier est cartographié sur la table Kusto. Le tableau doit exister dans la base de données Kusto à moins qu’un type de données valide ne soit spécifié pour toutes les colonnes cartographiées. Les colonnes cartographiées dans la cartographie JSON doivent exister dans le tableau Kusto à moins qu’un datatype ne soit spécifié pour toutes les colonnes non existantes.
+Lorsque le fichier source est au format JSON, le contenu du fichier est mappé à la table Kusto. La table doit exister dans la base de données Kusto, sauf si un type de données valide est spécifié pour toutes les colonnes mappées. Les colonnes mappées dans le mappage JSON doivent exister dans la table Kusto, sauf si un type de données est spécifié pour toutes les colonnes non existantes.
 
-Chaque élément de la liste décrit une cartographie pour une colonne spécifique, et peut contenir les propriétés suivantes: 
+Chaque élément de la liste décrit un mappage pour une colonne spécifique et peut contenir les propriétés suivantes : 
 
 |Propriété|Description|
 |----|--|
-|`path`|Si commence `$`par : JSON chemin vers le champ qui deviendra le contenu de la colonne dans `$`le document JSON (JSON chemin qui dénote l’ensemble du document est ). Si la valeur ne `$`commence pas : une valeur constante est utilisée.|
-|`transform`|(Facultatif) Transformation qui devrait être appliquée sur le contenu avec [des transformations cartographiques](#mapping-transformations).|
+|`path`|Si commence par `$`: chemin d’accès JSON au champ qui devient le contenu de la colonne dans le document JSON (le chemin d’accès JSON qui indique le document entier `$`est). Si la valeur ne commence pas par `$`: une valeur constante est utilisée.|
+|`transform`|Facultatif Transformation à appliquer sur le contenu avec des [transformations de mappage](#mapping-transformations).|
 
-### <a name="example-of-json-mapping"></a>Exemple de cartographie JSON
+### <a name="example-of-json-mapping"></a>Exemple de mappage JSON
 
 ```json
 [
@@ -137,9 +138,9 @@ Chaque élément de la liste décrit une cartographie pour une colonne spécifiq
 ```
 
 > [!NOTE]
-> Lorsque la cartographie ci-dessus `.ingest` est fournie dans le cadre de la commande de contrôle, elle est sérialisée sous forme de chaîne JSON.
+> Lorsque le mappage ci-dessus est fourni dans le `.ingest` cadre de la commande de contrôle, il est sérialisé en tant que chaîne JSON.
 
-```
+```kusto
 .ingest into Table123 (@"source1", @"source2")
     with 
     (
@@ -148,9 +149,9 @@ Chaque élément de la liste décrit une cartographie pour une colonne spécifiq
     )
 ```
 
-**Note:** Le format de cartographie `Properties` suivant, sans le sac de propriété, est actuellement pris en charge, mais peut être déprécié à l’avenir.
+**Remarque :** Le format de mappage suivant, sans `Properties` conteneur de propriété, est actuellement pris en charge, mais peut être déconseillé à l’avenir.
 
-```
+```kusto
 .ingest into Table123 (@"source1", @"source2") 
   with 
   (
@@ -163,24 +164,24 @@ Chaque élément de la liste décrit une cartographie pour une colonne spécifiq
   )
 ```
     
-## <a name="avro-mapping"></a>Cartographie Avro
+## <a name="avro-mapping"></a>Mappage Avro
 
-Lorsque le fichier source est en format Avro, le contenu du fichier Avro est cartographié sur la table Kusto. Le tableau doit exister dans la base de données Kusto à moins qu’un type de données valide ne soit spécifié pour toutes les colonnes cartographiées. Les colonnes cartographiées dans la cartographie Avro doivent exister dans la table Kusto à moins qu’un datatype ne soit spécifié pour toutes les colonnes non existantes.
+Lorsque le fichier source est au format Avro, le contenu du fichier Avro est mappé à la table Kusto. La table doit exister dans la base de données Kusto, sauf si un type de données valide est spécifié pour toutes les colonnes mappées. Les colonnes mappées dans le mappage Avro doivent exister dans la table Kusto, sauf si un type de données est spécifié pour toutes les colonnes non existantes.
 
-Chaque élément de la liste décrit une cartographie pour une colonne spécifique, et peut contenir les propriétés suivantes: 
+Chaque élément de la liste décrit un mappage pour une colonne spécifique et peut contenir les propriétés suivantes : 
 
 |Propriété|Description|
 |----|--|
-|`Field`|Le nom du champ dans le dossier Avro.|
-|`Path`|Alternative à `field` l’utilisation qui permet de prendre la partie intérieure d’un champ d’enregistrement Avro, si nécessaire. La valeur désigne un JSON-path de la racine de l’enregistrement. Voir les notes ci-dessous pour plus d’informations. |
-|`transform`|(Facultatif) Transformation qui doit être appliquée sur le contenu avec [des transformations prises en charge](#mapping-transformations).|
+|`Field`|Nom du champ dans l’enregistrement Avro.|
+|`Path`|Alternative à l' `field` utilisation de qui permet de détenir la partie interne d’un champ d’enregistrement Avro, si nécessaire. La valeur désigne un chemin d’accès JSON à partir de la racine de l’enregistrement. Pour plus d’informations, consultez les remarques ci-dessous. |
+|`transform`|Facultatif Transformation à appliquer au contenu à l’aide de [transformations prises en charge](#mapping-transformations).|
 
 **Remarques**
 >[!NOTE]
-> * `field`et `path` ne peut pas être utilisé ensemble, un seul est autorisé. 
-> * `path`ne peut `$` pas pointer vers la racine seulement, il doit avoir au moins un niveau de chemin.
+> * `field`et `path` ne peuvent pas être utilisés ensemble, un seul est autorisé. 
+> * `path`Impossible de pointer `$` vers la racine uniquement, elle doit avoir au moins un niveau de chemin d’accès.
 
-Les deux alternatives ci-dessous sont égales :
+Les deux options ci-dessous sont égales :
 
 ``` json
 [
@@ -194,7 +195,7 @@ Les deux alternatives ci-dessous sont égales :
 ]
 ```
 
-### <a name="example-of-the-avro-mapping"></a>Exemple de la cartographie AVRO
+### <a name="example-of-the-avro-mapping"></a>Exemple de mappage AVRO
 
 ``` json
 [
@@ -210,9 +211,9 @@ Les deux alternatives ci-dessous sont égales :
 ``` 
 
 > [!NOTE]
-> Lorsque la cartographie ci-dessus `.ingest` est fournie dans le cadre de la commande de contrôle, elle est sérialisée sous forme de chaîne JSON.
+> Lorsque le mappage ci-dessus est fourni dans le `.ingest` cadre de la commande de contrôle, il est sérialisé en tant que chaîne JSON.
 
-```
+```kusto
 .ingest into Table123 (@"source1", @"source2")
     with 
     (
@@ -221,9 +222,9 @@ Les deux alternatives ci-dessous sont égales :
     )
 ```
 
-**Note:** Le format de cartographie `Properties` suivant, sans le sac de propriété, est actuellement pris en charge, mais peut être déprécié à l’avenir.
+**Remarque :** Le format de mappage suivant, sans `Properties` conteneur de propriété, est actuellement pris en charge, mais peut être déconseillé à l’avenir.
 
-```
+```kusto
 .ingest into Table123 (@"source1", @"source2") 
   with 
   (
@@ -236,21 +237,21 @@ Les deux alternatives ci-dessous sont égales :
   )
 ```
 
-## <a name="parquet-mapping"></a>Cartographie de parquet
+## <a name="parquet-mapping"></a>Mappage parquet
 
-Lorsque le fichier source est en format Parquet, le contenu du fichier est cartographié sur la table Kusto. Le tableau doit exister dans la base de données Kusto à moins qu’un type de données valide ne soit spécifié pour toutes les colonnes cartographiées. Les colonnes cartographiées dans la cartographie parquet doivent exister dans le tableau Kusto à moins qu’un datatype ne soit spécifié pour toutes les colonnes non existantes.
+Lorsque le fichier source est au format parquet, le contenu du fichier est mappé à la table Kusto. La table doit exister dans la base de données Kusto, sauf si un type de données valide est spécifié pour toutes les colonnes mappées. Les colonnes mappées dans le mappage parquet doivent exister dans la table Kusto, sauf si un type de données est spécifié pour toutes les colonnes non existantes.
 
-Chaque élément de la liste décrit une cartographie pour une colonne spécifique, et peut contenir les propriétés suivantes:
+Chaque élément de la liste décrit un mappage pour une colonne spécifique et peut contenir les propriétés suivantes :
 
 |Propriété|Description|
 |----|--|
-|`path`|Si commence `$`par : JSON chemin vers le champ qui deviendra le contenu de la colonne dans `$`le document parquet (chemin JSON qui dénote l’ensemble du document est ). Si la valeur ne `$`commence pas : une valeur constante est utilisée.|
-|`transform`|(Facultatif) [cartographier les transformations](#mapping-transformations) qui doivent être appliquées sur le contenu.
+|`path`|Si commence par `$`: chemin d’accès JSON au champ qui deviendra le contenu de la colonne dans le document parquet (le chemin d’accès JSON qui indique le document `$`entier est). Si la valeur ne commence pas par `$`: une valeur constante est utilisée.|
+|`transform`|Facultatif [mappages de transformations](#mapping-transformations) qui doivent être appliqués au contenu.
 
 
-### <a name="example-of-the-parquet-mapping"></a>Exemple de la cartographie du Parquet
+### <a name="example-of-the-parquet-mapping"></a>Exemple de mappage parquet
 
-``` json
+```json
 [
   { "column" : "rownumber",   "Properties":{"Path":"$.rownumber"}}, 
   { "column" : "xdouble",     "Properties":{"Path":"$.xdouble"}}, 
@@ -265,11 +266,11 @@ Chaque élément de la liste décrit une cartographie pour une colonne spécifiq
 ```      
 
 > [!NOTE]
-> Lorsque la cartographie ci-dessus `.ingest` est fournie dans le cadre de la commande de contrôle, elle est sérialisée sous forme de chaîne JSON.
+> Lorsque le mappage ci-dessus est fourni dans le `.ingest` cadre de la commande de contrôle, il est sérialisé en tant que chaîne JSON.
 
-* Lorsque la cartographie [ci-dessus est pré-créée,](create-ingestion-mapping-command.md) elle peut être référencée dans la commande de `.ingest` contrôle :
+* Lorsque le mappage ci-dessus est [créé au préalable](create-ingestion-mapping-command.md) , il peut être référencé `.ingest` dans la commande de contrôle :
 
-```
+```kusto
 .ingest into Table123 (@"source1", @"source2")
     with 
     (
@@ -278,9 +279,9 @@ Chaque élément de la liste décrit une cartographie pour une colonne spécifiq
     )
 ```
 
-* Lorsque la cartographie ci-dessus `.ingest` est fournie dans le cadre de la commande de contrôle, elle est sérialisée sous forme de chaîne JSON :
+* Lorsque le mappage ci-dessus est fourni dans le `.ingest` cadre de la commande de contrôle, il est sérialisé en tant que chaîne JSON :
 
-```
+```kusto
 .ingest into Table123 (@"source1", @"source2") 
   with 
   (
@@ -293,20 +294,20 @@ Chaque élément de la liste décrit une cartographie pour une colonne spécifiq
   )
 ```
 
-## <a name="orc-mapping"></a>Cartographie Orc
+## <a name="orc-mapping"></a>Mappage ORC
 
-Lorsque le fichier source est en format Orc, le contenu du fichier est cartographié sur la table Kusto. Le tableau doit exister dans la base de données Kusto à moins qu’un type de données valide ne soit spécifié pour toutes les colonnes cartographiées. Les colonnes cartographiées dans la cartographie Orc doivent exister dans le tableau Kusto à moins qu’un datatype ne soit spécifié pour toutes les colonnes non existantes.
+Lorsque le fichier source est au format ORC, le contenu du fichier est mappé à la table Kusto. La table doit exister dans la base de données Kusto, sauf si un type de données valide est spécifié pour toutes les colonnes mappées. Les colonnes mappées dans le mappage ORC doivent exister dans la table Kusto, sauf si un type de données est spécifié pour toutes les colonnes non existantes.
 
-Chaque élément de la liste décrit une cartographie pour une colonne spécifique, et peut contenir les propriétés suivantes:
+Chaque élément de la liste décrit un mappage pour une colonne spécifique et peut contenir les propriétés suivantes :
 
 |Propriété|Description|
 |----|--|
-|`path`|Si commence `$`par : JSON chemin vers le champ qui deviendra le contenu de la colonne dans `$`le document Orc (JSON chemin qui dénote l’ensemble du document est ). Si la valeur ne `$`commence pas : une valeur constante est utilisée.|
-|`transform`|(Facultatif) [cartographier les transformations](#mapping-transformations) qui doivent être appliquées sur le contenu.
+|`path`|Si commence par `$`: chemin d’accès JSON au champ qui deviendra le contenu de la colonne dans le document orc (le chemin d’accès JSON qui indique le document `$`entier est). Si la valeur ne commence pas par `$`: une valeur constante est utilisée.|
+|`transform`|Facultatif [mappages de transformations](#mapping-transformations) qui doivent être appliqués au contenu.
 
-### <a name="example-of-orc-mapping"></a>Exemple de cartographie Orc
+### <a name="example-of-orc-mapping"></a>Exemple de mappage ORC
 
-``` json
+```json
 [
   { "column" : "rownumber",   "Properties":{"Path":"$.rownumber"}}, 
   { "column" : "xdouble",     "Properties":{"Path":"$.xdouble"}}, 
@@ -321,9 +322,9 @@ Chaque élément de la liste décrit une cartographie pour une colonne spécifiq
 ```      
 
 > [!NOTE]
-> Lorsque la cartographie ci-dessus `.ingest` est fournie dans le cadre de la commande de contrôle, elle est sérialisée sous forme de chaîne JSON.
+> Lorsque le mappage ci-dessus est fourni dans le `.ingest` cadre de la commande de contrôle, il est sérialisé en tant que chaîne JSON.
 
-```
+```kusto
 .ingest into Table123 (@"source1", @"source2") 
   with 
   (
@@ -336,17 +337,17 @@ Chaque élément de la liste décrit une cartographie pour une colonne spécifiq
   )
 ```
 
-## <a name="mapping-transformations"></a>Cartographier les transformations
+## <a name="mapping-transformations"></a>Mappages de transformations
 
-Certaines des cartes de format de données (Parquet, JSON et Avro) prennent en charge des transformations simples et utiles en cas d’ingère. Lorsque le scénario nécessite un traitement plus complexe au moment de l’ingérer, utilisez [la stratégie De mise à jour](update-policy.md), qui permet de définir le traitement léger à l’aide de l’expression KQL.
+Certains mappages de format de données (parquet, JSON et Avro) prennent en charge les transformations d’ingestion simples et utiles. Lorsque le scénario nécessite un traitement plus complexe à l’heure de réception, utilisez la [stratégie de mise à jour](update-policy.md), qui permet de définir un traitement léger à l’aide de l’expression KQL.
 
-|Transformation dépendante des chemins|Description|Conditions|
+|Transformation dépendante du chemin d’accès|Description|Conditions|
 |--|--|--|
-|`PropertyBagArrayToDictionary`|Transforme la gamme de propriétés JSON (par exemple les événements : [n1":"v1», "n2":"v2") au dictionnaire et le sérialise en document JSON valide (par exemple, "n1":"v1","n2":"v2").|Ne peut être `path` appliqué que lorsqu’il est utilisé|
-|`GetPathElement(index)`|Extrait un élément du chemin donné selon l’indice donné (par exemple, Chemin : $.a.b.c, GetPathElement(0) ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' '|Ne peut être `path` appliqué que lorsqu’il est utilisé|
-|`SourceLocation`|Nom de l’artefact de stockage qui a fourni les données, chaîne de type (par exemple, le champ "BaseUri" du blob).|
-|`SourceLineNumber`|Décalage par rapport à cet artefact de stockage, type long (en commençant par '1' et incrémentation par nouvel enregistrement).|
-|`DateTimeFromUnixSeconds`|Convertit le numéro représentant unix-temps (secondes depuis 1970-01-01) à la chaîne de date UTC|
-|`DateTimeFromUnixMilliseconds`|Convertit le nombre représentant unix-temps (millisecondes depuis 1970-01-01) à la chaîne de date UTC|
-|`DateTimeFromUnixMicroseconds`|Convertit le nombre représentant unix-time (microsecondes depuis 1970-01-01) en chaîne de date UTC|
-|`DateTimeFromUnixNanoseconds`|Convertit le nombre représentant unix-time (nanosecondes depuis 1970-01-01) en chaîne de date UTC|
+|`PropertyBagArrayToDictionary`|Transforme un tableau JSON de propriétés (par exemple, {Events : [{"N1" : "V1"}, {"N2" : "v2"}]}) en dictionary et le sérialise vers un document JSON valide (par exemple, {"N1" : "V1", "N2" : "v2"}).|Peut être appliqué uniquement quand `path` est utilisé|
+|`GetPathElement(index)`|Extrait un élément du chemin d’accès donné en fonction de l’index donné (par exemple, chemin d’accès : $. a. b. c, GetPathElement (0) = = "c", GetPathElement (-1) = = "b", chaîne de type|Peut être appliqué uniquement quand `path` est utilisé|
+|`SourceLocation`|Nom de l’artefact de stockage qui a fourni les données, type chaîne (par exemple, le champ « BaseUri » de l’objet BLOB).|
+|`SourceLineNumber`|Décalage par rapport à cet artefact de stockage, type long (commençant par « 1 » et incrémentant par nouvel enregistrement).|
+|`DateTimeFromUnixSeconds`|Convertit le nombre représentant l’heure UNIX (en secondes depuis 1970-01-01) en chaîne DateTime UTC|
+|`DateTimeFromUnixMilliseconds`|Convertit le nombre représentant l’heure UNIX (millisecondes depuis 1970-01-01) en chaîne DateTime UTC|
+|`DateTimeFromUnixMicroseconds`|Convertit le nombre représentant l’heure UNIX (en microsecondes depuis 1970-01-01) en une chaîne DateTime UTC|
+|`DateTimeFromUnixNanoseconds`|Convertit un nombre représentant l’heure UNIX (nanosecondes depuis 1970-01-01) en une chaîne DateTime UTC|

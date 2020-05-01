@@ -1,6 +1,6 @@
 ---
-title: .alter colonne - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit .alter colonne dans Azure Data Explorer.
+title: . ALTER COLUMN-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit la colonne. Alter dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,44 +8,44 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/11/2020
-ms.openlocfilehash: d41b4f452125fbfebc319112db244deaca79f37a
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: ecf0fa09438f8df5792d8826150d58f06360cace
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81522608"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82617865"
 ---
-# <a name="alter-column"></a>.alter colonne
+# <a name="alter-column"></a>.alter column
 
 Modifie le type de données d’une colonne de table existante.
 
 > [!WARNING]
-> Lors de la modification du type de données d’une colonne, toutes les données préexistantes dans cette colonne qui n’est pas du nouveau type de données seront ignorées dans les requêtes futures et seront remplacées par une [valeur nulle](../query/scalar-data-types/null-values.md). Après `alter column`avoir utilisé , que les données ne peuvent pas être récupérées, même en utilisant une autre commande pour modifier le type de colonne à une valeur précédente.
-> Voir [ci-dessous](#changing-column-type-without-data-loss) pour la procédure recommandée pour changer le type de colonne sans perdre de données.
+> Lorsque vous modifiez le type de données d’une colonne, toutes les données préexistantes de cette colonne qui ne sont pas du nouveau type de données sont ignorées dans les requêtes ultérieures et sont remplacées par une [valeur null](../query/scalar-data-types/null-values.md). Après l' `alter column`utilisation de, ces données ne peuvent pas être récupérées, même en utilisant une autre commande pour repasser le type de colonne à une valeur précédente.
+> Vous trouverez [ci-dessous](#changing-column-type-without-data-loss) la procédure recommandée pour modifier le type d’une colonne sans perdre de données.
 
 **Syntaxe** 
 
-`.alter``column` [*DatabaseName* `.`] *TableName* `.` *ColumnName* `type` `=` *ColumnNewType*
+`.alter``column` [*DatabaseName* `.`] *TableName* `.` *ColumnName* ColumnName `type` *ColumnNewType* ColumnNewType `=`
  
 **Exemple** 
 
-```
+```kusto
 .alter column ['Table'].['ColumnX'] type=string
 ```
 
-## <a name="changing-column-type-without-data-loss"></a>Changer le type de colonne sans perte de données
+## <a name="changing-column-type-without-data-loss"></a>Modification du type de colonne sans perte de données
 
-Pour modifier le type de colonne tout en conservant les données historiques, créez un nouveau tableau correctement tapé.
+Pour modifier le type de colonne tout en conservant les données d’historique, créez une nouvelle table correctement typée.
 
-Pour chaque `T1` table que vous souhaitez modifier un type de colonne, exécutez les étapes suivantes :
+Pour chaque table `T1` pour laquelle vous souhaitez modifier un type de colonne, exécutez les étapes suivantes :
 
-1. Créez une `T1_prime` table avec le schéma correct (les bons types de colonnes).
-1. Échangez les tables à l’aide de [tables .rename](rename-table-command.md) commande, ce qui permet d’échanger des noms de table.
+1. Créez une table `T1_prime` avec le schéma correct (les types de colonne de droite).
+1. Permutez les tables à l’aide de la commande [. Rename tables](rename-table-command.md) , qui permet de permuter les noms de tables.
 
-```
+```kusto
 .rename tables T_prime=T1, T1=T_prime
 ```
 
-Lorsque la commande se termine, `T1` les nouvelles données s’écoulent vers `T1_prime`qui est maintenant tapé correctement et les données historiques sont disponibles en .
+Lorsque la commande est terminée, les nouvelles données sont envoyées `T1` à qui est maintenant tapée correctement et les données d’historique `T1_prime`sont disponibles dans.
 
-Jusqu’à ce que `T1_prime` les données `T1` sortent de la fenêtre de `T1_prime`rétention, les requêtes touchantes doivent être modifiées pour effectuer l’union avec .
+Tant `T1_prime` que les données ne sont pas déplacées dans `T1` la fenêtre de rétention, les `T1_prime`requêtes qui touchent doivent être modifiées pour pouvoir effectuer une Union.

@@ -1,6 +1,6 @@
 ---
-title: .alter fiche de fonction - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit le dossier de fonction .alter dans Azure Data Explorer.
+title: . ALTER FUNCTION, dossier-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit le dossier. Alter Function dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,46 +8,46 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/11/2020
-ms.openlocfilehash: 140991c723ebdd12fa17000ea845adbbfdd27771
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 6becb5e29fd5771e1027c824b5a3539ed3c33b88
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81522540"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82617831"
 ---
-# <a name="alter-function-folder"></a>.modifier le dossier de fonction
+# <a name="alter-function-folder"></a>. ALTER FUNCTION, dossier
 
-Modifie la valeur Folder d’une fonction existante.
+Modifie la valeur de dossier d’une fonction existante.
 
-`.alter``function` *Dossier FunctionName* `folder` *Folder*
+`.alter``function` *FunctionName* `folder` *Dossier* nomfonction
 
 > [!NOTE]
-> * Nécessite [l’autorisation d’administration de base de données](../management/access-control/role-based-authorization.md)
-> * [L’utilisateur de base de données](../management/access-control/role-based-authorization.md) qui a créé la fonction à l’origine est autorisé à modifier la fonction. 
-> * Si la fonction n’existe pas, une erreur est retournée. Pour créer une nouvelle fonction, [.créer la fonction](create-function.md)
+> * Nécessite une [autorisation d’administrateur de base de données](../management/access-control/role-based-authorization.md)
+> * L' [utilisateur de base de données](../management/access-control/role-based-authorization.md) qui a créé la fonction à l’origine est autorisé à modifier la fonction. 
+> * Si la fonction n’existe pas, une erreur est retournée. Pour créer une fonction, [. Create, fonction](create-function.md)
 
 |Paramètre de sortie |Type |Description
 |---|---|--- 
 |Nom  |String |Nom de la fonction. 
-|Paramètres  |String |Les paramètres qui sont requis par la fonction.
-|body  |String |(Zéro ou plus) Laissez les déclarations suivies d’une expression CSL valide qui est évaluée sur l’invocation de la fonction.
-|Dossier|String|Un dossier qui est utilisé pour la catégorisation des fonctions d’interface utilisateur. Ce paramètre ne modifie pas la façon dont la fonction est invoquée.
-|DocString (en)|String|Une description de la fonction à des fins d’assurance-chômage.
+|Paramètres  |String |Paramètres requis par la fonction.
+|body  |String |(Zéro, un ou plusieurs) Instructions Let suivies d’une expression CSL valide qui est évaluée lors de l’appel de la fonction.
+|Dossier|String|Dossier utilisé pour la catégorisation des fonctions d’interface utilisateur. Ce paramètre ne modifie pas la manière dont la fonction est appelée.
+|DocString|String|Description de la fonction pour les besoins de l’interface utilisateur.
 
 **Exemple** 
 
-```
+```kusto
 .alter function MyFunction1 folder "Updated Folder"
 ```
     
-|Nom |Paramètres |body|Dossier|DocString (en)
+|Nom |Paramètres |body|Dossier|DocString
 |---|---|---|---|---
-|MyFunction2 |(myLimit: long)| "StormEvents &#124; limite myLimit"|Dossier mis à jour|Certains DocString|
+|MyFunction2 |(myLimit : long)| {StormEvents &#124; limite myLimit}|Dossier mis à jour|Certains DocString|
 
-```
+```kusto
 .alter function MyFunction1 folder @"First Level\Second Level"
 ```
     
-|Nom |Paramètres |body|Dossier|DocString (en)
+|Nom |Paramètres |body|Dossier|DocString
 |---|---|---|---|---
-|MyFunction2 |(myLimit: long)| "StormEvents &#124; limite myLimit"|Premier niveau-deuxième niveau|Certains DocString|
+|MyFunction2 |(myLimit : long)| {StormEvents &#124; limite myLimit}|Premier niveau Level\Second|Certains DocString|

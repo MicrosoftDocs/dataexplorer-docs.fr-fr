@@ -1,6 +1,6 @@
 ---
-title: Stratégie de mise à jour - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la politique de mise à jour dans Azure Data Explorer.
+title: Kusto mettre à jour la stratégie pour les données ajoutées à une source-Azure Explorateur de données
+description: Cet article décrit la stratégie de mise à jour dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,115 +8,115 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 812a5af932f69d898bb419631fa6ea3c6bc0795e
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 7d2b89e0723bbecb29ffd582ae20c2ee41199e45
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81519395"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82618494"
 ---
 # <a name="update-policy"></a>Mettre à jour la stratégie
 
-La stratégie de mise à jour est fixée sur une **table cible** qui demande à Kusto d’y annexer automatiquement des données chaque fois que de nouvelles données sont insérées dans le **tableau source**. La **requête** de la stratégie de mise à jour s’exécute sur les données insérées dans le tableau source. Cela permet, par exemple, la création d’une table comme vue filtrée d’une autre table, peut-être avec un schéma différent, la politique de rétention, et ainsi de suite.
+La stratégie de mise à jour est définie sur une **table cible** qui indique à Kusto de lui ajouter automatiquement des données chaque fois que de nouvelles données sont insérées dans la **table source**. La **requête** de la stratégie de mise à jour s’exécute sur les données insérées dans la table source. Cela permet, par exemple, la création d’une table en tant que vue filtrée d’une autre table, éventuellement avec un schéma différent, une stratégie de rétention, etc.
 
-Par défaut, l’échec de l’exécution de la stratégie de mise à jour n’affecte pas l’ingestion de données vers le tableau source. Si la stratégie de mise à jour est définie comme **transactionnelle,** l’échec de l’exécution de la stratégie de mise à jour force l’ingestion de données dans le tableau source à l’échec ainsi. (Les soins doivent être utilisés lorsque cela est fait parce que certaines erreurs de l’utilisateur, telles que la définition d’une requête incorrecte dans la stratégie de mise à jour, pourraient empêcher **toute** donnée d’être ingérée dans le tableau source.) Les données ingérées dans la « limite » des stratégies de mise à jour transactionnelles deviennent disponibles pour une requête dans une seule transaction.
+Par défaut, l’exécution de la stratégie de mise à jour n’affecte pas l’ingestion des données dans la table source. Si la stratégie de mise à jour est définie comme étant **transactionnelle**, l’échec de l’exécution de la stratégie de mise à jour entraîne l’échec de l’ingestion des données dans la table source. (La prudence doit être utilisée lorsque cette opération est effectuée car certaines erreurs de l’utilisateur, telles que la définition d’une requête incorrecte dans la stratégie de mise à jour, **peuvent empêcher la réception de données** dans la table source.) Les données ingérées dans la « limite » des stratégies de mise à jour transactionnelle deviennent disponibles pour une requête dans une transaction unique.
 
-La requête de la stratégie de mise à jour est exécutée en mode spécial, dans lequel elle « ne voit » que les données nouvellement ingérées à la table source. Il n’est pas possible d’interroger les données déjà ingérées de la table source dans le cadre de cette requête. Le faire se traduit rapidement par des ingestions quadratiques-temps.
+La requête de la stratégie de mise à jour est exécutée dans un mode spécial, dans lequel elle « ne voit » que les données nouvellement ingérées dans la table source. Il n’est pas possible d’interroger les données déjà ingérées de la table source dans le cadre de cette requête. Cela permet d’obtenir rapidement des ingestions de temps quadratiques.
 
-Étant donné que la stratégie de mise à jour est définie sur la table de destination, l’ingestion de données dans un tableau source peut entraîner l’exécution de multiples requêtes sur ces données. L’ordre d’exécution des politiques de mise à jour n’est pas défini.
+Étant donné que la stratégie de mise à jour est définie sur la table de destination, l’ingestion de données dans une table source peut entraîner l’exécution de plusieurs requêtes sur ces données. L’ordre d’exécution des stratégies de mise à jour n’est pas défini.
 
-Supposons, par exemple, que le tableau source est une table de traçabilité à haut débit avec des données intéressantes formatées comme colonne de texte libre. Supposons également que le tableau cible (sur lequel la politique de mise à jour est définie) n’accepte que des traces spécifiques, et avec un schéma bien structuré qui est une transformation des données originales de texte libre en utilisant [l’opérateur d’analyse de Kusto](../query/parseoperator.md).
+Par exemple, supposons que la table source est une table de trace à haut débit avec des données intéressantes mises en forme en tant que colonne de texte libre. Supposons également que la table cible (sur laquelle la stratégie de mise à jour est définie) accepte uniquement des lignes de suivi spécifiques et un schéma bien structuré qui est une transformation des données de texte libre d’origine à l’aide de l' [opérateur d’analyse](../query/parseoperator.md)de Kusto.
 
-La politique de mise à jour se comporte de la même façon que l’ingestion régulière et est soumise aux mêmes restrictions et aux mêmes pratiques exemplaires. Par exemple, il s’évolue avec la taille du cluster, et fonctionne plus efficacement si les ingestions sont faites en vrac.
+La stratégie de mise à jour se comporte de la même façon que l’ingestion normale et est soumise aux mêmes restrictions et meilleures pratiques. Par exemple, il évolue avec la taille du cluster et fonctionne plus efficacement si les ingestions sont effectuées dans de grands volumes.
 
 ## <a name="commands-that-trigger-the-update-policy"></a>Commandes qui déclenchent la stratégie de mise à jour
 
-Les stratégies de mise à jour prennent effet lorsque les données sont ingérées ou déplacées vers (des étendues sont créées) un tableau utilisant l’une des commandes suivantes :
+Les stratégies de mise à jour prennent effet lorsque les données sont ingérées ou déplacées vers (les extensions sont créées dans) une table à l’aide de l’une des commandes suivantes :
 
-* [.ingest (tirer)](../management/data-ingestion/ingest-from-storage.md)
-* [.ingest (en ligne)](../management/data-ingestion/ingest-inline.md)
-* [.set .append .set-or-append .set-or-replace](../management/data-ingestion/ingest-from-query.md)
-* [.déplacer les étendues](../management/extents-commands.md#move-extents)
-* [.remplacer les étendues](../management/extents-commands.md#replace-extents)
+* [. ingestion (pull)](../management/data-ingestion/ingest-from-storage.md)
+* [. ingestion (Inline)](../management/data-ingestion/ingest-inline.md)
+* [. Set |. Append |. set-or-Append |. set-or-Replace](../management/data-ingestion/ingest-from-query.md)
+* [. déplacer des étendues](../management/extents-commands.md#move-extents)
+* [. remplacement des extensions](../management/extents-commands.md#replace-extents)
 
-## <a name="the-update-policy-object"></a>L’objet de la politique de mise à jour
+## <a name="the-update-policy-object"></a>Objet de stratégie de mise à jour
 
-Un tableau peut avoir zéro, un ou plus d’objets de stratégie de mise à jour qui lui sont associés.
-Chaque objet est représenté comme un sac de propriété JSON, avec les propriétés suivantes définies:
+Une table peut être associée à zéro, un ou plusieurs objets de stratégie de mise à jour.
+Chaque objet de ce type est représenté sous la forme d’un conteneur de propriétés JSON, avec les propriétés suivantes définies :
 
 |Propriété |Type |Description  |
 |---------|---------|----------------|
-|IsEnabled                     |`bool`  |États si la politique de mise à jour est activée (vraie) ou désactivée (fausse)                                                                                                                               |
-|Source                        |`string`|Nom du tableau qui déclenche la politique de mise à jour à invoquer                                                                                                                                 |
-|Requête                         |`string`|Une requête Kusto CSL qui est utilisée pour produire les données pour la mise à jour                                                                                                                           |
-|IsTransactional               |`bool`  |États si la politique de mise à jour est transactionnelle ou non (par défaut à faux). Le défaut d’exécuter une stratégie de mise à jour transactionnelle fait en sorte que le tableau source n’est pas également mis à jour avec de nouvelles données.   |
-|PropagateIngestionProperties  |`bool`  |Les États si les propriétés d’ingestion (étiquettes d’étendue et temps de création) spécifiées lors de l’ingestion dans le tableau source doivent également s’appliquer à ceux du tableau dérivé.                 |
+|IsEnabled                     |`bool`  |Indique si la stratégie de mise à jour est activée (true) ou désactivée (false)                                                                                                                               |
+|Source                        |`string`|Nom de la table qui déclenche l’appel de la stratégie de mise à jour                                                                                                                                 |
+|Requête                         |`string`|Une requête Kusto CSL utilisée pour produire les données pour la mise à jour                                                                                                                           |
+|IsTransactional               |`bool`  |Indique si la stratégie de mise à jour est transactionnelle ou non (false par défaut). L’échec de l’exécution d’un résultat de stratégie de mise à jour transactionnelle dans la table source n’est pas mis à jour avec de nouvelles données.   |
+|PropagateIngestionProperties  |`bool`  |Indique si les propriétés d’ingestion (balises d’étendue et heure de création) spécifiées lors de l’ingestion dans la table source doivent également s’appliquer à celles de la table dérivée.                 |
 
 > [!NOTE]
 >
-> * Le tableau source et le tableau pour lequel la stratégie de mise à jour est définie **doivent être dans la même base de données**.
-> * La requête **ne** peut pas inclure de requêtes croisées ni de requêtes à grappes croisées.
-> * La requête peut invoquer des fonctions stockées.
-> * La requête est automatiquement portée pour couvrir les enregistrements nouvellement ingérés seulement.
-> * Les mises à jour en cascade`[update]`sont autorisées (TableA`[update]`-- --> TableB`[update]`-- --> TableC -- --> ...)
-> * Dans le cas où les stratégies de mise à jour sont définies sur plusieurs tableaux d’une manière circulaire, cela est détecté au moment de la course et la chaîne de mises à jour est coupée (ce qui signifie que les données ne seront ingérées qu’une seule fois à chaque table de la chaîne des tables touchées).
-> * Lorsque vous `Source` faites référence `Query` à la table dans la partie de la stratégie (ou dans les fonctions référencées par `cluster("ClusterName").database("DatabaseName").TableName`ce dernier), assurez-vous de ne **pas** utiliser le nom qualifié de la table (ce qui signifie, l’utilisation `TableName` et non **ni).** `database("DatabaseName").TableName`
-> * La requête de la stratégie de mise à jour ne peut pas faire référence à une table avec une [stratégie de sécurité au niveau de ligne](./rowlevelsecuritypolicy.md) qui est activée.
-> * Une requête qui est exécutée dans le cadre d’une politique de mise à jour n’a **pas** l’accès à des tableaux qui ont activé la [politique RestrictedViewAccess.](restrictedviewaccesspolicy.md)
-> * `PropagateIngestionProperties`n’entre en vigueur que dans les opérations d’ingestion. Lorsque la stratégie de mise `.move extents` à `.replace extents` jour est déclenchée dans le cadre d’une commande ou d’une commande, cette option **n’a aucun** effet.
-> * Lorsque la stratégie de mise à `.set-or-replace` jour est invoquée dans le cadre d’une commande, le comportement par défaut est que les données dans le tableau dérivé sont également remplacées, comme il est dans le tableau source.
+> * La table source et la table pour laquelle la stratégie de mise à jour est définie **doivent figurer dans la même base de données**.
+> * La requête ne peut **pas** inclure des requêtes de bases de données croisées ou entre clusters.
+> * La requête peut appeler des fonctions stockées.
+> * La requête est automatiquement étendue pour couvrir uniquement les enregistrements nouvellement ingérés.
+> * Les mises à jour en cascade sont autorisées (TableA-`[update]`---> TableB-`[update]`---> TableC-`[update]`--->...)
+> * Si les stratégies de mise à jour sont définies sur plusieurs tables de manière circulaire, elles sont détectées au moment de l’exécution et la chaîne des mises à jour est coupée (ce qui signifie que les données sont ingérées une seule fois dans chaque table de la chaîne de tables affectées).
+> * Lorsque vous faites `Source` référence à la `Query` table dans la partie de la stratégie (ou dans les fonctions référencées par ce dernier), assurez-vous que vous **n’utilisez pas** le nom `TableName` qualifié de la table (autrement dit, utilisez et **non pas** `database("DatabaseName").TableName` et `cluster("ClusterName").database("DatabaseName").TableName`).
+> * La requête de mise à jour de la stratégie ne peut pas faire référence à une table avec une [stratégie de sécurité au niveau des lignes](./rowlevelsecuritypolicy.md) activée.
+> * Une requête exécutée dans le cadre d’une stratégie de mise à jour ne dispose **pas** d’un accès en lecture aux tables pour lesquelles la [stratégie RestrictedViewAccess](restrictedviewaccesspolicy.md) est activée.
+> * `PropagateIngestionProperties`prend effet uniquement dans les opérations d’ingestion. Quand la stratégie de mise à jour est déclenchée dans `.move extents` le `.replace extents` cadre d’une commande ou, cette option n’a **aucun** effet.
+> * Quand la stratégie de mise à jour est appelée dans le `.set-or-replace` cadre d’une commande, le comportement par défaut est que les données de la ou des tables dérivées sont également remplacées, comme c’est le cas dans la table source.
 
-## <a name="retention-policy-on-the-source-table"></a>Politique de rétention sur la table source
+## <a name="retention-policy-on-the-source-table"></a>Stratégie de rétention sur la table source
 
-Afin de ne pas conserver les données brutes dans le tableau source, vous pouvez définir une période de suppression souple de 0 dans la stratégie de [conservation](retentionpolicy.md)du tableau source , tout en définissant la stratégie de mise à jour comme transactionnelle.
+Pour ne pas conserver les données brutes dans la table source, vous pouvez définir une période de suppression réversible de 0 dans la [stratégie de rétention](retentionpolicy.md)de la table source, tout en définissant la stratégie de mise à jour comme transactionnelle.
 
-Cela se traduira par :
-* Les données de source n’étant pas demandées à partir du tableau source.
-* Les données sources n’ont pas persisté au stockage durable dans le cadre de l’opération d’ingestion.
+Voici ce qui se produit :
+* Les données sources ne sont pas interroger à partir de la table source.
+* Les données sources ne sont pas rendues persistantes dans le stockage durable dans le cadre de l’opération d’ingestion.
 * Amélioration des performances de l’opération.
-* Réduction des ressources utilisées après l’ingestion, pour les opérations de toilettage des antécédents effectuées sur [les étendues](../management/extents-overview.md) du tableau source.
+* Réduction des ressources utilisées après la réception, pour les opérations de nettoyage en arrière-plan effectuées sur les [étendues](../management/extents-overview.md) de la table source.
 
 ## <a name="failures"></a>Échecs
 
-Dans certains cas, l’ingestion de données dans le tableau source réussit, mais la politique de mise à jour échoue lors de l’ingestion à la table cible.
+Dans certains cas, l’ingestion des données dans la table source réussit, mais la stratégie de mise à jour échoue lors de l’ingestion de la table cible.
 
-Les défaillances rencontrées pendant la mise à jour des stratégies peuvent être récupérées à l’aide de la [commande d’échecs d’ingestion .show,](../management/ingestionfailures.md)comme suit :
+Les défaillances rencontrées pendant la mise à jour des stratégies peuvent être récupérées à l’aide de la [commande. Show ingestion Failures](../management/ingestionfailures.md), comme suit :
  
 ```kusto
 .show ingestion failures 
 | where FailedOn > ago(1hr) and OriginatesFromUpdatePolicy == true
 ```
 
-Les échecs sont traités comme suit :
+Les échecs sont traités comme suit :
 
-* **Politique non transactionnelle**: L’échec est ignoré par Kusto. Toute nouvelle tentative est la responsabilité du propriétaire de données.  
-* **Politique transactionnelle**: L’opération d’ingestion initiale qui a déclenché la mise à jour échouera également. Le tableau source et la base de données ne seront pas modifiés avec de nouvelles données.
-  * Dans le cas où `pull` la méthode d’ingestion est (le service de gestion des données de Kusto est impliqué dans le processus d’ingestion), il ya une nouvelle tentative automatisée sur l’ensemble de l’opération d’ingestion, orchestrée par le service de gestion des données de Kusto, selon la logique suivante:
-    * Les retries sont faites jusqu’à ce qu’elles atteignent le plus tôt (par `DataImporterMaximumRetryPeriod` défaut de 2 jours) et `DataImporterMaximumRetryAttempts` (par défaut et 10).
-    * Les deux paramètres ci-dessus peuvent être modifiés dans la configuration du service de gestion des données, par KustoOps.
-    * La période de backoff commence à partir de 2 minutes, et croît de façon exponentielle (2 -> 4 -> 8 -> 16 ... minutes)
-  * Dans tous les autres cas, toute nouvelle tentative est la responsabilité du propriétaire de données.
+* **Stratégie non transactionnelle**: l’échec est ignoré par Kusto. Toute nouvelle tentative est la responsabilité du propriétaire des données.  
+* **Stratégie transactionnelle**: l’opération d’ingestion d’origine qui a déclenché la mise à jour échoue également. La table source et la base de données ne seront pas modifiées avec les nouvelles données.
+  * Dans le cas où la méthode d' `pull` ingestion est (le service gestion des données de Kusto est impliqué dans le processus d’ingestion), il existe une nouvelle tentative automatisée sur l’ensemble de l’opération d’ingestion, orchestrée par le service gestion des données de Kusto, conformément à la logique suivante :
+    * Les nouvelles tentatives sont effectuées jusqu’à atteindre la `DataImporterMaximumRetryPeriod` valeur la plus ancienne entre (valeur `DataImporterMaximumRetryAttempts` par défaut = 2 jours) et (valeur par défaut = 10).
+    * Les deux paramètres ci-dessus peuvent être modifiés dans la configuration du service Gestion des données, par KustoOps.
+    * La période d’interruption commence à 2 minutes et s’agrandit de façon exponentielle (2 > 4 > 8-> 16... maximum
+  * Dans tous les autres cas, toute nouvelle tentative est la responsabilité du propriétaire des données.
 
 
 
 ## <a name="control-commands"></a>Commandes de contrôle
 
-* Utilisez [la mise à jour de la politique TABLE de tableau .show](../management/update-policy.md#show-update-policy) pour afficher la stratégie de mise à jour actuelle d’une table.
-* Utilisez [la mise à jour de la stratégie TABLE de table .alter](../management/update-policy.md#alter-update-policy) pour définir la stratégie de mise à jour actuelle d’une table.
-* Utilisez [la mise à jour de la politique TABLE de fusion .alter-fusion](../management/update-policy.md#alter-merge-table-table-policy-update) pour annexer à la stratégie de mise à jour actuelle d’un tableau.
-* Utilisez [.supprimer la mise à jour de la stratégie TABLE](../management/update-policy.md#delete-table-table-policy-update) pour annexer à la stratégie de mise à jour actuelle d’un tableau.
+* Utilisez [. afficher la mise à jour](../management/update-policy.md#show-update-policy) de la stratégie de table de table pour afficher la stratégie de mise à jour actuelle d’une table.
+* Utilisez la [mise à jour de la stratégie de table table ALTER TABLE](../management/update-policy.md#alter-update-policy) pour définir la stratégie de mise à jour actuelle d’une table.
+* Utilisez la [mise à jour](../management/update-policy.md#alter-merge-table-table-policy-update) de la stratégie de table de table de fusion pour ajouter à la stratégie de mise à jour actuelle d’une table.
+* Utilisez [. supprimer la table table mise à jour](../management/update-policy.md#delete-table-table-policy-update) de la stratégie pour ajouter à la stratégie de mise à jour actuelle d’une table.
 
-## <a name="testing-an-update-policys-performance-impact"></a>Tester l’impact de la performance d’une politique de mise à jour
+## <a name="testing-an-update-policys-performance-impact"></a>Test de l’impact sur les performances d’une stratégie de mise à jour
 
-La définition d’une stratégie de mise à jour peut affecter les performances d’un cluster Kusto parce qu’elle affecte toute ingestion dans le tableau source. Il est fortement `Query` recommandé que la partie de la stratégie de mise à jour soit optimisée pour bien performer.
-Vous pouvez tester l’impact supplémentaire des performances d’une stratégie de mise à jour sur une opération d’ingestion en l’invoquant sur des étendues spécifiques et déjà existantes, avant de créer ou de modifier la stratégie et/ou une fonction qu’elle utilise dans sa `Query` partie.
+La définition d’une stratégie de mise à jour peut affecter les performances d’un cluster Kusto, car cela affecte toute réception dans la table source. Il est fortement recommandé que la `Query` partie de la stratégie de mise à jour soit optimisée pour s’exécuter correctement.
+Vous pouvez tester l’impact supplémentaire des performances d’une stratégie de mise à jour sur une opération d’ingestion en l’appelant sur des extensions spécifiques et déjà existantes, avant de créer ou de modifier la stratégie et/ou une `Query` fonction qu’elle utilise dans sa part.
 
 Cet exemple repose sur les données suivantes :
 
-* Le nom de `Source` table source (la `MySourceTable`propriété de la stratégie de mise à jour) est .
-* La `Query` propriété de la stratégie `MyFunction()`de mise à jour appelle une fonction nommée .
+* Le nom de la table source `Source` (la propriété de la stratégie de `MySourceTable`mise à jour) est.
+* La `Query` propriété de la stratégie de mise à jour appelle `MyFunction()`une fonction nommée.
 
-À l’aide de [requêtes .show](../management/queries.md), vous pouvez évaluer l’utilisation des ressources (CPU, mémoire, etc.) de la requête suivante, et/ou de multiples exécutions de celui-ci.
+À l’aide des [requêtes. Show](../management/queries.md), vous pouvez évaluer l’utilisation des ressources (processeur, mémoire, etc.) de la requête suivante et/ou plusieurs exécutions de celle-ci.
 
 ```kusto
 .show table MySourceTable extents;
