@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 03753cf7dcabb7637335d3dc71f0b9bca773e710
-ms.sourcegitcommit: fbe298e88542c0dcea0f491bb53ac427f850f729
+ms.openlocfilehash: e3f874ecfc0bb1872f08efa3269c73b02971e4f3
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82030444"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737638"
 ---
 # <a name="database-scope-function"></a>base de données () (fonction Scope)
 
@@ -86,6 +86,6 @@ La même requête que ci-dessus peut être réécrite pour être utilisée dans 
 
 ::: zone pivot="azuremonitor"
 
-Cela n’est pas pris en charge dans Azure Monitor
+Cette fonctionnalité n’est pas prise en charge dans Azure Monitor
 
 ::: zone-end

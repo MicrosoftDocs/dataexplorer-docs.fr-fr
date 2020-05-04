@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 03/23/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 69e5815fbe14805b0cf3044dafe8691bbea5fb88
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 90d06064069a17d6b1394701bb4ea72483061b9c
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618140"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737604"
 ---
 # <a name="tutorial"></a>Didacticiel
 
@@ -471,6 +471,6 @@ Logs | join cluster("TelemetryCluster").database("Telemetry").Metrics on Request
 
 ::: zone pivot="azuremonitor"
 
-Cela n’est pas pris en charge dans Azure Monitor
+Cette fonctionnalité n’est pas prise en charge dans Azure Monitor
 
 ::: zone-end

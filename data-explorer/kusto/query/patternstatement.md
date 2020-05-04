@@ -1,6 +1,6 @@
 ---
-title: énoncé de modèle - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit l’énoncé de modèle dans Azure Data Explorer.
+title: instruction pattern-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit l’instruction pattern dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,32 +10,32 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: d7ad021fe7b458d54beeb24b908420324b45ad39
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 97fc8361feb3d8dddb7d0722ce741ef44bd4cec6
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81765669"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737264"
 ---
-# <a name="pattern-statement"></a>énoncé de modèle
+# <a name="pattern-statement"></a>Pattern (instruction)
 
 ::: zone pivot="azuredataexplorer"
 
-Un **modèle** est une construction nommée de type vue qui cartographie les tuples de chaîne prédéfinis aux corps de fonction sans paramètres. Les motifs sont uniques en deux aspects :
+Un **modèle** est une construction de type vue nommée qui mappe des tuples de chaîne prédéfinis à des corps de fonction sans paramètre. Les modèles sont uniques en deux aspects :
 
-* Les motifs sont « invoqués » à l’aide d’une syntaxe qui ressemble à des références de table portées.
-* Les modèles ont un ensemble contrôlé, rapproché, de valeurs d’argumentation qui peuvent être cartographiés, et le processus de cartographie est fait par Kusto. Cela signifie que si un modèle est déclaré mais non défini, Kusto identifier et signaler comme une erreur toutes les invocations au modèle, ce qui permet de «résoudre» ces modèles par une application de niveau intermédiaire.
+* Les modèles sont appelés à l’aide d’une syntaxe qui ressemble aux références de table délimitées.
+* Les modèles ont un jeu de valeurs d’arguments contrôlé, fermé et terminé, qui peuvent être mappés, et le processus de mappage est effectué par Kusto. Cela signifie que si un modèle est déclaré mais pas défini, Kusto identifie et signale comme une erreur tous les appels au modèle, ce qui permet de « résoudre » ces modèles par une application de couche intermédiaire.
 
 
 ## <a name="pattern-declaration"></a>Déclaration de modèle
-L’énoncé de modèle est utilisé pour déclarer ou définir un modèle.
-Par exemple, ce qui suit est `app` une instruction de modèle qui déclare être un modèle :
+L’instruction Pattern est utilisée pour déclarer ou définir un modèle.
+Par exemple, voici une instruction pattern qui déclare `app` comme étant un modèle :
 
 ```kusto
 declare pattern app;
 ```
 
-Cette déclaration dit Kusto qui `app` est un modèle, mais ne dit pas Kusto comment résoudre le modèle. Par conséquent, toute tentative d’invoquer ce modèle dans la requête entraînera une erreur spécifique énumérant toutes ces invocations. Par exemple :
+Cette instruction indique à Kusto `app` qu’il s’agit d’un modèle, mais il n’indique pas à Kusto comment résoudre le modèle. Par conséquent, toute tentative d’appel de ce modèle dans la requête entraînera l’affichage d’une erreur spécifique qui répertorie tous les appels de ce type. Par exemple :
 
 ```kusto
 declare pattern app;
@@ -44,15 +44,15 @@ app("ApplicationX").StartEvents
 | count
 ```
 
-Cette requête va générer une erreur de Kusto, indiquant que les `app("ApplicationX")["StartEvents"]` invocations de modèle suivantes ne peuvent pas être résolues: et `app("ApplicationX")["StopEvents"]`.
+Cette requête génère une erreur à partir de Kusto, ce qui indique que les appels de modèle suivants ne peuvent `app("ApplicationX")["StartEvents"]` pas `app("ApplicationX")["StopEvents"]`être résolus : et.
 
 **Syntaxe**
 
-`declare``pattern` *PatternName (nom du modèle)*
+`declare``pattern` *PatternName*
 
-## <a name="pattern-definition"></a>Définition du modèle
+## <a name="pattern-definition"></a>Définition de modèle
 
-L’énoncé de modèle peut également être utilisé pour définir un modèle. Dans une définition de modèle, toutes les invocations possibles du modèle sont explicitement énoncées, et l’expression tabulaire correspondante donnée. Lorsque Kusto exécute alors la requête, il remplace chaque invocation de modèle par le corps de modèle correspondant. Par exemple :
+L’instruction pattern peut également être utilisée pour définir un modèle. Dans une définition de modèle, tous les appels possibles du modèle sont explicitement disposés, et l’expression tabulaire correspondante donnée. Quand Kusto exécute ensuite la requête, il remplace chaque appel de modèle par le corps de modèle correspondant. Par exemple :
 
 ```kusto
 declare pattern app = (applicationId:string)[eventType:string]
@@ -65,41 +65,41 @@ app("ApplicationX").StartEvents
 | count
 ```
 
-L’expression qui est fournie pour chaque modèle étant apparié est soit un nom de table ou une référence à une [déclaration de laisser](letstatement.md).
+L’expression fournie pour chaque modèle mis en correspondance est un nom de table ou une référence à une [instruction Let](letstatement.md).
 
 **Syntaxe**
 
-`declare``pattern` *PatternName* = `(`*ArgName* `:` *ArgType* [`,` ... ] `)` [`[` *PathName* `:` *PathArgType* `]`]`{`
-&nbsp;&nbsp;&nbsp;&nbsp;`(` *ArgValue1* `,` [ *ArgValue2* ... ] `)` [ `.[` Expression *de* `};` &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PathValue `]` ] `=` `{`[ `(` *ArgValue1_2* `,` ArgValue1_2 [ ArgValue2_2 ... ] *ArgValue2_2* &nbsp; `)` [ `.[` *PathValue_2* `]` ] `=` `{` *expression_2* `};` &nbsp; ... &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; ]        `}`
+`declare``pattern` *PatternName*PatternName = *ArgName* ArgName `:` *ArgType* [`,` ..`(`.] `)` [`[` *Nom de chemin* `:` *PathArgType* `]`]`{`
+&nbsp;&nbsp;&nbsp;&nbsp;`(` *ArgValue1* [`,` *ArgValue2* ...] `)` `.[` `]` `=` `{` *Expression* `(` *ArgValue1_2* *ArgValue2_2* [* PathValue] [ &nbsp; ArgValue1_2 [`,` ArgValue2_2.. &nbsp; .] &nbsp; &nbsp; `};` &nbsp; &nbsp; &nbsp; &nbsp; `)` [ `.[` *PathValue_2* `{` *expression_2* ] `=` expression_2`};` .. &nbsp; . `]` &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; ]        `}`
 
-* *PatternName*: Nom du mot clé du modèle. La syntaxe qui définit uniquement le mot clé est autorisée : pour détecter toutes les références de motifs avec un mot clé spécifié.
-* *ArgName*: Nom de l’argument de modèle. Les modèles permettent un ou plusieurs noms d’argument.
-* *ArgType*: Type de l’argument de modèle (actuellement seulement `string` est autorisé)
-* *PathName*: Nom de l’argument du chemin. Les modèles permettent zéro ou un nom de chemin.
-* *PathType*: Type de l’argument du chemin (actuellement seulement `string` est autorisé)
-* *ArgValue1*, *ArgValue2*, ... - valeurs `string` des arguments de modèle (actuellement seulement les littérals sont autorisés)
-* *PathValue* - valeur du chemin `string` de modèle (actuellement seuls les littérals sont autorisés)
-* *expression*: L’expression - une expression `Logs | where Timestamp > ago(1h)`tabulaire (par exemple, ), ou une expression lambda qui fait référence à une fonction. *expression*
+* *PatternName*: nom du mot clé Pattern. La syntaxe qui définit le mot clé uniquement est autorisée : pour la détection de toutes les références de modèle avec un mot clé spécifié.
+* *ArgName*: nom de l’argument de modèle. Les modèles autorisent un ou plusieurs noms d’arguments.
+* *ArgType*: type de l’argument de modèle (actuellement `string` autorisé uniquement)
+* *Pathname*: nom de l’argument Path. Les modèles autorisent zéro ou un nom de chemin d’accès.
+* *PathType*: type de l’argument Path (actuellement uniquement `string` autorisé)
+* *ArgValue1*, *ArgValue2*,...-valeurs des arguments de modèle (actuellement, `string` seuls les littéraux sont autorisés)
+* *PathValue* : valeur du chemin d’accès du modèle ( `string` actuellement, seuls les littéraux sont autorisés)
+* *expression*: expression tabulaire (par exemple, `Logs | where Timestamp > ago(1h)`) ou expression lambda qui fait *référence à une* fonction.
 
-## <a name="pattern-invocation"></a>Invocation de modèle
+## <a name="pattern-invocation"></a>Appel de modèle
 
-La syntaxe d’invocation de modèle est semblable à la syntaxe de référence de tableau étendue :
+La syntaxe d’appel de modèle est similaire à la syntaxe de référence de table étendue :
 
-* *PatternName* `(` *ArgValue1* [`,` *ArgValue2* ...] `).` *PathValue (en)*
-* *PatternName* `(` *ArgValue1* [`,` *ArgValue2* ...] `).["` *PathValue (en)*`"]`
+* *PatternName* `(` *ArgValue1* [`,` *ArgValue2* ...] `).` *PathValue*
+* *PatternName* `(` *ArgValue1* [`,` *ArgValue2* ...] `).["` *PathValue*`"]`
 
-## <a name="remarks"></a>Notes
+## <a name="remarks"></a>Notes 
 
 **Scénario**
 
-L’énoncé de modèle est conçu pour les applications de niveau intermédiaire qui acceptent les requêtes des utilisateurs, puis envoient ces requêtes à Kusto. De telles applications préfixent souvent ces requêtes d’utilisateur avec un modèle logique de schéma (un ensemble de [déclarations de laisser](letstatement.md), peut-être suffixé par une [déclaration de restriction](restrictstatement.md)).
-Dans certains cas, ces applications ont besoin d’une syntaxe qu’elles peuvent fournir aux utilisateurs pour référencer des entités qui ne peuvent pas être connues à l’avance et définies dans le schéma logique qu’elles construisent (soit parce qu’elles ne sont pas connues à l’avance, soit parce que le nombre d’entités potentielles est trop grand pour être prédéfini dans le schéma logique.
+L’instruction Pattern est conçue pour les applications de couche intermédiaire qui acceptent les requêtes utilisateur, puis envoie ces requêtes à Kusto. Ces applications préfixent souvent ces requêtes utilisateur avec un modèle de schéma logique (un ensemble d' [instructions Let](letstatement.md), éventuellement suffixées par une [instruction Restrict](restrictstatement.md)).
+Dans certains cas, ces applications ont besoin d’une syntaxe qu’elles peuvent fournir aux utilisateurs pour référencer des entités qui ne peuvent pas être connues à l’avance et définies dans le schéma logique qu’elles construisent (parce qu’elles ne sont pas connues à l’avance, car le nombre d’entités potentielles est trop important pour être prédéfinies dans le schéma logique.
 
-Pattern résoudre ce scénario de la manière suivante. L’application de niveau intermédiaire envoie la requête à Kusto avec tous les modèles déclarés, mais pas définis. Kusto analyse alors la requête, et s’il ya une ou plusieurs invocation de modèle en elle renvoie une erreur de retour à l’application de niveau intermédiaire avec toutes ces invocations explicitement énumérées. L’application de niveau intermédiaire peut alors résoudre chacune de ces références, et ré-exécuter la requête, cette fois préfixer avec la définition de modèle entièrement élaborée.
+Le modèle permet de résoudre ce scénario de la façon suivante. L’application de niveau intermédiaire envoie la requête à Kusto avec tous les modèles déclarés, mais non définis. Kusto analyse ensuite la requête et, s’il y a un ou plusieurs appels de modèle dans, retourne une erreur à l’application de niveau intermédiaire avec tous les appels explicitement listés. L’application de couche intermédiaire peut ensuite résoudre chacune de ces références et réexécuter la requête, cette fois la préfixe avec la définition de modèle entièrement élaborée.
 
-**Normalisations**
+**Normalisation**
 
-Kusto normalise automatiquement le modèle, ainsi par exemple les suivants sont tous les invocations du même modèle, et un seul est rapporté en arrière :
+Kusto normalise automatiquement le modèle. par exemple, les éléments suivants sont tous des appels du même modèle, et un seul est rapporté :
 
 ```kusto
 declare pattern app;
@@ -110,11 +110,11 @@ union
   app("ApplicationX").["StartEvent"]
 ```
 
-Cela signifie également que l’on ne peut pas les définir ensemble, car ils sont considérés comme les mêmes.
+Cela signifie également qu’il est impossible de les définir ensemble, car ils sont considérés comme identiques.
 
 **Caractères génériques**
 
-Kusto ne traite pas les wildcards d’une manière particulière. Par exemple, dans la requête suivante :
+Kusto ne traite pas les caractères génériques dans un modèle d’une manière particulière. Par exemple, dans la requête suivante :
 
 ```kusto
 declare pattern app;
@@ -122,11 +122,11 @@ union app("ApplicationX").*
 | count
 ```
 
-Kusto signalera une seule invocation manquante de modèle : `app("ApplicationX").["*"]`.
+Kusto signale un appel de modèle manquant unique : `app("ApplicationX").["*"]`.
 
 ## <a name="examples"></a>Exemples
 
-Questions sur plus d’une invocation modèle simple:
+Requêtes sur plus d’un appel de modèle unique :
 
 ```kusto
 declare pattern A
@@ -138,23 +138,23 @@ union (A('a1').Text), (A('a2').Text)
 
 |Application|SomeText|
 |---|---|
-|App #1|Il s’agit d’un texte gratuit: 1|
-|App #1|Il s’agit d’un texte gratuit: 2|
-|App #1|Il s’agit d’un texte gratuit: 3|
-|App #1|Il s’agit d’un texte gratuit: 4|
-|App #1|Il s’agit d’un texte gratuit: 5|
-|App #2|Il s’agit d’un texte gratuit: 9|
-|App #2|Il s’agit d’un texte gratuit: 8|
-|App #2|Il s’agit d’un texte gratuit: 7|
-|App #2|Il s’agit d’un texte gratuit: 6|
-|App #2|Il s’agit d’un texte gratuit: 5|
+|#1 d’application|Il s’agit d’un texte libre : 1|
+|#1 d’application|Il s’agit d’un texte libre : 2|
+|#1 d’application|Il s’agit d’un texte libre : 3|
+|#1 d’application|Il s’agit d’un texte libre : 4|
+|#1 d’application|Il s’agit d’un texte libre : 5|
+|#2 d’application|Il s’agit d’un texte libre : 9|
+|#2 d’application|Il s’agit d’un texte libre : 8|
+|#2 d’application|Il s’agit d’un texte libre : 7|
+|#2 d’application|Il s’agit d’un texte libre : 6|
+|#2 d’application|Il s’agit d’un texte libre : 5|
 
 ```kusto
 declare pattern App;
 union (App('a1').Text), (App('a2').Text)
 ```
 
-Erreur sémantique:
+Erreur sémantique :
 
      SEM0036: One or more pattern references were not declared. Detected pattern references: ["App('a1').['Text']","App('a2').['Text']"].
 
@@ -170,7 +170,7 @@ declare pattern App = (applicationId:string)[scope:string]
 union (App('a2').Metrics), (App('a3').Metrics) 
 ```
 
-Erreur sémantique retournée :
+Erreur sémantique retournée :
 
     SEM0036: One or more pattern references were not declared. Detected pattern references: ["App('a2').['Metrics']","App('a3').['Metrics']"].
 
@@ -178,6 +178,6 @@ Erreur sémantique retournée :
 
 ::: zone pivot="azuremonitor"
 
-Ce n’est pas pris en charge dans Azure Monitor
+Cette fonctionnalité n’est pas prise en charge dans Azure Monitor
 
 ::: zone-end

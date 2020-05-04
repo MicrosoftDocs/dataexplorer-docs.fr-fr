@@ -1,6 +1,6 @@
 ---
-title: extent_tags() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit extent_tags() dans Azure Data Explorer.
+title: extent_tags ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit extent_tags () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,20 +10,20 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: d8af7e51c5e2efb16763541db05e9ccc7e2cb95f
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 146ab59c1c0cbcb86bfae94fa26c09f5afa0f216
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81765428"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737587"
 ---
 # <a name="extent_tags"></a>extent_tags()
 
 ::: zone pivot="azuredataexplorer"
 
-Retourne un tableau dynamique avec les [balises](../management/extents-overview.md#extent-tagging) de l’éclat de données («étendue») dans lequel se trouve l’enregistrement actuel. 
+Retourne un tableau dynamique avec les [balises](../management/extents-overview.md#extent-tagging) du partition de données (« Extent ») dans lequel réside l’enregistrement en cours. 
 
-L’application de cette fonction à des données calculées qui ne sont pas attachées à un éclat de données renvoie une valeur vide.
+L’application de cette fonction aux données calculées qui ne sont pas attachées à un partition de données retourne une valeur vide.
 
 **Syntaxe**
 
@@ -31,11 +31,11 @@ L’application de cette fonction à des données calculées qui ne sont pas att
 
 **Retourne**
 
-Une valeur `dynamic` de type qui est un tableau contenant les étiquettes d’étendue de l’enregistrement actuel, ou une valeur vide.
+Valeur de type `dynamic` qui est un tableau contenant les balises d’étendue de l’enregistrement actuel ou une valeur vide.
 
 **Exemples**
 
-L’exemple suivant montre comment obtenir une liste les balises de tous les éclats de `ActivityId`données qui ont des enregistrements d’il ya une heure avec une valeur spécifique pour la colonne . Il démontre que certains opérateurs de `where` requête (ici, l’opérateur, mais cela est également vrai pour `extend` et `project`) préserver les informations sur les données éclatant hébergeant le dossier.
+L’exemple suivant montre comment obtenir la liste des balises de tous les partitions de données qui ont des enregistrements d’une heure auparavant, avec une valeur spécifique `ActivityId`pour la colonne. Il montre que certains opérateurs de requête (ici, `where` l’opérateur, mais cela est également vrai `extend` pour `project`et) conservent les informations sur le partition de données qui héberge l’enregistrement.
 
 ```kusto
 T
@@ -45,7 +45,7 @@ T
 | summarize by tostring(tags)
 ```
 
-L’exemple suivant montre comment obtenir un compte de tous les enregistrements de la dernière `MyTag` heure, qui sont stockés dans des `drop-by:MyOtherTag`étendues qui sont étiquetées avec l’étiquette (et potentiellement d’autres balises), mais pas étiqueté avec l’étiquette .
+L’exemple suivant montre comment obtenir le décompte de tous les enregistrements de la dernière heure, qui sont stockés dans des étendues qui sont balisées `MyTag` avec la balise (et éventuellement d’autres balises), `drop-by:MyOtherTag`mais qui ne sont pas marquées avec la balise.
 
 ```kusto
 T
@@ -59,6 +59,6 @@ T
 
 ::: zone pivot="azuremonitor"
 
-Ce n’est pas pris en charge dans Azure Monitor
+Cette fonctionnalité n’est pas prise en charge dans Azure Monitor
 
 ::: zone-end

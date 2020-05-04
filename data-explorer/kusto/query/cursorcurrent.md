@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 12/10/2019
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: d9a9526fd846523510e8555c04ff3345d9008348
-ms.sourcegitcommit: fbe298e88542c0dcea0f491bb53ac427f850f729
+ms.openlocfilehash: 5291fa664dc4736179d7f20984eacfd44efd5888
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82030461"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737655"
 ---
 # <a name="cursor_current-current_cursor"></a>cursor_current(), current_cursor()
 
@@ -39,6 +39,6 @@ Pour plus d’informations sur les curseurs de base de données, consultez [curs
 
 ::: zone pivot="azuremonitor"
 
-Cela n’est pas pris en charge dans Azure Monitor
+Cette fonctionnalité n’est pas prise en charge dans Azure Monitor
 
 ::: zone-end

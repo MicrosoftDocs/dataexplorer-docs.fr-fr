@@ -1,6 +1,6 @@
 ---
-title: cluster() (fonction de portée) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit le cluster () (fonction de portée) dans Azure Data Explorer.
+title: cluster () (fonction Scope)-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit cluster () (fonction Scope) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,18 +10,18 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: c5f537b47006af4035c9db26388c1d4110c69b55
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 092915c08b4b3d1e72722a4303e911403b2defd2
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81766102"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737196"
 ---
-# <a name="cluster-scope-function"></a>cluster() (fonction de portée)
+# <a name="cluster-scope-function"></a>cluster () (fonction Scope)
 
 ::: zone pivot="azuredataexplorer"
 
-Modifie la référence de la requête à un cluster distant. 
+Modifie la référence de la requête sur un cluster distant. 
 
 ```kusto
 cluster('help').database('Sample').SomeTable
@@ -33,18 +33,18 @@ cluster('help').database('Sample').SomeTable
 
 **Arguments**
 
-* *stringConstant*: Nom du cluster référencé. Nom de cluster peut être soit un nom DNS entièrement qualifié, ou une chaîne qui sera suffixe avec `.kusto.windows.net`. L’argument doit être _constant_ avant l’exécution de la requête, c’est-à-dire ne peut pas provenir d’une sous-évaluation de la requête.
+* *stringConstant*: nom du cluster qui est référencé. Le nom du cluster peut être un nom DNS complet ou une chaîne avec `.kusto.windows.net`un suffixe. L’argument doit être _constant_ avant l’exécution de la requête, ce qui signifie qu’il ne peut pas provenir de l’évaluation de la sous-requête.
 
 **Remarques**
 
-* Pour accéder à la base de données dans le même cluster - utiliser [la fonction de base de données()](databasefunction.md) .
-* Plus d’informations sur les requêtes inter-cluster et cross-database disponibles [ici](cross-cluster-or-database-queries.md)  
+* Pour accéder à la base de données dans la même fonction [de base de données de cluster ()](databasefunction.md) .
+* Plus d’informations sur les requêtes entre clusters et les bases de données croisées disponibles [ici](cross-cluster-or-database-queries.md)  
 
 ## <a name="examples"></a>Exemples
 
-### <a name="use-cluster-to-access-remote-cluster"></a>Utiliser le cluster() pour accéder à un cluster distant 
+### <a name="use-cluster-to-access-remote-cluster"></a>Utiliser le cluster () pour accéder au cluster distant 
 
-La requête suivante peut être exécutée sur n’importe lequel des clusters De Kusto.
+La requête suivante peut être exécutée sur n’importe quel cluster Kusto.
 
 ```kusto
 cluster('help').database('Samples').StormEvents | count
@@ -56,9 +56,9 @@ cluster('help.kusto.windows.net').database('Samples').StormEvents | count
 |---|
 |59066|
 
-### <a name="use-cluster-inside-let-statements"></a>Utiliser cluster() à l’intérieur laisser les instructions 
+### <a name="use-cluster-inside-let-statements"></a>Utilisation du cluster () à l’intérieur des instructions Let 
 
-La même requête que ci-dessus peut être réécrite pour utiliser `clusterName` la fonction en ligne (laisser l’instruction) qui reçoit un paramètre - qui est passé dans la fonction cluster() .
+La même requête que ci-dessus peut être réécrite pour utiliser la fonction inline (instruction Let) `clusterName` qui reçoit un paramètre, qui est transmis à la fonction cluster ().
 
 ```kusto
 let foo = (clusterName:string)
@@ -72,9 +72,9 @@ foo('help')
 |---|
 |59066|
 
-### <a name="use-cluster-inside-functions"></a>Utiliser cluster() à l’intérieur des fonctions 
+### <a name="use-cluster-inside-functions"></a>Utilisation du cluster () à l’intérieur des fonctions 
 
-La même requête que ci-dessus peut être réécrite pour `clusterName` être utilisée dans une fonction qui reçoit un paramètre - qui est passé dans la fonction cluster() .
+La même requête que ci-dessus peut être réécrite pour être utilisée dans une fonction qui `clusterName` reçoit un paramètre, qui est transmis à la fonction cluster ().
 
 ```kusto
 .create function foo(clusterName:string)
@@ -83,12 +83,12 @@ La même requête que ci-dessus peut être réécrite pour `clusterName` être u
 };
 ```
 
-**Remarque :** ces fonctions ne peuvent être utilisées que localement et non dans la requête à grappes croisées.
+**Remarque :** ces fonctions peuvent être utilisées uniquement localement et non dans la requête entre clusters.
 
 ::: zone-end
 
 ::: zone pivot="azuremonitor"
 
-Ce n’est pas pris en charge dans Azure Monitor
+Cette fonctionnalité n’est pas prise en charge dans Azure Monitor
 
 ::: zone-end

@@ -1,6 +1,6 @@
 ---
-title: tdigest_merge() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit tdigest_merge() dans Azure Data Explorer.
+title: tdigest_merge ()-Azure Explorateur de données
+description: Cet article décrit tdigest_merge () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/09/2019
-ms.openlocfilehash: 988d7f05791723a823a5850f6865a780477f7bd4
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 92dce1a98cc0e24dcfbfcd7cb875fa370e3ae1d0
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81506373"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737723"
 ---
 # <a name="tdigest_merge"></a>tdigest_merge()
 
-Fusionne les résultats les plus tdigestes [`tdigest_merge()`](tdigest-merge-aggfunction.md)(version scalaire de la version globale).
+Fusionne `tdigest` les résultats (version scalaire de la version [`tdigest_merge()`](tdigest-merge-aggfunction.md)de l’agrégat).
 
 En savoir plus sur l’algorithme sous-jacent (T-Digest) et l’erreur estimée [ici](percentiles-aggfunction.md#estimation-error-in-percentiles).
 
 **Syntaxe**
 
-`merge_tdigests(`*Expr1* `,` *Expr2 Expr2*`, ...)`
+`merge_tdigests(`*Expr1* `,` *expr2*`, ...)`
 
-`tdigest_merge(`*Expr1* `,` *Expr2* `, ...)` - Un alias.
+`tdigest_merge(`*Expr1* `,` *Expr2* expr2`, ...)` -un alias.
 
 **Arguments**
 
-* Colonnes qui a les tdigestes à fusionner.
+* Colonnes dont les `tdigest` valeurs doivent être fusionnées.
 
 **Retourne**
 
-Le résultat pour la `*Expr1*` `*Expr2*`fusion des colonnes , , ... `*ExprN*` à un tdigest.
+Résultat de la fusion des colonnes `*Expr1*`, `*Expr2*`,... `*ExprN*` à un `tdigest`.
 
 **Exemples**
 

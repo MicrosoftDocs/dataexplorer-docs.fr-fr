@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 04/01/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 6b33ee0ed9535d512c909dd8de124fc8b1770cee
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 3d88b04220851b8218d0d23fed93ba3627720afd
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618987"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737825"
 ---
 # <a name="python-plugin"></a>Plug-in Python
 
@@ -209,7 +209,7 @@ Vous pouvez installer des packages en procédant comme suit :
     * Spécifiez `external_artifacts` le paramètre avec un conteneur de propriétés de nom et une référence au fichier zip (l’URL de l’objet BLOB).
     * Dans votre code python inline : importez `Zipackage` à partir de `sandbox_utils` et appelez sa `install()` méthode avec le nom du fichier. zip.
 
-### <a name="example"></a> Exemple
+### <a name="example"></a>Exemple
 
 Installation du package [factice](https://pypi.org/project/Faker/) qui génère des données factices :
 
@@ -239,6 +239,6 @@ range Id from 1 to 3 step 1
 
 ::: zone pivot="azuremonitor"
 
-Cela n’est pas pris en charge dans Azure Monitor
+Cette fonctionnalité n’est pas prise en charge dans Azure Monitor
 
 ::: zone-end

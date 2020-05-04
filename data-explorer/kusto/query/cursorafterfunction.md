@@ -1,6 +1,6 @@
 ---
-title: cursor_after() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit cursor_after() dans Azure Data Explorer.
+title: cursor_after ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit cursor_after () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,41 +10,41 @@ ms.topic: reference
 ms.date: 02/19/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 39ec32322b74b55182522e4bbb04aa0c3830d8d2
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 9fab1ec936e950368667fc3afb133dcd952e44b5
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81766028"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737689"
 ---
 # <a name="cursor_after"></a>cursor_after()
 
 ::: zone pivot="azuredataexplorer"
 
-Un prédicat sur les enregistrements d’un tableau pour comparer leur temps d’ingestion avec un curseur de base de données.
+Prédicat sur les enregistrements d’une table pour comparer leur temps d’ingestion à un curseur de base de données.
 
 **Syntaxe**
 
-`cursor_after``(` *RHS (EN)*`)`
+`cursor_after``(` *RHS*`)`
 
 **Arguments**
 
-* *RHS*: Soit une chaîne vide littérale, soit une valeur valide de curseur de base de données.
+* *RHS*: un littéral de chaîne vide ou une valeur de curseur de base de données valide.
 
 **Retourne**
 
-Une valeur scalaire `bool` de type qui indique si l’enregistrement a été`true`ingéré`false`après le curseur de base de données *RHS* ( ) ou non ( ).
+Valeur scalaire de type `bool` qui indique si l’enregistrement a été reçu après le curseur de base de données`true` *RHS* () ou`false`non ().
 
 **Remarques**
 
-Consultez [les curseurs de base de données](../management/databasecursor.md) pour plus de détails sur les curseurs de base de données.
+Pour plus d’informations sur les curseurs de base de données, consultez [curseurs de](../management/databasecursor.md) base de données.
 
-Cette fonction ne peut être invoquée que sur les dossiers d’une table qui a activé la [politique IngestionTime.](../management/ingestiontimepolicy.md)
+Cette fonction ne peut être appelée que sur les enregistrements d’une table pour laquelle la [stratégie IngestionTime](../management/ingestiontimepolicy.md) est activée.
 
 ::: zone-end
 
 ::: zone pivot="azuremonitor"
 
-Ce n’est pas pris en charge dans Azure Monitor
+Cette fonctionnalité n’est pas prise en charge dans Azure Monitor
 
 ::: zone-end

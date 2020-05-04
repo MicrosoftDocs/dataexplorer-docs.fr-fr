@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 04/01/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 514c67133980c9ab1c38b65cc51e4592dcb15eda
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 1014b9090fef60816c4bbc0a7fd9b2fdc4c22801
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618958"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737791"
 ---
 # <a name="r-plugin-preview"></a>Plug-in R (version préliminaire)
 
@@ -135,7 +135,7 @@ typeof(*, fx:double),               //  Output schema: append a new fx column to
 
 ::: zone pivot="azuremonitor"
 
-Cela n’est pas pris en charge dans Azure Monitor
+Cette fonctionnalité n’est pas prise en charge dans Azure Monitor
 
 ::: zone-end
 

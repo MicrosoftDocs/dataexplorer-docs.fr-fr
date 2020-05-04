@@ -1,6 +1,6 @@
 ---
-title: Communiqué - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la déclaration de set dans Azure Data Explorer.
+title: Instruction Set-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit l’instruction Set dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,27 +10,27 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 8cb9c1d72f1b2e8e4bfbbd28d67c04295c9ccf5b
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 028bfb5a2d0ddf25f65cd16bca2c498d9dcb7059
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81765574"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737859"
 ---
 # <a name="set-statement"></a>Set, instruction
 
 ::: zone pivot="azuredataexplorer"
 
-L’instruction `set` est utilisée pour définir une option de requête pour la durée de la requête.
-Les options de requête contrôlent la manière dont une requête s’exécute et retourne les résultats. Ils peuvent être des drapeaux Boolean (hors par défaut), ou ont une valeur integer. Une requête peut contenir zéro, une ou plusieurs instructions set. Les énoncés définis n’affectent que les énoncés d’expression tabulaires qui les suivent dans l’ordre de programme.
+L' `set` instruction permet de définir une option de requête pour la durée de la requête.
+Les options de requête contrôlent la manière dont une requête s’exécute et retourne les résultats. Ils peuvent être des indicateurs booléens (désactivés par défaut) ou avoir une valeur entière. Une requête peut contenir zéro, une ou plusieurs instructions set. Les instructions SET affectent uniquement les instructions d’expression tabulaire qui les tracent dans l’ordre du programme.
 
-* Les options de requête peuvent également être activées de manière programmatique en les plaçant dans l’objet. `ClientRequestProperties` Voir [ici](../api/netfx/request-properties.md).
+* Les options de requête peuvent également être activées par programme en les définissant dans l' `ClientRequestProperties` objet. Voir [ici](../api/netfx/request-properties.md).
   
-* Les options de requête ne font pas officiellement partie de la langue Kusto et peuvent être modifiées sans être considérées comme un changement de langue de rupture.
+* Les options de requête ne font pas partie intégrante du langage Kusto et peuvent être modifiées sans être considérées comme un changement de langue.
 
 **Syntaxe**
 
-`set`*OptionName* `=` [ *OptionValue*]
+`set`*NomOption* [`=` *OptionValue*]
 
 **Exemple**
 
@@ -43,6 +43,6 @@ Events | take 100
 
 ::: zone pivot="azuremonitor"
 
-Ce n’est pas pris en charge dans Azure Monitor
+Cette fonctionnalité n’est pas prise en charge dans Azure Monitor
 
 ::: zone-end

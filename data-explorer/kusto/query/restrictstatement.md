@@ -1,6 +1,6 @@
 ---
-title: Restriction de la déclaration - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la déclaration de Restriction dans Azure Data Explorer.
+title: Instruction Restrict-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit l’instruction Restrict dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,40 +10,40 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: cbd21c01956f817c5db19a93104028dba2b2b2b4
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 094cec5b467c35eb9dbeeb756362bd13c77873ce
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81765990"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737774"
 ---
 # <a name="restrict-statement"></a>Restrict, instruction
 
 ::: zone pivot="azuredataexplorer"
 
-L’énoncé de restriction limite l’ensemble des entités de table/vue qui sont visibles pour les énoncés de requête qui le suivent. Par exemple, dans une base`A`de `B`données qui comprend deux tableaux (, `B` ), l’application peut empêcher `A` le reste de la requête d’accéder et seulement "voir" une forme limitée de table en utilisant une vue.
+L’instruction Restrict limite l’ensemble des entités de table ou de vue qui sont visibles pour les instructions de requête qui la suivent. Par exemple, dans une base de données qui comprend deux`A`tables `B`(,), l’application peut empêcher le reste de la requête d' `B` accéder à et de « voir » une forme limitée `A` de table à l’aide d’une vue.
 
-Le scénario principal de l’énoncé de restriction est pour les applications de niveau intermédiaire qui acceptent les requêtes des utilisateurs et qui veulent appliquer un mécanisme de sécurité au niveau des lignes sur ces requêtes. L’application de niveau intermédiaire peut préfixer la requête de l’utilisateur avec un **modèle logique,** un ensemble `T | where UserId == "..."`de déclarations de laisser définir les vues qui limitent l’accès de l’utilisateur aux données (par exemple, ). Au fur et à mesure que la dernière déclaration est ajoutée, elle restreint seulement l’accès de l’utilisateur au modèle logique.
+Le scénario principal de l’instruction Restrict est destiné aux applications de couche intermédiaire qui acceptent les requêtes des utilisateurs et souhaitent appliquer un mécanisme de sécurité au niveau des lignes à ces requêtes. L’application de niveau intermédiaire peut préfixer la requête de l’utilisateur avec un **modèle logique**, un ensemble d’instructions Let définissant des vues qui limitent l’accès de l’utilisateur `T | where UserId == "..."`aux données (par exemple,). Lorsque la dernière instruction est ajoutée, elle limite l’accès de l’utilisateur au modèle logique uniquement.
 
 **Syntaxe**
 
 `restrict``access` `,` [EntitySpecifier [...]]*EntitySpecifier* `to` `(``)`
 
-Où *EntitySpecifier* est l’un des:
-* Un identifiant défini par une déclaration de laisser comme une vue tabulaire.
-* Une référence de tableau (semblable à celle utilisée par un communiqué syndical).
-* Un modèle défini par une déclaration de modèle.
+Où *EntitySpecifier* est l’un des éléments suivants :
+* Identificateur défini par une instruction Let comme vue tabulaire.
+* Référence de table (semblable à celle utilisée par une instruction Union).
+* Modèle défini par une déclaration de modèle.
 
-Toutes les tables, vues tabulaires ou motifs qui ne sont pas spécifiés par l’énoncé de restriction deviennent « invisibles » pour le reste de la requête. 
+Toutes les tables, vues tabulaires ou modèles qui ne sont pas spécifiés par l’instruction Restrict deviennent « invisibles » pour le reste de la requête. 
 
 **Remarques**
 
-L’énoncé de restriction peut être utilisé pour restreindre l’accès aux entités d’une autre base de données ou d’un autre cluster (les cartes sauvages ne sont pas prises en charge dans les noms de cluster).
+L’instruction Restrict peut être utilisée pour restreindre l’accès aux entités d’une autre base de données ou d’un autre cluster (les caractères génériques ne sont pas pris en charge dans les noms de cluster).
 
 **Arguments**
 
-L’énoncé de restriction peut obtenir un ou plusieurs paramètres qui définissent la restriction permissive lors de la résolution du nom de l’entité. L’entité peut être :
-- [laisser](./letstatement.md) la `restrict` déclaration apparaître avant la déclaration. 
+L’instruction Restrict peut obtenir un ou plusieurs paramètres qui définissent la restriction permissive lors de la résolution de noms de l’entité. L’entité peut être :
+- [instruction Let](./letstatement.md) qui apparaît `restrict` avant l’instruction. 
 
 ```kusto
 // Limit access to 'Test' let statement only
@@ -51,7 +51,7 @@ let Test = () { print x=1 };
 restrict access to (Test);
 ```
 
-- [Tables](../management/tables.md) ou [fonctions définies](../management/functions.md) dans les métadonnées de base de données.
+- [Tables](../management/tables.md) ou [fonctions](../management/functions.md) définies dans les métadonnées de la base de données.
 
 ```kusto
 // Assuming the database that the query uses has table Table1 and Func1 defined in the metadata, 
@@ -60,7 +60,7 @@ restrict access to (Test);
 restrict access to (database().Table1, database().Func1, database('DB2').Table2);
 ```
 
-- Modèles Wildcard qui peuvent correspondre à des multiples de [déclarations de laisser](./letstatement.md) ou des tables / fonctions  
+- Modèles de caractères génériques pouvant correspondre à des multiples d' [instructions Let](./letstatement.md) ou de tables/fonctions  
 
 ```kusto
 let Test1 = () { print x=1 };
@@ -82,7 +82,7 @@ restricts access to (database('DB2').*);
 
 **Exemples**
 
-L’exemple suivant montre comment une application de niveau intermédiaire peut prépendrer la requête d’un utilisateur avec un modèle logique qui empêche l’utilisateur d’interroger les données d’un autre utilisateur.
+L’exemple suivant montre comment une application de couche intermédiaire peut ajouter une requête d’utilisateur à un modèle logique qui empêche l’utilisateur d’interroger les données d’un autre utilisateur.
 
 ```kusto
 // Assume the database has a single table, UserData,
@@ -139,6 +139,6 @@ Table1 |  count
 
 ::: zone pivot="azuremonitor"
 
-Ce n’est pas pris en charge dans Azure Monitor
+Cette fonctionnalité n’est pas prise en charge dans Azure Monitor
 
 ::: zone-end

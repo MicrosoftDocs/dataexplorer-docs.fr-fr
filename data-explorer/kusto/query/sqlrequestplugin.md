@@ -1,6 +1,6 @@
 ---
-title: sql_request plugin - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit sql_request plugin dans Azure Data Explorer.
+title: plug-in sql_request-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit sql_request plug-in dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,36 +10,36 @@ ms.topic: reference
 ms.date: 02/24/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: f0c0837c6bb8e4dcd3cf2e28af18d02c19edb676
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 725021ad8089d7e9ad4f897bd5a1c68f6912bf7a
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81766179"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737281"
 ---
 # <a name="sql_request-plugin"></a>plug-in sql_request
 
 ::: zone pivot="azuredataexplorer"
 
-  `evaluate``sql_request` `,` *Options*`,` *ConnectionString* `,` *SqlQuery* ConnectionString SqlQuery [ *SqlParameters* [ Options ]] `(``)`
+  `evaluate``sql_request` `,` *SqlQuery* `,` *Options* *ConnectionString* `,` ConnectionString SqlQuery [SqlParameters [options]] *SqlParameters* `(``)`
 
-Le `sql_request` plugin envoie une requête SQL à un point de terminaison du réseau SQL Server et renvoie le premier jeu de ligne dans les résultats.
+Le `sql_request` plug-in envoie une requête SQL à un point de terminaison de réseau SQL Server et retourne le premier ensemble de lignes dans les résultats.
 
 **Arguments**
 
-* *ConnectionString*: `string` Un littéral indiquant la chaîne de connexion qui pointe vers le point de terminaison du réseau SQL Server. Voir ci-dessous pour les méthodes valides d’authentification et comment spécifier le point de terminaison du réseau.
+* *ConnectionString*: `string` littéral indiquant la chaîne de connexion qui pointe vers le point de terminaison du réseau SQL Server. Voir ci-dessous pour connaître les méthodes d’authentification valides et spécifier le point de terminaison réseau.
 
-* *SqlQuery*: `string` Un littéral indiquant la requête qui doit être exécutée contre le critère de terminaison SQL. Doit retourner un ou plusieurs rames, mais seul le premier est mis à disposition pour le reste de la requête Kusto.
+* *SqlQuery*: `string` littéral indiquant la requête à exécuter sur le point de terminaison SQL. Doit retourner un ou plusieurs ensembles de lignes, mais seul le premier est rendu disponible pour le reste de la requête Kusto.
 
-* *SqlParameters*: Une valeur `dynamic` constante de type qui détient les paires de valeur clé à passer comme paramètres avec la requête. facultatif.
+* *SqlParameters*: valeur constante de type `dynamic` qui contient des paires clé-valeur à passer comme paramètres avec la requête. facultatif.
   
-* *Options*: Une valeur `dynamic` constante de type qui contient des paramètres plus avancés en tant que paires de valeur clé. Actuellement, `token` on ne peut le régler que pour passer un jeton d’accès AAD fourni par l’appelant qui est transmis au point de terminaison SQL pour l’authentification. facultatif.
+* *Options*: valeur constante de type `dynamic` qui contient des paramètres plus avancés en tant que paires clé-valeur. Actuellement, `token` seul peut être défini, pour transmettre un jeton d’accès AAD fourni par l’appelant, qui est transféré au point de terminaison SQL pour l’authentification. facultatif.
 
 **Exemples**
 
-L’exemple suivant envoie une requête SQL à une base de données `[dbo].[Table]`Azure SQL DB récupérant tous les enregistrements à partir de , puis traite les résultats du côté kusto. L’authentification réutilise le jeton AAD de l’utilisateur d’appel.
+L’exemple suivant envoie une requête SQL à une base de données Azure SQL DB en extrayant tous `[dbo].[Table]`les enregistrements de, puis traite les résultats du côté Kusto. L’authentification réutilise le jeton AAD de l’utilisateur appelant.
 
-Remarque : Cet exemple ne doit pas être considéré comme une recommandation de filtrer/projeter les données de cette manière. Il est généralement préférable que des requêtes SQL seront construites pour retourner le plus petit ensemble de données possible, car actuellement l’optimiseur Kusto ne tente pas d’optimiser les requêtes entre Kusto et SQL.
+Remarque : cet exemple ne doit pas être considéré comme une recommandation pour filtrer/projeter les données de cette manière. Il est généralement préférable que les requêtes SQL soient construites pour retourner le plus petit jeu de données possible, car l’optimiseur Kusto ne tente pas d’optimiser les requêtes entre Kusto et SQL.
 
 ```kusto
 evaluate sql_request(
@@ -51,7 +51,7 @@ evaluate sql_request(
 | project Name
 ```
 
-L’exemple suivant est identique à celui précédent, sauf que l’authentification SQL se fait par nom d’utilisateur/mot de passe. Notez que pour la confidentialité, nous utilisons des cordes obscurcies ici.
+L’exemple suivant est identique au précédent, à ceci près que l’authentification SQL est effectuée par nom d’utilisateur/mot de passe. Notez que, pour la confidentialité, nous utilisons ici des chaînes obscurcies.
 
 ```kusto
 evaluate sql_request(
@@ -66,43 +66,43 @@ evaluate sql_request(
 
 **Authentification**
 
-Le plugin sql_request prend en charge trois méthodes d’authentification au point de terminaison SQL Server :
+Le plug-in sql_request prend en charge trois méthodes d’authentification pour le point de terminaison de SQL Server :
 
-* **Authentification intégrée AAD** (`Authentication="Active Directory Integrated"`): C’est la méthode préférée, dans laquelle l’utilisateur ou l’application authentifie via AAD à Kusto, et le même jeton est ensuite utilisé pour accéder au critère de terminaison du réseau SQL Server.
+* **Authentification intégrée AAD** (`Authentication="Active Directory Integrated"`) : il s’agit de la méthode recommandée, dans laquelle l’utilisateur ou l’application s’authentifie via AAD sur Kusto, et le même jeton est utilisé pour accéder au point de terminaison du réseau SQL Server.
 
-* **Authentification du nom d’utilisateur/mot de passe** ()`User ID=...; Password=...;`: La prise en charge de cette méthode est fournie lorsque l’authentification intégrée AAD ne peut pas être effectuée. Évitez cette méthode, si possible, que les informations secrètes sont envoyées par Kusto.
+* **Authentification par nom d’utilisateur/mot de passe** (`User ID=...; Password=...;`) : la prise en charge de cette méthode est fournie lorsque l’authentification intégrée AAD ne peut pas être effectuée. Évitez cette méthode, dans la mesure du possible, car les informations secrètes sont envoyées par le biais de Kusto.
 
-* **AAD access token** (`dynamic({'token': h"eyJ0..."})`): Avec cette méthode d’authentification, le jeton d’accès est généré par l’appelant et transmis par Kusto au point de terminaison SQL. La chaîne de connexion ne `Authentication`doit `User ID`pas `Password`inclure des informations d’authentification comme , , ou . Au lieu de cela, `token` le jeton d’accès est passé comme propriété dans l’argument `Options` du plugin sql_request.
+* **Jeton d’accès AAD** (`dynamic({'token': h"eyJ0..."})`) : avec cette méthode d’authentification, le jeton d’accès est généré par l’appelant et transféré par Kusto au point de terminaison SQL. La chaîne de connexion ne doit pas inclure d' `Authentication`informations `User ID`d’authentification `Password`telles que, ou. Au lieu de cela, le jeton d' `token` accès est transmis `Options` en tant que propriété dans l’argument du plug-in sql_request.
      
 > [!WARNING]
-> Les chaînes de connexion et les requêtes qui comprennent des informations confidentielles ou des informations qui doivent être gardées doivent être obscurcies de sorte qu’elles soient omises de tout traçage Kusto.
-> Voir [les littérals de cordes obscurcis](scalar-data-types/string.md#obfuscated-string-literals) pour plus de détails.
+> Les chaînes de connexion et les requêtes qui incluent des informations confidentielles ou des informations qui doivent être protégées doivent être obscurcies afin qu’elles soient omises de tout suivi Kusto.
+> Pour plus d’informations, consultez [littéraux de chaîne obscurcis](scalar-data-types/string.md#obfuscated-string-literals) .
 
 **Chiffrement et validation du serveur**
 
-Les propriétés de connexion suivantes sont forcées lors de la connexion à un point de terminaison du réseau SQL Server, pour des raisons de sécurité :
+Les propriétés de connexion suivantes sont forcées lors de la connexion à un point de terminaison de réseau SQL Server, pour des raisons de sécurité :
 
-* `Encrypt`est réglé `true` sans condition.
-* `TrustServerCertificate`est réglé `false` sans condition.
+* `Encrypt`a la valeur `true` sans condition.
+* `TrustServerCertificate`a la valeur `false` sans condition.
 
-Par conséquent, le serveur SQL doit être configuré avec un certificat serveur SSL/TLS valide.
+Par conséquent, le SQL Server doit être configuré avec un certificat de serveur SSL/TLS valide.
 
-**Spécifier le critère de terminaison du réseau**
+**Spécification du point de terminaison réseau**
 
-Il est obligatoire de spécifier le critère d’évaluation du réseau SQL dans le cadre de la chaîne de connexion.
+La spécification du point de terminaison de réseau SQL dans le cadre de la chaîne de connexion est obligatoire.
 La syntaxe appropriée est :
 
-`Server``=` *FQDN* `,` *Port*FQDN [ Port ] `tcp:`
+`Server``=` *FQDN* `,` *Port*Nom de domaine complet [port] `tcp:`
 
 Où :
 
-* *FQDN* est le nom de domaine entièrement qualifié du point de terminaison.
+* *FQDN* est le nom de domaine complet du point de terminaison.
 
 * *Port* est le port TCP du point de terminaison. Par défaut, `1433` est supposé.
 
 > [!NOTE]
-> D’autres formes de spécifier le critère de terminaison du réseau ne sont pas prises en charge.
-> On ne peut pas omettre, par exemple, le préfixe `tcp:` même s’il est possible de le faire lors de l’utilisation des bibliothèques client SQL programmatique.
+> Les autres formes de spécification du point de terminaison réseau ne sont pas prises en charge.
+> Vous ne pouvez pas omettre, par exemple, `tcp:` le préfixe, même s’il est possible de le faire en utilisant les bibliothèques clientes SQL par programmation.
 
 
 
@@ -110,6 +110,6 @@ Où :
 
 ::: zone pivot="azuremonitor"
 
-Ce n’est pas pris en charge dans Azure Monitor
+Cette fonctionnalité n’est pas prise en charge dans Azure Monitor
 
 ::: zone-end

@@ -1,6 +1,6 @@
 ---
-title: series_fill_linear() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit series_fill_linear() dans Azure Data Explorer.
+title: series_fill_linear ()-Azure Explorateur de données
+description: Cet article décrit series_fill_linear () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,43 +8,43 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 4f9a12d172a1580d6a9e575b78b14404dce7820e
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 4ef02ab79b0701b4af74744a94e0ff795eb8c26a
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81508651"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737247"
 ---
 # <a name="series_fill_linear"></a>series_fill_linear()
 
-Effectue l’interpolation linéaire des valeurs manquantes dans une série.
+Interpole de manière linéaire les valeurs manquantes dans une série.
 
-Prend une expression contenant un tableau numérique dynamique comme entrée, effectue l’interpolation linéaire pour tous les cas de missing_value_placeholder et renvoie le tableau résultant. Si le début et la fin du tableau contiennent missing_value_placeholder, il sera remplacé par la valeur la plus proche autre que missing_value_placeholder (peut être désactivé). Si l’ensemble du tableau se compose de la missing_value_placeholder alors le tableau sera rempli de constant_value ou 0 si aucun spécifié.  
+Prend une expression contenant un tableau numérique dynamique comme entrée, effectue une interpolation linéaire pour toutes les instances de missing_value_placeholder et retourne le tableau résultant. Si le début et la fin du tableau contiennent missing_value_placeholder, il sera remplacé par la valeur la plus proche de missing_value_placeholder. Cette fonctionnalité peut être désactivée. Si le tableau entier se compose du missing_value_placeholder, le tableau est rempli avec constant_value ou 0 s’il n’est pas spécifié.  
 
 **Syntaxe**
 
-`series_fill_linear(`*x* `[,` *missing_value_placeholder*` [,`*fill_edges*` [,`*constant_value*`]]]))`
-* Retournera l’interpolation linéaire de série de *x* en utilisant des paramètres spécifiés.
+`series_fill_linear(`*x* `[,` *missing_value_placeholder*missing_value_placeholder` [,`*fill_edges*fill_edges` [,`*constant_value*`]]]))`
+* Retourne une interpolation linéaire de série de *x* à l’aide des paramètres spécifiés.
  
 
 **Arguments**
 
-* *x*: expression scalaire de tableau dynamique qui est un éventail de valeurs numériques.
-* *missing_value_placeholder*: paramètre facultatif qui précise un espace réservé aux " valeurs manquantes " à remplacer. La valeur `double`par défaut est *(nulle*).
-* *fill_edges*: Valeur Boolean qui indique si *missing_value_placeholder* au début et à la fin du tableau doivent être remplacés par la valeur la plus proche. *Vrai* par défaut. Si réglé à *faux,* puis *missing_value_placeholder* au début et à la fin du tableau sera préservé.
-* *constant_value*: paramètre facultatif pertinent uniquement pour les tableaux entièrement se compose de valeurs *nulles,* ce qui spécifie la valeur constante pour remplir la série avec. La valeur par défaut est *de 0*. La définition de `double`ce paramètre (*nul*) laissera effectivement des valeurs *nulles* là où elles se trouvent.
+* *x*: expression scalaire de tableau dynamique, qui est un tableau de valeurs numériques.
+* *missing_value_placeholder*: paramètre facultatif, qui spécifie un espace réservé pour les « valeurs manquantes » à remplacer. La valeur par `double`défaut est (*null*).
+* *fill_edges*: valeur booléenne qui indique si *missing_value_placeholder* au début et à la fin du tableau doit être remplacé par la valeur la plus proche. *True* par défaut. Si la valeur est *false*, *missing_value_placeholder* au début et à la fin du tableau sera préservé.
+* *constant_value*: le paramètre facultatif pertinent uniquement pour les tableaux est constitué entièrement de valeurs *null* . Ce paramètre spécifie une valeur de constante avec laquelle remplir la série. La valeur par défaut est *0*. L’affectation de la valeur `double`(*null*) à ce paramètre permet de conserver les valeurs *null* là où elles se trouvent.
 
 **Remarques**
 
-* Afin d’appliquer toutes les fonctions d’interpolation après [la série,](make-seriesoperator.md) il est recommandé de spécifier *nul* comme valeur par défaut: 
+* Pour appliquer des fonctions d’interpolation après [Make-Series](make-seriesoperator.md), spécifiez *null* comme valeur par défaut : 
 
 ```kusto
 make-series num=count() default=long(null) on TimeStamp in range(ago(1d), ago(1h), 1h) by Os, Browser
 ```
 
-* Le *missing_value_placeholder* peut être de n’importe quel type qui sera converti en types d’éléments réels. Par `double`conséquent, `long`soit ( `int`*nul*), (*nul*) ou (*nul*) ont le même sens.
-* Si *missing_value_placeholder* est `double`*(nul)*(ou tout simplement omis qui ont le même sens), puis un résultat peut contenir des valeurs *nulles.* Utilisez d’autres fonctions d’interpolation pour les remplir. Actuellement, seuls [series_outliers()](series-outliersfunction.md) prennent en charge les valeurs *nulles* dans les tableaux d’entrée.
-* La fonction conserve le type original d’éléments de tableau. Si *x* ne contient que des éléments *int* ou *longs,* alors l’interpolation linéaire retournera des valeurs interpolées arrondies plutôt que des valeurs exactes.
+* Le *missing_value_placeholder* peut être de n’importe quel type qui sera converti en types d’éléments réels. Par conséquent, `double`(*null*), `long`(*null*) ou `int`(*null*) ont la même signification.
+* Si *missing_value_placeholder* est `double`(*null*) (ou omis, qui ont la même signification), un résultat peut contenir des valeurs *null* . Utilisez d’autres fonctions d’interpolation pour remplir ces valeurs *null* . Actuellement [, seul series_outliers ()](series-outliersfunction.md) prend en charge les valeurs *null* dans les tableaux d’entrée.
+* La fonction conserve le type d’origine d’éléments de tableau. Si x contient uniquement des éléments int ou long, l’interpolation linéaire retourne des valeurs interpolées arrondies plutôt que des valeurs exactes.
 
 **Exemple**
 
@@ -64,8 +64,8 @@ data
 
 ```
 
-|Arr|without_args|with_edges|wo_edges|with_const|
+|`arr`|`without_args`|`with_edges`|`wo_edges`|`with_const`|
 |---|---|---|---|---|
-|[null,111.0,null,36.0,41.0,null,null,16.0.0.0.33.0,null,null]|[111.0,111.0,73.5,36.0,41.0,32.667,24.333,16.0,61.0,33.0,33.0,33.0]|[111.0,111.0,73.5,36.0,41.0,32.667,24.333,16.0,61.0,33.0,33.0,33.0]|[null,111.0,73.5,36.0.41.0.32.667.24.333.16.0.61.33.0,null,null]|[111.0,111.0,73.5,36.0,41.0,32.667,24.333,16.0,61.0,33.0,33.0,33.0]|
-|[null,111,null,36,41,null,null,16,61,33,null,null]|[111,111,73,36,41,32,24,16,61,33,33,33]|[111,111,73,36,41,32,24,16,61,33,33,33]|[null,111,73,36,41,32,24,16,61,33,null,null]|[111,111,74,38, 41,32,24,16,61,33,33,33]|
-|[null, null,null,null]|[0.0,0.0,0.0,0.0]|[0.0,0.0,0.0,0.0]|[0.0,0.0,0.0,0.0]|[3.14159,3.14159,3.14159,3.14159]|
+|[null, 111.0, NULL, 36.0, 41.0, NULL, NULL, 16, 61,0, 33.0, NULL, NULL]|[111.0, 111.0, 73.5, 36.0, 41.0, 32.667, 24.333, 16, 61,0, 33.0, 33.0, 33.0]|[111.0, 111.0, 73.5, 36.0, 41.0, 32.667, 24.333, 16, 61,0, 33.0, 33.0, 33.0]|[null, 111.0, 73.5, 36.0, 41.0, 32.667, 24.333, 16, 61,0, 33.0, NULL, NULL]|[111.0, 111.0, 73.5, 36.0, 41.0, 32.667, 24.333, 16, 61,0, 33.0, 33.0, 33.0]|
+|[null, 111, NULL, 36, 41, NULL, NULL, 16, 61, 33, NULL, NULL]|[111111, 73, 36, 41, 32, 24, 16, 61, 33, 33, 33]|[111111, 73, 36, 41, 32, 24, 16, 61, 33, 33, 33]|[null, 111, 73, 36, 41, 32, 24, 16, 61, 33, NULL, NULL]|[111111, 74, 38, 41, 32, 24, 16, 61, 33, 33, 33]|
+|[null, NULL, NULL, NULL]|[0.0, 0.0, 0.0, 0.0]|[0.0, 0.0, 0.0, 0.0]|[0.0, 0.0, 0.0, 0.0]|[3,14159, 3,14159, 3,14159, 3,14159]|
