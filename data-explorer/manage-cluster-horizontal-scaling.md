@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 12/09/2019
-ms.openlocfilehash: ff7420619cffc2287ab8ff6332df605d56329549
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 18bd73797070ba569d1a43a8c66ab92526682f36
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494469"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82619157"
 ---
 # <a name="manage-cluster-horizontal-scaling-scale-out-in-azure-data-explorer-to-accommodate-changing-demand"></a>Gérer la mise à l'échelle horizontale d'un cluster (scale-out) dans Azure Data Explorer pour prendre en compte les fluctuations de la demande
 
@@ -61,8 +61,6 @@ Si votre cluster approche un état de surutilisation, effectuez un scale-out pou
 * L'UC reste élevée pendant plus d'une heure.
 * L’utilisation de l’ingestion est élevée pendant plus d’une heure.
 
-> [!NOTE]
-> La logique de scale-out ne prend actuellement pas en compte la mesure de l'utilisation de l'ingestion. Si cette mesure est importante pour votre cas d'usage, utilisez la [mise à l'échelle automatique personnalisée](#custom-autoscale).
 
 **Scale-in**
 
@@ -78,7 +76,7 @@ Si votre cluster approche un état de sous-utilisation, effectuez un scale-in po
     * Le nombre de requêtes ayant échoué est inférieur à la valeur minimale définie.
 
 > [!NOTE]
-> La logique de scale-in nécessite actuellement une évaluation de 7 jours avant l’implémentation du scale-in optimisé. Cette évaluation a lieu toutes les 24 heures. Si vous souhaitez effectuer un changement rapide, utilisez la [mise à l’échelle manuelle](#manual-scale).
+> La logique de scale-in nécessite actuellement une évaluation de 1 jours avant l’implémentation du scale-in optimisé. Cette évaluation a lieu toutes les 6 heures. Si vous souhaitez effectuer un changement immédiat, utilisez la [mise à l’échelle manuelle](#manual-scale).
 
 ### <a name="custom-autoscale"></a>Mise à l’échelle automatique personnalisée
 

@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 03/29/2020
-ms.openlocfilehash: 155c4fadfc2892ddd91cc0c355f4f47fe4ce513c
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 5f424716a9227f22b4ec5b148d29798b0a55fa27
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81491644"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82618375"
 ---
 # <a name="what-is-one-click-ingestion"></a>Présentation de l’ingestion en un clic 
 
@@ -53,10 +53,13 @@ L’Assistant Ingestion en un clic vous guide tout au long du processus d’inge
     ![Sélectionner l'ingestion en un clic dans l'interface utilisateur web](media/ingest-data-one-click/one-click-ingestion-in-webui.png)   
 
 1. L’Assistant vous guide dans les options suivantes :
-       * Ingérer dans une [table existante](one-click-ingestion-existing-table.md)
-       * Ingérer dans une [nouvelle table](one-click-ingestion-new-table.md)
-       * Ingérer des données à partir de : * Stockage d’objets blob * Un fichier local * Un conteneur
-       * Entrez la taille de l’échantillon, comprise entre 1 et 10 000 lignes (à partir du conteneur uniquement)
+    * Ingérer dans une [table existante](one-click-ingestion-existing-table.md)
+    * Ingérer dans une [nouvelle table](one-click-ingestion-new-table.md)
+    * Ingérer des données depuis un :
+      * Stockage d'objets blob
+      * Fichier local
+      * Conteneur
+    * Entrez la taille de l’échantillon, comprise entre 1 et 10 000 lignes (à partir du conteneur uniquement)
        
 1. Une fois la source de données correctement sélectionnée, un aperçu des données s’affiche. 
     Si vous ingérez des données à partir d’un conteneur, vous pouvez filtrer ces données afin que seuls les fichiers avec des préfixes ou des extensions de fichier spécifiques soient ingérés. Par exemple, vous pouvez souhaiter ingérer uniquement les fichiers dont les noms de fichier commencent par le mot *Europe*, ou uniquement les fichiers avec l’extension *.json*. 

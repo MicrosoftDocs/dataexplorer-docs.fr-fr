@@ -7,12 +7,12 @@ ms.reviewer: basaba
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/24/2020
-ms.openlocfilehash: 99c32122fc48aaea7428fa559d7289713849f34e
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 80936da3e56fe0a73dcf146ba61630ceeb4bcb2a
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494013"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82618511"
 ---
 # <a name="create-an-azure-data-explorer-cluster-in-your-virtual-network"></a>Créer un cluster Azure Data Explorer dans votre réseau virtuel
 
@@ -79,8 +79,8 @@ Création du groupe de sécurité réseau :
 Pour créer les adresses IP publiques de requête (moteur) :
 
 1. Sélectionnez le bouton **+ Créer une ressource** dans le coin supérieur gauche du portail.
-1. Recherchez *Groupes de sécurité réseau*.
-1. Sous **Adresse IP publique**, en bas de l’écran, sélectionnez **Créer**.
+1. Recherchez l’*Adresse IP publique*.
+1. Sous **Adresse IP publique**, sélectionnez **Créer**.
 1. Dans le volet **Créer une adresse IP publique**, renseignez les informations suivantes.
    
    ![Formulaire Créer une adresse IP publique](media/vnet-create-cluster-portal/public-ip-blade.png)
@@ -162,4 +162,4 @@ Pour déployer votre cluster Azure Data Explorer dans votre réseau virtuel, uti
 ## <a name="next-steps"></a>Étapes suivantes
 
 > [!div class="nextstepaction"]
-> [Déployer Azure Data Explorer dans votre réseau virtuel](vnet-create-cluster-portal.md)
+> [Déployer Azure Data Explorer dans votre réseau virtuel](vnet-deployment.md)
