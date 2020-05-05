@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 624c0a7f1105ff13642649174f769781f1749598
-ms.sourcegitcommit: e1e35431374f2e8b515bbe2a50cd916462741f49
+ms.openlocfilehash: c52f0649531678e31310f5a1f4bfb97f99f15857
+ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82108069"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82741937"
 ---
 # <a name="external-table-management"></a>Gestion des tables externes
 
@@ -183,6 +183,8 @@ Crée ou modifie une nouvelle table externe dans la base de données dans laquel
 | `fileExtension`  | `string` | S’il est défini, indique les extensions de fichier des objets BLOB. Lors de l’écriture, les noms d’objets BLOB se terminent par ce suffixe. En lecture, seuls les objets BLOB avec cette extension de fichier seront lus.           |
 | `encoding`       | `string` | Indique comment le texte est encodé : `UTF8NoBOM` (valeur par défaut) ou `UTF8BOM`.             |
 
+Pour plus d’informations sur les paramètres de table externe dans les requêtes, consultez [logique de filtrage d’artefact](#artifact-filtering-logic).
+
 > [!NOTE]
 > * Si la table existe, `.create` la commande échoue avec une erreur. Utilisez `.alter` pour modifier des tables existantes. 
 > * La modification du schéma, du format ou de la définition de partition d’une table d’objets BLOB externe n’est pas prise en charge. 
@@ -203,8 +205,7 @@ dataformat=csv
 with 
 (
    docstring = "Docs",
-   folder = "ExternalTables",
-   namePrefix="Prefix"
+   folder = "ExternalTables"
 )  
 ```
 
@@ -221,8 +222,7 @@ dataformat=csv
 with 
 (
    docstring = "Docs",
-   folder = "ExternalTables",
-   namePrefix="Prefix"
+   folder = "ExternalTables"
 )  
 ```
 
@@ -239,8 +239,7 @@ dataformat=csv
 with 
 (
    docstring = "Docs",
-   folder = "ExternalTables",
-   namePrefix="Prefix"
+   folder = "ExternalTables"
 )
 ```
 
@@ -257,8 +256,7 @@ dataformat=csv
 with 
 (
    docstring = "Docs",
-   folder = "ExternalTables",
-   namePrefix="Prefix"
+   folder = "ExternalTables"
 )
 ```
 
@@ -286,6 +284,22 @@ with
 |TableName|TableType|Dossier|DocString|Propriétés|ConnectionStrings|Partitions|
 |---|---|---|---|---|---|---|
 |ExternalMultiplePartitions|Objet blob|ExternalTables|Docs|{"Format" : "CSV", "Compressed" : false, "CompressionType" : null, "FileExtension" : "CSV", "IncludeHeaders" : "none", "Encoding" : null, "NamePrefix" : null}|["https://storageaccount.blob.core.windows.net/container1;*******"]}|[{"StringFormat" : "CustomerName ={0}", "ColumnName" : "customerName", "ordinal" : 0}, PartitionBy " :" 1.00:00:00 "," ColumnName " :" timestamp "," ordinal " : 1}]|
+
+#### <a name="artifact-filtering-logic"></a>Logique de filtrage d’artefact
+
+Lors de l’interrogation d’une table externe, le moteur de requête filtre les artefacts de stockage externes (objets BLOB) inutiles pour améliorer les performances des requêtes. Le processus d’itération sur les objets BLOB, et de déterminer si un objet BLOB doit être traité, est décrit ci-dessous.
+
+1. Créez un modèle d’URI qui représente un emplacement où les objets BLOB sont trouvés. Initialement, le modèle d’URI est égal à une chaîne de connexion fournie dans le cadre de la définition de la table externe. Si des partitions sont définies, elles sont ajoutées au modèle d’URI.
+Par exemple, si la chaîne de connexion est `https://storageaccount.blob.core.windows.net/container1` : et qu’une partition DateTime est `partition by format_datetime="yyyy-MM-dd" bin(Timestamp, 1d)`définie :, le modèle d’URI correspondant est `https://storageaccount.blob.core.windows.net/container1/yyyy-MM-dd`:, et nous allons Rechercher des objets BLOB sous les emplacements qui correspondent à ce modèle.
+Si une partition `"CustomerId" customerId` de chaîne supplémentaire est définie, le modèle d’URI correspondant est : `https://storageaccount.blob.core.windows.net/container1/yyyy-MM-dd/CustomerId=*`, etc.
+
+2. Pour tous les objets BLOB *directs* trouvés sous le ou les modèles d’URI que vous avez créés, consultez :
+
+ * Les valeurs de partition correspondent aux prédicats utilisés dans une requête.
+ * Le nom de l' `NamePrefix`objet BLOB commence par, si une telle propriété est définie.
+ * Le nom de l' `FileExtension`objet BLOB se termine par, si une telle propriété est définie.
+
+Une fois que toutes les conditions sont réunies, l’objet blob est extrait et traité par le moteur de requête.
 
 #### <a name="spark-virtual-columns-support"></a>Prise en charge des colonnes virtuelles Spark
 

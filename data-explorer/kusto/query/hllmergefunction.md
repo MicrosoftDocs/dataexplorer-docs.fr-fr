@@ -1,6 +1,6 @@
 ---
-title: hll_merge() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit hll_merge() dans Azure Data Explorer.
+title: hll_merge ()-Azure Explorateur de données
+description: Cet article décrit hll_merge () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/15/2019
-ms.openlocfilehash: 10e726af4e9dd2e129b526f016a7c37dc0c99d50
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 35dab83a658b714a220c7fbd6ff751627c0741e4
+ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81514091"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82741785"
 ---
 # <a name="hll_merge"></a>hll_merge()
 
-Fusionne les résultats de hll (version [`hll_merge()`](hll-merge-aggfunction.md)scalaire de la version globale ).
+Fusionne `hll` les résultats (version scalaire de la version [`hll_merge()`](hll-merge-aggfunction.md)de l’agrégat).
 
-En savoir plus sur [l’algorithme sous-jacent (*H*yper*L*og*L*og) et la précision d’estimation](dcount-aggfunction.md#estimation-accuracy).
+En savoir plus sur l' [algorithme sous-jacent (*H*yper*l*og*l*) et la précision de l’estimation](dcount-aggfunction.md#estimation-accuracy).
 
 **Syntaxe**
 
-`hll_merge(`*Expr1* `,` *Expr2 Expr2*`, ...)`
+`hll_merge(`*Expr1* `,` *expr2*`, ...)`
 
 **Arguments**
 
-* Colonnes qui a les valeurs de hll à fusionner.
+* Colonnes dont les `hll` valeurs doivent être fusionnées.
 
 **Retourne**
 
-Le résultat pour la `*Exrp1*` `*Expr2*`fusion des colonnes , , ... `*ExprN*` à une valeur de hll.
+Résultat de la fusion des colonnes `*Exrp1*`, `*Expr2*`,... `*ExprN*` à une `hll` valeur.
 
 **Exemples**
 
@@ -43,6 +43,6 @@ range x from 1 to 10 step 1
 | project dcount_hll(merged)
 ```
 
-|dcount_hll_merged|
+|`dcount_hll_merged`|
 |---|
 |20|

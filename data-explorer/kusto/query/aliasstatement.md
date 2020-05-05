@@ -1,6 +1,6 @@
 ---
-title: Déclaration d’Alias - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la déclaration d’Alias dans Azure Data Explorer.
+title: Instruction d’alias-Azure Explorateur de données
+description: Cet article décrit l’instruction alias dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,30 +10,30 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: c6c689ab6daacebe1cd20742b199c8b9cc299245
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 63c639fb95322c537c5e069aa7e8ef7037371c88
+ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81766092"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82742019"
 ---
 # <a name="alias-statement"></a>Alias, instruction
 
 ::: zone pivot="azuredataexplorer"
 
-Les instructions Alias permettent de définir l’alias pour les bases de données qui peuvent être utilisées plus tard dans la même requête.
+Les instructions d’alias vous permettent de définir un alias pour les bases de données, qui peuvent être utilisées ultérieurement dans la même requête.
 
-Ceci est utile lorsque vous travaillez avec plusieurs clusters tout en essayant d’apparaître comme travaillant sur moins de clusters ou seulement sur un seul cluster.
-L’alias doit être défini en fonction de la syntaxe suivante où le *nom de clustername* et *le nom de base de données* doit être une entité existante et valide.
+Cela est utile lorsque vous travaillez avec plusieurs clusters, mais que vous souhaitez qu’ils apparaissent comme si vous travailliez sur moins de clusters.
+L’alias doit être défini conformément à la syntaxe suivante, où *ClusterName* et *DatabaseName* sont des entités existantes et valides.
 
 **Syntaxe**
 
-`alias`base de données[*'DatabaseAliasName' ]* `=` cluster ("https://*clustername*.kusto.windows.net:443").database ("*databasename*")
+`alias`cluster de base de données [ `=` *« DatabaseAliasName »*] (« https://*ClusterName*. Kusto. Windows. net : 443 »). Database («*DatabaseName*»)
 
-`alias`base de données *DatabaseAliasName* `=` cluster ("https://*clustername*.kusto.windows.net:443").database ("*databasename*")
+`alias`cluster *DatabaseAliasName* `=` de base de données ("https://*ClusterName*. Kusto. Windows. net : 443"). Database ("*DatabaseName*")
 
-* *'DatabaseAliasName'* peut être soit en nom d’axe ou un nouveau nom.
-* Le cluster-uri cartographié et le nom de base de données cartographié doivent apparaître à l’intérieur de double-citations(«) ou de citations simples(')
+* *'DatabaseAliasName'* peut être un nom existant ou un nouveau nom.
+* L’URI du cluster mappé et le nom de la base de données mappée doivent figurer entre guillemets doubles (") ou guillemets simples (')
 
 **Exemples**
 
@@ -51,6 +51,6 @@ database("Logs").Traces | count
 
 ::: zone pivot="azuremonitor"
 
-Ce n’est pas pris en charge dans Azure Monitor
+Cette fonctionnalité n’est pas prise en charge dans Azure Monitor
 
 ::: zone-end

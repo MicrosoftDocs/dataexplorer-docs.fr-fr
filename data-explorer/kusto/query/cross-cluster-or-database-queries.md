@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: eaf42247840bfc5446c61bcefbb205c9e49706c3
-ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
+ms.openlocfilehash: 834fd81e1832b8ab624da8d99cb5cc32407db84f
+ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 05/04/2020
-ms.locfileid: "82737740"
+ms.locfileid: "82741752"
 ---
 # <a name="cross-database-and-cross-cluster-queries"></a>Requêtes entre plusieurs bases de données et clusters
 
@@ -73,7 +73,7 @@ Les noms qualifiés ou les modèles peuvent également être inclus dans l’ins
 restrict access to (my*, database("MyOther*").*, cluster("OtherCluster").database("my2*").*);
 ```
 
-L’exemple ci-dessus limite l’accès à la requête aux entités suivants :
+La commande ci-dessus limite l’accès aux requêtes aux entités suivantes :
 
 * Nom d’entité commençant par *My...* dans la base de données par défaut. 
 * Toutes les tables de toutes les bases de données nommées *MyOther...* du cluster actuel.

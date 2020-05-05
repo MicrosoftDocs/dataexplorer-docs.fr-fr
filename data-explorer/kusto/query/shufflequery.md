@@ -1,5 +1,5 @@
 ---
-title: Requête de lecture aléatoire-Azure Explorateur de données | Microsoft Docs
+title: Requête de lecture aléatoire-Azure Explorateur de données
 description: Cet article décrit la lecture aléatoire des requêtes dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
@@ -8,22 +8,24 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 600e561937b779ff9dd10d5d82f5522d204466a0
-ms.sourcegitcommit: 2e63c7c668c8a6200f99f18e39c3677fcba01453
+ms.openlocfilehash: bbae74ccdf0d9840a6ba4aa7427155f89c4af211
+ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82117690"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82742009"
 ---
 # <a name="shuffle-query"></a>Lecture aléatoire des requêtes
 
-La lecture aléatoire d’une requête est une transformation de préservation sémantique pour un ensemble d’opérateurs qui prend en charge la stratégie de lecture aléatoire, selon laquelle les données réelles peuvent produire de meilleures performances.
+La lecture aléatoire de requête est une transformation de préservation sémantique pour un ensemble d’opérateurs qui prennent en charge la stratégie de lecture aléatoire. Selon les données réelles, cette requête peut obtenir de meilleures performances.
 
-Les opérateurs qui prennent en charge la [réassociation](joinoperator.md)dans Kusto sont Join, [Resume](summarizeoperator.md) et [Make-Series](make-seriesoperator.md).
+Les opérateurs qui prennent en charge la [réassociation](joinoperator.md)dans Kusto sont Join, [Resume](summarizeoperator.md)et [Make-Series](make-seriesoperator.md).
 
-La stratégie de requête de lecture aléatoire peut être définie `hint.strategy = shuffle` par `hint.shufflekey = <key>`le paramètre de requête ou.
+Définissez une stratégie de requête de lecture aléatoire `hint.strategy = shuffle` à `hint.shufflekey = <key>`l’aide du paramètre de requête ou.
 
-Vous pouvez également examiner la définition d’une [stratégie de partitionnement de données](../management/partitioningpolicy.md) sur votre table. Les requêtes dans lesquelles `shufflekey` est également la clé de partition de hachage de la table sont supposées être plus performantes, car la quantité de données requises pour le déplacement entre les nœuds de cluster est considérablement réduite.
+Définissez une [stratégie de partitionnement de données](../management/partitioningpolicy.md) sur votre table. 
+
+Définissez `shufflekey` comme clé de partition de hachage de la table pour obtenir de meilleures performances, car la quantité de données requises pour le déplacement entre les nœuds de cluster est réduite.
 
 **Syntaxe**
 
@@ -45,8 +47,8 @@ T
 | make-series hint.shufflekey = Fruit PriceAvg=avg(Price) default=0  on Purchase from datetime(2016-09-10) to datetime(2016-09-13) step 1d by Supplier, Fruit
 ```
 
-Cette stratégie partagera la charge sur tous les nœuds de cluster, où chaque nœud traitera une partition de données.
-Il est utile d’utiliser la stratégie de requête de lecture aléatoire lorsque`join` la clé `summarize` (clé `make-series` , clé ou clé) a une cardinalité élevée qui amène la stratégie de requête normale à atteindre les limites de requête.
+Cette stratégie va partager la charge sur tous les nœuds de cluster, où chaque nœud traitera une partition de données.
+Il est utile d’utiliser la stratégie de requête de lecture aléatoire lorsque`join` la clé `summarize` (clé, `make-series` clé ou clé) a une cardinalité élevée et que la stratégie de requête régulière atteint les limites de requête.
 
 **Différence entre hint. Strategy = lecture aléatoire et hint. shufflekey = clé**
 
@@ -73,10 +75,10 @@ T | where Event=="Start" | project ActivityId, Started=Timestamp
 | summarize avg(Duration)
 ```
 
-Cet indicateur peut être utilisé lorsque vous êtes intéressé par la permutation des données par toutes les clés de l’opérateur aléatoire, car la clé composée est trop unique, mais chaque clé n’est pas suffisamment unique.
-Lorsque l’opérateur aléatoire a d’autres opérateurs shufflable comme `summarize` ou `join`, la requête devient plus complexe, puis hint. Strategy = la lecture aléatoire n’est pas appliquée.
+Si la clé composée est trop unique, mais que chaque clé n’est pas suffisamment unique, `hint` utilisez-la pour mélanger les données par toutes les clés de l’opérateur aléatoire.
+Lorsque l’opérateur de lecture aléatoire a d’autres opérateurs en lecture seule `summarize` , `join`comme ou, la requête devient plus complexe, puis hint. Strategy = la lecture aléatoire n’est pas appliquée.
 
-par exemple :
+Par exemple :
 
 ```kusto
 T
@@ -93,11 +95,11 @@ on ActivityId, numeric_column
 | summarize avg(Duration)
 ```
 
-Dans ce cas, si nous appliquons `hint.strategy=shuffle` (au lieu d’ignorer la stratégie lors de la planification des requêtes) et que vous mélangez de façon aléatoire`ActivityId`les `numeric_column`données par la clé composée [,] le résultat sera incorrect.
-`summarize` Qui se trouve sur le côté gauche du `join` groubs par un sous-ensemble des `join` clés qui est `ActivityId`. Cela signifie que le `summarize` regroupera par la `ActivityId` clé alors que les données seront partitionnées par la clé`ActivityId`composée `numeric_column`[,].
-La combinaison de la clé composée`ActivityId`[ `numeric_column`,] ne signifie pas qu’il s’agit d’une combinaison valide pour la clé ActivityId et que les résultats peuvent être incorrects.
+Si vous appliquez `hint.strategy=shuffle` (au lieu d’ignorer la stratégie lors de la planification des requêtes) et que vous mélangez les données par`ActivityId`la `numeric_column`clé composée [,], le résultat n’est pas correct.
+L' `summarize` opérateur se trouve sur le côté gauche de `join` l’opérateur. Cet opérateur regroupera par un sous- `join` ensemble des clés, qui, dans `ActivityId`notre cas, est. Par conséquent, `summarize` le regroupera par `ActivityId`clé, tandis que les données seront partitionnées par la`ActivityId`clé `numeric_column`composée [,].
+La combinaison de la clé composée`ActivityId`[ `numeric_column`,] ne signifie pas nécessairement que la combinaison `ActivityId` de la clé est valide et que les résultats peuvent être incorrects.
 
-Cet exemple simplifie cela en supposant que la fonction de hachage utilisée pour une clé composée est`binary_xor(hash(key1, 100) , hash(key2, 100))`
+Cet exemple suppose que la fonction de hachage utilisée pour une clé composée est `binary_xor(hash(key1, 100) , hash(key2, 100))`:
 
 ```kusto
 
@@ -114,12 +116,10 @@ datatable(ActivityId:string, NumericColumn:long)
 |Activity1|2|56|
 |Activity1|1|65|
 
+La clé composée pour les deux enregistrements a été mappée à des partitions différentes (56 et 65), mais ces deux enregistrements ont la même `ActivityId`valeur. L' `summarize` opérateur situé à gauche du `join` s’attend à ce que les valeurs similaires de `ActivityId` la colonne se trouvent dans la même partition. Cette requête génère des résultats incorrects.
 
-
-Comme vous pouvez le voir, la clé composée des deux enregistrements a été mappée à des partitions différentes 56 et 65, mais ces deux enregistrements `ActivityId` ont la même valeur `summarize` , ce qui signifie que le `join` côté gauche du qui attend des valeurs similaires `ActivityId` de la colonne dans la même partition defintely produire des résultats incorrects.
-
-Dans ce cas, `hint.shufflekey` résout ce problème en spécifiant la clé de permutation sur `hint.shufflekey = ActivityId` la jointure qui est une clé commune pour tous les opérateurs shuffelable.
-Dans ce cas, la réarrangement est sécurisée `join` , `summarize` et est aléatoire par la même clé, de sorte que toutes les valeurs similaires seront defintely dans la même partition. les résultats sont corrects :
+Vous pouvez résoudre ce problème à l' `hint.shufflekey` aide de pour spécifier la clé de lecture aléatoire `hint.shufflekey = ActivityId`sur la jointure. Cette clé est courante pour tous les opérateurs pouvant être en lecture seule.
+Dans ce cas, la permutation est sûre, `join` car `summarize` et par la même clé. Par conséquent, toutes les valeurs similaires se trouvent dans la même partition et les résultats sont corrects :
 
 ```kusto
 T
@@ -141,19 +141,20 @@ on ActivityId, numeric_column
 |Activity1|2|56|
 |Activity1|1|65|
 
-Dans une requête de lecture aléatoire, le numéro de partition par défaut est le numéro des nœuds du cluster. Ce nombre peut être remplacé à l’aide de la syntaxe `hint.num_partitions = total_partitions` qui contrôle le nombre de partitions.
+Dans une requête de lecture aléatoire, le numéro de partition par défaut est le numéro des nœuds du cluster. Ce nombre peut être remplacé à l’aide de la `hint.num_partitions = total_partitions`syntaxe, qui contrôle le nombre de partitions.
 
 Cet indicateur est utile lorsque le cluster a un petit nombre de nœuds de cluster dans lesquels le numéro de partition par défaut est trop petit et que la requête échoue toujours ou prend beaucoup de temps.
 
-Notez que le fait de définir de nombreuses partitions peut dégrader les performances et consommer davantage de ressources de cluster. il est donc recommandé de choisir le numéro de partition avec précaution (en commençant par l’indicateur. Strategy = en lecture seule et commencer à augmenter graduellement les partitions).
+> [!Note]
+> Le fait de disposer de nombreuses partitions peut consommer davantage de ressources de cluster et dégrader les performances. Au lieu de cela, choisissez le numéro de partition avec précaution en commençant par l’indicateur. Strategy = aléatoire et commencez à améliorer progressivement les partitions.
 
 **Exemples**
 
 L’exemple suivant montre comment la `summarize` lecture aléatoire améliore considérablement les performances.
 
-La table source comporte 150 000 enregistrements et la cardinalité de la clé Group by est de 10 m qui est répartie sur 10 nœuds de cluster.
+La table source comporte 150 000 enregistrements et la cardinalité de la clé Group by est de 10 m, qui est répartie sur 10 nœuds de cluster.
 
-En exécutant la `summarize` stratégie régulière, la requête se termine après 1:08 et le pic d’utilisation de la mémoire est d’environ 3 Go :
+En exécutant la `summarize` stratégie régulière, la requête se termine après 1:08 et le pic d’utilisation de la mémoire est ~ 3 Go :
 
 ```kusto
 orders
@@ -166,7 +167,7 @@ orders
 |---|
 |1086|
 
-Lors de l' `summarize` utilisation de la stratégie de lecture aléatoire, la requête se termine après environ 7 secondes et le pic d’utilisation de la mémoire est de 0.43 Go :
+Lors de l' `summarize` utilisation de la stratégie de lecture aléatoire, la requête se termine après environ 7 secondes et le pic d’utilisation de la mémoire est de 0,43 Go :
 
 ```kusto
 orders
@@ -179,9 +180,9 @@ orders
 |---|
 |1086|
 
-L’exemple suivant illustre l’amélioration apportée à un cluster qui a 2 nœuds de cluster, la table contient des enregistrements 60 min et la cardinalité de la clé Group by est 2M.
+L’exemple suivant illustre l’amélioration apportée à un cluster qui a deux nœuds de cluster, la table contient des enregistrements 60 min et la cardinalité de la clé Group by est 2M.
 
-L’exécution de la `hint.num_partitions` requête sans utilisera uniquement 2 partitions (comme nombre de nœuds de cluster) et la requête suivante prendra environ 1:10 minutes :
+L’exécution de la `hint.num_partitions` requête sans utilisera uniquement deux partitions (comme nombre de nœuds de cluster) et la requête suivante prendra environ 1:10 minutes :
 
 ```kusto
 lineitem    
@@ -201,8 +202,8 @@ L’exemple suivant montre comment la `join` lecture aléatoire améliore consid
 
 Les exemples ont été échantillonnés sur un cluster comportant 10 nœuds dans lesquels les données sont réparties sur l’ensemble de ces nœuds.
 
-La table de gauche contient des enregistrements 15 millions où la cardinalité `join` de la clé est ~ 14M, le côté droit `join` du est avec des enregistrements de 150 m et la `join` cardinalité de la clé est de 10 m.
-En exécutant la stratégie normale du `join`, la requête se termine après environ 28 secondes et le pic d’utilisation de la mémoire est de 1.43 Go :
+La table de gauche contient des enregistrements 15 millions où la cardinalité `join` de la clé est ~ 14M. Le côté droit du `join` est avec des enregistrements de 150 m et la cardinalité `join` de la clé est de 10 m.
+En exécutant la stratégie normale du `join`, la requête se termine après environ 28 secondes et le pic d’utilisation de la mémoire est de 1,43 Go :
 
 ```kusto
 customer
@@ -222,14 +223,14 @@ on $left.c_custkey == $right.o_custkey
 | summarize sum(c_acctbal) by c_nationkey
 ```
 
-En essayant les mêmes requêtes sur un jeu de données plus grand où `join` la partie gauche de la est 150 m et la cardinalité de la clé est `join` 148M, la partie droite du est 1,5 b et la cardinalité de la clé est ~ 100 $.
+En essayant les mêmes requêtes sur un plus grand jeu de données où `join` la partie gauche de la est 150 m et la cardinalité de la clé est 148M. Le côté droit du `join` est 1,5 b et la cardinalité de la clé est ~ 100 m.
 
 La requête avec la stratégie `join` par défaut atteint les limites et les délais Kusto après 4 minutes.
 Lors de l' `join` utilisation de la stratégie de lecture aléatoire, la requête se termine après environ 34 secondes et le pic d’utilisation de la mémoire est de 1,23 Go.
 
 
-L’exemple suivant illustre l’amélioration apportée à un cluster qui a 2 nœuds de cluster, la table contient des enregistrements 60 min `join` et la cardinalité de la clé est de 2m.
-L’exécution de la `hint.num_partitions` requête sans utilisera uniquement 2 partitions (comme nombre de nœuds de cluster) et la requête suivante prendra environ 1:10 minutes :
+L’exemple suivant illustre l’amélioration apportée à un cluster qui a deux nœuds de cluster, la table contient des enregistrements 60 min et `join` la cardinalité de la clé est de 2 m.
+L’exécution de la `hint.num_partitions` requête sans utilisera uniquement deux partitions (comme nombre de nœuds de cluster) et la requête suivante prendra environ 1:10 minutes :
 
 ```kusto
 lineitem

@@ -1,6 +1,6 @@
 ---
-title: tostring() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit tostring () dans Azure Data Explorer.
+title: ToString ()-Azure Explorateur de données
+description: Cet article décrit ToString () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 51aaf90b60653a648457dc00200168aec7fbefd9
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 634f54533e83575139d8399124cc068af56d8574
+ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81505880"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82741667"
 ---
 # <a name="tostring"></a>tostring()
 
-Convertit l’entrée en une représentation des cordes.
+Convertit l’entrée en une représentation sous forme de chaîne.
 
 ```kusto
 tostring(123) == "123"
@@ -25,14 +25,14 @@ tostring(123) == "123"
 
 **Syntaxe**
 
-`tostring(`*Expr*`)`
+`tostring(`*`Expr`*`)`
 
 **Arguments**
 
-* *Expr*: Expression qui sera convertie en ficelle. 
+* *`Expr`*: Expression qui sera convertie en chaîne. 
 
 **Retourne**
 
-Si la valeur *Expr* n’est pas nulle résultat sera une représentation de chaîne d’Expr . *Expr*
-Si la valeur *Expr* est nulle, le résultat sera la chaîne vide.
+Si la *`Expr`* valeur n’est pas null, le résultat est une représentation sous forme de *`Expr`* chaîne de.
+Si la *`Expr`* valeur est null, le résultat est une chaîne vide.
  

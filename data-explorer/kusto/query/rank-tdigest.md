@@ -1,6 +1,6 @@
 ---
-title: rank_tdigest() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit rank_tdigest() dans Azure Data Explorer.
+title: rank_tdigest ()-Azure Explorateur de données
+description: Cet article décrit rank_tdigest () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,37 +8,37 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/10/2019
-ms.openlocfilehash: ea24213b0ca673c39f399c3a12cc54cd7d7f47d5
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: a849cd496d41ad473768b3f267639eaf8c467880
+ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81510538"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82741779"
 ---
 # <a name="rank_tdigest"></a>rank_tdigest()
 
-Calcule le rang approximatif de la valeur dans un ensemble. Le rang `v` de `S` valeur dans un ensemble `S` est défini comme `v` `S` le nombre de membres de ce qui sont plus petits ou égaux à , est représenté par son tdigest.
+Calcule le rang approximatif de la valeur dans un jeu. Le rang de `v` la valeur dans `S` un jeu est défini en tant que `S` nombre de membres de qui sont `v`plus `S` petits ou égaux à `tdigest`, est représenté par son.
 
 **Syntaxe**
 
-`rank_tdigest(`*Expr TDigest* `,` *Expr*`)`
+`rank_tdigest(`*`TDigest`*`,` *`Expr`*`)`
 
 **Arguments**
 
-* *TDigest*: Expression qui a été générée par [tdigest()](tdigest-aggfunction.md) ou [tdigest_merge()](tdigest-merge-aggfunction.md)
-* *Expr*: Expression représentant une valeur à utiliser pour le calcul du classement.
+* *TDigest*: expression générée par [TDigest ()](tdigest-aggfunction.md) ou [tdigest_merge ()](tdigest-merge-aggfunction.md)
+* *Expr*: expression représentant une valeur à utiliser pour le calcul du classement.
 
 **Retourne**
 
-Le rang est avant la valeur dans un ensemble de données.
+Valeur de classement foreach dans un jeu de données.
 
 **Conseils**
 
-1) Les valeurs que vous voulez obtenir son rang doit être du même type que le tdigest.
+1) Les valeurs dont vous souhaitez obtenir le rang doivent être du même type que le `tdigest`.
 
 **Exemples**
 
-Dans une liste triée (1-1000), le rang de 685 est son indice:
+Dans une liste triée (1-1000), le rang de 685 est son index :
 
 ```kusto
 range x from 1 to 1000 step 1
@@ -50,7 +50,7 @@ range x from 1 to 1000 step 1
 |-------------|
 |`685`        |
 
-Cette requête calcule le rang de valeur 4490$ sur tous les coûts des propriétés de dommages :
+Cette requête calcule le rang de la valeur $4490 sur les coûts des propriétés de tous les dommages :
 
 ```kusto
 StormEvents
@@ -63,7 +63,7 @@ StormEvents
 |--------------|
 |`50207`       |
 
-Obtenir le pourcentage estimatif du rang (en divisant par la taille de l’ensemble) :
+Obtention du pourcentage estimé du rang (en divisant par la taille définie) :
 
 ```kusto
 StormEvents
@@ -77,7 +77,7 @@ StormEvents
 |`85.0015237192293`|
 
 
-Le percentile 85 des coûts de propriétés de dommages est de 4490$ :
+Le centile 85 des propriétés de dommages coûte $4490 :
 
 ```kusto
 StormEvents

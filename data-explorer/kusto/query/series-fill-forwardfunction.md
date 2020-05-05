@@ -1,6 +1,6 @@
 ---
-title: series_fill_forward() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit series_fill_forward () dans Azure Data Explorer.
+title: series_fill_forward ()-Azure Explorateur de données
+description: Cet article décrit series_fill_forward () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,40 +8,40 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 6c79733aa1abf001f52eb07606c866904e370906
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: cdf9b84f684a2a4dfdb508f1ac5762039da8275d
+ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81508668"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82741704"
 ---
 # <a name="series_fill_forward"></a>series_fill_forward()
 
-Effectue l’interpolation de remplissage vers l’avant des valeurs manquantes dans une série.
+Effectue une interpolation de remplissage vers l’avant des valeurs manquantes dans une série.
 
-Prend une expression contenant un tableau numérique dynamique comme entrée, remplace tous les cas de missing_value_placeholder par la valeur la plus proche de son côté gauche autre que missing_value_placeholder et renvoie le tableau résultant. Les cas les plus à gauche de missing_value_placeholder sont préservés.
+Une expression contenant un tableau numérique dynamique est l’entrée. La fonction remplace toutes les instances de missing_value_placeholder par la valeur la plus proche de son côté gauche de missing_value_placeholder, et retourne le tableau résultant. Les instances les plus à gauche de missing_value_placeholder sont conservées.
 
 **Syntaxe**
 
-`series_fill_forward(`*x*`[, `*missing_value_placeholder*`])`
-* Retournera la série *x* avec toutes les instances de *missing_value_placeholder* remplis vers l’avant.
+`series_fill_forward(`*x*`[, `*missing_value_placeholder* x`])`
+* Retourne la série *x* avec toutes les instances de *missing_value_placeholder* remplies.
 
 **Arguments**
 
-* *x*: expression scalaire de tableau dynamique qui est un éventail de valeurs numériques. 
-* *missing_value_placeholder*: paramètre facultatif qui spécifie un placeholder pour un remplacement des valeurs manquantes. La valeur `double`par défaut est *(nulle*).
+* *x*: expression scalaire de tableau dynamique, qui est un tableau de valeurs numériques. 
+* *missing_value_placeholder*: paramètre facultatif, qui spécifie un espace réservé pour une valeur manquante à remplacer. La valeur par `double`défaut est (*null*).
 
 **Remarques**
 
-* Afin d’appliquer toutes les fonctions d’interpolation après [la série,](make-seriesoperator.md) il est recommandé de spécifier *nul* comme valeur par défaut: 
+* Spécifiez *null* comme valeur par défaut pour appliquer les fonctions d’interpolation après [Make-Series](make-seriesoperator.md): 
 
 ```kusto
 make-series num=count() default=long(null) on TimeStamp in range(ago(1d), ago(1h), 1h) by Os, Browser
 ```
 
-* Le *missing_value_placeholder* peut être de n’importe quel type qui sera converti en types d’éléments réels. Par `double`conséquent, `long`soit ( `int`*nul*), (*nul*) ou (*nul*) ont le même sens.
-* Si *missing_value_placeholder* est `double`*(nul)*(ou tout simplement omis qui ont le même sens), puis un résultat peut contenir des valeurs *nulles.* Utilisez d’autres fonctions d’interpolation pour les remplir. Actuellement, seuls [series_outliers()](series-outliersfunction.md) prennent en charge les valeurs *nulles* dans les tableaux d’entrée.
-* Les fonctions conservent le type original d’éléments de tableau.
+* Le *missing_value_placeholder* peut être de n’importe quel type qui sera converti en types d’éléments réels. Les `double`deux*null*(null `long`) (*null*) `int`et (*null*) ont la même signification.
+* Si missing_value_placeholder est (null) (ou omis-qui ont la même signification), un résultat peut contenir des valeurs *null* . Pour remplir ces valeurs *null* , utilisez d’autres fonctions d’interpolation. Actuellement [, seul series_outliers ()](series-outliersfunction.md) prend en charge les valeurs *null* dans les tableaux d’entrée.
+* Les fonctions conservent le type d’origine des éléments de tableau.
 
 **Exemple**
 
@@ -56,8 +56,8 @@ data
 
 ```
 
-|Arr|fill_forward|
+|`arr`|`fill_forward`|
 |---|---|
-|[null,null,36,41,null,null,16,61,33,null,null]|[null,null,36,41,41,41,16,61,33,33,33]|
+|[null, NULL, 36, 41, NULL, NULL, 16, 61, 33, NULL, NULL]|[null, NULL, 36, 41, 41, 41, 16, 61, 33, 33, 33]|
    
-On peut utiliser [series_fill_backward](series-fill-backwardfunction.md) ou [série-remplissage-const](series-fill-constfunction.md) afin de compléter l’interpolation de la gamme ci-dessus.
+Utilisez [series_fill_backward](series-fill-backwardfunction.md) ou [le remplissage de série-const](series-fill-constfunction.md) pour terminer l’interpolation du tableau ci-dessus.
