@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: e03ff6fe7ffb65d11b59cc98f150df617d42932d
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 7440b42599d8559db547762daa5f8edcc24ea46f
+ms.sourcegitcommit: 061eac135a123174c85fe1afca4d4208c044c678
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82616369"
+ms.lasthandoff: 05/05/2020
+ms.locfileid: "82799439"
 ---
 # <a name="data-partitioning-policy-preview"></a>Stratégie de partitionnement des données (préversion)
 
@@ -22,8 +22,7 @@ La stratégie de partitionnement définit si et comment les [étendues (données
 > [!NOTE]
 > La fonctionnalité de partitionnement des données est en version *préliminaire*.
 
-L’objectif principal de la stratégie est d’améliorer les performances des requêtes qui sont limitées à un petit sous-ensemble de valeurs dans la ou les colonnes partitionnées.
-Un avantage potentiel secondaire est une meilleure compression des données.
+L’objectif principal de la stratégie est d’améliorer les performances des requêtes qui sont limitées à un petit sous-ensemble de valeurs dans la ou les colonnes partitionnées et/ou l’agrégat/la jointure sur une colonne de chaîne de cardinalité élevée. Un avantage potentiel secondaire est une meilleure compression des données.
 
 > [!WARNING]
 > Bien qu’il n’y ait aucune limite codée en dur définie sur la quantité de tables sur lesquelles la stratégie peut être définie, chaque table supplémentaire ajoute une surcharge au processus de partitionnement des données en arrière-plan qui s’exécute sur les nœuds du cluster et peut nécessiter des ressources supplémentaires à partir du cluster-voir [capacité](#capacity).

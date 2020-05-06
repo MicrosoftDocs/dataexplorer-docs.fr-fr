@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 06/03/2019
-ms.openlocfilehash: ba7305eca81ed405f2a577c4a994133509429564
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 69779e42f14a1dfc512d8752f2cc9989897b2cc6
+ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493925"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82741984"
 ---
 # <a name="ingest-blobs-into-azure-data-explorer-by-subscribing-to-event-grid-notifications"></a>Ingérer des objets blob dans Azure Data Explorer en s’abonnant à des notifications Event Grid
 
@@ -56,9 +56,11 @@ Cet article vous montre comment définir un abonnement [Azure Event Grid](/azure
 
 1. Sélectionnez l’onglet **Filtres** si vous voulez effectuer le suivi des fichiers d’un conteneur spécifique. Définissez les filtres pour les notifications comme suit :
     * Le champ **Le sujet commence par** est le préfixe *littéral* du conteneur d’objets blob. Comme le modèle appliqué est *startswith*, il peut s’étendre sur plusieurs conteneurs. Les caractères génériques ne sont pas autorisés.
-     Il *doit* être défini comme suit : *`/blobServices/default/containers/`* [préfixe de conteneur]
+        * Pour définir un filtre sur le conteneur d’objets blob, le champ *doit* être défini comme suit : *`/blobServices/default/containers/[container prefix]`* . 
+        * Pour définir un filtre sur un préfixe d’objet blob (ou un dossier dans ADLS gen2), le champ *doit* être défini comme suit : *`/blobServices/default/containers/[container name]/blobs/[folder/blob prefix]`* . 
     * Le champ **Le sujet se termine par** est le suffixe *littéral* de l’objet blob. Les caractères génériques ne sont pas autorisés.
-
+    * Pour plus d’informations sur le filtrage des événements, consultez [Événements du stockage Blob](https://docs.microsoft.com/azure/storage/blobs/storage-blob-event-overview#filtering-events). 
+    
 ## <a name="create-a-target-table-in-azure-data-explorer"></a>Créer une table cible dans l’Explorateur de données Azure
 
 Créez une table dans Azure Data Explorer, à laquelle Event Hubs enverra les données. Créez la table dans le cluster et la base de données préparés dans en lien avec les conditions préalables.

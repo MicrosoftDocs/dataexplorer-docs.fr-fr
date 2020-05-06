@@ -1,6 +1,6 @@
 ---
-title: HowTo Data Ingestion avec Kusto.Ingest Library - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit HowTo Data Ingestion avec Kusto.Ingest Library in Azure Data Explorer.
+title: Ingestion de données avec la bibliothèque Kusto. ingestion-Azure Explorateur de données
+description: Cet article décrit l’ingestion des données avec la bibliothèque Kusto. ingestion d’Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/05/2020
-ms.openlocfilehash: 80b2b61c70269c5bd166a064fe9d0e2c59dd8197
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: fe268d19e5f42308737b7c392c58c6c1dca071b3
+ms.sourcegitcommit: 061eac135a123174c85fe1afca4d4208c044c678
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81523628"
+ms.lasthandoff: 05/05/2020
+ms.locfileid: "82799609"
 ---
-# <a name="howto-data-ingestion-with-kustoingest-library"></a>HowTo Data Ingestion avec la bibliothèque Kusto.Ingest
-Cet article présente un exemple de code qui utilise la bibliothèque cliente Kusto.Ingest.
+# <a name="data-ingestion-with-the-kustoingest-library"></a>Ingestion de données avec la bibliothèque Kusto. deréception
 
-## <a name="overview"></a>Vue d’ensemble
-L’échantillon de code suivant démontre l’ingestion de données de Queued (via le service de gestion de données Kusto) à Kusto avec l’utilisation de la bibliothèque Kusto.Ingest.
+Cet article présente un exemple de code qui utilise la bibliothèque cliente Kusto. Desent pour l’ingestion de données. Le code détaille le mode recommandé d’ingestion pour les pipelines de niveau production, appelé ingestion en attente. Pour la bibliothèque Kusto. deréception, l’entité correspondante est l’interface [IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient) . Le code client interagit avec le service Azure Explorateur de données en publiant des notifications d’ingestion dans une file d’attente Azure. La référence à la file d’attente est obtenue à partir de l’entité Gestion des données responsable de l’ingestion. 
 
-> Cet article traite du mode recommandé d’ingestion pour les pipelines de qualité production, qui est également appelé **Ingestion en file d’attente** (en termes de la bibliothèque Kusto.Ingest, l’entité correspondante est [l’interface IKustoQueuedIngestClient).](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient) Dans ce mode, le code client interagit avec le service Kusto en affichant des messages de notification d’ingestion à une file d’attente Azure, référence à laquelle est obtenu de la gestion des données Kusto (alias. Service d’ingestion). L’interaction avec le service de gestion des données doit être authentifiée avec **AAD**.
+> [!NOTE]
+> L’interaction avec le service de Gestion des données doit être authentifiée à l’aide de Azure Active Directory (Azure AD).
 
-#### <a name="authentication"></a>Authentification
-Cet exemple de code utilise l’authentification de l’utilisateur AAD et s’exécute sous l’identité de l’utilisateur interactif.
+L’exemple utilise Azure AD l’authentification de l’utilisateur et s’exécute sous l’identité de l’utilisateur interactif.
 
-## <a name="dependencies"></a>Les dépendances
-Ce code d’échantillon nécessite les paquets NuGet suivants :
-* Microsoft.Kusto.Ingest (en)
+## <a name="dependencies"></a>Dépendances
+
+Cet exemple de code requiert les packages NuGet suivants :
+* Microsoft. Kusto. deréception
 * Microsoft.IdentityModel.Clients.ActiveDirectory
 * WindowsAzure.Storage
 * Newtonsoft.Json
 
 ## <a name="namespaces-used"></a>Espaces de noms utilisés
+
 ```csharp
 using System;
 using System.Collections.Generic;
@@ -46,14 +46,15 @@ using Kusto.Ingest;
 ```
 
 ## <a name="code"></a>Code
-Le code présenté ci-dessous effectue ce qui suit :
-1. Crée un `KustoLab` tableau sur le `KustoIngestClientDemo` cluster Kusto partagé sous la base de données
-2. Dispositions d’un [objet de cartographie de colonne JSON](../../management/create-ingestion-mapping-command.md) sur cette table
-3. Crée un [IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient) `Ingest-KustoLab` pour le service de gestion des données
-4. Met en place [KustoQueuedIngestionProperties](kusto-ingest-client-reference.md#class-kustoqueuedingestionproperties) avec des options d’ingestion appropriées
-5. Crée un MemoryStream rempli de certaines données générées à ingérer
-6. Ingests les `KustoQueuedIngestClient.IngestFromStream` données à l’aide de la méthode
-7. Sondages pour toute [erreur d’ingestion](kusto-ingest-client-status.md#tracking-ingestion-status-kustoqueuedingestclient)
+
+Le code effectue les opérations suivantes.
+1. Crée une table sur le `KustoLab` cluster Azure Explorateur de données partagé sous la `KustoIngestClientDemo` base de données
+2. Configure un [objet de mappage de colonnes JSON](../../management/create-ingestion-mapping-command.md) sur cette table
+3. Crée une instance [IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient) pour le `Ingest-KustoLab` service gestion des données
+4. Configure [KustoQueuedIngestionProperties](kusto-ingest-client-reference.md#class-kustoqueuedingestionproperties) avec les options d’ingestion appropriées
+5. Crée un MemoryStream rempli avec des données générées pour être ingérées
+6. Ingère les données à l' `KustoQueuedIngestClient.IngestFromStream` aide de la méthode
+7. Interroge les [Erreurs](kusto-ingest-client-status.md#tracking-ingestion-status-kustoqueuedingestclient) d’ingestion
 
 ```csharp
 static void Main(string[] args)

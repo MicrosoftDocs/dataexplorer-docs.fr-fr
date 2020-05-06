@@ -7,12 +7,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/31/2019
-ms.openlocfilehash: 170db0d00f42209a2fd55c4009ab2f11eff55641
-ms.sourcegitcommit: c4aea69fafa9d9fbb814764eebbb0ae93fa87897
+ms.openlocfilehash: 866e9b5d8f076660dfcb453fdb47fb6a6402578b
+ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "81610211"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82741994"
 ---
 # <a name="deploy-azure-data-explorer-cluster-into-your-virtual-network"></a>Déployer un cluster Azure Data Explorer dans votre réseau virtuel
 
@@ -96,6 +96,9 @@ Les [groupes de sécurité réseau (NSG)](/azure/virtual-network/security-overvi
 ### <a name="relevant-ip-addresses"></a>Adresses IP principales
 
 #### <a name="azure-data-explorer-management-ip-addresses"></a>Adresses IP de gestion Azure Data Explorer
+
+> [!NOTE]
+> Pour les futurs déploiements, utiliser l’étiquette de service AzureDataExplorer
 
 | Région | Adresses |
 | --- | --- |
@@ -222,6 +225,7 @@ Si vous souhaitez sécuriser le trafic sortant à l’aide du [Pare-feu Azure](/
 
 ```
 prod.warmpath.msftcloudes.com:443
+gcs.prod.monitoring.core.windows.net:443
 production.diagnostics.monitoring.core.windows.net:443
 graph.windows.net:443
 *.update.microsoft.com:443
@@ -234,8 +238,6 @@ azureprofilerfrontdoor.cloudapp.net:443
 *.servicebus.windows.net:443
 shoebox2.metrics.nsatc.net:443
 prod-dsts.dsts.core.windows.net:443
-*.identity.azure.net:443
-*.vault.azure.net:443
 ocsp.msocsp.com:80
 *.windowsupdate.com:80
 ocsp.digicert.com:80
