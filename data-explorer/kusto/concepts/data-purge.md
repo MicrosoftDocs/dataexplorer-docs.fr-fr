@@ -1,6 +1,6 @@
 ---
-title: Purge des données - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la purge de données dans Azure Data Explorer.
+title: Purge des données-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit la purge des données dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,102 +8,108 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 460ad9cfca4f97e6735d30a4d47d6384581e7af7
-ms.sourcegitcommit: 29018b3db4ea7d015b1afa65d49ecf918cdff3d6
+ms.openlocfilehash: e24edd1f47318d1ee12bfead83d2e09f67a6cc7a
+ms.sourcegitcommit: 9fe6ee7db15a5cc92150d3eac0ee175f538953d2
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "82029986"
+ms.lasthandoff: 05/07/2020
+ms.locfileid: "82907167"
 ---
 # <a name="data-purge"></a>Vidage des données
 
 >[!Note]
-> Cet article explique comment supprimer les données personnelles de l’appareil ou du service et il peut être utilisé dans le cadre de vos obligations en vertu du Règlement général sur la protection des données. Si vous êtes à la recherche d’informations générales sur GDPR, consultez la [section GDPR du portail Service Trust](https://servicetrust.microsoft.com/ViewPage/GDPRGetStarted).
+> Cet article décrit les étapes permettant de supprimer des données personnelles de l’appareil ou du service, et peut vous aider à respecter vos obligations dans le cadre du RGPD. Si vous recherchez des informations générales sur RGPD, reportez-vous à la [section RGPD du portail Service Trust](https://servicetrust.microsoft.com/ViewPage/GDPRGetStarted).
 
 
 
-En tant que plate-forme de données, Azure Data Explorer (Kusto) prend en charge la possibilité de supprimer des enregistrements individuels, grâce à l’utilisation de `.purge` commandes et des commandes connexes. Vous pouvez également [purger une table entière](#purging-an-entire-table).  
+En tant que plateforme de données, Azure Explorateur de données (Kusto) prend en charge la possibilité de supprimer des enregistrements individuels `.purge` , par le biais de l’utilisation de et de commandes associées. Vous pouvez également [purger une table entière](#purging-an-entire-table).  
 
 > [!WARNING]
-> La suppression des `.purge` données par le biais de la commande est conçue pour être utilisée pour protéger les données personnelles et ne doit pas être utilisée dans d’autres scénarios. Il n’est pas conçu pour prendre en charge les demandes de suppression fréquentes, ou la suppression de quantités massives de données, et peut avoir un impact significatif sur les performances sur le service.
+> La suppression des données `.purge` via la commande est conçue pour être utilisée pour protéger des données personnelles et ne doit pas être utilisée dans d’autres scénarios. Elle n’est pas conçue pour prendre en charge des requêtes de suppression fréquentes, ni pour la suppression de quantités importantes de données, et peut avoir un impact significatif sur les performances du service.
 
-## <a name="purge-guidelines"></a>Lignes directrices sur la purge
+## <a name="purge-guidelines"></a>Instructions de vidage
 
-Il est **fortement recommandé** que les équipes qui stockent des données personnelles dans Azure Data Explorer ne le fassent qu’après une conception minutieuse du schéma de données et l’enquête sur les politiques pertinentes.
+Il est **fortement recommandé** que les équipes qui stockent des données personnelles dans Azure Explorateur de données le fassent uniquement après avoir soigneusement conçu le schéma de données et l’investigation des stratégies pertinentes.
 
-1. Dans le meilleur des cas, la période de conservation de ces données est suffisamment courte et les données sont automatiquement supprimées.
-2. Si l’utilisation de la période de conservation n’est pas possible, l’approche recommandée consiste à isoler toutes les données soumises aux règles de confidentialité dans un petit nombre de tables Kusto (optimalement, une seule table) et à y établir un lien de toutes les autres tables. Cela permet d’exécuter le processus de [purge](#purge-process) de données sur un petit nombre de tables contenant des données sensibles, et d’éviter toutes les autres tables.
-3. L’appelant doit faire toutes les `.purge` tentatives pour passer par lots l’exécution des commandes à 1-2 commandes par table par jour.
-   Ne publiez pas de commandes multiples, chacune ayant sa propre identité d’utilisateur prédicate; plutôt envoyer une seule commande dont le prédicat comprend toutes les identités des utilisateurs qui nécessitent la purge.
+1. Dans le meilleur des cas, la période de rétention sur ces données est suffisamment petite et les données sont automatiquement supprimées.
+2. Si l’utilisation de la période de rétention n’est pas possible, l’approche recommandée consiste à isoler toutes les données soumises aux règles de confidentialité dans un petit nombre de tables Kusto (de manière optimale, une seule table) et à les lier à partir de toutes les autres tables. Cela permet à l’un d’exécuter le [processus de purge](#purge-process) des données sur un petit nombre de tables contenant des données sensibles, et d’éviter toutes les autres tables.
+3. L’appelant doit faire chaque tentative de traitement par lot de `.purge` l’exécution de commandes sur 1-2 commandes par table et par jour.
+   N’émettez pas plusieurs commandes, chacune avec son propre prédicat d’identité d’utilisateur ; au lieu de cela, envoyez une commande unique dont le prédicat comprend toutes les identités des utilisateurs qui nécessitent une purge.
 
-## <a name="purge-process"></a>Processus de purge
+## <a name="purge-process"></a>Processus de vidage
 
-Le processus de purge sélective des données d’Azure Data Explorer se déroule dans les étapes suivantes :
+Le processus de purge sélective des données à partir d’Azure Explorateur de données se déroule comme suit :
 
-1. **Phase 1 :** Compte tenu d’un nom de table Kusto et d’un prédicat par enregistrement indiquant quels enregistrements supprimer, Kusto scanne le tableau à la recherche d’identifier les fragments de données qui participeraient à la purge des données (avoir un ou plusieurs enregistrements pour lesquels les retours prédicat vrai).
-2. **Phase 2 : (Soft Delete)** Remplacez chaque éclat de données dans le tableau (identifié en étape (1)) par une version re-ingérée qui n’a pas les enregistrements pour lesquels le prédicat renvoie vrai.
-   Tant qu’aucune nouvelle donnée n’est ingérée dans la table, d’ici la fin de cette phase, les requêtes ne retourneront plus les données pour lesquelles le prédicat retourne vrai. 
-   La durée de la phase de suppression douce de purge dépend du nombre d’enregistrements qui doivent être purgés, de leur distribution à travers les éclats de données dans le cluster, du nombre de nœuds dans le cluster, de la capacité de réserve qu’il a pour les opérations de purge et de plusieurs autres facteurs. La durée de la phase 2 peut varier de quelques secondes à plusieurs heures.
-3. **Phase 3 : (Hard Delete)** Travaillez en arrière tous les artefacts de stockage qui peuvent avoir les données « empoisonnées », et supprimez-les du stockage. Cette phase est effectuée au moins 5 jours *après* l’achèvement de la phase précédente, mais pas plus de 30 jours après la commande initiale, pour se conformer aux exigences en matière de confidentialité des données.
+1. **Phase 1 :** Dans le cas d’un nom de table Kusto et d’un prédicat par enregistrement indiquant les enregistrements à supprimer, Kusto analyse la table pour identifier les données partitions qui participent à la purge des données (un ou plusieurs enregistrements pour lesquels le prédicat retourne la valeur true).
+2. **Phase 2 : (suppression réversible)** Remplacez chaque partition de données de la table (identifiée à l’étape (1)) par une version régérée qui n’a pas les enregistrements pour lesquels le prédicat retourne la valeur true.
+   Tant qu’aucune nouvelle donnée n’est ingérée dans la table, à la fin de cette phase, les requêtes ne retournent plus de données pour lesquelles le prédicat retourne la valeur true. 
+   La durée de la suppression de la suppression réversible dépend du nombre d’enregistrements qui doivent être purgés, de leur distribution sur les données partitions dans le cluster, du nombre de nœuds dans le cluster, de la capacité de rechange pour les opérations de vidage et de plusieurs autres facteurs. La durée de la phase 2 peut varier de quelques secondes à plusieurs heures.
+3. **Phase 3 : (suppression définitive)** Réactivez tous les artefacts de stockage qui peuvent avoir des données « incohérentes », puis supprimez-les du stockage. Cette phase est effectuée au moins 5 jours *après* la fin de la phase précédente, mais pas plus de 30 jours après la commande initiale, pour se conformer aux exigences de confidentialité des données.
 
-L’émission d’une `.purge` commande déclenche ce processus, qui prend quelques jours. Notez que si la « densité » d’enregistrements pour lesquels le prédicat s’applique est suffisamment importante, le processus réingérera effectivement toutes les données du tableau, ce qui aura un impact significatif sur le rendement et le COGS.
+L’émission `.purge` d’une commande déclenche ce processus, qui prend quelques jours. Notez que si la « densité » d’enregistrements pour lesquels le prédicat s’applique est suffisamment grande, le processus re-ingérera toutes les données de la table, par conséquent, en ayant un impact significatif sur les performances et les COGS.
 
 
-## <a name="purge-limitations-and-considerations"></a>Limites et considérations de purge
+## <a name="purge-limitations-and-considerations"></a>Limitations et considérations relatives à la purge
 
-* **Le processus de purge est définitif et irréversible**. Il n’est pas possible de « défaire » ce processus ou de récupérer les données qui ont été purgées. Par conséquent, les commandes telles que [la baisse de table annuler](../management/undo-drop-table-command.md) ne peut pas récupérer les données purgées, et la réduction des données à une version précédente ne peut pas aller à "avant" la dernière commande de purge.
+* **Le processus de vidage est final et irréversible**. Il n’est pas possible d’annuler ce processus ou de récupérer des données purgées. Par conséquent, les commandes telles que [annuler la suppression de table](../management/undo-drop-table-command.md) ne peuvent pas récupérer les données purgées et la restauration des données vers une version antérieure ne peut pas aller à « avant » la dernière commande de vidage.
 
-* Pour éviter les erreurs, il est recommandé de vérifier le prédicat en exécutant une requête avant la purge pour s’assurer que les résultats correspondent au résultat prévu, ou utiliser le processus en deux étapes qui renvoie le nombre prévu d’enregistrements qui seront purgés. 
+* Pour éviter les erreurs, il est recommandé de vérifier le prédicat en exécutant une requête avant la purge pour vous assurer que les résultats correspondent au résultat attendu, ou bien utiliser le processus en 2 étapes qui retourne le nombre attendu d’enregistrements qui seront purgés. 
 
-* Par mesure de précaution, le processus de purge est désactivé, par défaut, sur tous les clusters.
-   Permettre le processus de purge est une opération ponctuelle qui nécessite l’ouverture d’un [billet de soutien;](https://ms.portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/overview) s’il vous `EnabledForPurge` plaît spécifier que vous voulez que la fonctionnalité soit activée.
+* Par mesure de précaution, le processus de vidage est désactivé par défaut sur tous les clusters.
+   L’activation du processus de purge est une opération unique qui nécessite l’ouverture d’un [ticket de support](https://ms.portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/overview); Spécifiez que vous souhaitez que `EnabledForPurge` la fonctionnalité soit activée.
 
-* La `.purge` commande est exécutée à l’encontre du critère de gestion des données : `https://ingest-[YourClusterName].kusto.windows.net`.
-   La commande nécessite des autorisations [d’administration](../management/access-control/role-based-authorization.md) de base de données sur les bases de données pertinentes. 
-* En raison de l’impact sur le rendement du processus de purge et pour garantir que les lignes directrices sur la purge ont été [suivies,](#purge-guidelines) on s’attend à ce que l’appelant modifie le schéma de données afin que les tableaux minimaux incluent les données pertinentes, et les commandes par lot par tableau pour réduire l’impact significatif du COGS du processus de purge.
-* Le `predicate` paramètre de la commande [.purge](#purge-table-tablename-records-command) est utilisé pour spécifier quels enregistrements purger.
-`Predicate`la taille est limitée à 63 KB. Lors de `predicate`la construction de la :
-    * Utilisez [l’opérateur 'in',](../query/inoperator.md) `where [ColumnName] in ('Id1', 'Id2', .. , 'Id1000')`par exemple . 
-        * Notez les limites de [l’opérateur 'in'](../query/inoperator.md) (la liste peut contenir jusqu’à `1,000,000` des valeurs).
-    * Si la taille de la requête est grande, utilisez [l’opérateur de « données externes »,](../query/externaldata-operator.md)par exemple. `where UserId in (externaldata(UserId:string) ["https://...blob.core.windows.net/path/to/file?..."])` Le fichier stocke la liste des DIU à purger.
-        * La taille totale des requêtes, après avoir agrandi tous les blobs externes (taille totale de tous les blobs) ne peut pas dépasser 64 Mo. 
+* La `.purge` commande est exécutée sur le point de `https://ingest-[YourClusterName].kusto.windows.net`terminaison gestion des données :.
+   La commande requiert des autorisations d' [administrateur de base](../management/access-control/role-based-authorization.md) de données sur les bases de données appropriées. 
+* En raison de l’impact sur les performances du processus de purge, et pour garantir que les [instructions de purge](#purge-guidelines) ont été suivies, l’appelant doit modifier le schéma de données afin que les tables minimales incluent les données pertinentes et les commandes batch par table pour réduire l’impact CMV significatif du processus de purge.
+* Le `predicate` paramètre de la commande [. purge](#purge-table-tablename-records-command) est utilisé pour spécifier les enregistrements à purger.
+`Predicate`la taille est limitée à 63 Ko. Lors de la construction `predicate`de :
+    * Utilisez l' [opérateur « in »](../query/inoperator.md), par exemple `where [ColumnName] in ('Id1', 'Id2', .. , 'Id1000')`. 
+        * Notez les limites de l' [opérateur « in »](../query/inoperator.md) (la liste peut contenir jusqu' `1,000,000` à valeurs).
+    * Si la taille de la requête est importante, utilisez l' [opérateur « ExternalData »](../query/externaldata-operator.md), par exemple `where UserId in (externaldata(UserId:string) ["https://...blob.core.windows.net/path/to/file?..."])`. Le fichier stocke la liste des ID à purger.
+        * La taille totale de la requête, après le développement de tous les objets BLOB ExternalData (taille totale de tous les objets BLOB), ne peut pas dépasser 64 Mo. 
 
-## <a name="purge-performance"></a>Exécution de purge
+## <a name="purge-performance"></a>Purger les performances
 
-Une seule demande de purge peut être exécutée sur le cluster, à un moment donné. Toutes les autres demandes sont en file d’attente dans l’état "programmé". La taille de la file d’attente de demande de purge doit être surveillée et maintenue dans des limites adéquates pour répondre aux exigences applicables à vos données.
+Une seule demande de vidage peut être exécutée sur le cluster à un moment donné. Toutes les autres demandes sont mises en file d’attente dans l’état « planifié ». La taille de la file d’attente des demandes de vidage doit être analysée et conservée dans les limites appropriées pour correspondre aux exigences applicables à vos données.
 
-Pour réduire le temps d’exécution de purge :
-* Diminuer la quantité de données purgées en suivant les [directives de purge](#purge-guidelines)
-* Ajuster la [politique de mise en cache](../management/cachepolicy.md) puisque la purge prend plus de temps sur les données froides.
-* Échelle du cluster
+Pour réduire la durée d’exécution de vidage :
+* Réduire la quantité de données purgées en suivant les [instructions de purge](#purge-guidelines)
+* Ajustez la [stratégie de mise en cache](../management/cachepolicy.md) , car le vidage prend plus de temps sur les données à froid.
+* Monter en charge le cluster
 
-* Augmenter la capacité de purge des [grappes,](../management/capacitypolicy.md#extents-purge-rebuild-capacity)après un examen attentif, comme détaillé dans Extents purge capacité de reconstruction . La modification de ce paramètre nécessite l’ouverture d’un [billet de support](https://ms.portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/overview)
+* Augmentez la capacité de purge de cluster, après mûre réflexion, comme détaillé dans les [Extensions purger la capacité de reconstruction](../management/capacitypolicy.md#extents-purge-rebuild-capacity). La modification de ce paramètre nécessite l’ouverture d’un [ticket de support](https://ms.portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/overview)
 
-## <a name="trigger-the-purge-process"></a>Déclencher le processus de purge
+## <a name="trigger-the-purge-process"></a>Déclencher le processus de vidage
 
 > [!Note]
-> L’exécution de purge est invoquée en exécutant la [table de purge *TableName* enregistre](#purge-table-tablename-records-command) la commande sur le point de terminaison de gestion des données (**https://ingest-[YourClusterName].kusto.windows.net**).
+> L’exécution de vidage est appelée en exécutant la commande [purger les enregistrements *TableName* de table](#purge-table-tablename-records-command) sur le point de terminaison gestion des données (**https://ingest-[YourClusterName]. [ Region]. Kusto. Windows. net**).
 
-### <a name="purge-table-tablename-records-command"></a>Commande *de* dossiers de table de purge De table
+### <a name="purge-table-tablename-records-command"></a>Commande purger les enregistrements *TableName* de table
 
-La commande de purge peut être invoquée de deux façons pour des scénarios d’utilisation différents :
-1. Invocation programmatique : Une seule étape qui est destinée à être invoquée par les demandes. L’appel de cette commande déclenche directement la séquence d’exécution de purge.
+La commande de vidage peut être appelée de deux manières pour différents scénarios d’utilisation :
+1. Appel par programme : une étape unique qui est destinée à être appelée par des applications. L’appel de cette commande déclenche directement la séquence d’exécution de vidage.
 
     **Syntaxe**
 
      ```kusto
+     // Connect to the Data Management service
+     #connect "https://ingest-[YourClusterName].[region].kusto.windows.net" 
+     
      .purge table [TableName] records in database [DatabaseName] with (noregrets='true') <| [Predicate]
      ```
 
     > [!NOTE]
-    > Générez cette commande en utilisant l’API CslCommandGenerator, disponible dans le cadre du forfait NuGet de la [bibliothèque cliente Kusto.](../api/netfx/about-kusto-data.md)
+    > Générez cette commande à l’aide de l’API CslCommandGenerator, disponible dans le cadre du package NuGet de la [bibliothèque cliente Kusto](../api/netfx/about-kusto-data.md) .
 
-1. Invocation humaine : Un processus en deux étapes qui nécessite une confirmation explicite comme étape distincte. Première invocation de la commande renvoie un jeton de vérification, qui devrait être fourni pour exécuter la purge réelle. Cette séquence réduit le risque de suppression par inadvertance de données incorrectes. L’utilisation de cette option peut prendre beaucoup de temps à compléter sur de grandes tables avec des données significatives cache froide.
+1. Appel humain : processus en deux étapes qui requiert une confirmation explicite comme étape distincte. Le premier appel de la commande retourne un jeton de vérification, qui doit être fourni pour exécuter le vidage réel. Cette séquence réduit le risque de supprimer par inadvertance des données incorrectes. L’utilisation de cette option peut prendre beaucoup de temps sur les tables volumineuses avec des données de cache à froid significatives.
     <!-- If query times-out on DM endpoint (default timeout is 10 minutes), it is recommended to use the [engine `whatif` command](#purge-whatif-command) directly againt the engine endpoint while increasing the [server timeout limit](../concepts/querylimits.md#limit-on-request-execution-time-timeout). Only after you have verified the expected results using the engine whatif command, issue the purge command via the DM endpoint using the 'noregrets' option. -->
 
      **Syntaxe**
 
      ```kusto
+     // Connect to the Data Management service
+     #connect "https://ingest-[YourClusterName].[region].kusto.windows.net" 
+     
      // Step #1 - retrieve a verification token (no records will be purged until step #2 is executed)
      .purge table [TableName] records in database [DatabaseName] <| [Predicate]
 
@@ -115,32 +121,35 @@ La commande de purge peut être invoquée de deux façons pour des scénarios d�
     |---------|---------|
     | nom_base_de_données   |   Nom de la base de données      |
     | TableName     |     Nom de la table    |
-    | Predicate    |    Identifie les dossiers pour purger. Voir Purge prédicate limitations ci-dessous. | 
-    | noregrets noregrets    |     Si défini, déclenche une activation en une seule étape.    |
-    | vérificationtoken     |  Dans le scénario d’activation en deux étapes **(noregrets** n’est pas défini), ce jeton peut être utilisé pour exécuter la deuxième étape et de commettre l’action. Si **le jet de vérification** n’est pas spécifié, il déclenchera la première étape de la commande, dans laquelle les informations sur la purge sont retournées et un jeton, qui doivent être transmises à l’ordre pour effectuer l’étape #2.   |
+    | Predicate    |    Identifie les enregistrements à purger. Consultez Limitations des prédicats de vidage ci-dessous. | 
+    | noregrettes    |     Si cette valeur est définie, déclenche une activation en une seule étape.    |
+    | verificationtoken     |  Dans un scénario d’activation en deux étapes (**noregrettes** n’est pas défini), ce jeton peut être utilisé pour exécuter la deuxième étape et valider l’action. Si **verificationtoken** n’est pas spécifié, il déclenche la première étape de la commande, dans laquelle les informations sur la purge sont retournées et un jeton, qui doit être renvoyé à la commande pour exécuter l’étape #2.   |
 
-    **Purger les limitations**
-    * Le prédicat doit être une simple sélection (p. ex. *lorsque [ColumnName] 'X'* / *où [ColumnName] en ('X', 'Y', 'Z') et [OtherColumn] 'A').*
-    * Les filtres multiples doivent être combinés avec `where` un «et», `where [ColumnName] == 'X' and  OtherColumn] == 'Y'` plutôt `where [ColumnName] == 'X' | where [OtherColumn] == 'Y'`que des clauses distinctes (par exemple et non ).
-    * Le prédicat ne peut pas faire référence à d’autres que la table étant purgée (*TableName*). Le prédicat ne peut inclure`where`que l’énoncé de sélection (). Il ne peut pas projeter des colonnes spécifiques à partir de la table (schéma de sortie lors de l’exécution '* `table` Predicate*' doit correspondre schéma de table).
-    * Les fonctions du `ingestion_time()`système `extent_id()`(telles que, , ) ne sont pas prises en charge dans le cadre du prédicat.
+    **Supprimer les limitations de prédicat**
+    * Le prédicat doit être une sélection simple (par exemple, *où [ColumnName] = = 'X'* / *Where [ColumnName] in ('X', 'Y', 'Z') et [OtherColumn] = = 'a'*).
+    * Plusieurs filtres doivent être combinés avec un’and', plutôt que des `where` clauses distinctes (par `where [ColumnName] == 'X' and  OtherColumn] == 'Y'` exemple, `where [ColumnName] == 'X' | where [OtherColumn] == 'Y'`et non).
+    * Le prédicat ne peut pas référencer des tables autres que la table en cours de purge (*TableName*). Le prédicat ne peut inclure que l’instruction de sélection`where`(). Il ne peut pas projeter des colonnes spécifiques de la table (schéma de sortie lors de l’exécution de'* `table` | Le prédicat*'doit correspondre au schéma de table.
+    * Les fonctions système (telles que `ingestion_time()`, `extent_id()`,) ne sont pas prises en charge dans le cadre du prédicat.
 
-#### <a name="example-two-step-purge"></a>Exemple : Purge en deux étapes
+#### <a name="example-two-step-purge"></a>Exemple : vidage en deux étapes
 
-1. Pour initier la purge dans un scénario d’activation en deux étapes, exécutez l’étape #1 de la commande :
+1. Pour lancer la purge dans un scénario d’activation en deux étapes, exécutez l’étape #1 de la commande :
 
     ```kusto
+    // Connect to the Data Management service
+     #connect "https://ingest-[YourClusterName].[region].kusto.windows.net" 
+     
     .purge table MyTable records in database MyDatabase <| where CustomerId in ('X', 'Y')
     ```
 
     **Sortie**
 
-    |NumRecordsToPurge |EstimationPurgeExecutionTime| VérificationToken
+    |NumRecordsToPurge |EstimatedPurgeExecutionTime| VerificationToken
     |--|--|--
-    |1,596 |00:00:02 |e43c7184ed2f4f23c7a9d7b124d196be2e570096987e5baadf65057fa65736b
+    |1 596 |00:00:02 |e43c7184ed22f4f23c7a9d7b124d196be2e570096987e5baadf65057fa65736b
 
-    Validez le NumRecordsToPurge avant de courir #2 étape. 
-2. Pour effectuer une purge dans un scénario d’activation en deux étapes, utilisez le jeton de vérification retourné de l’étape #1 pour exécuter l’étape #2 :
+    Validez le NumRecordsToPurge avant d’exécuter l’étape #2. 
+2. Pour effectuer une purge dans un scénario d’activation en deux étapes, utilisez le jeton de vérification retourné à partir de l’étape #1 pour exécuter l’étape #2 :
 
     ```kusto
     .purge table MyTable records in database MyDatabase
@@ -150,30 +159,33 @@ La commande de purge peut être invoquée de deux façons pour des scénarios d�
 
     **Sortie**
 
-    |OpérationId |nom_base_de_données |TableName |Temps prévu |Duration |LastUpdatedOn |EngineOperationId |State |StateDetails |EngineStartTime (en) |EngineDuration |Nouvelle tentatives |ClientRequestId |Principal
+    |OperationId |nom_base_de_données |TableName |ScheduledTime |Duration |LastUpdatedOn |EngineOperationId |État |StateDetails |EngineStartTime |EngineDuration |Nouvelle tentatives |ClientRequestId |Principal
     |--|--|--|--|--|--|--|--|--|--|--|--|--|--
-    |c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mydatabase |MyTable |2019-01-20 11:41:05.4391686 |00:00:00.1406211 |2019-01-20 11:41:05.4391686 | |Planifiée | | | |0 |Ke. RunCommand;1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD app id...
+    |c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:00.1406211 |2019-01-20 11:41:05.4391686 | |Planifiée | | | |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...
 
-#### <a name="example-single-step-purge"></a>Exemple : Purge en une seule étape
+#### <a name="example-single-step-purge"></a>Exemple : vidage en une seule étape
 
-Pour déclencher une purge dans un scénario d’activation en une seule étape, exécutez la commande suivante :
+Pour déclencher une purge dans un scénario d’activation en une seule étape, exécutez la commande suivante :
 
-```kusto
-.purge table MyTable records in database MyDatabase with (noregrets='true') <| where CustomerId in ('X', 'Y')
-```
+    ```kusto
+    // Connect to the Data Management service
+     #connect "https://ingest-[YourClusterName].[region].kusto.windows.net" 
+     
+    .purge table MyTable records in database MyDatabase with (noregrets='true') <| where CustomerId in ('X', 'Y')
+    ```
 
 **Sortie**
 
-|OpérationId |nom_base_de_données |TableName |Temps prévu |Duration |LastUpdatedOn |EngineOperationId |State |StateDetails |EngineStartTime (en) |EngineDuration |Nouvelle tentatives |ClientRequestId |Principal
+|OperationId |nom_base_de_données |TableName |ScheduledTime |Duration |LastUpdatedOn |EngineOperationId |État |StateDetails |EngineStartTime |EngineDuration |Nouvelle tentatives |ClientRequestId |Principal
 |--|--|--|--|--|--|--|--|--|--|--|--|--|--
-|c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mydatabase |MyTable |2019-01-20 11:41:05.4391686 |00:00:00.1406211 |2019-01-20 11:41:05.4391686 | |Planifiée | | | |0 |Ke. RunCommand;1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD app id...
+|c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:00.1406211 |2019-01-20 11:41:05.4391686 | |Planifiée | | | |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...
 
-### <a name="cancel-purge-operation-command"></a>Annuler le commandement de l’opération de purge
+### <a name="cancel-purge-operation-command"></a>Commande Cancel purge Operation
 
-Si nécessaire, vous pouvez annuler les demandes de purge en attente.
+Si nécessaire, vous pouvez annuler les demandes de vidage en attente.
 
 > [!NOTE]
-> Cette opération est destinée aux scénarios de récupération d’erreurs. Il n’est pas garanti de réussir, et ne devrait pas faire partie d’un flux opérationnel normal. Il ne peut être appliqué qu’aux demandes en file d’attente (pas encore expédiés au nœud moteur pour exécution). La commande est exécutée sur le point de terminaison de gestion des données.
+> Cette opération est destinée à des scénarios de récupération d’erreur. Il n’est pas garanti que l’opération aboutisse et ne doit pas faire partie d’un workflow opérationnel normal. Elle ne peut être appliquée qu’aux demandes dans la file d’attente (pas encore distribuées au nœud du moteur pour exécution). La commande est exécutée sur le point de terminaison Gestion des données.
 
 **Syntaxe**
 
@@ -189,22 +201,22 @@ Si nécessaire, vous pouvez annuler les demandes de purge en attente.
 
 **Sortie**
 
-La sortie de cette commande est la même que la sortie de commande de 'show purges *OperationId',* montrant l’état mis à jour de l’opération de purge annulée. Si la tentative est réussie, l’état d’opération est mis à jour à «abandonné», sinon l’état d’opération n’est pas modifié. 
+La sortie de cette commande est identique à la sortie de la commande’Show purges *OperationId*', indiquant l’État mis à jour de l’annulation de l’opération de vidage. Si la tentative réussit, l’état de l’opération est mis à jour avec la valeur « abandonné », sinon l’état de l’opération n’est pas modifié. 
 
-|OpérationId |nom_base_de_données |TableName |Temps prévu |Duration |LastUpdatedOn |EngineOperationId |State |StateDetails |EngineStartTime (en) |EngineDuration |Nouvelle tentatives |ClientRequestId |Principal
+|OperationId |nom_base_de_données |TableName |ScheduledTime |Duration |LastUpdatedOn |EngineOperationId |État |StateDetails |EngineStartTime |EngineDuration |Nouvelle tentatives |ClientRequestId |Principal
 |--|--|--|--|--|--|--|--|--|--|--|--|--|--
-|c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mydatabase |MyTable |2019-01-20 11:41:05.4391686 |00:00:00.1406211 |2019-01-20 11:41:05.4391686 | |Abandonné | | | |0 |Ke. RunCommand;1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD app id...
+|c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:00.1406211 |2019-01-20 11:41:05.4391686 | |Abandonné | | | |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...
 
-## <a name="track-purge-operation-status"></a>Suivi de l’état de l’opération de purge 
+## <a name="track-purge-operation-status"></a>État de l’opération de purge des suivis 
 
 > [!Note]
-> Les opérations de purge peuvent être suivies avec le [show purges](#show-purges-command) commande, exécuté contre le point de terminaison de gestion des données (**https://ingest-[YourClusterName].kusto.windows.net**).
+> Les opérations de purge peuvent être suivies à l’aide de la commande [Show purges](#show-purges-command) , exécutée sur le point de terminaison gestion des données (**https://ingest-[YourClusterName]. [ Region]. Kusto. Windows. net**).
 
-Statut - 'Terminé' indique l’achèvement réussi de la première phase de l’opération de purge, qui est les dossiers sont soft-supprimés et ne sont plus disponibles pour la requête. On **ne s’attend pas** à ce que les clients suivent et vérifient l’achèvement de la deuxième phase (hard-delete). Cette phase est surveillée en interne par Kusto.
+Status = 'Completed’indique la réussite de la première phase de l’opération de vidage, c’est-à-dire que les enregistrements sont supprimés de manière réversible et ne sont plus disponibles pour l’interrogation. Les clients ne sont **pas** censés suivre et vérifier la fin de la deuxième phase (suppression définitive). Cette phase est surveillée en interne par Kusto.
 
-### <a name="show-purges-command"></a>afficher purges commande
+### <a name="show-purges-command"></a>afficher les purges, commande
 
-`Show purges`commande montre l’état de l’opération de purge en spécifiant l’opération Id dans la période de temps demandée. 
+`Show purges`la commande affiche l’état de l’opération de purge en spécifiant l’ID d’opération dans la période demandée. 
 
 ```kusto
 .show purges <OperationId>
@@ -215,13 +227,13 @@ Statut - 'Terminé' indique l’achèvement réussi de la première phase de l�
 
 |Propriétés  |Description  |Obligatoire/facultatif
 |---------|---------|
-|OpérationId    |      L’opération de gestion des données Id sortie après l’exécution d’une seule phase ou deuxième phase.   |Obligatoire
-|StartDate    |   Limite de temps plus faible pour les opérations de filtrage. Si omis, par défaut à 24 heures avant l’heure actuelle.      |Facultatif
-|EndDate    |  Limite de temps supérieure pour les opérations de filtrage. Si omis, par défaut à l’heure actuelle.       |Facultatif
-|nom_base_de_données    |     Nom de base de données pour filtrer les résultats.    |Facultatif
+|OperationId    |      L’ID d’opération de Gestion des données sortie après l’exécution de la phase unique ou de la deuxième phase.   |Obligatoire
+|StartDate    |   Limite de temps inférieure pour les opérations de filtrage. En cas d’omission, la valeur par défaut est 24 heures avant l’heure actuelle.      |Facultatif
+|EndDate    |  Limite de temps supérieure pour les opérations de filtrage. En cas d’omission, la valeur par défaut est l’heure actuelle.       |Facultatif
+|nom_base_de_données    |     Nom de la base de données pour filtrer les résultats.    |Facultatif
 
 > [!NOTE]
-> L’état sera fourni uniquement sur les bases de données que le client a des autorisations [d’administration de base de données.](../management/access-control/role-based-authorization.md)
+> L’État ne sera fourni que sur les bases de données pour lesquelles le client dispose d’autorisations d' [administrateur de base de données](../management/access-control/role-based-authorization.md) .
 
 **Exemples**
 
@@ -235,51 +247,57 @@ Statut - 'Terminé' indique l’achèvement réussi de la première phase de l�
 
 **Sortie** 
 
-|OpérationId |nom_base_de_données |TableName |Temps prévu |Duration |LastUpdatedOn |EngineOperationId |State |StateDetails |EngineStartTime (en) |EngineDuration |Nouvelle tentatives |ClientRequestId |Principal
+|OperationId |nom_base_de_données |TableName |ScheduledTime |Duration |LastUpdatedOn |EngineOperationId |État |StateDetails |EngineStartTime |EngineDuration |Nouvelle tentatives |ClientRequestId |Principal
 |--|--|--|--|--|--|--|--|--|--|--|--|--|--
-|c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mydatabase |MyTable |2019-01-20 11:41:05.4391686 |00:00:33.6782130 |2019-01-20 11:42:34.6169153 |a0825d4d-6b0f-47f3-a499-54ac5681ab78 |Completed |Purge terminée avec succès (artefacts de stockage en attente de suppression) |2019-01-20 11:41:34.6486506 |00:00:04.4687310 |0 |Ke. RunCommand;1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD app id...
+|c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:33.6782130 |2019-01-20 11:42:34.6169153 |a0825d4d-6b0f-47f3-a499-54ac5681ab78 |Completed |Purge terminée avec succès (artefacts de stockage en attente de suppression) |2019-01-20 11:41:34.6486506 |00:00:04.4687310 |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...
 
-* **OperationId** - l’ID d’opération DM est revenu lors de l’exécution de la purge. 
-* **DatabaseName** - nom de base de données (sensible aux cas). 
-* **TableName** - nom de table (sensible aux cas). 
-* **ScheduledTime** - temps d’exécution de la commande de purge au service DM. 
-* **Durée** - durée totale de l’opération de purge, y compris le temps d’attente d’exécution de file d’attente DM. 
-* **EngineOperationId** - l’ID d’opération de la purge réelle exécutant dans le moteur. 
-* **État** - état de purge, peut être l’un des suivants: 
-    * Opération de purge prévue - est prévue pour l’exécution. Si le travail reste **prévu,** il ya probablement un arriéré d’opérations de purge. Voir [les performances de purge](#purge-performance) pour effacer cet arriéré. Si une opération de purge échoue sur une erreur transitoire, elle sera rejugée par le DM et réglée à **scheduled** à nouveau (de sorte que vous pouvez voir une transition d’opération de **Scheduled** à **InProgress** et retour à **Scheduled**).
-    * InProgress - l’opéra de purge est en cours dans le moteur. 
-    * Terminé - purge terminée avec succès.
-    * BadInput - purge a échoué sur les mauvaises entrées et ne sera pas rejugé. Cela peut être dû à diverses questions telles qu’une erreur de syntaxe dans le prédicat, un prédicat illégal pour les commandes de purge, une requête qui dépasse les limites (par exemple, plus d’entités 1M dans un opérateur de données externes ou plus de 64 Mo de la taille totale de requête élargie), et 404 ou 403 erreurs pour les blobs externaldata.
-    * Échec - purge a échoué et ne sera pas rejugé. Cela peut se produire si l’opération a été en attente dans la file d’attente pendant trop longtemps (plus de 14 jours), en raison d’un arriéré d’autres opérations de purge ou un certain nombre de défaillances qui dépasse la limite de nouvelle tentative. Ce dernier lèvera une alerte de surveillance interne et fera l’objet d’une enquête de l’équipe Azure Data Explorer. 
-* StateDetails - une description de l’État.
-* EngineStartTime - l’heure à la commande a été émise au moteur. S’il y a une grande différence entre cette époque et ScheduledTime, il y a habituellement un gros arriéré d’opérations de purge et le cluster ne suit pas le rythme. 
-* EngineDuration - temps d’exécution de purge réelle dans le moteur. Si la purge a été rejugée plusieurs fois, c’est la somme de toutes les durées d’exécution. 
-* Retries - nombre de fois l’opération a été rejugée par le service DM en raison d’une erreur transitoire.
-* ClientRequestId - ID d’activité client de la demande de purge DM. 
-* Principal - identité de l’émetteur de commandement de purge.
+* **OperationId** : ID d’opération DM renvoyé lors de l’exécution de l’opération de vidage. 
+* **DatabaseName** -nom de la base de données (sensible à la casse). 
+* **TableName** -nom de la table (sensible à la casse). 
+* **ScheduledTime** : heure de l’exécution de la commande de vidage pour le service DM. 
+* **Duration** : durée totale de l’opération de vidage, y compris le temps d’attente de la file d’attente DM d’exécution. 
+* **EngineOperationId** : ID d’opération de la purge réelle s’exécutant dans le moteur. 
+* **État-purge** de l’État, peut être l’un des éléments suivants : 
+    * L’exécution de l’opération de purge planifiée est planifiée. Si la tâche reste **planifiée**, il y a probablement un backlog d’opérations de vidage. Consultez [purger les performances](#purge-performance) pour effacer ce Backlog. Si une opération de vidage échoue sur une erreur temporaire, elle est retentée par le DM et définie à nouveau **planifiée** (de sorte que vous pouvez voir une opération transition de **Planifié** à en **cours** , puis revenir à **planifié**).
+    * En cours : le operaration de purge est en cours d’avancement dans le moteur. 
+    * Terminé-purge terminée.
+    * BadInput-la purge a échoué en cas d’entrée incorrecte et ne sera pas retentée. Cela peut être dû à différents problèmes, tels qu’une erreur de syntaxe dans le prédicat, un prédicat non conforme pour les commandes de vidage, une requête qui dépasse les limites (par exemple, plus de 1 million d’entités dans un opérateur ExternalData ou plus de 64 Mo de taille totale des requêtes étendues) et les erreurs 404 ou 403 pour les objets BLOB ExternalData.
+    * Échec-échec de la purge et ne sera pas retenté. Cela peut se produire si l’opération attendait trop longtemps dans la file d’attente (plus de 14 jours), en raison d’un backlog d’autres opérations de vidage ou d’un certain nombre d’échecs qui dépassent la limite de tentatives. Cette dernière déclenchera une alerte de surveillance interne et sera examinée par l’équipe Azure Explorateur de données. 
+* StateDetails : description de l’État.
+* EngineStartTime : heure à laquelle la commande a été envoyée au moteur. S’il y a une grande différence entre cette heure et ScheduledTime, il y a généralement une grande file d’attente d’opérations de purge et le cluster ne suit pas le rythme. 
+* EngineDuration : heure de l’exécution de la purge réelle dans le moteur. Si la purge a été retentée plusieurs fois, il s’agit de la somme de toutes les durées d’exécution. 
+* Nouvelles tentatives : nombre de fois où l’opération a été retentée par le service DM en raison d’une erreur temporaire.
+* ClientRequestId : ID d’activité du client de la demande DM purge. 
+* Identité principale de l’émetteur de commande de vidage.
 
-## <a name="purging-an-entire-table"></a>Purger une table entière
-Purger une table comprend laisser tomber la table, et le marquer comme purgé de sorte que le processus de suppression dure décrit dans le [processus de purge](#purge-process) fonctionne sur elle. Laisser tomber une table sans purger ne supprime pas tous ses artefacts de stockage (supprimé selon la stratégie de rétention dure initialement mis sur la table). La `purge table allrecords` commande est rapide et efficace et est de loin préférable au processus d’enregistrement de purge, le cas échéant pour votre scénario. 
+## <a name="purging-an-entire-table"></a>Vidage d’une table entière
+La purge d’une table consiste à supprimer la table et à la marquer comme purgée afin que le processus de suppression matérielle décrit dans le [processus de vidage](#purge-process) s’exécute sur celle-ci. La suppression d’une table sans la vider n’entraîne pas la suppression de tous ses artefacts de stockage (supprimés en fonction de la stratégie de rétention initialement définie sur la table). La `purge table allrecords` commande est rapide et efficace et est préférable au processus de vidage des enregistrements, s’il est applicable à votre scénario. 
 
 > [!Note]
-> La commande est invoquée en exécutant la [table de purge *TableName* allrecords](#purge-table-tablename-allrecords-command) commande sur le point de terminaison de gestion des données (**https://ingest-[YourClusterName].kusto.windows.net**).
+> La commande est appelée en exécutant la commande [purger la table *TableName* allrecords](#purge-table-tablename-allrecords-command) sur le point de terminaison gestion des données (**https://ingest-[YourClusterName]. [ Region]. Kusto. Windows. net**).
 
-### <a name="purge-table-tablename-allrecords-command"></a>tableau de purge *TableName* allrecords commande
+### <a name="purge-table-tablename-allrecords-command"></a>purger la table *TableName* allrecords, commande
 
-Semblable à['.purge table records ](#purge-table-tablename-records-command)' commande, cette commande peut être invoquée dans un programme (une étape unique) ou dans un manuel (deux étapes) mode.
-1. Invocation programmatique (étape unique) :
+Similaire à la commande'[. purger les enregistrements de table ](#purge-table-tablename-records-command)', cette commande peut être appelée en mode de programmation (à une seule étape) ou manuel (en deux étapes).
+1. Appel programmatique (étape unique) :
 
      **Syntaxe**
 
      ```kusto
+     // Connect to the Data Management service
+     #connect "https://ingest-[YourClusterName].[region].kusto.windows.net" 
+     
      .purge table [TableName] in database [DatabaseName] allrecords with (noregrets='true')
      ```
 
-2. Invocation humaine (deux étapes):
+2. Appel humain (deux étapes) :
 
      **Syntaxe**
 
      ```kusto
+     // Connect to the Data Management service
+     #connect "https://ingest-[YourClusterName].[region].kusto.windows.net" 
+     
      // Step #1 - retrieve a verification token (the table will not be purged until step #2 is executed)
      .purge table [TableName] in database [DatabaseName] allrecords
 
@@ -291,53 +309,59 @@ Semblable à['.purge table records ](#purge-table-tablename-records-command)' co
     |---------|---------|
     |**DatabaseName**   |   Nom de la base de données.      |
     |**TableName**     |     Nom de la table.    |
-    |**noregrets noregrets**    |     Si défini, déclenche une activation en une seule étape.    |
-    |**vérificationtoken**     |  Dans le scénario d’activation en deux étapes **(noregrets** n’est pas défini), ce jeton peut être utilisé pour exécuter la deuxième étape et de commettre l’action. Si **le jet de vérification** n’est pas spécifié, il déclenchera la première étape de la commande, dans laquelle un jeton est retourné, de passer à la commande et d’effectuer l’étape de la commande #2.|
+    |**noregrettes**    |     Si cette valeur est définie, déclenche une activation en une seule étape.    |
+    |**verificationtoken**     |  Dans un scénario d’activation en deux étapes (**noregrettes** n’est pas défini), ce jeton peut être utilisé pour exécuter la deuxième étape et valider l’action. Si **verificationtoken** n’est pas spécifié, il déclenche la première étape de la commande, dans laquelle un jeton est retourné, pour revenir à la commande et exécuter l’étape de la commande #2.|
 
-#### <a name="example-two-step-purge"></a>Exemple : Purge en deux étapes
+#### <a name="example-two-step-purge"></a>Exemple : vidage en deux étapes
 
-1. Pour initier la purge dans un scénario d’activation en deux étapes, exécutez l’étape #1 de la commande : 
+1. Pour lancer la purge dans un scénario d’activation en deux étapes, exécutez l’étape #1 de la commande : 
 
     ```kusto
+    // Connect to the Data Management service
+     #connect "https://ingest-[YourClusterName].[region].kusto.windows.net" 
+     
     .purge table MyTable in database MyDatabase allrecords
     ```
 
     **Sortie**
 
-    | VérificationToken
+    | VerificationToken
     |--
-    |e43c7184ed2f4f23c7a9d7b124d196be2e570096987e5baadf65057fa65736b
+    |e43c7184ed22f4f23c7a9d7b124d196be2e570096987e5baadf65057fa65736b
 
-1.  Pour effectuer une purge dans un scénario d’activation en deux étapes, utilisez le jeton de vérification retourné de l’étape #1 pour exécuter l’étape #2 :
+1.  Pour effectuer une purge dans un scénario d’activation en deux étapes, utilisez le jeton de vérification retourné à partir de l’étape #1 pour exécuter l’étape #2 :
 
     ```kusto
     .purge table MyTable in database MyDatabase allrecords 
     with (verificationtoken='eyJTZXJ2aWNlTmFtZSI6IkVuZ2luZS1pdHNhZ3VpIiwiRGF0YWJhc2VOYW1lIjoiQXp1cmVTdG9yYWdlTG9ncyIsIlRhYmxlTmFtZSI6IkF6dXJlU3RvcmFnZUxvZ3MiLCJQcmVkaWNhdGUiOiIgd2hlcmUgU2VydmVyTGF0ZW5jeSA9PSAyNSJ9')
     ```
     
-    La sortie est la même que la sortie de commande des tables de démonstration (retournée sans la table purgée).
+    La sortie est la même que la sortie de la commande'. Show tables' (retournée sans la table purgée).
 
     **Sortie**
 
-    |TableName|nom_base_de_données|Dossier|DocString (en)
+    |TableName|nom_base_de_données|Dossier|DocString
     |---|---|---|---
-    |OtherTable|Mydatabase|---|---
+    |OtherTable|Mabdd|---|---
 
 
-#### <a name="example-single-step-purge"></a>Exemple : Purge en une seule étape
+#### <a name="example-single-step-purge"></a>Exemple : vidage en une seule étape
 
-Pour déclencher une purge dans un scénario d’activation en une seule étape, exécutez la commande suivante :
+Pour déclencher une purge dans un scénario d’activation en une seule étape, exécutez la commande suivante :
 
 ```kusto
+// Connect to the Data Management service
+#connect "https://ingest-[YourClusterName].[region].kusto.windows.net" 
+
 .purge table MyTable in database MyDatabase allrecords with (noregrets='true')
 ```
 
-La sortie est la même que la sortie de commande des tables de démonstration (retournée sans la table purgée).
+La sortie est la même que la sortie de la commande'. Show tables' (retournée sans la table purgée).
 
 **Sortie**
 
-|TableName|nom_base_de_données|Dossier|DocString (en)
+|TableName|nom_base_de_données|Dossier|DocString
 |---|---|---|---
-|OtherTable|Mydatabase|---|---
+|OtherTable|Mabdd|---|---
 
 

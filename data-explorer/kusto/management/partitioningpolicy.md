@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 7440b42599d8559db547762daa5f8edcc24ea46f
-ms.sourcegitcommit: 061eac135a123174c85fe1afca4d4208c044c678
+ms.openlocfilehash: 6ce7cf38c88879b52c4e2e259e3e9a5cade959de
+ms.sourcegitcommit: 9fe6ee7db15a5cc92150d3eac0ee175f538953d2
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/05/2020
-ms.locfileid: "82799439"
+ms.lasthandoff: 05/07/2020
+ms.locfileid: "82907152"
 ---
 # <a name="data-partitioning-policy-preview"></a>Stratégie de partitionnement des données (préversion)
 
@@ -38,7 +38,7 @@ Les types de clés de partition suivants sont pris en charge :
 
 ### <a name="hash-partition-key"></a>Clé de partition de hachage
 
-L’application d’une clé de partition `string`de hachage sur une colonne de type de table est appropriée lorsque la *majorité* des requêtes utilisent`==`des `in()`filtres d’égalité ( `string`,) sur une colonne de *grande dimension* (10 m ou supérieure), `application_ID`telle `tenant_ID` que `user_ID`, ou.
+L’application d’une clé de partition `string`de hachage sur une colonne typée dans une table est appropriée lorsque la *majorité* des requêtes`==`utilisent `in()`des filtres d’égalité (,) et/ou `string`des agrégats/jointures sur une colonne de *grande dimension* (cardinalité de 10 millions ou `application_ID`supérieure) `tenant_ID` , telle `user_ID`qu’un, un ou un.
 
 * Une fonction de hachage-modulo est utilisée pour partitionner les données.
 * Toutes les étendues *homogènes* (partitionnées) appartenant à la même partition sont affectées au même nœud de données.

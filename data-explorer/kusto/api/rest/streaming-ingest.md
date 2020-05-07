@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 672f924865cab14dff6c7d5319c3c34cca1a67ee
-ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
+ms.openlocfilehash: 1614a04c5e5bff51f45df914174c967ff9c7d8a2
+ms.sourcegitcommit: 9fe6ee7db15a5cc92150d3eac0ee175f538953d2
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82862006"
+ms.lasthandoff: 05/07/2020
+ms.locfileid: "82907075"
 ---
 # <a name="streaming-ingestion-http-request"></a>Requête HTTP d’ingestion de diffusion en continu
 
@@ -36,8 +36,8 @@ Les paramètres supplémentaires sont mis en forme `{name}={value}` en tant que 
 
 | Paramètre    | Description                                                                          | Obligatoire ou facultatif   |
 |--------------|--------------------------------------------------------------------------------------|---------------------|
-|`streamFormat`| Spécifie le format des données dans le corps de la demande. La valeur doit être l’une des `CSV`suivantes`TSV`:`SCsv`,`SOHsv`,`PSV`,`JSON`,`SingleJSON`,`MultiJSON`,`Avro`,,. Pour plus d’informations, consultez [formats de données pris en charge](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats).| Obligatoire |
-|`mappingName` | Nom du mappage d’ingestion préalablement créé défini sur la table. Pour plus d’informations, consultez [mappages de données](../../management/mappings.md). La façon de gérer les mappages précréés sur la table est décrite [ici](../../management/create-ingestion-mapping-command.md).| Facultatif, mais obligatoire si `streamFormat` est un de `JSON`,`SingleJSON``MultiJSON`, ou`Avro`|  |
+|`streamFormat`| Spécifie le format des données dans le corps de la demande. La valeur doit être l’une des `CSV`suivantes `TSV`: `SCsv`, `SOHsv`, `PSV`, `JSON`, `MultiJSON`, `Avro`,,. Pour plus d’informations, consultez [formats de données pris en charge](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats).| Obligatoire |
+|`mappingName` | Nom du mappage d’ingestion préalablement créé défini sur la table. Pour plus d’informations, consultez [mappages de données](../../management/mappings.md). La façon de gérer les mappages précréés sur la table est décrite [ici](../../management/create-ingestion-mapping-command.md).| Facultatif, mais obligatoire si `streamFormat` est un de `JSON`, `MultiJSON`ou.`Avro`|  |
               
 Par exemple, pour ingérer des données au format CSV `Logs` dans une `Test`table de la base de données, utilisez :
 

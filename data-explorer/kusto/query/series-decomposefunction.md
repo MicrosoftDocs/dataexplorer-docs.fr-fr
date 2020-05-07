@@ -1,6 +1,6 @@
 ---
-title: series_decompose() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit series_decompose() dans Azure Data Explorer.
+title: series_decompose ()-Azure Explorateur de données
+description: Cet article décrit series_decompose () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,69 +8,69 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/26/2019
-ms.openlocfilehash: 375d63dd050840cd884fca0198511e71ac46f170
-ms.sourcegitcommit: 436cd515ea0d83d46e3ac6328670ee78b64ccb05
+ms.openlocfilehash: 5394eefad37195833c0c5ebb94325bb540d1f520
+ms.sourcegitcommit: 9fe6ee7db15a5cc92150d3eac0ee175f538953d2
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81663605"
+ms.lasthandoff: 05/07/2020
+ms.locfileid: "82907214"
 ---
 # <a name="series_decompose"></a>series_decompose()
 
 Applique une transformation de décomposition sur une série.  
 
-Prend une expression contenant une série (tableau numérique dynamique) comme entrée et la décomposer en composants saisonniers, tendance et résiduels.
+Prend une expression contenant une série (tableau numérique dynamique) comme entrée et la décompose en composants saisonniers, de tendance et résiduels.
  
 **Syntaxe**
 
-`series_decompose(`*Série* `[,` *Seasonalité* `,` *Tendance* `,` *Test_points* `,` *Seasonality_threshold*`])`
+`series_decompose(`*Series* `[,` *Seasonality* `,` *Trend* Tendance`,` du caractère saisonnier de la série *Test_points* `,` *Seasonality_threshold*`])`
 
 **Arguments**
 
-* *Série*: Cellule de tableau dynamique qui est un éventail de valeurs numériques, généralement la sortie résultante des opérateurs [de série](make-seriesoperator.md) ou [de make_list](makelist-aggfunction.md)
-* *Saisonnalité*: Un integer contrôlant l’analyse saisonnière, contenant soit
-    * -1 : auto-détection de la saisonnalité à [l’aide de series_periods_detect](series-periods-detectfunction.md) (par défaut).
-    * période : integer positif précisant la période prévue en nombre de bacs. Par exemple, si la série est dans 1h poubelles, une période hebdomadaire est de 168 bacs.
-    * 0: pas de saisonnalité (sauter l’extraction de ce composant).    
-* *Tendance*: Une chaîne contrôlant l’analyse de tendance, contenant l’une des suivantes :
-    * "avg": définir le composant tendance comme moyen(x) (par défaut)
-    * "linefit": extraire le composant tendance à l’aide de la régression linéaire.
-    * "aucun": pas de tendance, sauter l’extraction de ce composant.    
-* *Test_points*: 0 (par défaut) ou integer positif, précisant le nombre de points à la fin de la série à exclure du processus d’apprentissage (régression). Ce paramètre doit être défini aux fins de prévision.
-* *Seasonality_threshold*: Le seuil de la saisonnalité lorsque *la saisonnalité* est réglée `0.6`pour détecter automatiquement, le seuil de score par défaut est . Pour plus d’informations voir [series_periods_detect](series-periods-detectfunction.md).
+* *Série*: cellule de tableau dynamique, qui est un tableau de valeurs numériques, généralement le résultat des opérateurs de [série make](make-seriesoperator.md) ou [make_list](makelist-aggfunction.md)
+* Caractère *saisonnier*: un entier contrôlant l’analyse saisonnière, contenant soit
+    * -1 : détection automatique des valeurs saisonnieres à l’aide de [series_periods_detect](series-periods-detectfunction.md) (par défaut).
+    * period : entier positif spécifiant la période attendue en nombre d’emplacements. Par exemple, si la série est dans des emplacements 1 h, une période hebdomadaire est de 168 emplacements.
+    * 0 : pas de caractère saisonnier (ignorer l’extraction de ce composant).    
+* *Tendance*: chaîne contrôlant l’analyse des tendances, contenant l’une des valeurs suivantes :
+    * « AVG » : définir le composant de tendance comme moyenne (x) (valeur par défaut)
+    * « linefit » : extraction du composant de tendance à l’aide de la régression linéaire.
+    * « None » : aucune tendance. ignorez l’extraction de ce composant.    
+* *Test_points*: 0 (valeur par défaut) ou un entier positif, qui spécifie le nombre de points à la fin de la série à exclure du processus d’apprentissage (régression). Ce paramètre doit être défini à des fins de prévision.
+* *Seasonality_threshold*: le seuil du score saisonnier lorsque le caractère *saisonnier* est défini sur détection automatique, le seuil de `0.6`score par défaut est. Pour plus d’informations, consultez [series_periods_detect](series-periods-detectfunction.md).
 
-**Retour**
+**Renvoi**
 
- La fonction renvoie la série respective suivante :
+ La fonction retourne les séries correspondantes suivantes :
 
-* `baseline`: la valeur prévue de la série (somme des composantes saisonnières et tendance, voir ci-dessous)
-* `seasonal`: la série de la composante saisonnière :
-    * si la période n’est pas détectée ou explicitement réglée à 0 : constante 0
-    * s’il est détecté ou mis à l’intégrateur positif: médiane des points de la série dans la même phase
-* `trend`: la série de la composante tendance
-* `residual`: la série du composant résiduel (c.-à-d. x - base de base)
+* `baseline`: la valeur prédite de la série (somme des composants saisonniers et Trend, voir ci-dessous).
+* `seasonal`: la série du composant saisonnier :
+    * Si la période n’est pas détectée ou est définie explicitement sur 0 : constante 0.
+    * s’il est détecté ou défini sur un entier positif : médiane des points de série dans la même phase
+* `trend`: la série du composant de tendance.
+* `residual`: la série du composant résiduel (autrement dit, x-Baseline).
   
 
 **Remarques**
 
-* Ordre d’exécution des composants :
+* Ordre d’exécution des composants :
     1. Extraire la série saisonnière
-    2. Soustrayez-le de x, générant la série désaisonnale
-    3. Extraire le composant tendance de la série désaisonnale
-    4. Créer la ligne de base , la tendance saisonnière et saisonnière
-    5. Créer le résidu x - base de base
+    2. Le soustraire de x, ce qui génère la série désaisonnièree
+    3. Extraire le composant Trend de la série désaisonnelle
+    4. Créer la ligne de base = saisonnier + tendance
+    5. Créer le résiduel = x-ligne de base
     
-* Soit la saisonnalité et/ou la tendance doivent être activées, sinon la fonction est redondante et retourne juste la ligne de base 0 et résiduelle x
+* Vous devez activer les deux saisonniers et, ou la tendance. Dans le cas contraire, la fonction est redondante et retourne simplement la ligne de base = 0 et la valeur résiduelle = x.
 
 **En savoir plus sur la décomposition des séries**
 
-Cette méthode est habituellement appliquée à des séries chronoloques de mesures censées manifester un comportement périodique et/ou tendance (p. ex. le trafic de service et d’autres mesures d’utilisation), afin de prévoir les valeurs métriques futures et/ou de détecter les valeurs anormales. L’hypothèse implicite de ce processus de régression est qu’en dehors du comportement saisonnier et de tendance (a-priori connu), la série temporelle est stochastique et distribuée au hasard; par conséquent, nous pouvons prévoir les valeurs métriques futures des composantes saisonnières et tendance (ignorant la partie résiduelle), tandis que nous pouvons détecter des valeurs anormales basées sur une détection aberrante sur la partie résiduelle seulement. Plus de détails peuvent être trouvés dans le [chapitre de décomposition des séries chronos](https://www.otexts.org/fpp/6) dans ce grand livre.
+Cette méthode est généralement appliquée à la série chronologique de mesures attendues pour manifester le comportement périodique et/ou de tendance. Vous pouvez utiliser la méthode pour prévoir les valeurs métriques futures et/ou détecter les valeurs anormales. L’hypothèse implicite de ce processus de régression est que, en dehors du comportement saisonnier et de tendance, la série chronologique est stochastique et distribuée de manière aléatoire. Prévoyez les futures valeurs de métriques à partir des composants saisonniers et de tendance tout en ignorant la partie résiduelle. Détecte les valeurs anormales en fonction de la détection des valeurs hors norme uniquement sur la partie résiduelle. Vous trouverez plus d’informations dans le [chapitre décomposition des séries chronologiques](https://www.otexts.org/fpp/6).
 
 **Exemples**
 
-**1. Saisonnalité hebdomadaire**
+**Caractère saisonnier hebdomadaire**
 
-Dans l’exemple suivant, nous générons une série avec une saisonnalité hebdomadaire et sans tendance, nous y ajoutons ensuite quelques valeurs aberrantes. `series_decompose`trouve l’auto-détection de la saisonnalité et génère une ligne de base qui est presque identique à la composante saisonnière. Les valeurs aberrantes que nous avons ajoutées peuvent être clairement visibles dans la composante résiduelles.
+Dans l’exemple suivant, nous générons une série avec un caractère saisonnier hebdomadaire et sans tendance, nous y ajoutons quelques valeurs hors norme. `series_decompose`recherche et détecte automatiquement le caractère saisonnier et génère une ligne de base quasiment identique au composant saisonnier. Les valeurs hors norme que nous avons ajoutées peuvent être clairement visibles dans le composant residus.
 
 ```kusto
 let ts=range t from 1 to 24*7*5 step 1 
@@ -84,11 +84,11 @@ ts
 | render timechart  
 ```
 
-:::image type="content" source="images/samples/series-decompose1.png" alt-text="Série décomposition 1":::
+:::image type="content" source="images/samples/series-decompose1.png" alt-text="Série décomposer 1":::
 
-**2. Saisonnalité hebdomadaire avec tendance**
+**Caractère saisonnier hebdomadaire avec tendance**
 
-Dans cet exemple, nous ajoutons une tendance à la série de l’exemple précédent. Tout d’abord, nous courons `series_decompose` avec `avg` les paramètres par défaut dans lesquels la valeur par défaut de tendance ne prend que la moyenne et ne calcule pas la tendance, nous pouvons voir que la ligne de base générée ne contient pas la tendance et est moins précis par rapport à l’exemple précédent, il est plus évident lors de l’observation de la tendance dans les résidus.
+Dans cet exemple, nous ajoutons une tendance à la série de l’exemple précédent. Tout d’abord, `series_decompose` nous exécutons avec les paramètres par défaut. La valeur `avg` par défaut de la tendance prend uniquement la moyenne et ne calcule pas la tendance. La ligne de base générée ne contient pas la tendance. Lorsque l’on observe la tendance dans les résidus, il devient évident que cet exemple est moins précis que l’exemple précédent.
 
 ```kusto
 let ts=range t from 1 to 24*7*5 step 1 
@@ -102,9 +102,9 @@ ts
 | render timechart  
 ```
 
-:::image type="content" source="images/samples/series-decompose2.png" alt-text="Série décomposer 2":::
+:::image type="content" source="images/samples/series-decompose2.png" alt-text="Série, décomposer 2":::
 
-Ensuite, nous jouons le même exemple, mais puisque `linefit` nous nous attendons à une tendance dans la série, nous spécifions dans le paramètre de tendance. Nous pouvons voir que la tendance positive est détectée et que la ligne de base est beaucoup plus proche de la série d’entrées. Les résidus sont proches de zéro avec seulement les valeurs aberrantes se démarquer. Nous pouvons voir tous les composants de la série dans le graphique.
+Ensuite, nous réexécuterons le même exemple. Étant donné que nous attendions une tendance dans la série, `linefit` nous spécifions dans le paramètre Trend. Nous pouvons voir que la tendance positive est détectée et que la base de référence est plus proche de la série d’entrée. Les résidus sont proches de zéro et seuls les valeurs hors norme sont représentées. Nous pouvons voir tous les composants de la série dans le graphique.
 
 ```kusto
 let ts=range t from 1 to 24*7*5 step 1 
@@ -118,4 +118,4 @@ ts
 | render timechart  
 ```
 
-:::image type="content" source="images/samples/series-decompose3.png" alt-text="Série décomposer 3":::
+:::image type="content" source="images/samples/series-decompose3.png" alt-text="Série, décomposer 3":::

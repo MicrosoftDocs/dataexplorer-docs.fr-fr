@@ -1,6 +1,6 @@
 ---
-title: active_users_count plugin - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit active_users_count plugin dans Azure Data Explorer.
+title: plug-in active_users_count-Azure Explorateur de données
+description: Cet article décrit active_users_count plug-in dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f324507d1a4528c5efefc14f7820437383211ca6
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 22d3744cfa83a003830acc07710fd459003dbf20
+ms.sourcegitcommit: 9fe6ee7db15a5cc92150d3eac0ee175f538953d2
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81519344"
+ms.lasthandoff: 05/07/2020
+ms.locfileid: "82907200"
 ---
-# <a name="active_users_count-plugin"></a>active_users_count plugin
+# <a name="active_users_count-plugin"></a>plug-in active_users_count
 
-Calcule un nombre distinct de valeurs, où chaque valeur est apparue dans au moins un nombre minimum de périodes dans une période de retour.
+Calcule le nombre de valeurs distinctes, où chaque valeur est apparue dans au moins un nombre minimal de périodes dans une période de lookback.
 
-Utile pour calculer les nombres distincts de "fans" seulement, tout en n’incluant pas les apparences de "non-fans". Un utilisateur n’est considéré comme un « fan » que s’il était actif pendant la période de retour. La période de retour n’est utilisée `active` que pour déterminer si un utilisateur est considéré ("fan") ou non. L’agrégation elle-même n’inclut pas les utilisateurs de la fenêtre de retour (contrairement [sliding_window_counts] (sliding-window-counts-plugin.md) dans laquelle l’agrégation est au-dessus de la fenêtre coulissante de la période de retour).
+Utile pour le calcul de nombres distincts de « ventilateurs » uniquement, sans inclure les apparences des « non-ventilateurs ». Un utilisateur est compté comme « fan » uniquement s’il était actif pendant la période lookback. La période lookback est utilisée uniquement pour déterminer si un utilisateur est considéré `active` (« fan ») ou non. L’agrégation elle-même n’inclut pas les utilisateurs de la fenêtre lookback. En comparaison, l’agrégation [sliding_window_counts](sliding-window-counts-plugin.md) est effectuée sur une fenêtre glissante de la période lookback.
 
 ```kusto
 T | evaluate active_users_count(id, datetime_column, startofday(ago(30d)), startofday(now()), 7d, 1d, 2, 7d, dim1, dim2, dim3)
@@ -27,35 +27,35 @@ T | evaluate active_users_count(id, datetime_column, startofday(ago(30d)), start
 
 **Syntaxe**
 
-*T* `| evaluate` `,` *Start* `,` *End* `,` `,` *Period* `,` `,` *Bin* `,` `,` *dim2* `,` *dim1* *IdColumn* `,` *TimelineColumn* *LookbackWindow* *ActivePeriodsCount* IdColumn TimelineColumn Start End LookbackWindow Période ActivePeriodsCount Bin [ dim1 dim2 ...] `active_users_count(``)`
+*T* `| evaluate` `,` *TimelineColumn* `,` *Bin* *dim2* *IdColumn* `,` *Period* *End* `,` *LookbackWindow* `,` *dim1* *Start* `,` IdColumn TimelineColumn`,` Start`,` End`,` LookbackWindow period`,` *ActivePeriodsCount* bin [dim1 dim2...] `active_users_count(``)`
 
 **Arguments**
 
-* *T*: L’expression tabulaire d’entrée.
-* *IdColumn*: Le nom de la colonne avec des valeurs d’identification qui représentent l’activité de l’utilisateur. 
-* *TimelineColumn*: Le nom de la colonne qui représente la chronologie.
-* *Démarrer*: (facultatif) Scalar avec la valeur de la période de début d’analyse.
-* *Fin*: (facultatif) Scalar avec valeur de la période de fin d’analyse.
-* *LookbackWindow*: Une fenêtre de temps coulissante définissant une période où l’apparence de l’utilisateur est vérifiée. La période de retour commence à ([apparence actuelle] - [fenêtre de retour]) et se termine sur ([apparence actuelle]). 
-* *Période*: Scalar temps constant à compter comme apparence unique (un utilisateur sera compté comme actif si elle apparaît dans au moins distinct ActivePeriodsCount de cette période.
-* *ActivePeriodsCount*: Nombre minimal de périodes actives distinctes pour décider si l’utilisateur est actif. Les utilisateurs actifs sont ceux qui sont apparus dans au moins (égal ou supérieur à) les périodes actives comptent.
-* *Bin*: Valeur constante Scalar de la période d’étape d’analyse. Peut être soit une valeur numérique /datetime/timestamp, `week` / `month` / `year`ou une chaîne qui est l’un des , auquel cas toutes les périodes seront [startofweek](startofweekfunction.md)/[startofmonth](startofmonthfunction.md)/[startofyear](startofyearfunction.md) en conséquence.
-* *dim1*, *dim2*, ...: (facultatif) liste des colonnes de dimensions qui tranchent le calcul des mesures d’activité.
+* *T*: expression tabulaire d’entrée.
+* *IdColumn*: nom de la colonne avec des valeurs d’ID qui représentent l’activité de l’utilisateur. 
+* *TimelineColumn*: nom de la colonne qui représente la chronologie.
+* *Start*: (facultatif) scalaire avec la valeur de la période de démarrage de l’analyse.
+* *End*: (facultatif) scalaire avec la valeur de la période de fin de l’analyse.
+* *LookbackWindow*: fenêtre de temps glissante définissant une période dans laquelle l’apparence de l’utilisateur est vérifiée. La période de lookback commence à ([apparence actuelle]-[fenêtre lookback]) et se termine le ([apparence actuelle]). 
+* *Période*: valeur scalaire constante TimeSpan à compter comme apparence unique (un utilisateur est compté comme actif s’il apparaît dans au moins un ActivePeriodsCount distinct de ce TimeSpan.
+* *ActivePeriodsCount*: nombre minimal de périodes actives distinctes pour décider si l’utilisateur est actif. Les utilisateurs actifs sont ceux qui ont été affichés au moins (égal ou supérieur à) nombre de périodes actives.
+* *Bin*: valeur constante scalaire de la période de l’étape d’analyse. Peut être une valeur numérique/DateTime/timestamp, ou une chaîne qui est `week` / `month` / `year`. Toutes les périodes seront les fonctions [startOfWeek](startofweekfunction.md)/[StartOfMonth](startofmonthfunction.md)/[STARTOFYEAR](startofyearfunction.md) correspondantes.
+* *dim1*, *dim2*,... : (facultatif) liste des colonnes de dimensions qui découpent le calcul des métriques d’activité.
 
 **Retourne**
 
-Retourne un tableau qui a les valeurs de comptage distinctes pour les ids qui sont apparus dans plus ActivePeriodCounts dans la période de retour, pour chaque période de chronologie et pour chaque combinaison de dimensions existantes.
+Retourne une table qui a des valeurs de comptage de valeurs pour les ID qui sont apparues dans ActivePeriodCounts au cours des périodes suivantes : la période lookback, chaque période de chronologie et chaque combinaison de dimensions existante.
 
-Le schéma de table de sortie est :
+Le schéma de la table de sortie est le suivant :
 
-|*TimelineColumn (en)*|dim1|..|dim_n|dcount_values|
+|*TimelineColumn*|dim1|..|dim_n|dcount_values|
 |---|---|---|---|---|
-|type: à partir de *TimelineColumn*|..|..|..|long|
+|type : à partir de *TimelineColumn*|..|..|..|long|
 
 
 **Exemples**
 
-Calculez le nombre hebdomadaire d’utilisateurs distincts qui sont apparus dans au moins sur 3 jours différents sur une période de 8 jours antérieurs. Période d’analyse : juillet 2018.
+Calculez le nombre hebdomadaire d’utilisateurs distincts qui apparaissaient dans au moins trois jours différents sur une période de huit jours précédents. Période d’analyse : 2018 juillet.
 
 ```kusto
 let Start = datetime(2018-07-01);
@@ -83,11 +83,15 @@ T | evaluate active_users_count(User, Timestamp, Start, End, LookbackWindow, Per
 
 ```
 
-|Timestamp|dcount|
+|Timestamp|`dcount`|
 |---|---|
 |2018-07-01 00:00:00.0000000|1|
 |2018-07-15 00:00:00.0000000|1|
 
-Un utilisateur est considéré comme actif s’il a été vu dans au moins 3 jours distincts (période 1d, ActivePeriods 3) dans une fenêtre de retour de 8d avant l’apparition actuelle (y compris l’apparence actuelle). Dans l’illustration ci-dessous, les seules apparences qui sont actives selon ces critères, sont l’utilisateur A sur le 7/20 et l’utilisateur B sur le 7/4 (voir les résultats plugin ci-dessus). Notez que bien que les apparences de l’utilisateur B sur 6/29-30 ne sont pas dans la plage de temps de début de fin, ils sont inclus pour la fenêtre de retour de l’utilisateur B sur le 7/4. 
+Un utilisateur est considéré comme actif si l’un des critères suivants est respecté : 
+* L’utilisateur s’est vu dans au moins trois jours distincts (période = 1J, ActivePeriods = 3).
+* L’utilisateur s’est vu dans une fenêtre lookback de 8D avant et y compris son apparence actuelle.
 
-![texte de remplacement](images/queries/active-users-count.png "actifs-utilisateurs-compte")
+Dans l’illustration ci-dessous, les seules apparences actives par ce critère sont les suivantes : utilisateur A sur 7/20 et utilisateur B sur 7/4 (voir les résultats du plug-in ci-dessus). Les apparences de l’utilisateur B sont incluses pour la fenêtre lookback sur 7/4, mais pas pour l’intervalle de début de fin de 6/29-30. 
+
+:::image type="content" source="images/queries/active-users-count.png" alt-text="Exemple de nombre d’utilisateurs actifs":::
