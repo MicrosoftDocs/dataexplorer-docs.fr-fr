@@ -1,6 +1,6 @@
 ---
-title: Diffusion en continu DE la demande HTTP - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la demande d’ingestion en continu HTTP dans Azure Data Explorer.
+title: Requête HTTP d’ingestion de diffusion en continu-Azure Explorateur de données
+description: Cet article décrit la requête HTTP d’ingestion de diffusion en continu dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: d14987806bbc62dbc79112700bd5b88aaa6676c3
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 672f924865cab14dff6c7d5319c3c34cca1a67ee
+ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81503007"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82862006"
 ---
-# <a name="streaming-ingestion-http-request"></a>Diffusion en continu DE la demande HTTP
+# <a name="streaming-ingestion-http-request"></a>Requête HTTP d’ingestion de diffusion en continu
 
-## <a name="request-verb-and-resource"></a>Demander verbe et ressource
+## <a name="request-verb-and-resource"></a>Verbe et ressource de la demande
 
 |Action    |Verbe HTTP|Ressource HTTP                                               |
 |----------|---------|------------------------------------------------------------|
@@ -25,71 +25,64 @@ ms.locfileid: "81503007"
 
 ## <a name="request-parameters"></a>Paramètres de la demande
 
-| Paramètre    |  Description                                                                                                |
-|--------------|-------------------------------------------------------------------------------------------------------------|
-| `{database}` | **Nécessaire** Nom de la base de données cible pour la demande d’ingestion                                          |
-| `{table}`    | **Nécessaire** Nom du tableau cible pour la demande d’ingestion                                             |
+| Paramètre    | Description                                                                 | Obligatoire ou facultatif |
+|--------------|-----------------------------------------------------------------------------|-------------------|
+| `{database}` |   Nom de la base de données cible pour la demande d’ingestion                     |  Obligatoire         |
+| `{table}`    |   Nom de la table cible pour la demande d’ingestion                        |  Obligatoire         |
 
 ## <a name="additional-parameters"></a>Paramètres supplémentaires
-D’autres paramters sont formatés `{name}` = `{value}` sous forme de requête URL : paires séparées par & caractère
 
+Les paramètres supplémentaires sont mis en forme `{name}={value}` en tant que paires de requêtes d’URL, séparés par le caractère &.
 
-| Paramètre    |  Description                                                                                                |
-|--------------|-------------------------------------------------------------------------------------------------------------|
-|`streamFormat`| **Nécessaire** Spécifie le format des données dans l’organe de demande. La valeur devrait être l’une`SOHsv``Psv`des`Json``SingleJson`suivantes:`Avro` `Csv`,`Tsv`,`Scsv`, , , , ,`MultiJson`, . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . Pour plus d’informations, veuillez consulter [les formats de données pris en charge](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats).|
-|`mappingName` | **Nécessaire** `streamFormat` si est `Json` `SingleJson`l’un de , , `MultiJson` ou `Avro`, **Facultatif** autrement. La valeur doit être le nom de la cartographie d’ingestion pré-créée définie sur la table. Pour plus d’informations sur les cartographies de données, consultez [data Mappings](../../management/mappings.md). La façon de gérer les cartes précréttives sur la table est décrite [ici](../../management/create-ingestion-mapping-command.md) |
+| Paramètre    | Description                                                                          | Obligatoire ou facultatif   |
+|--------------|--------------------------------------------------------------------------------------|---------------------|
+|`streamFormat`| Spécifie le format des données dans le corps de la demande. La valeur doit être l’une des `CSV`suivantes`TSV`:`SCsv`,`SOHsv`,`PSV`,`JSON`,`SingleJSON`,`MultiJSON`,`Avro`,,. Pour plus d’informations, consultez [formats de données pris en charge](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats).| Obligatoire |
+|`mappingName` | Nom du mappage d’ingestion préalablement créé défini sur la table. Pour plus d’informations, consultez [mappages de données](../../management/mappings.md). La façon de gérer les mappages précréés sur la table est décrite [ici](../../management/create-ingestion-mapping-command.md).| Facultatif, mais obligatoire si `streamFormat` est un de `JSON`,`SingleJSON``MultiJSON`, ou`Avro`|  |
               
-
-Par exemple, pour inondérer les données `Logs` formatées par CSV en table dans la base de données, `Test` utilisez la ligne de demande suivante :
+Par exemple, pour ingérer des données au format CSV `Logs` dans une `Test`table de la base de données, utilisez :
 
 ```
 POST https://help.kusto.windows.net/v1/rest/ingest/Test/Logs?streamFormat=Csv HTTP/1.1
 ```
 
-d’ingérer des données formatées par JSON avec une cartographie précrétée`mylogmapping`
+Pour recevoir des données au format JSON avec un mappage `mylogmapping`créé au préalable, utilisez :
 
 ```
 POST https://help.kusto.windows.net/v1/rest/ingest/Test/Logs?streamFormat=Json&mappingName=mylogmapping HTTP/1.1
 ```
 
-
-(Voir ci-dessous pour les en-têtes de demande et le corps à inclure.)
-
 ## <a name="request-headers"></a>En-têtes de requête
 
-Le tableau suivant contient les en-têtes communs utilisés pour effectuer des opérations de requête et de gestion.
+Le tableau suivant contient les en-têtes courants pour les opérations de requête et de gestion.
 
-|En-tête standard  |Description                                                                                                              |
-|------------------|------------------------------------------------------------------------------------------------------------------------|
-|`Accept`          |**Facultatif**. Définissez cette propriété sur `application/json`.                                                                           |
-|`Accept-Encoding` |**Facultatif**. Les codages `gzip` `deflate`pris en charge sont et .                                                             |
-|`Authorization`   |**Obligatoire**. Voir [l’authentification](./authentication.md).                                                                |
-|`Connection`      |**Facultatif**. Il est `Keep-Alive` recommandé d’être activé.                                                           |
-|`Content-Length`  |**Facultatif**. Il est recommandé que la longueur du corps de demande soit spécifiée lorsqu’elle est connue.                                   |
-|`Content-Encoding`|**Facultatif**. Peut être `gzip` réglé à quel cas le corps est nécessaire pour être gzip-compressé                                 |
-|`Expect`          |**Facultatif**. Peut être `100-Continue`réglé à .                                                                             |
-|`Host`            |**Obligatoire**. Définissez ceci au nom de domaine entièrement qualifié à qui `help.kusto.windows.net`la demande a été envoyée (p. ex., ).|
+|En-tête standard   | Description                                                                               | Obligatoire ou facultatif | 
+|------------------|-------------------------------------------------------------------------------------------|-------------------|
+|`Accept`          | Définissez cette valeur sur `application/json`.                                                     | Facultatif          |
+|`Accept-Encoding` | Les encodages pris `gzip` en `deflate`charge sont et.                                             | Facultatif          | 
+|`Authorization`   | Consultez [authentification](./authentication.md).                                                | Obligatoire          |
+|`Connection`      | Activez `Keep-Alive`.                                                                      | Facultatif          |
+|`Content-Length`  | Spécifiez la longueur du corps de la demande, quand elle est connue.                                              | Facultatif          |
+|`Content-Encoding`| A la `gzip` valeur, mais le corps doit être compressé avec gzip                                        | Facultatif          |
+|`Expect`          | Défini sur `100-Continue`.                                                                    | Facultatif          |
+|`Host`            | Définissez sur le nom de domaine auquel vous avez envoyé la demande (par exemple `help.kusto.windows.net`,). | Obligatoire          |
 
-Le tableau suivant contient les en-têtes personnalisés communs utilisés lors de l’exécution des opérations de requête et de gestion. Sauf indication contraire, ces en-têtes sont utilisés uniquement à des fins de télémétrie et n’ont aucun impact de fonctionnalité.
+Le tableau suivant contient les en-têtes personnalisés courants pour les opérations de requête et de gestion. Sauf indication contraire, les en-têtes sont destinés uniquement à des fins de télémétrie et n’ont aucun impact sur les fonctionnalités.
 
-Tous les en-têtes sont **facultatifs.** Il est **toutefois fortement** `x-ms-client-request-id` recommandé que l’en-tête personnalisé soit spécifié. Dans certains scénarios (p. ex., l’annulation d’une requête en cours d’exécution) cet en-tête est **obligatoire** car il est utilisé pour identifier la demande.
-
-
-|En-tête personnalisé           |Description                                                                                               |
+|En-tête personnalisé           |Description                                                                           | Obligatoire ou facultatif |
 |------------------------|----------------------------------------------------------------------------------------------------------|
-|`x-ms-app`              |Le nom (amical) de la demande faisant la demande.                                                |
-|`x-ms-user`             |Le nom (amical) de l’utilisateur faisant la demande.                                                       |
-|`x-ms-user-id`          |Identique à `x-ms-user`.                                                                                      |
-|`x-ms-client-request-id`|Identificateur unique de la requête.                                                                      |
-|`x-ms-client-version`   |L’identifiant de version (amicale) pour le client qui fait la demande.                                      |
+|`x-ms-app`              |Nom (convivial) de l’application qui effectue la demande.                            | Facultatif          |
+|`x-ms-user`             |Nom (convivial) de l’utilisateur qui effectue la demande.                                   | Facultatif          |
+|`x-ms-user-id`          |Identique à `x-ms-user`.                                                                  | Facultatif          |
+|`x-ms-client-request-id`|Identificateur unique de la requête.                                                  | Facultatif          |
+|`x-ms-client-version`   |Identificateur de version (convivial) du client qui effectue la demande. Obligatoire dans les scénarios où il est utilisé pour identifier la demande, par exemple l’annulation d’une requête en cours d’exécution.                                                        | Facultatif/obligatoire  |
 
 ## <a name="body"></a>body
 
-Le corps est les données réelles à ingérer. Les formats textuels shoud utilisent l’encodage UTF-8.
+Le corps correspond aux données réelles à ingérer. Les formats textuels doivent utiliser l’encodage UTF-8.
 
 ## <a name="examples"></a>Exemples
 
-L’exemple suivant montre la demande HTTP POST pour un contenu JSON ingérant :
+L’exemple suivant illustre la requête HTTP Après l’ingestion du contenu JSON :
 
 ```txt
 POST https://help.kusto.windows.net/v1/rest/ingest/Test/Logs?streamFormat=Json&mappingName=mylogmapping HTTP/1.1
@@ -116,7 +109,7 @@ Corps de la requête :
 {"Timestamp":"2018-11-14 11:35","Level":"Error","EventText":"Something Happened"}
 ```
 
-L’exemple suivant montre la demande DE HTTP POST pour ingérer les mêmes données compressées
+L’exemple suivant montre la requête HTTP HTTP pour la réception des mêmes données compressées.
 
 ```txt
 POST https://help.kusto.windows.net/v1/rest/ingest/Test/Logs?streamFormat=Json&mappingName=mylogmapping HTTP/1.1

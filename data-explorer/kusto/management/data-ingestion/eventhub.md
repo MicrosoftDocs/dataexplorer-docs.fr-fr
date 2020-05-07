@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: fac9fd9f218948928e4f91d0d1aa056affcebd11
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 6b2f3b2d75bd964401ae37093405e692cfd64feb
+ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82617661"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82861780"
 ---
 # <a name="ingest-from-event-hub"></a>Ingérer à partir d’Event Hub
 
@@ -35,11 +35,12 @@ Les propriétés d’ingestion indiquent au processus d’ingestion. Où achemin
 
 |Propriété |Description|
 |---|---|
-| Table de charge de travail | Nom (sensible à la casse) de la table cible existante. Remplace le `Table` défini sur le `Data Connection` panneau. |
-| Format | Format de données. Remplace le `Data format` défini sur le `Data Connection` panneau. |
-| IngestionMappingReference | Nom du [mappage](../create-ingestion-mapping-command.md) d’ingestion existant à utiliser. Remplace le `Column mapping` défini sur le `Data Connection` panneau.|
+| Table de charge de travail | Nom (sensible à la casse) de la table cible existante. Remplace le paramètre `Table` défini dans le panneau `Data Connection`. |
+| Format | Format de données. Remplace le paramètre `Data format` défini dans le panneau `Data Connection`. |
+| IngestionMappingReference | Nom du [mappage](../create-ingestion-mapping-command.md) d’ingestion existant à utiliser. Remplace le paramètre `Column mapping` défini dans le panneau `Data Connection`.|
 | Compression | Compression de données `None` , (valeur par `GZip` défaut) ou compression.|
 | Encodage |  L’encodage des données, la valeur par défaut est UTF8. Il peut s’agir de l’un des [encodages .net pris en charge](https://docs.microsoft.com/dotnet/api/system.text.encoding?view=netframework-4.8#remarks). |
+| Balises (préversion) | Liste de [balises](../extents-overview.md#extent-tagging) à associer aux données ingérées, au format de chaîne de tableau JSON. Notez les [implications en termes de performances](../extents-overview.md#performance-notes-1) de l’utilisation de balises. |
 
 <!--| Database | Name of the existing target database.|-->
 <!--| Tags | String representing [tags](https://docs.microsoft.com/azure/kusto/management/extents-overview#extent-tagging) that will be attached to resulting extent. |-->
@@ -65,6 +66,7 @@ var eventData = new EventData(Encoding.UTF8.GetBytes(data));
 eventData.Properties.Add("Table", "WeatherMetrics");
 eventData.Properties.Add("Format", "json");
 eventData.Properties.Add("IngestionMappingReference", "mapping1");
+eventData.Properties.Add("Tags", "['mydatatag']");
 
 // Send events
 var eventHubClient = EventHubClient.CreateFromConnectionString(eventHubNamespaceConnectionString, eventHubName);

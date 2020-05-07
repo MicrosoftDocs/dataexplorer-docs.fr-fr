@@ -7,13 +7,14 @@ ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
+ms.custom: has-adal-ref
 ms.date: 11/25/2019
-ms.openlocfilehash: 9d72373e8fc5c55740fa3e53a8f850a887517e7b
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: ecdcdf22fe25c855045d90e294597c1abc769c03
+ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81490444"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82862103"
 ---
 # <a name="kusto-access-control-overview"></a>Vue d’ensemble de Kusto Access Control
 
@@ -30,7 +31,7 @@ Pour pouvoir exécuter correctement une requête ou une commande de contrôle su
 
 AAD est la méthode recommandée pour l’authentification auprès de Kusto dans Microsoft. Plusieurs scénarios d’authentification sont ainsi pris en charge :
 * **Authentification de l’utilisateur** (ouverture de session interactive) : utilisée pour authentifier les principaux humains.
-* **Authentification de l’application** (ouverture de session non interactive) : utilisée pour authentifier les services et les applications qui doivent s’exécuter/s’authentifier en l’absence d’utilisateur humain. 
+* **Authentification de l’application** (ouverture de session non interactive) : utilisée pour authentifier les services et les applications qui doivent s’exécuter/s’authentifier en l’absence d’utilisateur humain.
 
 ### <a name="user-authentication"></a>Authentification utilisateur
 L’authentification utilisateur se produit lorsque l’utilisateur présente des informations d’identification à AAD (ou à un fournisseur d’identité qui travaille avec AAD, comme ADFS) et reçoit un jeton de sécurité qu’il peut présenter au service Kusto. Le service Kusto ne se soucie pas de la façon dont le jeton de sécurité a été obtenu, il s’attache à déterminer si le jeton est valide et quelles informations y place AAD (ou le fournisseur d’identité fédéré).
@@ -94,4 +95,3 @@ Kusto utilise un [modèle d’autorisation basé sur les rôles](role-based-auth
 Par exemple, le **rôle d’utilisateur de base de données** accorde aux principaux de sécurité (utilisateurs ou services) le droit de lire les données d’une base de données particulière, de créer des tables dans la base de données, ainsi que d’y créer des fonctions.
 
 L’association des principaux de sécurité à des rôles de sécurité peut se définir individuellement ou à l’aide de groupes de sécurité (définis dans AAD). Les commandes individuelles correspondantes sont définies dans [Définition des règles d’autorisation basées sur les rôles](../security-roles.md).
-

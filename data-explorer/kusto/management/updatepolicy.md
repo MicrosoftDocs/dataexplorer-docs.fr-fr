@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 7d2b89e0723bbecb29ffd582ae20c2ee41199e45
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 072c908109fecb695a8961c546deb756caf830ab
+ms.sourcegitcommit: 98eabf249b3f2cc7423dade0f386417fb8e36ce7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618494"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82868703"
 ---
 # <a name="update-policy"></a>Mettre à jour la stratégie
 
@@ -52,19 +52,22 @@ Chaque objet de ce type est représenté sous la forme d’un conteneur de propr
 |IsTransactional               |`bool`  |Indique si la stratégie de mise à jour est transactionnelle ou non (false par défaut). L’échec de l’exécution d’un résultat de stratégie de mise à jour transactionnelle dans la table source n’est pas mis à jour avec de nouvelles données.   |
 |PropagateIngestionProperties  |`bool`  |Indique si les propriétés d’ingestion (balises d’étendue et heure de création) spécifiées lors de l’ingestion dans la table source doivent également s’appliquer à celles de la table dérivée.                 |
 
-> [!NOTE]
->
-> * La table source et la table pour laquelle la stratégie de mise à jour est définie **doivent figurer dans la même base de données**.
-> * La requête ne peut **pas** inclure des requêtes de bases de données croisées ou entre clusters.
-> * La requête peut appeler des fonctions stockées.
-> * La requête est automatiquement étendue pour couvrir uniquement les enregistrements nouvellement ingérés.
-> * Les mises à jour en cascade sont autorisées (TableA-`[update]`---> TableB-`[update]`---> TableC-`[update]`--->...)
-> * Si les stratégies de mise à jour sont définies sur plusieurs tables de manière circulaire, elles sont détectées au moment de l’exécution et la chaîne des mises à jour est coupée (ce qui signifie que les données sont ingérées une seule fois dans chaque table de la chaîne de tables affectées).
-> * Lorsque vous faites `Source` référence à la `Query` table dans la partie de la stratégie (ou dans les fonctions référencées par ce dernier), assurez-vous que vous **n’utilisez pas** le nom `TableName` qualifié de la table (autrement dit, utilisez et **non pas** `database("DatabaseName").TableName` et `cluster("ClusterName").database("DatabaseName").TableName`).
-> * La requête de mise à jour de la stratégie ne peut pas faire référence à une table avec une [stratégie de sécurité au niveau des lignes](./rowlevelsecuritypolicy.md) activée.
-> * Une requête exécutée dans le cadre d’une stratégie de mise à jour ne dispose **pas** d’un accès en lecture aux tables pour lesquelles la [stratégie RestrictedViewAccess](restrictedviewaccesspolicy.md) est activée.
-> * `PropagateIngestionProperties`prend effet uniquement dans les opérations d’ingestion. Quand la stratégie de mise à jour est déclenchée dans `.move extents` le `.replace extents` cadre d’une commande ou, cette option n’a **aucun** effet.
-> * Quand la stratégie de mise à jour est appelée dans le `.set-or-replace` cadre d’une commande, le comportement par défaut est que les données de la ou des tables dérivées sont également remplacées, comme c’est le cas dans la table source.
+## <a name="notes"></a>Notes
+
+* La requête est automatiquement étendue pour couvrir uniquement les enregistrements nouvellement ingérés.
+* La requête peut appeler des fonctions stockées.
+* Les mises à jour en cascade sont autorisées`TableA` ( `TableB` → `TableC` → →...)
+* Quand la stratégie de mise à jour est appelée dans le `.set-or-replace` cadre d’une commande, le comportement par défaut est que les données de la ou des tables dérivées sont également remplacées, comme c’est le cas dans la table source.
+
+## <a name="limitations"></a>Limites
+
+* La table source et la table pour laquelle la stratégie de mise à jour est définie **doivent figurer dans la même base de données**.
+* La requête ne peut **pas** inclure des requêtes de bases de données croisées ou entre clusters.
+* Si les stratégies de mise à jour sont définies sur plusieurs tables de manière circulaire, elles sont détectées au moment de l’exécution et la chaîne des mises à jour est coupée (ce qui signifie que les données sont ingérées une seule fois dans chaque table de la chaîne de tables affectées).
+* Lorsque vous faites `Source` référence à la `Query` table dans la partie de la stratégie (ou dans les fonctions référencées par ce dernier), assurez-vous que vous **n’utilisez pas** le nom `TableName` qualifié de la table (autrement dit, utilisez et **non pas** `database("DatabaseName").TableName` et `cluster("ClusterName").database("DatabaseName").TableName`).
+* Une requête exécutée dans le cadre d’une stratégie de mise à jour ne dispose **pas** d’un accès en lecture aux tables pour lesquelles la [stratégie RestrictedViewAccess](restrictedviewaccesspolicy.md) est activée.
+* La requête de mise à jour de la stratégie ne peut pas faire référence à une table avec une [stratégie de sécurité au niveau des lignes](./rowlevelsecuritypolicy.md) activée.
+* `PropagateIngestionProperties`prend effet uniquement dans les opérations d’ingestion. Quand la stratégie de mise à jour est déclenchée dans `.move extents` le `.replace extents` cadre d’une commande ou, cette option n’a **aucun** effet.
 
 ## <a name="retention-policy-on-the-source-table"></a>Stratégie de rétention sur la table source
 

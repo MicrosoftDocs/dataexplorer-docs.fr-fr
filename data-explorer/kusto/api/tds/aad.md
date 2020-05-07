@@ -1,29 +1,30 @@
 ---
-title: MS-TDS avec Azure Active Directory - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit MS-TDS avec Azure Active Directory dans Azure Data Explorer.
+title: MS-TDS avec Azure Active Directory-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit MS-TDS avec Azure Active Directory dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
+ms.custom: has-adal-ref
 ms.date: 01/02/2019
-ms.openlocfilehash: e70f4e9fa4d831d3a1c2eeb60f07a959a65e478e
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 5511155eaa131c85a49a2082322ad95fcd022418
+ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81523509"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82862007"
 ---
 # <a name="ms-tds-with-azure-active-directory"></a>MS-TDS avec Azure Active Directory
 
 ## <a name="aad-user-authentication"></a>Authentification de l’utilisateur AAD
 
-Les clients SQL qui prennent en charge l’authentification des utilisateurs AAD peuvent être utilisés avec Kusto.
+Les clients SQL qui prennent en charge l’authentification utilisateur AAD peuvent être utilisés avec Kusto.
 
-### <a name="net-sql-client-user"></a>.NET SQL Client (utilisateur)
+### <a name="net-sql-client-user"></a>Client SQL .NET (utilisateur)
 
-Par exemple, pour AAD intégré :
+Par exemple, pour AAD intégré :
 ```csharp
     var csb = new SqlConnectionStringBuilder()
     {
@@ -33,7 +34,7 @@ Par exemple, pour AAD intégré :
     };
 ```
 
-Kusto prend en charge l’authentification avec un jeton d’accès déjà obtenu :
+Kusto prend en charge l’authentification avec un jeton d’accès déjà obtenu :
 ```csharp
     var csb = new SqlConnectionStringBuilder()
     {
@@ -65,11 +66,11 @@ public class Sample {
     ds.setDatabaseName("<your database name>");
     ds.setHostNameInCertificate("*.kusto.windows.net"); // Or appropriate regional domain.
     ds.setAuthentication("ActiveDirectoryIntegrated");
-    try (Connection connection = ds.getConnection(); 
+    try (Connection connection = ds.getConnection();
          Statement stmt = connection.createStatement();) {
       ResultSet rs = stmt.executeQuery("<your T-SQL query>");
-      /* 
-      Read query result. 
+      /*
+      Read query result.
       */
     } catch (Exception e) {
       System.out.println();
@@ -81,11 +82,11 @@ public class Sample {
 
 ## <a name="aad-application-authentication"></a>Authentification de l’application AAD
 
-La demande AAD provisionnée pour Kusto peut utiliser les bibliothèques de clients SQL qui prennent en charge AAD pour se connecter à Kusto. Voir [Création d’une application AAD](../../management/access-control/how-to-provision-aad-app.md) pour plus d’informations sur les applications AAD.
+L’application AAD approvisionnée pour Kusto peut utiliser des bibliothèques clientes SQL qui prennent en charge AAD pour la connexion à Kusto. Pour plus d’informations sur les applications AAD, consultez [création d’une application AAD](../../management/access-control/how-to-provision-aad-app.md) .
 
-### <a name="net-sql-client-application"></a>.NET SQL Client (application)
+### <a name="net-sql-client-application"></a>Client SQL .NET (application)
 
-En supposant que vous avez fourni une application AAD avec *ApplicationClientId* et *ApplicationKey* et lui a accordé les autorisations d’accéder à *database DatabaseName* sur cluster *ClusterDnsName*, l’échantillon suivant démontre comment utiliser .NET SQL Client pour les requêtes de cette application AAD.
+En supposant que vous avez configuré une application AAD avec *ApplicationClientId* et *ApplicationKey* et que vous lui avez accordé des autorisations d’accès à la base de données *DatabaseName* sur le cluster *ClusterDnsName*, l’exemple suivant montre comment utiliser le client SQL .net pour les requêtes à partir de cette application AAD.
 
 ```csharp
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
@@ -103,10 +104,10 @@ namespace Sample
         // Can also use tenant ID.
         "https://login.microsoftonline.com/<your AAD tenant name>");
       var applicationCredentials = new ClientCredential(
-        "<your application client ID>", 
+        "<your application client ID>",
         "<your application key>");
       var result = await authContext.AcquireTokenAsync(
-        "https://<your cluster DNS name>", 
+        "https://<your cluster DNS name>",
         applicationCredentials);
       return result.AccessToken;
     }
@@ -123,7 +124,7 @@ namespace Sample
         connection.AccessToken = await ObtainToken();
         await connection.OpenAsync();
         using (var command = new SqlCommand(
-          "<your T-SQL query>", 
+          "<your T-SQL query>",
           connection))
         {
           var reader = await command.ExecuteReaderAsync();
@@ -148,16 +149,16 @@ public class Sample {
   public static void main(String[] args) throws Throwable {
     ExecutorService service = Executors.newFixedThreadPool(1);
     // Can also use tenant name.
-    String url = "https://login.microsoftonline.com/<your AAD tenant ID>"; 
-    AuthenticationContext authenticationContext = 
+    String url = "https://login.microsoftonline.com/<your AAD tenant ID>";
+    AuthenticationContext authenticationContext =
       new AuthenticationContext(url, false, service);
     ClientCredential  clientCredential = new ClientCredential(
-      "<your application client ID>", 
+      "<your application client ID>",
       "<your application key>");
-    Future<AuthenticationResult> futureAuthenticationResult = 
+    Future<AuthenticationResult> futureAuthenticationResult =
       authenticationContext.acquireToken(
-        "https://<your cluster DNS name>", 
-        clientCredential, 
+        "https://<your cluster DNS name>",
+        clientCredential,
         null);
     AuthenticationResult authenticationResult = futureAuthenticationResult.get();
     SQLServerDataSource ds = new SQLServerDataSource();

@@ -1,40 +1,41 @@
 ---
-title: Azure Active Directory (AAD) Authentification - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit Azure Active Directory (AAD) Authentication in Azure Data Explorer.
+title: Authentification Azure Active Directory (AAD)-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit l’authentification Azure Active Directory (AAD) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
+ms.custom: has-adal-ref
 ms.date: 09/13/2019
-ms.openlocfilehash: 637252b91af53198b3ee494309857b2d4b6e6828
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 17da89206af12e2e4f7d9867372c8babf0c4aea1
+ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81522931"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82862086"
 ---
-# <a name="azure-active-directory-aad-authentication"></a>Azure Active Directory (AAD) Authentification
+# <a name="azure-active-directory-aad-authentication"></a>Authentification Azure Active Directory (AAD)
 
 Azure Active Directory (AAD) est le service d’annuaire cloud multilocataire de prédilection d’Azure. Il est capable d’authentifier les principaux de sécurité ou de se fédérer avec d’autres fournisseurs d’identité, comme Active Directory de Microsoft.
 
-AAD permet à l’application de différents types (application Web, application de bureau Windows, applications Universelles, applications mobiles, etc.) d’authentifier et d’utiliser uniformément les services Kusto.
+AAD permet l’application de différents types (application Web, application de bureau Windows, applications universelles, applications mobiles, etc.) pour authentifier et utiliser uniformément les services Kusto.
 
 AAD prend en charge un certain nombre de scénarios d’authentification.
-S’il y a un utilisateur présent lors de l’authentification, il faut authentifier l’utilisateur à AAD par AAD User Authentication.
-Dans certains cas, on veut un service pour utiliser Kusto même lorsqu’aucun utilisateur n’est présent de manière interactive. Dans de tels cas, il faut authentifier l’application par l’utilisation d’un secret d’application, tel que décrit dans AAD Application Authentication.
+Si un utilisateur est présent pendant l’authentification, il doit authentifier l’utilisateur auprès d’AAD par l’authentification de l’utilisateur AAD.
+Dans certains cas, un service peut utiliser Kusto même si aucun utilisateur n’est présent de manière interactive. Dans ce cas, l’un doit authentifier l’application via l’utilisation d’un secret d’application, comme décrit dans authentification d’application AAD.
 
-Les méthodes suivantes d’authentification sont prises en charge par Kusto en général, y compris à travers ses bibliothèques .NET:
+Les méthodes d’authentification suivantes sont prises en charge par Kusto en général, notamment via les bibliothèques .NET suivantes :
 
-* Authentification interactive de l’utilisateur - ce mode nécessite une interactivité, comme si nécessaire, l’interface utilisateur logon apparaîtra
+* Authentification utilisateur interactive : ce mode nécessite une interactivité, comme si nécessaire, l’interface utilisateur de connexion s’affiche.
 * Authentification de l’utilisateur avec un jeton AAD existant précédemment émis pour Kusto
-* Authentification de l’application avec AppID et secret partagé
-* Authentification de l’application avec certificat ou certificat X.509v2 installé localement
-* Authentification de l’application avec un jeton AAD existant précédemment émis pour Kusto
-* Authentification de l’utilisateur ou de l’application avec un jeton AAD émis pour une autre ressource, à condition qu’il existe une confiance entre cette ressource et Kusto
+* Authentification d’application avec AppID et secret partagé
+* Authentification de l’application avec un certificat X. 509v2 installé localement ou certificat fourni en ligne
+* Authentification d’application avec un jeton AAD existant précédemment émis pour Kusto
+* Authentification de l’utilisateur ou de l’application avec un jeton AAD émis pour une autre ressource, à condition qu’il existe une approbation entre cette ressource et Kusto
 
-S’il vous plaît voir la référence [des chaînes de connexion Kusto](../../api/connection-strings/kusto.md) pour les conseils et les exemples.
+Pour obtenir des conseils et des exemples, consultez la référence sur les [chaînes de connexion Kusto](../../api/connection-strings/kusto.md) .
 
 ## <a name="user-authentication"></a>Authentification utilisateur
 
@@ -54,30 +55,29 @@ Quand les demandes ne sont associées à aucun utilisateur spécifique ou qu’a
 * Authentification de l’application à l’aide d’un jeton AAD valide précédemment obtenu (délivré à Kusto).
 * Authentification d’application à l’aide d’un jeton AAD valide précédemment obtenu, délivré à une autre ressource, à condition qu’il existe une relation d’approbation entre cette ressource et Kusto.
 
-## <a name="aad-server-application-permissions"></a>Autorisations d’application de serveur AAD
+## <a name="aad-server-application-permissions"></a>Autorisations de l’application serveur AAD
 
-Dans le cas général, une application serveur AAD peut définir plusieurs autorisations (p. ex., autorisation de lecture seulement et autorisation de lecture) et la demande de client AAD peut décider quelles autorisations il a besoin lorsqu’il demande un jeton d’autorisation. Dans le cadre de l’acquisition de jetons, l’utilisateur sera invité à autoriser l’application client AAD à agir au nom de l’utilisateur avec l’autorisation d’avoir ces autorisations. Si l’utilisateur approuve, ces autorisations seront énumérées dans la revendication de portée du jeton qui est délivrée à l’application client AAD.
+Dans le cas général, une application de serveur AAD peut définir plusieurs autorisations (par exemple, une autorisation de lecture seule et une autorisation de lecture-écriture) et l’application cliente AAD peut déterminer les autorisations dont elle a besoin lorsqu’elle demande un jeton d’autorisation. Dans le cadre de l’acquisition de jetons, l’utilisateur est invité à autoriser l’application cliente AAD à agir au nom de l’utilisateur avec l’autorisation de disposer de ces autorisations. Si l’utilisateur approuve, ces autorisations sont listées dans la revendication d’étendue du jeton émis pour l’application cliente AAD.
 
 
 
-L’application client AAD est configurée pour demander l’autorisation "Accès Kusto" de l’utilisateur (qu’AAD appelle "le propriétaire de la ressource").
+L’application cliente AAD est configurée pour demander l’autorisation « accès Kusto » à l’utilisateur (lequel AAD appelle le « propriétaire de la ressource »).
 
 ## <a name="kusto-client-sdk-as-an-aad-client-application"></a>SDK client Kusto comme application cliente AAD
 
 Quand les bibliothèques de clients Kusto appellent ADAL (la bibliothèque de client AAD) pour obtenir un jeton afin de communiquer avec Kusto, les informations suivantes sont fournies :
 
-1. Le locataire de l’AAD, reçu de l’appelant
+1. Locataire AAD, tel qu’il est reçu de l’appelant
 2. ID d’application cliente AAD
-3. L’ID de ressources clientes AAD
-4. L’AAD ReplyUrl (l’URL que le service AAD redirigera après l’authentification se termine avec succès; ADAL capture ensuite cette redirection et en extrait le code d’autorisation).
-5. The Cluster URIhttps://Cluster-and-region.kusto.windows.net(' ').
+3. L’ID de ressource du client AAD
+4. Le ReplyUrl AAD (URL que le service AAD redirige vers une fois l’authentification terminée ; ADAL capture ensuite cette redirection et en extrait le code d’autorisation.
+5. URI du cluster («https://Cluster-and-region.kusto.windows.net»).
 
-Le jeton retourné par ADAL à la bibliothèque cliente de Kusto a l’application serveur Kusto AAD comme public, et la permission "Accès Kusto" comme portée.
+Le jeton retourné par ADAL à la bibliothèque cliente Kusto dispose de l’application de serveur Kusto AAD comme audience et de l’autorisation « accès Kusto » comme étendue.
 
-## <a name="authenticating-with-aad-programmatically"></a>Authentification avec AAD Programmatically
+## <a name="authenticating-with-aad-programmatically"></a>Authentification avec AAD par programmation
 
-Les articles suivants expliquent comment s’authentifier programmatiquement à Kusto avec AAD :
+Les articles suivants expliquent comment s’authentifier par programmation auprès de Kusto avec AAD :
 
-* [Comment fournir une demande AAD](./how-to-provision-aad-app.md)
-* [Comment effectuer AAD Authentification](./how-to-authenticate-with-aad.md)
-
+* [Comment approvisionner une application AAD](./how-to-provision-aad-app.md)
+* [Comment effectuer une authentification AAD](./how-to-authenticate-with-aad.md)

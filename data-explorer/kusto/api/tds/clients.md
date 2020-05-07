@@ -7,13 +7,14 @@ ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
+ms.custom: has-adal-ref
 ms.date: 10/30/2019
-ms.openlocfilehash: 5e2de0c29c58959ce683518b03bef9164fa9543c
-ms.sourcegitcommit: 061eac135a123174c85fe1afca4d4208c044c678
+ms.openlocfilehash: b41f77fe97ce6adeeade63c00824818f4a3af721
+ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/05/2020
-ms.locfileid: "82799626"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82862035"
 ---
 # <a name="ms-tds-clients-and-azure-data-explorer"></a>Clients MS-TDS et Azure Explorateur de données
 
@@ -83,7 +84,7 @@ Si l’application ODBC peut accepter une chaîne de connexion au lieu de, ou en
 "Driver={ODBC Driver 17 for SQL Server};Server=mykustocluster.kusto.windows.net;Database=mykustodatabase;Authentication=ActiveDirectoryIntegrated"
 ```
 
-Certaines applications ODBC ne fonctionnent pas correctement avec `NVARCHAR(MAX)` le type. Pour plus d'informations, consultez https://docs.microsoft.com/sql/relational-databases/native-client/features/using-large-value-types?view=sql-server-2017#sql-server-native-client-odbc-driver. 
+Certaines applications ODBC ne fonctionnent pas correctement avec `NVARCHAR(MAX)` le type. Pour plus d'informations, consultez https://docs.microsoft.com/sql/relational-databases/native-client/features/using-large-value-types?view=sql-server-2017#sql-server-native-client-odbc-driver.
 
 La solution de contournement courante consiste à effectuer un cast des données retournées en *nvarchar (n)*, avec une valeur pour n. Par exemple, *nvarchar (4000)*. Toutefois, une telle solution ne fonctionne pas pour Azure Explorateur de données, car Azure Explorateur de données n’a qu’un seul type de chaîne et pour les clients SQL, il est encodé en tant que *nvarchar (max)*.
 
@@ -104,7 +105,7 @@ $conn = [System.Data.Common.DbProviderFactories]::GetFactory("System.Data.Odbc")
 $conn.ConnectionString = "Driver={ODBC Driver 17 for SQL Server};Server=mykustocluster.kusto.windows.net;Database=mykustodatabase;Authentication=ActiveDirectoryIntegrated"
 $conn.Open()
 $conn.GetSchema("Tables")
-$conn.Close()  
+$conn.Close()
 ```
 
 ## <a name="linqpad"></a>LINQPad
