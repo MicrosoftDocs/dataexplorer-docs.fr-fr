@@ -1,6 +1,6 @@
 ---
-title: Gestion des bases de données - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la gestion des bases de données dans Azure Data Explorer.
+title: Gestion des bases de données-Azure Explorateur de données
+description: Cet article décrit la gestion des bases de données dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,22 +8,21 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 78fcba2db059c0115d65032610009ab20bd2d5bd
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 03d21dc76bbffb72275a35c86bb8030942228184
+ms.sourcegitcommit: addc4eb50ae65240975d63292e9f6907a74f5dfe
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81521282"
+ms.lasthandoff: 05/08/2020
+ms.locfileid: "82966738"
 ---
 # <a name="databases-management"></a>Gestion des bases de données
 
-Ce sujet décrit les commandes de contrôle de base de données suivantes :
+Cette rubrique décrit les commandes de contrôle de base de données suivantes :
 
 |Commande |Description |
 |--------|------------|
-|[.afficher les bases de données](show-databases.md) |Renvoie un tableau dans lequel chaque enregistrement correspond à une base de données dans le cluster auquel l’utilisateur a accès|
-|[.afficher la base de données](show-database.md) |Retourne un tableau montrant les propriétés de la base de données contextuelle |
-|[.afficher les bases de données cluster](show-cluster-database.md) |Renvoie un tableau montrant toutes les bases de données attachées au cluster et auxquelles l’utilisateur invoquant la commande a accès |
-|[.modifier la base de données](alter-database.md) |Modifie le joli nom (amical) d’une base de données |
-|[.drop base de données](drop-database.md) |Laisse tomber le joli nom (amical) d’une base de données |
-|[.afficher le schéma de base de données](show-schema-database.md) |Retourne une liste plate de la structure des bases de données sélectionnées avec toutes leurs tables et colonnes dans une seule table ou un objet JSON |
+|[. afficher les bases de données](show-databases.md) |Retourne une table dans laquelle chaque enregistrement correspond à une base de données du cluster à laquelle l’utilisateur a accès.|
+|[.show database](show-database.md) |Retourne une table qui affiche les propriétés de la base de données de contexte |
+|[. afficher les bases de données de cluster](show-cluster-database.md) |Retourne une table qui affiche toutes les bases de données attachées au cluster et auxquelles l’utilisateur qui appelle la commande a accès |
+|[. ALTER DATABASE](alter-database.md) |Modifie le nom convivial d’une base de données |
+|[.show database schema](show-schema-database.md) |Retourne une liste plate de la structure des bases de données sélectionnées avec toutes leurs tables et colonnes dans une table unique ou un objet JSON |
