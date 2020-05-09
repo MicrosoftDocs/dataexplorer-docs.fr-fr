@@ -8,21 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 56150c480d0d5ecfd4d428e51f7bdb4b68e36b0c
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 5a7a1b37c8c50bdff3760ad9222065191a9eb884
+ms.sourcegitcommit: 3393ad86dac455fd182296ffb410b2bd570dbfce
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82617695"
+ms.lasthandoff: 05/09/2020
+ms.locfileid: "82991897"
 ---
 # <a name="export-data-to-an-external-table"></a>Exporter des données vers une table externe
 
 Vous pouvez exporter des données en définissant une [table externe](../externaltables.md) et en y exportant des données.
 Les propriétés de la table sont spécifiées lors de la [création de la table externe](../externaltables.md#create-or-alter-external-table). par conséquent, vous n’avez pas besoin d’incorporer les propriétés de la table dans la commande d’exportation. La commande Export fait référence à la table externe par son nom.
 L’exportation de données nécessite une [autorisation d’administrateur de base de données](../access-control/role-based-authorization.md).
-
-> [!NOTE] 
-> * L’exportation vers une table externe `impersonate` avec la chaîne de connexion n’est pas prise en charge actuellement.
 
 **Syntaxe :**
 
@@ -33,9 +30,9 @@ L’exportation de données nécessite une [autorisation d’administrateur de b
 
 |Paramètre de sortie |Type |Description
 |---|---|---
-|ExternalTableName  |String |Nom de la table externe.
-|Path|String|Chemin de sortie.
-|NumRecords|String| Nombre d’enregistrements exportés dans le chemin d’accès.
+|ExternalTableName  |Chaîne |Nom de la table externe.
+|Path|Chaîne|Chemin de sortie.
+|NumRecords|Chaîne| Nombre d’enregistrements exportés dans le chemin d’accès.
 
 **Remarques :**
 * Le schéma de sortie de la requête d’exportation doit correspondre au schéma de la table externe, y compris toutes les colonnes définies par les partitions. Par exemple, si la table est partitionnée par *DateTime*, le schéma de sortie de la requête doit inclure une colonne timestamp qui correspond à la *TimestampColumnName* définie dans la définition de partitionnement de table externe.

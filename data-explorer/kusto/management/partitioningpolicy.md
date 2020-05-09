@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 6ce7cf38c88879b52c4e2e259e3e9a5cade959de
-ms.sourcegitcommit: 9fe6ee7db15a5cc92150d3eac0ee175f538953d2
+ms.openlocfilehash: b3293916841eb56da3985f4b388754e7c8057682
+ms.sourcegitcommit: 3393ad86dac455fd182296ffb410b2bd570dbfce
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/07/2020
-ms.locfileid: "82907152"
+ms.lasthandoff: 05/09/2020
+ms.locfileid: "82991878"
 ---
 # <a name="data-partitioning-policy-preview"></a>Stratégie de partitionnement des données (préversion)
 
@@ -202,9 +202,10 @@ La sortie comprend les éléments suivants :
 
 #### <a name="capacity"></a>Capacité
 
-* Au fur et à mesure que le processus de partitionnement des données entraîne la création d’extensions supplémentaires, vous devrez peut-être augmenter la [capacité de fusion des étendues](../management/capacitypolicy.md#extents-merge-capacity) du cluster pour que le processus de fusion d' [étendues](../management/extents-overview.md) puisse continuer.
-* Si elle est requise (par exemple, en cas de débit d’ingestion élevé et/ou d’un nombre suffisant de tables nécessitant un partitionnement), la capacité de la [partition](../management/capacitypolicy.md#extents-partition-capacity) du cluster peut être augmentée (progressivement et linéaire) pour permettre l’exécution d’un plus grand nombre d’opérations de partitionnement simultanées.
-  * Si l’augmentation du partitionnement entraîne une augmentation significative de l’utilisation des ressources du cluster, augmentez ou diminuez la taille du cluster, soit manuellement, soit en activant la mise à l’échelle automatique.
+* Le processus de partitionnement des données entraîne la création d’extensions supplémentaires. Le cluster peut augmenter progressivement sa [capacité de fusion d’étendues](../management/capacitypolicy.md#extents-merge-capacity), afin que le processus de [fusion des extensions](../management/extents-overview.md) puisse suivre.
+* Dans le cas d’un débit de réception élevé et/ou d’un nombre suffisant de tables qui ont une stratégie de partitionnement définie, le cluster peut augmenter progressivement sa [capacité de partition](../management/capacitypolicy.md#extents-partition-capacity), afin que [le processus de partitionnement des étendues](#the-data-partitioning-process) puisse suivre.
+* Pour éviter de consommer trop de ressources, ces augmentations dynamiques sont limitées. Vous devrez peut-être les augmenter graduellement et de manière linéaire au-delà de la limite de l’extrémité, s’ils sont saturés.
+  * Si l’augmentation des capacités entraîne une augmentation significative de l’utilisation des ressources du cluster, vous pouvez mettre à l’échelle le[cluster, soit](../../manage-cluster-horizontal-scaling.md)manuellement, soit en activant la [mise](../../manage-cluster-vertical-scaling.md)/à l’échelle automatique.
 
 ### <a name="outliers-in-partitioned-columns"></a>Valeurs hors norme dans les colonnes partitionnées
 
