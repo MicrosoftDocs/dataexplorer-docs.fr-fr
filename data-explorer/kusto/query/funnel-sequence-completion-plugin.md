@@ -1,6 +1,6 @@
 ---
-title: funnel_sequence_completion plugin - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit funnel_sequence_completion plugin dans Azure Data Explorer.
+title: plug-in funnel_sequence_completion-Azure Explorateur de données
+description: Cet article décrit funnel_sequence_completion plug-in dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/16/2020
-ms.openlocfilehash: 7f168841db2df47e4e3a192b75585a1fe4d83718
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 57cceb2fabb16956090430161b98c1287efdef97
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81514771"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83227319"
 ---
 # <a name="funnel_sequence_completion-plugin"></a>plug-in funnel_sequence_completion
 
-Calcule l’entonnoir des étapes de séquence terminées en comparant différentes périodes de temps.
+Calcule l’entonnoir des étapes de séquence terminées dans la comparaison de différentes périodes.
 
 ```kusto
 T | evaluate funnel_sequence_completion(id, datetime_column, startofday(ago(30d)), startofday(now()), 1d, state_column, dynamic(['S1', 'S2', 'S3']), dynamic([10m, 30min, 1h]))
@@ -25,35 +25,36 @@ T | evaluate funnel_sequence_completion(id, datetime_column, startofday(ago(30d)
 
 **Syntaxe**
 
-*T* `| evaluate` `,` *Start* `,` *End* `,` *Step* `,` `,` *Sequence* `,` *IdColumn* `,` *TimelineColumn* *StateColumn* IdColumn TimelineColumn Start End Step StateColumn Séquence *MaxSequenceStepWindows* `funnel_sequence_completion(``)`
+*T* `| evaluate` `funnel_sequence_completion(` *IdColumn* `,` *TimelineColumn* `,` *Start* `,` *End* `,` *Step* `,` *StateColumn* `,` *séquence* `,` *MaxSequenceStepWindows*`)`
 
 **Arguments**
 
-* *T*: L’expression tabulaire d’entrée.
-* *IdColum*: référence de colonne, doit être présent dans l’expression source
-* *TimelineColumn*: référence de colonne représentant la chronologie, doit être présent dans l’expression source
-* *Début*: valeur constante scalaire de la période de début d’analyse
-* *Fin*: valeur constante scalaire de la période de fin d’analyse
-* *Étape*: valeur constante scalaire de la période d’étape d’analyse (bin) 
-* *StateColumn*: référence de colonne représentant l’état, doit être présent dans l’expression source
-* *Séquence*: un tableau dynamique constant avec les `StateColumn`valeurs de séquence (les valeurs sont regardées en)
-* *MaxSequenceStepWindows*: tableau dynamique constant scalaire avec les valeurs du temps maximum autorisé entre les premières et dernières étapes séquentielles de la séquence, chaque fenêtre (période) du tableau génère un résultat d’analyse d’entonnoir
+* *T*: expression tabulaire d’entrée.
+* *IdColum*: référence de colonne, doit être présent dans l’expression source.
+* *TimelineColumn*: référence de colonne représentant la chronologie, doit être présente dans l’expression source.
+* *Start*: valeur constante scalaire de la période de démarrage de l’analyse.
+* *Fin*: valeur constante scalaire de la période de fin de l’analyse.
+* *Étape*: valeur constante scalaire de l’étape d’analyse (bin).
+* *StateColumn*: référence de colonne représentant l’État, qui doit être présente dans l’expression source.
+* *Sequence*: tableau dynamique constant avec les valeurs de séquence (les valeurs sont recherchées dans `StateColumn` ).
+* *MaxSequenceStepWindows*: tableau dynamique constant scalaire avec les valeurs de la période maximale autorisée entre les première et dernière étapes séquentielles de la séquence. Chaque fenêtre (point) du tableau génère un résultat d’analyse en entonnoir.
 
 **Retourne**
 
-Retourne une seule table utile pour la construction d’un diagramme d’entonnoir pour la séquence analysée :
+Retourne une table unique utile pour construire un diagramme en entonnoir pour la séquence analysée :
 
-* TimelineColumn: la fenêtre de temps analysée
-* `StateColumn`: l’état de la séquence.
-* Période : la période maximale (fenêtre) permet de terminer les étapes de la séquence d’entonnoir mesurée à partir de la première étape de la séquence. Chaque valeur dans *MaxSequenceStepWindows* génère une analyse d’entonnoir avec une période distincte. 
-* dcount: compte `IdColumn` distinct de la fenêtre de temps qui `StateColumn`est passé de l’état de la première séquence à la valeur de .
+* `TimelineColumn`: la fenêtre de temps analysée
+* `StateColumn`: état de la séquence.
+* `Period`: période maximale (fenêtre) autorisée pour l’exécution des étapes de la séquence de l’entonnoir mesurée à partir de la première étape de la séquence. Chaque valeur de *MaxSequenceStepWindows* génère une analyse en entonnoir avec une période distincte. 
+* `dcount`: nombre distinct de `IdColumn` dans la fenêtre de temps qui est passé du premier État de séquence à la valeur de `StateColumn` .
 
 **Exemples**
 
-### <a name="exploring-storm-events"></a>Explorer les événements orageux 
+### <a name="exploring-storm-events"></a>Exploration des événements Storm 
 
-La requête suivante vérifie l’entonnoir d’achèvement de la `Hail`  ->  `Tornado`  ->  `Thunderstorm Wind` séquence : en temps « global » de 1 heure, 4 heures, 1day. 
+La requête suivante vérifie l’entonnoir d’achèvement de la séquence : `Hail`  ->  `Tornado`  ->  `Thunderstorm Wind` dans l’heure « globale » de 1hour, 4hours, 1Day. 
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let _start = datetime(2007-01-01);
 let _end =  datetime(2008-01-01);
@@ -64,7 +65,7 @@ StormEvents
 | evaluate funnel_sequence_completion(EpisodeId, StartTime, _start, _end, _windowSize, EventType, _sequence, _periods) 
 ```
 
-|StartTime|Type d’événement|Période|dcount|
+|`StartTime`|`EventType`|`Period`|`dcount`|
 |---|---|---|---|
 |2007-01-01 00:00:00.0000000|Grêle|01:00:00|2877|
 |2007-01-01 00:00:00.0000000|Tornade|01:00:00|208|
@@ -76,5 +77,5 @@ StormEvents
 |2007-01-01 00:00:00.0000000|Tornade|1.00:00:00|244|
 |2007-01-01 00:00:00.0000000|Vent d’orage|1.00:00:00|155|
 
-Comprendre les résultats :  
-Le résultat il 3 entonnoirs (pour des périodes: 1 heure, 4 heures, et 1 jour), tandis que pour chaque étape d’entonnoir un certain nombre de nombre distincts d’EpisodeId est montré. Vous pouvez voir que plus il est possible `Hail`  ->  `Tornado`  ->  `Thunderstorm Wind` de `dcount` compléter la séquence de la valeur supérieure (ce qui signifie plus d’occurrences de la séquence atteignant l’étape de l’entonnoir).
+Comprendre les résultats :  
+Le résultat est trois entonnoirs (pour les périodes : 1 heure, 4 heures et un jour). Pour chaque étape de l’entonnoir, plusieurs nombres distincts de sont affichés. Vous pouvez constater que plus le temps est important pour effectuer l’intégralité de la séquence de `Hail`  ->  `Tornado`  ->  `Thunderstorm Wind` , plus la `dcount` valeur est élevée. En d’autres termes, il existait plus d’occurrences de la séquence qui atteignent l’étape entonnoir.

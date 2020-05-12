@@ -1,52 +1,52 @@
 ---
-title: geo_point_to_s2cell ()-Azure Explorateur de données | Microsoft Docs
+title: geo_point_to_s2cell ()-Azure Explorateur de données
 description: Cet article décrit geo_point_to_s2cell () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/04/2020
-ms.openlocfilehash: d1cd2106865419f9407b3ff464d9852eb5ffb630
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: fe3af4218fcc8b714cd4d62e45e78d6f8c9c0270
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618465"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83226905"
 ---
 # <a name="geo_point_to_s2cell"></a>geo_point_to_s2cell()
 
 Calcule la valeur de chaîne du jeton de cellule S2 pour un emplacement géographique.
 
-Pour plus d’informations sur les cellules S2, cliquez [ici](http://s2geometry.io/devguide/s2cell_hierarchy).
+En savoir plus sur la [hiérarchie des cellules S2](https://s2geometry.io/devguide/s2cell_hierarchy).
 
 **Syntaxe**
 
-`geo_point_to_s2cell(`*longitude*`, `*latitude*`, `*niveau* de latitude de longitude`)`
+`geo_point_to_s2cell(`*longitude* `, ` *Latitude* `, ` de *niveau*`)`
 
 **Arguments**
 
-* *longitude*: valeur de longitude d’un emplacement géographique. La longitude x sera considérée comme valide si x est un nombre réel et que x est dans la plage [-180, + 180]. 
+* *longitude*: valeur de longitude d’un emplacement géographique. La longitude *x* sera considérée comme valide si *x* est un nombre réel et que *x* est dans la plage [-180, + 180]. 
 * *Latitude*: valeur de latitude d’un emplacement géographique. La latitude y sera considérée comme valide si y est un nombre réel et y dans la plage [-90, + 90]. 
-* *Level*: un facultatif `int` qui définit le niveau de cellule demandé. Les valeurs prises en charge sont comprises dans la plage [0, 30]. S’il n’est pas spécifié, `11` la valeur par défaut est utilisée.
+* *Level*: un facultatif `int` qui définit le niveau de cellule demandé. Les valeurs prises en charge sont comprises dans la plage [0, 30]. S’il n’est pas spécifié, la valeur par défaut `11` est utilisée.
 
 **Retourne**
 
-Valeur de chaîne du jeton de cellule S2 d’un emplacement géographique donné. Si la coordonnée ou le niveau ne sont pas valides, la requête produira un résultat vide.
+Valeur de chaîne du jeton de cellule S2 d’un emplacement géographique donné. Si les coordonnées ou les niveaux ne sont pas valides, la requête produira un résultat vide.
 
 > [!NOTE]
 >
-> * S2Cell peut être un outil de clustering géospatiale utile.
-> * S2Cell a 31 niveaux de hiérarchie avec couverture de zone allant de 85011, 012.19 km ² au niveau le plus élevé de 0 à 00.44 cm ² au niveau le plus bas.
-> * S2Cell conserve le Centre des cellules pendant l’augmentation du niveau de 0 à 30.
-> * S2Cell est une cellule sur une surface de sphère et les bords sont des géodésique.
-> * L’appel de la fonction [geo_s2cell_to_central_point ()](geo-s2cell-to-central-point-function.md) sur une chaîne de jeton s2cell qui a été calculée sur les x de longitude et Latitude y ne retourne pas nécessairement x et y.
+> * La cellule S2 peut être un outil de clustering géospatiale utile.
+> * La cellule S2 a 31 niveaux de hiérarchie avec couverture de zone allant de 85011, 012.19 km ² au niveau le plus élevé de 0 à 00.44 cm ² au niveau le plus bas.
+> * La cellule S2 conserve le Centre des cellules pendant l’augmentation du niveau de 0 à 30.
+> * La cellule S2 est une cellule sur une surface sphérique et ses bords sont géodésique.
+> * L’appel de la fonction [geo_s2cell_to_central_point ()](geo-s2cell-to-central-point-function.md) sur une chaîne de jeton de cellule S2 qui a été calculée sur les x de longitude et Latitude y ne retourne pas nécessairement x et y.
 > * Il est possible que deux emplacements géographiques soient très proches les uns des autres, mais qu’ils aient différents jetons de cellule S2.
 
 **Couverture de la zone approximative de la cellule S2 par valeur de niveau**
 
-Pour chaque niveau, la taille du s2cell est similaire, mais pas exactement égale à. La taille des cellules voisines a tendance à être plus égale.
+Pour chaque niveau, la taille de la cellule S2 est similaire, mais pas exactement égale à. Les tailles des cellules proches ont tendance à être plus égales.
 
 |Level|Longueur minimale du bord de cellule aléatoire (Royaume-Uni)|Longueur maximale du bord de cellule aléatoire (US)|
 |--|--|--|
@@ -82,7 +82,7 @@ Pour chaque niveau, la taille du s2cell est similaire, mais pas exactement égal
 |29|12 mm|18 mm|
 |30|6 mm|9 mm|
 
-La source de la table est disponible [ici](http://s2geometry.io/resources/s2cell_statistics).
+La source de table se trouve [dans cette ressource statistique de cellule S2](https://s2geometry.io/resources/s2cell_statistics).
 
 Voir aussi [geo_point_to_geohash ()](geo-point-to-geohash-function.md).
 
@@ -92,6 +92,7 @@ Voir aussi [geo_point_to_geohash ()](geo-point-to-geohash-function.md).
 
 :::image type="content" source="images/geo-point-to-s2cell-function/s2cell.png" alt-text="S2cell des États-Unis":::
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | project BeginLon, BeginLat
@@ -100,6 +101,7 @@ StormEvents
 | render scatterchart with (kind=map) // map rendering available in Kusto Explorer desktop
 ```
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 print s2cell = geo_point_to_s2cell(-80.195829, 25.802215, 8)
 ```
@@ -108,7 +110,9 @@ print s2cell = geo_point_to_s2cell(-80.195829, 25.802215, 8)
 |--------|
 | 88d9b  |
 
-L’exemple suivant recherche des groupes de coordonnées. Chaque paire de coordonnées du groupe réside dans s2cell avec une zone maximale de 1632,45 km².
+L’exemple suivant recherche des groupes de coordonnées. Chaque paire de coordonnées du groupe réside dans la cellule S2 avec une zone maximale de 1632,45 km².
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 datatable(location_id:string, longitude:real, latitude:real)
 [
@@ -127,6 +131,8 @@ datatable(location_id:string, longitude:real, latitude:real)
 | 47ae3  | 1     | ["C"]     |
 
 L’exemple suivant produit un résultat vide en raison de l’entrée de coordonnée non valide.
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 print s2cell = geo_point_to_s2cell(300,1,8)
 ```
@@ -136,6 +142,8 @@ print s2cell = geo_point_to_s2cell(300,1,8)
 |        |
 
 L’exemple suivant génère un résultat vide en raison de l’entrée de niveau non valide.
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 print s2cell = geo_point_to_s2cell(1,1,35)
 ```
@@ -145,6 +153,8 @@ print s2cell = geo_point_to_s2cell(1,1,35)
 |        |
 
 L’exemple suivant génère un résultat vide en raison de l’entrée de niveau non valide.
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 print s2cell = geo_point_to_s2cell(1,1,int(null))
 ```

@@ -1,6 +1,6 @@
 ---
-title: Informations de référence sur Kusto. ingestion-autorisations d’ingestion-Azure Explorateur de données
-description: Cet article décrit les autorisations d’ingestion de référence Kusto. ad dans Azure Explorateur de données.
+title: Kusto. réception des autorisations d’ingestion-Azure Explorateur de données
+description: Cet article décrit les autorisations Kusto. ingestion-ingestion dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,26 +8,24 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: e60eb6642a66fac81ce373f8f4d62de4f7217a91
-ms.sourcegitcommit: 061eac135a123174c85fe1afca4d4208c044c678
+ms.openlocfilehash: 3fd516b7201c5e857417ca13bade668f32f25161
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/05/2020
-ms.locfileid: "82799694"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83226157"
 ---
-# <a name="kustoingest-reference---ingestion-permissions"></a>Informations de référence sur Kusto. ingestion
+# <a name="kustoingest---ingestion-permissions"></a>Kusto. deréception-autorisations d’ingestion
 
-Cet article explique les autorisations à configurer sur votre service, pour `Native` que l’ingestion fonctionne.
+Cet article explique les autorisations à configurer sur votre service, pour que l’ingestion `Native` fonctionne.
 
 ## <a name="prerequisites"></a>Prérequis
 
 * Pour afficher et modifier les paramètres d’autorisation sur les services et bases de données Kusto, consultez [commandes de contrôle Kusto](../../management/security-roles.md).
 
-## <a name="references"></a>References
-
-* Azure AD les applications utilisées comme exemples de principaux dans les exemples ci-dessous.
-    * Tester l’application AAD (2a904276-1234-5678-9012-66fc53add60b ; microsoft.com)
-    * Application AAD d’ingestion interne Kusto (76263cdb-1234-5678-9012-545644e9c404 ; microsoft.com)
+* Les applications Azure Active Directory (Azure AD) utilisées comme exemples de principaux dans les exemples suivants :
+    * Azure AD App de test (2a904276-1234-5678-9012-66fc53add60b ; microsoft.com)
+    * Azure AD App d’ingestion interne Kusto (76263cdb-1234-5678-9012-545644e9c404 ; microsoft.com)
 
 ## <a name="ingestion-permission-mode-for-queued-ingestion"></a>Mode d’autorisation ingestion pour l’ingestion en attente
 
@@ -39,21 +37,21 @@ Le diagramme présente l’interaction du client d’ingestion en attente avec K
 
 ### <a name="permissions-on-the-engine-service"></a>Autorisations sur le service de moteur
 
-Pour pouvoir bénéficier de l’ingestion de `T1` données dans `DB1`une table de base de données, le principal qui exécute l’opération de réception doit avoir l’autorisation.
-Les niveaux d’autorisation minimum `Database Ingestor` requis `Table Ingestor` sont et qui peuvent ingérer des données dans toutes les tables existantes d’une base de données ou dans une table existante spécifique.
-Si la création de la table `Database User` est requise, ou si un rôle d’accès supérieur doit également être affecté.
+Pour pouvoir bénéficier de l’ingestion de données dans une table de `T1` base de données `DB1` , le principal qui exécute l’opération de réception doit avoir l’autorisation.
+Les niveaux d’autorisation minimum requis sont `Database Ingestor` et qui peuvent ingérer des `Table Ingestor` données dans toutes les tables existantes d’une base de données ou dans une table existante spécifique.
+Si la création de la table est requise, `Database User` ou si un rôle d’accès supérieur doit également être affecté.
 
 
-|Rôle                 |PrincipalType        |PrincipalDisplayName
+|Role                 |PrincipalType        |PrincipalDisplayName
 |---------------------|---------------------|------------
 |`Database Ingestor`  |Application Azure AD |`Test App (app id: 2a904276-1234-5678-9012-66fc53add60b)`
 |`Table Ingestor`     |Application Azure AD |`Test App (app id: 2a904276-1234-5678-9012-66fc53add60b)`
 
->`Kusto Internal Ingestion AAD App (76263cdb-1234-5678-9012-545644e9c404)`le principal, l’application d’ingestion interne Kusto, est immutably mappé au `Cluster Admin` rôle. Il est donc autorisé à recevoir des données dans n’importe quelle table. C’est ce qui se passe sur les pipelines d’ingestion gérés par Kusto.
+>`Kusto Internal Ingestion Azure AD App (76263cdb-1234-5678-9012-545644e9c404)`le principal, l’application d’ingestion interne Kusto, est immutably mappé au `Cluster Admin` rôle. Il est donc autorisé à recevoir des données dans n’importe quelle table. C’est ce qui se passe sur les pipelines d’ingestion gérés par Kusto.
 
-L’octroi des autorisations requises `DB1` sur la `T1` base de `Test App (2a904276-1234-5678-9012-66fc53add60b in AAD tenant microsoft.com)` données ou la table à Azure ad app se présente comme suit :
+L’octroi des autorisations requises sur la base de données `DB1` ou `T1` la table à Azure ad app se `Test App (2a904276-1234-5678-9012-66fc53add60b in Azure AD tenant microsoft.com)` présente comme suit :
 
 ```kusto
-.add database DB1 ingestors ('aadapp=2a904276-1234-5678-9012-66fc53add60b;microsoft.com') 'Test AAD App'
-.add table T1 ingestors ('aadapp=2a904276-1234-5678-9012-66fc53add60b;microsoft.com') 'Test AAD App'
+.add database DB1 ingestors ('aadapp=2a904276-1234-5678-9012-66fc53add60b;microsoft.com') 'Test Azure AD App'
+.add table T1 ingestors ('aadapp=2a904276-1234-5678-9012-66fc53add60b;microsoft.com') 'Test Azure AD App'
 ```
