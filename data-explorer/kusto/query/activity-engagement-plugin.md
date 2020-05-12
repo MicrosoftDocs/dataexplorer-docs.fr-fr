@@ -1,6 +1,6 @@
 ---
-title: activity_engagement plugin - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit activity_engagement plugin dans Azure Data Explorer.
+title: plug-in activity_engagement-Azure Explorateur de données
+description: Cet article décrit activity_engagement plug-in dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a7ed7ad7ebef425160b64b792ff75c95d4c4fcee
-ms.sourcegitcommit: 29018b3db4ea7d015b1afa65d49ecf918cdff3d6
+ms.openlocfilehash: 9aa85bcb12cd5f8d836f58ea9d16a318d8a40506
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "82030306"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83225953"
 ---
 # <a name="activity_engagement-plugin"></a>plug-in activity_engagement
 
 calcule le taux d’engagement d’activité selon la colonne d’ID sur une fenêtre de chronologie glissante.
 
-activity_engagement plugin peut être utilisé pour calculer DAU/WAU/MAU (activités quotidiennes/hebdomadaires/mensuelles).
+activity_engagement plug-in peut être utilisé pour le calcul de UAQ/WAU/MAU (activités quotidiennes/hebdomadaires/mensuelles).
 
 ```kusto
 T | evaluate activity_engagement(id, datetime_column, 1d, 30d)
@@ -27,36 +27,37 @@ T | evaluate activity_engagement(id, datetime_column, 1d, 30d)
 
 **Syntaxe**
 
-*T* `| evaluate` `,` *End*`,``,` `,` `,` `,` *IdColumn* `,` `,` *Start* *dim2* *dim1* *TimelineColumn* *OuterActivityWindow* *InnerActivityWindow* IdColumn TimelineColumn [ Start End ] InnerActivityWindow OuterActivityWindow [ dim1 dim2 ...] `activity_engagement(``)`
+*T* `| evaluate` `activity_engagement(` *IdColumn* `,` *TimelineColumn* `,` [*Start* `,` *end* `,` ] *InnerActivityWindow* `,` *OuterActivityWindow* [ `,` *dim1* `,` *dim2* `,` ...]`)`
 
 **Arguments**
 
-* *T*: L’expression tabulaire d’entrée.
-* *IdColumn*: Le nom de la colonne avec des valeurs d’identification qui représentent l’activité de l’utilisateur. 
-* *TimelineColumn*: Le nom de la colonne qui représente la chronologie.
-* *Démarrer*: (facultatif) Scalar avec la valeur de la période de début d’analyse.
-* *Fin*: (facultatif) Scalar avec valeur de la période de fin d’analyse.
-* *InnerActivityWindow*: Scalar avec la valeur de la période de fenêtre d’analyse de portée intérieure.
-* *OuterActivityWindow*: Scalar avec la valeur de la période de fenêtre d’analyse de portée extérieure.
-* *dim1*, *dim2*, ...: (facultatif) liste des colonnes de dimensions qui tranchent le calcul des mesures d’activité.
+* *T*: expression tabulaire d’entrée.
+* *IdColumn*: nom de la colonne avec des valeurs d’ID qui représentent l’activité de l’utilisateur. 
+* *TimelineColumn*: nom de la colonne qui représente la chronologie.
+* *Start*: (facultatif) scalaire avec la valeur de la période de démarrage de l’analyse.
+* *End*: (facultatif) scalaire avec la valeur de la période de fin de l’analyse.
+* *InnerActivityWindow*: scalaire avec la valeur de la période de la fenêtre d’analyse de l’étendue interne.
+* *OuterActivityWindow*: scalaire avec la valeur de la période de la fenêtre d’analyse de l’étendue externe.
+* *dim1*, *dim2*,... : (facultatif) liste des colonnes de dimensions qui découpent le calcul des métriques d’activité.
 
 **Retourne**
 
-Retourne une table qui a (compte distinct des valeurs d’identification à l’intérieur de la fenêtre de portée intérieure, compte distinct des valeurs d’identification à l’intérieur de la fenêtre de portée extérieure, et le rapport d’activité)pour chaque période de fenêtre de portée interne et pour chaque combinaison de dimensions existantes.
+Retourne une table qui contient (nombre distinct de valeurs d’ID dans la fenêtre de l’étendue interne, le nombre de valeurs d’ID dans la fenêtre de l’étendue externe et le ratio d’activité) pour chaque période de la fenêtre de l’étendue interne et pour chaque combinaison de dimensions existante.
 
-Le schéma de table de sortie est :
+Le schéma de la table de sortie est le suivant :
 
-|TimelineColumn (en)|dcount_activities_inner|dcount_activities_outer|activity_ratio|dim1|..|dim_n|
+|TimelineColumn|dcount_activities_inner|dcount_activities_outer|activity_ratio|dim1|..|dim_n|
 |---|---|---|---|--|--|--|--|--|--|
-|type: à partir de *TimelineColumn*|long|long|double|..|..|..|
+|type : à partir de *TimelineColumn*|long|long|double|..|..|..|
 
 
 **Exemples**
 
-### <a name="dauwau-calculation"></a>Calcul DAU/WAU
+### <a name="dauwau-calculation"></a>Calcul UAQ/WAU
 
-L’exemple suivant calcule le rapport DAU/WAU (utilisateurs actifs quotidiens / utilisateurs actifs hebdomadaires) sur une donnée générée au hasard.
+L’exemple suivant calcule UAQ/WAU (taux quotidien d’utilisateurs actifs/hebdomadaires actifs) sur des données générées de manière aléatoire.
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 // Generate random data of user activities
 let _start = datetime(2017-01-01);
@@ -72,12 +73,13 @@ range _day from _start to _end  step 1d
 | render timechart 
 ```
 
-:::image type="content" source="images/activity-engagement-plugin/activity-engagement-dau-wau.png" border="false" alt-text="Engagement d’activité dau wau":::
+:::image type="content" source="images/activity-engagement-plugin/activity-engagement-dau-wau.png" border="false" alt-text="Engagement d’activité UAQ Wau":::
 
-### <a name="daumau-calculation"></a>Calcul DAU/MAU
+### <a name="daumau-calculation"></a>Calcul UAQ/MAU
 
-L’exemple suivant calcule le rapport DAU/WAU (utilisateurs actifs quotidiens / utilisateurs actifs hebdomadaires) sur une donnée générée au hasard.
+L’exemple suivant calcule UAQ/WAU (taux quotidien d’utilisateurs actifs/hebdomadaires actifs) sur des données générées de manière aléatoire.
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 // Generate random data of user activities
 let _start = datetime(2017-01-01);
@@ -93,12 +95,13 @@ range _day from _start to _end  step 1d
 | render timechart 
 ```
 
-:::image type="content" source="images/activity-engagement-plugin/activity-engagement-dau-mau.png" border="false" alt-text="Activité engagement dau mau":::
+:::image type="content" source="images/activity-engagement-plugin/activity-engagement-dau-mau.png" border="false" alt-text="Engagement d’activité UAQ Mau":::
 
-### <a name="daumau-calculation-with-additional-dimensions"></a>Calcul DAU/MAU avec dimensions supplémentaires
+### <a name="daumau-calculation-with-additional-dimensions"></a>Calcul UAQ/MAU avec dimensions supplémentaires
 
-L’exemple suivant calcule DAU/WAU (Ratio utilisateurs actifs quotidiens / utilisateurs actifs`mod3`hebdomadaires) sur une donnée générée au hasard avec une dimension supplémentaire ( ).
+L’exemple suivant calcule UAQ/WAU (taux quotidien d’utilisateurs actifs/hebdomadaires actifs) sur des données générées de façon aléatoire avec une dimension supplémentaire ( `mod3` ).
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 // Generate random data of user activities
 let _start = datetime(2017-01-01);
@@ -115,4 +118,4 @@ range _day from _start to _end  step 1d
 | render timechart 
 ```
 
-:::image type="content" source="images/activity-engagement-plugin/activity-engagement-dau-mau-mod3.png" border="false" alt-text="Activité engagement dau mau mod 3":::
+:::image type="content" source="images/activity-engagement-plugin/activity-engagement-dau-mau-mod3.png" border="false" alt-text="Engagement d’activité UAQ Mau mod 3":::

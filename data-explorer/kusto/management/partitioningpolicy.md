@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: b3293916841eb56da3985f4b388754e7c8057682
-ms.sourcegitcommit: 3393ad86dac455fd182296ffb410b2bd570dbfce
+ms.openlocfilehash: 564ce0677f3d280fed27c0b6ce1328cb35188c4f
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/09/2020
-ms.locfileid: "82991878"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83225885"
 ---
 # <a name="data-partitioning-policy-preview"></a>Stratégie de partitionnement des données (préversion)
 
@@ -38,35 +38,35 @@ Les types de clés de partition suivants sont pris en charge :
 
 ### <a name="hash-partition-key"></a>Clé de partition de hachage
 
-L’application d’une clé de partition `string`de hachage sur une colonne typée dans une table est appropriée lorsque la *majorité* des requêtes`==`utilisent `in()`des filtres d’égalité (,) et/ou `string`des agrégats/jointures sur une colonne de *grande dimension* (cardinalité de 10 millions ou `application_ID`supérieure) `tenant_ID` , telle `user_ID`qu’un, un ou un.
+L’application d’une clé de partition de hachage sur une `string` colonne typée dans une table est appropriée lorsque la *majorité* des requêtes utilisent des filtres d’égalité ( `==` , `in()` ) et/ou des agrégats/jointures sur une `string` colonne de *grande dimension* (cardinalité de 10 millions ou supérieure), telle qu’un `application_ID` , un `tenant_ID` ou un `user_ID` .
 
 * Une fonction de hachage-modulo est utilisée pour partitionner les données.
 * Toutes les étendues *homogènes* (partitionnées) appartenant à la même partition sont affectées au même nœud de données.
 * Les données dans des étendues *homogènes* (partitionnées) sont classées par la clé de partition de hachage.
   * Il n’est pas nécessaire d’inclure la clé de partition dans une [stratégie d’ordre des lignes](roworderpolicy.md), si celle-ci est définie sur la table.
-* Les requêtes qui utilisent la [stratégie de lecture aléatoire](../query/shufflequery.md), et `shuffle key` dans lesquelles `join`le `summarize` utilisé `make-series` dans ou est la clé de partition de hachage de la table, sont censés être plus performants, car la quantité de données requise pour le déplacement entre les nœuds de cluster est considérablement réduite.
+* Les requêtes qui utilisent la [stratégie de lecture aléatoire](../query/shufflequery.md), et dans lesquelles le `shuffle key` utilisé dans `join` `summarize` ou `make-series` est la clé de partition de hachage de la table, sont censés être plus performants, car la quantité de données requise pour le déplacement entre les nœuds de cluster est considérablement réduite.
 
 #### <a name="partition-properties"></a>Propriétés de la partition
 
 * `Function`nom d’une fonction de hachage-modulo à utiliser.
-  * Valeur prise en `XxHash64`charge :.
+  * Valeur prise en charge : `XxHash64` .
 * `MaxPartitionCount`nombre maximal de partitions à créer (l’argument modulo de la fonction de hachage-modulo) par période.
-  * Les valeurs prises en charge sont `(1,1024]`comprises dans la plage.
+  * Les valeurs prises en charge sont comprises dans la plage `(1,1024]` .
     * La valeur doit être :
       * Plus grand que le nombre de nœuds dans le cluster
       * Plus petite que la cardinalité de la colonne.
     * Plus la valeur est élevée, plus la charge mémoire du processus de partitionnement des données sur les nœuds du cluster est importante, et plus le nombre d’étendues est élevé pour chaque période de temps.
-    * La valeur recommandée pour commencer par est `256`.
+    * La valeur recommandée pour commencer par est `256` .
       * Si nécessaire, il peut être ajusté (généralement vers le haut), en fonction des considérations susmentionnées et/ou en fonction de la mesure de l’avantage des performances des requêtes et de la surcharge liée au partitionnement de la publication des données.
 * `Seed`valeur à utiliser pour la randomisation de la valeur de hachage.
   * La valeur doit être un entier positif.
-  * La valeur recommandée (et par défaut, si non spécifié) `1`est.
+  * La valeur recommandée (et par défaut, si non spécifié) est `1` .
 
-#### <a name="example"></a> Exemple
+#### <a name="example"></a>Exemple
 
-Voici une clé de partition de hachage sur une `string`colonne de type typée nommée `tenant_id`.
+Voici une clé de partition de hachage sur une `string` colonne de type typée nommée `tenant_id` .
 
-Elle utilise la `XxHash64` fonction de hachage, avec `MaxPartitionCount` un `256`de et la valeur `Seed` par `1`défaut de.
+Elle utilise la `XxHash64` fonction de hachage, avec un `MaxPartitionCount` de `256` et la valeur par défaut `Seed` de `1` .
 
 ```json
 {
@@ -82,19 +82,22 @@ Elle utilise la `XxHash64` fonction de hachage, avec `MaxPartitionCount` un `256
 
 ### <a name="uniform-range-datetime-partition-key"></a>Clé de partition DateTime de plage uniforme
 
-L’application d’une clé de partition DateTime de `datetime`plage uniforme sur une colonne typée dans une table est appropriée lorsque les données ingérées dans la table sont *peu susceptibles* d’être classées en fonction de cette colonne. Dans ce cas, il peut être utile de remanier de nouveau les données entre les étendues afin que chaque étendue corresponde à des enregistrements d’un intervalle de temps limité, `datetime` ce qui aboutit à des filtres sur la colonne au moment de la requête plus efficace.
+L’application d’une clé de partition DateTime de plage uniforme sur une `datetime` colonne typée dans une table est appropriée lorsque les données ingérées dans la table sont *peu susceptibles* d’être classées en fonction de cette colonne. Dans ce cas, il peut être utile de remanier de nouveau les données entre les étendues afin que chaque étendue corresponde à des enregistrements d’un intervalle de temps limité, ce qui aboutit à des filtres sur la `datetime` colonne au moment de la requête plus efficace.
 
 * La fonction de partition utilisée est [bin_at ()](../query/binatfunction.md) et n’est pas personnalisable.
 
 #### <a name="partition-properties"></a>Propriétés de la partition
 
-* `RangeSize`constante `timespan` scalaire qui indique la taille de chaque partition DateTime.
-* `Reference`constante `datetime` scalaire de type qui indique un point fixe dans le temps selon lequel les partitions DateTime sont alignées.
-  * S’il existe des enregistrements dans lesquels la clé de partition `null` DateTime a des valeurs, leur valeur de partition est définie `Reference`sur la valeur de.
+* `RangeSize``timespan`constante scalaire qui indique la taille de chaque partition DateTime.
+  * Une valeur recommandée pour commencer par est `1.00:00:00` (un jour).
+  * La définition d’une valeur est beaucoup plus courte que ce qui n’est *pas* recommandé, car elle peut aboutir à une table comportant un grand nombre de petites extensions, qui ne peut pas être fusionnée ensemble.
+* `Reference``datetime`constante scalaire de type qui indique un point fixe dans le temps selon lequel les partitions DateTime sont alignées.
+  * La valeur recommandée pour commencer par est `1970-01-01 00:00:00` .
+  * S’il existe des enregistrements dans lesquels la clé de partition DateTime a des `null` valeurs, leur valeur de partition est définie sur la valeur de `Reference` .
 
-#### <a name="example"></a> Exemple
+#### <a name="example"></a>Exemple
 
-Voici une clé de partition de plage DateTime uniforme sur une `datetime`colonne typée nommée`timestamp`
+Voici une clé de partition de plage DateTime uniforme sur une `datetime` colonne typée nommée`timestamp`
 
 Il utilise `datetime(1970-01-01)` comme point de référence, avec une taille de `1d` pour chaque partition.
 
@@ -111,19 +114,19 @@ Il utilise `datetime(1970-01-01)` comme point de référence, avec une taille de
 
 ## <a name="the-policy-object"></a>Objet de stratégie
 
-Par défaut, la stratégie de partitionnement des données d' `null`une table est, auquel cas les données de la table ne sont pas partitionnées.
+Par défaut, la stratégie de partitionnement des données d’une table est `null` , auquel cas les données de la table ne sont pas partitionnées.
 
 La stratégie de partitionnement des données comporte les propriétés principales suivantes :
 
 * **PartitionKeys**:
   * Collection de [clés de partition](#partition-keys) qui définissent la façon dont les données doivent être partitionnées dans la table.
-  * Une table peut avoir jusqu’à `2` des clés de partition, avec l’une des trois options suivantes :
+  * Une table peut avoir jusqu’à des `2` clés de partition, avec l’une des trois options suivantes :
     * 1 [clé de partition de hachage](#hash-partition-key).
     * 1 [clé de partition DateTime de plage uniforme](#uniform-range-datetime-partition-key).
     * 1 [clé de partition de hachage](#hash-partition-key) et 1 [clé de partition DateTime de plage uniforme](#uniform-range-datetime-partition-key).
   * Chaque clé de partition a les propriétés suivantes :
     * `ColumnName`: `string ` -Nom de la colonne en fonction de laquelle les données seront partitionnées.
-    * `Kind`: `string` -Type de partitionnement des données à appliquer`Hash` ( `UniformRange`ou).
+    * `Kind`: `string` -Type de partitionnement des données à appliquer ( `Hash` ou `UniformRange` ).
     * `Properties`: `property bag` définit les paramètres en fonction du partitionnement effectué.
 
 * **EffectiveDateTime**:
@@ -131,12 +134,12 @@ La stratégie de partitionnement des données comporte les propriétés principa
   * Cette propriété est *facultative* . si elle n’est pas spécifiée, la stratégie prend effet sur les données ingérées après l’application de la stratégie.
   * Toutes les étendues non homogènes (non partitionnées) qui sont liées pour être bientôt supprimées en raison de la rétention (autrement dit, leur heure de création précède la 90% de la période de suppression effective de la table) est ignorée par le processus de partitionnement.
 
-### <a name="example"></a> Exemple
+### <a name="example"></a>Exemple
 
 Voici un objet de stratégie de partitionnement de données avec deux clés de partition :
-1. Une clé de partition de hachage `string`sur une colonne de `tenant_id`type typée nommée.
-    - Elle utilise la `XxHash64` fonction de hachage, avec `MaxPartitionCount` un de 256 et la valeur `Seed` par `1`défaut.
-2. Une clé de partition de plage DateTime uniforme `datetime`sur une colonne typée nommée`timestamp`
+1. Une clé de partition de hachage sur une `string` colonne de type typée nommée `tenant_id` .
+    - Elle utilise la `XxHash64` fonction de hachage, avec un `MaxPartitionCount` de 256 et la valeur par défaut `Seed` `1` .
+2. Une clé de partition de plage DateTime uniforme sur une `datetime` colonne typée nommée`timestamp`
     - Il utilise `datetime(1970-01-01)` comme point de référence, avec une taille de `1d` pour chaque partition.
 
 ```json
@@ -169,7 +172,7 @@ Les propriétés suivantes peuvent être définies dans le cadre de la stratégi
 
 * **MinRowCountPerOperation**:
   * Cible minimale pour la somme du nombre de lignes des étendues sources d’une opération de partitionnement de données unique.
-  * Cette propriété est *facultative*, avec sa valeur par défaut `0`.
+  * Cette propriété est *facultative*, avec sa valeur par défaut `0` .
 
 * **MaxRowCountPerOperation**:
   * Cible maximale pour la somme du nombre de lignes des étendues sources d’une opération de partitionnement de données unique.
@@ -181,7 +184,7 @@ Les propriétés suivantes peuvent être définies dans le cadre de la stratégi
 
 * Le partitionnement des données s’exécute en tant que processus d’arrière-plan de publication dans le cluster.
   * Une table qui est ingérée en permanence dans est censée avoir toujours une « fin » de données qui doit encore être partitionnée (étendues*non homogènes* ).
-* Le partitionnement des données s’exécute uniquement sur les extensions chaudes, quelle que soit `EffectiveDateTime` la valeur de la propriété dans la stratégie.
+* Le partitionnement des données s’exécute uniquement sur les extensions chaudes, quelle que soit la valeur de la `EffectiveDateTime` propriété dans la stratégie.
   * Si le partitionnement des extensions à froid est nécessaire, vous devez ajuster temporairement la [stratégie de mise en cache en](cachepolicy.md) conséquence.
 
 #### <a name="monitoring"></a>Surveillance
@@ -205,7 +208,7 @@ La sortie comprend les éléments suivants :
 * Le processus de partitionnement des données entraîne la création d’extensions supplémentaires. Le cluster peut augmenter progressivement sa [capacité de fusion d’étendues](../management/capacitypolicy.md#extents-merge-capacity), afin que le processus de [fusion des extensions](../management/extents-overview.md) puisse suivre.
 * Dans le cas d’un débit de réception élevé et/ou d’un nombre suffisant de tables qui ont une stratégie de partitionnement définie, le cluster peut augmenter progressivement sa [capacité de partition](../management/capacitypolicy.md#extents-partition-capacity), afin que [le processus de partitionnement des étendues](#the-data-partitioning-process) puisse suivre.
 * Pour éviter de consommer trop de ressources, ces augmentations dynamiques sont limitées. Vous devrez peut-être les augmenter graduellement et de manière linéaire au-delà de la limite de l’extrémité, s’ils sont saturés.
-  * Si l’augmentation des capacités entraîne une augmentation significative de l’utilisation des ressources du cluster, vous pouvez mettre à l’échelle le[cluster, soit](../../manage-cluster-horizontal-scaling.md)manuellement, soit en activant la [mise](../../manage-cluster-vertical-scaling.md)/à l’échelle automatique.
+  * Si l’augmentation des capacités entraîne une augmentation significative de l’utilisation des ressources du cluster, vous pouvez mettre à l' [up](../../manage-cluster-vertical-scaling.md)échelle le cluster / [out](../../manage-cluster-horizontal-scaling.md), soit manuellement, soit en activant la mise à l’échelle automatique.
 
 ### <a name="outliers-in-partitioned-columns"></a>Valeurs hors norme dans les colonnes partitionnées
 

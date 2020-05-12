@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 11/05/2018
-ms.openlocfilehash: 5a9166066ee664f15b07dff2b0a535044ebb929c
-ms.sourcegitcommit: 061eac135a123174c85fe1afca4d4208c044c678
+ms.openlocfilehash: f926daa248a74b7b61ea4867d3a54f857444823e
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/05/2020
-ms.locfileid: "82799643"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83226021"
 ---
 # <a name="querymanagement-http-response"></a>Réponse HTTP d’interrogation ou de gestion
 
@@ -56,7 +56,7 @@ Si le code d’État est 200, le corps de la réponse est un document JSON qui e
 Voir les détails ci-dessous.
 
 > [!NOTE]
-> La séquence de tables est reflétée par le kit de développement logiciel (SDK). Par exemple, lors de l’utilisation de la bibliothèque .NET Framework Kusto. Data, la séquence de tables devient alors le `System.Data.IDataReader` résultat de l’objet retourné par le kit de développement logiciel (SDK).
+> La séquence de tables est reflétée par le kit de développement logiciel (SDK). Par exemple, lors de l’utilisation de la bibliothèque .NET Framework Kusto. Data, la séquence de tables devient alors le résultat de l' `System.Data.IDataReader` objet retourné par le kit de développement logiciel (SDK).
 
 Si le code d’État indique une erreur 4xx ou 5xx, autre que 401, le corps de la réponse est un document JSON qui encode les détails de l’échec.
 Pour plus d’informations, consultez [les instructions de l’API REST de Microsoft](https://github.com/microsoft/api-guidelines).
@@ -90,9 +90,9 @@ Le jeu de propriétés de colonne contient les paires nom/valeur suivantes.
 
 Le tableau de lignes a le même ordre que le tableau de colonnes respectif.
 Le tableau de lignes possède également un élément qui coïncide avec la valeur de la ligne pour la colonne appropriée.
-Les types de données scalaires qui ne peuvent pas être représentés `datetime` dans `timespan`JSON, tels que et, sont représentés en tant que chaînes JSON.
+Les types de données scalaires qui ne peuvent pas être représentés dans JSON, tels que `datetime` et `timespan` , sont représentés en tant que chaînes JSON.
 
-L’exemple suivant illustre un objet de ce type, lorsqu’il contient une seule table `Table_0` nommée qui a une seule `Text` colonne de `string`type et une seule ligne.
+L’exemple suivant illustre un objet de ce type, lorsqu’il contient une seule table nommée `Table_0` qui a une seule colonne `Text` de type `string` et une seule ligne.
 
 ```json
 {
@@ -122,7 +122,31 @@ Pour chaque [instruction d’expression tabulaire](../../query/tabularexpression
 > Il peut y avoir plusieurs tables de ce type en raison des [lots](../../query/batches.md) et des [opérateurs de fourche](../../query/forkoperator.md)).
 
 Trois tables sont souvent produites :
+* @ExtendedPropertiesTable qui fournit des valeurs supplémentaires, telles que des instructions de visualisation du client. Ces valeurs sont générées, par exemple, pour refléter les informations dans l' [opérateur Render](../../query/renderoperator.md)) et le [curseur Database](../../management/databasecursor.md).
+  
+  Cette table a une seule colonne de type `string` , contenant des valeurs de type JSON :
 
-* @ExtendedProperties Table qui fournit des valeurs supplémentaires, telles que des instructions de visualisation du client. Ces valeurs sont générées, par exemple, pour refléter les informations dans l' [opérateur Render](../../query/renderoperator.md)) et le [curseur Database](../../management/databasecursor.md).
+  |Valeur|
+  |-----|
+  |{« Visualization » : « graphique en secteurs »,...}|
+  |{« Cursor » : « 637239957206013576 »}|
+
 * Table QueryStatus qui fournit des informations supplémentaires sur l’exécution de la requête elle-même, comme, si elle s’est terminée avec succès ou non, et les ressources consommées par la requête.
-* Une table TableOfContents, qui est créée en dernier et répertorie les autres tables dans les résultats.
+
+  La structure de cette table est la suivante :
+
+  |Timestamp                  |Gravité|SeverityName|StatusCode|StatusDescription            |Count|RequestId|ActivityId|SubActivityId|ClientActivityId|
+  |---------------------------|--------|------------|----------|-----------------------------|-----|---------|----------|-------------|----------------|
+  |2020-05-02 06:09:12.7052077|4       |Info        | 0        | Requête exécutée avec succès|1    |...      |...       |...          |...             |
+
+  Les valeurs de gravité de 2 ou moins indiquent un échec.
+
+* Une table TableOfContents, qui est créée en dernier et répertorie les autres tables dans les résultats. 
+
+  Voici un exemple de cette table :
+
+  |Ordinal|Type            |Nom               |Id                                  |PrettyName|
+  |-------|----------------|-------------------|------------------------------------|----------|
+  |0      | QueryResult    |PrimaryResult      |db9520f9-0455-4cb5-b257-53068497605a||
+  |1      | QueryProperties|@ExtendedProperties|908901f6-5319-4809-ae9e-009068c267c7||
+  |2      | QueryStatus    |QueryStatus        |00000000-0000-0000-0000-000000000000||

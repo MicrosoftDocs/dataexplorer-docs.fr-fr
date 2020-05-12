@@ -1,6 +1,6 @@
 ---
-title: activity_metrics plugin - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit activity_metrics plugin dans Azure Data Explorer.
+title: plug-in activity_metrics-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit activity_metrics plug-in dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 940320b7cd77ba09b31192853da9073511b33f5d
-ms.sourcegitcommit: 29018b3db4ea7d015b1afa65d49ecf918cdff3d6
+ms.openlocfilehash: 8106d419f20dcacdec6386294a5b9ffb8d1bc8e2
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "82030252"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83225902"
 ---
 # <a name="activity_metrics-plugin"></a>plug-in activity_metrics
 
-Calcule les mesures d’activité utiles (valeurs de comptage distinctes, nombre distinct de nouvelles valeurs, taux de rétention et taux de désabonnement) en fonction de la fenêtre de période actuelle par rapport à la fenêtre de période précédente (contrairement [activity_counts_metrics plugin](activity-counts-metrics-plugin.md) dans lequel chaque fenêtre de temps est comparée à *toutes les* fenêtres de temps précédentes).
+Calcule les métriques d’activité utiles (valeurs de comptage de valeurs, nombre distinct de nouvelles valeurs, taux de rétention et taux d’évolution) en fonction de la fenêtre de période actuelle par rapport à la fenêtre de période précédente (contrairement à [activity_counts_metrics plug-in](activity-counts-metrics-plugin.md) dans lequel chaque fenêtre de temps est comparée à *toutes les* fenêtres de temps précédentes).
 
 ```kusto
 T | evaluate activity_metrics(id, datetime_column, startofday(ago(30d)), startofday(now()), 1d, dim1, dim2, dim3)
@@ -25,77 +25,78 @@ T | evaluate activity_metrics(id, datetime_column, startofday(ago(30d)), startof
 
 **Syntaxe**
 
-*T* `| evaluate` `,` *End*`,``,` `,` `,` *IdColumn* `,` `,` *Window* *Start* *dim1* *dim2* *TimelineColumn* IdColumn TimelineColumn [ Start End ] Fenêtre [ dim1 dim2 ...] `activity_metrics(``)`
+*T* `| evaluate` `activity_metrics(` *IdColumn* `,` *TimelineColumn* `,` [*Start* `,` *end* `,` ] *fenêtre* [ `,` *dim1* `,` *dim2* `,` ...]`)`
 
 **Arguments**
 
-* *T*: L’expression tabulaire d’entrée.
-* *IdColumn*: Le nom de la colonne avec des valeurs d’identification qui représentent l’activité de l’utilisateur. 
-* *TimelineColumn*: Le nom de la colonne qui représente la chronologie.
-* *Démarrer*: (facultatif) Scalar avec la valeur de la période de début d’analyse.
-* *Fin*: (facultatif) Scalar avec valeur de la période de fin d’analyse.
-* *Fenêtre*: Scalar avec la valeur de la période de fenêtre d’analyse. Peut être soit une valeur numérique /datetime/timestamp, `week` / `month` / `year`ou une chaîne qui est l’un des , auquel cas toutes les périodes seront [startofweek](startofweekfunction.md)/[startofmonth](startofmonthfunction.md)/[startofyear](startofyearfunction.md) en conséquence. 
-* *dim1*, *dim2*, ...: (facultatif) liste des colonnes de dimensions qui tranchent le calcul des mesures d’activité.
+* *T*: expression tabulaire d’entrée.
+* *IdColumn*: nom de la colonne avec des valeurs d’ID qui représentent l’activité de l’utilisateur. 
+* *TimelineColumn*: nom de la colonne qui représente la chronologie.
+* *Start*: (facultatif) scalaire avec la valeur de la période de démarrage de l’analyse.
+* *End*: (facultatif) scalaire avec la valeur de la période de fin de l’analyse.
+* *Window*: scalaire avec la valeur de la période de la fenêtre d’analyse. Il peut s’agir d’une valeur numérique/DateTime/timestamp, ou d’une chaîne qui est l’une des `week` / `month` / `year` , auquel cas toutes les périodes sont [startOfWeek](startofweekfunction.md) / [StartOfMonth](startofmonthfunction.md) / [STARTOFYEAR](startofyearfunction.md) en conséquence. 
+* *dim1*, *dim2*,... : (facultatif) liste des colonnes de dimensions qui découpent le calcul des métriques d’activité.
 
 **Retourne**
 
-Retourne un tableau qui a les valeurs de comptage distinctes, le nombre distinct de nouvelles valeurs, le taux de rétention, et le taux de désabonnement pour chaque période de calendrier et pour chaque combinaison de dimensions existantes.
+Retourne une table qui contient les valeurs des nombres distincts, le nombre de nouvelles valeurs, le taux de rétention et le taux d’évolution pour chaque période de chronologie et pour chaque combinaison de dimensions existante.
 
-Le schéma de table de sortie est :
+Le schéma de la table de sortie est le suivant :
 
-|*TimelineColumn (en)*|dcount_values|dcount_newvalues|retention_rate|churn_rate|dim1|..|dim_n|
+|*TimelineColumn*|dcount_values|dcount_newvalues|retention_rate|churn_rate|dim1|..|dim_n|
 |---|---|---|---|---|--|--|--|--|--|--|
-|type: à partir de *TimelineColumn*|long|long|double|double|..|..|..|
+|type : à partir de *TimelineColumn*|long|long|double|double|..|..|..|
 
 **Remarques**
 
-***Définition du taux de rétention***
+***Définition de la vitesse de rétention***
 
-`Retention Rate`sur une période est calculée comme :
+`Retention Rate`sur une période, est calculé comme suit :
 
     # of customers returned during the period
     / (divided by)
     # customers at the beginning of the period
 
-où `# of customers returned during the period` le est défini comme:
+où `# of customers returned during the period` est défini comme suit :
 
     # of customers at end of period
     - (minus)
     # of new customers acquired during the period
 
 `Retention Rate`peut varier de 0,0 à 1,0  
-Le score plus élevé signifie la plus grande quantité d’utilisateurs de retour.
+Plus le score est élevé, plus le nombre d’utilisateurs renvoyés est important.
 
 
-***Définition du taux de churn***
+***Définition du taux d’évolution***
 
-`Churn Rate`sur une période est calculée comme :
+`Churn Rate`sur une période, est calculé comme suit :
     
     # of customers lost in the period
     / (divided by)
     # of customers at the beginning of the period
 
-où `# of customer lost in the period` le est défini comme:
+où `# of customer lost in the period` est défini comme suit :
 
     # of customers at the beginning of the period
     - (minus)
     # of customers at the end of the period
 
-`Churn Rate`peut varier de 0,0 à 1,0 Le score plus élevé signifie que le plus grand nombre d’utilisateurs ne retournent PAS au service.
+`Churn Rate`peut varier de 0,0 à 1,0 le score supérieur signifie que la plus grande quantité d’utilisateurs ne retourne pas au service.
 
-***Taux de churn vs rétention***
+***Évolution et taux de rétention***
 
-Dérivé de la `Churn Rate` `Retention Rate`définition et , ce qui suit est toujours vrai:
+Dérivée de la définition de `Churn Rate` et `Retention Rate` , les conditions suivantes sont toujours vraies :
 
     [Retention rate] = 100.0% - [Churn Rate]
 
 
 **Exemples**
 
-### <a name="weekly-retention-rate-and-churn-rate"></a>Taux de rétention hebdomadaire et taux de désabonnement
+### <a name="weekly-retention-rate-and-churn-rate"></a>Taux de rétention hebdomadaire et taux d’évolution
 
-La requête suivante calcule le taux de rétention et de désabonnement pour la fenêtre d’une semaine à l’autre.
+La requête suivante calcule le taux de rétention et d’évolution pour la fenêtre de semaine sur semaine.
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 // Generate random data of user activities
 let _start = datetime(2017-01-02);
@@ -120,7 +121,7 @@ range _day from _start to _end  step 1d
 |2017-01-30 00:00:00.0000000|0.681141439205955|0.318858560794045|
 |2017-02-06 00:00:00.0000000|0.278145695364238|0.721854304635762|
 |2017-02-13 00:00:00.0000000|0.223172628304821|0.776827371695179|
-|2017-02-20 00:00:00.0000000|0.38|0.62|
+|2017-02-20 00:00:00.0000000|0.38|0,62|
 |2017-02-27 00:00:00.0000000|0.295519001701645|0.704480998298355|
 |2017-03-06 00:00:00.0000000|0.280387770320656|0.719612229679344|
 |2017-03-13 00:00:00.0000000|0.360628154795289|0.639371845204711|
@@ -136,13 +137,13 @@ range _day from _start to _end  step 1d
 |2017-05-22 00:00:00.0000000|0.199122325836533|0.800877674163467|
 |2017-05-29 00:00:00.0000000|0.063468992248062|0.936531007751938|
 
-:::image type="content" source="images/activity-metrics-plugin/activity-metrics-churn-and-retention.png" border="false" alt-text="Mesures d’activité désabonnement et rétention":::
+:::image type="content" source="images/activity-metrics-plugin/activity-metrics-churn-and-retention.png" border="false" alt-text="Évolution et rétention des mesures d’activité":::
 
-### <a name="distinct-values-and-distinct-new-values"></a>Valeurs distinctes et valeurs « nouvelles » distinctes 
+### <a name="distinct-values-and-distinct-new-values"></a>Valeurs distinctes et valeurs « New » distinctes 
 
-La requête suivante calcule des valeurs distinctes et de « nouvelles » valeurs (ids qui n’apparaissaient pas dans la fenêtre de temps précédente) pour la fenêtre de semaine en semaine.
+La requête suivante calcule les valeurs distinctes et les valeurs « nouvelles » (ID qui n’ont pas été affichées dans la fenêtre de temps précédente) pour la fenêtre de semaine sur semaine.
 
-
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 // Generate random data of user activities
 let _start = datetime(2017-01-02);
@@ -183,4 +184,4 @@ range _day from _start to _end  step 1d
 |2017-05-22 00:00:00.0000000|1740|1017|
 |2017-05-29 00:00:00.0000000|960|756|
 
-:::image type="content" source="images/activity-metrics-plugin/activity-metrics-dcount-and-dcount-newvalues.png" border="false" alt-text="Les mesures d’activité dcount et dcount de nouvelles valeurs":::
+:::image type="content" source="images/activity-metrics-plugin/activity-metrics-dcount-and-dcount-newvalues.png" border="false" alt-text="Métriques d’activité DCount et DCount nouvelles valeurs":::

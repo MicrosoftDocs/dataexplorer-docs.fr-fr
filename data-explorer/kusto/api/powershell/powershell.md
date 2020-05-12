@@ -1,6 +1,6 @@
 ---
-title: Utilisation des bibliothèques clients .NET de PowerShell - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit l’utilisation des bibliothèques clientes .NET de PowerShell dans Azure Data Explorer.
+title: Utilisation des bibliothèques clientes .NET à partir de PowerShell-Azure Explorateur de données
+description: Cet article décrit l’utilisation des bibliothèques clientes .NET à partir de PowerShell dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,28 +8,31 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/29/2019
-ms.openlocfilehash: 635a23021a1a8c30347bfa27ecd65886b46a6fea
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 5c521d7e63d58dd32425e759b0cf09a22a050b40
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81503211"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83226038"
 ---
-# <a name="using-the-net-client-libraries-from-powershell"></a>Utilisation des bibliothèques clientes .NET de PowerShell
+# <a name="using-the-net-client-libraries-from-powershell"></a>Utilisation des bibliothèques clientes .NET à partir de PowerShell
 
-Les bibliothèques de clients Azure Data Explorer .NET peuvent être utilisées par les scripts PowerShell grâce à l’intégration intégrée de PowerShell avec des bibliothèques arbitraires (non PowerShell).
+Les scripts PowerShell peuvent utiliser des bibliothèques clientes Azure Explorateur de données .NET par le biais de l’intégration intégrée de PowerShell avec des bibliothèques .NET arbitraires (non-PowerShell).
 
-## <a name="getting-the-net-client-libraries-for-scripting-with-powershell"></a>Obtenir les bibliothèques de clients .NET pour script avec PowerShell
+## <a name="getting-the-net-client-libraries-for-scripting-with-powershell"></a>Obtention des bibliothèques clientes .NET pour l’écriture de scripts avec PowerShell
 
-Pour commencer à travailler avec les bibliothèques de clients Azure Data Explorer .NET utilisant PowerShell :
+Pour commencer à utiliser les bibliothèques clientes Azure Explorateur de données .NET à l’aide de PowerShell.
 
-1. Télécharger le [ `Microsoft.Azure.Kusto.Tools` forfait NuGet](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Tools/).
-2. Extraire le contenu de l’annuaire des outils dans l’emballage (à l’aide de 7 zips, par exemple).
-3. Appelez `[System.Reflection.Assembly]::LoadFrom("path")` à partir de powershell, pour charger la bibliothèque requise. 
-    - Le `"path"` paramètre de la commande doit indiquer l’emplacement des fichiers extraits.
-4. Une fois que tous les assemblages .NET dépendants sont chargés, créez une chaîne de connexion Kusto, instantanéisez un *fournisseur de requête* ou un fournisseur *d’administration,* et exécutez les requêtes ou commandes (comme indiqué dans les [exemples](powershell.md#examples) ci-dessous).
+1. Téléchargez le [ `Microsoft.Azure.Kusto.Tools` package NuGet](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Tools/).
+1. Extrayez le contenu du répertoire « tools » dans le package (à l’aide d’un outil d’archivage comme `7-zip` ).
+1. Appelez `[System.Reflection.Assembly]::LoadFrom("path")` à partir de PowerShell pour charger la bibliothèque requise. 
+    - Le `path` paramètre de la commande doit indiquer l’emplacement des fichiers extraits.
+1. Une fois tous les assemblys .NET dépendants chargés :
+   1. Créez une chaîne de connexion Kusto.
+   1. Instanciez un *fournisseur de requêtes* ou un fournisseur d' *administration*.
+   1. Exécutez les requêtes ou les commandes, comme indiqué dans les [exemples](powershell.md#examples) ci-dessous.
 
-Pour plus d’informations, consultez les [bibliothèques de clients Azure Data Explorer](../netfx/about-kusto-data.md).
+Pour plus d’informations, consultez les [bibliothèques clientes Azure Explorateur de données](../netfx/about-kusto-data.md).
 
 ## <a name="examples"></a>Exemples
 
@@ -38,7 +41,7 @@ Pour plus d’informations, consultez les [bibliothèques de clients Azure Data 
 ```powershell
 #  Part 1 of 3
 #  ------------
-#  Packages location - This is an example to the location where you extract the Microsoft.Azure.Kusto.Tools package.
+#  Packages location - This is an example of the location from where you extract the Microsoft.Azure.Kusto.Tools package.
 #  Please make sure you load the types from a local directory and not from a remote share.
 $packagesRoot = "C:\Microsoft.Azure.Kusto.Tools\Tools"
 
@@ -54,17 +57,17 @@ dir $packagesRoot\* | Unblock-File
 $clusterUrl = "https://help.kusto.windows.net;Fed=True"
 $databaseName = "Samples"
 
-#   Option A: using AAD User Authentication
+#   Option A: using Azure AD User Authentication
 $kcsb = New-Object Kusto.Data.KustoConnectionStringBuilder ($clusterUrl, $databaseName)
  
-#   Option B: using AAD application Authentication
+#   Option B: using Azure AD application Authentication
 #     $applicationId = "application ID goes here"
 #     $applicationKey = "application key goes here"
 #     $authority = "authority goes here"
 #     $kcsb = $kcsb.WithAadApplicationKeyAuthentication($applicationId, $applicationKey, $authority)
 ```
 
-### <a name="example-running-an-admin-command"></a>Exemple : Exécution d’une commande d’administrateur
+### <a name="example-running-an-admin-command"></a>Exemple : exécution d’une commande d’administration
 
 ```powershell
 $adminProvider = [Kusto.Data.Net.Client.KustoClientFactory]::CreateCslAdminProvider($kcsb)
@@ -76,12 +79,12 @@ $isHealthy = $Reader.GetBoolean(0)
 Write-Host "IsHealthy = $isHealthy"
 ```
 
-Et la sortie est:
+Et la sortie est la suivante :
 ```
 IsHealthy = True
 ```
 
-### <a name="example-running-a-query"></a>Exemple : Exécution d’une requête
+### <a name="example-running-a-query"></a>Exemple : exécution d’une requête
 
 ```powershell
 $queryProvider = [Kusto.Data.Net.Client.KustoClientFactory]::CreateCslQueryProvider($kcsb)
@@ -102,12 +105,12 @@ $dataView = New-Object System.Data.DataView($dataTable)
 $dataView | Sort StartTime -Descending | Format-Table -AutoSize
 ```
 
-Et la sortie est:
+Et la sortie est la suivante :
 
-|StartTime           |EndTime             |EpisodeId |EventId |State          |Type d’événement         |InjuriesDirect |BlessuresIndirect |DeathsDirect (en) |DeathsIndirect
+|StartTime           |EndTime             |EpisodeID |EventID |État          |Type d’événement         |InjuriesDirect |InjuriesIndirect |DeathsDirect |DeathsIndirect
 |---------           |-------             |--------- |------- |-----          |---------         |-------------- |---------------- |------------ |--------------
 |2007-12-30 16:00:00 |2007-12-30 16:05:00 |    11749 |  64588 |Géorgie        |Vent d’orage |             0 |               0 |           0 |             0
-|2007-12-20 07:50:00 |2007-12-20 07:53:00 |    12554 |  68796 |Mississippi    |Vent d’orage |             0 |               0 |           0 |             0
-|2007-09-29 08:11:00 |2007-09-29 08:11:00 |    11091 |  61032 |ATLANTIQUE SUD |Trombe d’eau        |             0 |               0 |           0 |             0
+|2007-12-20 07:50:00 |2007-12-20 07:53:00 |    12554 |  68796 |MISSISSIPPI    |Vent d’orage |             0 |               0 |           0 |             0
+|2007-09-29 08:11:00 |2007-09-29 08:11:00 |    11091 |  61032 |SUD DE L’ATLANTIQUE |Bec d’eau       |             0 |               0 |           0 |             0
 |2007-09-20 21:57:00 |2007-09-20 22:05:00 |    11078 |  60913 |Floride        |Tornade           |             0 |               0 |           0 |             0
-|2007-09-18 20:00:00 |2007-09-19 18:00:00 |    11074 |  60904 |Floride        |Pluie abondante        |             0 |               0 |           0 |             0
+|2007-09-18 20:00:00 |2007-09-19 18:00:00 |    11074 |  60904 |Floride        |Pluie lourde        |             0 |               0 |           0 |             0
