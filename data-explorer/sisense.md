@@ -6,13 +6,14 @@ ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: conceptual
+ms.custom: has-adal-ref
 ms.date: 5/29/2019
-ms.openlocfilehash: 33a3e51e8bd892a5d4318445ff8e5f9ee26c4b40
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 4afbf9ddf53715b045dba46d03f233f1401ff770
+ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494133"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82862154"
 ---
 # <a name="visualize-data-from-azure-data-explorer-in-sisense"></a>Visualiser des données Azure Data Explorer dans Sisense
 
@@ -22,7 +23,7 @@ Sisense est une plateforme décisionnelle analytique qui vous permet de créer d
 
 Vous avez besoin des éléments suivants dans le cadre de cet article :
 
-* [Télécharger et installer l’application Sisense](https://documentation.sisense.com/latest/getting-started/download-install.htm) 
+* [Télécharger et installer l’application Sisense](https://documentation.sisense.com/latest/getting-started/download-install.htm)
 
 * Créer un cluster et une base de données qui inclut l’exemple de données StormEvents. Pour plus d’informations, consultez [Démarrage rapide : Créer un cluster et une base de données Azure Data Explorer](create-cluster-database-portal.md) et [Ingérer des exemples de données dans Azure Data Explorer](ingest-sample-data.md).
 
@@ -30,7 +31,7 @@ Vous avez besoin des éléments suivants dans le cadre de cet article :
 
 ## <a name="connect-to-sisense-dashboards-using-azure-data-explorer-jdbc-connector"></a>Se connecter à des tableaux de bord Sisense à l’aide du Connecteur JDBC d’Azure Data Explorer
 
-1. Téléchargez et copiez les dernières versions des fichiers jar suivants vers *... \Sisense\DataConnectors\jdbcdrivers\adx* 
+1. Téléchargez et copiez les dernières versions des fichiers jar suivants vers *... \Sisense\DataConnectors\jdbcdrivers\adx*
 
     * activation-1.1.jar
     * adal4j-1.6.0.jar
@@ -46,14 +47,14 @@ Vous avez besoin des éléments suivants dans le cadre de cet article :
     * nimbus-jose-jwt-7.0.1.jar
     * oauth2-oidc-sdk-5.24.1.jar
     * slf4j-api-1.7.21.jar
-    
+
 1. Ouvrez l’application **Sisense**.
 1. Sélectionnez l’onglet **Data** (Données), puis **+ ElastiCube** pour créer un modèle ElastiCube.
-    
+
     ![Sélectionnez ElastiCube](media/sisense/data-select-elasticube.png)
 
 1. Dans **Add new ElastiCube Model** (Ajouter un nouveau modèle ElastiCube), nommez le modèle ElastiCube, puis **enregistrez**.
-   
+
     ![Ajouter un nouveau modèle ElastiCube](media/sisense/add-new-elasticube-model.png)
 
 1. Sélectionnez **+ Data** (+ Données).
@@ -82,12 +83,12 @@ Vous avez besoin des éléments suivants dans le cadre de cet article :
 
 1. Dans volet *test* (nom de la base de données) :
     1. Sélectionnez le nom de table pour afficher un aperçu de la table et des noms de ses colonnes. Vous pouvez supprimer les colonnes inutiles.
-    1. Activez la case à cocher de la table appropriée pour la sélectionner. 
+    1. Activez la case à cocher de la table appropriée pour la sélectionner.
     1. Sélectionnez **Terminé**.
 
-    ![sélectionner une table](media/sisense/select-table-see-columns.png)    
+    ![sélectionner une table](media/sisense/select-table-see-columns.png)
 
-1. Sélectionnez **Build** pour générer votre jeu de données. 
+1. Sélectionnez **Build** pour générer votre jeu de données.
 
     * Dans la fenêtre **Build**, sélectionnez **Build** (Générer).
 
@@ -103,15 +104,15 @@ Vous avez besoin des éléments suivants dans le cadre de cet article :
 
     ![Nouveau tableau de bord](media/sisense/new-dashboard.png)
 
-1. Choisissez un tableau de bord, puis sélectionnez **Create** (Créer). 
+1. Choisissez un tableau de bord, puis sélectionnez **Create** (Créer).
 
     ![Créer un tableau de bord](media/sisense/create-dashboard.png)
 
-1. Sous **New Widget** (Nouveau widget), sélectionnez **+ Select Data** (+ Sélectionner des données) pour créer un widget. 
+1. Sous **New Widget** (Nouveau widget), sélectionnez **+ Select Data** (+ Sélectionner des données) pour créer un widget.
 
-    ![Ajouter des champs au tableau de bord StormEvents](media/sisense/storm-dashboard-add-field.png)  
+    ![Ajouter des champs au tableau de bord StormEvents](media/sisense/storm-dashboard-add-field.png)
 
-1. Sélectionnez **+ Add More Data** (+ Ajouter des données) pour ajouter des colonnes à votre graphique. 
+1. Sélectionnez **+ Add More Data** (+ Ajouter des données) pour ajouter des colonnes à votre graphique.
 
     ![Ajouter des données au graphique](media/sisense/add-more-data.png)
 
@@ -124,4 +125,3 @@ Vous pouvez désormais explorer vos données avec des analyses visuelles, créer
 ## <a name="next-steps"></a>Étapes suivantes
 
 * [Écrire des requêtes pour l’Explorateur de données Azure](write-queries.md)
-
