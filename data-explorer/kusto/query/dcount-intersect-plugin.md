@@ -1,6 +1,6 @@
 ---
-title: dcount_intersect plugin - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit dcount_intersect plugin dans Azure Data Explorer.
+title: plug-in dcount_intersect-Azure Explorateur de données
+description: Cet article décrit dcount_intersect plug-in dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,41 +8,42 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 7771456ffa75085c79933c2e789e3d98f352b76f
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: c431f17184570b294b9c8077028ac792719b4abd
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81516131"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83225205"
 ---
-# <a name="dcount_intersect-plugin"></a>dcount_intersect plugin
+# <a name="dcount_intersect-plugin"></a>plug-in dcount_intersect
 
-Calcule l’intersection entre les ensembles N en fonction des valeurs de hll (N dans la gamme de [2.16]), et retourne les valeurs N dcount.
+Calcule l’intersection entre N Jeux en fonction des `hll` valeurs (N dans la plage de [2.. 16]) et retourne n `dcount` valeurs.
 
-Compte tenu des ensembles S<sub>1</sub>, S<sub>2</sub>, .. S<sub>n</sub> - les valeurs de rendement représenteront des nombres distincts de :  
-S<sub>1</sub>, S<sub>1</sub> S<sub>2</sub>,  
-S<sub>1</sub> S<sub>2</sub> S<sub>3</sub>,  
+Jeux donnés S<sub>1</sub>, s<sub>2</sub>,.. S<sub>n</sub> -retourne des valeurs qui représenteront des nombres distincts de :  
+S<sub>1</sub>, s<sub>1</sub> ∩ s<sub>2</sub>,  
+S<sub>1</sub> ∩ s<sub>2</sub> ∩ s<sub>3</sub>,  
 ... ,  
-S<sub>1</sub> S<sub>2</sub> ... S<sub>n</sub>
+S<sub>1</sub> ∩ s<sub>2</sub> ∩... ∩ S<sub>n</sub>
 
     T | evaluate dcount_intersect(hll_1, hll_2, hll_3)
 
 **Syntaxe**
 
-*T* `| evaluate` T `dcount_intersect(` *hll_1*, *hll_2*, [`,` *hll_3* `,` ...]`)`
+*T* `| evaluate` `dcount_intersect(` *hll_1*, *hll_2*, [ `,` *hll_3* `,` ...]`)`
 
 **Arguments**
 
-* *T*: L’expression tabulaire d’entrée.
-* *hll_i*: les valeurs de l’ensemble S<sub>i</sub> calculé avec la fonction [hll.)](./hll-aggfunction.md)
+* *T*: expression tabulaire d’entrée.
+* *hll_i*: valeurs de Set S<sub>i</sub> calculées à l’aide de la [`hll()`](./hll-aggfunction.md) fonction.
 
 **Retourne**
 
-Retourne une table avec des valeurs N dcount (par colonnes de colonne, représentant les intersections des ensembles).
-Les noms de colonne sont s0, s1, ... (jusqu’à n-1).
+Retourne une table avec N `dcount` valeurs (par colonne, représentant les intersections de jeu).
+Les noms de colonnes sont S0, S1,... (jusqu’à n-1).
 
 **Exemples**
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 // Generate numbers from 1 to 100
 range x from 1 to 100 step 1
@@ -58,6 +59,6 @@ range x from 1 to 100 step 1
           even_and_mod3_and_mod5 = s2 - 1   // gcd(2,3,5) is 30, therefore: 100 / 30 = 3 
 ```
 
-|même Les membres|even_and_mod3|even_and_mod3_and_mod5|
+|evenNumbers|even_and_mod3|even_and_mod3_and_mod5|
 |---|---|---|
 |50|16|3|

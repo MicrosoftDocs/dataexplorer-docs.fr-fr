@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 9931b297f5a86c46a8502902a6c396fbb2fd4191
-ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
+ms.openlocfilehash: b3dece66f3bafae989643afd418557aeaaa7d746
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82741733"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83225035"
 ---
 # <a name="diff-patterns-plugin"></a>plug-in de modèles diff
 
@@ -43,7 +43,7 @@ T | evaluate diffpatterns(splitColumn)
 
     Représentation sous forme de chaîne de l’une des valeurs dans la SplitColumn spécifiée. Toutes les lignes qui ont cette valeur dans leur SplitColumn considéré comme le jeu de données « B ».
 
-    Exemple : `T | extend splitColumn=iff(request_responseCode == 200, "Success" , "Failure") | evaluate diffpatterns(splitColumn, "Success","Failure") `
+    Exemple : `T | extend splitColumn=iff(request_responseCode == 200, "Success" , "Failure") | evaluate diffpatterns(splitColumn, "Success","Failure") `
 
 **Arguments facultatifs**
 
@@ -51,10 +51,10 @@ Tous les autres arguments sont facultatifs, mais ils doivent alors être ordonn�
 
 * WeightColumn - *nom_colonne*
 
-    Considère chaque ligne de l’entrée en fonction de la pondération spécifiée (par défaut, chaque ligne a une pondération de « 1 »). L’argument doit être un nom de colonne numérique (par exemple `int` `long`,,, `real`).
+    Considère chaque ligne de l’entrée en fonction de la pondération spécifiée (par défaut, chaque ligne a une pondération de « 1 »). L’argument doit être un nom de colonne numérique (par exemple,, `int` , `long` `real` ).
     Il est courant d’utiliser une colonne de pondération en prenant en compte l’échantillonnage ou la création de compartiments/l’agrégation des données déjà incorporées dans chaque ligne.
     
-    Exemple : `T | extend splitColumn=iff(request_responseCode == 200, "Success" , "Failure") | evaluate diffpatterns(splitColumn, "Success","Failure", sample_Count) `
+    Exemple : `T | extend splitColumn=iff(request_responseCode == 200, "Success" , "Failure") | evaluate diffpatterns(splitColumn, "Success","Failure", sample_Count) `
 
 * Seuil-0,015 < *double* < 1 [par défaut : 0,05]
 
@@ -71,10 +71,10 @@ Tous les autres arguments sont facultatifs, mais ils doivent alors être ordonn�
 * CustomWildcard- *« tout-valeur-par-type »*
 
     Définit la valeur de caractère générique pour un type spécifique dans la table de résultats qui indique que le modèle actuel ne présente pas de restriction sur cette colonne.
-    La valeur par défaut est null, la chaîne par défaut est une chaîne vide. Si la valeur par défaut est une valeur viable dans les données, une autre valeur de caractère générique doit être utilisée `*`(par exemple,).
+    La valeur par défaut est null, la chaîne par défaut est une chaîne vide. Si la valeur par défaut est une valeur viable dans les données, une autre valeur de caractère générique doit être utilisée (par exemple, `*` ).
     Reportez-vous à l’exemple ci-dessous.
 
-    Exemple : `T | extend splitColumn = iff(request-responseCode == 200, "Success" , "Failure") | evaluate diffpatterns(splitColumn, "Success","Failure", "~", "~", "~", int(-1), double(-1), long(0), datetime(1900-1-1))`
+    Exemple : `T | extend splitColumn = iff(request-responseCode == 200, "Success" , "Failure") | evaluate diffpatterns(splitColumn, "Success","Failure", "~", "~", "~", int(-1), double(-1), long(0), datetime(1900-1-1))`
 
 **Retourne**
 
@@ -84,9 +84,9 @@ Le résultat de `diffpatterns` retourne les colonnes suivantes :
 
 * Segment : identité assignée au modèle dans la requête actuelle (Remarque : les ID ne sont pas forcément identiques dans les requêtes répétées).
 
-* Counta : nombre de lignes capturées par le modèle dans le jeu A (le jeu a est l' `where tostring(splitColumn) == SplitValueA`équivalent de).
+* Counta : nombre de lignes capturées par le modèle dans le jeu A (le jeu a est l’équivalent de `where tostring(splitColumn) == SplitValueA` ).
 
-* CountB : nombre de lignes capturées par le modèle dans le jeu B (le jeu B est l' `where tostring(splitColumn) == SplitValueB`équivalent de).
+* CountB : nombre de lignes capturées par le modèle dans le jeu B (le jeu B est l’équivalent de `where tostring(splitColumn) == SplitValueB` ).
 
 * Pourcentagea : pourcentage de lignes d’un ensemble capturé par le modèle (100,0 * counta/Count (définis)).
 
@@ -111,6 +111,7 @@ Lorsque vous trouvez une ligne intéressante, vous pouvez l’explorer plus en d
 
 **Exemple**
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 StormEvents 
 | where monthofyear(StartTime) == 5
@@ -119,7 +120,7 @@ StormEvents
 | evaluate diffpatterns(Damage, "0", "1" )
 ```
 
-|ID de segment|CountA|CountB|PercentA|PercentB|PercentDiffAB|State|Type d’événement|Source|Récoltes|
+|ID de segment|CountA|CountB|PercentA|PercentB|PercentDiffAB|État|Type d’événement|Source|Récoltes|
 |---|---|---|---|---|---|---|---|---|---|
 |0|2278|93|49,8|7.1|42,7||Grêle||0|
 |1|779|512|17,03|39,08|22,05||Vent d’orage|||

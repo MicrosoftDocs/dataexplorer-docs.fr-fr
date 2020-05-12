@@ -1,6 +1,6 @@
 ---
-title: Partitionnement et composition de résultats intermédiaires d’agrégations - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit le partitionnement et la composition de résultats intermédiaires d’agrégations dans Azure Data Explorer.
+title: Partitionnement et composition des résultats intermédiaires des agrégations-Azure Explorateur de données
+description: Cet article décrit le partitionnement et la composition des résultats intermédiaires des agrégations dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,24 +10,24 @@ ms.topic: reference
 ms.date: 02/19/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: c906e764330efedac051587201b28e5d0fc1ef07
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 8085f2347501c313c857a262bc9de6ec7280c90c
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81766131"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83224542"
 ---
 # <a name="partitioning-and-composing-intermediate-results-of-aggregations"></a>Partitionnement et composition des résultats intermédiaires des agrégations
 
-Supposons que vous voulez calculer le nombre d’utilisateurs distincts au cours des sept derniers jours, tous les jours. Une façon de le faire `summarize dcount(user)` serait d’exécuter une fois par jour avec une portée filtrée aux sept derniers jours. Ceci est inefficace parce que chaque fois que le calcul est exécuté, il y a un chevauchement de six jours avec le calcul précédent. Une autre option consiste à calculer un certain agrégat pour chaque jour, puis à combiner ces agrégats de manière efficace. Cette option vous oblige à « se souvenir » des six derniers résultats, mais elle est beaucoup plus efficace.
+Si vous souhaitez calculer le nombre d’utilisateurs distincts tous les jours au cours des sept derniers jours. Vous pouvez exécuter une `summarize dcount(user)` fois par jour avec une étendue filtrée sur les sept derniers jours. Cette méthode est inefficace car chaque fois que le calcul est exécuté, il existe un chevauchement de six jours avec le calcul précédent. Vous pouvez également calculer un agrégat pour chaque jour, puis combiner ces agrégats. Cette méthode vous oblige à « mémoriser » les six derniers résultats, mais c’est bien plus efficace.
 
-Partitionner des requêtes comme celle-là serait facile pour les agrégats simples, tels que le compte () et la somme (). Il est toutefois possible de les exécuter également pour des agrégats plus complexes, tels que les dcount() et les percentiles (). Ce sujet explique comment Kusto prend en charge de tels calculs.
+Le partitionnement des requêtes comme décrit est facile pour les agrégats simples, tels que `count()` et `sum()` . Il peut également être utile pour les agrégats complexes, tels que `dcount()` et `percentiles()` . Cette rubrique explique comment Kusto prend en charge ces calculs.
 
-Les exemples suivants montrent comment utiliser hll/tdigest et démontre que l’utilisation de ces scénarios peut être beaucoup plus performante que d’autres façons:
+Les exemples suivants montrent comment utiliser `hll` / `tdigest` et montrent que l’utilisation de ces commandes est très performante dans certains scénarios :
 
 > [!NOTE]
-> Dans certains cas, les objets `hll` dynamiques générés par les fonctions ou les `tdigest` fonctions agrégées peuvent être grands et dépasser la propriété MaxValueSize par défaut dans la politique d’encodage. Si c’est le cas, l’objet sera ingéré comme nul.
-Par exemple, lorsque vous `hll` persistez la sortie de fonction avec le niveau de précision 4, la taille de l’objet hll dépasse la valeur maximale par défaut qui est de 1 Mo.
+> Dans certains cas, les objets dynamiques générés par `hll` ou les `tdigest` fonctions d’agrégation peuvent être volumineux et dépasser la valeur par défaut de la propriété MaxValueSize dans la stratégie d’encodage. Dans ce cas, l’objet est ingéré comme null.
+Par exemple, lors de la persistance de la sortie de la `hll` fonction avec un niveau de précision 4, la taille de l' `hll` objet dépasse la valeur par défaut de MaxValueSize, soit 1 Mo.
 
 ```kusto
 range x from 1 to 1000000 step 1
@@ -37,9 +37,9 @@ range x from 1 to 1000000 step 1
 
 |sizeInMb|
 |---|
-|1.0000524520874|
+|1,0000524520874|
 
-L’ingestion de cette politique dans un tableau avant d’appliquer ce genre de politique sera nulle :
+La réception de ce type dans une table avant l’application de ce type de stratégie ingérera la valeur NULL :
 
 ```kusto
 .set-or-append MyTable <| range x from 1 to 1000000 step 1
@@ -55,21 +55,20 @@ MyTable
 |---------|
 | 1       |
 
-Pour éviter cela, utilisez le `bigobject`type de politique d’encodage spécial , qui remplace le MaxValueSize à 2 Mo comme ceci:
+Pour éviter d’ingérer la valeur null, utilisez le type de stratégie d’encodage spécial `bigobject` , qui remplace le `MaxValueSize` par 2 Mo comme suit :
 
 ```kusto
 .alter column MyTable.hll_x policy encoding type='bigobject'
 ```
 
-
-
-Donc, l’ingestion d’une valeur maintenant à la même table ci-dessus:
+Réception d’une valeur maintenant dans le même tableau ci-dessus :
 
 ```kusto
 .set-or-append MyTable <| range x from 1 to 1000000 step 1
 | summarize hll(x,4)
 ```
-ingérer la deuxième valeur avec succès : 
+
+ingère la deuxième valeur avec succès : 
 
 ```kusto
 MyTable
@@ -84,7 +83,7 @@ MyTable
 
 **Exemple**
 
-Supposons qu’il y ait un tableau, PageViewsHllTDigest, qui a les valeurs de hll sur les pages vues dans chaque heure. L’objectif est d’obtenir ces `12h`valeurs, mais binned à , de fusionner les valeurs hll en `12h`utilisant la fonction d’agrégat hll_merge () par timestamp binned à . Ensuite, appelez la fonction dcount_hll pour obtenir la valeur finale dcount:
+Il existe une table, `PageViewsHllTDigest` , contenant `hll` les valeurs des pages affichées dans chaque heure. Vous souhaitez que ces valeurs Binned (ent à `12h` . Fusionnez les `hll` valeurs à l’aide de la `hll_merge()` fonction d’agrégation, avec l’horodateur Binned (à `12h` . Utilisez la fonction `dcount_hll` pour retourner la `dcount` valeur finale :
 
 ```kusto
 PageViewsHllTDigest
@@ -92,14 +91,14 @@ PageViewsHllTDigest
 | project Timestamp , dcount_hll(merged_hll)
 ```
 
-|Timestamp|dcount_hll_merged_hll|
+|Timestamp|`dcount_hll_merged_hll`|
 |---|---|
 |2016-05-01 12:00:00.0000000|20056275|
 |2016-05-02 00:00:00.0000000|38797623|
 |2016-05-02 12:00:00.0000000|39316056|
 |2016-05-03 00:00:00.0000000|13685621|
 
-Ou même pour l’amampe de temps binned pour `1d`:
+Horodatage de casier pour `1d` :
 
 ```kusto
 PageViewsHllTDigest
@@ -107,13 +106,13 @@ PageViewsHllTDigest
 | project Timestamp , dcount_hll(merged_hll)
 ```
 
-|Timestamp|dcount_hll_merged_hll|
+|Timestamp|`dcount_hll_merged_hll`|
 |---|---|
 |2016-05-01 00:00:00.0000000|20056275|
 |2016-05-02 00:00:00.0000000|64135183|
 |2016-05-03 00:00:00.0000000|13685621|
 
- La même chose peut être faite sur les valeurs de tdigest, qui représentent les BytesDelivered dans chaque heure:
+La même requête peut être effectuée sur les valeurs de `tdigest` , qui représentent le `BytesDelivered` en toutes les heures :
 
 ```kusto
 PageViewsHllTDigest
@@ -121,7 +120,7 @@ PageViewsHllTDigest
 | project Timestamp , percentile_tdigest(merged_tdigests, 95, typeof(long))
 ```
 
-|Timestamp|percentile_tdigest_merged_tdigests|
+|Timestamp|`percentile_tdigest_merged_tdigests`|
 |---|---|
 |2016-05-01 12:00:00.0000000|170200|
 |2016-05-02 00:00:00.0000000|152975|
@@ -130,23 +129,23 @@ PageViewsHllTDigest
  
 **Exemple**
 
-Les limites de Kusto sont atteintes avec des jeux de données trop grands, où vous devez [`percentile()`](percentiles-aggfunction.md) exécuter [`dcount()`](dcount-aggfunction.md) des requêtes périodiques sur le jeu de données, mais exécutez les requêtes régulières pour calculer ou sur ces ensembles de données Big.
+Les limites de Kusto sont atteintes avec les jeux de données trop volumineux, où vous devez exécuter des requêtes périodiques sur le jeu de données, mais exécuter les requêtes régulières pour calculer [`percentile()`](percentiles-aggfunction.md) ou [`dcount()`](dcount-aggfunction.md) sur des jeux de données volumineux.
 
 ::: zone pivot="azuredataexplorer"
 
-Pour résoudre ce problème, des données nouvellement ajoutées peuvent être ajoutées à une table d’température sous forme de valeurs de hll ou de tdigestes utilisant [`hll()`](hll-aggfunction.md) lorsque l’opération requise est d’arrêt ou [`tdigest()`](tdigest-aggfunction.md) lorsque l’opération requise est percentile en utilisant [`set/append`](../management/data-ingestion/index.md) ou, [`update policy`](../management/updatepolicy.md)Dans ce cas, les résultats intermédiaires de dcount ou tdigest sont enregistrés dans un autre jeu de données, qui devrait être plus petit que le grand cible.
+Pour résoudre ce problème, des données nouvellement ajoutées peuvent être ajoutées à une table temporaire en tant que `hll` `tdigest` valeurs ou à l’aide de [`hll()`](hll-aggfunction.md) lorsque l’opération requise est `dcount` ou [`tdigest()`](tdigest-aggfunction.md) lorsque l’opération requise est un centile à l’aide [`set/append`](../management/data-ingestion/index.md) de ou de [`update policy`](../management/updatepolicy.md) . Dans ce cas, les résultats intermédiaires de `dcount` ou `tdigest` sont enregistrés dans un autre jeu de données, qui doit être plus petit que le plus grand cible.
 
 ::: zone-end
 
 ::: zone pivot="azuremonitor"
 
-Pour résoudre ce problème, des données nouvellement ajoutées peuvent être ajoutées à un tableau d’intérim sous forme de valeurs de hll ou de tdigestes utilisant [`hll()`](hll-aggfunction.md) lorsque l’opération requise est dcount, Dans ce cas, les résultats intermédiaires de dcount sont enregistrés dans un autre jeu de données, qui devrait être plus petit que le grand cible.
+Pour résoudre ce problème, il est possible d’ajouter des données nouvellement ajoutées à une table temporaire en tant que `hll` `tdigest` valeurs ou à l’aide de [`hll()`](hll-aggfunction.md) lorsque l’opération requise est `dcount` . Dans ce cas, les résultats intermédiaires de `dcount` sont enregistrés dans un autre jeu de données, qui doit être plus petit que le plus grand cible.
 
 ::: zone-end
 
-Lorsque vous avez besoin d’obtenir les résultats finaux de ces valeurs, [`hll-merge()`](hll-merge-aggfunction.md) / [`tdigest_merge()`](tdigest-merge-aggfunction.md)les requêtes peuvent utiliser des [`percentile_tdigest()`](percentile-tdigestfunction.md)  /  [`dcount_hll()`](dcount-hllfunction.md) fusions hll/ tdigest: , Puis, après avoir obtenu les valeurs fusionnées, peut être invoqué sur ces valeurs fusionnées pour obtenir le résultat final de dcount ou percentiles.
+Lorsque vous avez besoin d’obtenir les résultats finaux de ces valeurs, les requêtes peuvent utiliser des fusions HLL/tdigest : [`hll-merge()`](hll-merge-aggfunction.md) / [`tdigest_merge()`](tdigest-merge-aggfunction.md) , puis, après avoir obtenu les valeurs fusionnées, [`percentile_tdigest()`](percentile-tdigestfunction.md)  /  [`dcount_hll()`](dcount-hllfunction.md) peuvent être appelées sur ces valeurs fusionnées pour obtenir le résultat final de `dcount` ou des centile.
 
-En supposant qu’il y ait un tableau, PageViews, dans lequel les données sont ingérées quotidiennement, tous les jours sur lesquels vous voulez calculer le nombre distinct de pages consultées par minuite plus tard que la date et la date(2016-05-01 18:00:00.0000000).
+En supposant qu’il existe une table, PageViews, dans laquelle les données sont ingérées quotidiennement, chaque jour sur lequel vous souhaitez calculer le nombre de pages affichées par minute plus tard que date = DateTime (2016-05-01 18:00:00.0000000).
 
 Exécutez la requête suivante :
 
@@ -162,29 +161,29 @@ PageViews
 |2016-05-02 00:00:00.0000000|82770|64135183|
 |2016-05-03 00:00:00.0000000|72920|13685621|
 
-Cette requête regroupera toutes les valeurs chaque fois que vous exécutez cette requête (par exemple, si vous voulez l’exécuter plusieurs fois par jour).
+Cette requête regroupe toutes les valeurs chaque fois que vous exécutez cette requête (par exemple, si vous souhaitez l’exécuter plusieurs fois par jour).
 
-Si vous enregistrez les valeurs de hll et de tdigest (qui sont les résultats intermédiaires du dcount et du percentile) dans une table d’intérim, PageViewsHllTDigest, en utilisant une stratégie de mise à jour ou des commandes de set/appendice, vous ne pouvez fusionner les valeurs et ensuite utiliser dcount_hll/percentile_tdigest en utilisant la requête suivante :
+Si vous enregistrez les `hll` `tdigest` valeurs et (qui sont les résultats intermédiaires de `dcount` et centile) dans une table temporaire, `PageViewsHllTDigest` , à l’aide d’une stratégie de mise à jour ou de commandes Set/Append, vous pouvez fusionner uniquement les valeurs, puis utiliser `dcount_hll` / `percentile_tdigest` la requête suivante :
 
 ```kusto
 PageViewsHllTDigest
 | summarize  percentile_tdigest(merge_tdigests(tdigestBytesDel), 90), dcount_hll(hll_merge(hllPage)) by bin(Timestamp, 1d)
 ```
 
-|Timestamp|percentile_tdigest_merge_tdigests_tdigestBytesDel|dcount_hll_hll_merge_hllPage|
+|Timestamp|`percentile_tdigest_merge_tdigests_tdigestBytesDel`|`dcount_hll_hll_merge_hllPage`|
 |---|---|---|
 |2016-05-01 00:00:00.0000000|84224|20056275|
 |2016-05-02 00:00:00.0000000|83486|64135183|
 |2016-05-03 00:00:00.0000000|72247|13685621|
 
-Cela devrait être plus performant et la requête s’étend sur une table plus petite (dans cet exemple, la première requête s’étend sur 215 millions d’enregistrements tandis que le second fonctionne sur 32 enregistrements seulement).
+Cette valeur doit être plus performante et la requête s’exécute sur une table plus petite (dans cet exemple, la première requête s’exécute sur environ ~ 215M, tandis que la seconde s’exécute uniquement sur 32 enregistrements).
 
 **Exemple**
 
-La requête de rétention.
-En supposant que vous ayez un tableau qui résume quand chaque page Wikipédia a été consultée (la taille de l’échantillon est de 10M), et que vous souhaitez trouver pour chaque date1 2 le pourcentage de pages examinées à la fois dans la date1 et la date2 par rapport aux pages vues à la date1 (date1 < date2).
+Requête de rétention.
+En supposant que vous disposiez d’une table qui résume le moment où chaque page Wikipédia était affichée (la taille de l’échantillon est de 10 millions) et que vous souhaitez trouver pour chaque date1 date2 le pourcentage de pages consultées à la fois dans date1 et date2 par rapport aux pages affichées à partir de date1 (date1 < date2).
   
-La façon triviale utilise joindre et résumer les opérateurs :
+La méthode la plus simple consiste à utiliser des opérateurs de jointure et de synthèse :
 
 ```kusto
 // Get the total pages viewed each day
@@ -219,9 +218,9 @@ on $left.Day1 == $right.Day
 |2016-05-02 00:00:00.0000000|2016-05-03 00:00:00.0000000|14.6291376489636|
 
  
-La requête ci-dessus a pris 18 secondes.
+La requête ci-dessus a duré environ 18 secondes.
 
-Lors de l’utilisation [`hll_merge()`](hll-merge-aggfunction.md) [`dcount_hll()`](dcount-hllfunction.md)des fonctions de [`hll()`](hll-aggfunction.md), et , la requête équivalente se terminera après 1,3 secondes et montre que les fonctions hll accélère la requête ci-dessus par 14 fois:
+Lorsque vous utilisez les fonctions [`hll()`](hll-aggfunction.md) de [`hll_merge()`](hll-merge-aggfunction.md) et [`dcount_hll()`](dcount-hllfunction.md) , la requête équivalente se termine après environ 1,3 secondes et indique que `hll` les fonctions accélèrent la requête ci-dessus d’environ 14 fois :
 
 ```kusto
 let Stats=PageViewsSample | summarize pagehll=hll(Page, 2) by day=startofday(Timestamp); // saving the hll values (intermediate results of the dcount values)
@@ -242,11 +241,11 @@ Stats
 | project day1, day2, Percentage = intersection_size*100.0 / pages1
 ```
 
-|jour1|jour2|Pourcentage|
+|Day1|Day2|Pourcentage|
 |---|---|---|
 |2016-05-01 00:00:00.0000000|2016-05-02 00:00:00.0000000|33.2298494510578|
 |2016-05-01 00:00:00.0000000|2016-05-03 00:00:00.0000000|16.9773830213667|
 |2016-05-02 00:00:00.0000000|2016-05-03 00:00:00.0000000|14.5160020350006|
 
 > [!NOTE] 
-> Les résultats des requêtes ne sont pas précis à 100% en raison de l’erreur des fonctions de hll. (voir [`dcount()`](dcount-aggfunction.md) pour plus d’informations sur les erreurs).
+> Les résultats des requêtes ne sont pas 100% précis en raison de l’erreur des `hll` fonctions. ( Pour plus d’informations sur les erreurs, consultez [`dcount()`](dcount-aggfunction.md) ).

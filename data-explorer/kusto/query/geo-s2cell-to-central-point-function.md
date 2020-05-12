@@ -1,25 +1,25 @@
 ---
-title: geo_s2cell_to_central_point() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit geo_s2cell_to_central_point() dans Azure Data Explorer.
+title: geo_s2cell_to_central_point ()-Azure Explorateur de données
+description: Cet article décrit geo_s2cell_to_central_point () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/27/2020
-ms.openlocfilehash: 624d163b508768d0a5316ee3ec62a12b11942176
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 7eabcb3cb0c3fd001290848e73bb534ff8ea4218
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81514431"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83226820"
 ---
 # <a name="geo_s2cell_to_central_point"></a>geo_s2cell_to_central_point()
 
-Calcule les coordonnées géospatiales qui représentent le centre de S2 Cell.
+Calcule les coordonnées géospatiales qui représentent le centre d’une cellule S2.
 
-Pour plus d’informations sur les cellules S2, cliquez [ici](http://s2geometry.io/devguide/s2cell_hierarchy).
+En savoir plus sur la [hiérarchie des cellules S2](https://s2geometry.io/devguide/s2cell_hierarchy).
 
 **Syntaxe**
 
@@ -27,17 +27,18 @@ Pour plus d’informations sur les cellules S2, cliquez [ici](http://s2geometry.
 
 **Arguments**
 
-*s2cell*: S2 Cell Token string value as it was calculated by [geo_point_to_s2cell()](geo-point-to-s2cell-function.md). La longueur maximale de la chaîne S2 Cell est de 16 caractères.
+*s2cell*: valeur de chaîne de jeton de cellule S2 telle qu’elle a été calculée par [geo_point_to_s2cell ()](geo-point-to-s2cell-function.md). La longueur de chaîne maximale du jeton de cellule S2 est de 16 caractères.
 
 **Retourne**
 
-Les valeurs de coordonnées géospatiales dans [le format GeoJSON](https://tools.ietf.org/html/rfc7946) et d’un type de données [dynamique.](./scalar-data-types/dynamic.md) Si le jeton de cellule S2 est invalide, la requête produira un résultat nul.
+Valeurs de coordonnées géospatiales au [format géojson](https://tools.ietf.org/html/rfc7946) et d’un type de données [dynamique](./scalar-data-types/dynamic.md) . Si le jeton de cellule S2 n’est pas valide, la requête produira un résultat NULL.
 
 > [!NOTE]
-> Le format GeoJSON spécifie la longitude en premier et la latitude en second lieu.
+> Le format géojson spécifie les premières longitude et Latitude second.
 
 **Exemples**
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 print point = geo_s2cell_to_central_point("1234567")
 | extend coordinates = point.coordinates
@@ -46,9 +47,11 @@ print point = geo_s2cell_to_central_point("1234567")
 
 |point|coordonnées|longitude|latitude|
 |---|---|---|---|
-|{<br>  "type": "Point",<br>  "coordonnées": [<br>    9.86830731850408,<br>    27.468392925827604<br>  ]<br>}|[<br>  9.86830731850408,<br>  27.468392925827604<br>]|9.86830731850408|27.4683929258276|
+|{<br>  "type" : "point",<br>  « Coordonnées » : [<br>    9.86830731850408,<br>    27.468392925827604<br>  ]<br>}|[<br>  9.86830731850408,<br>  27.468392925827604<br>]|9.86830731850408|27.4683929258276|
 
-L’exemple suivant renvoie un résultat nul en raison de l’entrée de jetons de cellules S2 invalide.
+L’exemple suivant retourne un résultat NULL en raison de l’entrée de jeton de cellule S2 non valide.
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 print point = geo_s2cell_to_central_point("a")
 ```

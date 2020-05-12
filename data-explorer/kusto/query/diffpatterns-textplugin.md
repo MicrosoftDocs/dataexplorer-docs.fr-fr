@@ -1,6 +1,6 @@
 ---
-title: diffpatterns_text plugin - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit diffpatterns_text plugin dans Azure Data Explorer.
+title: plug-in diffpatterns_text-Azure Explorateur de données
+description: Cet article décrit diffpatterns_text plug-in dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,80 +8,82 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 58f059e2346dfb3f15bff295126a14a97f10f317
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 7ef4bf5607979cc02976d00250e8754f3a0c4e69
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81516012"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83225171"
 ---
-# <a name="diffpatterns_text-plugin"></a>diffpatterns_text plugin
+# <a name="diffpatterns_text-plugin"></a>plug-in diffpatterns_text
 
-Compare deux ensembles de données de valeurs de chaîne et trouve des modèles de texte qui caractérisent les différences entre les deux ensembles de données.
+Compare deux jeux de données de valeurs de chaîne et recherche des modèles de texte qui caractérisent les différences entre les deux jeux de données.
 
 ```kusto
 T | evaluate diffpatterns_text(TextColumn, BooleanCondition)
 ```
 
-Le `diffpatterns_text` renvoi d’un ensemble de modèles de texte qui capturent différentes parties des données dans les deux ensembles (c.-à-d. un modèle capturant un grand pourcentage des lignes lorsque la condition est `true` et faible pourcentage des lignes lorsque la condition est `false`). Les motifs sont construits à partir de jetons consécutifs (séparés `*` par l’espace blanc), avec un jeton de la colonne de texte ou un représentant d’une wildcard. Chaque modèle est représenté par une ligne dans les résultats.
+`diffpatterns_text`Retourne un jeu de modèles de texte qui capturent différentes parties des données dans les deux jeux (c’est-à-dire un modèle qui capture un grand pourcentage des lignes lorsque la condition est `true` et un pourcentage faible des lignes lorsque la condition est `false` ). Les modèles sont créés à partir de jetons consécutifs (séparés par des espaces blancs), avec un jeton de la colonne de texte ou un `*` qui représente un caractère générique. Chaque modèle est représenté par une ligne dans les résultats.
 
 **Syntaxe**
 
-`T | evaluate diffpatterns_text(`TextColumn, BooleanCondition [, MinTokens, Seuil , MaxTokens]`)` 
+`T | evaluate diffpatterns_text(`TextColumn, BooleanCondition [, MinTokens, Threshold, MaxTokens]`)` 
 
-**Arguments requis**
+**Arguments obligatoires**
 
-* TextColumn - *column_name*
+* TextColumn- *column_name*
 
-    La colonne de texte à analyser, doit être de chaîne de type.
+    La colonne de texte à analyser doit être de type chaîne.
     
-* BooleanCondition - *Expression Boolean*
+* BooleanCondition- *expression booléenne*
 
-    Définit comment générer les deux sous-ensembles d’enregistrement à comparer à la table d’entrée. L’algorithme divise la requête en deux ensembles de données, "Vrai" et "Faux" selon la condition, puis analyse les différences (texte) entre eux. 
+    Définit comment générer les deux sous-ensembles d’enregistrements à comparer à la table d’entrée. L’algorithme divise la requête en deux jeux de données, « true » et « false » en fonction de la condition, puis analyse les différences (texte) entre elles. 
 
 **Arguments facultatifs**
 
 Tous les autres arguments sont facultatifs, mais ils doivent alors être ordonnés comme ci-dessous. 
 
-* MinTokens - 0 < *int* < 200 [par défaut: 1]
+* MinTokens-0 < *int* < 200 [valeur par défaut : 1]
 
-    Définit le nombre minimal de jetons non wildcard par modèle de résultat.
+    Définit le nombre minimal de jetons non génériques par résultat.
 
-* Seuil - 0,015 < *double* < 1 [par défaut: 0,05]
+* Seuil-0,015 < *double* < 1 [par défaut : 0,05]
 
-    Définit la différence de modèle (ratio) minimale entre les deux ensembles (voir [diffpatternes](diffpatternsplugin.md)).
+    Définit la différence de modèle minimal (ratio) entre les deux jeux (voir [diffpatterns](diffpatternsplugin.md)).
 
-* MaxTokens - 0 < *int* [par défaut: 20]
+* MaxTokens-0 < *int* [par défaut : 20]
 
-    Définit le nombre maximal de jetons (dès le début) par modèle de résultat, en spécifiant une limite inférieure diminue le temps d’exécution de la requête.
+    Définit le nombre maximal de jetons (à partir du début) par résultat, en spécifiant une limite inférieure pour réduire l’exécution de la requête.
 
 **Retourne**
 
-Le résultat de diffpatterns_text renvoie les colonnes suivantes :
+Le résultat de diffpatterns_text retourne les colonnes suivantes :
 
-* Count_of_True: Le nombre de lignes correspondant au modèle `true`lorsque la condition est .
-* Count_of_False: Le nombre de lignes correspondant au modèle `false`lorsque la condition est .
-* Percent_of_True: Le pourcentage de lignes correspondant au modèle des lignes `true`lorsque la condition est .
-* Percent_of_False: Le pourcentage de lignes correspondant au modèle des lignes `false`lorsque la condition est .
-* Modèle: Le modèle de texte contenant des`*`jetons de la chaîne de texte et ' pour les wildcards. 
+* Count_of_True : nombre de lignes correspondant au modèle lorsque la condition est `true` .
+* Count_of_False : nombre de lignes correspondant au modèle lorsque la condition est `false` .
+* Percent_of_True : pourcentage de lignes correspondant au modèle des lignes lorsque la condition est `true` .
+* Percent_of_False : pourcentage de lignes correspondant au modèle des lignes lorsque la condition est `false` .
+* Pattern : modèle de texte contenant des jetons de la chaîne de texte et `*` de' 'pour les caractères génériques. 
 
 > [!NOTE]
-> Les modèles ne sont pas nécessairement distincts et peuvent ne pas fournir une couverture complète de l’ensemble de données. Les modèles peuvent se chevaucher et certaines lignes peuvent ne pas correspondre à n’importe quel modèle.
+> Les modèles ne sont pas nécessairement distincts et peuvent ne pas fournir une couverture complète du jeu de données. Les modèles peuvent se chevaucher et certaines lignes peuvent ne pas correspondre à un modèle.
 
 **Exemple**
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 StormEvents     
 | where EventNarrative != "" and monthofyear(StartTime) > 1 and monthofyear(StartTime) < 9
 | where EventType == "Drought" or EventType == "Extreme Cold/Wind Chill"
 | evaluate diffpatterns_text(EpisodeNarrative, EventType == "Extreme Cold/Wind Chill", 2)
 ```
+
 |Count_of_True|Count_of_False|Percent_of_True|Percent_of_False|Modèle|
 |---|---|---|---|---|
-|11|0|6.29|0|Vents se déplaçant vers le nord-ouest dans le sillage d’un creux de surface a apporté de fortes chutes de neige d’effet de lac sous le vent - Lac Supérieur de|
-|9|0|5.14|0|La haute pression canadienne s’est installée dans la région, ce qui a produit les températures les plus froides depuis février 2006. Durées et températures glaciales|
-|0|34|0|6.24|Dans l’ouest du Tennessee, le Tennessee de l’Ouest.|
-|0|42|0|7.71|À travers l’ouest du Colorado. *|
-|0|45|0|8.26|En dessous de la normale|
-|0|110|0|20.18|En dessous de la normale|
+|11|0|6,29|0|Changement de la sortie du Nord-Ouest dans * éveil * un creux de la surface a entraîné un effet de lac élevé Snowfall downwind * Lake Superior de|
+|9|0|5,14|0|Haute pression canadien réglée * * région * produit les températures les plus froidles depuis février * 2006. Durées * températures figées|
+|0|34|0|6,24|* * * * * * * * * * * * * * * * * * * West Tennessee,|
+|0|42|0|7,71|* * * * * * a provoqué * * * * * * * * * à travers l’Ouest Colorado. *|
+|0|45|0|8,26|* * en dessous de la normale *|
+|0|110|0|20,18|Inférieure à la normale *|
 

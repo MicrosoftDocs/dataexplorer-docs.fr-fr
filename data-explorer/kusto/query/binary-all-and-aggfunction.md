@@ -1,6 +1,6 @@
 ---
-title: binary_all_and() (fonction d’agrégation) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit binary_all_and () (fonction d’agrégation) dans Azure Data Explorer.
+title: binary_all_and () (fonction d’agrégation)-Azure Explorateur de données
+description: Cet article décrit binary_all_and () (fonction d’agrégation) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,35 +8,36 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 4dfe4a2881f100a4bea3e9d418022c75b2621087
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 9f0e1665010885a64e6d97151b074d3a03df829b
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81517746"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83227568"
 ---
-# <a name="binary_all_and-aggregation-function"></a>binary_all_and)) (fonction d’agrégation)
+# <a name="binary_all_and-aggregation-function"></a>binary_all_and () (fonction d’agrégation)
 
-Accumule les valeurs `AND` à l’aide de l’opération binaire par groupe de synthèse (ou au total, si la résumation se fait sans regroupement).
+Accumule les valeurs à l’aide de l' `AND` opération binaire par groupe de synthèse (ou au total, si le résumé est effectué sans regroupement).
 
-* Ne peut être utilisé que dans le contexte de l’agrégation à l’intérieur [résumer](summarizeoperator.md)
+* Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 
 **Syntaxe**
 
-résumer `binary_all_and(` *Expr*`)`
+résumer `binary_all_and(` *expr*`)`
 
 **Arguments**
 
-* *Expr*: long nombre.
+* *Expr*: nombre long.
 
 **Retourne**
 
-Retourne une valeur qui est `AND` agrégée à l’aide de l’opération binaire sur les enregistrements par groupe de synthèse (ou au total, si la résumation se fait sans regroupement).
+Retourne une valeur agrégée à l’aide de l' `AND` opération binaire sur les enregistrements par groupe de synthèse (ou au total, si le résumé est effectué sans regroupement).
 
 **Exemple**
 
-Produire des « café-food » à l’aide d’opérations binaires `AND` :
+Production de « café-Food » à l’aide d’opérations binaires `AND` :
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 datatable(num:long)
 [

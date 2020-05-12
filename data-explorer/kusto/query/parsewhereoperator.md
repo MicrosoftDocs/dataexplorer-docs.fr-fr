@@ -1,6 +1,6 @@
 ---
-title: parse-où l’opérateur - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit l’analyse-où l’opérateur dans Azure Data Explorer.
+title: opérateur d’analyse WHERE-Azure Explorateur de données
+description: Cet article décrit l’opérateur parse-Where dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,17 +8,17 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/12/2020
-ms.openlocfilehash: 0e44ab83242fc8aed0e46bdab1fa5a142992bfe5
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: c0ee38fe77c0957b9ba7fd589115eee20be6a649
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81511405"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83224848"
 ---
 # <a name="parse-where-operator"></a>Opérateur parse-where
 
-évalue une expression de chaîne et analyse sa valeur dans une ou plusieurs colonnes calculées. Le résultat n’est que les cordes analysées avec succès.
-Voir [l’opérateur d’analyse](parseoperator.md) qui produit des nulls pour les cordes analysées sans succès.
+Évalue une expression de chaîne et analyse sa valeur dans une ou plusieurs colonnes calculées. Le résultat est uniquement les chaînes analysées avec succès.
+Consultez l' [opérateur parse](parseoperator.md), qui produit des valeurs NULL pour les chaînes analysées sans succès.
 
 ```kusto
 T | parse-where Text with "ActivityName=" name ", ActivityType=" type
@@ -26,71 +26,74 @@ T | parse-where Text with "ActivityName=" name ", ActivityType=" type
 
 **Syntaxe**
 
-*T* `| parse-where` `kind=regex` [`flags=regex_flags`]`simple` *Expression* `with` Expression `*` (*StringConstant* *ColumnName* [`:` `*` *ColumnType*]) ...
+*T* `| parse-where` [ `kind=regex` [ `flags=regex_flags` ] | `simple` ] *expression* `with` `*` (*StringConstant* *ColumnName* [ `:` *ColumnType*]) `*` ...
 
 **Arguments**
 
-* *T*: La table d’entrée.
+* *T*: table d’entrée.
 
-* Genre: 
+* *genre*: 
 
-    * simple (la valeur par défaut) : StringConstant est une valeur de chaîne régulière et le match est strict, ce qui signifie que tous les délimitants de cordes doivent apparaître dans la chaîne analysée et toutes les colonnes étendues doivent correspondre aux types requis.
+    * *simple* (par défaut) : StringConstant est une valeur de chaîne normale et la correspondance est stricte. Tous les délimiteurs de chaîne doivent apparaître dans la chaîne analysée, et toutes les colonnes étendues doivent correspondre aux types requis.
         
-    * regex : StringConstant peut être une expression régulière et le match est strict, ce qui signifie que tous les délimitants de cordes (qui peuvent être un regex pour ce mode) doivent apparaître dans la chaîne analysée et toutes les colonnes étendues doivent correspondre aux types requis.
+    * *Regex*: StringConstant peut être une expression régulière, et la correspondance est stricte. Tous les délimiteurs de chaîne doivent apparaître dans la chaîne analysée, et toutes les colonnes étendues doivent correspondre aux types requis. Les délimiteurs de chaîne peuvent être une expression régulière pour ce mode.
     
-    * drapeaux : Drapeaux à utiliser en `U` mode regex `m` comme (Ungreedy), (mode `s` multi-lignes), (match nouvelle ligne `\n`), `i` (insensible au cas) et plus encore dans les drapeaux [RE2.](re2.md)
+    * *Flags*: indicateurs à utiliser en mode Regex : `U` (non gourmand), `m` (mode multiligne), (mettre en `s` correspondance une nouvelle ligne `\n` ), `i` (non-respect de la casse), d’autres indicateurs se trouvent dans les [indicateurs RE2](re2.md).
         
-* *Expression*: Une expression qui évalue à une chaîne.
+* *Expression*: expression qui prend la valeur d’une chaîne.
 
-* *Nom de colonne:* Le nom d’une colonne pour attribuer une valeur (sortie de l’expression de la chaîne) à. 
+* *ColumnName :* Nom d’une colonne qui est assignée à une valeur extraite de l’expression de chaîne. 
   
-* *ColumnType:* doit être de type scalaire facultatif qui indique le type pour convertir la valeur en (par défaut, il est de type chaîne).
+* *ColumnType :* doit être un type scalaire facultatif qui indique le type vers lequel convertir la valeur. La valeur par défaut est type de chaîne.
 
 **Retourne**
 
-Le tableau d’entrée, étendu selon la liste des colonnes qui sont fournies à l’opérateur.
-Seules les chaînes analysées avec succès seront dans la sortie. les chaînes qui ne correspondent pas au modèle seront filtrées.
+La table d’entrée, qui est étendue en fonction de la liste des colonnes fournies à l’opérateur.
+
+> [!Note] 
+> Seules les chaînes analysées avec succès seront dans la sortie. Les chaînes qui ne correspondent pas au modèle seront filtrées.
 
 **Conseils**
 
-* `parse-where`analyse les cordes de la même manière que [l’analyse,](parseoperator.md) mais en plus filtres-out des chaînes qui n’ont pas été analysées avec succès.
+* `parse-where`analyse les chaînes de la même façon que l' [analyse](parseoperator.md)et filtre les chaînes qui n’ont pas été analysées avec succès.
 
-* Utilisez [`project`](projectoperator.md) si vous voulez également laisser tomber ou renommer certaines colonnes.
+* Utilisez [Project](projectoperator.md) si vous souhaitez également supprimer ou renommer certaines colonnes.
 
-* Utilisation dans le modèle afin de sauter les valeurs indésirables (ne peut pas être utilisé après la colonne de chaîne)
+* Utilisez * dans le modèle pour ignorer les valeurs indésirables. Cette valeur ne peut pas être utilisée après une colonne de chaîne.
 
-* Le modèle d’analyse peut commencer avec *ColumnName* et pas seulement avec *StringConstant*. 
+* Le modèle d’analyse peut commencer par *ColumnName*, en plus de *StringConstant*. 
 
-* Si *l’expression* analysée n’est pas de chaîne de type, elle sera convertie en chaîne de type.
+* Si l' *expression* analysée n’est pas de type chaîne, elle sera convertie en type chaîne.
 
-* Si le mode regex est utilisé, il est possible d’ajouter des drapeaux regex afin de contrôler l’ensemble du regex utilisé dans l’analyse.
+* Si le mode Regex est utilisé, vous pouvez ajouter des indicateurs Regex pour contrôler l’intégralité de l’expression régulière utilisée dans parse.
 
-* En mode regex, l’analyse traduira le modèle en un regex et utilisera la [syntaxe RE2](re2.md) afin de faire l’appariement à l’aide de groupes capturés numérotés qui sont manipulés en interne.
+* En mode Regex, Parse convertit le modèle en Regex et utilise la [syntaxe RE2](re2.md) pour effectuer la correspondance à l’aide de groupes capturés numérotés qui sont gérés en interne.
   
-  Ainsi, par exemple, cette déclaration d’analyse :
+  Par exemple, cette instruction d’analyse :
   
     ```kusto
     parse-where kind=regex Col with * <regex1> var1:string <regex2> var2:long
     ```
 
-    Le regex qui sera généré par le `.*?<regex1>(.*?)<regex2>(\-\d+)`parse interne est .
+    L’expression régulière qui sera générée en interne par l’analyse est `.*?<regex1>(.*?)<regex2>(\-\d+)` .
         
-    - `*`a été `.*?`traduit à .
+    - `*`a été traduit `.*?` .
         
-    - `string`a été `.*?`traduit à .
+    - `string`a été traduit `.*?` .
         
-    - `long`a été `\-\d+`traduit à .
+    - `long`a été traduit `\-\d+` .
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
-L’opérateur `parse-where` fournit un moyen `extend` simplifié à `extract` une table `string` en utilisant plusieurs applications sur la même expression.
-Ceci est plus utile lorsque `string` la table a une colonne qui contient plusieurs valeurs que vous souhaitez percer`printf`dans des`Console.WriteLine`colonnes individuelles, comme une colonne qui a été produite par une trace développeur (" "/" ") déclaration.
+L' `parse-where` opérateur fournit une méthode rationalisée à `extend` une table en utilisant plusieurs `extract` applications sur la même `string` expression. Cela s’avère particulièrement utile lorsque la table comporte une `string` colonne qui contient plusieurs valeurs que vous souhaitez décomposer en colonnes individuelles. Par exemple, vous pouvez diviser une colonne qui a été générée par une instruction de trace de développement (« `printf` »/«» `Console.WriteLine` ).
 
-Dans l’exemple ci-dessous, `Traces` supposons que la `Event: NotifySliceRelease (resourceName={0}, totalSlices= {1}, sliceNumber={2}, lockTime={3}, releaseTime={4}, previousLockTime={5})`colonne `EventText` de table contient des chaînes de la forme .
-L’opération ci-dessous étendra la `resourceName` `totalSlices`table `sliceNumber` `lockTime `avec `releaseTime` `previouLockTime`6 colonnes: , , , , , `Month` , et `Day`. 
+### <a name="using-parse"></a>Utilisation de `parse`
 
-Ici, peu de cordes n’ont pas un match complet.
-À `parse`l’aide , les colonnes calculées auront des nulls :
+Dans l’exemple ci-dessous, la colonne `EventText` de la table `Traces` contient des chaînes au format `Event: NotifySliceRelease (resourceName={0}, totalSlices= {1}, sliceNumber={2}, lockTime={3}, releaseTime={4}, previousLockTime={5})` . L’opération ci-dessous étend la table avec six colonnes :,,,,, `resourceName` `totalSlices` `sliceNumber` `lockTime ` `releaseTime` `previouLockTime` , `Month` et `Day` . 
+
+Certaines chaînes n’ont pas de correspondance complète.
+
+À l’aide `parse` de, les colonnes calculées auront des valeurs NULL.
 
 ```kusto
 let Traces = datatable(EventText:string)
@@ -103,10 +106,10 @@ let Traces = datatable(EventText:string)
 ];
 Traces  
 | parse EventText with * "resourceName=" resourceName ", totalSlices=" totalSlices:long * "sliceNumber=" sliceNumber:long * "lockTime=" lockTime ", releaseTime=" releaseTime:date "," * "previousLockTime=" previouLockTime:date ")" *  
-| project resourceName ,totalSlices , sliceNumber , lockTime , releaseTime , previouLockTime
+| project resourceName ,totalSlices , sliceNumber , lockTime , releaseTime , previousLockTime
 ```
 
-|resourceName|totalSlices|sliceNumber|lockTime|sortieTime|previouLockTime (en)|
+|resourceName|totalSlices|sliceNumber|lockTime|releaseTime|previousLockTime|
 |---|---|---|---|---|---|
 |||||||
 |||||||
@@ -114,8 +117,9 @@ Traces
 |PipelineScheduler|27|20|02/17/2016 08:40:01|2016-02-17 08:40:01.0000000|2016-02-17 08:39:01.0000000|
 |PipelineScheduler|27|22|02/17/2016 08:41:01|2016-02-17 08:41:00.0000000|2016-02-17 08:40:01.0000000|
 
+### <a name="using-parse-where"></a>Utilisation de `parse-where` 
 
-Utilisation `parse-where` de filtret-out sans succès les chaînes analysées du résultat:
+L’utilisation de « parse-WHERE » filtre les chaînes analysées sans succès à partir du résultat.
 
 ```kusto
 let Traces = datatable(EventText:string)
@@ -127,19 +131,19 @@ let Traces = datatable(EventText:string)
 "Event: NotifySliceRelease (resourceName=PipelineScheduler, totalSlices=invalid_number, sliceNumber=16, lockTime=02/17/2016 08:41:00, releaseTime=02/17/2016 08:41:00, previousLockTime=02/17/2016 08:40:00)"
 ];
 Traces  
-| parse-where EventText with * "resourceName=" resourceName ", totalSlices=" totalSlices:long * "sliceNumber=" sliceNumber:long * "lockTime=" lockTime ", releaseTime=" releaseTime:date "," * "previousLockTime=" previouLockTime:date ")" *  
-| project resourceName ,totalSlices , sliceNumber , lockTime , releaseTime , previouLockTime
+| parse-where EventText with * "resourceName=" resourceName ", totalSlices=" totalSlices:long * "sliceNumber=" sliceNumber:long * "lockTime=" lockTime ", releaseTime=" releaseTime:date "," * "previousLockTime=" previousLockTime:date ")" *  
+| project resourceName ,totalSlices , sliceNumber , lockTime , releaseTime , previousLockTime
 ```
 
-|resourceName|totalSlices|sliceNumber|lockTime|sortieTime|previouLockTime (en)|
+|resourceName|totalSlices|sliceNumber|lockTime|releaseTime|previousLockTime|
 |---|---|---|---|---|---|
 |PipelineScheduler|27|20|02/17/2016 08:40:01|2016-02-17 08:40:01.0000000|2016-02-17 08:39:01.0000000|
 |PipelineScheduler|27|22|02/17/2016 08:41:01|2016-02-17 08:41:00.0000000|2016-02-17 08:40:01.0000000|
 
 
-pour le mode regex à l’aide de drapeaux regex :
+### <a name="regex-mode-using-regex-flags"></a>Mode Regex à l’aide d’indicateurs Regex
 
-si nous sommes intéressés à obtenir le resouceName et totalSlices et nous utilisons cette requête:
+Pour obtenir les informations resourceName et totalSlices, utilisez la requête suivante :
 
 ```kusto
 let Traces = datatable(EventText:string)
@@ -155,10 +159,13 @@ Traces
 | project resourceName, totalSlices
 ```
 
-Dans la requête ci-dessus, nous n’obtenons aucun résultat puisque le mode par défaut est sensible aux cas, donc aucune des cordes n’a été analysée avec succès.
+### <a name="parse-where-with-case-insensitive-regex-flag"></a>`parse-where`avec l’indicateur Regex ne respectant pas la casse
 
-Afin d’obtenir le résultat requis, `parse-where` nous pouvons exécuter le`i`drapeau de régularis cas-insensible ( ) regex.
-Notez que seulement 3 cordes seront analysées avec succès et donc le résultat est de 3 enregistrements (certains totalSlices détient integers invalides): 
+Dans la requête ci-dessus, le mode par défaut était sensible à la casse, de sorte que les chaînes ont été analysées avec succès. Aucun résultat n’a été obtenu.
+
+Pour obtenir le résultat requis, exécutez `parse-where` avec un indicateur Regex qui ne respecte pas la casse ( `i` ).
+
+Seules trois chaînes seront analysées avec succès. le résultat est donc trois enregistrements (certains totalSlices contiennent des entiers non valides).
 
 ```kusto
 let Traces = datatable(EventText:string)
@@ -179,5 +186,3 @@ Traces
 |PipelineScheduler|27|
 |PipelineScheduler|27|
 |PipelineScheduler|27|
-
-

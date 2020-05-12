@@ -1,6 +1,6 @@
 ---
-title: array_shift_right() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit array_shift_right () dans Azure Data Explorer.
+title: array_shift_right ()-Azure Explorateur de données
+description: Cet article décrit array_shift_right () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/11/2019
-ms.openlocfilehash: 73f87d4c5ce1a841404e438e0e5647089b38785f
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 714c6c15443420abbc973593acb2f311a5507dc4
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81518766"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83225664"
 ---
 # <a name="array_shift_right"></a>array_shift_right()
 
@@ -25,52 +25,56 @@ ms.locfileid: "81518766"
 
 **Arguments**
 
-* *arr*: Le tableau d’entrée à diviser, doit être un tableau dynamique.
-* *shift_count*: Integer précise le nombre de positions que les éléments de tableau seront décalés vers la droite. Si la valeur est négative, les éléments seront déplacés vers la gauche.
-* *fill_value*: valeur scalaire utilisée pour l’insertion d’éléments au lieu de ceux qui ont été décalés et supprimés. Défaut : valeur nulle ou chaîne vide (selon le type *arr).*
+* *arr*: tableau d’entrée à fractionner, doit être un tableau dynamique.
+* *shift_count*: entier spécifiant le nombre de positions que les éléments de tableau seront décalés vers la droite. Si la valeur est négative, les éléments sont décalés vers la gauche.
+* *fill_value*: valeur scalaire utilisée pour insérer des éléments à la place de ceux qui ont été déplacés et supprimés. Valeur par défaut : valeur null ou chaîne vide (selon le type *arr* ).
 
 **Retourne**
 
-Tableau dynamique contenant la même quantité d’éléments que dans le tableau d’origine, où chaque élément a été déplacé en fonction *de shift_count*. Les nouveaux éléments qui sont ajoutés au lieu des éléments qui sont supprimés auront une valeur de *fill_value*.
+Tableau dynamique contenant la même quantité d’éléments que dans le tableau d’origine, où chaque élément a été déplacé en fonction de *shift_count*. Les nouveaux éléments ajoutés à la place des éléments supprimés auront la valeur *fill_value*.
 
 **Voir aussi**
 
-* Pour le tableau de déplacement à gauche, voir [array_shift_left()](array_shift_leftfunction.md).
-* Pour tourner à droite, voir [array_rotate_right()](array_rotate_rightfunction.md).
-* Pour le tableau rotatif à gauche, voir [array_rotate_left()](array_rotate_leftfunction.md).
+* Pour décaler le tableau à gauche, consultez [array_shift_left ()](array_shift_leftfunction.md).
+* Pour faire pivoter un tableau vers la droite, consultez [array_rotate_right ()](array_rotate_rightfunction.md).
+* Pour faire pivoter le tableau vers la gauche, consultez [array_rotate_left ()](array_rotate_leftfunction.md).
 
 **Exemples**
 
-* Déplacement vers la droite par deux positions :
+* Décalage vers la droite de deux positions :
 
+    <!-- csl: https://help.kusto.windows.net:443/Samples -->
     ```kusto
     print arr=dynamic([1,2,3,4,5]) 
     | extend arr_shift=array_shift_right(arr, 2)
     ```
     
-    |Arr|arr_shift|
+    |arr|arr_shift|
     |---|---|
-    |[1,2,3,4,5]|[null,null,1,2,3]|
+    |[1, 2, 3, 4, 5]|[null, NULL, 1, 2, 3]|
 
-* Déplacement vers la droite par deux positions et ajout d’une valeur par défaut :
+* Le décalage vers la droite de deux positions et l’ajout d’une valeur par défaut :
 
+    <!-- csl: https://help.kusto.windows.net:443/Samples -->
     ```kusto
     print arr=dynamic([1,2,3,4,5]) 
     | extend arr_shift=array_shift_right(arr, 2, -1)
     ```
     
-    |Arr|arr_shift|
+    |arr|arr_shift|
     |---|---|
-    |[1,2,3,4,5]|[-1,-1,1,2,3]|
+    |[1, 2, 3, 4, 5]|[-1,-1, 1, 2, 3]|
 
 
-* Déplacement vers la gauche par deux positions en utilisant une valeur négative shift_count :
+* Décalage vers la gauche de deux positions à l’aide d’une valeur de shift_count négative :
 
+    <!-- csl: https://help.kusto.windows.net:443/Samples -->
     ```kusto
     print arr=dynamic([1,2,3,4,5]) 
     | extend arr_shift=array_shift_right(arr, -2, -1)
     ```
     
-    |Arr|arr_shift|
+    |arr|arr_shift|
     |---|---|
-    |[1,2,3,4,5]|[3,4,5,-1,-1]|
+    |[1, 2, 3, 4, 5]|[3, 4, 5,-1,-1]|
+    

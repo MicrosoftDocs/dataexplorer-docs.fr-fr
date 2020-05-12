@@ -1,5 +1,5 @@
 ---
-title: current_principal_is_member_of ()-Azure Explorateur de données | Microsoft Docs
+title: current_principal_is_member_of ()-Azure Explorateur de données
 description: Cet article décrit current_principal_is_member_of () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 03/09/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 4b6f7d0b9ab4074f16ca00b4a3febb1a17351736
-ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
+ms.openlocfilehash: 521165f5b0af31207d587f3d9514e7538d284258
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82737757"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83227338"
 ---
 # <a name="current_principal_is_member_of"></a>current_principal_is_member_of()
 
@@ -38,7 +38,7 @@ print current_principal_is_member_of(
 **Arguments**
 
 * *liste d’expressions* : liste de littéraux de chaîne séparés par des virgules, où chaque littéral est une chaîne de nom complet (FQN) principale formée comme suit :  
-*PrinciplaType*`=`*PrincipalId*PrincipalId`;`*TenantId*
+*PrinciplaType* `=` *PrincipalId* `;` *TenantId*
 
 | PrincipalType   | Préfixe FQN  |
 |-----------------|-------------|
@@ -50,11 +50,11 @@ print current_principal_is_member_of(
 
 La fonction retourne :
 * `true`: si le principal en cours d’exécution de la requête a été correctement mis en correspondance pour au moins un argument d’entrée.
-* `false`: si le principal en cours d’exécution de la requête n’est `aadgroup=` membre d’aucun argument FQN et n’est pas égal `aaduser=` à `aadapp=` l’un des arguments ou FQN.
-* `(null)`: si le principal en cours d’exécution de la requête n’est `aadgroup=` membre d’aucun argument FQN et n’est pas égal `aaduser=` à `aadapp=` l’un des arguments ou FQN, et qu’au moins un argument FQN n’a pas été résolu avec succès (n’a pas été ajouté à AAD). 
+* `false`: si le principal en cours d’exécution de la requête n’est membre d’aucun `aadgroup=` argument FQN et n’est pas égal à l’un des `aaduser=` `aadapp=` arguments ou FQN.
+* `(null)`: si le principal en cours d’exécution de la requête n’est membre d’aucun argument `aadgroup=` FQN et n’est pas égal à l’un des `aaduser=` `aadapp=` arguments ou FQN, et qu’au moins un argument FQN n’a pas été résolu avec succès (n’a pas été ajouté à AAD). 
 
 > [!NOTE]
-> Étant donné que la fonction retourne une valeur à trois`true`États `false`(, `null`et), il est important de s’appuyer uniquement sur les valeurs de retour positives pour confirmer la réussite de l’appartenance. En d’autres termes, les expressions suivantes ne sont pas les mêmes :
+> Étant donné que la fonction retourne une valeur à trois États ( `true` , `false` et `null` ), il est important de s’appuyer uniquement sur les valeurs de retour positives pour confirmer la réussite de l’appartenance. En d’autres termes, les expressions suivantes ne sont pas les mêmes :
 > 
 > * `where current_principal_is_member_of('non-existing-group')`
 > * `where current_principal_is_member_of('non-existing-group') != false` 
@@ -62,6 +62,7 @@ La fonction retourne :
 
 **Exemple**
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 print result=current_principal_is_member_of(
     'aaduser=user1@fabrikam.com', 
@@ -74,8 +75,9 @@ print result=current_principal_is_member_of(
 |--------|
 | (Null) |
 
-Utilisation d’un tableau dynamique au lieu d’arguments de multiple :
+Utilisation d’un tableau dynamique au lieu de plusieurs arguments :
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 print result=current_principal_is_member_of(
     dynamic([

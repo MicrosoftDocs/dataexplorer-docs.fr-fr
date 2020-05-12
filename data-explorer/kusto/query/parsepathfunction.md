@@ -1,6 +1,6 @@
 ---
-title: parse_path() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit parse_path() dans Azure Data Explorer.
+title: parse_path ()-Azure Explorateur de données
+description: Cet article décrit parse_path () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,34 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 2267efb4e47a6d8e45733ad48dd9f7f4019c1fa8
-ms.sourcegitcommit: e94be7045d71a0435b4171ca3a7c30455e6dfa57
+ms.openlocfilehash: 16b80c86f526cb05514577359603e9e21de80064
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81744664"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83224882"
 ---
 # <a name="parse_path"></a>parse_path()
 
-Parses un `string` chemin de [`dynamic`](./scalar-data-types/dynamic.md) fichier et renvoie un objet qui contient les parties suivantes du chemin: Scheme, RootPath, DirectoryPath, DirectoryName, FileName, Extension, AlternateDataStreamName.
-En plus des chemins simples avec les deux types de barres obliques, soutient les chemins avec des\\schémas (par exemple "file://..."),\\les chemins partagés (par exemple "shareddrive-users..."), les longs chemins (par exemple " ? ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' '
+Analyse un chemin d’accès de fichier `string` et retourne un [`dynamic`](./scalar-data-types/dynamic.md) objet qui contient les parties suivantes du chemin d’accès : Scheme, RootPath, DirectoryPath, DirectoryName, filename, extension, AlternateDataStreamName.
+Outre les chemins d’accès simples avec les deux types de barres obliques, prend en charge les chemins d’accès aux schémas (par exemple, « file://... »), les chemins d’accès partagés (par exemple, « \\ shareddrive\users... »), les chemins d’accès longs (par exemple, « \\ ? \c :...
 
 **Syntaxe**
 
-`parse_path(`*Chemin*`)`
+`parse_path(`*d*`)`
 
 **Arguments**
 
-* *chemin*: Une chaîne qui représente un chemin de fichier.
+* *path*: chaîne qui représente un chemin d’accès de fichier.
 
 **Retourne**
 
-Un objet `dynamic` de type qui inculdait les composants du chemin énumérés ci-dessus.
+Objet de type `dynamic` qui incluait les composants de chemin d’accès répertoriés ci-dessus.
 
 **Exemple**
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
-
 ```kusto
 datatable(p:string) 
 [
@@ -51,8 +50,8 @@ datatable(p:string)
 
 |p|path_parts
 |---|---
-|C : 'temp’file.txt|"Scheme":"","RootPath":"C:","DirectoryPath":"C:\\temp","DirectoryName":"temp","Filename":"file.txt","Extension":"txt","AlternateDataStreamName":"""
-|temp-file.txt|"Scheme":"","RootPath":"","DirectoryPath":"temp","DirectoryName":"temp","Filename":"file.txt","Extension":"txt","AlternateDataStreamName":""MD
-|file://C:/temp/file.txt:some.exe|"Scheme":"file","RootPath":"C:","DirectoryPath":"C:/temp","DirectoryName":"temp","Filename":"file.txt","Extension":"txt","AlternateDataStreamName":"some.exe"
-|\\shared-users.temp-file.txt.gz|"Scheme":"","RootPath":"","DirectoryPath":"a\\\\\\partagé\\les utilisateurs temp","DirectoryName":"temp","Filename":"file.txt.gz","Extension":"gz","AlternateDataStreamName":"""
-|/usr/lib/temp/file.txt|"Scheme":"","RootPath":"","DirectoryPath":"/usr/lib/temp","DirectoryName":"temp","Filename":"file.txt","Extension":"txt","AlternateDataStreamName":"""
+|C:\temp\file.txt|{« Scheme » : « », «RootPath » : « C : », « DirectoryPath » : « C : \\ temp », « DirectoryName » : « Temp », « filename » : « file. txt », « extension » : « txt », « AlternateDataStreamName » : «»}
+|temp\file.txt|{« Scheme » : « », «RootPath » : « », «DirectoryPath » : « Temp », « DirectoryName » : « Temp », « filename » : « file. txt », « extension » : « txt », « AlternateDataStreamName » : «»}
+|file://C:/temp/file.txt:some.exe|{« Scheme » : « file », « RootPath » : « C : », « DirectoryPath » : « C:/Temp », « DirectoryName » : « Temp », « filename » : « file. txt », « extension » : « txt », « AlternateDataStreamName » : « Some. exe »}
+|\\shared\users\temp\file.txt.gz|{« Scheme » : « », «RootPath » : « », «DirectoryPath » : « \\ \\ \\utilisateurs partagés \\ temp "," DirectoryName " :" Temp "," filename " :" file. txt. gz "," extension " :" gz "," AlternateDataStreamName " :" "}
+|/usr/lib/temp/file.txt|{« Scheme » : « », «RootPath » : « », «DirectoryPath » : « /usr/lib/Temp », « DirectoryName » : « Temp », « filename » : « file. txt », « extension » : « txt », « AlternateDataStreamName » : «»}

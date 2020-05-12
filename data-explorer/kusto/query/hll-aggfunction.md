@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/15/2020
-ms.openlocfilehash: f5c47e2ebd2acc0b2ec250d183d65b6536aff756
-ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
+ms.openlocfilehash: cbe1b0639a0379fe84bc9c100a629bbadd9c3a63
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82741822"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83226565"
 ---
 # <a name="hll-aggregation-function"></a>HLL () (fonction d’agrégation)
 
-Calcule les résultats intermédiaires de [`dcount`](dcount-aggfunction.md) dans le groupe, uniquement dans le contexte d’une agrégation dans un [Résumé](summarizeoperator.md).
+Calcule les résultats intermédiaires de dans [`dcount`](dcount-aggfunction.md) le groupe, uniquement dans le contexte d’une agrégation dans un [Résumé](summarizeoperator.md).
 
 En savoir plus sur l' [algorithme sous-jacent (*H*yper*l*og*l*og) et la précision de l’estimation](dcount-aggfunction.md#estimation-accuracy).
 
@@ -44,12 +44,13 @@ Résultats intermédiaires du décompte distinct de *`Expr`* l’ensemble du gro
  
 **Conseils**
 
-1. Vous pouvez utiliser la fonction [`hll_merge`](hll-merge-aggfunction.md) d’agrégation pour fusionner plusieurs `hll` résultats intermédiaires (cela fonctionne uniquement `hll` sur la sortie).
+1. Vous pouvez utiliser la fonction [`hll_merge`](hll-merge-aggfunction.md) d’agrégation pour fusionner plusieurs `hll` résultats intermédiaires (cela fonctionne uniquement sur la `hll` sortie).
 
-1. Vous pouvez utiliser la fonction [`dcount_hll`](dcount-hllfunction.md), qui calcule les `dcount` fonctions `hll`  /  `hll_merge` d’agrégation.
+1. Vous pouvez utiliser la fonction [`dcount_hll`](dcount-hllfunction.md) , qui calcule les `dcount` `hll`  /  `hll_merge` fonctions d’agrégation.
 
 **Exemples**
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 StormEvents
 | summarize hll(DamageProperty) by bin(StartTime,10m)

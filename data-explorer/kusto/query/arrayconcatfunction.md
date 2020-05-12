@@ -1,6 +1,6 @@
 ---
-title: array_concat() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit array_concat () dans Azure Data Explorer.
+title: array_concat ()-Azure Explorateur de données
+description: Cet article décrit array_concat () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,31 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: c66c17ab147eb3d6c5f749e7f28fad347a50ce22
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 681178cc12d145b1c574357e87ae4f7b33d736c4
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81518749"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83225647"
 ---
 # <a name="array_concat"></a>array_concat()
 
-Concatenates un certain nombre de tableaux dynamiques à un seul tableau.
+Concatène un certain nombre de tableaux dynamiques en un seul tableau.
 
 **Syntaxe**
 
-`array_concat(`*arr1*`[`` *arr2*, ...]`, )'
+`array_concat(`*Arr1* `[` , ` *arr2*, ...]` )»
 
 **Arguments**
 
-* *arr1... arrN*: Les tableaux d’entrée à concatenated dans un tableau dynamique. Tous les arguments doivent être des tableaux dynamiques (voir [pack_array](packarrayfunction.md)). 
+* *Arr1... arrN*: tableaux d’entrée à concaténer dans un tableau dynamique. Tous les arguments doivent être des tableaux dynamiques (voir [pack_array](packarrayfunction.md)). 
 
 **Retourne**
 
-Gamme dynamique de tableaux avec arr1, arr2, ... , arrN.
+Tableau dynamique de tableaux avec Arr1, Arr2,..., arrN.
 
 **Exemple**
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 range x from 1 to 3 step 1
 | extend y = x * 2
@@ -43,6 +44,6 @@ range x from 1 to 3 step 1
 
 |Colonne1|
 |---|
-|[1,2,4,1,2]|
-|[2,4,8,2,4]|
-|[3,6,12,3,6]|
+|[1, 2, 4, 1, 2]|
+|[2, 4, 8, 2,4]|
+|[3, 6, 12, 3, 6]|

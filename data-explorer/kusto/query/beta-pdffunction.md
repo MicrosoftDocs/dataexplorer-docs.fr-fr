@@ -1,6 +1,6 @@
 ---
-title: beta_pdf() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit beta_pdf() dans Azure Data Explorer.
+title: beta_pdf ()-Azure Explorateur de données
+description: Cet article décrit beta_pdf () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 53b86d88b05cc6c5cc31f1e3bbb9e3e712eed7f8
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 8ebd4cb0ab8a5bffec717f83892a3ea11b35f409
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81517865"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83227636"
 ---
 # <a name="beta_pdf"></a>beta_pdf()
 
-Retourne la fonction bêta de densité de probabilité.
+Retourne la fonction de densité de probabilité bêta.
 
 ```kusto
 beta_pdf(0.2, 10.0, 50.0)
@@ -27,28 +27,29 @@ La distribution Bêta est couramment utilisée pour étudier la variation du pou
 
 **Syntaxe**
 
-`beta_pdf(`*x*`, `*bêta* *alpha*`, ``)`
+`beta_pdf(`*x* `, ` *alpha* `, ` *version bêta*`)`
 
 **Arguments**
 
-* *x*: Une valeur à laquelle évaluer la fonction.
-* *alpha*: Un paramètre de la distribution.
-* *bêta*: Un paramètre de la distribution.
+* *x*: valeur à laquelle évaluer la fonction.
+* *alpha*: paramètre de la distribution.
+* *bêta*: paramètre de la distribution.
 
 **Retourne**
 
-* La [fonction de densité bêta de probabilité](https://en.wikipedia.org/wiki/Beta_distribution#Probability_density_function).
+* [Fonction de densité de probabilité bêta](https://en.wikipedia.org/wiki/Beta_distribution#Probability_density_function).
 
 **Remarques**
 
-Si un argument n’est pasnumérique, beta_pdf)renvoie la valeur nulle.
+Si un argument n’est pas numérique, beta_pdf () retourne une valeur null.
 
-Si x x x 0 ou 1 x, beta_pdf)renvoie la valeur NaN.
+Si x ≤ 0 ou 1 ≤ x, beta_pdf () retourne une valeur NaN.
 
-Si l’alpha 0 ou la bêta 0, beta_pdf)retourne la valeur NaN.
+Si alpha ≤ 0 ou beta ≤ 0, beta_pdf () retourne la valeur NaN.
 
 **Exemples**
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 datatable(x:double, alpha:double, beta:double, comment:string)
 [
@@ -63,11 +64,11 @@ datatable(x:double, alpha:double, beta:double, comment:string)
 |x|alpha|beta|comment|r|
 |---|---|---|---|---|
 |0.5|10|20|Entrée valide|0.746176019310951|
-|1.5|10|20|x > 1, donne NaN|NaN|
-|-10|10|20|x < 0, cède NaN|NaN|
-|0.1|-1|20|alpha est < 0, donne NaN|NaN|
+|1.5|10|20|x > 1, produit NaN|NaN|
+|-10|10|20|x < 0, produit NaN|NaN|
+|0.1|-1|20|Alpha est < 0, produit NaN|NaN|
 
 **Informations de référence**
 
-* Pour calculer l’inverse de la fonction de densité de probabilité cumulative bêta, voir [bêta-inv()](./beta-invfunction.md).
-* Pour la fonction de distribution bêta cumulative standard, voir [bêta-cdf()](./beta-cdffunction.md).
+* Pour calculer l’inverse de la fonction de densité de probabilité cumulative bêta, consultez [beta-INV ()](./beta-invfunction.md).
+* Pour la fonction de distribution cumulative bêta standard, consultez [beta-CDF ()](./beta-cdffunction.md).

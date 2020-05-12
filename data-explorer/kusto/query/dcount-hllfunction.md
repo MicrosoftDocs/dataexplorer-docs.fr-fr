@@ -1,6 +1,6 @@
 ---
-title: dcount_hll() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit dcount_hll() dans Azure Data Explorer.
+title: dcount_hll ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit dcount_hll () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/15/2019
-ms.openlocfilehash: a0c921efa90f5d66fe42fa6ee872204b5bb399cd
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: d4a76a30526f5fecbafafd735cf72de92aae7644
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81516148"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83225188"
 ---
 # <a name="dcount_hll"></a>dcount_hll()
 
-Calcule le dcount à partir des résultats de hll (qui a été généré par [hll](hll-aggfunction.md) ou [hll_merge](hll-merge-aggfunction.md)).
+Calcule le CpteDom à partir des résultats de HLL (qui a été généré par [HLL](hll-aggfunction.md) ou [hll_merge](hll-merge-aggfunction.md)).
 
-En savoir plus sur [l’algorithme sous-jacent (*H*yper*L*og*L*og) et la précision d’estimation](dcount-aggfunction.md#estimation-accuracy).
+En savoir plus sur l' [algorithme sous-jacent (*H*yper*l*og*l*) et la précision de l’estimation](dcount-aggfunction.md#estimation-accuracy).
 
 **Syntaxe**
 
@@ -27,14 +27,15 @@ En savoir plus sur [l’algorithme sous-jacent (*H*yper*L*og*L*og) et la précis
 
 **Arguments**
 
-* *Expr*: Expression générée par [hll](hll-aggfunction.md) ou [hll-merge](hll-merge-aggfunction.md)
+* *Expr*: expression qui a été générée par [HLL](hll-aggfunction.md) ou [HLL-Merge](hll-merge-aggfunction.md)
 
 **Retourne**
 
-Le nombre distinct de chaque valeur dans *Expr*
+Compte distinct de chaque valeur dans *expr*
 
 **Exemples**
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 StormEvents
 | summarize hllRes = hll(DamageProperty) by bin(StartTime,10m)

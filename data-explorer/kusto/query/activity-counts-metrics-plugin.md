@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b06b1c137552ba19f9b1ef5367a25bb72eea5c93
-ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
+ms.openlocfilehash: 167ba8818709f52ccc344452e275405c42b1796e
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82742040"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83227670"
 ---
 # <a name="activity_counts_metrics-plugin"></a>plug-in activity_counts_metrics
 
@@ -25,7 +25,7 @@ T | evaluate activity_counts_metrics(id, datetime_column, startofday(ago(30d)), 
 
 **Syntaxe**
 
-*T* `| evaluate` `,` *Start* `,` `,` *dim2* *dim1* `,` *IdColumn* `,` *Window* *TimelineColumn* `,` *End* `,` *Cohort*IdColumn TimelineColumn fin de la fenêtre de démarrage [cohorte] [dim1 dim2...]`,` `activity_counts_metrics(` [`,` *Lookback*]`)`
+*T* `| evaluate` `activity_counts_metrics(` *IdColumn* `,` *TimelineColumn* `,` *Start* `,` *end* `,` *Window* [ `,` *cohorte*] [ `,` *dim1* `,` *dim2* `,` ...] [ `,` *lookback*]`)`
 
 **Arguments**
 
@@ -34,7 +34,7 @@ T | evaluate activity_counts_metrics(id, datetime_column, startofday(ago(30d)), 
 * *TimelineColumn*: nom de la colonne qui représente la chronologie.
 * *Start*: scalaire avec la valeur de la période de démarrage de l’analyse.
 * *End*: scalaire avec la valeur de la période de fin de l’analyse.
-* *Window*: scalaire avec la valeur de la période de la fenêtre d’analyse. Peut être une valeur numérique/DateTime/timestamp, ou une chaîne qui est l’une des `week` / `month` / `year`, auquel cas toutes les périodes sont [startOfWeek](startofweekfunction.md)/[StartOfMonth](startofmonthfunction.md) ou [STARTOFYEAR](startofyearfunction.md). 
+* *Window*: scalaire avec la valeur de la période de la fenêtre d’analyse. Peut être une valeur numérique/DateTime/timestamp, ou une chaîne qui est l’une des `week` / `month` / `year` , auquel cas toutes les périodes sont [startOfWeek](startofweekfunction.md) / [StartOfMonth](startofmonthfunction.md) ou [STARTOFYEAR](startofyearfunction.md). 
 * *dim1*, *dim2*,... : (facultatif) liste des colonnes de dimensions qui découpent le calcul des métriques d’activité.
 
 **Retourne**
@@ -60,6 +60,7 @@ Le schéma de la table de sortie est le suivant :
 
 La requête suivante calcule le nombre d’activités quotidiennes pour la table d’entrée fournie.
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let start=datetime(2017-08-01);
 let end=datetime(2017-08-04);

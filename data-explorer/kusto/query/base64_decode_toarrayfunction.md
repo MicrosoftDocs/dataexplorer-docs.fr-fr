@@ -1,6 +1,6 @@
 ---
-title: base64_decode_toarray() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit base64_decode_toarray() dans Azure Data Explorer.
+title: base64_decode_toarray ()-Azure Explorateur de données
+description: Cet article décrit base64_decode_toarray () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,34 +8,35 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/22/2019
-ms.openlocfilehash: 80a702f112fd4d7b88b4011b3f615cf34acff62c
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: eda367dfeaab15dc5249fd860596964c597a1bcd
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81518188"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83225409"
 ---
 # <a name="base64_decode_toarray"></a>base64_decode_toarray()
 
-Décode une chaîne base64 à un éventail de valeurs longues.
+Décode une chaîne base64 en un tableau de valeurs longues.
 
 **Syntaxe**
 
-`base64_decode_toarray(`*String*`)`
+`base64_decode_toarray(`*Chaîne*`)`
 
 **Arguments**
 
-* *Chaîne*: Chaîne d’entrée à décoder de la gamme base64 à la chaîne UTF8-8.
+* *Chaîne*: chaîne d’entrée à décoder de la chaîne base64 à la chaîne UTF8-8.
 
 **Retourne**
 
-Retourne la gamme de valeurs longues écoded de la chaîne base64.
+Retourne un tableau de valeurs longues ecoded à partir d’une chaîne base64.
 
-* Pour décoder les cordes de base64 à une chaîne UTF-8 voir [base64_decode_tostring()](base64_decode_tostringfunction.md)
-* Pour l’encodage des chaînes à base64 chaîne voir [base64_encode_tostring()](base64_encode_tostringfunction.md)
+* Pour décoder des chaînes Base64 dans une chaîne UTF-8, consultez [base64_decode_tostring ()](base64_decode_tostringfunction.md)
+* Pour encoder des chaînes en chaîne base64 [, consultez base64_encode_tostring ()](base64_encode_tostringfunction.md)
 
 **Exemple**
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 print Quine=base64_decode_toarray("S3VzdG8=")  
 // 'K', 'u', 's', 't', 'o'
@@ -43,10 +44,11 @@ print Quine=base64_decode_toarray("S3VzdG8=")
 
 |Quine|
 |-----|
-|[75,117,115,116,111]|
+|[75 117 115 116 111]|
 
-Essayer de décoder une chaîne base64 qui a été générée à partir d’un codage UTF-8 invalide sera de retour nul:
+La tentative de décodage d’une chaîne base64 qui a été générée à partir d’un encodage UTF-8 non valide retourne la valeur NULL :
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 print Empty=base64_decode_toarray("U3RyaW5n0KHR0tGA0L7Rh9C60LA=")
 ```

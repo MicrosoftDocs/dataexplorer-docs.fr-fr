@@ -1,59 +1,60 @@
 ---
-title: geo_distance_point_to_line() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit geo_distance_point_to_line() dans Azure Data Explorer.
+title: geo_distance_point_to_line ()-Azure Explorateur de données
+description: Cet article décrit geo_distance_point_to_line () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/11/2020
-ms.openlocfilehash: 34c6811ed5a51dae5281a4374421df5914c5b263
-ms.sourcegitcommit: 436cd515ea0d83d46e3ac6328670ee78b64ccb05
+ms.openlocfilehash: 304b40a00fd471b7735ff11c01bdaa8b6ca3a8ec
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81663785"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83227447"
 ---
 # <a name="geo_distance_point_to_line"></a>geo_distance_point_to_line()
 
-Calcule la distance la plus courte entre une coordonnées et une ligne sur Terre.
+Calcule la distance la plus petite entre une coordonnée et une ligne sur la terre.
 
 **Syntaxe**
 
-`geo_distance_point_to_line(`*ligne*`, `*de latitude*`, `de*longitudeString*`)`
+`geo_distance_point_to_line(`*longitude* `, ` *Latitude* `, ` *lineString*`)`
 
 **Arguments**
 
-* *longitude*: Géospatial coordonne la valeur de longitude en degrés. La valeur valide est un nombre réel et dans la gamme [-180, 180 euros].
-* *latitude*: Valeur de latitude de coordonnées géospatiales en degrés. La valeur valide est un nombre réel et dans la gamme [-90, 90 euros].
-* *lineString*: Ligne dans le [format GeoJSON](https://tools.ietf.org/html/rfc7946) et d’un type de données [dynamique.](./scalar-data-types/dynamic.md)
+* *longitude*: valeur de longitude de coordonnée géographique en degrés. La valeur valide est un nombre réel et dans la plage [-180, + 180].
+* *Latitude*: valeur de latitude de la coordonnée géographique en degrés. La valeur valide est un nombre réel et dans la plage [-90, + 90].
+* *lineString*: ligne au [format géojson](https://tools.ietf.org/html/rfc7946) et d’un type de données [dynamique](./scalar-data-types/dynamic.md) .
 
 **Retourne**
 
-La distance la plus courte, en mètres, entre une coordonnées et une ligne sur Terre. Si la coordonnées ou la ligneString sont invalides, la requête produira un résultat nul.
+Distance la plus petite, en mètres, entre une coordonnée et une ligne sur terre. Si la coordonnée ou le lineString ne sont pas valides, la requête produira un résultat NULL.
 
 > [!NOTE]
-> * Les coordonnées géospatiales sont interprétées comme représentées par le système de référence de coordonnées [WGS-84.](https://earth-info.nga.mil/GandG/update/index.php?action=home)
-> * Le [datum géodésique](https://en.wikipedia.org/wiki/Geodetic_datum) utilisé pour mesurer la distance sur Terre est une sphère. Les bords de ligne sont géodésiques sur la sphère.
+> * Les coordonnées géospatiales sont interprétées comme étant représentées par le système de référence de coordonnées [WGS-84](https://earth-info.nga.mil/GandG/update/index.php?action=home) .
+> * La [référence géodésique](https://en.wikipedia.org/wiki/Geodetic_datum) utilisée pour mesurer la distance sur la terre est une sphère. Les arêtes de ligne sont des géodésique sur la sphère.
 
-**Définition et contraintes LineString**
+**Définition et contraintes de LineString**
 
-dynamique («type»: "LineString",coordinates": [lng_1,lat_1], [lng_2,lat_2] ,..., [lng_N,lat_N] ]
+dynamique ({"type" : "LineString", "coordinates" : [[lng_1, lat_1], [lng_2, lat_2],..., [lng_N, lat_N]]})
 
 * Le tableau de coordonnées LineString doit contenir au moins deux entrées.
-* Les coordonnées [longitude,latitude] doivent être valides lorsque la longitude est un nombre réel dans la gamme [-180, 180] et la latitude est un nombre réel dans la gamme [-90, 90 euros].
-* La longueur des bords doit être inférieure à 180 degrés. Le bord le plus court entre les deux vertices sera choisi.
+* Les coordonnées [longitude, Latitude] doivent être valides, où la longitude est un nombre réel dans la plage [-180, + 180] et la latitude est un nombre réel dans la plage [-90, + 90].
+* La longueur du bord doit être inférieure à 180 degrés. Le bord le plus petit entre les deux vertex est choisi.
 
 > [!TIP]
 > Pour de meilleures performances, utilisez des lignes littérales.
 
 **Exemples**
 
-L’exemple suivant trouve la distance la plus courte entre l’aéroport de North Las Vegas et une route à proximité.
+L’exemple suivant recherche la distance la plus petite entre l’aéroport du Nord de Las Vegas et la route avoisinante.
 
-:::image type="content" source="images/queries/geo/distance_point_to_line.png" alt-text="Distance entre l’aéroport de North Las Vegas et la route":::
+:::image type="content" source="images/geo-distance-point-to-line-function/distance-point-to-line.png" alt-text="Distance entre l’aéroport et la route du Nord de Las Vegas":::
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 print distance_in_meters = geo_distance_point_to_line(-115.199625, 36.210419, dynamic({ "type":"LineString","coordinates":[[-115.115385,36.229195],[-115.136995,36.200366],[-115.140252,36.192470],[-115.143558,36.188523],[-115.144076,36.181954],[-115.154662,36.174483],[-115.166431,36.176388],[-115.183289,36.175007],[-115.192612,36.176736],[-115.202485,36.173439],[-115.225355,36.174365]]}))
 ```
@@ -62,10 +63,11 @@ print distance_in_meters = geo_distance_point_to_line(-115.199625, 36.210419, dy
 |--------------------|
 | 3797.88887253334   |
 
-Événements de tempête sur la côte sud des États-Unis. Les événements sont filtrés par une distance maximale de 5 km de la ligne de rivage définie.
+Événements Storm dans la côte sud-est des États-Unis. Les événements sont filtrés par une distance maximale de 5 kilomètres par rapport à la ligne Shore définie.
 
-:::image type="content" source="images/queries/geo/us_south_coast_storm_events.png" alt-text="Événements de tempête dans la côte sud des États-Unis":::
+:::image type="content" source="images/geo-distance-point-to-line-function/us-south-coast-storm-events.png" alt-text="Événements Storm dans la côte sud des États-Unis":::
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let southCoast = dynamic({"type":"LineString","coordinates":[[-97.18505859374999,25.997549919572112],[-97.58056640625,26.96124577052697],[-97.119140625,27.955591004642553],[-94.04296874999999,29.726222319395504],[-92.98828125,29.82158272057499],[-89.18701171875,29.11377539511439],[-89.384765625,30.315987718557867],[-87.5830078125,30.221101852485987],[-86.484375,30.4297295750316],[-85.1220703125,29.6880527498568],[-84.00146484374999,30.14512718337613],[-82.6611328125,28.806173508854776],[-82.81494140625,28.033197847676377],[-82.177734375,26.52956523826758],[-80.9912109375,25.20494115356912]]});
 StormEvents
@@ -74,10 +76,11 @@ StormEvents
 | render scatterchart with (kind=map) // map rendering available in Kusto Explorer desktop
 ```
 
-Ramassages de taxi NY. Les ramassages sont filtrés à une distance maximale de 0,1 m de la ligne définie.
+NY. Les Picks sont filtrés par une distance maximale de 0,1 m à partir de la ligne définie.
 
-:::image type="content" source="images/queries/geo/park_ave_ny_road.png" alt-text="Événements de tempête dans la côte sud des États-Unis":::
+:::image type="content" source="images/geo-distance-point-to-line-function/park-ave-ny-road.png" alt-text="Événements Storm dans la côte sud des États-Unis":::
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 nyc_taxi
 | project pickup_longitude, pickup_latitude
@@ -86,7 +89,9 @@ nyc_taxi
 | render scatterchart with (kind=map) // map rendering available in Kusto Explorer desktop
 ```
 
-L’exemple suivant retournera un résultat nul en raison de l’entrée linéaire invalide.
+L’exemple suivant retourne un résultat NULL en raison de l’entrée LineString non valide.
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 print distance_in_meters = geo_distance_point_to_line(1,1, dynamic({ "type":"LineString"}))
 ```
@@ -95,7 +100,8 @@ print distance_in_meters = geo_distance_point_to_line(1,1, dynamic({ "type":"Lin
 |--------------------|
 |                    |
 
-L’exemple suivant retournera un résultat nul en raison de l’entrée de coordonnées invalide.
+L’exemple suivant retourne un résultat NULL en raison de l’entrée de coordonnée non valide.
+
 ```kusto
 print distance_in_meters = geo_distance_point_to_line(300, 3, dynamic({ "type":"LineString","coordinates":[[1,1],[2,2]]}))
 ```

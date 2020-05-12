@@ -1,6 +1,6 @@
 ---
-title: sliding_window_counts plugin - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit sliding_window_counts plugin dans Azure Data Explorer.
+title: plug-in sliding_window_counts-Azure Explorateur de données
+description: Cet article décrit sliding_window_counts plug-in dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: feab3d0e8f548817be12f202eb2d494bd65aa133
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 2fbc870eafc45c8c63bea98a64f492d161af4c9b
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81507495"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83226344"
 ---
-# <a name="sliding_window_counts-plugin"></a>sliding_window_counts plugin
+# <a name="sliding_window_counts-plugin"></a>plug-in sliding_window_counts
 
-Calcule les comptes et le nombre distinct de valeurs dans une fenêtre coulissante sur une période de retour, en utilisant la technique décrite [ici](samples.md#performing-aggregations-over-a-sliding-window).
+Calcule les nombres et le nombre de valeurs distinctes dans une fenêtre glissante sur une période lookback, à l’aide de la technique décrite [ici](samples.md#performing-aggregations-over-a-sliding-window).
 
-Par exemple, pour chaque *jour,* calculer le nombre et le nombre distinct d’utilisateurs dans la *semaine*précédente . 
+Par exemple, pour chaque *jour*, calculer le nombre et le nombre de comptes des utilisateurs de la *semaine*précédente. 
 
 ```kusto
 T | evaluate sliding_window_counts(id, datetime_column, startofday(ago(30d)), startofday(now()), 7d, 1d, dim1, dim2, dim3)
@@ -27,33 +27,33 @@ T | evaluate sliding_window_counts(id, datetime_column, startofday(ago(30d)), st
 
 **Syntaxe**
 
-*T* `| evaluate` `,` *Start* `,` *End* `,` `,` *Bin* `,` `,` *dim2* `,` *IdColumn* `,` *TimelineColumn* *dim1* *LookbackWindow* IdColumn TimelineColumn Start End LookbackWindow Bin [ dim1 dim2 ...] `sliding_window_counts(``)`
+*T* `| evaluate` `sliding_window_counts(` *IdColumn* `,` *TimelineColumn* `,` *Start* `,` *end* `,` *LookbackWindow* `,` *bin* `,` [*dim1* `,` *dim2* `,` ...]`)`
 
 **Arguments**
 
-* *T*: L’expression tabulaire d’entrée.
-* *IdColumn*: Le nom de la colonne avec des valeurs d’identification qui représentent l’activité de l’utilisateur. 
-* *TimelineColumn*: Le nom de la colonne qui représente la chronologie.
-* *Début*: Scalar avec la valeur de la période de début d’analyse.
-* *Fin*: Scalar avec valeur de la période de fin d’analyse.
-* *LookbackWindow*: Valeur constante Scalar de la période de retour (p. ex. pour les utilisateurs de dcount dans le passé 7d: LookbackWindow - 7d)
-* *Bin*: Valeur constanct Scalar de la période d’étape d’analyse. Peut être soit une valeur numérique /datetime/timestamp, `week` / `month` / `year`ou une chaîne qui est l’un des , auquel cas toutes les périodes seront [startofweek](startofweekfunction.md)/[startofmonth](startofmonthfunction.md)/[startofyear](startofyearfunction.md) en conséquence. 
-* *dim1*, *dim2*, ...: (facultatif) liste des colonnes de dimensions qui tranchent le calcul des mesures d’activité.
+* *T*: expression tabulaire d’entrée.
+* *IdColumn*: nom de la colonne avec des valeurs d’ID qui représentent l’activité de l’utilisateur. 
+* *TimelineColumn*: nom de la colonne représentant la chronologie.
+* *Start*: scalaire avec la valeur de la période de démarrage de l’analyse.
+* *End*: scalaire avec la valeur de la période de fin de l’analyse.
+* *LookbackWindow*: valeur constante scalaire de la période lookback (par exemple, pour `dcount` les utilisateurs au cours des derniers 7D : LookbackWindow = 7D)
+* *Bin*: valeur constante scalaire de la période de l’étape d’analyse. Cette valeur peut être une valeur numérique/DateTime/timestamp. Si la valeur est une chaîne au format `week` / `month` / `year` , tous les points seront [startOfWeek](startofweekfunction.md) / [StartOfMonth](startofmonthfunction.md) / [STARTOFYEAR](startofyearfunction.md). 
+* *dim1*, *dim2*,... : (facultatif) liste des colonnes de dimensions qui découpent le calcul des métriques d’activité.
 
 **Retourne**
 
-Retourne un tableau qui a le nombre et les valeurs de comptage distinctes des Ids dans la période de retour, pour chaque période de chronologie (par bac) et pour chaque combinaison de dimensions existantes.
+Retourne une table qui contient les valeurs Count et distinct Count des ID dans la période lookback, pour chaque période de chronologie (par emplacement) et pour chaque combinaison de dimensions existante.
 
-Le schéma de table de sortie est :
+Le schéma de la table de sortie est le suivant :
 
-|*TimelineColumn (en)*|dim1|..|dim_n|Count|Dcount (Dcount)|
+|*TimelineColumn*|`dim1`|..|`dim_n`|`count`|`dcount`|
 |---|---|---|---|---|---|
-|type: à partir de *TimelineColumn*|..|..|..|long|long|
+|type : à partir de *TimelineColumn*|..|..|..|long|long|
 
 
 **Exemples**
 
-Calculez les dénombrements et les dcomptes pour les utilisateurs au cours de la semaine dernière, pour chaque jour dans la période d’analyse. 
+Calculer les nombres et `dcounts` pour les utilisateurs de la semaine dernière, pour chaque jour de la période d’analyse. 
 
 ```kusto
 let start = datetime(2017 - 08 - 01);
@@ -83,7 +83,7 @@ T | evaluate sliding_window_counts(UserId, Timestamp, start, end, lookbackWindow
 
 ```
 
-|Timestamp|Count|Dcount (Dcount)|
+|Timestamp|Count|`dcount`|
 |---|---|---|
 |2017-08-01 00:00:00.0000000|5|3|
 |2017-08-02 00:00:00.0000000|8|5|

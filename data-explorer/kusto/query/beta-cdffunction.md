@@ -1,6 +1,6 @@
 ---
-title: beta_cdf() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit beta_cdf() dans Azure Data Explorer.
+title: beta_cdf ()-Azure Explorateur de données
+description: Cet article décrit beta_cdf () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 4faaeddc647d047755108f3c993db855a56de363
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 76b16098d9340a98fb3a456dfa947c089507da6c
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81517916"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83227687"
 ---
 # <a name="beta_cdf"></a>beta_cdf()
 
@@ -23,34 +23,35 @@ Retourne la fonction de distribution bêta cumulative standard.
 beta_cdf(0.2, 10.0, 50.0)
 ```
 
-Si *la probabilité* = `beta_cdf(`*x*,... `)`, `beta_inv(`puis *la probabilité*,... `)` *x*x  = .
+Si *probabilité*  =  `beta_cdf(` *x*,... `)` , alors `beta_inv(` *probabilité*,... `)`  =  *x*.
 
 La distribution Bêta est couramment utilisée pour étudier la variation du pourcentage d’une valeur dans des échantillons. Il peut s’agir, par exemple, de la fraction d’une journée que des gens passent à regarder la télévision.
 
 **Syntaxe**
 
-`beta_cdf(`*x*`, `*bêta* *alpha*`, ``)`
+`beta_cdf(`*x* `, ` *alpha* `, ` *version bêta*`)`
 
 **Arguments**
 
-* *x*: Une valeur à laquelle évaluer la fonction.
-* *alpha*: Un paramètre de la distribution.
-* *bêta*: Un paramètre de la distribution.
+* *x*: valeur à laquelle évaluer la fonction.
+* *alpha*: paramètre de la distribution.
+* *bêta*: paramètre de la distribution.
 
 **Retourne**
 
-* La [fonction cumulative de distribution bêta](https://en.wikipedia.org/wiki/Beta_distribution#Cumulative_distribution_function).
+* [Fonction de distribution cumulative bêta](https://en.wikipedia.org/wiki/Beta_distribution#Cumulative_distribution_function).
 
 **Remarques**
 
-Si un argument n’est pasnumérique, beta_cdf)renvoie la valeur nulle.
+Si un argument n’est pas numérique, beta_cdf () retourne une valeur null.
 
-Si x < 0 ou x > 1, beta_cdf() retourne la valeur NaN.
+Si x < 0 ou x > 1, beta_cdf () retourne une valeur NaN.
 
-Si l’alpha 0 ou la bêta 0, beta_cdf)retourne la valeur NaN.
+Si alpha ≤ 0 ou beta ≤ 0, beta_cdf () retourne la valeur NaN.
 
 **Exemples**
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 datatable(x:double, alpha:double, beta:double, comment:string)
 [
@@ -65,13 +66,13 @@ datatable(x:double, alpha:double, beta:double, comment:string)
 |x|alpha|beta|comment|b|
 |---|---|---|---|---|
 |0.9|10|20|Entrée valide|0.999999999999959|
-|1.5|10|20|x > 1, donne NaN|NaN|
-|-10|10|20|x < 0, cède NaN|NaN|
-|0.1|-1|20|alpha est < 0, donne NaN|NaN|
+|1.5|10|20|x > 1, produit NaN|NaN|
+|-10|10|20|x < 0, produit NaN|NaN|
+|0.1|-1|20|Alpha est < 0, produit NaN|NaN|
 
 
 **Voir aussi**
 
 
-* Pour calculer l’inverse de la fonction de densité de probabilité cumulative bêta, voir [bêta-inv()](./beta-invfunction.md).
-* Pour la fonction de densité de probabilité de calcul, voir [bêta-pdf()](./beta-pdffunction.md).
+* Pour calculer l’inverse de la fonction de densité de probabilité cumulative bêta, consultez [beta-INV ()](./beta-invfunction.md).
+* Pour le calcul de la fonction de densité de probabilité, consultez [beta-PDF ()](./beta-pdffunction.md).

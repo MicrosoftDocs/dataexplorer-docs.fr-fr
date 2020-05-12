@@ -1,6 +1,6 @@
 ---
-title: make_list() (fonction d’agrégation) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit make_list () (fonction d’agrégation) dans Azure Data Explorer.
+title: make_list () (fonction d’agrégation)-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit make_list () (fonction d’agrégation) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,40 +8,40 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/23/2020
-ms.openlocfilehash: e46dbfac7b8c819f66d469c160452ec4dddfb769
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: fed2616f5fbd32b1c80f936d5689261467a9dc5e
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81512748"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83224831"
 ---
-# <a name="make_list-aggregation-function"></a>make_list)) (fonction d’agrégation)
+# <a name="make_list-aggregation-function"></a>make_list () (fonction d’agrégation)
 
 Retourne un tableau (JSON) `dynamic` de toutes les valeurs de *Expr* dans le groupe.
 
-* Ne peut être utilisé que dans le contexte de l’agrégation à l’intérieur [résumer](summarizeoperator.md)
+* Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 
 **Syntaxe**
 
-`summarize``make_list(` *Expr* `,` [ *MaxSize*]`)`
+`summarize``make_list(` *Expr* [ `,` *MaxSize*]`)`
 
 **Arguments**
 
-* *Expr*: Expression qui sera utilisée pour le calcul de l’agrégation.
-* *MaxSize* est une limite d’intégrisation facultative sur le nombre maximum d’éléments retournés (par défaut est *1048576*). La valeur MaxSize ne peut excéder 1048576.
+* *Expr*: expression qui sera utilisée pour le calcul de l’agrégation.
+* *MaxSize* est une limite d’entier facultative sur le nombre maximal d’éléments retournés (la valeur par défaut est *1048576*). La valeur MaxSize ne peut pas dépasser 1048576.
 
 > [!NOTE]
-> Une variante héritée et `makelist()` obsolète de cette fonction : a une limite par défaut de *MaxSize* 128.
+> Une variante héritée et obsolète de cette fonction : `makelist()` a une limite par défaut de *MaxSize* = 128.
 
 **Retourne**
 
 Retourne un tableau (JSON) `dynamic` de toutes les valeurs de *Expr* dans le groupe.
-Si l’entrée `summarize` à l’opérateur n’est pas triée, l’ordre des éléments dans le tableau résultant n’est pas défini.
-Si l’entrée `summarize` à l’opérateur est triée, l’ordre des éléments dans le tableau résultant suit celui de l’entrée.
+Si l’entrée de l' `summarize` opérateur n’est pas triée, l’ordre des éléments dans le tableau résultant n’est pas défini.
+Si l’entrée de l' `summarize` opérateur est triée, l’ordre des éléments dans le tableau résultant suit celui de l’entrée.
 
 > [!TIP]
-> Utilisez [`mv-apply`](./mv-applyoperator.md) l’opérateur pour créer une liste commandée par une clé. Consultez les exemples [ici](./mv-applyoperator.md#using-mv-apply-operator-to-sort-the-output-of-makelist-aggregate-by-some-key).
+> Utilisez l' [`mv-apply`](./mv-applyoperator.md) opérateur pour créer une liste ordonnée à l’aide d’une clé. Consultez les exemples [ici](./mv-applyoperator.md#using-the-mv-apply-operator-to-sort-the-output-of-makelist-aggregate-by-some-key).
 
 **Voir aussi**
 
-[`make_list_if`](./makelistif-aggfunction.md)l’opérateur `make_list`est similaire à , sauf qu’il accepte également un prédicat.
+[`make_list_if`](./makelistif-aggfunction.md)est semblable à `make_list` , sauf qu’il accepte également un prédicat.
