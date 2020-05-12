@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/13/2020
-ms.openlocfilehash: 839042b50fce6409de29c4cf979a253a7485fb7f
-ms.sourcegitcommit: ef009294b386cba909aa56d7bd2275a3e971322f
+ms.openlocfilehash: 35ba47fde9c1bdd5adf0f57ed40d028f4dc520c2
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/08/2020
-ms.locfileid: "82977148"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83227755"
 ---
 # <a name="extents-data-shards"></a>Étendues (partitions de données)
 
@@ -44,22 +44,18 @@ Le « cycle de vie » commun d’une étendue est donc :
 2. L’étendue est fusionnée avec d’autres extensions. Lorsque les étendues fusionnées sont peu volumineuses, Kusto effectue en fait un processus d’ingestion sur ceux-ci (cette opération est appelée **régénération**). Une fois que les étendues atteignent une certaine taille, la fusion est effectuée uniquement pour les index et les artefacts de données d’étendues dans le stockage ne sont pas modifiés.
 3. L’étendue fusionnée (éventuellement un qui effectue le suivi de son lignage sur d’autres étendues fusionnées, etc.) est finalement supprimée en raison d’une stratégie de rétention. Lorsque des étendues sont supprimées en fonction de l’heure (x heures/jours plus anciennes), la date de création de l’étendue la plus récente à l’intérieur de la fusion est prise dans le calcul.
 
-## <a name="extent-ingestion-time"></a>Temps d’ingestion des étendues
+## <a name="extent-creation-time"></a>Heure de création de l’extension
 
-L’un des éléments d’information les plus importants pour chaque extension est son temps d’ingestion. Cette heure est utilisée par Kusto pour :
+L’un des éléments d’information les plus importants pour chaque extension est son heure de création. Cette heure est utilisée par Kusto pour :
 
-1. Rétention (les extensions qui ont été ingérées précédemment seront supprimées précédemment).
-2. La mise en cache (extensions qui ont été ingérées récemment sera plus chaud).
-3. L’échantillonnage (lors de l’utilisation d' `take`opérations de requête telles que, les extensions récentes sont privilégiées).
+1. Rétention (les extensions créées précédemment seront supprimées précédemment).
+2. La mise en cache (extensions créées récemment seront conservées dans le [cache à chaud](cachepolicy.md)).
+3. L’échantillonnage (lors de l’utilisation d’opérations de requête telles que `take` , les extensions récentes sont privilégiées).
 
-En fait, Kusto suit deux `datetime` valeurs par extension : `MinCreatedOn` et `MaxCreatedOn`.
+En fait, Kusto suit deux `datetime` valeurs par extension : `MinCreatedOn` et `MaxCreatedOn` .
 Ces valeurs commencent de la même façon, mais lorsque l’étendue est fusionnée avec d’autres extensions, les valeurs de l’étendue résultante sont respectivement les valeurs minimale et maximale de toutes les étendues fusionnées.
 
-L’heure d’ingestion d’une étendue peut être définie de trois manières :
-
-1. Normalement, le nœud qui effectue l’ingestion définit cette valeur en fonction de son horloge locale.
-2. Si une **stratégie de temps** d’ingestion est définie sur la table, le nœud qui effectue l’ingestion définit cette valeur en fonction de l’horloge locale du nœud d’administration du cluster, garantissant ainsi que toutes les ingestions ultérieures auront une valeur de temps d’ingestion supérieure.
-3. Le client peut définir cette heure. (Cela est utile, par exemple, si le client souhaite obtenir des données de nouveau et ne souhaite pas que les données régérées apparaissent comme si elles étaient arrivées en retard, par exemple à des fins de rétention).    
+Normalement, l’heure de création d’une extension est définie en fonction de l’heure à laquelle les données dans l’étendue sont ingérées. Les clients peuvent éventuellement substituer l’heure de création de l’étendue, en fournissant une autre heure de création dans les [Propriétés](../../ingestion-properties.md) d’ingestion (cela est utile, par exemple, si le client souhaite ré-ingérer des données et ne souhaite pas que les données régérées apparaissent comme si elles étaient arrivées tardives, par exemple à des fins de rétention).    
 
 ## <a name="extent-tagging"></a>Balisage d’étendue
 
@@ -74,7 +70,7 @@ Kusto assigne une signification spéciale à toutes les balises d’étendue don
 
 ### <a name="drop-by-extent-tags"></a>balises d’étendue « Drop-by : »
 
-Les balises qui commencent **`drop-by:`** par un préfixe peuvent être utilisées pour contrôler les autres extensions avec lesquelles effectuer la fusion ; les extensions qui ont une balise donnée `drop-by:` peuvent être fusionnées ensemble, mais elles ne sont pas fusionnées avec d’autres extensions. Cela permet à l’utilisateur d’émettre une commande pour supprimer des extensions en fonction `drop-by:` de leur étiquette, telle que la commande suivante :
+Les balises qui commencent par un **`drop-by:`** préfixe peuvent être utilisées pour contrôler les autres extensions avec lesquelles la fusion peut être appliquée ; les extensions qui ont une `drop-by:` balise donnée peuvent être fusionnées ensemble, mais elles ne sont pas fusionnées avec d’autres extensions. Cela permet à l’utilisateur d’émettre une commande pour supprimer des extensions en fonction de leur `drop-by:` étiquette, telle que la commande suivante :
 
 ```kusto
 .ingest ... with @'{"tags":"[\"drop-by:2016-02-17\"]"}'
@@ -84,12 +80,12 @@ Les balises qui commencent **`drop-by:`** par un préfixe peuvent être utilisé
 
 #### <a name="performance-notes"></a>Remarques sur les performances
 
-* Les balises `drop-by` de surutilisation ne sont pas recommandées. La prise en charge de la suppression de données de la manière mentionnée ci-dessus est destinée à des événements qui se produisent rarement, ne remplace pas les données au niveau de l’enregistrement et s’appuie sur le fait que les données référencées de cette manière sont « en bloc ». Toute tentative de donner une étiquette différente pour chaque enregistrement, ou un petit nombre d’enregistrements, peut avoir un impact sérieux sur les performances.
+* Les balises de surutilisation ne `drop-by` sont pas recommandées. La prise en charge de la suppression de données de la manière mentionnée ci-dessus est destinée à des événements qui se produisent rarement, ne remplace pas les données au niveau de l’enregistrement et s’appuie sur le fait que les données référencées de cette manière sont « en bloc ». Toute tentative de donner une étiquette différente pour chaque enregistrement, ou un petit nombre d’enregistrements, peut avoir un impact sérieux sur les performances.
 * Dans les cas où ces balises ne sont pas nécessaires pendant la réception des données, il est recommandé de [Supprimer les balises](extents-commands.md#drop-extent-tags).
 
 ### <a name="ingest-by-extent-tags"></a>balises d’extension’ingestion : '
 
-Les balises qui commencent **`ingest-by:`** par un préfixe peuvent être utilisées pour s’assurer que les données ne sont ingérées qu’une seule fois. L’utilisateur peut émettre une commande de réception qui empêche la réception des données s’il existe déjà une extension de cette balise `ingest-by:` spécifique à l’aide **`ingestIfNotExists`** de la propriété.
+Les balises qui commencent par un **`ingest-by:`** préfixe peuvent être utilisées pour s’assurer que les données ne sont ingérées qu’une seule fois. L’utilisateur peut émettre une commande de réception qui empêche la réception des données s’il existe déjà une extension de cette balise spécifique à l' `ingest-by:` aide de la **`ingestIfNotExists`** propriété.
 Les valeurs de `tags` et `ingestIfNotExists` sont des tableaux de chaînes sérialisés au format JSON.
 
 L’exemple suivant ingère les données une seule fois (les 2e et 3e commandes ne feront rien) :
@@ -103,10 +99,10 @@ L’exemple suivant ingère les données une seule fois (les 2e et 3e commandes 
 ```
 
 > [!NOTE]
-> Dans le cas courant, une commande de réception est susceptible d’inclure une `ingest-by:` balise et `ingestIfNotExists` une propriété, avec la même valeur (comme indiqué dans la troisième commande ci-dessus).
+> Dans le cas courant, une commande de réception est susceptible d’inclure une `ingest-by:` balise et une `ingestIfNotExists` propriété, avec la même valeur (comme indiqué dans la troisième commande ci-dessus).
 
 #### <a name="performance-notes"></a>Remarques sur les performances
 
-- Il est `ingest-by` déconseillé d’utiliser des balises.
-Si le Kusto d’alimentation du pipeline est connu pour avoir des doublons de données, il est recommandé de les résoudre autant que possible avant d’ingérer les données `ingest-by` dans Kusto, et d’utiliser des balises dans Kusto uniquement pour les cas où la partie ingérée par Kusto pourrait introduire des doublons en soi (par exemple, un mécanisme de nouvelle tentative peut se chevaucher avec des appels d' Toute tentative de définition d' `ingest-by` une balise unique pour chaque appel d’ingestion peut avoir un impact sérieux sur les performances.
+- Il est déconseillé d’utiliser des `ingest-by` balises.
+Si le Kusto d’alimentation du pipeline est connu pour avoir des doublons de données, il est recommandé de les résoudre autant que possible avant d’ingérer les données dans Kusto, et d’utiliser des `ingest-by` balises dans Kusto uniquement pour les cas où la partie ingérée par Kusto pourrait introduire des doublons en soi (par exemple, un mécanisme de nouvelle tentative peut se chevaucher avec des appels d' Toute tentative de définition d’une `ingest-by` balise unique pour chaque appel d’ingestion peut avoir un impact sérieux sur les performances.
 - Dans les cas où ces balises ne sont pas nécessaires pendant la réception des données, il est recommandé de [Supprimer les balises](extents-commands.md#drop-extent-tags).
