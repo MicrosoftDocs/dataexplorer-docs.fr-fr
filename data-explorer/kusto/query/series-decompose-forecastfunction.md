@@ -1,5 +1,5 @@
 ---
-title: series_decompose_forecast ()-Azure Explorateur de données | Microsoft Docs
+title: series_decompose_forecast ()-Azure Explorateur de données
 description: Cet article décrit series_decompose_forecast () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/26/2019
-ms.openlocfilehash: 97f87a7390ab099886e84642b2eb46a8087b6da9
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 9676da9d12e2654cd4d92538f183a2630971d078
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618839"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372879"
 ---
 # <a name="series_decompose_forecast"></a>series_decompose_forecast()
 
@@ -23,7 +23,7 @@ Prend une expression contenant une série (tableau numérique dynamique) comme e
  
 **Syntaxe**
 
-`series_decompose_forecast(`*Seasonality_threshold* de *Seasonality* `,` *Trend* tendance`,` des *points* `[,` de *série* `,``])`
+`series_decompose_forecast(`*Série* `,` *Points* `[,` Caractère *saisonnier* `,` *Tendance* `,` *Seasonality_threshold*`])`
 
 **Arguments**
 
@@ -37,7 +37,7 @@ Prend une expression contenant une série (tableau numérique dynamique) comme e
     * « linefit » : extraction du composant de tendance à l’aide de la régression linéaire (par défaut).    
     * « AVG » : définir le composant de tendance comme moyenne (x).
     * « None » : aucune tendance. ignorez l’extraction de ce composant.   
-* *Seasonality_threshold*: le seuil du score saisonnier lorsque le caractère *saisonnier* est défini sur détection automatique, le seuil de score `0.6`par défaut est. Pour plus d’informations, consultez [series_periods_detect](series-periods-detectfunction.md).
+* *Seasonality_threshold*: le seuil du score saisonnier lorsque le caractère *saisonnier* est défini sur détection automatique, le seuil de score par défaut est `0.6` . Pour plus d’informations, consultez [series_periods_detect](series-periods-detectfunction.md).
 
 **Renvoi**
 
@@ -52,8 +52,9 @@ Prend une expression contenant une série (tableau numérique dynamique) comme e
 
 **Exemple**
 
-Dans l’exemple suivant, nous générons une série de 4 semaines dans un grain horaire avec un caractère saisonnier hebdomadaire et une petite tendance vers le `make-series` haut, nous utilisons et ajoutons une autre semaine vide à la série. `series_decompose_forecast`est appelé avec une semaine (24 * 7 points), il détecte automatiquement le caractère saisonnier et la tendance et génère une prévision de l’intégralité de la période de 5 semaines. 
+Dans l’exemple suivant, nous générons une série de 4 semaines dans un grain horaire avec un caractère saisonnier hebdomadaire et une petite tendance vers le haut, nous utilisons `make-series` et ajoutons une autre semaine vide à la série. `series_decompose_forecast`est appelé avec une semaine (24 * 7 points), il détecte automatiquement le caractère saisonnier et la tendance et génère une prévision de l’intégralité de la période de 5 semaines. 
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let ts=range t from 1 to 24*7*4 step 1 // generate 4 weeks of hourly data
 | extend Timestamp = datetime(2018-03-01 05:00) + 1h * t 

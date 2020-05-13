@@ -1,6 +1,6 @@
 ---
-title: opérateur de la gamme - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit l’opérateur de gamme dans Azure Data Explorer.
+title: opérateur de plage-Azure Explorateur de données
+description: Cet article décrit l’opérateur de plage dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f7ec559a23e28568ce7abd8365cdc502ad05a9b0
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 9dc64e6d91d6832dd57345bf58200848ad5a5db4
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81510606"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373098"
 ---
 # <a name="range-operator"></a>opérateur range
 
@@ -23,25 +23,26 @@ Notez qu’elle ne comporte pas d’entrée de pipeline.
 
 **Syntaxe**
 
-`range`*colonneName* `from` étape *d’arrêt* `step` *step* *de démarrage* `to`
+`range`*ColumnName* `from` *Démarrer* `to` *arrêter* `step` *étape*
 
 **Arguments**
 
-* *colonneName*: Le nom de la colonne unique dans le tableau de sortie.
-* *début*: La plus petite valeur de la sortie.
-* *arrêt*: La valeur la plus élevée générée dans la sortie (ou une limite sur la valeur la plus élevée, si *l’étape* dépasse cette valeur).
-* *étape*: La différence entre deux valeurs consécutives. 
+* *ColumnName*: nom de la colonne unique dans la table de sortie.
+* *Start*: valeur la plus petite dans la sortie.
+* *Stop*: valeur la plus élevée générée dans la sortie (ou liée à la valeur la plus élevée, si *Step* avance sur cette valeur).
+* *Step*: différence entre deux valeurs consécutives. 
 
-Les arguments doivent être des valeurs de type numérique, date ou durée. Ils ne peuvent pas faire référence aux colonnes d’une table. (Si vous voulez calculer la plage en fonction d’une table d’entrée, utilisez la fonction de portée, peut-être avec l’opérateur mv-expand.) 
+Les arguments doivent être des valeurs de type numérique, date ou durée. Ils ne peuvent pas faire référence aux colonnes d’une table. (Si vous souhaitez calculer la plage basée sur une table d’entrée, utilisez la fonction Range, peut-être avec l’opérateur MV-Expand.) 
 
 **Retourne**
 
-Une table avec une seule colonne appelée *columnName*, dont *les*valeurs commencent, *étape* *de départ* `+` , ... jusqu’à et jusqu’à *l’arrêt*.
+Une table avec une seule colonne nommée *ColumnName*, dont les valeurs sont *Start*, *Start* `+` *Step*,... jusqu’à et jusqu’à l' *arrêt*.
 
 **Exemple**  
 
 Table des occurrences de minuit au cours des sept derniers jours. La fonction d’emplacement (floor) diminue à chaque fois au début de la journée.
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 range LastWeek from ago(7d) to now() step 1d
 ```
@@ -56,11 +57,12 @@ range LastWeek from ago(7d) to now() step 1d
 
 Une table comportant une seule colonne nommée `Steps` dont le type est `long` et dont les valeurs sont `1`, `4` et `7`.
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 range Steps from 1 to 8 step 3
 ```
 
-L’exemple suivant `range` montre comment l’opérateur peut être utilisé pour créer une petite table de dimension ad hoc qui est ensuite utilisée pour introduire des zéros où les données sources n’ont pas de valeurs.
+L’exemple suivant montre comment l' `range` opérateur peut être utilisé pour créer une petite table de dimension ad hoc qui est ensuite utilisée pour introduire des zéros là où les données sources n’ont pas de valeurs.
 
 ```kusto
 range TIMESTAMP from ago(4h) to now() step 1m

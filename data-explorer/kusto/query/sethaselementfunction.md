@@ -1,6 +1,6 @@
 ---
-title: set_has_element() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit set_has_element() dans Azure Data Explorer.
+title: set_has_element ()-Azure Explorateur de données
+description: Cet article décrit set_has_element () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/23/2020
-ms.openlocfilehash: 256e01646c6ecd39a8a589299acd6620008ece28
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 9cf2ec4371f4aeef8a68cb65fb2b946b9c393054
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81507767"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372370"
 ---
 # <a name="set_has_element"></a>set_has_element()
 
-Détermine si l’ensemble spécifié contient l’élément spécifié.
+Détermine si le jeu spécifié contient l’élément spécifié.
 
 **Syntaxe**
 
@@ -25,15 +25,16 @@ Détermine si l’ensemble spécifié contient l’élément spécifié.
 
 **Arguments**
 
-* *tableau*: Tableau d’entrée à rechercher.
-* *valeur*: Valeur à rechercher. La valeur doit `long`être `integer` `double`de `datetime` `timespan`type `decimal` `string`, `guid`, , , , , , ou .
+* *tableau*: tableau d’entrée à rechercher.
+* *valeur*: valeur à rechercher. La valeur doit être de type `long` ,,, `integer` `double` `datetime` , `timespan` , `decimal` , `string` ou `guid` .
 
 **Retourne**
 
-Vrai ou faux selon que la valeur existe dans le tableau.
+True ou false selon que la valeur existe ou non dans le tableau.
 
 **Exemple**
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 print arr=dynamic(["this", "is", "an", "example"]) 
 | project Result=set_has_element(arr, "example")
@@ -45,4 +46,4 @@ print arr=dynamic(["this", "is", "an", "example"])
 
 **Voir aussi**
 
-Si vous êtes également intéressé par le poste auquel la valeur existe dans le tableau, vous pouvez utiliser [array_index_of (arr, valeur)](arrayindexoffunction.md). Les deux fonctions sont les mêmes, sur le plan de la performance.
+Si vous êtes également intéressé par la position à laquelle la valeur existe dans le tableau, vous pouvez utiliser [array_index_of (arr, value)](arrayindexoffunction.md). Les deux fonctions sont les mêmes, en termes de performances.

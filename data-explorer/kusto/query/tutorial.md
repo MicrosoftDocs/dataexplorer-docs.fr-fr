@@ -1,5 +1,5 @@
 ---
-title: Didacticiel-Azure Explorateur de données | Microsoft Docs
+title: Didacticiel-Azure Explorateur de données
 description: Cet article décrit le didacticiel dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 03/23/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 90d06064069a17d6b1394701bb4ea72483061b9c
-ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
+ms.openlocfilehash: 8898f772af37e86ec33bff66e43779dfbaf4c053
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82737604"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83370686"
 ---
 # <a name="tutorial"></a>Didacticiel
 
@@ -34,11 +34,12 @@ La meilleure façon de se familiariser avec le langage de requête Kusto consist
 
 ## <a name="count-rows"></a>Compter les lignes
 
-Notre exemple de base de données a `StormEvents`une table appelée.
+Notre exemple de base de données a une table appelée `StormEvents` .
 Pour en savoir plus sur la taille, nous allons diriger son contenu dans un opérateur qui compte simplement les lignes :
 
 * *Syntaxe :* Une requête est une source de données (généralement un nom de table), éventuellement suivie d’une ou plusieurs paires de caractères de barre verticale et d’un opérateur tabulaire.
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents | count
 ```
@@ -57,8 +58,9 @@ Utilisez [Project](./projectoperator.md) pour choisir uniquement les colonnes de
 
 ## <a name="where-filtering-by-a-boolean-expression"></a>WHERE : filtrage par une expression booléenne
 
-Nous allons voir uniquement les `flood`dans `California` le cadre du 1er février-2007 :
+Nous allons voir uniquement les `flood` dans le `California` cadre du 1er février-2007 :
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | where StartTime > datetime(2007-02-01) and StartTime < datetime(2007-03-01)
@@ -66,7 +68,7 @@ StormEvents
 | project StartTime, EndTime , State , EventType , EpisodeNarrative
 ```
 
-|StartTime|EndTime|State|Type d’événement|EpisodeNarrative|
+|StartTime|EndTime|État|Type d’événement|EpisodeNarrative|
 |---|---|---|---|---|
 |2007-02-19 00:00:00.0000000|2007-02-19 08:00:00.0000000|France|Crue|Un système frontal qui évolue à travers le sud de la Joaquin de la vallée A introduit de courtes périodes de pluie lourde dans le comté de crénage occidental au cours des premières heures du 19. Une saturation mineure a été signalée sur l’autoroute d’État 166 près de Taft.|
 
@@ -74,13 +76,14 @@ StormEvents
 
 Examinons quelques données : quel est le contenu d’un échantillon de 5 lignes ?
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | take 5
 | project  StartTime, EndTime, EventType, State, EventNarrative  
 ```
 
-|StartTime|EndTime|Type d’événement|State|EventNarrative|
+|StartTime|EndTime|Type d’événement|État|EventNarrative|
 |---|---|---|---|---|
 |2007-09-18 20:00:00.0000000|2007-09-19 18:00:00.0000000|Pluie lourde|Floride|Jusqu’à 9 pouces de pluie chutaient sur une période de 24 heures sur des parties du comté Volusia côtier.|
 |2007-09-20 21:57:00.0000000|2007-09-20 22:05:00.0000000|Tornade|Floride|Tornade évoqué dans la ville de Eustis, à la fin du Nord de l’ouest du lac. La tornade s’est rapidement intensifiée sur la force EF1 à mesure qu’elle a été déplacée Nord-Nord-Ouest à Eustis. La piste se trouvait juste à moins de deux kilomètres et avait une largeur maximale de 300 mètres.  La tornade a détruit 7 maisons. Vingt sept maisons ont reçu des dommages majeurs et 81 maisons signalaient des dommages mineurs. Il n’y avait pas de blessures graves et les dommages liés aux propriétés ont été définis à $6,2 millions.|
@@ -93,18 +96,19 @@ Mais [Take](./takeoperator.md) affiche les lignes de la table dans un ordre part
 
 ## <a name="sort-and-top"></a>Trier et haut
 
-* *Syntaxe :* Certains opérateurs ont des paramètres introduits par des `by`Mots clés tels que.
+* *Syntaxe :* Certains opérateurs ont des paramètres introduits par des mots clés tels que `by` .
 * `desc` = ordre décroissant, `asc` = ordre croissant.
 
 Afficher les n premières lignes, classées par une colonne particulière :
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | top 5 by StartTime desc
 | project  StartTime, EndTime, EventType, State, EventNarrative  
 ```
 
-|StartTime|EndTime|Type d’événement|State|EventNarrative|
+|StartTime|EndTime|Type d’événement|État|EventNarrative|
 |---|---|---|---|---|
 |2007-12-31 22:30:00.0000000|2007-12-31 23:59:00.0000000|Tempête d’hiver|MICHIGAN|Cet événement lourd a continué au début des heures du matin le jour de la nouvelle année.|
 |2007-12-31 22:30:00.0000000|2007-12-31 23:59:00.0000000|Tempête d’hiver|MICHIGAN|Cet événement lourd a continué au début des heures du matin le jour de la nouvelle année.|
@@ -114,6 +118,7 @@ StormEvents
 
 Le même résultat peut être obtenu à l’aide de l’opérateur [sort](./sortoperator.md) et [Take](./takeoperator.md)
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | sort by StartTime desc
@@ -125,6 +130,7 @@ StormEvents
 
 Créez une nouvelle colonne en calculant une valeur dans chaque ligne :
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | limit 5
@@ -132,7 +138,7 @@ StormEvents
 | project StartTime, EndTime, Duration, EventType, State
 ```
 
-|StartTime|EndTime|Duration|Type d’événement|State|
+|StartTime|EndTime|Duration|Type d’événement|État|
 |---|---|---|---|---|
 |2007-09-18 20:00:00.0000000|2007-09-19 18:00:00.0000000|22:00:00|Pluie lourde|Floride|
 |2007-09-20 21:57:00.0000000|2007-09-20 22:05:00.0000000|00:08:00|Tornade|Floride|
@@ -143,6 +149,7 @@ StormEvents
 Il est possible de réutiliser le nom de colonne et d’assigner le résultat de calcul à la même colonne.
 Par exemple :
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 print x=1
 | extend x = x + 1, y = x
@@ -153,29 +160,31 @@ print x=1
 |---|---|
 |3|1|
 
-[Les expressions scalaires](./scalar-data-types/index.md) peuvent inclure tous les opérateurs`+`habituels `*`( `/`, `%` `-`,,,), et il existe une gamme de fonctions utiles.
+Les [expressions scalaires](./scalar-data-types/index.md) peuvent inclure tous les opérateurs habituels ( `+` , `-` ,, `*` `/` , `%` ), et il existe une gamme de fonctions utiles.
 
 ## <a name="summarize-aggregate-groups-of-rows"></a>Résumé : groupes d’agrégats de lignes
 
 Compter le nombre d’événements provenant de chaque pays :
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | summarize event_count = count() by State
 ```
 
-[résume](./summarizeoperator.md) les groupes ensemble de lignes qui ont les mêmes valeurs dans `by` la clause, puis utilise la fonction d’agrégation (telle `count`que) pour combiner chaque groupe dans une ligne unique. Ainsi, dans ce cas, il y a une ligne pour chaque État et une colonne pour le nombre de lignes dans cet État.
+[résume](./summarizeoperator.md) les groupes ensemble de lignes qui ont les mêmes valeurs dans la `by` clause, puis utilise la fonction d’agrégation (telle que `count` ) pour combiner chaque groupe dans une ligne unique. Ainsi, dans ce cas, il y a une ligne pour chaque État et une colonne pour le nombre de lignes dans cet État.
 
 Il existe une plage de [fonctions d’agrégation](./summarizeoperator.md#list-of-aggregation-functions), et vous pouvez en utiliser plusieurs dans un opérateur de synthèse pour produire plusieurs colonnes calculées. Par exemple, nous pourrions obtenir le nombre de tempêtes dans chaque État et également une somme du type de tempêtes unique par État,  
 Ensuite, nous pourrions utiliser [Top](./topoperator.md) pour connaître les États les plus affectés à la Storm :
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents 
 | summarize StormCount = count(), TypeOfStorms = dcount(EventType) by State
 | top 5 by StormCount desc
 ```
 
-|State|StormCount|TypeOfStorms|
+|État|StormCount|TypeOfStorms|
 |---|---|---|
 |TEXAS|4701|27|
 |KANSAS|3166|21|
@@ -191,9 +200,10 @@ Le résultat d’un résumé contient :
 
 ## <a name="summarize-by-scalar-values"></a>Résumer en fonction de valeurs scalaires
 
-Vous pouvez utiliser des valeurs scalaires (numériques, horaires ou d’intervalle) `by` dans la clause, mais vous souhaiterez placer les valeurs dans des emplacements.  
+Vous pouvez utiliser des valeurs scalaires (numériques, horaires ou d’intervalle) dans la `by` clause, mais vous souhaiterez placer les valeurs dans des emplacements.  
 La fonction [bin ()](./binfunction.md) est utile dans les cas suivants :
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | where StartTime > datetime(2007-02-14) and StartTime < datetime(2007-02-21)
@@ -218,6 +228,7 @@ Cela réduit tous les horodateurs aux intervalles de 1 jour :
 
 Projetez deux colonnes et utilisez-les comme axe des x et y d’un graphique :
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents 
 | summarize event_count=count(), mid = avg(BeginLat) by State 
@@ -229,7 +240,7 @@ StormEvents
 
 :::image type="content" source="images/tutorial/event-counts-state.png" alt-text="Histogramme du nombre d’événements Storm par État":::
 
-Bien que nous `mid` ayons supprimé l’opération de projet, nous en avons encore besoin si nous voulons que le graphique affiche les pays dans cet ordre.
+Bien que nous ayons supprimé l' `mid` opération de projet, nous en avons encore besoin si nous voulons que le graphique affiche les pays dans cet ordre.
 
 Strictement parlant, « Render » est une fonctionnalité du client au lieu d’une partie du langage de requête. Toutefois, il est intégré dans le langage et est très utile pour la vision de vos résultats.
 
@@ -238,6 +249,7 @@ Strictement parlant, « Render » est une fonctionnalité du client au lieu d�
 
 En revenons aux emplacements numériques, nous affichons une série chronologique :
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | summarize event_count=count() by bin(StartTime, 1d)
@@ -250,6 +262,7 @@ StormEvents
 
 Utilisez plusieurs valeurs dans une clause `summarize by` afin de créer une ligne distincte pour chaque combinaison de valeurs :
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents 
 | where StartTime > datetime(2007-06-04) and StartTime < datetime(2007-06-10) 
@@ -259,7 +272,7 @@ StormEvents
 
 :::image type="content" source="images/tutorial/table-count-source.png" alt-text="Nombre de tables par source":::
 
-Ajoutez simplement le terme de rendu à l’expression `| render timechart`ci-dessus :.
+Ajoutez simplement le terme de rendu à l’expression ci-dessus : `| render timechart` .
 
 :::image type="content" source="images/tutorial/line-count-source.png" alt-text="Nombre de graphiques en courbes par source":::
 
@@ -269,8 +282,9 @@ Notez que `render timechart` utilise la première colonne comme axe des abscisse
 
 Comment l’activité varie-t-elle au quotidien moyen ?
 
-Nombre d’événements par Modulo d’une journée, Binned (en heures. Notez que nous utilisons `floor` à la place de bin :
+Nombre d’événements par Modulo d’une journée, Binned (en heures. Notez que nous utilisons à la `floor` place de bin :
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | extend hour = floor(StartTime % 1d , 1h)
@@ -281,7 +295,7 @@ StormEvents
 
 :::image type="content" source="images/tutorial/time-count-hour.png" alt-text="Graphique chronologique nombre par heure":::
 
-Actuellement, `render` n’étiquette pas les durées correctement, mais nous `| render columnchart` pourrions utiliser à la place :
+Actuellement, `render` n’étiquette pas les durées correctement, mais nous pourrions utiliser à la `| render columnchart` place :
 
 :::image type="content" source="images/tutorial/column-count-hour.png" alt-text="Nombre de graphiques en colonnes par heure":::
 
@@ -289,6 +303,7 @@ Actuellement, `render` n’étiquette pas les durées correctement, mais nous `|
 
 Comment l’activité varie-t-elle sur l’heure de la journée dans différents États ?
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | extend hour= floor( StartTime % 1d , 1h)
@@ -301,6 +316,7 @@ StormEvents
 
 Diviser par `1h` pour transformer l’axe x en nombre d’heures au lieu d’une durée :
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | extend hour= floor( StartTime % 1d , 1h)/ 1h
@@ -317,6 +333,7 @@ Comment trouver deux EventTypes donnés dans quel état ces deux événements se
 
 Vous pouvez extraire des événements Storm avec le premier EventType et le second EventType, puis joindre les deux jeux sur l’État.
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | where EventType == "Lightning"
@@ -339,6 +356,7 @@ Quelle est la durée de chaque session utilisateur ?
 
 En utilisant `extend` pour fournir un alias pour les deux horodatages, vous pouvez calculer la durée de la session.
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 Events
 | where eventName == "session_started"
@@ -361,6 +379,7 @@ Dans les mêmes clauses, nous renommons la colonne timestamp.
 
 Combien de tempêtes présentent des longueurs différentes ?
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | extend  duration = EndTime - StartTime
@@ -374,7 +393,7 @@ StormEvents
 
 :::image type="content" source="images/tutorial/event-count-duration.png" alt-text="Nombre d’événements graphique temporel par durée":::
 
-Ou utilisez `| render columnchart`:
+Ou utilisez `| render columnchart` :
 
 :::image type="content" source="images/tutorial/column-event-count-duration.png" alt-text="Nombre d’événements de graphique en colonnes graphique temporel par durée":::
 
@@ -382,13 +401,13 @@ Ou utilisez `| render columnchart`:
 
 Quelles sont les plages de durées qui couvrent différents pourcentages de Storm ?
 
-Utilisez la requête ci-dessus, `render` mais remplacez par :
+Utilisez la requête ci-dessus, mais remplacez `render` par :
 
 ```kusto
 | summarize percentiles(duration, 5, 20, 50, 80, 95)
 ```
 
-Dans ce cas, nous n’avons `by` fourni aucune clause, donc le résultat est une ligne unique :
+Dans ce cas, nous n’avons fourni aucune `by` clause, donc le résultat est une ligne unique :
 
 :::image type="content" source="images/tutorial/summarize-percentiles-duration.png" alt-text="Tableau de synthèse des centiles par durée":::
 
@@ -400,6 +419,7 @@ Nous pouvons voir que :
 
 Pour obtenir une répartition distincte pour chaque État, nous devons simplement placer la colonne State séparément via les deux opérateurs de synthèse :
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | extend  duration = EndTime - StartTime
@@ -417,6 +437,7 @@ StormEvents
 
 Utilisez [Let](./letstatement.md) pour séparer les parties de l’expression de requête dans l’exemple « Join » ci-dessus. Les résultats sont identiques :
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let LightningStorms = 
     StormEvents

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: f8cc5771890247291f6c9e1183a57fc7e1341874
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 9de01863ddb832421c5b6dbfe65b8ae451382fb7
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227738"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373366"
 ---
 # <a name="external-sql-table"></a>Table SQL externe
 
@@ -81,7 +81,7 @@ with
 
 ## <a name="querying-an-external-table-of-type-sql"></a>Interrogation d’une table externe de type SQL 
 
-L’interrogation d’une table SQL externe est prise en charge. Consultez [interrogation de tables externes](https://docs.microsoft.com/azure/data-explorer/data-lake-query-data). 
+L’interrogation d’une table SQL externe est prise en charge. Consultez [interrogation de tables externes](../../data-lake-query-data.md). 
 
 > [!Note]
 > L’implémentation de la requête de table externe SQL exécute un « SELECT * » complet (ou sélectionne des colonnes appropriées) dans la table SQL. Le reste de la requête s’exécute du côté Kusto. 

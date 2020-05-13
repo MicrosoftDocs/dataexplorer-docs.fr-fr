@@ -1,6 +1,6 @@
 ---
-title: opérateur de partition - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit l’opérateur de partition dans Azure Data Explorer.
+title: opérateur de partition-Azure Explorateur de données
+description: Cet article décrit l’opérateur de partition dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 0a9ef31f68a989fffe42d9b54800e9305e51f4ed
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 417d4afb74e9170301baebde6be73d97df097f0f
+ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81511371"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83271534"
 ---
 # <a name="partition-operator"></a>partition, opérateur
 
-L’opérateur de partition divise sa table d’entrée en plusieurs sous-tables selon les valeurs de la colonne spécifiée, exécute une sous-requête sur chaque sous-table et produit une table de sortie unique qui est l’union des résultats de toutes les sous-requêtes. 
+L’opérateur partition partitionne sa table d’entrée en plusieurs sous-tables en fonction des valeurs de la colonne spécifiée, exécute une sous-requête sur chaque sous-table et génère une seule table de sortie qui est l’Union des résultats de toutes les sous-requêtes. 
 
 ```kusto
 T | partition by Col1 ( top 10 by MaxValue )
@@ -27,44 +27,45 @@ T | partition by Col1 { U | where Col2=toscalar(Col1) }
 
 **Syntaxe**
 
-*T* `|` T `partition` [*PartitionParameters*] `by` *Colonne* `(` *ContextualSubquery*`)`
+*T* `|` `partition` [*PartitionParameters*] `by` *colonne* `(` *ContextualSubquery*`)`
 
-*T* `|` T `partition` [*PartitionParameters*] `by` *Sous-laquery* *Colonne* `{``}`
+*T* `|` `partition` [*PartitionParameters*] `by` *Column* `{` *sous-requête* de colonne`}`
 
 **Arguments**
 
-* *T*: La source tabulaire dont les données doivent être traitées par l’opérateur.
+* *T*: source tabulaire dont les données doivent être traitées par l’opérateur.
 
-* *Colonne*: Nom d’une colonne dans *T* dont les valeurs déterminent comment la table d’entrée doit être divisée. Voir **notes** ci-dessous.
+* *Colonne*: le nom d’une colonne dans *T* dont les valeurs déterminent la façon dont la table d’entrée doit être partitionnée. Consultez les **Remarques** ci-dessous.
 
-* *ContextualSubquery*: Une expression tabulaire, dont `partition` la source est la source de l’opérateur, portée pour une seule valeur *clé.*
+* *ContextualSubquery*: expression tabulaire, qui est la source de l' `partition` opérateur, définie pour une valeur de *clé* unique.
 
-* *Sous-laquery*: Une expression tabulaire sans source. La valeur *clé* peut `toscalar()` être obtenue par appel.
+* *Sous-requête*: expression tabulaire sans source. La valeur de *clé* peut être obtenue via un `toscalar()` appel.
 
-* *PartitionParameters*: Paramètres nuls ou plus (séparés dans l’espace) sous la forme de : *Valeur nominative* `=` *Value* qui contrôle le comportement de l’opérateur. Les paramètres suivants sont pris en charge :
+* *PartitionParameters*: zéro ou plusieurs paramètres (séparés par des espaces) sous la forme : *nom* `=` *valeur* qui contrôle le comportement de l’opérateur. Les paramètres suivants sont pris en charge :
 
   |Nom               |Valeurs         |Description|
   |-------------------|---------------|-----------|
-  |`hint.materialized`|`true`,`false` |Si prévu `true` pour matérialiser `partition` la source `false`de l’opérateur (par défaut: )|
-  |`hint.concurrency`|*Nombre*|Indique au système le nombre de `partition` sous-cas simultanés de l’opérateur doivent être exécutés en parallèle. *Défaut*: Quantité de cœurs CPU sur le nœud unique du cluster (2 à 16).|
-  |`hint.spread`|*Nombre*|Indique au système combien de nœuds`partition` doivent être utilisés par l’exécution simultanée des sous-ques. *Défaut*: 1.|
+  |`hint.materialized`|`true`,`false` |Si la valeur `true` est, la source de l’opérateur est matérialisée `partition` (valeur par défaut : `false` )|
+  |`hint.concurrency`|*Certain*|Indique au système le nombre de sous-requêtes simultanées de l' `partition` opérateur qui doivent être exécutées en parallèle. *Valeur par défaut*: quantité de cœurs de processeur sur le nœud unique du cluster (2 à 16).|
+  |`hint.spread`|*Certain*|Indique au système le nombre de nœuds qui doivent être utilisés par l’exécution simultanée des sous- `partition` requêtes. *Valeur par défaut*: 1.|
 
 **Retourne**
 
-L’opérateur retourne une union des résultats de l’application de la sous-query à chaque partition des données d’entrée.
+L’opérateur retourne une Union des résultats de l’application de la sous-requête à chaque partition des données d’entrée.
 
 **Remarques**
 
 * L’opérateur de partition est actuellement limité par le nombre de partitions.
   Jusqu’à 64 partitions distinctes peuvent être créées.
-  L’opérateur produira une erreur si la colonne de partition *(Colonne*) a plus de 64 valeurs distinctes.
+  L’opérateur génère une erreur si la colonne de partition (*colonne*) a plus de 64 valeurs distinctes.
 
-* La sous-conception fait référence implicitement à la partition d’entrée (il n’y a pas de « nom » pour la partition dans la sous-pays). Pour référencer la partition d’entrée plusieurs fois dans la sous-pays, utilisez le [comme opérateur,](asoperator.md)comme dans **l’exemple: partition-référence ci-dessous.**
+* La sous-requête fait référence à la partition d’entrée de manière implicite (il n’y a pas de « nom » pour la partition dans la sous-requête). Pour référencer la partition d’entrée plusieurs fois dans la sous-requête, utilisez l' [opérateur as](asoperator.md), comme dans l' **exemple : partition-Reference** ci-dessous.
 
-**Exemple : cas imbriqué au sommet**
+**Exemple : cas imbriqué en haut**
 
-Dans certains cas - il est plus performant `partition` et plus facile d’écrire des requêtes `top` à l’aide de `W`l’opérateur plutôt en utilisant [ `top-nested` l’opérateur](topnestedoperator.md) L’exemple suivant exécute un calcul de sous-requête `summarize` et pour chacun des États à commencer par : (WYOMING, WASHINGTON, WEST VIRGINIA, WISCONSIN)
+Dans certains cas, il est plus performant et plus facile d’écrire des requêtes à l’aide de l’opérateur `partition` plutôt que d’utiliser [ `top-nested` Operator](topnestedoperator.md) . l’exemple suivant exécute une sous-requête qui calcule `summarize` et `top` for-each des États à partir de `W` : (Wyoming, Washington, West Virginie, Wisconsin)
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 StormEvents
 | where State startswith 'W'
@@ -75,25 +76,26 @@ StormEvents
 ) 
 
 ```
-|Type d’événement|State|Événements|Blessures|
+|Type d’événement|État|Événements|Blesser|
 |---|---|---|---|
-|Grêle|Wyoming|108|0|
-|Vent élevé|Wyoming|81|5|
-|Tempête hivernale|Wyoming|72|0|
-|Neige lourde|Washington|82|0|
-|Vent élevé|Washington|58|13|
-|Wildfire|Washington|29|0|
+|Grêle|WYOMING|108|0|
+|Vent élevé|WYOMING|81|5|
+|Tempête d’hiver|WYOMING|72|0|
+|Gros neige|WASHINGTON|82|0|
+|Vent élevé|WASHINGTON|58|13|
+|Feux|WASHINGTON|29|0|
 |Vent d’orage|WEST VIRGINIA|180|1|
 |Grêle|WEST VIRGINIA|103|0|
-|Météo d’hiver|WEST VIRGINIA|88|0|
-|Vent d’orage|Wisconsin|416|1|
-|Tempête hivernale|Wisconsin|310|0|
-|Grêle|Wisconsin|303|1|
+|Hiver hiver|WEST VIRGINIA|88|0|
+|Vent d’orage|WISCONSIN|416|1|
+|Tempête d’hiver|WISCONSIN|310|0|
+|Grêle|WISCONSIN|303|1|
 
-**Exemple : requêtes non-overlapant des partitions de données**
+**Exemple : interroger des partitions de données qui ne se chevauchent pas**
 
-Parfois, il est utile (perf-sage) d’exécuter une sous-querie complexe sur les partitions de données non-overlapping dans une carte / réduire le style. L’exemple ci-dessous montre comment créer une distribution manuelle de l’agrégation sur 10 partitions.
+Il est parfois utile (au niveau des performances) d’exécuter une sous-requête complexe sur des partitions de données qui ne se chevauchent pas dans un style de carte/réduction. L’exemple ci-dessous montre comment créer une répartition manuelle de l’agrégation sur 10 partitions.
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 StormEvents
 | extend p = hash(EventId, 10)
@@ -113,10 +115,11 @@ StormEvents
 |Gestionnaire des urgences|4900|
 |Observateur COOP|3039|
 
-**Exemple : partitionnement de temps de requête**
+**Exemple : partitionnement au moment de la requête**
 
-L’exemple suivant montre comment la requête peut être divisée en partitions N-10, où chaque partition calcule son propre comte, et le tout résumé plus tard dans TotalCount.
+L’exemple suivant illustre la façon dont la requête peut être partitionnée en N = 10 partitions, où chaque partition calcule son propre nombre et est ensuite résumée dans TotalCount.
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let N = 10;                 // Number of query-partitions
 range p from 0 to N-1 step 1  // 
@@ -134,9 +137,9 @@ range p from 0 to N-1 step 1  //
 |59066|
 
 
-**Exemple : partition-référence**
+**Exemple : partition-Reference**
 
-L’exemple suivant montre comment on peut utiliser [l’opérateur en tant qu’opérateur](asoperator.md) pour donner un « nom » à chaque partition de données, puis réutiliser ce nom dans la sous-fertilité :
+L’exemple suivant montre comment utiliser l' [opérateur as](asoperator.md) pour attribuer un « nom » à chaque partition de données, puis réutiliser ce nom dans la sous-requête :
 
 ```kusto
 T
@@ -147,10 +150,11 @@ T
 )
 ```
 
-**Exemple : sous-fertilité complexe cachée par un appel de fonction**
+**Exemple : sous-requête complexe masquée par un appel de fonction**
 
-La même technique peut être appliquée avec des sous-queries beaucoup plus complexes. Pour simplifier la syntaxe, on peut envelopper la sous-query dans un appel de fonction :
+La même technique peut être appliquée avec des sous-requêtes bien plus complexes. Pour simplifier la syntaxe, il est possible d’encapsuler la sous-requête dans un appel de fonction :
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let partition_function = (T:(Source:string)) 
 {

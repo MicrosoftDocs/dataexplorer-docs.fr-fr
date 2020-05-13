@@ -1,6 +1,6 @@
 ---
-title: opérateur d’analyse - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit l’opérateur d’analyse dans Azure Data Explorer.
+title: opérateur d’analyse-Azure Explorateur de données
+description: Cet article décrit l’opérateur d’analyse dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,17 +8,17 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: beb51ac80810e5d14013e9b3571d759bb7b09125
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 8255f3d0c3dc0006029f06c7a0da4b41dfbaa1b7
+ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81511507"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83271333"
 ---
 # <a name="parse-operator"></a>opérateur parse
 
-évalue une expression de chaîne et analyse sa valeur dans une ou plusieurs colonnes calculées. Pour les chaînes analysées sans succès, les colonnes calculées auront des nulls.
-Voir [l’analyse-où](parsewhereoperator.md) l’opérateur qui filtre les cordes analysées sans succès.
+évalue une expression de chaîne et analyse sa valeur dans une ou plusieurs colonnes calculées. Pour les chaînes analysées sans succès, les colonnes calculées auront des valeurs NULL.
+Consultez opérateur [Parse-WHERE](parsewhereoperator.md) qui filtre les chaînes non analysées avec succès.
 
 ```kusto
 T | parse Text with "ActivityName=" name ", ActivityType=" type
@@ -26,67 +26,67 @@ T | parse Text with "ActivityName=" name ", ActivityType=" type
 
 **Syntaxe**
 
-*T* `| parse` `kind=regex` [`flags=regex_flags`]`simple` | `*` `:` `*` *Expression* `with` *StringConstant* *ColumnName* *ColumnType*] Expression ( StringConstant ColumnName [ ColumnType ]) ... `relaxed`
+*T* `| parse` [ `kind=regex` [ `flags=regex_flags` ] | `simple` | `relaxed` ] *expression* `with` `*` (*StringConstant* *ColumnName* [ `:` *ColumnType*]) `*` ...
 
 **Arguments**
 
-* *T*: La table d’entrée.
-* Genre: 
+* *T*: table d’entrée.
+* espèces 
 
-    * simple (la valeur par défaut) : StringConstant est une valeur de chaîne régulière et le match est strict, ce qui signifie que tous les délimitants de cordes doivent apparaître dans la chaîne analysée et toutes les colonnes étendues doivent correspondre aux types requis.
+    * simple (valeur par défaut) : StringConstant est une valeur de chaîne normale et la correspondance est stricte, ce qui signifie que tous les délimiteurs de chaîne doivent apparaître dans la chaîne analysée et que toutes les colonnes étendues doivent correspondre aux types requis.
         
-    * regex : StringConstant peut être une expression régulière et le match est strict, ce qui signifie que tous les délimitants de cordes (qui peuvent être un regex pour ce mode) doivent apparaître dans la chaîne analysée et toutes les colonnes étendues doivent correspondre aux types requis.
+    * Regex : StringConstant peut être une expression régulière et la correspondance est stricte, ce qui signifie que tous les délimiteurs de chaîne (qui peuvent être une expression régulière pour ce mode) doivent apparaître dans la chaîne analysée et que toutes les colonnes étendues doivent correspondre aux types requis.
     
-    * drapeaux : Drapeaux à utiliser en `U` mode regex `m` comme (Ungreedy), (mode `s` multi-lignes), (match nouvelle ligne `\n`), `i` (insensible au cas) et plus encore dans les drapeaux [RE2.](re2.md)
+    * Flags : indicateurs à utiliser en mode Regex comme `U` (non gourmand), `m` (mode multiligne), (mettre en `s` correspondance une nouvelle ligne `\n` ), `i` (non-respect de la casse) et plus dans les [indicateurs RE2](re2.md).
         
-    * détendu : StringConstant est une valeur de chaîne régulière et le match est détendu, ce qui signifie que tous les délimitants de cordes doivent apparaître dans la chaîne analysée, mais les colonnes étendues peuvent correspondre partiellement aux types requis (colonnes étendues qui ne correspondent pas aux types requis obtiendront la valeur nulle).
+    * souple : StringConstant est une valeur de chaîne normale et la correspondance est assouplie, ce qui signifie que tous les délimiteurs de chaînes doivent apparaître dans la chaîne analysée, mais que les colonnes étendues peuvent correspondre partiellement aux types requis (les colonnes étendues qui ne correspondent pas aux types requis obtiendront la valeur null).
 
-* *Expression*: Une expression qui évalue à une chaîne.
+* *Expression*: expression qui prend la valeur d’une chaîne.
 
-* *Nom de colonne:* Le nom d’une colonne pour attribuer une valeur (sortie de l’expression de la chaîne) à. 
+* *ColumnName :* Nom d’une colonne pour assigner une valeur (extraite de l’expression de chaîne) à. 
   
-* *ColumnType:* doit être de type scalaire facultatif qui indique le type pour convertir la valeur en (par défaut, il est de type chaîne).
+* *ColumnType :* doit être un type scalaire facultatif qui indique le type vers lequel convertir la valeur (par défaut, il s’agit d’un type de chaîne).
 
 **Retourne**
 
-Le tableau d’entrée, étendu selon la liste des colonnes qui sont fournies à l’opérateur.
+La table d’entrée, étendue selon la liste des colonnes fournies à l’opérateur.
 
 **Conseils**
 
-* Utilisez [`project`](projectoperator.md) si vous voulez également laisser tomber ou renommer certaines colonnes.
+* Utilisez [`project`](projectoperator.md) si vous souhaitez également supprimer ou renommer certaines colonnes.
 
-* Utilisation dans le modèle afin de sauter les valeurs indésirables (ne peut pas être utilisé après la colonne de chaîne)
+* Utilisez * dans le modèle pour ignorer les valeurs indésirables (ne peut pas être utilisé après une colonne de chaîne)
 
-* Le modèle d’analyse peut commencer avec *ColumnName* et pas seulement avec *StringConstant*. 
+* Le modèle d’analyse peut commencer par *ColumnName* et non uniquement par *StringConstant*. 
 
-* Si *l’expression* analysée n’est pas de chaîne de type, elle sera convertie en chaîne de type.
+* Si l' *expression* analysée n’est pas de type chaîne, elle sera convertie en type chaîne.
 
-* Si le mode regex est utilisé, il est possible d’ajouter des drapeaux regex afin de contrôler l’ensemble du regex utilisé dans l’analyse.
+* Si le mode Regex est utilisé, il est possible d’ajouter des indicateurs Regex afin de contrôler l’intégralité de l’expression régulière utilisée dans l’analyse.
 
-* En mode regex, l’analyse traduira le modèle en un regex et utilisera la [syntaxe RE2](re2.md) afin de faire l’appariement à l’aide de groupes capturés numérotés qui sont manipulés en interne.
-  Ainsi, par exemple, cette déclaration d’analyse :
+* En mode Regex, Parse convertit le modèle en Regex et utilise la [syntaxe RE2](re2.md) pour effectuer la correspondance à l’aide de groupes capturés numérotés qui sont gérés en interne.
+  Par exemple, cette instruction d’analyse :
   
     ```kusto
     parse kind=regex Col with * <regex1> var1:string <regex2> var2:long
     ```
 
-    Le regex qui sera généré par le `.*?<regex1>(.*?)<regex2>(\-\d+)`parse interne est .
+    L’expression régulière qui sera générée en interne par l’analyse est `.*?<regex1>(.*?)<regex2>(\-\d+)` .
         
-    - `*`a été `.*?`traduit à .
+    - `*`a été traduit `.*?` .
         
-    - `string`a été `.*?`traduit à .
+    - `string`a été traduit `.*?` .
         
-    - `long`a été `\-\d+`traduit à .
+    - `long`a été traduit `\-\d+` .
 
 **Exemples**
 
-L’opérateur `parse` fournit un moyen `extend` simplifié à `extract` une table `string` en utilisant plusieurs applications sur la même expression.
-Ceci est plus utile lorsque `string` la table a une colonne qui contient plusieurs valeurs que vous souhaitez percer`printf`dans des`Console.WriteLine`colonnes individuelles, comme une colonne qui a été produite par une trace développeur (" "/" ") déclaration.
+L' `parse` opérateur fournit une méthode rationalisée à `extend` une table en utilisant plusieurs `extract` applications sur la même `string` expression.
+Cela s’avère particulièrement utile lorsque la table comporte une `string` colonne qui contient plusieurs valeurs que vous souhaitez décomposer en colonnes individuelles, par exemple une colonne produite par une instruction de trace du développeur (« `printf` »/«» `Console.WriteLine` ).
 
-Dans l’exemple ci-dessous, `Traces` supposons que la `Event: NotifySliceRelease (resourceName={0}, totalSlices= {1}, sliceNumber={2}, lockTime={3}, releaseTime={4}, previousLockTime={5})`colonne `EventText` de table contient des chaînes de la forme .
-L’opération ci-dessous étendra la `resourceName` `totalSlices`table `sliceNumber` `lockTime `avec `releaseTime` `previouLockTime`6 colonnes: , , , , , `Month` , et `Day`. 
+Dans l’exemple ci-dessous, supposons que la colonne `EventText` de la table `Traces` contient des chaînes sous la forme `Event: NotifySliceRelease (resourceName={0}, totalSlices= {1}, sliceNumber={2}, lockTime={3}, releaseTime={4}, previousLockTime={5})` .
+L’opération ci-dessous permet d’étendre la table avec 6 colonnes :,,,,, `resourceName` `totalSlices` `sliceNumber` `lockTime ` `releaseTime` `previouLockTime` `Month` et `Day` . 
 
-
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let Traces = datatable(EventText:string)
 [
@@ -101,7 +101,7 @@ Traces
 | project resourceName ,totalSlices , sliceNumber , lockTime , releaseTime , previouLockTime
 ```
 
-|resourceName|totalSlices|sliceNumber|lockTime|sortieTime|previouLockTime (en)|
+|resourceName|totalSlices|sliceNumber|lockTime|releaseTime|previouLockTime|
 |---|---|---|---|---|---|
 |PipelineScheduler|27|15|02/17/2016 08:40:00|2016-02-17 08:40:00.0000000|2016-02-17 08:39:00.0000000|
 |PipelineScheduler|27|23|02/17/2016 08:40:01|2016-02-17 08:40:01.0000000|2016-02-17 08:39:01.0000000|
@@ -109,8 +109,9 @@ Traces
 |PipelineScheduler|27|16|02/17/2016 08:41:00|2016-02-17 08:41:00.0000000|2016-02-17 08:40:00.0000000|
 |PipelineScheduler|27|22|02/17/2016 08:41:01|2016-02-17 08:41:00.0000000|2016-02-17 08:40:01.0000000|
 
-pour le mode regex :
+pour le mode Regex :
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let Traces = datatable(EventText:string)
 [
@@ -125,7 +126,7 @@ Traces
 | project resourceName , sliceNumber , lockTime , releaseTime , previouLockTime
 ```
 
-|resourceName|sliceNumber|lockTime|sortieTime|previouLockTime (en)|
+|resourceName|sliceNumber|lockTime|releaseTime|previouLockTime|
 |---|---|---|---|---|
 |PipelineScheduler|15|02/17/2016 08:40:00, |02/17/2016 08:40:00, |2016-02-17 08:39:00.0000000|
 |PipelineScheduler|23|02/17/2016 08:40:01, |02/17/2016 08:40:01, |2016-02-17 08:39:01.0000000|
@@ -134,10 +135,11 @@ Traces
 |PipelineScheduler|22|02/17/2016 08:41:01, |02/17/2016 08:41:00, |2016-02-17 08:40:01.0000000|
 
 
-pour le mode regex à l’aide de drapeaux regex :
+pour le mode Regex utilisant des indicateurs Regex :
 
-si nous sommes intéressés à obtenir la ressourceName seulement et nous utilisons cette requête:
+Si nous sommes intéressés par l’obtention du resourceName uniquement et que nous utilisons cette requête :
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let Traces = datatable(EventText:string)
 [
@@ -154,16 +156,17 @@ Traces
 
 |resourceName|
 |---|
-|PipelineScheduler, totalSlices-27, sliceNumber-23, lockTime-02/17/2016 08:40:01, releaseTime-02/17/2016 08:40:01|
-|PipelineScheduler, totalSlices-27, sliceNumber-15, lockTime-02/17/2016 08:40:00, releaseTime-02/17/2016 08:40:00|
-|PipelineScheduler, totalSlices-27, sliceNumber-20, lockTime-02/17/2016 08:40:01, releaseTime-02/17/2016 08:40:01|
-|PipelineScheduler, totalSlices-27, sliceNumber-22, lockTime-02/17/2016 08:41:01, releaseTime-02/17/2016 08:41:00|
-|PipelineScheduler, totalSlices-27, sliceNumber-16, lockTime-02/17/2016 08:41:00, releaseTime-02/17/2016 08:41:00|
+|PipelineScheduler, totalSlices = 27, sliceNumber = 23, lockTime = 02/17/2016 08:40:01, releaseTime = 02/17/2016 08:40:01|
+|PipelineScheduler, totalSlices = 27, sliceNumber = 15, lockTime = 02/17/2016 08:40:00, releaseTime = 02/17/2016 08:40:00|
+|PipelineScheduler, totalSlices = 27, sliceNumber = 20, lockTime = 02/17/2016 08:40:01, releaseTime = 02/17/2016 08:40:01|
+|PipelineScheduler, totalSlices = 27, sliceNumber = 22, lockTime = 02/17/2016 08:41:01, releaseTime = 02/17/2016 08:41:00|
+|PipelineScheduler, totalSlices = 27, sliceNumber = 16, lockTime = 02/17/2016 08:41:00, releaseTime = 02/17/2016 08:41:00|
 
-Mais nous n’obtenons pas les résultats attendus puisque le mode par défaut est gourmand.
-ou même si nous avions peu d’enregistrements où la ressourceName apparaît parfois plus bas cas parfois cas supérieur de sorte que nous pouvons obtenir des nulls pour certaines valeurs.
-Afin d’obtenir le résultat recherché, nous pouvons exécuter celui-ci avec le non-gourmand (`U`) et désactiver les cas sensibles (`i`) drapeaux regex:
+Toutefois, nous n’obtenons pas les résultats attendus, car le mode par défaut est gourmand.
+ou même si nous avions des enregistrements où le resourceName apparaît parfois en minuscules, il est possible que les valeurs soient nulles pour certaines valeurs.
+pour obtenir le résultat souhaité, nous pouvons exécuter celui-ci avec les indicateurs Regex non gourmands ( `U` ) et désactiver la casse ( `i` ) :
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let Traces = datatable(EventText:string)
 [
@@ -187,8 +190,9 @@ Traces
 |PipelineScheduler|
 
 
-Si la chaîne analysée a de nouvelles lignes, vous devez utiliser le drapeau `s` pour analyser le texte comme prévu :
+Si la chaîne analysée contient des nouvelles lignes, vous devez utiliser l’indicateur `s` pour analyser le texte comme prévu :
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let Traces = datatable(EventText:string)
 [
@@ -203,7 +207,7 @@ Traces
 | project-away EventText
 ```
 
-|resourceName|totalSlices|lockTime|sortieTime|previousLockTime (en)|
+|resourceName|totalSlices|lockTime|releaseTime|previousLockTime|
 |---|---|---|---|---|
 |PipelineScheduler<br>|27|2016-02-17 08:40:00.0000000|2016-02-17 08:40:00.0000000|2016-02-17 08:39:00.0000000|
 |PipelineScheduler<br>|27|2016-02-17 08:40:01.0000000|2016-02-17 08:40:01.0000000|2016-02-17 08:39:01.0000000|
@@ -212,12 +216,13 @@ Traces
 |PipelineScheduler<br>|27|2016-02-17 08:41:01.0000000|2016-02-17 08:41:00.0000000|2016-02-17 08:40:01.0000000|
 
 
-dans cet exemple pour le mode détendu: totalSlices colonne étendue est nécessaire pour être de type long, mais dans la chaîne analysée, il a la valeur nonValidLongValue.
-versionTime colonne étendue a le même problème, la valeur nonValidDateTime ne peut pas être analysé comme date.
-dans ce cas, ces deux colonnes étendues obtiendront la valeur nulle tandis que les autres (comme sliceNumber) obtient toujours les valeurs correctes.
+dans cet exemple pour le mode souple : la colonne étendue totalSlices doit être de type long, mais dans la chaîne analysée, elle a la valeur nonValidLongValue.
+la colonne étendue releaseTime a le même problème, la valeur nonValidDateTime ne peut pas être analysée comme DateTime.
+dans ce cas, ces deux colonnes étendues obtiennent la valeur null tandis que d’autres (comme sliceNumber) reçoivent toujours les valeurs correctes.
 
-en utilisant le type - simple pour la même requête ci-dessous donne nul pour toutes les colonnes étendues, car il est strict sur les colonnes étendues (c’est la différence entre le mode détendu et simple, en mode détendu, colonnes étendues peuvent être assorties partiellement).
+l’utilisation de Kind = simple pour la même requête ci-dessous donne la valeur null pour toutes les colonnes étendues, car elle est stricte sur les colonnes étendues (il s’agit de la différence entre le mode souple et le mode simple, en mode souple, les colonnes étendues peuvent être mises en correspondance partiellement).
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let Traces = datatable(EventText:string)
 [
@@ -232,7 +237,7 @@ Traces
 | project-away EventText
 ```
 
-|resourceName|totalSlices|sliceNumber|lockTime|sortieTime|previouLockTime (en)|
+|resourceName|totalSlices|sliceNumber|lockTime|releaseTime|previouLockTime|
 |---|---|---|---|---|---|
 |PipelineScheduler|27|15|02/17/2016 08:40:00||2016-02-17 08:39:00.0000000|
 |PipelineScheduler|27|23|02/17/2016 08:40:01||2016-02-17 08:39:01.0000000|

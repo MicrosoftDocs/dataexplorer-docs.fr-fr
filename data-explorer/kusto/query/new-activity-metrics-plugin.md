@@ -1,6 +1,6 @@
 ---
-title: new_activity_metrics plugin - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit new_activity_metrics plugin dans Azure Data Explorer.
+title: plug-in new_activity_metrics-Azure Explorateur de données
+description: Cet article décrit new_activity_metrics plug-in dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,62 +8,62 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 0aad1c91fec6855030544596a08818b80bbf3d18
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 5e02c7ca2874a779cc5a626fd65522392439b491
+ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81512204"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83271585"
 ---
 # <a name="new_activity_metrics-plugin"></a>plug-in new_activity_metrics
 
-Calcule les mesures d’activité utiles (valeurs de comptage distinctes, nombre distinct `New Users`de nouvelles valeurs, taux de rétention et taux de désabonnement) pour la cohorte de . Chaque cohorte (tous `New Users` les utilisateurs qui étaient 1er vu dans la fenêtre de temps) est comparée à toutes les cohortes antérieures. La comparaison tient compte de *toutes les* fenêtres de temps précédentes. Par exemple, dans le dossier pour à partir de T2 et à T3, le nombre distinct d’utilisateurs sera tous les utilisateurs dans T3 qui n’ont pas été vus dans T1 et T2. 
+Calcule les métriques d’activité utiles (valeurs de comptage de valeurs, nombre distinct de nouvelles valeurs, taux de rétention et taux d’évolution) pour la cohorte de `New Users` . Chaque cohorte de `New Users` (tous les utilisateurs qui ont été affichés dans la fenêtre de temps) est comparée à toutes les cohortes antérieures. La comparaison prend en compte *toutes les* fenêtres de temps précédentes. Par exemple, dans l’enregistrement pour from = T2 et to = T3, le nombre d’utilisateurs distincts sera tous les utilisateurs de T3 qui n’étaient pas vus à la fois dans T1 et T2. 
 ```kusto
 T | evaluate new_activity_metrics(id, datetime_column, startofday(ago(30d)), startofday(now()), 1d, dim1, dim2, dim3)
 ```
 
 **Syntaxe**
 
-*T* `| evaluate` `,` *Start* `,` *End* `,` *Window* `,` *Cohort*`,` `,` `,` *dim2* *dim1* *IdColumn* `,` *TimelineColumn* IdColumn TimelineColumn Start End Window [ Cohort ] [ dim1 dim2 ...] `new_activity_metrics(` [`,` *Lookback*]`)`
+*T* `| evaluate` `new_activity_metrics(` *IdColumn* `,` *TimelineColumn* `,` *Start* `,` *end* `,` *Window* [ `,` *cohorte*] [ `,` *dim1* `,` *dim2* `,` ...] [ `,` *lookback*]`)`
 
 **Arguments**
 
-* *T*: L’expression tabulaire d’entrée.
-* *IdColumn*: Le nom de la colonne avec des valeurs d’identification qui représentent l’activité de l’utilisateur. 
-* *TimelineColumn*: Le nom de la colonne qui représente la chronologie.
-* *Début*: Scalar avec la valeur de la période de début d’analyse.
-* *Fin*: Scalar avec valeur de la période de fin d’analyse.
-* *Fenêtre*: Scalar avec la valeur de la période de fenêtre d’analyse. Peut être soit une valeur numérique /datetime/timestamp, `week` / `month` / `year`ou une chaîne qui est l’un des , auquel cas toutes les périodes seront [startofweek](startofweekfunction.md)/[startofmonth](startofmonthfunction.md)/[startofyear](startofyearfunction.md) en conséquence. 
-* *Cohorte*: (facultatif) une constante scalaire indiquant une cohorte spécifique. Si elles ne sont pas fournies, toutes les cohortes correspondant à la fenêtre de temps d’analyse sont calculées et retournées.
-* *dim1*, *dim2*, ...: (facultatif) liste des colonnes de dimensions qui tranchent le calcul des mesures d’activité.
-* *Lookback*: (facultatif) une expression tabulaire avec un ensemble d’IDs qui appartiennent à la période «regarder en arrière»
+* *T*: expression tabulaire d’entrée.
+* *IdColumn*: nom de la colonne avec des valeurs d’ID qui représentent l’activité de l’utilisateur. 
+* *TimelineColumn*: nom de la colonne qui représente la chronologie.
+* *Start*: scalaire avec la valeur de la période de démarrage de l’analyse.
+* *End*: scalaire avec la valeur de la période de fin de l’analyse.
+* *Window*: scalaire avec la valeur de la période de la fenêtre d’analyse. Il peut s’agir d’une valeur numérique/DateTime/timestamp, ou d’une chaîne qui est l’une des `week` / `month` / `year` , auquel cas toutes les périodes sont [startOfWeek](startofweekfunction.md) / [StartOfMonth](startofmonthfunction.md) / [STARTOFYEAR](startofyearfunction.md) en conséquence. 
+* *Cohorte*: (facultatif) constante scalaire indiquant une cohorte spécifique. S’il n’est pas fourni, toutes les cohortes correspondant à la fenêtre de temps de l’analyse sont calculées et retournées.
+* *dim1*, *dim2*,... : (facultatif) liste des colonnes de dimensions qui découpent le calcul des métriques d’activité.
+* *Lookback*: (facultatif) une expression tabulaire avec un ensemble d’ID qui appartiennent à la période « Look Back »
 
 **Retourne**
 
-Retourne un tableau qui a les valeurs de comptage distinctes, le nombre distinct de nouvelles valeurs, le taux de rétention, et le taux de désabonnement pour chaque combinaison de «de» et «à» périodes de calendrier et pour chaque combinaison de dimensions existantes.
+Retourne une table qui contient les valeurs de nombres distincts, le nombre de nouvelles valeurs, le taux de rétention et le taux d’évolution pour chaque combinaison de périodes de chronologie « de » et « à » et pour chaque combinaison de dimensions existante.
 
-Le schéma de table de sortie est :
+Le schéma de la table de sortie est le suivant :
 
 |from_TimelineColumn|to_TimelineColumn|dcount_new_values|dcount_retained_values|dcount_churn_values|retention_rate|churn_rate|dim1|..|dim_n|
 |---|---|---|---|---|---|---|---|---|---|
-|type: à partir de *TimelineColumn*|identique|long|long|double|double|double|..|..|..|
+|type : à partir de *TimelineColumn*|identique|long|long|double|double|double|..|..|..|
 
-* `from_TimelineColumn`- la cohorte de nouveaux utilisateurs. Les mesures de cet enregistrement se réfèrent à tous les utilisateurs qui ont été vus pour la première fois au cours de cette période. La décision sur *la première vue* tient compte de toutes les périodes précédentes de la période d’analyse. 
-* `to_TimelineColumn`- la période étant comparée à. 
-* `dcount_new_values`- le nombre d’utilisateurs distincts dans `to_TimelineColumn` lesquels n’ont pas été vus dans toutes *les* périodes avant et y compris `from_TimelineColumn`. 
-* `dcount_retained_values`- de tous les nouveaux `from_TimelineColumn`utilisateurs, vu pour la première `to_TimelineCoumn`fois en , le nombre d’utilisateurs distincts qui ont été vus dans .
-* `dcount_churn_values`- de tous les nouveaux `from_TimelineColumn`utilisateurs, vu pour la première `to_TimelineCoumn`fois en , le nombre d’utilisateurs distincts qui *n’ont pas* été vus dans .
-* `retention_rate`- le `dcount_retained_values` pourcentage de hors de la `from_TimelineColumn`cohorte (les utilisateurs d’abord vu dans ).
-* `churn_rate`- le `dcount_churn_values` pourcentage de hors de la `from_TimelineColumn`cohorte (les utilisateurs d’abord vu dans ).
+* `from_TimelineColumn`-la cohorte de nouveaux utilisateurs. Les métriques de cet enregistrement font référence à tous les utilisateurs qui ont été vus pour la première fois au cours de cette période. La décision sur la *première vue* prend en compte toutes les périodes précédentes de la période d’analyse. 
+* `to_TimelineColumn`-période comparée à. 
+* `dcount_new_values`-nombre d’utilisateurs distincts dans `to_TimelineColumn` lesquels n’étaient pas visibles dans *toutes les* périodes antérieures à et y compris `from_TimelineColumn` . 
+* `dcount_retained_values`-en dehors de tous les nouveaux utilisateurs, vus tout d’abord dans `from_TimelineColumn` , le nombre d’utilisateurs distincts qui ont été vus dans `to_TimelineCoumn` .
+* `dcount_churn_values`-en dehors de tous les nouveaux utilisateurs, vus tout d’abord dans `from_TimelineColumn` , le nombre d’utilisateurs distincts qui n’étaient *pas* vus dans `to_TimelineCoumn` .
+* `retention_rate`-pourcentage de `dcount_retained_values` la cohorte (utilisateurs affichés en premier dans `from_TimelineColumn` ).
+* `churn_rate`-pourcentage de `dcount_churn_values` la cohorte (utilisateurs affichés en premier dans `from_TimelineColumn` ).
 
 **Remarques**
 
-Pour les `Retention Rate` définitions de et `Churn Rate` - se référer à la section **Notes** dans activity_metrics la documentation [plugin.](./activity-metrics-plugin.md)
+Pour obtenir les définitions de `Retention Rate` et `Churn Rate` , consultez la section **Notes** dans activity_metrics documentation du [plug-in](./activity-metrics-plugin.md) .
 
 
 **Exemples**
 
-L’ensemble de données d’échantillon suivant montre quels utilisateurs ont vu les jours. Le tableau a été `Users` généré sur la base d’un tableau source, comme suit: 
+L’exemple de jeu de données suivant montre quels utilisateurs ont vu quels jours. La table a été générée à partir d’une `Users` table source, comme suit : 
 
 ```kusto
 Users | summarize tostring(make_set(user)) by bin(Timestamp, 1d) | order by Timestamp asc;
@@ -71,13 +71,13 @@ Users | summarize tostring(make_set(user)) by bin(Timestamp, 1d) | order by Time
 
 |Timestamp|set_user|
 |---|---|
-|2019-11-01 00:00:00.0000000|[0,2,3,4]|
-|2019-11-02 00:00:00.0000000|[0,1,3,4,5]|
-|2019-11-03 00:00:00.0000000|[0,2,4,5]|
-|2019-11-04 00:00:00.0000000|[0,1,2,3]|
-|2019-11-05 00:00:00.0000000|[0,1,2,3,4]|
+|2019-11-01 00:00:00.0000000|[0, 2, 3, 4]|
+|2019-11-02 00:00:00.0000000|[0, 1, 3, 4, 5]|
+|2019-11-03 00:00:00.0000000|[0, 2, 4, 5]|
+|2019-11-04 00:00:00.0000000|[0, 1, 2, 3]|
+|2019-11-05 00:00:00.0000000|[0, 1, 2, 3,4]|
 
-La sortie du plugin pour la table d’origine est la suivante: 
+La sortie du plug-in pour la table d’origine est la suivante : 
 
 ```kusto
 let StartDate = datetime(2019-11-01 00:00:00);
@@ -101,24 +101,25 @@ Users
 |10|2019-11-02 00:00:00.0000000|2019-11-05 00:00:00.0000000|0|1|1|0.5|0.5|
 |11|2019-11-02 00:00:00.0000000|2019-11-06 00:00:00.0000000|0|0|2|0|1|
 
-Voici une analyse de quelques enregistrements de la sortie : 
-* Record `R=3` `from_TimelineColumn`  =  `2019-11-01`, `to_TimelineColumn`  = , `2019-11-03`:
-    * Les utilisateurs considérés pour cet enregistrement sont tous de nouveaux utilisateurs vus sur 11/1. Comme il s’agit de la première période, ce sont tous des utilisateurs dans ce bac [0,2,3,4]
-    * `dcount_new_values`le nombre d’utilisateurs sur 11/3 qui n’ont pas été vus sur 11/1. Cela comprend un `5`seul utilisateur . 
-    * `dcount_retained_values`- parmi tous les nouveaux utilisateurs sur 11/1, combien ont été retenus jusqu’à 11/3? Il y`[0,2,4]`en `count_churn_values` a trois (), tandis qu’il en est un`3`(utilisateur). 
-    * `retention_rate`0,75 - les trois utilisateurs retenus sur les quatre nouveaux utilisateurs qui ont été vus pour la première fois en 11/1. 
+Voici une analyse de quelques enregistrements de la sortie : 
+* Enregistrement `R=3` , `from_TimelineColumn`  =  `2019-11-01` , `to_TimelineColumn`  =  `2019-11-03` :
+    * Les utilisateurs pris en compte pour cet enregistrement sont tous les nouveaux utilisateurs qui se sont vus sur 11/1. Étant donné qu’il s’agit de la première période, il s’agit de tous les utilisateurs de cet emplacement ([0, 2, 3, 4])
+    * `dcount_new_values`: nombre d’utilisateurs sur 11/3 qui n’ont pas été vus sur 11/1. Cela comprend un seul utilisateur : `5` . 
+    * `dcount_retained_values`: en dehors de tous les nouveaux utilisateurs sur 11/1, combien ont été conservés jusqu’à 11/3 ? Il existe trois ( `[0,2,4]` ), tandis que `count_churn_values` est un (utilisateur = `3` ). 
+    * `retention_rate`= 0,75 – les trois utilisateurs sont conservés parmi les quatre nouveaux utilisateurs qui ont été vus pour la première fois dans 11/1. 
 
-* Record `R=9` `from_TimelineColumn`  =  `2019-11-02`, `to_TimelineColumn`  = , `2019-11-04`:
-    * Cet enregistrement se concentre sur les nouveaux utilisateurs qui ont `1` été `5`vus pour la première fois sur 1 1/2 - utilisateurs et . 
-    * `dcount_new_values`- le nombre d’utilisateurs sur 11/4 qui `T0 .. from_Timestamp`n’ont pas été vus à travers toutes les périodes . Signification, les utilisateurs qui sont vus sur 11/4, mais qui n’ont pas été vus sur soit 11/1 ou 11/2 - il n’y a pas de tels utilisateurs. 
-    * `dcount_retained_values`- de tous les nouveaux utilisateurs sur`[1,5]`11/2 ( ), combien ont été retenus jusqu’à 11/4? Il ya un tel`[1]`utilisateur ( ), tandis que `5`count_churn_values est un (utilisateur ). 
-    * `retention_rate`est de 0,5 - l’utilisateur unique qui a été retenu sur 11/4 sur les deux nouveaux sur 11/2. 
+* Enregistrement `R=9` , `from_TimelineColumn`  =  `2019-11-02` , `to_TimelineColumn`  =  `2019-11-04` :
+    * Cet enregistrement porte sur les nouveaux utilisateurs qui ont été vus pour la première fois sur 11/2 – utilisateurs `1` et `5` . 
+    * `dcount_new_values`: nombre d’utilisateurs sur 11/4 qui n’ont pas été vus sur toutes les périodes `T0 .. from_Timestamp` . Autrement dit, les utilisateurs qui sont vus sur 11/4 mais qui n’ont pas été vus sur 11/1 ou 11/2, il n’y a pas d’utilisateurs de ce type. 
+    * `dcount_retained_values`: en dehors de tous les nouveaux utilisateurs sur 11/2 ( `[1,5]` ), combien ont été conservés jusqu’à 11/4 ? Il y a un utilisateur de ce type ( `[1]` ), tandis que count_churn_values est un (utilisateur `5` ). 
+    * `retention_rate`est 0,5 – l’utilisateur unique qui a été conservé le 11/4 des deux nouveaux sur 11/2. 
 
 
-### <a name="weekly-retention-rate-and-churn-rate-single-week"></a>Taux de rétention hebdomadaire et taux de désabonnement (semaine unique)
+### <a name="weekly-retention-rate-and-churn-rate-single-week"></a>Taux de rétention hebdomadaire et taux d’évolution (une seule semaine)
 
-La requête suivante calcule un taux de rétention et `New Users` de désabonnement pour la fenêtre d’une semaine à l’autre pour la cohorte (utilisateurs qui sont arrivés la première semaine).
+La requête suivante calcule un taux de rétention et d’évolution pour la période de semaine-semaine pour la `New Users` cohorte (utilisateurs arrivés la première semaine).
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 // Generate random data of user activities
 let _start = datetime(2017-05-01);
@@ -142,10 +143,11 @@ range Day from _start to _end  step 1d
 |2017-05-01 00:00:00.0000000|2017-05-29 00:00:00.0000000|0|1|
 
 
-### <a name="weekly-retention-rate-and-churn-rate-complete-matrix"></a>Taux de rétention hebdomadaire et taux de désabonnement (matrice complète)
+### <a name="weekly-retention-rate-and-churn-rate-complete-matrix"></a>Taux de rétention hebdomadaire et taux d’évolution (matrice complète)
 
-La requête suivante calcule le taux de rétention et `New Users` de désabonnement pour la fenêtre d’une semaine à l’autre pour la cohorte. Si l’exemple précédent a calculé les statistiques pour une seule semaine - ce qui ci-dessous produit le tableau NxN pour chaque combinaison.
+La requête suivante calcule le taux de rétention et d’évolution pour la période de semaine-semaine pour la `New Users` cohorte. Si l’exemple précédent a calculé les statistiques pour une seule semaine, le tableau ci-dessous génère une table NxN pour chaque combinaison de/à.
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 // Generate random data of user activities
 let _start = datetime(2017-05-01);
@@ -179,10 +181,11 @@ range Day from _start to _end  step 1d
 |2017-05-29 00:00:00.0000000|2017-05-29 00:00:00.0000000|1|0|
 
 
-### <a name="weekly-retention-rate-with-lookback-period"></a>Taux de rétention hebdomadaire avec période de retour
+### <a name="weekly-retention-rate-with-lookback-period"></a>Taux de rétention hebdomadaire avec période de lookback
 
-La requête suivante calcule le `New Users` taux de `lookback` rétention de la cohorte en tenant compte de la `New Users` période : une requête tabulaire avec `New Users`un ensemble d’ids qui sont utilisés pour définir la cohorte (toutes les pièces d’identité qui n’apparaissent pas dans cet ensemble sont ). La requête examine le comportement `New Users` de rétention de la période d’analyse.
+La requête suivante calcule le taux de rétention de la `New Users` cohorte lors de la prise en compte de la `lookback` période : une requête tabulaire avec un jeu d’ID utilisé pour définir la `New Users` cohorte (tous les ID qui n’apparaissent pas dans cet ensemble sont `New Users` ). La requête examine le comportement de rétention de `New Users` pendant la période d’analyse.
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 // Generate random data of user activities
 let _lookback = datetime(2017-02-01);

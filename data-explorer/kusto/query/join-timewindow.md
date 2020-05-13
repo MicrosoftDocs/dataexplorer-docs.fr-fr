@@ -1,6 +1,6 @@
 ---
-title: Rejoindre dans les délais - Azure Data Explorer ( Microsoft Docs
-description: Cet article décrit Joining within time window in Azure Data Explorer.
+title: Jointure dans une fenêtre de temps-Azure Explorateur de données
+description: Cet article décrit la jointure dans une fenêtre de temps dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,23 +8,24 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: aa3b81694714ef5af94407cdfdac263af0631e40
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 4741da4367bb1a350c7310ea21ebe5ce9b91b06b
+ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81513360"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83271483"
 ---
-# <a name="joining-within-time-window"></a>Rejoindre dans le temps fenêtre
+# <a name="joining-within-time-window"></a>Jointure dans la fenêtre de temps
 
-Il est souvent utile de joindre entre deux grands ensembles de données sur une clé de haute cardinalité (comme une pièce d’identité d’opération ou une pièce d’identité de session) et de limiter davantage les enregistrements du côté droit ()`$right`qui doivent être appariés pour chaque enregistrement gauche ()`$left`en ajoutant une restriction sur la « distance de temps » entre `datetime` les colonnes de gauche et de droite. Cela diffère de l’exploitation habituelle Kusto rejoindre car, en plus de la partie "equi-join" (correspondant à la clé haute cardinalité ou les ensembles de données gauche et droite), le système peut également appliquer une fonction de distance et l’utiliser pour accélérer considérablement la jointure. Notez qu’une fonction de distance ne se `dist(x,y)` `dist(y,z)` comporte pas comme l’égalité (c’est-à-dire, quand les deux et sont vraies, il ne suit pas qui `dist(x,z)` est également vrai.) *En interne, nous appelons parfois cela une « jointure diagonale ».*
+Il est souvent utile de joindre deux jeux de données volumineux sur une clé de cardinalité élevée (par exemple, un ID d’opération ou un ID de session) et de limiter davantage les enregistrements de droite ( `$right` ) qui doivent être mis en correspondance pour chaque enregistrement de gauche ( `$left` ) en ajoutant une restriction sur la « durée de la distance » entre les `datetime` colonnes à gauche et à droite. Cela diffère de l’opération de jointure Kusto habituelle comme, en plus de la partie « Equi-Join » (correspondant à la clé de cardinalité élevée ou aux jeux de données de gauche et de droite), le système peut également appliquer une fonction de distance et l’utiliser pour accélérer considérablement la jointure. Notez qu’une fonction de distance ne se comporte pas comme une égalité (c’est-à-dire que, si `dist(x,y)` et `dist(y,z)` ont la valeur true, elle ne suit pas `dist(x,z)` également la valeur true). *En interne, nous faisons parfois référence à This en tant que « jointure diagonale ».*
 
-Supposons, par exemple, que nous voulons identifier les séquences d’événements dans une fenêtre de temps relativement petite. Pour démontrer cet exemple, supposons que nous avons une table `T` avec le schéma suivant:
+Par exemple, supposons que nous voulons identifier les séquences d’événements dans une fenêtre de temps relativement courte. Pour illustrer cet exemple, supposons que nous disposons d’une table `T` avec le schéma suivant :
 
-- `SessionId`: Une colonne `string` de type avec des ID de corrélation.
-- `EventType`: Une colonne `string` de type qui identifie le type d’événement de l’enregistrement.
-- `Timestamp`: Une colonne `datetime` de type indiquant quand l’événement décrit par le dossier s’est produit.
+- `SessionId`: Colonne de type `string` avec ID de corrélation.
+- `EventType`: Colonne de type `string` qui identifie le type d’événement de l’enregistrement.
+- `Timestamp`: Colonne de type `datetime` indiquant à quel moment l’événement décrit par l’enregistrement s’est produit.
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let T = datatable(SessionId:string, EventType:string, Timestamp:datetime)
 [
@@ -50,13 +51,13 @@ T
 
 **Définition du problème**
 
-Nous voulons que notre question réponde à la question suivante :
+Nous souhaitons que notre requête réponde à la question suivante :
 
-   Trouvez toutes les adresses de `A` session dans lesquelles `B` le `1min` type d’événement a été suivi d’un type d’événement dans le délai.
+   Recherche tous les ID de session dans lesquels le type d’événement `A` a été suivi par un type d’événement `B` dans la `1min` fenêtre de temps.
 
-(Dans les données de l’échantillon `0`ci-dessus, le seul ID de session de ce type est .)
+(Dans l’exemple de données ci-dessus, le seul ID de session de ce type est `0` .)
 
-Semantically, la requête suivante répond à cette question, bien que inefficace:
+Sémantiquement, la requête suivante répond à cette question, bien qu’elle soit inefficace :
 
 ```kusto
 T 
@@ -77,12 +78,12 @@ T
 |---|---|---|
 |0|2017-10-01 00:00:00.0000000|2017-10-01 00:01:00.0000000|
 
-Pour optimiser cette requête, nous pouvons la réécrire comme décrit ci-dessous afin que la fenêtre de temps soit exprimée comme une clé de jointure.
+Pour optimiser cette requête, nous pouvons la réécrire comme indiqué ci-dessous afin que la fenêtre de temps soit exprimée sous la forme d’une clé de jointure.
 
 **Réécriture de la requête pour tenir compte de la fenêtre de temps**
 
-L’idée est de réécrire la requête afin que les `datetime` valeurs soient « discrètes » en seaux dont la taille est la moitié de la taille de la fenêtre temporelle.
-Nous pouvons ensuite utiliser l’équ-join de Kusto pour comparer ces ids seau.
+L’idée est de réécrire la requête afin que les `datetime` valeurs soient « discrètes » dans les compartiments dont la taille est la moitié de la taille de la fenêtre de temps.
+Nous pouvons ensuite utiliser l’ID d’Kusto pour comparer ces ID de compartiments.
 
 ```kusto
 let lookupWindow = 1min;
@@ -113,9 +114,9 @@ T
 |---|---|---|
 |0|2017-10-01 00:00:00.0000000|2017-10-01 00:01:00.0000000|
 
+**Référence de requête exécutable (avec table Inline)**
 
-**Référence de requête runnable (avec tableau inlined)**
-
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let T = datatable(SessionId:string, EventType:string, Timestamp:datetime)
 [
@@ -150,10 +151,11 @@ T
 |0|2017-10-01 00:00:00.0000000|2017-10-01 00:01:00.0000000|
 
 
-**Requête de données 50M**
+**requête de données 50 millions**
 
-La requête suivante imite l’ensemble de données de 50 millions d’enregistrements et d’ID de 10 millions d’euros et exécute la requête avec la technique décrite ci-dessus.
+La requête suivante émule le jeu de données d’enregistrements 50 millions et environ 10 millions d’ID et exécute la requête avec la technique décrite ci-dessus.
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let T = range x from 1 to 50000000 step 1
 | extend SessionId = rand(10000000), EventType = rand(3), Time=datetime(2017-01-01)+(x * 10ms)

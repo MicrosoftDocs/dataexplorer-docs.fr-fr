@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: bb0ab7fd0f3508388a29d4931cea770c8619e083
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 80e38c1782a4476181fe73c5f77d6460f2ef539f
+ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226429"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83271228"
 ---
 # <a name="mv-apply-operator"></a>mv-apply, opérateur
 
@@ -99,6 +99,7 @@ et *sous-requête* a la même syntaxe qu’une instruction de requête.
 
 ## <a name="getting-the-largest-element-from-the-array"></a>Obtention de l’élément le plus grand à partir du tableau
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let _data =
 range x from 1 to 8 step 1
@@ -117,6 +118,7 @@ _data
 
 ## <a name="calculating-the-sum-of-the-largest-two-elements-in-an-array"></a>Calcul de la somme des deux éléments les plus importants dans un tableau
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let _data =
 range x from 1 to 8 step 1
@@ -137,6 +139,7 @@ _data
 
 ## <a name="using-with_itemindex-for-working-with-a-subset-of-the-array"></a>Utilisation `with_itemindex` de pour l’utilisation d’un sous-ensemble du tableau
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let _data =
 range x from 1 to 10 step 1
@@ -159,6 +162,7 @@ _data
 
 ## <a name="using-the-mv-apply-operator-to-sort-the-output-of-makelist-aggregate-by-some-key"></a>Utilisation de l' `mv-apply` opérateur pour trier la sortie de l' `makelist` agrégat par clé
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 datatable(command:string, command_time:datetime, user_id:string)
 [

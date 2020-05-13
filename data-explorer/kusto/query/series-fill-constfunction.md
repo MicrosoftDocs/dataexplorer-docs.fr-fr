@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 22e40c810242ee82701cf2d0e382a9f1910ed22d
-ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
+ms.openlocfilehash: 7f7c6384bb49640890ae4d3cbd5a4f409688bcbe
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82741722"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372802"
 ---
 # <a name="series_fill_const"></a>series_fill_const()
 
@@ -23,17 +23,17 @@ Accepte une expression contenant un tableau numérique dynamique comme entrée, 
 
 **Syntaxe**
 
-`series_fill_const(`*x*`[, `*constant_value* constant_value`[,` *missing_value_placeholder*`]])`
+`series_fill_const(`*x* `[, ` *constant_value* `[,` *missing_value_placeholder*`]])`
 * Renverra la série *x* avec toutes les instances de *missing_value_placeholder* remplacées par *constant_value*.
 
 **Arguments**
 
 * *x*: expression scalaire de tableau dynamique qui est un tableau de valeurs numériques.
 * *constant_value*: paramètre qui spécifie un espace réservé pour une valeur manquante à remplacer. La valeur par défaut est *0*. 
-* *missing_value_placeholder*: paramètre facultatif qui spécifie un espace réservé pour une valeur manquante à remplacer. La valeur par `double`défaut est (*null*).
+* *missing_value_placeholder*: paramètre facultatif qui spécifie un espace réservé pour une valeur manquante à remplacer. La valeur par défaut est `double` (*null*).
 
 **Remarques**
-* Vous pouvez créer une série qui remplit une valeur constante à l’aide `default = ` de la syntaxe *DefaultValue* (ou simplement en omettant qui suppose 0). Pour plus d’informations, consultez [Make-Series](make-seriesoperator.md).
+* Vous pouvez créer une série qui remplit une valeur constante à l’aide de la `default = ` syntaxe *DefaultValue* (ou simplement en omettant qui suppose 0). Pour plus d’informations, consultez [Make-Series](make-seriesoperator.md).
 
 ```kusto
 make-series num=count() default=-1 on TimeStamp in range(ago(1d), ago(1h), 1h) by Os, Browser
@@ -45,11 +45,12 @@ make-series num=count() default=-1 on TimeStamp in range(ago(1d), ago(1h), 1h) b
 make-series num=count() default=long(null) on TimeStamp in range(ago(1d), ago(1h), 1h) by Os, Browser
 ```
   
-* Le *missing_value_placeholder* peut être de n’importe quel type, qui sera converti en types d’éléments réels. Par conséquent, `double`(*null*), `long`(*null*) ou `int`(*null*) ont la même signification.
+* Le *missing_value_placeholder* peut être de n’importe quel type, qui sera converti en types d’éléments réels. Par conséquent, `double` (*null*), `long` (*null*) ou `int` (*null*) ont la même signification.
 * La fonction conserve le type d’origine des éléments du tableau. 
 
 **Exemple**
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let data = datatable(`arr`: dynamic)
 [

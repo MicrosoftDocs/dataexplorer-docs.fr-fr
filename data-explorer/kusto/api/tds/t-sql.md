@@ -1,6 +1,6 @@
 ---
-title: T-SQL - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit T-SQL dans Azure Data Explorer.
+title: T-SQL-Azure Explorateur de données
+description: Cet article décrit T-SQL dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,36 +8,40 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: d262d8b7587296c02a2a31d850919af0931bcde6
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 1115414358a1025d4931484b81d6eda76109e6cd
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81523407"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373529"
 ---
-# <a name="t-sql"></a>T-SQL
+# <a name="t-sql-support"></a>Prise en charge de T-SQL
 
-Le service Kusto peut interpréter et exécuter des requêtes T-SQL avec quelques limitations linguistiques.
-Bien que le [langage de requête Kusto](../../query/index.md) soit la langue préférée pour Kusto, un tel soutien est utile pour l’outil existant qui ne peut pas être facilement converti pour utiliser la langue de requête préférée, et pour l’utilisation occasionnelle de Kusto par des personnes familières avec SQL.
+Le langage [de requête Kusto (KQL)](../../query/index.md) est le langage de requête par défaut.
+Toutefois, la prise en charge de T-SQL est utile pour les outils qui ne peuvent pas être facilement convertis pour utiliser KQL.  
+La prise en charge de T-SQL est également utile pour les personnes connaissant SQL.
+
+Kusto peut interpréter et exécuter des requêtes T-SQL avec certaines limitations du langage.
 
 > [!NOTE]
-> Kusto ne prend pas en charge une commande DDL `SELECT` de cette manière, seules les déclarations de T-SQL sont prises en charge. Voir [SQL questions connues](./sqlknownissues.md) pour plus de détails sur les principales différences entre SQL Server et Kusto en ce qui concerne T-SQL.
+> Kusto ne prend pas en charge les commandes DDL. Seules les instructions T-SQL `select` sont prises en charge. Pour plus d’informations sur les principales différences en ce qui concerne T-SQL, consultez [problèmes connus de SQL](./sqlknownissues.md).
 
-## <a name="querying-kusto-from-kustoexplorer-with-t-sql"></a>Requête Kusto de Kusto.Explorer avec T-SQL
+## <a name="querying-from-kustoexplorer-with-t-sql"></a>Interrogation de Kusto. Explorer avec T-SQL
 
-L’outil Kusto.Explorer prend en charge l’envoi de requêtes T-SQL à Kusto.
-Pour demander à Kusto.Explorer d’exécuter une requête dans ce mode, précipiez la requête d’une ligne de commentaires T-SQL vide. Par exemple :
+L’outil Kusto. Explorer prend en charge les requêtes T-SQL sur Kusto.
+Pour ordonner à Kusto. Explorer d’exécuter une requête, commencez la requête par une ligne de commentaire T-SQL vide ( `--` ). Par exemple :
 
 ```sql
 --
 select * from StormEvents
 ```
 
-## <a name="from-t-sql-to-kusto-query-language"></a>De T-SQL à kusto langage de requête
+## <a name="from-t-sql-to-kusto-query-language"></a>À partir de T-SQL vers le langage de requête Kusto
 
-Kusto soutient la traduction des requêtes T-SQL au langage de requête Kusto. Cela peut être utilisé, par exemple, par des personnes familières avec SQL qui veulent mieux comprendre la langue de requête Kusto. Pour récupérer le langage de requête Kusto équivalent `SELECT` à une `EXPLAIN` déclaration T-SQL, il suffit d’ajouter avant la requête.
+Kusto prend en charge la traduction de requêtes T-SQL en langage de requête Kusto (KQL). Cette traduction peut aider les personnes connaissant SQL à mieux comprendre KQL.
+Pour récupérer le KQL équivalent à partir d’une instruction T-SQL `select` , ajoutez `explain` avant la requête.
 
-Par exemple, la requête suivante de T-SQL :
+Par exemple, la requête T-SQL suivante :
 
 ```sql
 --
@@ -47,7 +51,7 @@ from StormEvents
 order by DamageProperty desc
 ```
 
-Produit cette sortie:
+génère cette sortie :
 
 ```kusto
 StormEvents

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 5dec95e8d4a73bcff4e8ad037577c51a20fcc64c
-ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
+ms.openlocfilehash: 6c1f836596c27f0e2901e9f7b109d96aab89cdff
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82741959"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373502"
 ---
 # <a name="sandboxes"></a>Bacs à sable
 
@@ -26,7 +26,7 @@ Les flux qui sont exécutés dans les bacs à sable (sandbox) ne sont pas isolé
 
 ## <a name="prerequisites"></a>Prérequis
 
-* Le moteur de données **ne doit pas** avoir le [chiffrement de disque](https://docs.microsoft.com/azure/data-explorer/security#data-encryption) activé.
+* Le moteur de données **ne doit pas** avoir le [chiffrement de disque](../../security.md#data-encryption) activé.
   * La prise en charge de l’exécution des deux fonctionnalités côte à côte est attendue dans le futur.
 * Les packages requis (images) pour l’exécution des bacs à sable sont déployés sur chacun des nœuds du moteur de données et nécessitent un espace SSD dédié pour pouvoir être exécutés.
   * La taille estimée est de 20 Go, ce qui correspond, par exemple, à environ 2,5% de la capacité de disque SSD d’une machine virtuelle D14_v2, ou à 0,7% de la capacité de disque SSD d’une machine virtuelle L16_v1.
@@ -44,7 +44,7 @@ Les flux qui sont exécutés dans les bacs à sable (sandbox) ne sont pas isolé
 * Si aucun bac à sable (sandbox) pré-alloué n’est disponible pour servir d’opérateur de requête, il sera limité.
   (voir les [Erreurs](#errors), jusqu’à ce que de nouveaux bacs à sable (sandbox) soient alloués (peut prendre jusqu’à 10-15 secondes par bac à sable, en fonction de la référence et des ressources disponibles sur le nœud de données).
 
-## <a name="limitations"></a>Limites
+## <a name="limitations"></a>Limitations
 
 Certaines de ces limitations peuvent être contrôlées à l’aide d’une [stratégie de bac à sable (sandbox](../management/sandboxpolicy.md)) au niveau du cluster, pour chaque type de bac à sable.
 
@@ -52,9 +52,9 @@ Certaines de ces limitations peuvent être contrôlées à l’aide d’une [str
   * Les demandes qui rencontrent un État dans lequel aucun bac à sable (sandbox) n’est disponible seront limitées.
 * **Réseau :** Un bac à sable (sandbox) ne peut pas interagir avec une ressource sur la machine virtuelle ou en dehors de celui-ci.
   * Un bac à sable (sandbox) ne peut pas interagir avec un autre sandbox.
-* **UC :** Le taux maximal de processeur qu’un bac à sable peut utiliser pour `50%`les processeurs de son hôte est limité (par défaut).
+* **UC :** Le taux maximal de processeur qu’un bac à sable peut utiliser pour les processeurs de son hôte est limité (par défaut `50%` ).
   * Lorsque cette limite est atteinte, l’utilisation du processeur du bac à sable (sandbox) est limitée, mais l’exécution continue.
-* **Mémoire :** La quantité maximale de RAM qu’un bac à `20GB`sable peut consommer de la mémoire RAM de son hôte est limitée (par défaut).
+* **Mémoire :** La quantité maximale de RAM qu’un bac à sable peut consommer de la mémoire RAM de son hôte est limitée (par défaut `20GB` ).
   * L’atteinte de cette limite entraînera l’arrêt du bac à sable (sandbox) (et une erreur d’exécution de la requête).
 * **Disque :** Un bac à sable (sandbox) est associé à un répertoire unique, qui ne peut pas accéder au système de fichiers de l’hôte.
   * Ce dossier donne accès à l’image/au package qui correspond au genre du bac à sable (par exemple, le package Python ou R non personnalisable).
@@ -64,7 +64,7 @@ Certaines de ces limitations peuvent être contrôlées à l’aide d’une [str
 > L’utilisation des ressources du bac à sable (sandbox) dépend non seulement de la taille des données traitées dans le cadre de la requête, mais également de la logique qui s’exécute dans le bac à sable (sandbox) et de l’implémentation des bibliothèques utilisées par celle-ci.
 > (par exemple, pour `python` les `r` plug-ins et, ce dernier signifie le script fourni par l’utilisateur et les bibliothèques python ou R qu’il consomme au moment de l’exécution)
 
-## <a name="errors"></a>Erreurs
+## <a name="errors"></a>Errors
 
 |Code                      |Message                                                                                        |Raison potentielle                                                                                                    |
 |--------------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|

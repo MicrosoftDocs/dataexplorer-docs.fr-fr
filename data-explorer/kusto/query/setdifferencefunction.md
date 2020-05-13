@@ -1,6 +1,6 @@
 ---
-title: set_difference() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit set_difference() dans Azure Data Explorer.
+title: set_difference ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit set_difference () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,31 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/02/2019
-ms.openlocfilehash: d4edb8ec46fca99b7dd58b11bbd54442a9340c7a
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 7e13a9b652e1bdadb325cd866bddd78761b25b85
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81507801"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372392"
 ---
 # <a name="set_difference"></a>set_difference()
 
-Retourne `dynamic` un tableau (JSON) de l’ensemble de toutes les valeurs distinctes qui sont dans le premier tableau, mais ne sont pas dans d’autres tableaux - (((arr1 - arr2) - arr3) - ...).
+Retourne un `dynamic` tableau (JSON) de l’ensemble de toutes les valeurs distinctes qui se trouvent dans le premier tableau, mais qui ne sont pas dans d’autres tableaux-(((Arr1 \ Arr2) \ arr3) \...).
 
 **Syntaxe**
 
-`set_difference(`*arr1*`, `*arr2*`[`,` *arr3*, ...])`
+`set_difference(`*Arr1* `, ` *Arr2* `[` ,` *arr3*, ...])`
 
 **Arguments**
 
-* *arr1... arrN*: Tableaux d’entrée pour créer un ensemble de différence (au moins deux tableaux). Tous les arguments doivent être des tableaux dynamiques (voir [pack_array](packarrayfunction.md)). 
+* *Arr1... arrN*: tableaux d’entrée pour créer un ensemble de différences (au moins deux tableaux). Tous les arguments doivent être des tableaux dynamiques (voir [pack_array](packarrayfunction.md)). 
 
 **Retourne**
 
-Retourne un tableau dynamique de l’ensemble de toutes les valeurs distinctes qui sont dans arr1 mais ne sont pas dans d’autres tableaux. Voir [`set_union()`](setunionfunction.md) [`set_intersect()`](setintersectfunction.md)et .
+Retourne un tableau dynamique de l’ensemble de toutes les valeurs distinctes qui se trouvent dans Arr1, mais qui ne sont pas dans d’autres tableaux. Consultez [`set_union()`](setunionfunction.md) et [`set_intersect()`](setintersectfunction.md) .
 
 **Exemple**
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 range x from 1 to 3 step 1
 | extend y = x * 2
@@ -45,13 +46,14 @@ range x from 1 to 3 step 1
 |Colonne1|
 |---|
 |[4]|
-|[8]|
-|[12]|
+|version8|
+|douze|
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 print arr = set_difference(dynamic([1,2,3]), dynamic([1,2,3]))
 ```
 
-|Arr|
+|arr|
 |---|
 |[]|

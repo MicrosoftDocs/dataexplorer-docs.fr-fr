@@ -1,6 +1,6 @@
 ---
-title: min_of() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit min_of() dans Azure Data Explorer.
+title: min_of ()-Azure Explorateur de données
+description: Cet article décrit min_of () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 06a8f7ce6bcef8f3c15c4ea3d4c997b4e4540bf7
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 0762b1416df32279b9801c47f129a6966772a7e2
+ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81512391"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83271364"
 ---
 # <a name="min_of"></a>min_of()
 
@@ -25,21 +25,22 @@ min_of(10, 1, -3, 17) == -3
 
 **Syntaxe**
 
-`min_of`expr_1 *expr_2* ... *expr_1* `(``,``)`
+`min_of``(` *expr_1* `,` *expr_2* ...`)`
 
 **Arguments**
 
-* *expr_i*: Une expression scalaire, à évaluer.
+* *expr_i*: expression scalaire, à évaluer.
 
 - Tous les arguments doivent être du même type.
-- Un maximum de 64 arguments est étayé.
+- Le nombre maximal d’arguments 64 est pris en charge.
 
 **Retourne**
 
-La valeur minimale de toutes les expressions d’argument.
+Valeur minimale de toutes les expressions d’arguments.
 
 **Exemple**
 
+<!-- csl: https://help.kusto.windows.net/Samples  -->
 ```kusto
 print result=min_of(10, 1, -3, 17) 
 ```

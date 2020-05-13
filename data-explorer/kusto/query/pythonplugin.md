@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 04/01/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 3d88b04220851b8218d0d23fed93ba3627720afd
-ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
+ms.openlocfilehash: d4159af7cd7b45022d29a1c98694dc4ae80451ab
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82737825"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373128"
 ---
 # <a name="python-plugin"></a>Plug-in Python
 
@@ -26,31 +26,31 @@ Le runtime du plug-in est hébergé dans les [bacs à sable (sandbox](../concept
 
 ## <a name="syntax"></a>Syntaxe
 
-*T* `|` `single``,` *script* *output_schema* `,` *external_artifacts*[`hint.distribution` (`per_node`)] `python(`output_schema script [`,` *script_parameters*] [external_artifacts] |  `evaluate` `=``)`
+*T* `|` `evaluate` [ `hint.distribution` `=` ( `single`  |  `per_node` )] `python(` *output_schema* `,` *script* [ `,` *script_parameters*] [ `,` *external_artifacts*]`)`
 
 ## <a name="arguments"></a>Arguments
 
 * *output_schema*: `type` littéral qui définit le schéma de sortie des données tabulaires, retourné par le code Python.
-    * Le format est : `typeof(` *ColumnName* `:` *ColumnType* [,...] `)`, par exemple : `typeof(col1:string, col2:long)`.
+    * Le format est : `typeof(` *ColumnName* `:` *ColumnType* [,...] `)` , par exemple : `typeof(col1:string, col2:long)` .
     * Pour étendre le schéma d’entrée, utilisez la syntaxe suivante :`typeof(*, col1:string, col2:long)`
 * *script*: `string` littéral qui est le script Python valide à exécuter.
-* *script_parameters*: un littéral `dynamic` facultatif, qui est un conteneur de propriétés de paires nom/valeur à passer au script Python en tant que dictionnaire `kargs` réservé (consultez [variables python réservées](#reserved-python-variables)).
+* *script_parameters*: un `dynamic` littéral facultatif, qui est un conteneur de propriétés de paires nom/valeur à passer au script Python en tant que `kargs` dictionnaire réservé (consultez [variables python réservées](#reserved-python-variables)).
 * *hint. distribution*: indication facultative pour que l’exécution du plug-in soit distribuée sur plusieurs nœuds de cluster.
   * La valeur par défaut est `single`.
   * `single`: Une seule instance du script est exécutée sur l’ensemble des données de la requête.
   * `per_node`: Si la requête avant le bloc Python est distribuée, une instance du script s’exécutera sur chaque nœud sur les données qu’elle contient.
-* *external_artifacts*: un littéral `dynamic` facultatif qui est un jeu de propriétés nom & paires d’URL pour les artefacts accessibles depuis le stockage cloud et pouvant être mis à la disposition du script à utiliser au moment de l’exécution.
+* *external_artifacts*: un `dynamic` littéral facultatif qui est un jeu de propriétés nom & paires d’URL pour les artefacts accessibles depuis le stockage cloud et pouvant être mis à la disposition du script à utiliser au moment de l’exécution.
   * Les URL référencées dans ce conteneur de propriétés sont requises pour :
   * Inclus dans la [stratégie de légende](../management/calloutpolicy.md)du cluster.
     2. Se trouve dans un emplacement disponible publiquement ou fournissez les informations d’identification nécessaires, comme expliqué dans [chaînes de connexion de stockage](../api/connection-strings/storage.md).
-  * Les artefacts sont rendus disponibles pour le script à utiliser à partir d’un répertoire `.\Temp`temporaire local,, et les noms fournis dans le conteneur de propriétés sont utilisés comme noms de fichiers locaux (Voir l' [exemple](#examples) ci-dessous).
+  * Les artefacts sont rendus disponibles pour le script à utiliser à partir d’un répertoire temporaire local, `.\Temp` , et les noms fournis dans le conteneur de propriétés sont utilisés comme noms de fichiers locaux (Voir l' [exemple](#examples) ci-dessous).
   * Pour plus d’informations, consultez [l’annexe](#appendix-installing-packages-for-the-python-plugin) ci-dessous.
 
 ## <a name="reserved-python-variables"></a>Variables python réservées
 
 Les variables suivantes sont réservées pour l’interaction entre le langage de requête Kusto et le code Python :
 
-* `df`: Données tabulaires d’entrée (les valeurs `T` ci-dessus), `pandas` en tant que tableau.
+* `df`: Données tabulaires d’entrée (les valeurs `T` ci-dessus), en tant que `pandas` tableau.
 * `kargs`: La valeur de l’argument *script_parameters* , sous la forme d’un dictionnaire Python.
 * `result`: `pandas` Tableau créé par le script Python dont la valeur devient les données tabulaires qui sont envoyées à l’opérateur de requête Kusto qui suit le plug-in.
 
@@ -58,21 +58,21 @@ Les variables suivantes sont réservées pour l’interaction entre le langage d
 
 * Le plug-in est désactivé par défaut.
 * Les conditions préalables à l’activation du plug-in sont répertoriées [ici](../concepts/sandboxes.md#prerequisites).
-* Activez ou désactivez le plug-in dans le [portail Azure sous l’onglet **configuration** de votre cluster](https://docs.microsoft.com/azure/data-explorer/language-extensions).
+* Activez ou désactivez le plug-in dans le [portail Azure sous l’onglet **configuration** de votre cluster](../../language-extensions.md).
 
 ## <a name="notes-and-limitations"></a>Remarques et limitations
 
 * L’image Python sandbox est basée sur la distribution *Anaconda 5.2.0* avec le moteur *python 3,6* .
   La liste de ses packages est disponible [ici](http://docs.anaconda.com/anaconda/packages/old-pkg-lists/5.2.0/py3.6_win-64/) (un petit pourcentage de packages peut être incompatible avec les limitations imposées par le bac à sable (sandbox) dans lequel le plug-in est exécuté).
-* L’image Python contient également des packages ml communs `tensorflow`: `keras`, `torch`, `hdbscan`, `xgboost` et d’autres packages utiles.
-* Le plug- *numpy* in importe numpy `np`(comme) & *pandas* (AS `pd`) par défaut.  Vous pouvez importer d’autres modules en fonction des besoins.
+* L’image Python contient également des packages ml communs : `tensorflow` , `keras` ,, et d' `torch` `hdbscan` `xgboost` autres packages utiles.
+* Le plug-in importe *numpy* (comme `np` ) & *pandas* (AS `pd` ) par défaut.  Vous pouvez importer d’autres modules en fonction des besoins.
 * **Ingestion [des stratégies de requête et de](../management/data-ingestion/ingest-from-query.md) [mise à jour](../management/updatepolicy.md)**
   * Il est possible d’utiliser le plug-in dans les requêtes suivantes :
       1. Défini dans le cadre d’une stratégie de mise à jour, dont la table source est ingérée pour l’utilisation de la *non-diffusion en continu* .
-      2. Exécuter dans le cadre d’une commande qui est ingérée à partir d' `.set-or-append`une requête (par exemple,).
+      2. Exécuter dans le cadre d’une commande qui est ingérée à partir d’une requête (par exemple `.set-or-append` ,).
   * Dans les deux cas, il est recommandé de vérifier que le volume et la fréquence de l’ingestion, ainsi que la complexité et l’utilisation des ressources de la logique Python sont alignés avec les [limitations du bac à sable (sandbox](../concepts/sandboxes.md#limitations)) et les ressources disponibles du cluster.
     Dans le cas contraire, vous risquez de provoquer des [Erreurs de limitation](../concepts/sandboxes.md#errors).
-  * Il n’est *pas* possible d’utiliser le plug-in dans une requête qui est définie dans le cadre d’une stratégie de mise à jour, dont la table source est ingérée à l’aide de l’ingestion de [diffusion en continu](https://docs.microsoft.com/azure/data-explorer/ingest-data-streaming).
+  * Il n’est *pas* possible d’utiliser le plug-in dans une requête qui est définie dans le cadre d’une stratégie de mise à jour, dont la table source est ingérée à l’aide de l’ingestion de [diffusion en continu](../../ingest-data-streaming.md).
 
 ## <a name="examples"></a>Exemples
 
@@ -115,7 +115,7 @@ print "This is an example for using 'external_artifacts'"
 )
 ```
 
-| Fichier                  | Taille |
+| File                  | Taille |
 |-----------------------|------|
 | this_is_a_script      | 120  |
 | this_is_my_first_file | 105  |
@@ -129,7 +129,7 @@ print "This is an example for using 'external_artifacts'"
     * Vous pouvez également utiliser l' [opérateur de partition](partitionoperator.md) pour partitionner le jeu de données d’entrée.
 * Utilisez le langage de requête de Kusto, dans la mesure du possible, pour implémenter la logique de votre script Python.
 
-    Exemple :
+    Exemple :
 
     ```kusto    
     .show operations
@@ -145,10 +145,10 @@ print "This is an example for using 'external_artifacts'"
 
 ## <a name="usage-tips"></a>Conseils d’utilisation
 
-* Pour générer des chaînes multilignes contenant le script Python `Kusto.Explorer`dans, copiez votre script Python à partir de votre éditeur Python favori (*Jupyter*, *Visual Studio code*, *PyCharm*, etc.), puis :
+* Pour générer des chaînes multilignes contenant le script Python dans `Kusto.Explorer` , copiez votre script Python à partir de votre éditeur Python favori (*Jupyter*, *Visual Studio code*, *PyCharm*, etc.), puis :
     * Appuyez sur *F2* pour ouvrir la fenêtre **modifier dans python** . Collez le script dans cette fenêtre. Sélectionnez **OK**. Le script sera décoré avec des guillemets et de nouvelles lignes (il est donc valide dans Kusto) et collé automatiquement dans l’onglet requête.
     * Collez le code python directement sous l’onglet requête, sélectionnez ces lignes et appuyez sur *CTRL + k*, *CTRL + S* touche d’accès rapide pour les décorer comme indiqué ci-dessus (pour les inverser, appuyez sur *CTRL + k*, *Ctrl + M* touche d’accès rapide). [Voici](../tools/kusto-explorer-shortcuts.md#query-editor) la liste complète des raccourcis de l’éditeur de requête.
-* Pour éviter les conflits entre les délimiteurs de chaîne Kusto et les littéraux de chaîne Python, nous vous`'`recommandons d’utiliser des guillemets simples () pour les littéraux de chaîne`"`Kusto dans des requêtes Kusto et des guillemets doubles () pour les littéraux de chaîne python dans les scripts Python.
+* Pour éviter les conflits entre les délimiteurs de chaîne Kusto et les littéraux de chaîne Python, nous vous recommandons d’utiliser des guillemets simples ( `'` ) pour les littéraux de chaîne Kusto dans des requêtes Kusto et des guillemets doubles ( `"` ) pour les littéraux de chaîne python dans les scripts Python.
 * Utilisez l' [opérateur ExternalData](externaldata-operator.md) pour obtenir le contenu d’un script que vous avez stocké dans un emplacement externe, tel que le stockage d’objets BLOB Azure.
   
     **Exemple**
@@ -182,14 +182,14 @@ Vous pouvez installer des packages en procédant comme suit :
   
   b. Modifiez la stratégie de [légende](../management/calloutpolicy.md) du cluster pour permettre l’accès à cet emplacement.
     * Cela nécessite des autorisations [AllDatabasesAdmin](../management/access-control/role-based-authorization.md) .
-    * Par exemple, pour activer l’accès à un objet BLOB `https://artifcatswestus.blob.core.windows.net/python`situé dans, la commande à exécuter est la suivante :
+    * Par exemple, pour activer l’accès à un objet BLOB situé dans `https://artifcatswestus.blob.core.windows.net/python` , la commande à exécuter est la suivante :
 
       ```kusto
       .alter-merge cluster policy callout @'[ { "CalloutType": "sandbox_artifacts", "CalloutUriRegex": "artifcatswestus\\.blob\\.core\\.windows\\.net/python/","CanCall": true } ]'
       ```
 
 2. Pour les packages publics (dans [PyPi](https://pypi.org/) ou d’autres canaux) a. Téléchargez le package et ses dépendances.
-  b. Si nécessaire, compilez-`*.whl`les dans les fichiers Wheel () :
+  b. Si nécessaire, compilez-les dans les fichiers Wheel ( `*.whl` ) :
     * Dans une fenêtre cmd (dans votre environnement python local), exécutez :
       ```python
       pip wheel [-w download-dir] package-name.
@@ -200,13 +200,13 @@ Vous pouvez installer des packages en procédant comme suit :
     * Pour les packages publics : compressez les fichiers qui ont été téléchargés à l’étape précédente.
     * Remarques :
         * Veillez à compresser les `.whl` fichiers eux-mêmes et *non* leur dossier parent.
-        * Vous pouvez ignorer `.whl` les fichiers pour les packages qui existent déjà avec la même version dans l’image de bac à sable (sandbox) de base.
+        * Vous pouvez ignorer les `.whl` fichiers pour les packages qui existent déjà avec la même version dans l’image de bac à sable (sandbox) de base.
     * Pour les packages privés : compresser le dossier du package et ceux de ses dépendances
 
 4. Chargez le fichier zippé dans un objet blob à l’emplacement artefacts (à partir de l’étape 1).
 
 5. Appel du `python` plug-in :
-    * Spécifiez `external_artifacts` le paramètre avec un conteneur de propriétés de nom et une référence au fichier zip (l’URL de l’objet BLOB).
+    * Spécifiez le `external_artifacts` paramètre avec un conteneur de propriétés de nom et une référence au fichier zip (l’URL de l’objet BLOB).
     * Dans votre code python inline : importez `Zipackage` à partir de `sandbox_utils` et appelez sa `install()` méthode avec le nom du fichier. zip.
 
 ### <a name="example"></a>Exemple

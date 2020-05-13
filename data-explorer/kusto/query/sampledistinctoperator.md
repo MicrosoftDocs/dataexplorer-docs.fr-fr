@@ -1,6 +1,6 @@
 ---
-title: opérateur distinct de l’échantillon - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit l’opérateur d’échantillons distincts dans Azure Data Explorer.
+title: Sample-distinct, opérateur-Azure Explorateur de données
+description: Cet article décrit l’exemple d’opérateur distinct dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b6d6c77aef3a7e2c6d99af792062d9f1a6215f51
-ms.sourcegitcommit: 436cd515ea0d83d46e3ac6328670ee78b64ccb05
+ms.openlocfilehash: 5303801b983b326310065ea2a6ce6ded7d098001
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81663647"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373006"
 ---
 # <a name="sample-distinct-operator"></a>opérateur sample-distinct
 
 Renvoie une seule colonne qui contient le nombre spécifié de valeurs distinctes de la colonne demandée. 
 
-la saveur par défaut (et actuellement seulement) de l’opérateur tente de retourner une réponse aussi rapidement que possible (plutôt que d’essayer de faire un échantillon équitable)
+la version par défaut (et actuellement uniquement) de l’opérateur tente de retourner une réponse aussi rapidement que possible (au lieu d’essayer de créer un échantillon équitable)
 
 ```kusto
 T | sample-distinct 5 of DeviceId
@@ -30,20 +30,21 @@ T | sample-distinct 5 of DeviceId
 *T* `| sample-distinct` *NumberOfValues* `of` *ColumnName*
 
 **Arguments**
-* *NumberOfValues*: Le nombre de valeurs distinctes de *T* à revenir. Vous pouvez spécifier n’importe quelle expression numérique.
+* *NumberOfValues*: nombre de valeurs distinctes de *T* à retourner. Vous pouvez spécifier n’importe quelle expression numérique.
 
 **Conseils**
 
- Peut être pratique pour échantillonner une population en `sample-distinct` mettant `in` dans une déclaration de laisser et plus tard filtrer à l’aide de l’opérateur (voir l’exemple) 
+ Peut être pratique pour échantillonner une population en plaçant `sample-distinct` une instruction Let et un filtre ultérieur à l’aide de l' `in` opérateur (Voir l’exemple) 
 
- Si vous voulez les valeurs supérieures plutôt qu’un simple échantillon, vous pouvez utiliser l’opérateur [top-hitters](tophittersoperator.md) 
+ Si vous souhaitez obtenir les valeurs les plus importantes plutôt qu’un simple exemple, vous pouvez utiliser l’opérateur [Top-Hitters](tophittersoperator.md) 
 
- si vous souhaitez échantillonner des lignes de données (plutôt que des valeurs d’une colonne spécifique), consultez [l’opérateur de l’échantillon](sampleoperator.md)
+ Si vous souhaitez échantillonner des lignes de données (plutôt que des valeurs d’une colonne spécifique), reportez-vous à l' [exemple d’opérateur](sampleoperator.md)
 
 **Exemples**  
 
-Obtenez 10 valeurs distinctes d’une population
+Obtenir 10 valeurs distinctes d’une population
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 StormEvents | sample-distinct 10 of EpisodeId
 
@@ -51,6 +52,7 @@ StormEvents | sample-distinct 10 of EpisodeId
 
 Échantillonnez une population et faites davantage de calculs en sachant que la synthèse ne dépassera pas les limites de requête. 
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let sampleEpisodes = StormEvents | sample-distinct 10 of EpisodeId;
 StormEvents 

@@ -1,6 +1,6 @@
 ---
-title: series_multiply() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit series_multiply() dans Azure Data Explorer.
+title: series_multiply ()-Azure Explorateur de données
+description: Cet article décrit series_multiply () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,31 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: fa000d1058730e0232790e7f0e3976fa203519c0
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 1f88cdfc1490f8b00d8104286441e366aaf46f3f
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81508209"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372573"
 ---
 # <a name="series_multiply"></a>series_multiply()
 
-Calcule la multiplication élément-sage de deux entrées de série numérique.
+Calcule la multiplication par élément de deux entrées de série numérique.
 
 **Syntaxe**
 
-`series_multiply(`*série1* `,` *série2*`)`
+`series_multiply(`*Series1* `,` *Series2*`)`
 
 **Arguments**
 
-* *série1, série2*: Entrées de tableaux numériques, à intégrer élément-sage multiplié dans un résultat de tableau dynamique. Tous les arguments doivent être des tableaux dynamiques. 
+* *Series1, Series2*: entrez des tableaux numériques, qui doivent être multipliés par un élément dans un résultat de tableau dynamique. Tous les arguments doivent être des tableaux dynamiques. 
 
 **Retourne**
 
-Gamme dynamique de l’opération calculée de multiplication élément-sage entre les deux entrées. Tout élément non numérique ou élément non existant (tableaux de `null` différentes tailles) donne une valeur d’élément.
+Tableau dynamique d’opérations de multiplication par élément calculé entre les deux entrées. Tout élément non numérique ou élément non existant (tableaux de tailles différentes) produit une `null` valeur d’élément.
 
 **Exemple**
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 range x from 1 to 3 step 1
 | extend y = x * 2
@@ -43,6 +44,6 @@ range x from 1 to 3 step 1
 
 |s1         |s2|        s1_multiply_s2|
 |---|---|---|
-|[1,2,4]    |[4,2,1]|   [4,4,4]|
-|[2,4,8]    |[8,4,2]|   [16,16,16]|
-|[3,6,12]   |[12,6,3]|  [36,36,36]|
+|[1, 2, 4]    |[4, 2, 1]|   [4, 4, 4]|
+|[2, 4, 8]    |[8, 4, 2]|   [16, 16, 16]|
+|[3, 6, 12]   |[12, 6, 3]|  [36, 36, 36]|

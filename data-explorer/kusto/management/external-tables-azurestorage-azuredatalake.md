@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: db99d1d46c321bff0f5d7b370766900ea7d1d5a0
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 1c7670dfb06e95f227a4b828a86b980005eeeac9
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227721"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373353"
 ---
 # <a name="external-tables-in-azure-storage-or-azure-data-lake"></a>Tables externes dans le stockage Azure ou Azure Data Lake
 
@@ -40,7 +40,7 @@ Crée ou modifie une nouvelle table externe dans la base de données dans laquel
 * *TableName* -nom de la table externe. Doit suivre les règles pour les [noms d’entité](../query/schema-entities/entity-names.md). Une table externe ne peut pas avoir le même nom qu’une table normale dans la même base de données.
 * *Schéma-schéma* de données externes au format : `ColumnName:ColumnType[, ColumnName:ColumnType ...]` . Si le schéma de données externes est inconnu, utilisez le plug-in [infer_storage_schema](../query/inferstorageschemaplugin.md) , qui peut déduire le schéma en fonction du contenu du fichier externe.
 * *Partition* : une ou plusieurs définitions de partition (facultatif). Consultez la syntaxe de partition ci-dessous.
-* *Format* : format de données. Tous les [formats](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats) d’ingestion sont pris en charge pour l’interrogation. L’utilisation de la table externe pour le [scénario d’exportation](data-export/export-data-to-an-external-table.md) se limite aux formats suivants : `CSV` , `TSV` , `JSON` , `Parquet` .
+* *Format* : format de données. Tous les [formats](../../ingestion-supported-formats.md) d’ingestion sont pris en charge pour l’interrogation. L’utilisation de la table externe pour le [scénario d’exportation](data-export/export-data-to-an-external-table.md) se limite aux formats suivants : `CSV` , `TSV` , `JSON` , `Parquet` .
 * *StorageConnectionString* : un ou plusieurs chemins d’accès aux conteneurs d’objets BLOB de stockage BLOB Azure ou Azure Data Lake Store systèmes de fichiers (répertoires virtuels ou dossiers), y compris les informations d’identification. Pour plus d’informations, consultez [chaînes de connexion de stockage](../api/connection-strings/storage.md) . Fournissez plus d’un compte de stockage unique pour éviter la limitation du stockage lors de l' [exportation](data-export/export-data-to-an-external-table.md) de grandes quantités de données vers la table externe. L’exportation répartit les écritures entre tous les comptes fournis. 
 
 **Syntaxe de la partition**

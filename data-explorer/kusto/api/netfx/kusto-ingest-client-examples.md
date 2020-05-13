@@ -1,6 +1,6 @@
 ---
-title: Exemples de code d’ingestion de référence Kusto. Adout-Azure Explorateur de données | Microsoft Docs
-description: Cet article décrit les exemples de code d’ingestion de référence Kusto. Adout dans Azure Explorateur de données.
+title: Exemples de code d’ingestion Kusto. ingestion-Azure Explorateur de données
+description: Cet article décrit les exemples de code d’ingestion Kusto. ingestion dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,26 +8,25 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/15/2019
-ms.openlocfilehash: ba3232ca1c8a3f587f53ee1c3c6aad3fc12283ad
-ms.sourcegitcommit: 061eac135a123174c85fe1afca4d4208c044c678
+ms.openlocfilehash: caeebf0a94d4e8144f1d00f84ea78f8727947416
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/05/2020
-ms.locfileid: "82799677"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373645"
 ---
-# <a name="kustoingest-reference---ingestion-code-examples"></a>Exemples de code d’ingestion de référence Kusto. Adout
-Il s’agit d’une collection d’extraits de code courts illustrant diverses techniques d’ingestion de données dans une table Kusto
+# <a name="kustoingest-ingestion-code-examples"></a>Exemples de code d’ingestion Kusto. ingestion
 
->Rappel : ces exemples se présentent comme si le client de réception était détruit immédiatement après l’ingestion. N’effectuez pas cette opération littéralement.<BR>Les clients de réception sont réentrants, thread-safe et ne doivent pas être créés en grand nombre. La cardinalité recommandée pour les instances du client de réception est un par processus d’hébergement par cluster Kusto cible.
+Cette collection d’extraits de code courts illustre diverses techniques d’ingestion de données dans une table Kusto.
 
-### <a name="useful-references"></a>Références utiles
-* [Informations de référence sur le client Kusto. deréception](kusto-ingest-client-reference.md)
-* [État de l’opération de réception de Kusto.](kusto-ingest-client-errors.md)
-* [Exceptions Kusto. deréception](kusto-ingest-client-errors.md)
-* [Chaînes de connexion Kusto](../connection-strings/kusto.md)
-* [Modèle d’autorisation Kusto](../../management/security-roles.md)
+> [!NOTE]
+> Ces exemples se présentent comme si le client de réception est détruit immédiatement après l’ingestion. N’effectuez pas cette opération littéralement.
+> Les clients de réception sont réentrants et thread-safe et ne doivent pas être créés en grand nombre. La cardinalité recommandée pour les instances du client de réception est un par processus d’hébergement, par cluster Kusto cible.
 
-### <a name="async-ingestion-from-a-single-azure-blob-using-kustoqueuedingestclient-with-optional-retrypolicy"></a>Ingestion asynchrone à partir d’un seul objet BLOB Azure à l’aide de KustoQueuedIngestClient avec (facultatif) RetryPolicy :
+## <a name="async-ingestion-from-a-single-azure-blob"></a>Ingestion asynchrone à partir d’un seul objet BLOB Azure
+
+Utilisez KustoQueuedIngestClient, avec RetryPolicy facultatif, pour l’ingestion asynchrone à partir d’un seul objet BLOB Azure.
+
 ```csharp
 //Create Kusto connection string with App Authentication
 var kustoConnectionStringBuilderDM =
@@ -56,9 +55,13 @@ await client.IngestFromStorageAsync(uri: @"BLOB-URI-WITH-SAS-KEY", ingestionProp
 client.Dispose();
 ```
 
-### <a name="ingest-from-local-file-using-kustodirectingestclient"></a>Réception à partir d’un fichier local à l’aide de KustoDirectIngestClient 
+## <a name="ingest-from-local-file"></a>Réception à partir d’un fichier local 
 
-Cette méthode est recommandée pour un volume limité et une ingestion de fréquence faible.
+Utilisez KustoDirectIngestClient pour effectuer une réception à partir d’un fichier local.
+
+
+> [!NOTE]
+> Nous vous recommandons cette méthode pour un volume limité et une ingestion basse fréquence.
 
 ```csharp
 // Create Kusto connection string with App Authentication
@@ -78,7 +81,10 @@ using (IKustoIngestClient client = KustoIngestFactory.CreateDirectIngestClient(k
 }
 ```
 
-### <a name="ingest-from-local-files-using-kustoqueuedingestclient-and-ingestion-validation"></a>Réception des fichiers locaux à l’aide de KustoQueuedIngestClient et de la validation d’ingestion 
+## <a name="ingest-from-local-files-and-validate-ingestion"></a>Réception des fichiers locaux et validation de l’ingestion
+
+Utilisez KustoQueuedIngestClient pour effectuer une réception à partir de fichiers locaux, puis valider l’ingestion.
+
 ```csharp
 // Create Kusto connection string with App Authentication
 var kustoConnectionStringBuilderDM =
@@ -110,7 +116,9 @@ Ensure.IsTrue((ingestionFailures.Count() > 0), "Failures expected");
 client.Dispose();
 ```
 
-### <a name="ingest-from-a-local-files-using-kustoqueuedingestclient-and-report-status-to-a-queue"></a>Ingérer des fichiers locaux à l’aide de KustoQueuedIngestClient et signaler l’État dans une file d’attente
+### <a name="ingest-from-local-files-and-report-status-to-a-queue"></a>Ingérer des fichiers locaux et signaler l’État dans une file d’attente
+
+Utilisez KustoQueuedIngestClient pour recevoir des fichiers locaux et signaler l’État à une file d’attente.
 
 ```csharp
 // Create Kusto connection string with App Authentication
@@ -157,7 +165,9 @@ Ensure.ConditionIsMet((ingestionSuccesses.Count() > 0),
 client.Dispose();
 ```
 
-### <a name="ingest-from-a-local-file-using-kustoqueuedingestclient-and-report-status-to-a-table"></a>Réception d’un fichier local à l’aide de KustoQueuedIngestClient et signale l’État à une table
+### <a name="ingest-from-local-files-and-report-status-to-a-table"></a>Ingérer des fichiers locaux et signaler l’État à une table
+
+Utilisez KustoQueuedIngestClient pour recevoir des fichiers locaux et signaler l’État à une table.
 
 ```csharp
 // Create Kusto connection string with App Authentication
@@ -206,3 +216,11 @@ Ensure.ConditionIsMet(ingestionStatus.Status == Status.Succeeded,
 // Dispose of the client
 client.Dispose();
 ```
+
+## <a name="next-steps"></a>Étapes suivantes
+
+* [Informations de référence sur le client Kusto. deréception](kusto-ingest-client-reference.md)
+* [État de l’opération de réception de Kusto.](kusto-ingest-client-errors.md)
+* [Exceptions Kusto. deréception](kusto-ingest-client-errors.md)
+* [Chaînes de connexion Kusto](../connection-strings/kusto.md)
+* [Modèle d’autorisation Kusto](../../management/security-roles.md)

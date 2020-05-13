@@ -1,6 +1,6 @@
 ---
-title: series_equals() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit series_equals() dans Azure Data Explorer.
+title: series_equals ()-Azure Explorateur de données
+description: Cet article décrit series_equals () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,31 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: 267e9db8dd2980016f4022ce6358569f30aacb6f
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 85c6df85814d4b4aa4e1b00786d3d206d02116cd
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81508804"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372823"
 ---
 # <a name="series_equals"></a>series_equals()
 
-Calcule le fonctionnement de`==`l’élément-sage égal à la logique de deux entrées numériques.
+Calcule l’opération logique d’égalité au niveau `==` des éléments () de deux entrées de série numérique.
 
 **Syntaxe**
 
-`series_equals (`*Série 1* `,` *Série2*`)`
+`series_equals (`*Series1* `,` *Series2*`)`
 
 **Arguments**
 
-* *Série1, Série2*: Entrées de tableaux numériques à être élément-sage comparé. Tous les arguments doivent être des tableaux dynamiques. 
+* *Series1, Series2*: les tableaux numériques d’entrée doivent être comparés par élément. Tous les arguments doivent être des tableaux dynamiques. 
 
 **Retourne**
 
-Gamme dynamique de booleans contenant l’élément calculé-sage fonctionnement logique égale entre les deux entrées. Tout élément non numérique ou élément non existant (tableaux de `null` différentes tailles) donne une valeur d’élément.
+Tableau dynamique de valeurs booléennes contenant l’opération logique d’égalité des éléments calculée entre les deux entrées. Tout élément non numérique ou élément non existant (tableaux de tailles différentes) produit une `null` valeur d’élément.
 
 **Exemple**
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 print s1 = dynamic([1,2,4]), s2 = dynamic([4,2,1])
 | extend s1_equals_s2 = series_equals(s1, s2)
@@ -40,10 +41,10 @@ print s1 = dynamic([1,2,4]), s2 = dynamic([4,2,1])
 
 |s1|s2|s1_equals_s2|
 |---|---|---|
-|[1,2,4]|[4,2,1]|[faux, vrai, faux]|
+|[1, 2, 4]|[4, 2, 1]|[false, true, false]|
 
 **Voir aussi**
 
-Pour des comparaisons de statistiques de séries entières, voir :
+Pour les comparaisons de statistiques de série entières, consultez :
 * [series_stats()](series-statsfunction.md)
 * [series_stats_dynamic()](series-stats-dynamicfunction.md)

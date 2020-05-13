@@ -1,6 +1,6 @@
 ---
-title: sumif() (fonction d’agrégation) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit sumif() (fonction d’agrégation) dans Azure Data Explorer.
+title: somme.si () (fonction d’agrégation)-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit somme.si () (fonction d’agrégation) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,36 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a7d2c96f73b404e8d9acbe9da9defecd6bf1bbf3
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 7d97d31b2fb97d5541400bc0605ee40e83807b62
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81506662"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83371895"
 ---
-# <a name="sumif-aggregation-function"></a>sumif() (fonction d’agrégation)
+# <a name="sumif-aggregation-function"></a>somme.si () (fonction d’agrégation)
 
-Retourne une somme d’Expr pour laquelle `true` *Predicate* évalue à . *Expr*
+Retourne la somme de *expr* pour laquelle le *prédicat* a la valeur `true` .
 
-* Ne peut être utilisé que dans le contexte de l’agrégation à l’intérieur [résumer](summarizeoperator.md)
+* Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 
-Vous pouvez également utiliser la [fonction somme()](sum-aggfunction.md) qui résume les rangées sans expression prédicat.
+Vous pouvez également utiliser la fonction [Sum ()](sum-aggfunction.md) , qui additionne des lignes sans expression de prédicat.
 
 **Syntaxe**
 
-résumer `sumif(` *Expr*`,`*Predicate*`)`
+synthétiser le `sumif(` *Expr* `,` *prédicat* expr`)`
 
 **Arguments**
 
-* *Expr*: expression pour calcul d’agrégation. 
-* *Prédicat : prédicez*que, si c’est vrai, la valeur calculée de *l’Expr*sera ajoutée à la somme. 
+* *Expr*: expression pour le calcul de l’agrégation. 
+* *Predicate*: prédicat qui, si la valeur est true, la valeur calculée de l' *expression expr*sera ajoutée à la somme. 
 
 **Retourne**
 
-La valeur de somme d’Expr pour `true`laquelle *Predicate* évalue à . *Expr*
-
-> [!TIP]
-> Utiliser `summarize sumif(expr, filter)` à la place de `where filter | summarize sum(expr)`
+Valeur SUM de *expr* pour laquelle le *prédicat* prend la valeur `true` .
 
 **Exemple**
 

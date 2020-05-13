@@ -1,5 +1,5 @@
 ---
-title: series_fit_line_dynamic ()-Azure Explorateur de données | Microsoft Docs
+title: series_fit_line_dynamic ()-Azure Explorateur de données
 description: Cet article décrit series_fit_line_dynamic () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 170348dd530b581f85e0323563be324d5b795511
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 756650db23d531ec37636c0e7bd781a74ef9fdc3
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618715"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372694"
 ---
 # <a name="series_fit_line_dynamic"></a>series_fit_line_dynamic()
 
@@ -27,7 +27,7 @@ Prend une expression contenant un tableau numérique dynamique comme entrée et 
 * `interception`: interception de la ligne approximative (il s’agit de b de y = ax + b)
 * `line_fit`: tableau numérique contenant une série de valeurs de la ligne la mieux adaptée. La longueur de la série est égale à la longueur du tableau d’entrée. Elle est principalement utilisée pour les graphiques.
 
-Cet opérateur est semblable à [series_fit_line](series-fit-linefunction.md), mais contrairement `series-fit-line` à, il retourne un conteneur dynamique.
+Cet opérateur est semblable à [series_fit_line](series-fit-linefunction.md), mais contrairement à, `series-fit-line` il retourne un conteneur dynamique.
 
 **Syntaxe**
 
@@ -42,6 +42,7 @@ Cet opérateur est semblable à [series_fit_line](series-fit-linefunction.md), m
 
 **Exemples**
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 print id=' ', x=range(bin(now(), 1h)-11h, bin(now(), 1h), 1h), y=dynamic([2,5,6,8,11,15,17,18,25,26,30,30])
 | extend fit=series_fit_line_dynamic(y)

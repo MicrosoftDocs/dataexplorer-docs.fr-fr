@@ -1,6 +1,6 @@
 ---
-title: Laissez-nous faire la déclaration - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit Let statement in Azure Data Explorer.
+title: Instruction Let-Azure Explorateur de données
+description: Cet article décrit l’instruction Let dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,63 +8,63 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 890a6e21400048031e4ebd3df9749b6c47803e71
-ms.sourcegitcommit: 653bfb3edf32553c52ef36b339c8b80713a601b0
+ms.openlocfilehash: c2e21f0b41f34b469e409109a2586f3e5fd98fa5
+ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81524444"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83271466"
 ---
 # <a name="let-statement"></a>Let, instruction
 
-Laissez les déclarations lier les noms aux expressions. Pour le reste de la portée dans laquelle l’instruction de laisser apparaît (portée globale ou dans une portée du corps de fonction), le nom peut être utilisé pour se référer à sa valeur liée. Si ce nom était auparavant lié à une autre valeur, la fixation de la déclaration la plus « la plus intérieure » est utilisée.
+Les instructions Let lient des noms à des expressions. Pour le reste de l’étendue dans laquelle l’instruction Let apparaît (portée globale ou dans une portée de corps de fonction), le nom peut être utilisé pour faire référence à sa valeur liée. Si ce nom a déjà été lié à une autre valeur, la liaison d’instruction Let « la plus profonde » est utilisée.
 
-Laissez les déclarations améliorer la modularité et la réutilisation, car elles permettent de briser une expression potentiellement complexe en plusieurs parties, chacune liée à un nom par la déclaration de laisser, et de les composer ensemble. Ils peuvent également être utilisés pour créer des fonctions et des vues définies par l’utilisateur (expressions sur des tables dont les résultats ressemblent à une nouvelle table).
+Les instructions Let améliorent la modularité et la réutilisation, car elles permettent de fractionner une expression potentiellement complexe en plusieurs parties, chacune liée à un nom par l’intermédiaire de l’instruction Let, et de les composer ensemble. Elles peuvent également être utilisées pour créer des fonctions et des vues définies par l’utilisateur (expressions sur des tables dont les résultats ressemblent à une nouvelle table).
 
-Les noms liés par les relevés de la loi doivent être des noms d’entités valides.
+Les noms liés par les instructions Let doivent être des noms d’entité valides.
 
-Les expressions liées par les déclarations de laisser peuvent être :
-* De type scalar
-* Type tabulaire
+Les expressions liées par les instructions Let peuvent être :
+* De type scalaire
+* De type tabulaire
 * Fonctions définies par l’utilisateur (lambdas)
 
 **Syntaxe**
 
-`let`*Nom* `=` *ScalarExpression* | *TabularExpression* | *FunctionDefinitionExpressionExpression*
+`let`*Nom* `=` *ScalarExpression*  |  *TabularExpression*  |  *FunctionDefinitionExpression*
 
-* *Nom*: Le nom à lier. Le nom doit être un nom d’entité valide, `["Name with spaces"]`et le nom de l’entité s’échappant (p. ex., ) est autorisé. 
-* *ScalarExpression*: Une expression avec un résultat scalaire dont la valeur sera liée au nom. Par exemple : `let one=1;`.
-* *TabularExpression*: Une expression avec un résultat tabulaire dont la valeur sera liée au nom. Par exemple : `Logs | where Timestamp > ago(1h)`.
-* *FonctionDéfinitionExpression*: Une expression qui donne un lambda (une déclaration de fonction anonyme) qui doit être lié au nom.
+* *Nom*: nom à lier. Le nom doit être un nom d’entité valide et le nom d’entité échappement (par exemple, `["Name with spaces"]` ) est autorisé. 
+* *ScalarExpression*: expression avec un résultat scalaire dont la valeur sera liée au nom. Par exemple : `let one=1;`.
+* *TabularExpression*: expression avec un résultat tabulaire dont la valeur sera liée au nom. Par exemple : `Logs | where Timestamp > ago(1h)`.
+* *FunctionDefinitionExpression*: expression qui produit une expression lambda (une déclaration de fonction anonyme) qui doit être liée au nom.
   Par exemple : `let f=(a:int, b:string) { strcat(b, ":", a) }`.
 
-Les expressions Lambda ont la syntaxe suivante :
+Les expressions lambda ont la syntaxe suivante :
 
-[`view` `(`] [*TabularArguments*`,`][ ][*ScalarArguments*]`)` `{` *FunctionBody*`}`
+[ `view` ] `(` [*TabularArguments*] [ `,` ] [*ScalarArguments*] `)` `{` *FunctionBody*`}`
 
-`TabularArguments`- [*TabularArgName* `:` `(`[*AtrName* `:` *AtrType*] [`,` ... ] `)`] [`,` ... ] [`,`]
+`TabularArguments`-[*TabularArgName* `:` `(` [*AtrName* `:` *AtrType*] [ `,` ...] `)` ] [`,` ... ] [`,`]
 
- ou: - [*TabularArgName* `:` `(` `*` `)`]
+ ou :-[*TabularArgName* `:` `(` `*` `)` ]
 
-`ScalarArguments`- [*ArgName* `:` *ArgType*] [`,` ... ]
+`ScalarArguments`-[*ArgName* `:` *ArgType*] [ `,` ...]
 
-* `view`peut apparaître seulement dans un lambda sans paramètres (celui qui n’a pas d’arguments) et indique que `union *`le nom lié sera inclus lorsque "toutes les tables" sont des requêtes (par exemple, lors de l’utilisation ).
-* *TabularArguments* sont la liste des arguments officiels d’expression tabulaire.
-  Chaque argument a :
-  * *TabularArgName* - le nom de l’argument tabulaire formel. Le nom peut alors apparaître dans le *FunctionBody* et est lié à une valeur particulière lorsque le lambda est invoqué. 
-  * Définition du schéma de table - une liste d’attributs avec leurs types (AtrName : AtrType).
-  L’expression tabulaire qui est utilisée dans l’invocation lambda doit avoir tous ces attributs avec les types correspondants, mais ne se limite pas à eux. 
-  ')' peut être utilisé comme expression tabulaire. Dans ce cas, toute expression tabulaire peut être utilisée dans l’invocation lambda et aucune de ses colonnes ne peut être consultée dans l’expression lambda.
-  Tous les arguments tabulaires doivent apparaître devant les arguments scalar.
-* *ScalarArguments* sont la liste des arguments formels scalar. 
-  Chaque argument a :
-  * *ArgName* - le nom de l’argument formel scalar. Le nom peut alors apparaître dans le *FunctionBody* et est lié à une valeur particulière lorsque le lambda est invoqué.  
-  * *ArgType* - le type de l’argument scalaire formel. Actuellement, seuls les types suivants sont pris `bool` `string`en `long` `datetime`charge `timespan` `real`comme `dynamic` un type d’argument lambda: , , , , , et (et alias à ces types).
+* `view`peut apparaître uniquement dans une expression lambda sans paramètre (qui n’a pas d’argument) et indique que le nom lié sera inclus quand « toutes les tables » sont des requêtes (par exemple, lors de l’utilisation de `union *` ).
+* *TabularArguments* est la liste des arguments d’expression tabulaires formels.
+  Chaque argument a :
+  * *TabularArgName* : nom de l’argument tabulaire formel. Le nom peut alors apparaître dans le *FunctionBody* et être lié à une valeur particulière lorsque l’expression lambda est appelée. 
+  * Définition de schéma de table : liste d’attributs avec leurs types (AtrName : AtrType).
+  L’expression tabulaire utilisée dans l’appel lambda doit avoir tous ces attributs avec les types correspondants, mais ne leur est pas limité. 
+  ' (*) 'peut être utilisé en tant qu’expression tabulaire. Dans ce cas, toute expression tabulaire peut être utilisée dans l’appel lambda et aucune de ses colonnes n’est accessible dans l’expression lambda.
+  Tous les arguments tabulaires doivent apparaître avant les arguments scalaires.
+* *ScalarArguments* est la liste des arguments scalaires formels. 
+  Chaque argument a :
+  * *ArgName* : nom de l’argument scalaire formel. Le nom peut alors apparaître dans le *FunctionBody* et être lié à une valeur particulière lorsque l’expression lambda est appelée.  
+  * *ArgType* : type de l’argument scalaire formel. Actuellement, seuls les types suivants sont pris en charge en tant que type d’argument lambda : `bool` ,,,, `string` `long` `datetime` `timespan` , `real` et `dynamic` (et les alias de ces types).
 
-**Déclarations de laisser multiples et imbriqués**
+**Instructions Let multiples et imbriquées**
 
-Les déclarations de `;` laisser multiples peuvent être utilisées avec délimitant entre eux comme indiqué dans l’exemple suivant.
-La dernière déclaration doit être une expression de requête valide : 
+Plusieurs instructions Let peuvent être utilisées avec des séparateurs `;` , comme indiqué dans l’exemple suivant.
+La dernière instruction doit être une expression de requête valide : 
 
 ```kusto
 let start = ago(5h); 
@@ -72,8 +72,8 @@ let period = 2h;
 T | where Time > start and Time < start + period | ...
 ```
 
-Les déclarations de laisser imbriquées sont autorisées et peuvent être utilisées à l’intérieur d’une expression lambda.
-Laissez les déclarations et les arguments visibles dans la portée actuelle et intérieure du corps de la fonction.
+Les instructions Let imbriquées sont autorisées et peuvent être utilisées dans une expression lambda.
+Les instructions et les arguments Let sont visibles dans l’étendue actuelle et intérieure du corps de la fonction.
 
 ```kusto
 let start_time = ago(5h); 
@@ -83,23 +83,23 @@ T | where Time > start_time and Time < end_time | ...
 
 **Exemples**
 
-### <a name="using-let-to-define-constants"></a>Utilisation de laisser définir les constantes
+### <a name="using-let-to-define-constants"></a>Utilisation de Let pour définir des constantes
 
-L’exemple suivant lie `x` le nom à `1`la littéral scalaire, puis l’utilise dans une déclaration d’expression tabulaire:
+L’exemple suivant lie le nom `x` au littéral scalaire, puis l' `1` utilise dans une instruction d’expression tabulaire :
 
 ```kusto
 let x = 1;
 range y from x to x step x
 ```
 
-Même exemple, mais dans ce cas - le `['name']` nom de la déclaration de laisser est donné en utilisant la notion:
+Même exemple, mais dans ce cas, le nom de l’instruction Let est fourni à l’aide de la `['name']` notion :
 
 ```kusto
 let ['x'] = 1;
 range y from x to x step x
 ```
 
-Encore un autre exemple qui utilise laisser pour les valeurs scalar:
+Un autre exemple qui utilise Let pour les valeurs scalaires :
 
 ```kusto
 let n = 10;  // number
@@ -111,9 +111,9 @@ Events
 | take n
 ```
 
-### <a name="using-multiple-let-statements"></a>Utilisation de plusieurs déclarations de laisser
+### <a name="using-multiple-let-statements"></a>Utilisation de plusieurs instructions Let
 
-L’exemple suivant définit deux déclarations`foo2`de laisser`foo1`où une déclaration ( ) utilise une autre ( ).
+L’exemple suivant définit deux instructions Let où une instruction ( `foo2` ) utilise une autre ( `foo1` ).
 
 ```kusto
 let foo1 = (_start:long, _end:long, _step:long) { range x from _start to _end step _step};
@@ -122,10 +122,11 @@ foo2(2) | count
 // Result: 50
 ```
 
-### <a name="using-materialize-function"></a>Utilisation de la fonction de matérialisation
+### <a name="using-materialize-function"></a>Utilisation de la fonction matérialiser
 
-[`materialize`](materializefunction.md)la fonction permet de mettre en cache les résultats de sous-requête pendant le temps de l’exécution de la requête. 
+[`materialize`](materializefunction.md)la fonction permet de mettre en cache les résultats de la sous-requête au moment de l’exécution de la requête. 
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let totalPagesPerDay = PageViews
 | summarize by Page, Day = startofday(Timestamp)

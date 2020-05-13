@@ -1,6 +1,6 @@
 ---
-title: notbetween opérateur - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit notbetween opérateur dans Azure Data Explorer.
+title: opérateur notBetween-Azure Explorateur de données
+description: Cet article décrit l’opérateur notBetween dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,47 +8,48 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: eacde679f05ff79f5ee0d223ba005217dbf5192c
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: e951e56589824acd6dd74160c9ab61778fbce45e
+ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81512085"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83271551"
 ---
-# <a name="between-operator"></a>!entre opérateur
+# <a name="between-operator"></a>! between, opérateur
 
-Correspond à l’entrée qui est en dehors de la plage inclusive.
+Correspond à l’entrée qui se trouve en dehors de la plage inclusive.
 
 ```kusto
 Table1 | where Num1 !between (1 .. 10)
 Table1 | where Time !between (datetime(2017-01-01) .. datetime(2017-01-01))
 ```
 
-`!between`peut fonctionner selon n’importe quelle expression numérique, date ou timespan.
+`!between`peut fonctionner sur n’importe quelle expression numérique, DateTime ou TimeSpan.
  
 **Syntaxe**
 
-*T* `|` T `where` *expr* `!between` *leftRange*` .. `*rightRange* leftRange rightRange `(``)`   
+*T* `|` `where` *expr* `!between` `(` *leftRange* ` .. ` *rightRange*`)`   
  
-Si *l’expression expr* est datetime - une autre syntaxe syntaxe de sucre syntaxe est fournie :
+Si l’expression *expr* est DateTime, une autre syntaxe de sucre syntaxique est fournie :
 
-*T* `|` T `where` *expr* `!between` *leftRangeDateTime*` .. `*rightRangeTimespan* leftRangeDateTime rightRangeTimespan `(``)`   
+*T* `|` `where` *expr* `!between` `(` *leftRangeDateTime* ` .. ` *rightRangeTimespan*`)`   
 
 **Arguments**
 
-* *T* - L’entrée tabulaire dont les dossiers doivent être appariés.
-* *expr* - l’expression pour filtrer.
-* *gaucheRange* - expression de la gamme gauche (inclusive).
-* *rightRange* - expression de la gamme rihgt (inclusive).
+* *T* -l’entrée tabulaire dont les enregistrements doivent être mis en correspondance.
+* *expr* -l’expression à filtrer.
+* *leftRange* -expression de la plage gauche (inclusive).
+* *rightRange* -expression de la plage RIHGT (inclusive).
 
 **Retourne**
 
-Lignes en *T* pour lesquelles le prédicat de (*expr* < *leftRange* ou *expr* > *rightRange*) évalue à `true`.
+Les lignes dans *T* pour lesquelles le prédicat de (*expr*  <  *leftRange* ou *expr*  >  *rightRange*) prend la valeur `true` .
 
 **Exemples**  
 
-**Filtrer les valeurs numériques à l’aide d’un opérateur '!entre les deux'**  
+**Filtrage des valeurs numériques à l’aide de l’opérateur' ! between'**  
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 range x from 1 to 10 step 1
 | where x !between (5 .. 9)
@@ -62,9 +63,9 @@ range x from 1 to 10 step 1
 |4|
 |10|
 
-**Filtrer l’heure de la date à l’aide d’un opérateur « entre deux »**  
+**Filtrage de DateTime à l’aide de l’opérateur’between'**  
 
-
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 StormEvents
 | where StartTime !between (datetime(2007-07-27) .. datetime(2007-07-30))
@@ -75,7 +76,7 @@ StormEvents
 |---|
 |58590|
 
-
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 StormEvents
 | where StartTime !between (datetime(2007-07-27) .. 3d)

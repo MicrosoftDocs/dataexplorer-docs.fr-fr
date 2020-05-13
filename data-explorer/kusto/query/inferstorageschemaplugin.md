@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 1b4a917101ad3a35f8fdbc1cccb257b6f3724b69
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 5c430fd0ca18265c5800165b33bfe14126aee02a
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83224865"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373269"
 ---
 # <a name="infer_storage_schema-plugin"></a>plug-in infer_storage_schema
 
@@ -41,7 +41,7 @@ Un argument d' *options* unique est une valeur constante de type `dynamic` qui c
 |Nom                    |Obligatoire|Description|
 |------------------------|--------|-----------|
 |`StorageContainers`|Oui|Liste des [chaînes de connexion de stockage](../api/connection-strings/storage.md) qui représentent l’URI de préfixe pour les artefacts de données stockées|
-|`DataFormat`|Oui|Un des [formats de données](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats)pris en charge.|
+|`DataFormat`|Oui|Un des [formats de données](../../ingestion-supported-formats.md)pris en charge.|
 |`FileExtension`|Non|Analyser uniquement les fichiers se terminant par cette extension de fichier. Ce n’est pas obligatoire, mais sa spécification peut accélérer le processus (ou éliminer les problèmes de lecture des données).|
 |`FileNamePrefix`|Non|Analyser uniquement les fichiers commençant par ce préfixe. Ce n’est pas obligatoire, mais sa spécification peut accélérer le processus|
 |`Mode`|Non|Stratégie d’inférence de schéma, l’une des suivantes : `any` , `last` , `all` . Déduire le schéma de données à partir de n’importe quel fichier (premier trouvé), du dernier fichier écrit ou de tous les fichiers, respectivement. La valeur par défaut est `last`.|

@@ -1,5 +1,5 @@
 ---
-title: series_periods_validate ()-Azure Explorateur de données | Microsoft Docs
+title: series_periods_validate ()-Azure Explorateur de données
 description: Cet article décrit series_periods_validate () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2019
-ms.openlocfilehash: 89ac06f2d2bbb376f08cf3fd88d316a7fcab0594
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: b157c7fef0b9b4d98f08f5e5020803eea3960097
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618601"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372496"
 ---
 # <a name="series_periods_validate"></a>series_periods_validate()
 
@@ -21,7 +21,7 @@ Vérifie si une série chronologique contient des modèles périodiques de longu
 
 Très souvent, une mesure mesurant le trafic d’une application est caractérisée par des périodes hebdomadaires et/ou quotidiennes. Vous pouvez le confirmer en exécutant `series_periods_validate()` une vérification pour une période hebdomadaire et quotidienne.
 
-La fonction prend comme entrée une colonne contenant un tableau dynamique de séries chronologiques (en général, le résultat de l’opérateur [Make-Series](make-seriesoperator.md) ) et un `real` ou plusieurs nombres qui définissent les longueurs des périodes à valider. 
+La fonction prend comme entrée une colonne contenant un tableau dynamique de séries chronologiques (en général, le résultat de l’opérateur [Make-Series](make-seriesoperator.md) ) et un ou plusieurs `real` nombres qui définissent les longueurs des périodes à valider. 
 
 La fonction génère 2 colonnes :
 * *periods*: tableau dynamique contenant les périodes à valider (fournies dans l’entrée)
@@ -29,7 +29,7 @@ La fonction génère 2 colonnes :
 
 **Syntaxe**
 
-`series_periods_validate(`*x* `,` *period1* [ `,` *period2* PERIOD2 `,` . . . ] `)`
+`series_periods_validate(`*x* `,` *period1* [ `,` *PERIOD2* `,` . . . ] `)`
 
 **Arguments**
 
@@ -48,6 +48,7 @@ La fonction génère 2 colonnes :
 
 La requête suivante incorpore une capture instantanée d’un mois du trafic d’une application, agrégée deux fois par jour (par exemple, la taille de l’emplacement est de 12 heures).
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 print y=dynamic([80,139,87,110,68,54,50,51,53,133,86,141,97,156,94,149,95,140,77,61,50,54,47,133,72,152,94,148,105,162,101,160,87,63,53,55,54,151,103,189,108,183,113,175,113,178,90,71,62,62,65,165,109,181,115,182,121,178,114,170])
 | project x=range(1, array_length(y), 1), y  
@@ -56,14 +57,15 @@ print y=dynamic([80,139,87,110,68,54,50,51,53,133,86,141,97,156,94,149,95,140,77
 
 :::image type="content" source="images/series-periods/series-periods.png" alt-text="Périodes de série":::
 
-S' `series_periods_validate()` exécuter sur cette série pour valider une période hebdomadaire (14 points longs) génère un score élevé, avec un score de **0** pour valider une période de cinq jours (10 points de long).
+S’exécuter `series_periods_validate()` sur cette série pour valider une période hebdomadaire (14 points longs) génère un score élevé, avec un score de **0** pour valider une période de cinq jours (10 points de long).
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 print y=dynamic([80,139,87,110,68,54,50,51,53,133,86,141,97,156,94,149,95,140,77,61,50,54,47,133,72,152,94,148,105,162,101,160,87,63,53,55,54,151,103,189,108,183,113,175,113,178,90,71,62,62,65,165,109,181,115,182,121,178,114,170])
 | project x=range(1, array_length(y), 1), y  
 | project series_periods_validate(y, 14.0, 10.0)
 ```
 
-| les\_périodes\_de\_série\_valident les périodes y  | les\_périodes\_de\_série\_valident les scores y |
+| les \_ périodes de série \_ valident les \_ \_ périodes y  | les \_ périodes de série \_ valident les \_ \_ scores y |
 |-------------|-------------------|
 | [14,0, 10,0] | [0.84, 0.0]  |

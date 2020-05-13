@@ -1,6 +1,6 @@
 ---
-title: réduire l’opérateur - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit réduire l’opérateur dans Azure Data Explorer.
+title: opérateur de réduction-Azure Explorateur de données
+description: Cet article décrit l’opérateur de réduction dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,53 +8,54 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 33d4ac202b61fdaa1b92291407cdd2783d947c6e
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 7d157244a167e1264b454cd8cd3c103e297c3263
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81510504"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373050"
 ---
 # <a name="reduce-operator"></a>opérateur reduce
 
-Regroupe un ensemble de chaînes en fonction de la similitude des valeurs.
+Regroupe un ensemble de chaînes en fonction de la similarité des valeurs.
 
 ```kusto
 T | reduce by LogMessage with threshold=0.1
 ```
 
-Pour chaque groupe, il produit un **modèle** qui décrit le mieux le`*`groupe (éventuellement en utilisant le caractère astérix ( ) pour représenter les wildcards), un **compte** du nombre de valeurs dans le groupe, et un **représentant** du groupe (l’une des valeurs originales du groupe).
+Pour chaque groupe de ce type, il génère un **modèle** qui décrit le mieux le groupe (éventuellement en utilisant le caractère astérisque ( `*` ) pour représenter des **count** caractères génériques), le nombre de valeurs dans le groupe et un **représentant** du groupe (l’une des valeurs d’origine dans le groupe).
 
 **Syntaxe**
 
-*T* `|` `kind` `characters` `=` `threshold` `=` *Threshold*`,` `with` *ReduceKind* `by` *Expr* *Characters*[ `=` ReduceKind ] Expr [ [ Seuil ] [ Personnages ] ] `reduce`
+*T* `|` `reduce` [ `kind` `=` *ReduceKind*] `by` *expr* [ `with` [ `threshold` `=` *seuil*] [ `,` `characters` `=` *caractères*]]
 
 **Arguments**
 
-* *Expr*: Une expression qui `string` évalue à une valeur.
-* *Seuil*: `real` Un littéral dans la gamme (0..1). Le défaut est de 0,1. Pour les entrées volumineuses, le seuil doit être bas. 
-* *Personnages*: `string` Un littéral contenant une liste de caractères à ajouter à la liste des personnages qui ne cassent pas un terme. (Par exemple, si `aaa=bbbb` `aaa:bbb` vous voulez et à chacun être `=` `:`un `":="` terme entier, plutôt que de rompre et , utiliser comme la chaîne littérale.)
-* *ReduceKind*: Specifie la saveur de réduction. La seule valeur valable pour `source`le moment est .
+* *Expr*: expression qui prend la valeur d’une `string` valeur.
+* *Seuil*: `real` littéral de la plage (0.. 1). La valeur par défaut est 0,1. Pour les entrées volumineuses, le seuil doit être bas. 
+* *Caractères*: `string` littéral contenant une liste de caractères à ajouter à la liste des caractères qui ne comcoupent pas un terme. (Par exemple, si vous souhaitez `aaa=bbbb` et `aaa:bbb` pour chaque terme entier, plutôt que d’arrêter sur `=` et `:` , utilisez `":="` comme littéral de chaîne.)
+* *ReduceKind*: spécifie la version de réduction. La seule valeur valide pour l’heure est `source` .
 
 **Retourne**
 
-Cet opérateur retourne une table`Pattern` `Count`avec `Representative`trois colonnes ( , , et ), et autant de lignes qu’il ya des groupes. `Pattern`est la valeur de modèle `*` pour le groupe, avec être utilisé `Count` comme une wildcard (représentant les chaînes d’insertion arbitraires), compte combien de lignes dans l’entrée à l’opérateur sont représentés par ce modèle, et `Representative` est une valeur de l’entrée qui tombe dans ce groupe.
+Cet opérateur retourne une table avec trois colonnes ( `Pattern` , `Count` et `Representative` ), et autant de lignes qu’il y a de groupes. `Pattern`est la valeur de modèle pour le groupe, avec l' `*` utilisation d’un caractère générique (représentant des chaînes d’insertion arbitraires), `Count` compte le nombre de lignes dans l’entrée de l’opérateur qui sont représentées par ce modèle, et `Representative` représente une valeur de l’entrée qui se trouve dans ce groupe.
 
-Si `[kind=source]` elle est spécifiée, `Pattern` l’opérateur ajoutera la colonne à la structure de table existante.
-Notez que la syntaxe d’un schéma de cette saveur pourrait être soumis à des changements futurs.
+Si `[kind=source]` est spécifié, l’opérateur ajoute la `Pattern` colonne à la structure de table existante.
+Notez que la syntaxe d’un schéma de cette version peut être soumise à des modifications ultérieures.
 
 Par exemple, le résultat de `reduce by city` peut inclure : 
 
 |Modèle     |Count |Representative|
 |------------|------|--------------|
-| San *      | 5182 |Saint-Bernard   |
-| Saint *    | 2846 |Sainte Lucie    |
+| San *      | 5182 |Bernard San   |
+| Saint *    | 2846 |Saint Lucy    |
 | Moscow     | 3726 |Moscow        |
-| \* -on- \* | 2730 |Un -sur- Un  |
+| \* -on- \* | 2730 |Un-à-un  |
 | Paris      | 2716 |Paris         |
 
-Autre exemple avec la jetonisation personnalisée :
+Autre exemple avec une création de jetons personnalisée :
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 range x from 1 to 1000 step 1
 | project MyText = strcat("MachineLearningX", tostring(toint(rand(10))))
@@ -67,7 +68,7 @@ range x from 1 to 1000 step 1
 
 **Exemples**
 
-L’exemple suivant montre comment `reduce` l’on peut appliquer l’opérateur à une entrée « aseptisée », dans laquelle les GUIDs dans la colonne réduite sont remplacés avant de réduire
+L’exemple suivant montre comment il est possible d’appliquer l' `reduce` opérateur à une entrée « expurgée », dans laquelle les GUID de la colonne réduite sont remplacés avant la réduction
 
 ```kusto
 // Start with a few records from the Trace table.
@@ -87,4 +88,4 @@ Trace | take 10000
 
 **Remarques**
 
-La mise `reduce` en œuvre de l’opérateur est en grande partie basée sur le papier [A Data Clustering Algorithm for Mining Patterns From Event Logs](https://ristov.github.io/publications/slct-ipom03-web.pdf), par Risto Vaarandi.
+L’implémentation de l' `reduce` opérateur est en grande partie basée sur la documentation d' [un algorithme de clustering de données pour les modèles d’exploration de données des journaux des événements](https://ristov.github.io/publications/slct-ipom03-web.pdf), par Risto Vaarandi.

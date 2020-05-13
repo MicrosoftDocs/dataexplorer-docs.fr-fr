@@ -1,6 +1,6 @@
 ---
-title: series_subtract() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit series_subtract() dans Azure Data Explorer.
+title: series_subtract ()-Azure Explorateur de données
+description: Cet article décrit series_subtract () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,31 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 1e984bc35192da5d61448211c49ff582f225eb19
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 388f24f12993bcdc91d86bfc3f3f20967e0b1cc5
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81507937"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372418"
 ---
 # <a name="series_subtract"></a>series_subtract()
 
-Calcule la soustraction élément-sage de deux entrées de série numérique.
+Calcule la soustraction au niveau des éléments de deux entrées de série numérique.
 
 **Syntaxe**
 
-`series_subtract(`*série1* `,` *série2*`)`
+`series_subtract(`*Series1* `,` *Series2*`)`
 
 **Arguments**
 
-* *série1, série2*: Entrées de tableaux numériques, la seconde à être élément-sage soustrait de la première dans un résultat de tableau dynamique. Tous les arguments doivent être des tableaux dynamiques. 
+* *Series1, Series2*: valeurs numériques d’entrée, le deuxième élément est soustrait de la première à un résultat de tableau dynamique. Tous les arguments doivent être des tableaux dynamiques. 
 
 **Retourne**
 
-Un tableau dynamique de l’opération calculée de soustraction d’élément-sage entre les deux entrées. Tout élément non numérique ou élément non existant (tableaux de `null` différentes tailles) donne une valeur d’élément.
+Tableau dynamique d’opérations de soustraction d’éléments calculées entre les deux entrées. Tout élément non numérique ou élément non existant (tableaux de tailles différentes) produit une `null` valeur d’élément.
 
 **Exemple**
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 range x from 1 to 3 step 1
 | extend y = x * 2
@@ -43,6 +44,6 @@ range x from 1 to 3 step 1
 
 |s1|s2|s1_subtract_s2|
 |---|---|---|
-|[1,2,4]|[4,2,1]|[-3,0,3]|
-|[2,4,8]|[8,4,2]|[-6,0,6]|
-|[3,6,12]|[12,6,3]|[-9,0,9]|
+|[1, 2, 4]|[4, 2, 1]|[-3, 0, 3]|
+|[2, 4, 8]|[8, 4, 2]|[-6, 0,6]|
+|[3, 6, 12]|[12, 6, 3]|[-9, 0,9]|

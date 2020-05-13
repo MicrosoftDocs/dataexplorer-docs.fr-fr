@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/12/2020
-ms.openlocfilehash: c0ee38fe77c0957b9ba7fd589115eee20be6a649
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 646ec00531d528efd51b4a168fde3de660a85ced
+ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83224848"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83271092"
 ---
 # <a name="parse-where-operator"></a>Opérateur parse-where
 
@@ -95,6 +95,7 @@ Certaines chaînes n’ont pas de correspondance complète.
 
 À l’aide `parse` de, les colonnes calculées auront des valeurs NULL.
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let Traces = datatable(EventText:string)
 [
@@ -121,6 +122,7 @@ Traces
 
 L’utilisation de « parse-WHERE » filtre les chaînes analysées sans succès à partir du résultat.
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let Traces = datatable(EventText:string)
 [
@@ -145,6 +147,7 @@ Traces
 
 Pour obtenir les informations resourceName et totalSlices, utilisez la requête suivante :
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let Traces = datatable(EventText:string)
 [
@@ -167,6 +170,7 @@ Pour obtenir le résultat requis, exécutez `parse-where` avec un indicateur Reg
 
 Seules trois chaînes seront analysées avec succès. le résultat est donc trois enregistrements (certains totalSlices contiennent des entiers non valides).
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let Traces = datatable(EventText:string)
 [

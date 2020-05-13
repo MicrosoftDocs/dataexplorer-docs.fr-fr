@@ -1,5 +1,5 @@
 ---
-title: series_outliers ()-Azure Explorateur de données | Microsoft Docs
+title: series_outliers ()-Azure Explorateur de données
 description: Cet article décrit series_outliers () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/20/2019
-ms.openlocfilehash: 16e82ec68a463b97699f7d02e18c46df65221c7b
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 864638f8e03487a35eefa83fa3951d2ecefc27c7
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618652"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372537"
 ---
 # <a name="series_outliers"></a>series_outliers()
 
@@ -23,21 +23,21 @@ Prend une expression contenant un tableau numérique dynamique comme entrée et 
 
 **Syntaxe**
 
-`series_outliers(`*x*`, `*kind*`, `*ignore_val*ignore_val`, `*min_percentile*de min_percentile`, `de type x*max_percentile*`)`
+`series_outliers(`*x* `, ` *genre* `, ` *ignore_val* `, ` *min_percentile* `, ` *max_percentile*`)`
 
 **Arguments**
 
 * *x*: cellule de tableau dynamique qui est un tableau de valeurs numériques
-* *genre*: algorithme de détection des valeurs hors norme. Prend actuellement `"tukey"` en charge (Tukey traditionnel `"ctukey"` ) et (Tukey personnalisé). La valeur par défaut est `"ctukey"`
-* *ignore_val*: valeur numérique indiquant des valeurs manquantes dans la série, la valeur par défaut est double (null). Le score des valeurs NULL et ignore est défini sur `0`.
-* *min_percentile*: pour le calcul de la plage quantile normale, la valeur par défaut est 10, les valeurs personnalisées `[2.0, 98.0]` prises`ctukey` en charge sont comprises dans la plage (uniquement) 
+* *genre*: algorithme de détection des valeurs hors norme. Prend actuellement en charge `"tukey"` (Tukey traditionnel) et `"ctukey"` (Tukey personnalisé). La valeur par défaut est `"ctukey"`
+* *ignore_val*: valeur numérique indiquant des valeurs manquantes dans la série, la valeur par défaut est double (null). Le score des valeurs NULL et ignore est défini sur `0` .
+* *min_percentile*: pour le calcul de la plage quantile normale, la valeur par défaut est 10, les valeurs personnalisées prises en charge sont comprises dans la plage `[2.0, 98.0]` ( `ctukey` uniquement) 
 * *max_percentile*: identique, la valeur par défaut est 90, les valeurs personnalisées prises en charge sont comprises dans la plage `[2.0, 98.0]` (ctukey uniquement) 
 
-Le tableau suivant décrit les différences `"tukey"` entre `"ctukey"`et :
+Le tableau suivant décrit les différences entre `"tukey"` et `"ctukey"` :
 
 | Algorithm | Plage de quantiles par défaut | Prend en charge de la plage de quantiles personnalisée |
 |-----------|----------------------- |--------------------------------|
-| `"tukey"` | 25% / 75%              | Non                              |
+| `"tukey"` | 25% / 75%              | Non                             |
 | `"ctukey"`| 10% / 90%              | Oui                            |
 
 
@@ -48,6 +48,7 @@ Le tableau suivant décrit les différences `"tukey"` entre `"ctukey"`et :
 
 Supposons que vous ayez une série chronologique avec un bruit qui crée des valeurs hors norme et que vous souhaitiez remplacer ces valeurs hors norme (le bruit) par la valeur moyenne, vous pouvez utiliser series_outliers () pour détecter les valeurs hors norme, puis les remplacer :
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 range x from 1 to 100 step 1 
 | extend y=iff(x==20 or x==80, 10*rand()+10+(50-x)/2, 10*rand()+10) // generate a sample series with outliers at x=20 and x=80

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 211ac6cb078e2f61243f4616f9141a6f4834d464
-ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
+ms.openlocfilehash: bc26c61b9a94c6f21d2c53cae8fc80805b235f75
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82741808"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372812"
 ---
 # <a name="series_fill_backward"></a>series_fill_backward()
 
@@ -23,13 +23,13 @@ Une expression contenant un tableau numérique dynamique est l’entrée. La fon
 
 **Syntaxe**
 
-`series_fill_backward(`*x*`[, `*missing_value_placeholder* x`])`
+`series_fill_backward(`*x* `[, ` *missing_value_placeholder*`])`
 * Retourne la série *x* avec toutes les instances de *missing_value_placeholder* remplies vers l’arrière.
 
 **Arguments**
 
 * *x*: expression scalaire de tableau dynamique, qui est un tableau de valeurs numériques.
-* *missing_value_placeholder*: ce paramètre facultatif spécifie un espace réservé pour les valeurs manquantes. La valeur par défaut `double`est (*null*).
+* *missing_value_placeholder*: ce paramètre facultatif spécifie un espace réservé pour les valeurs manquantes. La valeur par défaut est `double` (*null*).
 
 **Remarques**
 
@@ -39,12 +39,13 @@ Une expression contenant un tableau numérique dynamique est l’entrée. La fon
 make-series num=count() default=long(null) on TimeStamp in range(ago(1d), ago(1h), 1h) by Os, Browser
 ```
 
-* Le *missing_value_placeholder* peut être de n’importe quel type qui sera converti en types d’éléments réels. Les `double`deux (*null*) `long`, (*null*) `int`et (*null*) ont la même signification.
-* Si *missing_value_placeholder* est `double`(*null*), (ou omis, qui ont la même signification), un résultat peut contenir des valeurs *null* . Pour remplir ces valeurs *null* , utilisez d’autres fonctions d’interpolation. Actuellement [, seul series_outliers ()](series-outliersfunction.md) prend en charge les valeurs *null* dans les tableaux d’entrée.
+* Le *missing_value_placeholder* peut être de n’importe quel type qui sera converti en types d’éléments réels. Les deux `double` (*null*), `long` (*null*) et `int` (*null*) ont la même signification.
+* Si *missing_value_placeholder* est `double` (*null*), (ou omis, qui ont la même signification), un résultat peut contenir des valeurs *null* . Pour remplir ces valeurs *null* , utilisez d’autres fonctions d’interpolation. Actuellement [, seul series_outliers ()](series-outliersfunction.md) prend en charge les valeurs *null* dans les tableaux d’entrée.
 * La fonction conserve le type d’origine d’éléments de tableau.
 
 **Exemple**
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let data = datatable(arr: dynamic)
 [

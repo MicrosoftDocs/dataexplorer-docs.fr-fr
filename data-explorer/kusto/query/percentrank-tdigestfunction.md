@@ -1,6 +1,6 @@
 ---
-title: percentrank_tdigest() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit percentrank_tdigest() dans Azure Data Explorer.
+title: percentrank_tdigest ()-Azure Explorateur de données
+description: Cet article décrit percentrank_tdigest () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,40 +8,41 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/10/2019
-ms.openlocfilehash: fe356ddb2e6301bbb283d2e6aa59b5c98f8bf3fe
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 8220c52b70eec8a0a297c5826fff3a6e2a0483b3
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81511184"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373234"
 ---
 # <a name="percentrank_tdigest"></a>percentrank_tdigest()
 
-Calcule le rang approximatif de la valeur dans un ensemble où le rang est exprimé en pourcentage de la taille de l’ensemble. Cette fonction peut être considérée comme l’inverse du percentile.
+Calcule le rang approximatif de la valeur dans un jeu où le rang est exprimé sous la forme d’un pourcentage de la taille de l’ensemble. Cette fonction peut être affichée comme inverse du centile.
 
 **Syntaxe**
 
-`percentrank_tdigest(`*Expr TDigest* `,` *Expr*`)`
+`percentrank_tdigest(`*TDigest* `,` *Expr*`)`
 
 **Arguments**
 
-* *TDigest*: Expression qui a été générée par [tdigest()](tdigest-aggfunction.md) ou [tdigest_merge()](tdigest-merge-aggfunction.md).
-* *Expr*: Expression représentant une valeur à utiliser pour le calcul du classement en pourcentage.
+* *TDigest*: expression qui a été générée par [TDigest ()](tdigest-aggfunction.md) ou [tdigest_merge ()](tdigest-merge-aggfunction.md).
+* *Expr*: expression représentant une valeur à utiliser pour le calcul du rang en pourcentage.
 
 **Retourne**
 
-Le pourcentage de valeur dans un jeu de données.
+Rang en pourcentage de la valeur dans un DataSet.
 
 **Conseils**
 
-1) Le type de deuxième paramètre et le type d’éléments dans le tdigest doit être le même.
+1) Le type du deuxième paramètre et le type des éléments dans le tdigest doivent être identiques.
 
-2) Le premier paramètre doit être TDigest qui a été généré par [tdigest()](tdigest-aggfunction.md) ou [tdigest_merge()](tdigest-merge-aggfunction.md)
+2) Le premier paramètre doit être TDigest qui a été généré par [TDigest ()](tdigest-aggfunction.md) ou [tdigest_merge ()](tdigest-merge-aggfunction.md)
 
 **Exemples**
 
-Obtenir le percentrank_tdigest() de la propriété de dommages qui a évalué 4490 $ est de 85% :
+L’obtention de la percentrank_tdigest () de la propriété dommages ayant la valeur $4490 est ~ 85% :
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 StormEvents
 | summarize tdigestRes = tdigest(DamageProperty)
@@ -54,8 +55,9 @@ StormEvents
 |85.0015237192293|
 
 
-Utilisation percentile 85 sur la propriété de dommages devrait donner 4490$:
+L’utilisation de centile 85 sur la propriété dommages doit indiquer $4490 :
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 StormEvents
 | summarize tdigestRes = tdigest(DamageProperty)

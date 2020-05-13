@@ -1,6 +1,6 @@
 ---
-title: series_stats() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit series_stats () dans Azure Data Explorer.
+title: series_stats ()-Azure Explorateur de données
+description: Cet article décrit series_stats () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,42 +8,43 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/10/2020
-ms.openlocfilehash: 07aa5df7351a5d4be1522d39456423197bde508d
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 3fe88a5d53faaca4512d614d3e62204ac26e6fc5
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81507920"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372447"
 ---
 # <a name="series_stats"></a>series_stats()
 
 `series_stats()`retourne des statistiques pour une série dans plusieurs colonnes.  
 
-La `series_stats()` fonction prend une colonne contenant un tableau numérique dynamique comme entrée et calcule les colonnes suivantes :
+La `series_stats()` fonction prend une colonne contenant un tableau numérique dynamique comme entrée et calcule les colonnes suivantes :
 * `min`: valeur minimale dans le tableau d’entrée
 * `min_idx`: première position de la valeur minimale dans le tableau d’entrée
 * `max`: valeur maximale dans le tableau d’entrée
 * `max_idx`: première position de la valeur maximale dans le tableau d’entrée
 * `avg`: valeur moyenne du tableau d’entrée
-* `variance`: écart d’échantillon de tableau d’entrée
-* `stdev`: échantillon d’écart standard du tableau d’entrée
+* `variance`: exemple de variance du tableau d’entrée
+* `stdev`: exemple d’écart type du tableau d’entrée
 
 > [!NOTE] 
-> Cette fonction renvoie plusieurs colonnes de sorte qu’il ne peut pas être utilisé comme argument pour une autre fonction.
+> Cette fonction retourne plusieurs colonnes et ne peut donc pas être utilisée comme argument pour une autre fonction.
 
 **Syntaxe**
 
-projet `series_stats(` *x* `[,` *ignore_nonfinite* `])` ou `series_stats(`étendre *x* `)` Returns toutes les colonnes mentionnées ci-dessus avec les noms suivants : series_stats_x_min, series_stats_x_min_idx et etc.
+Project `series_stats(` *x* `[,` *ignore_nonfinite* `])` ou Extend `series_stats(` *x* `)` retourne toutes les colonnes mentionnées ci-dessus avec les noms suivants : series_stats_x_min, series_stats_x_min_idx, etc.
  
-projet (m,`series_stats(`mi)*x* `)` ou étendre (m, mi)`series_stats(`*x* `)` Retourne les colonnes suivantes : m (min) et mi (min_idx).
+Project (m, mi) = `series_stats(` *x* `)` ou extend (m, mi) = `series_stats(` *x* `)` retourne les colonnes suivantes : m (min) et mi (min_idx).
 
 **Arguments**
 
-* *x*: Cellule de tableau dynamique, qui est un éventail de valeurs numériques. 
-* *ignore_nonfinite*: Boolean (facultatif, par défaut `false`: ) drapeau qui précise s’il faut calculer les statistiques tout en ignorant les valeurs non finies *(nulles,* *NaN*, *inf,* etc.). S’il `false`est fixé à `null` , les valeurs retournées seraient si les valeurs non-finies sont présentes dans le tableau.
+* *x*: cellule de tableau dynamique, qui est un tableau de valeurs numériques. 
+* *ignore_nonfinite*: indicateur booléen (facultatif, par défaut : `false` ) qui spécifie s’il faut calculer les statistiques tout en ignorant les valeurs non finies (*null*, *Nan*, *INF*, etc.). Si la valeur est `false` , les valeurs retournées seraient `null` si des valeurs non finies sont présentes dans le tableau.
 
 **Exemple**
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 print x=dynamic([23,46,23,87,4,8,3,75,2,56,13,75,32,16,29]) 
 | project series_stats(x)

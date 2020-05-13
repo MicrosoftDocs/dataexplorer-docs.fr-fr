@@ -1,6 +1,6 @@
 ---
-title: opérateur de réorganisation du projet - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit l’opérateur de réorganisation du projet dans Azure Data Explorer.
+title: opérateur de réorganisation de projet-Azure Explorateur de données
+description: Cet article décrit l’opérateur de réorganisation de projet dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: bf56a69891f83aaabc12dbbcd8f758ecb963b493
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 74acab0dc4f0fbdaf7c77e609db3e41f875f2cad
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81510844"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373149"
 ---
 # <a name="project-reorder-operator"></a>project-reorder, opérateur
 
@@ -25,31 +25,32 @@ T | project-reorder Col2, Col1, Col* asc
 
 **Syntaxe**
 
-*T* `| project-reorder` *ColumnNameOrPattern* [`asc`|`desc`] [`,` ...]
+*T* `| project-reorder` *ColumnNameOrPattern* [ `asc` | `desc` ] [ `,` ...]
 
 **Arguments**
 
-* *T*: La table d’entrée.
-* *ColonneNameOrPattern:* Le nom de la colonne ou du modèle de wildcard de colonne ajouté à la sortie.
-* Pour les motifs `asc` wildcard: spécifier ou `desc` commander des colonnes en utilisant leurs noms dans l’ordre ascendant ou descendant. Si `asc` `desc` l’ordre n’est pas spécifié ou non, l’ordre est déterminé par les colonnes correspondantes telles qu’elles apparaissent dans le tableau source.
+* *T*: table d’entrée.
+* *ColumnNameOrPattern :* Nom du modèle de caractère générique de colonne ou de colonne ajouté à la sortie.
+* Pour les modèles de caractères génériques : spécifier `asc` ou `desc` ordonner les colonnes à l’aide de leurs noms dans l’ordre croissant ou décroissant. Si `asc` ou `desc` ne sont pas spécifiés, l’ordre est déterminé par les colonnes correspondantes telles qu’elles apparaissent dans la table source.
 
 **Retourne**
 
-Un tableau qui contient des colonnes dans l’ordre spécifié par les arguments de l’opérateur. `project-reorder`ne renomme pas ou supprimer les colonnes de la table, donc, toutes les colonnes qui existaient dans le tableau source, apparaissent dans le tableau de résultat.
+Table qui contient des colonnes dans l’ordre spécifié par les arguments de l’opérateur. `project-reorder`ne renomme pas ou ne supprime pas les colonnes de la table. par conséquent, toutes les colonnes qui existaient dans la table source apparaissent dans la table de résultats.
 
 **Remarques**
 
-- Dans l’appariement ambigu *de ColumnNameOrPattern,* la colonne apparaît dans la première position correspondant au modèle.
-- Spécifier `project-reorder` les colonnes pour le est facultatif. Les colonnes qui ne sont pas spécifiées apparaissent explicitement comme les dernières colonnes de la table de sortie.
+- Dans une correspondance *ColumnNameOrPattern* ambiguë, la colonne apparaît à la première position correspondant au modèle.
+- La spécification de colonnes pour `project-reorder` est facultative. Les colonnes qui ne sont pas spécifiées explicitement apparaissent en tant que dernières colonnes de la table de sortie.
 
-* Utiliser [`project-away`](projectawayoperator.md) pour enlever les colonnes.
-* Utilisez [`project-rename`](projectrenameoperator.md) pour renommer les colonnes.
+* Utilisez [`project-away`](projectawayoperator.md) pour supprimer des colonnes.
+* Utilisez [`project-rename`](projectrenameoperator.md) pour renommer des colonnes.
 
 
 **Exemples**
 
-Réorganiser une table avec trois colonnes (a, b, c) de sorte que la deuxième colonne (b) apparaîtra en premier.
+Réorganiser une table avec trois colonnes (a, b, c) pour que la deuxième colonne (b) s’affiche en premier.
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 print a='a', b='b', c='c'
 |  project-reorder b
@@ -59,13 +60,14 @@ print a='a', b='b', c='c'
 |---|---|---|
 |b|a|c|
 
-Réorganiser les colonnes d’une table `a` de sorte que les colonnes commençant par apparaîtront devant d’autres colonnes.
+Réorganiser les colonnes d’une table de sorte que les colonnes commençant par `a` s’affichent avant les autres colonnes.
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 print b = 'b', a2='a2', a3='a3', a1='a1'
 |  project-reorder a* asc
 ```
 
-|a1|a2|a3|b|
+|cellule|R2|formats|b|
 |---|---|---|---|
-|a1|a2|a3|b|
+|cellule|R2|formats|b|

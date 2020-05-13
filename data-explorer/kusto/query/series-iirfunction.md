@@ -1,6 +1,6 @@
 ---
-title: series_iir() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit series_iir() dans Azure Data Explorer.
+title: series_iir ()-Azure Explorateur de données
+description: Cet article décrit series_iir () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/20/2019
-ms.openlocfilehash: 96452265e07a8a8b057dc70bec520be6ab298dd3
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 8b03970aacafef932f6397e64afdf871dc086bc1
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81508294"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372630"
 ---
 # <a name="series_iir"></a>series_iir()
 
-Applique un filtre De réponse Infinite Impulse sur une série.  
+Applique un filtre à réponse impulsionnelle infinie sur une série.  
 
-Prend une expression contenant un tableau numérique dynamique comme entrée et applique un filtre [De réponse Infinite Impulse.](https://en.wikipedia.org/wiki/Infinite_impulse_response) En spécifiant les coefficients de filtre, il peut être utilisé, par exemple, pour calculer la somme cumulative de la série, pour appliquer des opérations de lissage, ainsi que divers [filtres à cols élevés,](https://en.wikipedia.org/wiki/High-pass_filter) [à pas de bande](https://en.wikipedia.org/wiki/Band-pass_filter) et à faible [passage.](https://en.wikipedia.org/wiki/Low-pass_filter) La fonction prend comme entrée la colonne contenant le tableau dynamique et deux tableaux dynamiques statiques des coefficients du filtre *a* et *b,* et applique le filtre sur la colonne. Elle génère une nouvelle colonne de tableau dynamique, qui contient la sortie filtrée.  
+Prend une expression contenant un tableau numérique dynamique comme entrée et applique un filtre à [réponse impulsionnelle infinie](https://en.wikipedia.org/wiki/Infinite_impulse_response) . En spécifiant les coefficients de filtre, il peut être utilisé, par exemple, pour calculer la somme cumulée de la série, pour appliquer des opérations de lissage, ainsi que divers filtres passe- [haut](https://en.wikipedia.org/wiki/High-pass_filter), [passe-bande](https://en.wikipedia.org/wiki/Band-pass_filter) et passe- [bas](https://en.wikipedia.org/wiki/Low-pass_filter) . La fonction prend comme entrée la colonne qui contient le tableau dynamique et deux tableaux dynamiques statiques des coefficients *a* et *b* du filtre, et applique le filtre sur la colonne. Elle génère une nouvelle colonne de tableau dynamique, qui contient la sortie filtrée.  
  
 
 **Syntaxe**
@@ -28,27 +28,28 @@ Prend une expression contenant un tableau numérique dynamique comme entrée et 
 
 **Arguments**
 
-* *x*: Cellule de tableau dynamique qui est un éventail de valeurs numériques, généralement la sortie résultante des opérateurs [de make-series](make-seriesoperator.md) ou [de make_list.](makelist-aggfunction.md)
-* *b*: Expression constante contenant les coefficients de chiffres du filtre (stockés comme un tableau dynamique de valeurs numériques).
-* *a*: Une expression constante, comme *b*. Contient les coefficients dénominateurs du filtre.
+* *x*: cellule de tableau dynamique qui est un tableau de valeurs numériques, généralement le résultat des opérateurs [Make-Series](make-seriesoperator.md) ou [make_list](makelist-aggfunction.md) .
+* *b*: expression constante contenant les coefficients numérateur du filtre (stocké en tant que tableau dynamique de valeurs numériques).
+* *r*: une expression constante, telle que *b*. Contient les coefficients dénominateurs du filtre.
 
 > [!IMPORTANT]
-> Le premier `a` élément de (c’est-à-dire `a[0]`) ne doit pas être nul (pour éviter la division par 0; voir la formule ci-dessous).
+> Le premier élément de `a` (c.-à-d. `a[0]` ) ne doit pas est zéro (pour éviter la division par 0 ; consultez la formule ci-dessous).
 
 **En savoir plus sur la formule récursive du filtre**
 
-* Compte tenu d’un tableau d’entrée X et coefficients tableaux a, b de longueurs n_a et n_b respectivement, la fonction de transfert du filtre, générant le tableau de sortie Y, est définie par (voir aussi dans Wikipedia):
+* Étant donné un tableau d’entrée X et des tableaux de coefficients a, b de longueurs n_a et n_b respectivement, la fonction de transfert du filtre, générant le tableau de sortie Y, est définie par (voir également dans Wikipédia) :
 
 <div align="center">
-Y<sub>i</sub> - a<sub>0</sub><sup>-1</sup>(b<sub>0</sub>X<sub>i</sub> 
- + b<sub>1</sub>X<sub>i-1</sub> + ... b<sub>n<sub>b</sub>b -1</sub>X<sub>i-n<sub>b</sub>-1</sub> 
- - a<sub>1</sub>Y<sub>i-1</sub>-a<sub>2</sub>Y<sub>i-2</sub> - ... - a<sub>n<sub>a</sub>-1</sub>Y<sub>i-n<sub>a</sub>-1</sub>)
+Y<sub>i</sub> = a<sub>0</sub><sup>-1</sup>(b<sub>0</sub>x<sub>i</sub> 
+ + b<sub>1</sub>x<sub>i-1</sub> + ... + b<sub>n<sub>b</sub>-1</sub>x<sub>i-n<sub>b</sub>-1</sub> 
+ - a<sub>1</sub>y<sub>i-1</sub>-a<sub>2</sub>y<sub>i-2</sub> - ...-a<sub>n<sub>a</sub>-1</sub>y<sub>i-n<sub>a</sub>-1</sub>)
 </div>
 
 **Exemple**
 
-Le calcul de la somme cumulative peut être effectué par le filtre iir avec des coefficients *un*[1,-1] et *b*[1] :  
+Le calcul de la somme cumulée peut être effectué par un filtre IIR avec coefficients *a*= [1,-1] et *b*= [1] :  
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let x = range(1.0, 10, 1);
 print x=x, y = series_iir(x, dynamic([1]), dynamic([1,-1]))
@@ -62,8 +63,9 @@ print x=x, y = series_iir(x, dynamic([1]), dynamic([1,-1]))
 |3.0|6.0|
 |4.0|10.0|
 
-Voici comment l’envelopper dans une fonction:
+Voici comment l’encapsuler dans une fonction :
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let vector_sum=(x:dynamic)
 {

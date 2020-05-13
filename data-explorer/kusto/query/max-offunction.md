@@ -1,6 +1,6 @@
 ---
-title: max_of() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit max_of() dans Azure Data Explorer.
+title: max_of ()-Azure Explorateur de données
+description: Cet article décrit max_of () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 68188ccd5eb814a22be166b8847d80193172813f
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 4b912b1bdc68d7b3071ace8547f0aaf7c679a86a
+ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81512493"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83271602"
 ---
 # <a name="max_of"></a>max_of()
 
@@ -25,21 +25,22 @@ max_of(10, 1, -3, 17) == 17
 
 **Syntaxe**
 
-`max_of`expr_1 *expr_2* ... *expr_1* `(``,``)`
+`max_of``(` *expr_1* `,` *expr_2* ...`)`
 
 **Arguments**
 
-* *expr_i*: Une expression scalaire, à évaluer.
+* *expr_i*: expression scalaire, à évaluer.
 
 - Tous les arguments doivent être du même type.
-- Un maximum de 64 arguments est étayé.
+- Le nombre maximal d’arguments 64 est pris en charge.
 
 **Retourne**
 
-La valeur maximale de toutes les expressions d’argument.
+Valeur maximale de toutes les expressions d’arguments.
 
 **Exemple**
 
+<!-- csl: https://help.kusto.windows.net/Samples  -->
 ```kusto
 print result = max_of(10, 1, -3, 17) 
 ```

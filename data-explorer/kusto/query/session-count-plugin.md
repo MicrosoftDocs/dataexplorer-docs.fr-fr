@@ -1,5 +1,5 @@
 ---
-title: plug-in session_count-Azure Explorateur de données | Microsoft Docs
+title: plug-in session_count-Azure Explorateur de données
 description: Cet article décrit session_count plug-in dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7ebbbc401f8fdee79aaa328d45c7758d9acb931e
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 6a9596b71afabe1e80e866fef7f2a22f6b288631
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82619043"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372404"
 ---
 # <a name="session_count-plugin"></a>plug-in session_count
 
@@ -25,7 +25,7 @@ T | evaluate session_count(id, datetime_column, startofday(ago(30d)), startofday
 
 **Syntaxe**
 
-*T* `| evaluate` `,` *Start* `,` *dim2* *TimelineColumn* `,` *dim1* *Bin* *IdColumn* `,` *End* `,` IdColumn TimelineColumn Start`,` end bin`,` *LookBackWindow* [dim1 dim2...]`,` `session_count(``)`
+*T* `| evaluate` `session_count(` *IdColumn* `,` *TimelineColumn* `,` *Start* `,` *end* `,` *bin* `,` *LookBackWindow* [ `,` *dim1* `,` *dim2* `,` ...]`)`
 
 **Arguments**
 
@@ -35,7 +35,7 @@ T | evaluate session_count(id, datetime_column, startofday(ago(30d)), startofday
 * *Start*: scalaire avec la valeur de la période de démarrage de l’analyse.
 * *End*: scalaire avec la valeur de la période de fin de l’analyse.
 * *Bin*: valeur constante scalaire de l’étape d’analyse de la session.
-* *LookBackWindow*: valeur constante scalaire représentant la période de lookback de session. Si l’ID de `IdColumn` s’affiche dans une fenêtre de `LookBackWindow` temps dans laquelle la session est considérée comme étant existante, si elle ne l’est pas, la session est considérée comme nouvelle.
+* *LookBackWindow*: valeur constante scalaire représentant la période de lookback de session. Si l’ID de `IdColumn` s’affiche dans une fenêtre de temps dans laquelle `LookBackWindow` la session est considérée comme étant existante, si elle ne l’est pas, la session est considérée comme nouvelle.
 * *dim1*, *dim2*,... : (facultatif) liste des colonnes de dimensions qui découpent le calcul du nombre de sessions.
 
 **Retourne**
@@ -56,12 +56,13 @@ Pour les besoins de l’exemple, nous allons rendre les données déterministes-
 - Chronologie : nombre en cours de 1 à 10 000
 - ID : ID de l’utilisateur, de 1 à 50
 
-`Id`s’affichent dans `Timeline` l’emplacement spécifique s’il s’agit `Timeline` d’un séparateur de (chronologie% ID = = 0).
+`Id`s’affichent dans l' `Timeline` emplacement spécifique s’il s’agit d’un séparateur de `Timeline` (chronologie% ID = = 0).
 
-Cela signifie que l’événement `Id==1` avec s’affiche à `Timeline` n’importe quel emplacement `Id==2` , événement avec `Timeline` à chaque deuxième emplacement, et ainsi de suite.
+Cela signifie que l’événement avec `Id==1` s’affiche à n’importe quel `Timeline` emplacement, événement avec `Id==2` à chaque deuxième `Timeline` emplacement, et ainsi de suite.
 
 Voici quelques 20 lignes de données :
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let _data = range Timeline from 1 to 10000 step 1
 | extend __key = 1
@@ -74,7 +75,7 @@ _data
 | limit 20
 ```
 
-|Chronologie|Id|
+|Durée|Id|
 |---|---|
 |1|1|
 |2|1|
@@ -97,10 +98,11 @@ _data
 |8|4|
 |8|8|
 
-Nous allons définir une session dans les conditions suivantes : la session considérée comme active tant que l’utilisateur`Id`() apparaît au moins une fois au cours d’une période de 100 de temps, tandis que la fenêtre de recherche de session est 41 créneaux horaires.
+Nous allons définir une session dans les conditions suivantes : la session considérée comme active tant que l’utilisateur ( `Id` ) apparaît au moins une fois au cours d’une période de 100 de temps, tandis que la fenêtre de recherche de session est 41 créneaux horaires.
 
 La requête suivante affiche le nombre de sessions actives en fonction de la définition ci-dessus.
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let _data = range Timeline from 1 to 9999 step 1
 | extend __key = 1

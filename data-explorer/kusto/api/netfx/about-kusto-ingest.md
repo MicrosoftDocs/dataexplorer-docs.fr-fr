@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 03/24/2020
-ms.openlocfilehash: c43c6c09ad6da90685c56dc47ebe257a55eaede6
-ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
+ms.openlocfilehash: 5770c59ff7298567cad01bb3ed4cc6a684b2378a
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82862137"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373693"
 ---
 # <a name="kusto-ingest-client-library"></a>Bibliothèque cliente de réception Kusto
 
@@ -47,7 +47,7 @@ Le diagramme suivant présente l’interaction du client d’ingestion en attent
 ![texte de remplacement](../images/queued-ingest.jpg "en attente-réception")
 
 ### <a name="direct-ingestion"></a>Ingestion directe
-Défini par IKustoDirectIngestClient, ce mode force l’interaction directe avec le service de moteur Kusto. Dans ce mode, le service d’ingestion Kusto ne gère pas ou ne gère pas les données. Chaque demande d’ingestion en mode direct est finalement traduite `.ingest` dans la commande exécutée directement sur le service du moteur Kusto.
+Défini par IKustoDirectIngestClient, ce mode force l’interaction directe avec le service de moteur Kusto. Dans ce mode, le service d’ingestion Kusto ne gère pas ou ne gère pas les données. Chaque demande d’ingestion en mode direct est finalement traduite dans la `.ingest` commande exécutée directement sur le service du moteur Kusto.
 Le diagramme suivant présente l’interaction du client d’ingestion directe avec Kusto :
 
 ![texte de remplacement](../images/direct-ingest.jpg "réception directe")
@@ -72,10 +72,10 @@ Le diagramme suivant présente l’interaction du client d’ingestion directe a
 Les [meilleures pratiques](kusto-ingest-best-practices.md) d’ingestion fournissent le PDV et le débit PDV sur l’ingestion.
 
 ### <a name="thread-safety"></a>Sécurité des threads
-Les implémentations du client de réception Kusto sont thread-safe et doivent être réutilisées. Il n’est pas nécessaire de créer une instance `KustoQueuedIngestClient` de classe pour chaque opération de réception, ou même plusieurs. Une seule instance de `KustoQueuedIngestClient` est requise par cluster Kusto cible par processus utilisateur. L’exécution de plusieurs instances est inefficace et peut faire fonctionner le cluster Gestion des données.
+Les implémentations du client de réception Kusto sont thread-safe et doivent être réutilisées. Il n’est pas nécessaire de créer une instance de `KustoQueuedIngestClient` classe pour chaque opération de réception, ou même plusieurs. Une seule instance de `KustoQueuedIngestClient` est requise par cluster Kusto cible par processus utilisateur. L’exécution de plusieurs instances est inefficace et peut faire fonctionner le cluster Gestion des données.
 
 ### <a name="supported-data-formats"></a>Formats de données pris en charge
-Si vous utilisez l’ingestion native, si ce n’est déjà fait, téléchargez les données vers un ou plusieurs objets BLOB de stockage Azure. Les formats d’objets BLOB actuellement pris en charge sont décrits dans la rubrique [formats de données pris en charge](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats) .
+Si vous utilisez l’ingestion native, si ce n’est déjà fait, téléchargez les données vers un ou plusieurs objets BLOB de stockage Azure. Les formats d’objets BLOB actuellement pris en charge sont décrits dans la rubrique [formats de données pris en charge](../../../ingestion-supported-formats.md) .
 
 ### <a name="schema-mapping"></a>Mappage de schéma
 Les [mappages de schéma](../../management/mappings.md) facilitent la liaison déterministe des champs de données sources aux colonnes de la table de destination.

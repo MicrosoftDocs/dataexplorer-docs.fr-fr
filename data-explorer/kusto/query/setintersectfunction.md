@@ -1,6 +1,6 @@
 ---
-title: set_intersect() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit set_intersect() dans Azure Data Explorer.
+title: set_intersect ()-Azure Explorateur de données
+description: Cet article décrit set_intersect () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,31 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/02/2019
-ms.openlocfilehash: 0a1ef86573a408f644e26b3b23f0db42e327573a
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 23b751dce38f5b595ba081c9a29e1b1a5442c96f
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81507750"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372350"
 ---
 # <a name="set_intersect"></a>set_intersect()
 
-Retourne `dynamic` un tableau (JSON) de l’ensemble de toutes les valeurs distinctes qui sont dans tous les tableaux - (arr1 - arr2 - ...).
+Retourne un `dynamic` tableau (JSON) de l’ensemble de toutes les valeurs distinctes qui se trouvent dans tous les tableaux-(Arr1 ∩ Arr2 ∩...).
 
 **Syntaxe**
 
-`set_intersect(`*arr1*`, `*arr2*`[`,` *arr3*, ...])`
+`set_intersect(`*Arr1* `, ` *Arr2* `[` ,` *arr3*, ...])`
 
 **Arguments**
 
-* *arr1... arrN*: Tableaux d’entrée pour créer un ensemble de croisement (au moins deux tableaux). Tous les arguments doivent être des tableaux dynamiques (voir [pack_array](packarrayfunction.md)). 
+* *Arr1... arrN*: tableaux d’entrée pour créer un ensemble d’intersection (au moins deux tableaux). Tous les arguments doivent être des tableaux dynamiques (voir [pack_array](packarrayfunction.md)). 
 
 **Retourne**
 
-Retourne un tableau dynamique de l’ensemble de toutes les valeurs distinctes qui sont dans tous les tableaux. Voir [`set_union()`](setunionfunction.md) [`set_difference()`](setdifferencefunction.md)et .
+Retourne un tableau dynamique du jeu de toutes les valeurs distinctes qui se trouvent dans tous les tableaux. Consultez [`set_union()`](setunionfunction.md) et [`set_difference()`](setdifferencefunction.md) .
 
 **Exemple**
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 range x from 1 to 3 step 1
 | extend y = x * 2
@@ -45,13 +46,14 @@ range x from 1 to 3 step 1
 |Colonne1|
 |---|
 |[1]|
-|[2]|
-|[3]|
+|2|
+|1,3|
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 print arr = set_intersect(dynamic([1, 2, 3]), dynamic([4,5]))
 ```
 
-|Arr|
+|arr|
 |---|
 |[]|

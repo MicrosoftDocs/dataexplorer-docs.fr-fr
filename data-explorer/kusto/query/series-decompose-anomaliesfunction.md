@@ -1,5 +1,5 @@
 ---
-title: series_decompose_anomalies ()-Azure Explorateur de données | Microsoft Docs
+title: series_decompose_anomalies ()-Azure Explorateur de données
 description: Cet article décrit series_decompose_anomalies () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/28/2019
-ms.openlocfilehash: 51ac499690323b1d2bafb4dc20ab7773f5c99c63
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 0cd2fc2e395ad47cff29589298ba7ae694fce941
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618888"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372906"
 ---
 # <a name="series_decompose_anomalies"></a>series_decompose_anomalies()
 
@@ -23,7 +23,7 @@ Prend une expression contenant une série (tableau numérique dynamique) comme e
 
 **Syntaxe**
 
-`series_decompose_anomalies (`*Tendance* à la tendance`, ` des *seuils* `,` *Seasonality* `,` de *série* `[, ` *Test_points* `, ` *AD_method* `,` *Seasonality_threshold*`])`
+`series_decompose_anomalies (`*Série* `[, ` *Seuil* `,` Caractère *saisonnier* `,` *Tendance* `, ` *Test_points* `, ` *AD_method* `,` *Seasonality_threshold*`])`
 
 **Arguments**
 
@@ -41,7 +41,7 @@ Prend une expression contenant une série (tableau numérique dynamique) comme e
 * *AD_method*: chaîne contrôlant la méthode de détection des anomalies (consultez [series_outliers](series-outliersfunction.md)) sur les séries chronologiques résiduelles, contenant soit    
     * « ctukey » : [test de la limite de Tukey](https://en.wikipedia.org/wiki/Outlier#Tukey's_fences) avec une plage de centile personnalisée du dixième au dixième [par défaut]
     * « Tukey » : [test de la limite de Tukey](https://en.wikipedia.org/wiki/Outlier#Tukey's_fences) avec une plage de centile standard de 25-75e
-* *Seasonality_threshold*: le seuil du score saisonnier lorsque le caractère *saisonnier* est défini sur détection automatique, le seuil du `0.6` score par défaut est (pour plus d’informations, consultez : [series_periods_detect](series-periods-detectfunction.md))
+* *Seasonality_threshold*: le seuil du score saisonnier lorsque le caractère *saisonnier* est défini sur détection automatique, le seuil du score par défaut est `0.6` (pour plus d’informations, consultez : [series_periods_detect](series-periods-detectfunction.md))
 
 
 **Renvoi**
@@ -65,6 +65,7 @@ Cette fonction suit les étapes suivantes :
 
 Dans l’exemple suivant, nous générons une série avec un caractère saisonnier hebdomadaire, puis nous y ajoutons quelques valeurs hors norme. `series_decompose_anomalies`détecte automatiquement le caractère saisonnier et génère une ligne de base qui capture le modèle répétitif. Les valeurs hors norme que nous avons ajoutées peuvent être clairement repérées dans le composant ad_score.
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let ts=range t from 1 to 24*7*5 step 1 
 | extend Timestamp = datetime(2018-03-01 05:00) + 1h * t 
@@ -81,8 +82,9 @@ ts
 
 **2. détection des anomalies dans le caractère saisonnier hebdomadaire avec tendance**
 
-Dans cet exemple, nous ajoutons une tendance à la série de l’exemple précédent. Tout d’abord, `series_decompose_anomalies` nous exécutons avec les paramètres par défaut `avg` dans lesquels la valeur par défaut de tendance prend uniquement en compte la moyenne et ne calcule pas la tendance. nous pouvons voir que la ligne de base générée ne contient pas la tendance et qu’elle est moins précise que l’exemple précédent. par conséquent, certaines des valeurs hors norme que nous avons insérées dans les données ne sont pas détectées
+Dans cet exemple, nous ajoutons une tendance à la série de l’exemple précédent. Tout d’abord, nous exécutons `series_decompose_anomalies` avec les paramètres par défaut dans lesquels la `avg` valeur par défaut de tendance prend uniquement en compte la moyenne et ne calcule pas la tendance. nous pouvons voir que la ligne de base générée ne contient pas la tendance et qu’elle est moins précise que l’exemple précédent. par conséquent, certaines des valeurs hors norme que nous avons insérées dans les données ne sont pas détectées
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let ts=range t from 1 to 24*7*5 step 1 
 | extend Timestamp = datetime(2018-03-01 05:00) + 1h * t 
@@ -99,8 +101,9 @@ series_multiply(10, series_decompose_anomalies_y_ad_flag) // multiply by 10 for 
 
 :::image type="content" source="images/series-decompose-anomaliesfunction/weekly-seasonality-outliers-with-trend.png" alt-text="Résultats saisonniers hebdomadaires avec tendance" border="false":::
 
-Ensuite, nous exécutons le même exemple, mais étant donné que nous attendions une tendance dans la `linefit` série, nous spécifions dans le paramètre Trend. Nous pouvons voir que la ligne de base est plus proche de la série d’entrée. Tous les valeurs hors norme que nous avons insérées sont détectées, ainsi que des faux positifs (Voir l’exemple suivant sur le réglage du seuil).
+Ensuite, nous exécutons le même exemple, mais étant donné que nous attendions une tendance dans la série, nous spécifions `linefit` dans le paramètre Trend. Nous pouvons voir que la ligne de base est plus proche de la série d’entrée. Tous les valeurs hors norme que nous avons insérées sont détectées, ainsi que des faux positifs (Voir l’exemple suivant sur le réglage du seuil).
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let ts=range t from 1 to 24*7*5 step 1 
 | extend Timestamp = datetime(2018-03-01 05:00) + 1h * t 
@@ -121,6 +124,7 @@ series_multiply(10, series_decompose_anomalies_y_ad_flag) // multiply by 10 for 
 
 Dans l’exemple précédent, quelques points bruyants ont été détectés comme des anomalies. dans cet exemple, nous augmentons le seuil de détection des anomalies d’une valeur par défaut de 1,5 à 2,5 la plage intercentile afin que seules les anomalies plus fortes soient détectées. Nous pouvons voir que seules les valeurs hors norme que nous avons insérées dans les données sont détectées.
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let ts=range t from 1 to 24*7*5 step 1 
 | extend Timestamp = datetime(2018-03-01 05:00) + 1h * t 

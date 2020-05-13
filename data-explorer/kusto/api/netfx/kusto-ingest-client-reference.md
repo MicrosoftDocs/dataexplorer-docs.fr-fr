@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 1d3c3939a5c8b3a5f1e6f1fa0b40f9b927ee5325
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: d2e42ce3de656a3e137245786596e454c36ccbef
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226055"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373605"
 ---
 # <a name="kustoingest-client-interfaces-and-factory-classes"></a>Interfaces client et classes de fabrique Kusto. deréception
 
@@ -359,7 +359,7 @@ La classe KustoIngestionProperties contient des propriétés d’ingestion de ba
 |AvroMapping |Pour chaque colonne, définit le nom du champ dans l’enregistrement Avro. **Obligatoire pour l’ingestion AVRO** |
 |ValidationPolicy |Définitions de validation des données. Pour plus d’informations, consultez [TODO] |
 |Format |Format des données en cours de réception |
-|AdditionalProperties | Autres propriétés qui seront transmises en tant que [Propriétés](https://docs.microsoft.com/azure/data-explorer/ingestion-properties) d’ingestion à la commande d’ingestion. Les propriétés seront transmises, car toutes les propriétés d’ingestion ne sont pas représentées dans un membre distinct de cette classe|
+|AdditionalProperties | Autres propriétés qui seront transmises en tant que [Propriétés](../../../ingestion-properties.md) d’ingestion à la commande d’ingestion. Les propriétés seront transmises, car toutes les propriétés d’ingestion ne sont pas représentées dans un membre distinct de cette classe|
 
 ```csharp
 public class KustoIngestionProperties

@@ -1,6 +1,6 @@
 ---
-title: Ingest de stockage à l’aide de l’abonnement Event Grid - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit Ingest depuis le stockage à l’aide de l’abonnement Event Grid dans Azure Data Explorer.
+title: Ingestion du stockage à l’aide de Event Grid abonnement-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit l’acquisition à partir du stockage à l’aide de Event Grid abonnement dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,50 +8,50 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: 682c39b11292c7e198dba46dad9b5bfa3b520c0f
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 7673b50a8d1ff401f8c2fa086b7eec34c0517238
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81521520"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373484"
 ---
-# <a name="ingest-from-storage-using-event-grid-subscription"></a>Ingest de stockage en utilisant l’abonnement Event Grid
+# <a name="ingest-from-storage-using-event-grid-subscription"></a>Ingérer à partir du stockage avec un abonnement Event Grid
 
-Azure Data Explorer offre une ingestion continue à partir d’Azure Storage (Stockage Blob et ADLSv2) avec [l’abonnement Azure Event Grid](https://docs.microsoft.com/azure/event-grid/overview) pour les notifications créées par blob et la diffusion de ces notifications sur Kusto via un Event Hub.
+Azure Explorateur de données offre une ingestion continue depuis le stockage Azure (stockage BLOB et ADLSv2) avec [Azure Event Grid](https://docs.microsoft.com/azure/event-grid/overview) abonnement pour les notifications créées par un objet BLOB et en diffusant ces notifications à Kusto via un hub d’événements.
 
 ## <a name="data-format"></a>Format de données
 
-* Blobs peut être dans l’un des [formats pris en charge](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats).
-* Les blobs peuvent être comprimés dans n’importe laquelle des [compressions soutenues](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats#supported-data-compression-formats)
+* Les objets BLOB peuvent être dans n’importe quel [format pris en charge](../../../ingestion-supported-formats.md).
+* Les objets BLOB peuvent être compressés dans l’une des [compressions prises en charge](../../../ingestion-supported-formats.md#supported-data-compression-formats)
 
 > [!NOTE]
-> Idéalement, la taille des données non compressées d’origine devrait faire partie des métadonnées blob.
-> Si la taille non compressée n’est pas spécifiée, Azure Data Explorer l’estimera en fonction de la taille du fichier. Fournir la taille des `rawSizeBytes` données d’origine en définissant la [propriété](#ingestion-properties) sur les métadonnées blob à la taille des données **non compressées** dans les octets.
-> Veuillez noter qu’il y a une limite de taille non compressée par fichier de 4 Go.
+> Dans l’idéal, la taille des données non compressées d’origine doit faire partie des métadonnées de l’objet BLOB.
+> Si la taille non compressée n’est pas spécifiée, Azure Explorateur de données l’évalue en fonction de la taille du fichier. Indiquez la taille des données d’origine en affectant à la `rawSizeBytes` [propriété](#ingestion-properties) sur les métadonnées de l’objet BLOB la valeur de données **non compressées** en octets.
+> Notez qu’il existe une limite de taille décompressée pour la réception par fichier de 4 Go.
 
 ## <a name="ingestion-properties"></a>Propriétés d’ingestion
 
-Vous pouvez spécifier [les propriétés ingestion](https://docs.microsoft.com/azure/data-explorer/ingestion-properties) de l’ingestion blob via les métadonnées blob.
+Vous pouvez spécifier les [Propriétés](../../../ingestion-properties.md) d’ingestion de l’ingestion d’objets BLOB via les métadonnées de l’objet BLOB.
 Vous pouvez définir les propriétés suivantes :
 
 |Propriété | Description|
 |---|---|
-| rawSizeBytes | Taille des données brutes (non compressées). Pour Avro/ORC/Parquet, c’est la taille avant l’application d’une compression spécifique au format.|
-| kustoTable (en) |  Nom de la table cible existante. Remplace l’ensemble `Table` sur `Data Connection` la lame. |
-| kustoDataFormat kustoDataFormat |  Format de données. Remplace l’ensemble `Data format` sur `Data Connection` la lame. |
-| kustoIngestionMappingReference |  Nom de la cartographie d’ingestion existante à utiliser. Remplace l’ensemble `Column mapping` sur `Data Connection` la lame.|
-| kustoIgnoreFirstRecord | Si défini `true`à , Azure Data Explorer ignore la première rangée de l’objet blob. Utilisez dans les données de format tabulaire (CSV, TSV, ou similaires) pour ignorer les en-têtes. |
-| kustoExtentTags | Chaîne représentant [les étiquettes](../extents-overview.md#extent-tagging) qui seront attachées dans l’étendue résultante. |
-| kustoCréationTime (en anglais) |  Remplace [$IngestionTime](../../query/ingestiontimefunction.md?pivots=azuredataexplorer) pour le blob, formaté comme une chaîne ISO 8601. Utiliser pour le remblayage. |
+| rawSizeBytes | Taille des données brutes (non compressées). Pour Avro/ORC/Parquet, il s’agit de la taille avant l’application de la compression spécifique au format.|
+| kustoTable |  Nom de la table cible existante. Remplace le paramètre `Table` défini dans le panneau `Data Connection`. |
+| kustoDataFormat |  Format de données. Remplace le paramètre `Data format` défini dans le panneau `Data Connection`. |
+| kustoIngestionMappingReference |  Nom du mappage d’ingestion existant à utiliser. Remplace le paramètre `Column mapping` défini dans le panneau `Data Connection`.|
+| kustoIgnoreFirstRecord | Si la valeur est `true` , Azure Explorateur de données ignore la première ligne de l’objet BLOB. Utilisez dans les données au format tabulaire (CSV, TSV ou similaire) pour ignorer les en-têtes. |
+| kustoExtentTags | Chaîne représentant les [balises](../extents-overview.md#extent-tagging) qui seront attachées à l’étendue résultante. |
+| kustoCreationTime |  Remplace [$IngestionTime](../../query/ingestiontimefunction.md?pivots=azuredataexplorer) pour l’objet blob, au format d’une chaîne ISO 8601. À utiliser pour le renvoi. |
 
-## <a name="events-routing"></a>Itinéraire d’événements
+## <a name="events-routing"></a>Routage des événements
 
-Lors de la configuration d’une connexion de stockage blob au cluster Azure Data Explorer, spécifiez les propriétés du tableau cible (nom de table, format de données et cartographie). Il s’agit de l’itinéraire par défaut `static routig`pour vos données, également appelés .
-Vous pouvez également spécifier les propriétés de table cible pour chaque blob, à l’aide de métadonnées blob. Les données seront routées dynamiquement comme spécifié par les [propriétés d’ingestion.](#ingestion-properties)
+Quand vous configurez une connexion de stockage d’objets BLOB vers un cluster Azure Explorateur de données, spécifiez les propriétés de la table cible (nom de table, format de données et mappage). Il s’agit du routage par défaut pour vos données, également appelé `static routig` .
+Vous pouvez également spécifier des propriétés de la table cible pour chaque objet BLOB, à l’aide de métadonnées d’objet BLOB. Les données seront routées dynamiquement comme spécifié par les [Propriétés](#ingestion-properties)d’ingestion.
 
-Voici un exemple pour définir des propriétés d’ingestion aux métadonnées blob avant de les télécharger. Blobs sont acheminés vers différentes tables.
+Voici un exemple de définition des propriétés d’ingestion des métadonnées d’objet BLOB avant de les charger. Les objets BLOB sont acheminés vers différentes tables.
 
-Veuillez consulter le [code de l’échantillon](#generating-data) pour plus de détails sur la façon de générer des données.
+Pour plus d’informations sur la génération de données, consultez l' [exemple de code](#generating-data) .
 
  ```csharp
 // Blob is dynamically routed to table `Events`, ingested using `EventsMapping` data mapping
@@ -66,41 +66,41 @@ blob.UploadFromFile(jsonCompressedLocalFileName);
 ## <a name="create-event-grid-subscription"></a>Créer un abonnement Event Grid
 
 > [!Note]
-> Pour de meilleures performances, créez toutes les ressources dans la même région que le cluster Azure Data Explorer.
+> Pour des performances optimales, créez toutes les ressources dans la même région que le cluster Azure Explorateur de données.
 
 ### <a name="prerequisites"></a>Prérequis
 
 * [Créer un compte de stockage](https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account). 
-  L’abonnement à la notification Event Grid `BlobStorage` peut `StorageV2`être défini sur les comptes de stockage Azure de nature ou . 
-  Enabling [Data Lake Storage Gen2](https://docs.microsoft.com/azure/storage/blobs/data-lake-storage-introduction) est également pris en charge.
-* [Créez un hub d’événements](https://docs.microsoft.com/azure/event-hubs/event-hubs-create).
+  Event Grid abonnement aux notifications peut être défini sur les comptes de stockage Azure de type `BlobStorage` ou `StorageV2` . 
+  L’activation de [Data Lake Storage Gen2](https://docs.microsoft.com/azure/storage/blobs/data-lake-storage-introduction) est également prise en charge.
+* [Créez un Event Hub](https://docs.microsoft.com/azure/event-hubs/event-hubs-create).
 
 ### <a name="event-grid-subscription"></a>Abonnement Event Grid
 
-* Kusto `Event Hub` sélectionné comme type endpoind, utilisé pour le transport des notifications d’événements de stockage blob. `Event Grid schema`est le schéma choisi pour les notifications. Notez que chaque Hub Even peut servir une connexion.
-* La connexion d’abonnement de stockage `Microsoft.Storage.BlobCreated`blob gère les notifications de type . Assurez-vous de le sélectionner lors de la création de l’abonnement. Notez que d’autres types de notifications, s’ils sont sélectionnés, sont ignorés.
-* Un abonnement peut en informer sur les événements de stockage dans un conteneur ou plus. Si vous souhaitez suivre les fichiers à partir d’un conteneur spécifique, définissez les filtres pour les notifications comme suit : Lors de la configuration d’une connexion, prenez soin des valeurs suivantes : 
-   * **Sujet commence avec** le filtre est le préfixe *littéral* du récipient blob. Comme le modèle appliqué est *startswith*, il peut s’étendre sur plusieurs conteneurs. Les caractères génériques ne sont pas autorisés.
-     Il *doit* être défini *`/blobServices/default/containers/<prefix>`* comme suit: . Par exemple : */blobServices/default/containers/StormEvents-2020-*
-   * Le champ **Le sujet se termine par** est le suffixe *littéral* de l’objet blob. Les caractères génériques ne sont pas autorisés. Utile pour filtrer les extensions de fichiers.
+* Kusto sélectionné `Event Hub` comme type de point, utilisé pour le transport des notifications d’événements de stockage BLOB. `Event Grid schema`est le schéma sélectionné pour les notifications. Notez que chaque concentrateur pair peut servir une seule connexion.
+* La connexion de l’abonnement au stockage d’objets BLOB gère les notifications de type `Microsoft.Storage.BlobCreated` . Veillez à le sélectionner lors de la création de l’abonnement. Notez que les autres types de notifications, s’ils sont sélectionnés, sont ignorés.
+* Un abonnement peut notifier les événements de stockage dans un conteneur ou plus. Si vous souhaitez suivre des fichiers à partir d’un ou de plusieurs conteneurs spécifiques, définissez les filtres pour les notifications comme suit : lors de la configuration d’une connexion, prenez un soin speciel des valeurs suivantes : 
+   * L' **objet commence par** le filtre est le préfixe *littéral* du conteneur d’objets BLOB. Comme le modèle appliqué est *startswith*, il peut s’étendre sur plusieurs conteneurs. Les caractères génériques ne sont pas autorisés.
+     Elle *doit* être définie comme suit : *`/blobServices/default/containers/<prefix>`* . Par exemple : */blobServices/default/containers/StormEvents-2020-*
+   * Le champ **Le sujet se termine par** est le suffixe *littéral* de l’objet blob. Les caractères génériques ne sont pas autorisés. Utile pour filtrer les extensions de fichier.
 
-Une visite détaillée peut être trouvée dans le comment créer un abonnement Event Grid dans votre guide [de compte de stockage.](https://docs.microsoft.com/azure/data-explorer/ingest-data-event-grid#create-an-event-grid-subscription-in-your-storage-account)
+Une procédure détaillée est disponible dans le Guide de [création d’un abonnement Event Grid dans votre compte de stockage](../../../ingest-data-event-grid.md#create-an-event-grid-subscription-in-your-storage-account) .
 
-### <a name="data-ingestion-connection-to-azure-data-explorer"></a>Connexion d’ingestion de données à Azure Data Explorer
+### <a name="data-ingestion-connection-to-azure-data-explorer"></a>Connexion d’ingestion de données à Azure Explorateur de données
 
-* Via Azure Portal: [Créer une connexion de données Event Grid dans Azure Data Explorer](https://docs.microsoft.com/azure/data-explorer/ingest-data-event-grid#create-an-event-grid-data-connection-in-azure-data-explorer).
-* Utilisation de la gestion Kusto .NET SDK: [Ajouter une connexion de données Event Grid](https://docs.microsoft.com/azure/data-explorer/data-connection-event-grid-csharp#add-an-event-grid-data-connection)
-* Utilisation de la gestion Kusto Python SDK: [Ajouter une connexion de données Event Grid](https://docs.microsoft.com/azure/data-explorer/data-connection-event-grid-python#add-an-event-grid-data-connection)
-* Avec le modèle ARM : [modèle Azure Resource Manager pour l’ajout d’une connexion de données Event Grid](https://docs.microsoft.com/azure/data-explorer/data-connection-event-grid-resource-manager#azure-resource-manager-template-for-adding-an-event-grid-data-connection)
+* Via le portail Azure : [créez une connexion de données Event Grid dans azure Explorateur de données](../../../ingest-data-event-grid.md#create-an-event-grid-data-connection-in-azure-data-explorer).
+* Utilisation du kit de développement logiciel (SDK) .NET Kusto Management : [Ajouter une connexion de données Event Grid](../../../data-connection-event-grid-csharp.md#add-an-event-grid-data-connection)
+* Utilisation du kit de développement logiciel (SDK) python Management Kusto : [Ajouter une connexion de données Event Grid](../../../data-connection-event-grid-python.md#add-an-event-grid-data-connection)
+* Avec le modèle ARM : [Azure Resource Manager modèle pour l’ajout d’une connexion de données Event Grid](../../../data-connection-event-grid-resource-manager.md#azure-resource-manager-template-for-adding-an-event-grid-data-connection)
 
 ### <a name="generating-data"></a>Génération de données
 
 > [!NOTE]
-> * Utiliser `BlockBlob` pour générer des données. La fonction `AppendBlob` n'est pas prise en charge.
+> * Utilisez `BlockBlob` pour générer des données. La fonction `AppendBlob` n'est pas prise en charge.
 <!--> * Using ADLSv2 storage requires using `CreateFile` API for uploading blobs and flush at the end. 
     Kusto will get 2 notificatiopns: when blob is created and when stream is flushed. First notification arrives before the data is ready and ignored. Second notification is processed.-->
 
-Voici un exemple pour créer un blob à partir de fichier local, en définissant les propriétés d’ingestion aux métadonnées blob et en le téléchargeant :
+Voici un exemple de création d’un objet blob à partir d’un fichier local, la définition des propriétés d’ingestion sur les métadonnées de l’objet BLOB et son téléchargement :
 
  ```csharp
  var azureStorageAccountConnectionString=<storage_account_connection_string>;
@@ -122,6 +122,6 @@ blob.Metadata.Add("kustoIgnoreFirstRecord", "true"); // First line of this csv f
 blob.UploadFromFile(csvCompressedLocalFileName);
 ```
 
-## <a name="blob-lifecycle"></a>Cycle de vie Blob
+## <a name="blob-lifecycle"></a>Cycle de vie des objets BLOB
 
-Azure Data Explorer ne supprimera pas l’ingestion de poteau de blobs, mais les conservera pendant trois à cinq jours. Utilisez [le cycle de vie de stockage Azure Blob](https://docs.microsoft.com/azure/storage/blobs/storage-lifecycle-management-concepts?tabs=azure-portal) pour gérer votre suppression de blob.
+Azure Explorateur de données ne supprime pas les objets BLOB après réception, mais les conserve pendant trois à cinq jours. Utilisez le [cycle de vie du stockage d’objets BLOB Azure](https://docs.microsoft.com/azure/storage/blobs/storage-lifecycle-management-concepts?tabs=azure-portal) pour gérer la suppression de votre objet BLOB.

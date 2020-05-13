@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/26/2019
-ms.openlocfilehash: 5394eefad37195833c0c5ebb94325bb540d1f520
-ms.sourcegitcommit: 9fe6ee7db15a5cc92150d3eac0ee175f538953d2
+ms.openlocfilehash: 4500ec5b58c93901e011ea6dd270563d3405ee01
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/07/2020
-ms.locfileid: "82907214"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372866"
 ---
 # <a name="series_decompose"></a>series_decompose()
 
@@ -23,7 +23,7 @@ Prend une expression contenant une série (tableau numérique dynamique) comme e
  
 **Syntaxe**
 
-`series_decompose(`*Series* `[,` *Seasonality* `,` *Trend* Tendance`,` du caractère saisonnier de la série *Test_points* `,` *Seasonality_threshold*`])`
+`series_decompose(`*Série* `[,` Caractère *saisonnier* `,` *Tendance* `,` *Test_points* `,` *Seasonality_threshold*`])`
 
 **Arguments**
 
@@ -37,7 +37,7 @@ Prend une expression contenant une série (tableau numérique dynamique) comme e
     * « linefit » : extraction du composant de tendance à l’aide de la régression linéaire.
     * « None » : aucune tendance. ignorez l’extraction de ce composant.    
 * *Test_points*: 0 (valeur par défaut) ou un entier positif, qui spécifie le nombre de points à la fin de la série à exclure du processus d’apprentissage (régression). Ce paramètre doit être défini à des fins de prévision.
-* *Seasonality_threshold*: le seuil du score saisonnier lorsque le caractère *saisonnier* est défini sur détection automatique, le seuil de `0.6`score par défaut est. Pour plus d’informations, consultez [series_periods_detect](series-periods-detectfunction.md).
+* *Seasonality_threshold*: le seuil du score saisonnier lorsque le caractère *saisonnier* est défini sur détection automatique, le seuil de score par défaut est `0.6` . Pour plus d’informations, consultez [series_periods_detect](series-periods-detectfunction.md).
 
 **Renvoi**
 
@@ -72,6 +72,7 @@ Cette méthode est généralement appliquée à la série chronologique de mesur
 
 Dans l’exemple suivant, nous générons une série avec un caractère saisonnier hebdomadaire et sans tendance, nous y ajoutons quelques valeurs hors norme. `series_decompose`recherche et détecte automatiquement le caractère saisonnier et génère une ligne de base quasiment identique au composant saisonnier. Les valeurs hors norme que nous avons ajoutées peuvent être clairement visibles dans le composant residus.
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let ts=range t from 1 to 24*7*5 step 1 
 | extend Timestamp = datetime(2018-03-01 05:00) + 1h * t 
@@ -88,8 +89,9 @@ ts
 
 **Caractère saisonnier hebdomadaire avec tendance**
 
-Dans cet exemple, nous ajoutons une tendance à la série de l’exemple précédent. Tout d’abord, `series_decompose` nous exécutons avec les paramètres par défaut. La valeur `avg` par défaut de la tendance prend uniquement la moyenne et ne calcule pas la tendance. La ligne de base générée ne contient pas la tendance. Lorsque l’on observe la tendance dans les résidus, il devient évident que cet exemple est moins précis que l’exemple précédent.
+Dans cet exemple, nous ajoutons une tendance à la série de l’exemple précédent. Tout d’abord, nous exécutons `series_decompose` avec les paramètres par défaut. La `avg` valeur par défaut de la tendance prend uniquement la moyenne et ne calcule pas la tendance. La ligne de base générée ne contient pas la tendance. Lorsque l’on observe la tendance dans les résidus, il devient évident que cet exemple est moins précis que l’exemple précédent.
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let ts=range t from 1 to 24*7*5 step 1 
 | extend Timestamp = datetime(2018-03-01 05:00) + 1h * t 
@@ -104,8 +106,9 @@ ts
 
 :::image type="content" source="images/samples/series-decompose2.png" alt-text="Série, décomposer 2":::
 
-Ensuite, nous réexécuterons le même exemple. Étant donné que nous attendions une tendance dans la série, `linefit` nous spécifions dans le paramètre Trend. Nous pouvons voir que la tendance positive est détectée et que la base de référence est plus proche de la série d’entrée. Les résidus sont proches de zéro et seuls les valeurs hors norme sont représentées. Nous pouvons voir tous les composants de la série dans le graphique.
+Ensuite, nous réexécuterons le même exemple. Étant donné que nous attendions une tendance dans la série, nous spécifions `linefit` dans le paramètre Trend. Nous pouvons voir que la tendance positive est détectée et que la base de référence est plus proche de la série d’entrée. Les résidus sont proches de zéro et seuls les valeurs hors norme sont représentées. Nous pouvons voir tous les composants de la série dans le graphique.
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let ts=range t from 1 to 24*7*5 step 1 
 | extend Timestamp = datetime(2018-03-01 05:00) + 1h * t 

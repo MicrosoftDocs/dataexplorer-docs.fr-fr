@@ -1,5 +1,5 @@
 ---
-title: Outil Kusto. Explorer-Azure Explorateur de données | Microsoft Docs
+title: Outil Kusto. Explorer-Azure Explorateur de données
 description: Cet article décrit l’outil Kusto. Explorer dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/23/2020
-ms.openlocfilehash: 1a643a282deec5a98230a17e7335fff7638812b8
-ms.sourcegitcommit: e1e35431374f2e8b515bbe2a50cd916462741f49
+ms.openlocfilehash: 60a414ff871d88de041e8b76671b73d98854fba0
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82108437"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83374069"
 ---
 # <a name="kustoexplorer-tool"></a>Outil Kusto. Explorer
 
@@ -23,7 +23,7 @@ Kusto. Explorer est une application de bureau riche qui vous permet d’explorer
 
 * Installer l' [outil Kusto. Explorer](https://aka.ms/Kusto.Explorer)
 
-* Vous pouvez également accéder à votre cluster Kusto à l’aide de `https://<your_cluster>.kusto.windows.net`votre navigateur à l’adresse suivante :. Remplacez <your_cluster> par le nom de votre cluster Azure Explorateur de données.
+* Vous pouvez également accéder à votre cluster Kusto à l’aide de votre navigateur à l’adresse suivante : `https://<your_cluster>.kusto.windows.net` . Remplacez <your_cluster> par le nom de votre cluster Azure Explorateur de données.
 
 
 
@@ -57,7 +57,7 @@ Le panneau de menu Kusto. Explorer comprend les onglets suivants :
 * [Page d'accueil](#home-tab)
 * [File](#file-tab)
 * [Connexions](#connections-tab)
-* [Affichage](#view-tab)
+* [Afficher](#view-tab)
 * [outils](#tools-tab)
 
 * [Gestion](#management-tab)
@@ -72,7 +72,7 @@ L’onglet dossier de démarrage affiche les fonctions les plus récemment utili
 * [Requête](#query-section)
 * [Partager](#share-section)
 * [Visualisations](#visualizations-section)
-* [Affichage](#view-section)
+* [Afficher](#view-section)
 * [Aide](#help-tab) 
 
 #### <a name="query-section"></a>Section de requête
@@ -265,7 +265,7 @@ Le volet gauche de Kusto. Explorer affiche toutes les connexions de cluster avec
 Si le schéma réel est volumineux (par exemple, une base de données contenant des centaines de tables), il est possible de rechercher le schéma en appuyant sur CTRL + F et en entrant une sous-chaîne (ne respectant pas la casse) du nom de l’entité que vous recherchez.
 
 Kusto. Explorer prend en charge le contrôle du panneau de connexion à partir de la fenêtre de requête.
-Cela est très utile pour les scripts. Par exemple, en démarrant un fichier de script avec une commande qui indique à Kusto. Explorer de se connecter au cluster/à la base de données dont les données sont interrogées par le script est possible en utilisant la syntaxe suivante. Comme d’habitude, vous devrez exécuter chaque ligne à l' `F5` aide de ou de la même manière :
+Cela est très utile pour les scripts. Par exemple, en démarrant un fichier de script avec une commande qui indique à Kusto. Explorer de se connecter au cluster/à la base de données dont les données sont interrogées par le script est possible en utilisant la syntaxe suivante. Comme d’habitude, vous devrez exécuter chaque ligne à l’aide de `F5` ou de la même manière :
 
 ```kusto
 #connect cluster('help').database('Samples')
@@ -285,7 +285,7 @@ Par exemple, les utilisateurs qui ont une présence dans plusieurs locataires AA
 Data Source=https://CLUSTER_NAME.kusto.windows.net;Initial Catalog=DATABASE_NAME;AAD Federated Security=True;Authority Id=AAD_TENANT_OF_CLUSTER;User=USER_DOMAIN
 ```
 
-Ce qui est unique, `AAD_TENANT_OF_CLUSTER` c’est qu’il s’agit d’un nom de domaine ou d’un ID de locataire AAD (Guid) du locataire AAD dans lequel le cluster est hébergé (généralement le nom de `contoso.com`domaine de l’organisation qui possède le cluster, tel que), et USER_DOMAIN est l’identité `joe@fabrikam.com`de l’utilisateur invité dans ce locataire (par exemple,). 
+Ce qui est unique, c’est qu’il s’agit d' `AAD_TENANT_OF_CLUSTER` un nom de domaine ou d’un ID de locataire AAD (Guid) du locataire AAD dans lequel le cluster est hébergé (généralement le nom de domaine de l’organisation qui possède le cluster, tel que `contoso.com` ), et USER_DOMAIN est l’identité de l’utilisateur invité dans ce locataire (par exemple, `joe@fabrikam.com` ). 
 
 >[!Note]
 > Le nom de domaine de l’utilisateur n’est pas nécessairement le même que celui du locataire qui héberge le cluster.
@@ -294,7 +294,7 @@ Ce qui est unique, `AAD_TENANT_OF_CLUSTER` c’est qu’il s’agit d’un nom d
 
 Kusto. Explorer tente de « deviner » le niveau de gravité ou de détail de chaque ligne dans le volet de résultats et de le colorier en conséquence. Pour ce faire, il met en correspondance les valeurs distinctes de chaque colonne avec un ensemble de modèles connus (« Warning », « Error », etc.).
 
-Pour modifier le modèle de couleur de sortie, ou désactiver ce comportement, dans le menu **Outils** , sélectionnez **options** > **visionneuse** > des résultats**Commentaires schéma de couleurs**.
+Pour modifier le modèle de couleur de sortie, ou désactiver ce comportement, dans le menu **Outils** , sélectionnez **options**  >  **visionneuse des résultats**  >  **Commentaires schéma de couleurs**.
 
 ![texte de remplacement](./Images/KustoTools-KustoExplorer/ke-color-scheme.png)
 
@@ -316,6 +316,7 @@ Kusto. Explorer dispose d’un puissant mode de script qui vous permet d’écri
 
 Si vous avez des journaux de table, vous pouvez commencer à les explorer en entrant ce qui suit :
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 StormEvents | count 
 ```
@@ -324,11 +325,13 @@ Quand votre curseur est positionné sur cette ligne, sa couleur est grisée. App
 
 Voici quelques exemples de requêtes :
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 // Take 10 lines from the table. Useful to get familiar with the data
 StormEvents | limit 10 
 ```
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 // Filter by EventType == 'Flood' and State == 'California' (=~ means case insensitive) 
 // and take sample of 10 lines
@@ -401,7 +404,7 @@ Kusto. Explorer offre un moyen pratique de partager des requêtes et des résult
 Fonctionnement de l’opération :
 
 1. Exécuter une requête dans Kusto. Explorer
-1. Sélectionnez **Exporter dans le presse-papiers** (ou appuyez sur `Ctrl+Shift+C`)
+1. Sélectionnez **Exporter dans le presse-papiers** (ou appuyez sur `Ctrl+Shift+C` )
 
     ![texte de remplacement](./Images/KustoTools-KustoExplorer/menu-export.png "menu-exporter")
 
@@ -421,7 +424,7 @@ Fonctionnement de l’opération :
 >
 > * La requête côté client parametrization, décrite ci-dessous, est une fonctionnalité de l’application Kusto. Explorer uniquement. Cela équivaut à utiliser des opérations de remplacement de chaîne sur les requêtes avant de les envoyer à exécuter par le service. La syntaxe décrite ci-dessous ne fait pas partie du langage de requête lui-même et ne peut pas être utilisée lors de l’envoi de requêtes au service par d’autres moyens que Kusto. Explorer.
 
-Si vous envisagez d’utiliser la même valeur dans plusieurs requêtes ou dans plusieurs onglets, il sera difficile de la modifier. Toutefois, Kusto. Explorer prend en charge les paramètres de requête. Les paramètres sont dénotés {} par des crochets. Par exemple : `{parameter1}`
+Si vous envisagez d’utiliser la même valeur dans plusieurs requêtes ou dans plusieurs onglets, il sera difficile de la modifier. Toutefois, Kusto. Explorer prend en charge les paramètres de requête. Les paramètres sont dénotés par des {} crochets. Par exemple : `{parameter1}`
 
 L’éditeur de script met en surbrillance les paramètres de requête :
 
@@ -449,10 +452,10 @@ Les paramètres de requête sont partagés entre les onglets, afin qu’ils puis
 ### <a name="overview"></a>Vue d’ensemble
 Vous pouvez créer un URI qui, lorsqu’il est ouvert dans un navigateur, Kusto. Explorer démarre localement et exécute une requête spécifique sur une base de données Kusto spécifiée.
 
-### <a name="limitations"></a>Limites
-Les requêtes sont limitées à environ 2000 caractères en raison des limitations d’Internet Explorer (la limitation est approximative, car elle dépend de la longueur du nom de la https://support.microsoft.com/kb/208427 base de données et du cluster) pour réduire les chances que vous atteigniez la limite de caractères, consultez la section [obtenir des liens plus courts](#getting-shorter-links), ci-dessous.
+### <a name="limitations"></a>Limitations
+Les requêtes sont limitées à environ 2000 caractères en raison des limitations d’Internet Explorer (la limitation est approximative, car elle dépend de la longueur du nom de la base de données et du cluster) https://support.microsoft.com/kb/208427 pour réduire les chances que vous atteigniez la limite de caractères, consultez la section [obtenir des liens plus courts](#getting-shorter-links), ci-dessous.
 
-Le format de l’URI est : https://<ClusterCname>. Kusto.Windows.NET/<DatabaseName>? Query =<QueryToExecute>
+Le format de l’URI est : https:// <ClusterCname> . Kusto.Windows.NET/ <DatabaseName> ? Query =<QueryToExecute>
 
 Par exemple :  https://help.kusto.windows.net/Samples?query=StormEvents+%7c+limit+10
  
@@ -478,14 +481,14 @@ https://help.kusto.windows.net/Samples?web=0&query=H4sIAAAAAAAEAAsuyS%2fKdS1LzSs
 
 Vous pouvez utiliser des requêtes paramétrée avec des liens approfondis.
 
-1. Créer une requête à former en tant que requête paramétrée (par exemple, `KustoLogs | where Timestamp > ago({Period}) | count`) 
+1. Créer une requête à former en tant que requête paramétrée (par exemple, `KustoLogs | where Timestamp > ago({Period}) | count` ) 
 2. Fournissez un paramètre pour chaque paramètre de requête dans l’URI dans le cas suivant :
 
 `https://mycluster.kusto.windows.net/MyDatabase?web=0&query=KustoLogs+%7c+where+Timestamp+>+ago({Period})+%7c+count&Period=1h`
 
 ### <a name="getting-shorter-links"></a>Obtenir des liens plus courts
 
-Les requêtes peuvent devenir longues. Pour réduire le risque que la requête dépasse la longueur maximale, `String Kusto.Data.Common.CslCommandGenerator.EncodeQueryAsBase64Url(string query)` utilisez la méthode disponible dans la bibliothèque cliente Kusto. Cette méthode produit une version plus compacte de la requête. Le format plus petit est également reconnu par Kusto. Explorer.
+Les requêtes peuvent devenir longues. Pour réduire le risque que la requête dépasse la longueur maximale, utilisez la `String Kusto.Data.Common.CslCommandGenerator.EncodeQueryAsBase64Url(string query)` méthode disponible dans la bibliothèque cliente Kusto. Cette méthode produit une version plus compacte de la requête. Le format plus petit est également reconnu par Kusto. Explorer.
 
 https://help.kusto.windows.net/Samples?web=0&query=H4sIAAAAAAAEAAsuyS%2fKdS1LzSspVuDlqlEoLs3NTSzKrEpVSM4vzSvR0FRIqlRIyszTCC5JLCoJycxN1VEwT9EEKS1KzUtJLVIoAYolZwAlFQCB3oo%2bTAAAAA%3d%3d
 
@@ -501,11 +504,11 @@ Kusto. Explorer prend en charge plusieurs arguments de ligne de commande dans la
 
 [*LocalScriptFile*] [*QueryString*]
 
-Où :
-* *LocalScriptFile* est le nom d’un fichier de script sur l’ordinateur local qui doit avoir l' `.kql`extension. Si un tel fichier existe, Kusto. Explorer charge automatiquement ce fichier lors de son démarrage.
+Où :
+* *LocalScriptFile* est le nom d’un fichier de script sur l’ordinateur local qui doit avoir l’extension `.kql` . Si un tel fichier existe, Kusto. Explorer charge automatiquement ce fichier lors de son démarrage.
 * *QueryString* est une chaîne formatée à l’aide de la mise en forme de chaîne de requête http. Cette méthode fournit des propriétés supplémentaires, comme décrit dans le tableau ci-dessous.
 
-Par exemple, pour démarrer Kusto. Explorer avec un fichier de script `c:\temp\script.kql` nommé et configuré pour communiquer avec `help`le cluster `Samples`, base de données, utilisez la commande suivante :
+Par exemple, pour démarrer Kusto. Explorer avec un fichier de script nommé `c:\temp\script.kql` et configuré pour communiquer avec `help` le cluster, base de données `Samples` , utilisez la commande suivante :
 
 ```
 Kusto.Explorer.exe c:\temp\script.kql uri=https://help.kusto.windows.net/Samples;Fed=true&name=Samples
@@ -514,8 +517,8 @@ Kusto.Explorer.exe c:\temp\script.kql uri=https://help.kusto.windows.net/Samples
 |Argument  |Description                                                               |
 |----------|--------------------------------------------------------------------------|
 |**Requête à exécuter**                                                                 |
-|`query`   |Requête à exécuter (encodée en base64). S’il est vide `querysrc`, utilisez.          |
-|`querysrc`|URL d’un fichier ou d’un objet blob contenant la requête à exécuter `query` (si est vide).|
+|`query`   |Requête à exécuter (encodée en base64). S’il est vide, utilisez `querysrc` .          |
+|`querysrc`|URL d’un fichier ou d’un objet blob contenant la requête à exécuter (si `query` est vide).|
 |**Connexion au cluster Kusto**                                                  |
 |`uri`     |Chaîne de connexion du cluster Kusto auquel se connecter.                 |
 |`name`    |Nom complet de la connexion au cluster Kusto.                  |
@@ -526,12 +529,12 @@ Kusto.Explorer.exe c:\temp\script.kql uri=https://help.kusto.windows.net/Samples
 
 ## <a name="kustoexplorer-connection-files"></a>Fichiers de connexion Kusto. Explorer
 
-Kusto. Explorer conserve ses paramètres de connexion dans `%LOCALAPPDATA%\Kusto.Explorer` le dossier.
-Une liste de groupes de connexions est conservée dans `%LOCALAPPDATA%\Kusto.Explorer\UserConnectionGroups.xml`, et chaque groupe de connexions est conservé dans un `%LOCALAPPDATA%\Kusto.Explorer\Connections\`fichier dédié sous.
+Kusto. Explorer conserve ses paramètres de connexion dans le `%LOCALAPPDATA%\Kusto.Explorer` dossier.
+Une liste de groupes de connexions est conservée dans `%LOCALAPPDATA%\Kusto.Explorer\UserConnectionGroups.xml` , et chaque groupe de connexions est conservé dans un fichier dédié sous `%LOCALAPPDATA%\Kusto.Explorer\Connections\` .
 
 ### <a name="format-of-connection-group-files"></a>Format des fichiers de groupe de connexions
 
-L’emplacement du fichier `%LOCALAPPDATA%\Kusto.Explorer\UserConnectionGroups.xml`est.  
+L’emplacement du fichier est `%LOCALAPPDATA%\Kusto.Explorer\UserConnectionGroups.xml` .  
 
 Il s’agit d’une sérialisation XML d’un tableau d' `ServerGroupDescription` objets avec les propriétés suivantes :
 
@@ -556,7 +559,7 @@ Exemple :
 
 ### <a name="format-of-connection-list-files"></a>Format des fichiers de liste de connexions
 
-L’emplacement du fichier `%LOCALAPPDATA%\Kusto.Explorer\Connections\`est :.
+L’emplacement du fichier est : `%LOCALAPPDATA%\Kusto.Explorer\Connections\` .
 
 Il s’agit d’une sérialisation XML d’un tableau d' `ServerDescriptionBase` objets avec les propriétés suivantes :
 
@@ -586,14 +589,14 @@ Exemple :
 Si nécessaire, vous pouvez réinitialiser complètement Kusto. Explorer. Utilisez la procédure suivante pour réinitialiser progressivement Kusto. Explorer déployé sur votre ordinateur, jusqu’à ce qu’il soit complètement supprimé et qu’il soit nécessaire de l’installer à partir de zéro.
 
 1. Dans Windows, ouvrez **modifier ou supprimer des programmes** (également appelés **programmes et fonctionnalités**).
-1. Sélectionnez tous les éléments dont le nom `Kusto.Explorer`commence par.
+1. Sélectionnez tous les éléments dont le nom commence par `Kusto.Explorer` .
 1. Sélectionner **Désinstaller**.
 
    En cas d’échec de désinstallation de l’application (problème connu parfois avec les applications ClickOnce), consultez [cet article de dépassement de capacité](https://stackoverflow.com/questions/10896223/how-do-i-completely-uninstall-a-clickonce-application-from-my-computer) de la pile qui explique comment procéder.
 
-1. Supprimez le `%LOCALAPPDATA%\Kusto.Explorer`dossier. Cela supprime toutes les connexions, l’historique, etc.
+1. Supprimez le dossier `%LOCALAPPDATA%\Kusto.Explorer` . Cela supprime toutes les connexions, l’historique, etc.
 
-1. Supprimez le `%APPDATA%\Kusto`dossier. Cela supprime le cache de jetons Kusto. Explorer. Vous devrez vous authentifier de nouveau auprès de tous les clusters.
+1. Supprimez le dossier `%APPDATA%\Kusto` . Cela supprime le cache de jetons Kusto. Explorer. Vous devrez vous authentifier de nouveau auprès de tous les clusters.
 
 Il est également possible de revenir à une version spécifique de Kusto. Explorer :
 
@@ -627,7 +630,7 @@ Chaque fois que vous ouvrez Kusto. Explorer, vous êtes invité à installer une
 
 Cela peut être dû à un endommagement dans votre magasin ClickOnce local. Vous pouvez effacer le magasin ClickOnce local en exécutant la commande suivante, dans une invite de commandes avec élévation de privilèges.
 > [!Important]
-> 1. S’il existe d’autres instances d’applications ClickOnce ou de `dfsvc.exe`, terminez-les avant d’exécuter cette commande.
+> 1. S’il existe d’autres instances d’applications ClickOnce ou de `dfsvc.exe` , terminez-les avant d’exécuter cette commande.
 > 2. Toutes les applications ClickOnce sont réinstallées automatiquement la prochaine fois que vous les exécutez, à condition que vous ayez accès à l’emplacement d’installation d’origine stocké dans le raccourci de l’application. Les raccourcis de l’application ne seront pas supprimés.
 
 ```
@@ -645,7 +648,7 @@ Essayez d’installer Kusto. Explorer à nouveau à partir de l’un des [miroir
 * Le programme ne parvient pas à démarrer et affiche une erreur contenant les éléments suivants :`The application binding data format is invalid.` 
 * Le programme ne parvient pas à démarrer et affiche une erreur contenant les éléments suivants :`Exception from HRESULT: 0x800736B2`
 
-Vous pouvez explorer les détails de l’erreur `Details` en cliquant dans la boîte de dialogue d’erreur suivante :
+Vous pouvez explorer les détails de l’erreur en cliquant `Details` dans la boîte de dialogue d’erreur suivante :
 
 ![texte de remplacement](./Images/KustoTools-KustoExplorer/clickonce-err-1.jpg "ClickOnce-ERR-1")
 
@@ -666,9 +669,9 @@ Following errors were detected during this operation.
 
 **Étapes de la solution proposées :**
 
-1. Désinstallez l’application Kusto. Explorer `Programs and Features` à`appwiz.cpl`l’aide de ().
+1. Désinstallez l’application Kusto. Explorer à l’aide `Programs and Features` de ( `appwiz.cpl` ).
 
-1. Essayez d' `CleanOnlineAppCache`exécuter, puis réessayez d’installer Kusto. Explorer. À partir d’une invite de commandes avec élévation de privilèges : 
+1. Essayez d’exécuter `CleanOnlineAppCache` , puis réessayez d’installer Kusto. Explorer. À partir d’une invite de commandes avec élévation de privilèges : 
     
     ```
     rundll32 %windir%\system32\dfshim.dll CleanOnlineAppCache
@@ -705,7 +708,7 @@ Following errors were detected during this operation.
 
 1. Si elle échoue toujours, activez la journalisation ClickOnce en créant une valeur de chaîne LogVerbosityLevel de 1 sous :
 
-`HKEY_CURRENT_USER\Software\Classes\Software\Microsoft\Windows\CurrentVersion\Deployment`, reproduisez-le, puis envoyez la sortie détaillée KEBugReport@microsoft.comà. 
+`HKEY_CURRENT_USER\Software\Classes\Software\Microsoft\Windows\CurrentVersion\Deployment`, reproduisez-le, puis envoyez la sortie détaillée à KEBugReport@microsoft.com . 
 
 #### <a name="clickonce-error-your-administrator-has-blocked-this-application-because-it-potentially-poses-a-security-risk-to-your-computer"></a>Erreur ClickOnce : votre administrateur a bloqué cette application, car elle risque de poser un problème de sécurité sur votre ordinateur
 
@@ -714,7 +717,7 @@ Le programme ne parvient pas à s’installer avec l’une des erreurs suivantes
 * `Your administrator has blocked this application because it potentially poses a security risk to your computer`.
 * `Your security settings do not allow this application to be installed on your computer.`
 
-**Solution :**
+**Solution :**
 
 1. Cela peut être dû au fait qu’une autre application remplace le comportement par défaut de l’invite d’approbation ClickOnce. Vous pouvez afficher vos paramètres de configuration par défaut, les comparer aux valeurs réelles sur votre ordinateur et les réinitialiser si nécessaire, comme expliqué [dans cet article de procédure](https://docs.microsoft.com/visualstudio/deployment/how-to-configure-the-clickonce-trust-prompt-behavior).
 
@@ -722,7 +725,7 @@ Le programme ne parvient pas à s’installer avec l’une des erreurs suivantes
 
 Parfois, lorsque les étapes de dépannage précédentes n’ont pas permis d’obtenir Kusto. Explorer pour démarrer, le nettoyage des données stockées localement peut être utile.
 
-Les données stockées par l’application Kusto. Explorer se trouvent ici `C:\Users\\[your alias]\AppData\Local\Kusto.Explorer`:.
+Les données stockées par l’application Kusto. Explorer se trouvent ici : `C:\Users\\[your alias]\AppData\Local\Kusto.Explorer` .
 
 > [!NOTE]
 > Le nettoyage des données entraînera la perte des onglets ouverts (dossier de récupération), des connexions enregistrées (dossier des connexions) et des paramètres d’application (dossier UserSettings).

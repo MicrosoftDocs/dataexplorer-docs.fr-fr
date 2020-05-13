@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: f41304ae4ac51081cd61c41856ed5e7e08ed6f7a
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: f0fb68395ec5ed647e1f28cc1c93d46083d405c6
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81490376"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373444"
 ---
 # <a name="data-ingestion"></a>Ingestion de données
 
@@ -41,8 +41,8 @@ Le processus d’ingestion des données comprend plusieurs étapes :
 > Les données ingérées dans une table dans Kusto sont soumises à la **stratégie de conservation** effective de la table.
 > À moins d’être explicitement définie sur une table, la stratégie de conservation effective découle de la stratégie de conservation de la base de données. Par conséquent, lorsque vous ingérez des données dans Kusto, vérifiez que la stratégie de conservation de la base de données est adaptée à vos besoins. Si ce n’est pas le cas, remplacez-la explicitement au niveau de la table. Si vous ne le faites pas, vous risquez d’exposer vos données à une suppression « silencieuse » due à la stratégie de conservation de la base de données. Pour plus d’informations, consultez [Stratégie de rétention](https://kusto.azurewebsites.net/docs/concepts/retentionpolicy.html).
 
-Pour découvrir les propriétés d’ingestion des données, consultez [Propriétés d’ingestion des données](https://docs.microsoft.com/azure/data-explorer/ingestion-properties).
-Pour obtenir la liste des formats pris en charge pour l’ingestion des données, consultez [Formats de données](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats).
+Pour découvrir les propriétés d’ingestion des données, consultez [Propriétés d’ingestion des données](../../../ingestion-properties.md).
+Pour obtenir la liste des formats pris en charge pour l’ingestion des données, consultez [Formats de données](../../../ingestion-supported-formats.md).
 
 
 

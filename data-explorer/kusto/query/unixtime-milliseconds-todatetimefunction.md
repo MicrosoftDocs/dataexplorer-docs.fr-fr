@@ -1,6 +1,6 @@
 ---
-title: unixtime_milliseconds_todatetime() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit unixtime_milliseconds_todatetime() dans Azure Data Explorer.
+title: unixtime_milliseconds_todatetime ()-Azure Explorateur de données
+description: Cet article décrit unixtime_milliseconds_todatetime () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 11/25/2019
-ms.openlocfilehash: ab229d78d2a9ff5a7e50ecefe027824488578b12
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 26f1eb901798a28996c8cdc148fe68a71fb9d2b8
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81505251"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83370282"
 ---
 # <a name="unixtime_milliseconds_todatetime"></a>unixtime_milliseconds_todatetime()
 
-Convertit les millisecondes unix-époques en date d’utC.
+Convertit les millisecondes d’époque UNIX en date/heure UTC.
 
 **Syntaxe**
 
@@ -25,20 +25,21 @@ Convertit les millisecondes unix-époques en date d’utC.
 
 **Arguments**
 
-* *millisecondes*: Un nombre réel représente l’époque de l’époque en millisecondes. `Datetime`qui se produit avant l’heure de l’époque (1970-01-01 00:00:00) a une valeur négative timetamp.
+* *millisecondes*: un nombre réel représente l’horodatage de l’époque en millisecondes. `Datetime`Cela se produit avant l’heure de l’époque (1970-01-01 00:00:00) a une valeur d’horodatage négative.
 
 **Retourne**
 
-Si la conversion est réussie, le résultat sera une valeur [de date.](./scalar-data-types/datetime.md) Si la conversion n’est pas réussie, le résultat sera nul.
+Si la conversion réussit, le résultat sera une valeur [DateTime](./scalar-data-types/datetime.md) . Si la conversion échoue, le résultat sera null.
 
 **Voir aussi**
 
-* Convertir les secondes unix-époque à l’heure de date UTC en utilisant [unixtime_seconds_todatetime()](unixtime-seconds-todatetimefunction.md).
-* Convertir les microsecondes unix-epoch en date d’utC à [l’aide de unixtime_microseconds_todatetime).](unixtime-microseconds-todatetimefunction.md)
-* Convertir les nanosecondes unix-epoch en date d’utC à [l’aide de unixtime_nanoseconds_todatetime).](unixtime-nanoseconds-todatetimefunction.md)
+* Convertit UNIX-époque des secondes en date/heure UTC à l’aide de [unixtime_seconds_todatetime ()](unixtime-seconds-todatetimefunction.md).
+* Convertit les microsecondes UNIX-époques en date et heure UTC à l’aide de [unixtime_microseconds_todatetime ()](unixtime-microseconds-todatetimefunction.md).
+* Convertir les nanosecondes UNIX-époques en heure UTC à l’aide de [unixtime_nanoseconds_todatetime ()](unixtime-nanoseconds-todatetimefunction.md).
 
 **Exemple**
 
+<!-- csl: https://help.kusto.windows.net/Samples  -->
 ```kusto
 print date_time = unixtime_milliseconds_todatetime(1546300800000)
 ```
