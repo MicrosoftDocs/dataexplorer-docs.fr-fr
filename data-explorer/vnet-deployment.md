@@ -7,12 +7,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/31/2019
-ms.openlocfilehash: 866e9b5d8f076660dfcb453fdb47fb6a6402578b
-ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
+ms.openlocfilehash: 5505eca4435521ea82c347bcd204ff3d68a14176
+ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82741994"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82862120"
 ---
 # <a name="deploy-azure-data-explorer-cluster-into-your-virtual-network"></a>Déployer un cluster Azure Data Explorer dans votre réseau virtuel
 
@@ -112,6 +112,8 @@ Les [groupes de sécurité réseau (NSG)](/azure/virtual-network/security-overvi
 | Inde centrale | 40.81.249.251, 104.211.98.159 |
 | USA Centre | 40.67.188.68 |
 | EUAP USA Centre | 40.89.56.69 |
+| Chine orientale 2 | 139.217.236.210 |
+| Chine Nord 2 | 40.73.6.21 |
 | Asie Est | 20.189.74.103 |
 | USA Est | 52.224.146.56 |
 | USA Est 2 | 52.232.230.201 |
@@ -131,6 +133,11 @@ Les [groupes de sécurité réseau (NSG)](/azure/virtual-network/security-overvi
 | Inde Sud | 40.81.72.110, 104.211.224.189 |
 | Sud du Royaume-Uni | 40.81.154.254 |
 | Ouest du Royaume-Uni | 40.81.122.39 |
+| US DoD - Centre | 52.182.33.66 |
+| USDoD Est | 52.181.33.69 |
+| Gouvernement des États-Unis - Arizona | 52.244.33.193 |
+| Gouvernement des États-Unis - Texas | 52.243.157.34 |
+| USGov Virginia | 52.227.228.88 |
 | Centre-USA Ouest | 52.159.55.120 |
 | Europe Ouest | 51.145.176.215 |
 | Inde Ouest | 40.81.88.112, 104.211.160.120 |
@@ -151,6 +158,8 @@ Les [groupes de sécurité réseau (NSG)](/azure/virtual-network/security-overvi
 | Inde centrale | 23.99.5.162 |
 | USA Centre | 168.61.212.201 |
 | EUAP USA Centre | 168.61.212.201 |
+| Chine orientale 2 | 40.73.96.39 |
+| Chine Nord 2 | 40.73.33.105 |
 | Asie Est | 168.63.212.33 |
 | USA Est | 137.116.81.189 |
 | USA Est 2 | 137.116.81.189 |
@@ -170,6 +179,11 @@ Les [groupes de sécurité réseau (NSG)](/azure/virtual-network/security-overvi
 | Asie Sud-Est | 168.63.173.234 |
 | Sud du Royaume-Uni | 23.97.212.5 |
 | Ouest du Royaume-Uni | 23.97.212.5 |
+| US DoD - Centre | 52.238.116.34 |
+| USDoD Est | 52.238.116.34 |
+| Gouvernement des États-Unis - Arizona | 52.244.48.35 |
+| Gouvernement des États-Unis - Texas | 52.238.116.34 |
+| USGov Virginia | 23.97.0.26 |
 | Centre-USA Ouest | 168.61.212.201 |
 | Europe Ouest | 23.97.212.5 |
 | Inde Ouest | 23.99.5.162 |
