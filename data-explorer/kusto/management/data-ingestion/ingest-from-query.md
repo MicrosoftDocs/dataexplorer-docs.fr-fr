@@ -1,6 +1,6 @@
 ---
-title: Ingest from query (.set, .append, .set-or-append, .set-or-replace) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit Ingest à partir de requêtes (.set, .append, .set-or-append, .set-or-replace) dans Azure Data Explorer.
+title: Ingestion de requêtes Kusto (Set, Append, Replace)-Azure Explorateur de données
+description: Cet article décrit la réception de la requête (. Set,. Append,. set-or-Append,. set-or-Replace) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,79 +8,79 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: fb0bbb06bb8d28dd3951a7faedf55b0d84155301
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: bfa44859987d8f3c4f11221fd8370290f08f9a67
+ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81521452"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83382044"
 ---
-# <a name="ingest-from-query-set-append-set-or-append-set-or-replace"></a>Ingest de requête (.set, .append, .set-or-append, .set-or-replace)
+# <a name="ingest-from-query-set-append-set-or-append-set-or-replace"></a>Réception à partir de la requête (. Set,. Append,. set-or-Append,. set-or-Replace)
 
-Ces commandes exécutent une requête ou une commande de contrôle, et ingèrent les résultats de la requête dans une table. La différence entre ces commandes est la façon dont elles traitent les tableaux et les données existants ou inexistants :
+Ces commandes exécutent une requête ou une commande de contrôle, et informent les résultats de la requête dans une table. La différence entre ces commandes est la manière dont elles traitent les données et les tables existantes ou inexistantes :
 
-|Commande          |Si le tableau existe                     |Si la table n’existe pas                    |
+|Commande          |Si la table existe                     |Si la table n’existe pas                    |
 |-----------------|------------------------------------|------------------------------------------|
-|`.set`           |La commande échoue.                  |Le tableau est créé et les données sont ingérées.|
-|`.append`        |Les données sont jointes à la table.      |La commande échoue.                        |
-|`.set-or-append` |Les données sont jointes à la table.      |Le tableau est créé et les données sont ingérées.|
-|`.set-or-replace`|Les données remplacent les données dans le tableau.|Le tableau est créé et les données sont ingérées.|
+|`.set`           |La commande échoue.                  |La table est créée et les données sont ingérées.|
+|`.append`        |Les données sont ajoutées à la table.      |La commande échoue.                        |
+|`.set-or-append` |Les données sont ajoutées à la table.      |La table est créée et les données sont ingérées.|
+|`.set-or-replace`|Les données remplacent les données de la table.|La table est créée et les données sont ingérées.|
 
 **Syntaxe**
 
-`.set`[`async`] *TableName* [`with` `(` *PropertyName* `=` *PropertyValue* [`,` ...] `)`] `<|` *DemandeOrCommand*
+`.set`[ `async` ] *TableName* [ `with` `(` *PropertyName* `=` *PropertyValue* [ `,` ...] `)` ] `<|` *QueryOrCommand*
 
-`.append`[`async`] *TableName* [`with` `(` *PropertyName* `=` *PropertyValue* [`,` ... `])`] `<|` *DemandeOrCommand*
+`.append`[ `async` ] *TableName* [ `with` `(` *PropertyName* `=` *PropertyValue* [ `,` ... `])` ] `<|` *QueryOrCommand*
 
-`.set-or-append`[`async`] *TableName* [`with` `(` *PropertyName* `=` *PropertyValue* [`,` ...] `)`] `<|` *DemandeOrCommand*
+`.set-or-append`[ `async` ] *TableName* [ `with` `(` *PropertyName* `=` *PropertyValue* [ `,` ...] `)` ] `<|` *QueryOrCommand*
 
-`.set-or-replace`[`async`] *TableName* [`with` `(` *PropertyName* `=` *PropertyValue* [`,` ...] `)`] `<|` *DemandeOrCommand*
+`.set-or-replace`[ `async` ] *TableName* [ `with` `(` *PropertyName* `=` *PropertyValue* [ `,` ...] `)` ] `<|` *QueryOrCommand*
 
 **Arguments**
 
-* `async`: Si spécifié, la commande reviendra immédiatement et continuera l’ingestion en arrière-plan. Les résultats de la `OperationId` commande incluront une valeur `.show operation` qui peut ensuite être utilisée avec la commande pour récupérer l’état et les résultats d’achèvement de l’ingestion.
-* *TableName*: Le nom de la table pour ingérer les données.
-  Le nom de table est toujours relatif à la base de données dans son contexte.
-* *PropertyName*, *PropertyValue*: Tout nombre de propriétés d’ingestion qui affectent le processus d’ingestion.
+* `async`: S’il est spécifié, la commande est immédiatement retournée et continue l’ingestion en arrière-plan. Les résultats de la commande incluent une `OperationId` valeur qui peut ensuite être utilisée avec la `.show operation` commande pour récupérer l’état d’achèvement de l’ingestion et les résultats.
+* *TableName*: nom de la table à laquelle les données doivent être ingérées.
+  Le nom de la table est toujours relatif à la base de données en contexte.
+* *PropertyName*, *PropertyValue*: nombre quelconque de propriétés d’ingestion qui affectent le processus d’ingestion.
 
- Propriétés d’ingestion soutenues :
+ Propriétés d’ingestion prises en charge :
 
 |Propriété        |Description|
 |----------------|-----------------------------------------------------------------------------------------------------------------------------|
-|`creationTime`   | La valeur de date (formatée comme chaîne ISO8601) à utiliser au moment de la création des étendues de données ingérées. Si elle n’est pas spécifiée, la valeur actuelle (maintenant)) sera utilisée.|
-|`extend_schema`  | Une valeur Boolean qui, si elle est spécifiée, ordonne à la commande d’étendre le schéma de la table (par défaut à faux). Cette option ne s’applique qu’aux commandes .append.set-or-append et set-or-replace. Les seules extensions de schéma autorisées sont celles pour lesquelles des colonnes supplémentaires sont ajoutées à la fin de la table.|
-|`recreate_schema`  | Une valeur Boolean qui, si elle est spécifiée, décrit si la commande peut recréer le schéma de la table (par défaut à faux). Cette option ne s’applique qu’à la commande de définis ou de remplacement. Cette option a préséance sur la propriété extend_schema si les deux sont définies.|
-|`folder`         | Le dossier à attribuer à la table. Si la table existe déjà, cette propriété remplacera le dossier de la table.|
-|`ingestIfNotExists`   | Une valeur de chaîne qui, si elle est spécifiée, empêche l’ingestion de réussir si la table a déjà des données étiquetées avec un ingest-by: tag avec la même valeur.|
+|`creationTime`   | Valeur DateTime (mise en forme en tant que chaîne ISO8601) à utiliser au moment de la création des étendues de données ingérées. S’il n’est pas spécifié, la valeur actuelle (Now ()) est utilisée.|
+|`extend_schema`  | Valeur booléenne qui, si elle est spécifiée, indique à la commande d’étendre le schéma de la table (false par défaut). Cette option s’applique uniquement aux commandes. Append. Set-ou-Append et set-or-Replace. Les seules extensions de schéma autorisées sont celles pour lesquelles des colonnes supplémentaires sont ajoutées à la fin de la table.|
+|`recreate_schema`  | Valeur booléenne qui, si elle est spécifiée, indique si la commande peut recréer le schéma de la table (false par défaut). Cette option s’applique uniquement à la commande Set-ou-Replace. Cette option est prioritaire sur la propriété extend_schema si les deux sont définies.|
+|`folder`         | Dossier à assigner à la table. Si la table existe déjà, cette propriété remplace le dossier de la table.|
+|`ingestIfNotExists`   | Valeur de chaîne qui, si elle est spécifiée, empêche l’ingestion de s’effectuer correctement si la table a déjà des données marquées avec une balise de réception par : avec la même valeur.|
 |`policy_ingestiontime`   | Valeur booléenne qui, si elle est spécifiée, indique d’activer ou non la [stratégie de durée d’ingestion](../../management/ingestiontime-policy.md) sur une table créée par cette commande. La valeur par défaut est true.|
 |`tags`   | Chaîne JSON qui indique les validations à exécuter pendant l’ingestion.|
-|`docstring`   | Une chaîne documentant la table.|
+|`docstring`   | Chaîne qui documente la table.|
 
-  En outre, il ya une propriété qui contrôle le comportement de la commande elle-même:
+  En outre, il existe une propriété qui contrôle le comportement de la commande elle-même :
 
 |Propriété        |Type    |Description|
 |----------------|--------|-----------------------------------------------------------------------------------------------------------------------------|
-|`distributed`   |`bool`  |Indique que la commande ingérer de tous les nœuds exécutant la requête en parallèle. (Par défaut `false`à .)  Voir les remarques ci-dessous.|
+|`distributed`   |`bool`  |Indique que la commande est ingérée à partir de tous les nœuds exécutant la requête en parallèle. (La valeur par défaut est `false` .)  Consultez les remarques ci-dessous.|
 
-* *QuestionryOrCommand*: Le texte d’une requête ou d’une commande de contrôle dont les résultats seront utilisés comme données pour ingérer.
+* *QueryOrCommand*: texte d’une requête ou d’une commande de contrôle dont les résultats seront utilisés comme données à ingérer.
 
 > [!NOTE]
 > Seules `.show` les commandes de contrôle sont prises en charge.
 
 **Remarques**
 
-* `.set-or-replace`remplace les données du tableau s’il existe (gouttes les éclats de données existants), ou crée la table cible si elle n’existe pas déjà.
-  Le schéma de table sera conservé `extend_schema` `recreate_schema` à moins que l’un des biens ou l’ingestion est réglé à `true`. Si le schéma est modifié, cela se produit avant l’ingestion réelle de données dans sa propre transaction, de sorte qu’un défaut d’ingérer les données ne signifie pas que le schéma n’a pas été modifié.
-* `.set-or-append`et `.append` les commandes préserveront `extend_schema` le schéma à moins `true`que la propriété d’ingestion ne soit fixée à . Si le schéma est modifié, cela se produit avant l’ingestion réelle de données dans sa propre transaction, de sorte qu’un défaut d’ingérer les données ne signifie pas que le schéma n’a pas été modifié.
-* Il est **fortement recommandé** que les données relatives à l’ingestion soient limitées à moins de 1 Go par opération d’ingestion. Plusieurs commandes d’ingestion peuvent être utilisées, si nécessaire.
-* L’ingestion de données est une opération à forte intensité de ressources qui pourrait affecter les activités simultanées sur le cluster, y compris les requêtes en cours d’exécution. Évitez d’exécuter «trop» de telles commandes ensemble en même temps.
-* Lorsque vous comparez le schéma de l’ensemble de résultat à celui de la table cible, la comparaison est basée sur les types de colonnes. Il n’y a pas de correspondance des noms de colonne, alors assurez-vous que les colonnes de schéma de résultat de requête sont dans le même ordre que le tableau, sinon les données seront ingérées dans la mauvaise colonne.
-* La `distributed` configuration `true` du drapeau est utile lorsque la quantité de données produites par la requête est importante (dépasse 1 Go de données) **et** que la requête ne nécessite pas de sérialisation (de sorte que plusieurs nœuds peuvent produire la sortie en parallèle).
-  Lorsque les résultats de la requête sont faibles, il n’est pas recommandé d’utiliser ce drapeau, car il pourrait générer beaucoup de petits éclats de données inutilement.
+* `.set-or-replace`remplace les données de la table si elles existent (supprime le partitions de données existant) ou crée la table cible si elle n’existe pas déjà.
+  Le schéma de table est préservé, sauf si une propriété d’ingestion `extend_schema` `recreate_schema` est définie sur `true` . Si le schéma est modifié, cela se produit avant l’ingestion réelle des données dans sa propre transaction. par conséquent, l’échec de l’ingestion des données ne signifie pas que le schéma n’a pas été modifié.
+* `.set-or-append``.append`les commandes et conservent le schéma à moins que la propriété ingestion `extend_schema` ne soit définie sur `true` . Si le schéma est modifié, cela se produit avant l’ingestion réelle des données dans sa propre transaction. par conséquent, l’échec de l’ingestion des données ne signifie pas que le schéma n’a pas été modifié.
+* Il est **fortement recommandé** que les données d’ingestion soient limitées à moins de 1 Go par opération d’ingestion. Plusieurs commandes d’ingestion peuvent être utilisées, si nécessaire.
+* L’ingestion de données est une opération gourmande en ressources qui peut affecter les activités simultanées sur le cluster, notamment les requêtes en cours d’exécution. Évitez d’exécuter des « trop nombreuses » commandes simultanément.
+* En cas de correspondance entre le schéma du jeu de résultats et celui de la table cible, la comparaison est basée sur les types de colonnes. Il n’y a pas de correspondance entre les noms de colonnes. Assurez-vous que les colonnes du schéma de résultat de la requête sont dans le même ordre que la table, sinon les données seront ingérées dans la mauvaise colonne.
+* L’affectation `distributed` de la valeur à l’indicateur `true` est utile lorsque la quantité de données produites par la requête est importante (dépasse 1 Go de données) **et** que la requête ne nécessite pas de sérialisation (afin que plusieurs nœuds puissent produire une sortie en parallèle).
+  Lorsque les résultats de la requête sont petits, il n’est pas recommandé d’utiliser cet indicateur, car il peut générer un grand nombre de petits partitions de données inutilement.
 
 **Exemples** 
 
-Créez un nouveau tableau appelé "RecentErrors" dans la base de données actuelle qui a le même schéma que "LogsTable" et détient tous les enregistrements d’erreurs de la dernière heure:
+Créez une nouvelle table appelée « RecentErrors » dans la base de données active qui a le même schéma que « LogsTable » et qui contient tous les enregistrements d’erreurs de la dernière heure :
 
 ```kusto
 .set RecentErrors <|
@@ -88,7 +88,7 @@ Créez un nouveau tableau appelé "RecentErrors" dans la base de données actuel
    | where Level == "Error" and Timestamp > now() - time(1h)
 ```
 
-Créer un nouveau tableau appelé "OldExtents" dans la base de données actuelle qui a une seule colonne ("ExtentId") et détient l’étendue des cartes d’accord de toutes les étendues dans la base de données qui ont été créés il ya plus de 30 jours, basé sur une table existante nommée "MyExtents":
+Créez une nouvelle table appelée « OldExtents » dans la base de données active qui contient une seule colonne (« ExtentId ») et contient les ID d’étendue de toutes les étendues de la base de données qui ont été créées il y a plus de 30 jours, sur la base d’une table existante nommée « MyExtents » :
 
 ```kusto
 .set async OldExtents <| 
@@ -97,7 +97,7 @@ Créer un nouveau tableau appelé "OldExtents" dans la base de données actuelle
    | project ExtentId     
 ```
 
-Appendez les données d’un tableau existant appelé « OldExtents » dans la base de données actuelle qui a une seule colonne (« ExtentId ») et contient l’étendue des cartes d’identité de toutes les étendues dans la base de données qui ont été créées il y a plus de 30 jours, tout en taguant la nouvelle mesure avec des balises `tagA` et, `tagB`sur la base d’une table existante nommée « MyExtents » :
+Ajoutez des données à une table existante appelée « OldExtents » dans la base de données active qui contient une seule colonne (« ExtentId ») et contient les ID d’étendue de toutes les étendues de la base de données qui ont été créées il y a plus de 30 jours, tout en marquant la nouvelle étendue avec des balises et, sur la base d' `tagA` `tagB` une table existante nommée « MyExtents » :
 
 ```kusto
 .append OldExtents with(tags='["TagA","TagB"]') <| 
@@ -106,7 +106,7 @@ Appendez les données d’un tableau existant appelé « OldExtents » dans la b
    | project ExtentId     
 ```
  
-Appendez les données au tableau "OldExtents" dans la base de données actuelle (ou créez `ingest-by:myTag`la table si elle n’existe pas déjà), tout en taguant la nouvelle étendue avec . Ne le faites que si la table ne `ingest-by:myTag`contient pas déjà une étendue étiquetée avec , basé sur une table existante nommée "MyExtents":
+Ajoutez des données à la table « OldExtents » dans la base de données active (ou créez la table si elle n’existe pas déjà), tout en marquant la nouvelle extension avec `ingest-by:myTag` . Procédez ainsi uniquement si la table ne contient pas déjà une extension marquée avec `ingest-by:myTag` , basée sur une table existante nommée « MyExtents » :
 
 ```kusto
 .set-or-append async OldExtents with(tags='["ingest-by:myTag"]', ingestIfNotExists='["myTag"]') <| 
@@ -115,7 +115,7 @@ Appendez les données au tableau "OldExtents" dans la base de données actuelle 
    | project ExtentId     
 ```
 
-Remplacez les données dans le tableau "OldExtents" dans la base de données actuelle (ou créez `ingest-by:myTag`la table si elle n’existe pas déjà), tout en taguant la nouvelle étendue par .
+Remplacez les données de la table « OldExtents » de la base de données active (ou créez la table si elle n’existe pas déjà), tout en marquant la nouvelle extension avec `ingest-by:myTag` .
 
 ```kusto
 .set-or-replace async OldExtents with(tags='["ingest-by:myTag"]', ingestIfNotExists='["myTag"]') <| 
@@ -124,7 +124,7 @@ Remplacez les données dans le tableau "OldExtents" dans la base de données act
    | project ExtentId     
 ```
 
-Applez les données au tableau « OldExtents » dans la base de données actuelle, tout en définissant le temps de création de l’étendue de la création à une date précise dans le passé :
+Ajoute des données à la table « OldExtents » dans la base de données active, tout en définissant l’heure de création de l’étendue créée sur une valeur DateTime spécifique dans le passé :
 
 ```kusto
 .append async OldExtents with(creationTime='2017-02-13T11:09:36.7992775Z') <| 
@@ -135,10 +135,10 @@ Applez les données au tableau « OldExtents » dans la base de données actuell
 
 **Sortie de retour**
  
-Renvoie des informations sur les étendues `.append` créées à la suite de la commande ou de la `.set` commande.
+Retourne des informations sur les étendues créées à la suite de `.set` la `.append` commande ou.
 
 **Exemple de sortie**
 
-|ExtentId (extentId) |OriginalSize |ExtentSize (en) |CompressésSize |IndexSize |RowCount | 
+|ExtentId |OriginalSize |Extenter |CompressedSize |IndexSize |RowCount | 
 |--|--|--|--|--|--|
-|23a05ed6-376d-4119-b1fc-6493bcb05563 |1291 |5882 |1568 |4314 |10 |
+|23a05ed6-376D-4119-b1fc-6493bcb05563 |1291 |5882 |1568 |4314 |10 |

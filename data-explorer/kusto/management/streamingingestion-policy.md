@@ -1,5 +1,5 @@
 ---
-title: Gestion de la stratégie d’ingestion de streaming-Azure Explorateur de données | Microsoft Docs
+title: Gestion de la stratégie d’ingestion de la diffusion en continu Kusto-Azure Explorateur de données
 description: Cet article décrit la gestion de la stratégie d’ingestion de streaming dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 76844b764a8e21629c7d936f4c269d7d3ab1ec8c
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 1c3ce0c0d383d07375333b08de336503d1578b1a
+ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373327"
+ms.locfileid: "83381993"
 ---
 # <a name="streaming-ingestion-policy-management"></a>Gestion de la stratégie d’ingestion de streaming
 

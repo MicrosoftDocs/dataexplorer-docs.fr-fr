@@ -1,5 +1,5 @@
 ---
-title: 'Procédure : s’authentifier auprès d’AAD pour Azure Explorateur de données Access-Azure Explorateur de données | Microsoft Docs'
+title: Kusto s’authentifier auprès d’AAD pour l’accès-Azure Explorateur de données
 description: Cet article décrit comment s’authentifier avec AAD pour l’accès Explorateur de données Azure dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 09/13/2019
-ms.openlocfilehash: b7e2120f158093e07e096b200b96ac3e265ae2e0
-ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
+ms.openlocfilehash: 34a0e5cd7107827cd97eb0baf9a3d40b408b2024
+ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82861984"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83382070"
 ---
 # <a name="how-to-authenticate-with-aad-for-azure-data-explorer-access"></a>Comment s’authentifier auprès d’AAD pour l’accès Explorateur de données Azure
 
@@ -58,16 +58,16 @@ https://help.kusto.windows.net
 
 AAD est un service multi-locataire, et chaque organisation peut créer un objet nommé **Directory** dans AAD. L’objet d’annuaire contient des objets liés à la sécurité tels que les comptes d’utilisateurs, les applications et les groupes. AAD fait souvent référence au répertoire en tant que **locataire**. Les locataires AAD sont identifiés par un GUID (**ID de locataire**). Dans de nombreux cas, les locataires AAD peuvent également être identifiés par le nom de domaine de l’organisation.
 
-Par exemple, une organisation appelée « Contoso » peut avoir l’ID `4da81d62-e0a8-4899-adad-4349ca6bfe24` de locataire et le nom `contoso.com`de domaine.
+Par exemple, une organisation appelée « Contoso » peut avoir l’ID `4da81d62-e0a8-4899-adad-4349ca6bfe24` de locataire et le nom de domaine `contoso.com` .
 
 ## <a name="specifying-the-aad-authority"></a>Spécification de l’autorité AAD
 
 AAD possède un certain nombre de points de terminaison pour l’authentification :
 
-* Lorsque le locataire hébergeant le principal en cours d’authentification est connu (en d’autres termes, lorsqu’il connaît le répertoire AAD dans lequel se trouve l’utilisateur ou l’application `https://login.microsoftonline.com/{tenantId}`), le point de terminaison AAD est.
-  Ici, `{tenantId}` est soit l’ID de locataire de l’organisation dans AAD, soit son nom de domaine `contoso.com`(par exemple,).
+* Lorsque le locataire hébergeant le principal en cours d’authentification est connu (en d’autres termes, lorsqu’il connaît le répertoire AAD dans lequel se trouve l’utilisateur ou l’application), le point de terminaison AAD est `https://login.microsoftonline.com/{tenantId}` .
+  Ici, `{tenantId}` est soit l’ID de locataire de l’organisation dans AAD, soit son nom de domaine (par exemple, `contoso.com` ).
 
-* Lorsque le locataire qui héberge le principal en cours d’authentification n’est pas connu, le point de terminaison « commun » peut `{tenantId}` être utilisé en remplaçant `common`la valeur ci-dessus par la valeur.
+* Lorsque le locataire qui héberge le principal en cours d’authentification n’est pas connu, le point de terminaison « commun » peut être utilisé en remplaçant la `{tenantId}` valeur ci-dessus par la valeur `common` .
 
 > [!NOTE]
 > Le point de terminaison AAD utilisé pour l’authentification est également appelé URL de l' **autorité AAD** ou simplement **autorité AAD**.
@@ -83,11 +83,11 @@ Lorsque vous utilisez le kit de développement logiciel (SDK) Azure Explorateur 
 
 ## <a name="user-authentication"></a>Authentification utilisateur
 
-Le moyen le plus simple d’accéder à Azure Explorateur de données avec l’authentification des utilisateurs consiste à utiliser le kit `Federated Authentication` de développement logiciel (SDK) Azure Explorateur de données `true`et à définir la propriété de la chaîne de connexion Azure Explorateur de données sur. La première fois que le kit de développement logiciel (SDK) est utilisé pour envoyer une demande au service, un formulaire de connexion est présenté à l’utilisateur pour entrer les informations d’identification AAD et, lors de l’authentification réussie, la demande est envoyée.
+Le moyen le plus simple d’accéder à Azure Explorateur de données avec l’authentification des utilisateurs consiste à utiliser le kit de développement logiciel (SDK) Azure Explorateur de données et à définir la `Federated Authentication` propriété de la chaîne de connexion azure Explorateur de données sur `true` . La première fois que le kit de développement logiciel (SDK) est utilisé pour envoyer une demande au service, un formulaire de connexion est présenté à l’utilisateur pour entrer les informations d’identification AAD et, lors de l’authentification réussie, la demande est envoyée.
 
-Les applications qui n’utilisent pas le kit de développement logiciel (SDK) Azure Explorateur de données peuvent toujours utiliser la bibliothèque cliente AAD (ADAL) au lieu d’implémenter le client du protocole de sécurité du service AAD. Pour obtenir unhttps://github.com/AzureADSamples/WebApp-WebAPI-OpenIDConnect-DotNetexemple de cette procédure à partir d’une application .net, consultez [].
+Les applications qui n’utilisent pas le kit de développement logiciel (SDK) Azure Explorateur de données peuvent toujours utiliser la bibliothèque cliente AAD (ADAL) au lieu d’implémenter le client du protocole de sécurité du service AAD. https://github.com/AzureADSamples/WebApp-WebAPI-OpenIDConnect-DotNetPour obtenir un exemple de cette procédure à partir d’une application .net, consultez [].
 
-Pour authentifier les utilisateurs pour l’accès à Azure Explorateur de données, une application doit `Access Kusto` d’abord se voir accorder l’autorisation déléguée. Pour plus d’informations, consultez le [Guide Kusto pour l’approvisionnement d’applications AAD](how-to-provision-aad-app.md#set-up-delegated-permissions-for-kusto-service-application) .
+Pour authentifier les utilisateurs pour l’accès à Azure Explorateur de données, une application doit d’abord se voir accorder l' `Access Kusto` autorisation déléguée. Pour plus d’informations, consultez le [Guide Kusto pour l’approvisionnement d’applications AAD](how-to-provision-aad-app.md#set-up-delegated-permissions-for-kusto-service-application) .
 
 L’extrait de code suivant illustre l’utilisation de ADAL pour acquérir un jeton d’utilisateur AAD pour accéder à Azure Explorateur de données (lance l’interface utilisateur d’ouverture de session) :
 
@@ -195,7 +195,7 @@ Comme dans le workflow Native Client, il doit y avoir deux applications AAD (ser
 
 AdalJs requiert l’obtention d’un id_token avant d’effectuer des appels de access_token.
 
-Le jeton d’accès est obtenu en appelant `AuthenticationContext.login()` la méthode, et access_tokens sont obtenus en `Authenticationcontext.acquireToken()`appelant.
+Le jeton d’accès est obtenu en appelant la `AuthenticationContext.login()` méthode, et access_tokens sont obtenus en appelant `Authenticationcontext.acquireToken()` .
 
 * Créez un AuthenticationContext avec la configuration appropriée :
 
@@ -210,7 +210,7 @@ var config = {
 var authContext = new AuthenticationContext(config);
 ```
 
-* Appelez `authContext.login()` avant d' `acquireToken()` essayer si vous n’êtes pas connecté. une bonne façon de savoir si vous êtes connecté ou non consiste à appeler `authContext.getCachedUser()` et à voir si elle retourne `false`la valeur)
+* Appelez `authContext.login()` avant d’essayer `acquireToken()` si vous n’êtes pas connecté. une bonne façon de savoir si vous êtes connecté ou non consiste à appeler `authContext.getCachedUser()` et à voir si elle retourne la valeur `false` )
 * Appelez `authContext.handleWindowCallback()` chaque fois que votre page se charge. Il s’agit de la partie de code qui intercepte la redirection d’AAD et extrait le jeton de l’URL de fragment et le met en cache.
 * Appelez `authContext.acquireToken()` pour obtenir le jeton d’accès réel, maintenant que vous avez un jeton d’ID valide. Le premier paramètre de acquireToken sera l’URL de la ressource d’application Kusto Server AAD.
 

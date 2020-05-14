@@ -1,5 +1,5 @@
 ---
-title: Kusto. réception des autorisations d’ingestion-Azure Explorateur de données
+title: Autorisations Kusto. Adout-Azure Explorateur de données
 description: Cet article décrit les autorisations Kusto. ingestion-ingestion dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 3fd516b7201c5e857417ca13bade668f32f25161
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 6b649a06262153f80c4c35374e55a206be02c781
+ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226157"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83382282"
 ---
 # <a name="kustoingest---ingestion-permissions"></a>Kusto. deréception-autorisations d’ingestion
 

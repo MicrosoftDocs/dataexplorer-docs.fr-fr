@@ -1,5 +1,5 @@
 ---
-title: Procédure d’ingestion de données sans Kusto. deréception Library-Azure Explorateur de données | Microsoft Docs
+title: Ingestion de données Kusto sans bibliothèque de réception-Azure Explorateur de données
 description: Cet article décrit comment l’ingestion de données sans Kusto. deréception Library dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 02/19/2020
-ms.openlocfilehash: 80fe504311ee847afa7244e179974d80485efe46
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 96409849823850ef9fd939f9e359d75d3e6d5bf1
+ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373555"
+ms.locfileid: "83382146"
 ---
 # <a name="ingestion-without-kustoingest-library"></a>Ingestion sans la bibliothèque Kusto. deréception
 

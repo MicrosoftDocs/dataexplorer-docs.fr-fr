@@ -1,5 +1,5 @@
 ---
-title: Kusto. deréception-Errors and exceptions-Azure Explorateur de données
+title: Kusto. ingestion des erreurs & les exceptions-Azure Explorateur de données
 description: Cet article décrit Kusto. deréception-Errors and exceptions in Azure Explorateur de données.
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: 4af09c0b29b77edd7a4e62c7a6abbbae7e918610
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 97798fa62d588769636966c7155dc5f398bd001a
+ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373663"
+ms.locfileid: "83382316"
 ---
 # <a name="kustoingest-errors-and-exceptions"></a>Erreurs et exceptions Kusto. deréception
 Toute erreur au cours de la gestion de la réception côté client est indiquée par une exception C#.

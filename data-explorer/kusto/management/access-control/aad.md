@@ -1,5 +1,5 @@
 ---
-title: Authentification Azure Active Directory (AAD)-Azure Explorateur de données | Microsoft Docs
+title: Authentification Kusto Azure Active Directory (AAD)-Azure Explorateur de données
 description: Cet article décrit l’authentification Azure Active Directory (AAD) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 09/13/2019
-ms.openlocfilehash: 17da89206af12e2e4f7d9867372c8babf0c4aea1
-ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
+ms.openlocfilehash: 85d01c9192c71b3274907e5f93e4155b4c98accf
+ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82862086"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83382214"
 ---
 # <a name="azure-active-directory-aad-authentication"></a>Authentification Azure Active Directory (AAD)
 
@@ -71,7 +71,7 @@ Quand les bibliothèques de clients Kusto appellent ADAL (la bibliothèque de cl
 2. ID d’application cliente AAD
 3. L’ID de ressource du client AAD
 4. Le ReplyUrl AAD (URL que le service AAD redirige vers une fois l’authentification terminée ; ADAL capture ensuite cette redirection et en extrait le code d’autorisation.
-5. URI du cluster («https://Cluster-and-region.kusto.windows.net»).
+5. URI du cluster (« https://Cluster-and-region.kusto.windows.net »).
 
 Le jeton retourné par ADAL à la bibliothèque cliente Kusto dispose de l’application de serveur Kusto AAD comme audience et de l’autorisation « accès Kusto » comme étendue.
 
