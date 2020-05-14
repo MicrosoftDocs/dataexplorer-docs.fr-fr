@@ -240,6 +240,8 @@
                   href: database-table-policies-python.md
         - name: Données
           items:
+            - name: Vider les données - Portail Azure
+              href: data-purge-portal.md
             - name: Suppression de données
               href: delete-data.md
             - name: Gérer des données en double
@@ -291,15 +293,1330 @@
 - name: Informations de référence
   items:
     - name: Langage de requête
-      href: kusto/query/index.md
-    - name: Commandes de gestion
-      href: kusto/management/index.md
-    - name: API
-      href: kusto/api/index.md
-    - name: Outils
-      href: kusto/tools/index.md
+      href: ./kusto/query/index.md
+      items:
+        - name: Vue d’ensemble
+          items:
+            - name: Requête Kusto
+              href: ./kusto/query/index.md
+            - name: Didacticiel
+              href: ./kusto/query/tutorial.md
+            - name: Exemples
+              href: ./kusto/query/samples.md
+            - name: Meilleures pratiques
+              href: ./kusto/query/best-practices.md
+            - name: Requêtes entre plusieurs bases de données et clusters
+              href: ./kusto/query/cross-cluster-or-database-queries.md
+        - name: Entités
+          items:
+            - name: Types d’entités
+              href: ./kusto/query/schema-entities/index.md
+            - name: Noms d’entité
+              href: ./kusto/query/schema-entities/entity-names.md
+            - name: Tables
+              href: ./kusto/query/schema-entities/tables.md
+            - name: Colonnes
+              href: ./kusto/query/schema-entities/columns.md
+            - name: Fonctions stockées
+              href: ./kusto/query/schema-entities/stored-functions.md
+            - name: Tables externes
+              href: ./kusto/query/schema-entities/externaltables.md
+        - name: Types de données
+          items:
+            - name: Vue d’ensemble des types de données scalaires
+              href: ./kusto/query/scalar-data-types/index.md
+            - name: bool
+              href: ./kusto/query/scalar-data-types/bool.md
+            - name: DATETIME
+              href: ./kusto/query/scalar-data-types/datetime.md
+            - name: Décimal
+              href: ./kusto/query/scalar-data-types/decimal.md
+            - name: dynamique
+              href: ./kusto/query/scalar-data-types/dynamic.md
+            - name: guid
+              href: ./kusto/query/scalar-data-types/guid.md
+            - name: int
+              href: ./kusto/query/scalar-data-types/int.md
+            - name: long
+              href: ./kusto/query/scalar-data-types/long.md
+            - name: real
+              href: ./kusto/query/scalar-data-types/real.md
+            - name: string
+              href: ./kusto/query/scalar-data-types/string.md
+            - name: intervalle de temps
+              href: ./kusto/query/scalar-data-types/timespan.md
+            - name: Valeurs Null
+              href: ./kusto/query/scalar-data-types/null-values.md
+        - name: Fonctions
+          items:
+            - name: Types de fonction
+              href: ./kusto/query/functions/index.md
+            - name: Fonctions définies par l’utilisateur
+              href: ./kusto/query/functions/user-defined-functions.md
+        - name: Instructions de requête
+          items:
+            - name: Types d’instruction de requête
+              href: ./kusto/query/statements.md
+            - name: 'Alias, instruction'
+              href: ./kusto/query/aliasstatement.md
+            - name: 'Let, instruction'
+              href: ./kusto/query/letstatement.md
+            - name: 'Pattern, instruction'
+              href: ./kusto/query/patternstatement.md
+            - name: Instruction des paramètres de requête
+              href: ./kusto/query/queryparametersstatement.md
+            - name: 'Restrict, instruction'
+              href: ./kusto/query/restrictstatement.md
+            - name: 'Set, instruction'
+              href: ./kusto/query/setstatement.md
+            - name: Instructions d’expression tabulaire
+              href: ./kusto/query/tabularexpressionstatements.md
+            - name: Lots
+              href: ./kusto/query/batches.md
+        - name: Opérateurs tabulaires
+          items:
+            - name: données tabulaires
+              href: ./kusto/query/queries.md
+            - name: opérateur as
+              href: ./kusto/query/asoperator.md
+            - name: 'consume, opérateur'
+              href: ./kusto/query/consumeoperator.md
+            - name: opérateur count
+              href: ./kusto/query/countoperator.md
+            - name: opérateur DataTable
+              href: ./kusto/query/datatableoperator.md
+            - name: opérateur distinct
+              href: ./kusto/query/distinctoperator.md
+            - name: opérateur evaluate
+              items:
+                - name: 'evaluate plugin, opérateur'
+                  href: ./kusto/query/evaluateoperator.md
+                - name: autocluster
+                  href: ./kusto/query/autoclusterplugin.md
+                - name: bag_unpack
+                  href: ./kusto/query/bag-unpackplugin.md
+                - name: basket
+                  href: ./kusto/query/basketplugin.md
+                - name: dcount_intersect
+                  href: ./kusto/query/dcount-intersect-plugin.md
+                - name: diffpatterns
+                  href: ./kusto/query/diffpatternsplugin.md
+                - name: diffpatterns_text
+                  href: ./kusto/query/diffpatterns-textplugin.md
+                - name: infer_storage_schema
+                  href: ./kusto/query/inferstorageschemaplugin.md
+                - name: narrow
+                  href: ./kusto/query/narrowplugin.md
+                - name: pivot
+                  href: ./kusto/query/pivotplugin.md
+                - name: preview
+                  href: ./kusto/query/previewplugin.md
+                - name: python
+                  href: ./kusto/query/pythonplugin.md
+                - name: R
+                  href: ./kusto/query/rplugin.md
+                - name: rolling_percentile
+                  href: ./kusto/query/rolling-percentile-plugin.md
+                - name: schema_merge
+                  href: ./kusto/query/schemamergeplugin.md
+                - name: sql_request
+                  href: ./kusto/query/sqlrequestplugin.md
+                - name: sequence_detect
+                  href: ./kusto/query/sequence-detect-plugin.md
+            - name: opérateur extend
+              href: ./kusto/query/extendoperator.md
+            - name: 'externaldata, opérateur'
+              href: ./kusto/query/externaldata-operator.md
+            - name: 'facet, opérateur'
+              href: ./kusto/query/facetoperator.md
+            - name: Opérateur find
+              href: ./kusto/query/findoperator.md
+            - name: 'fork, opérateur'
+              href: ./kusto/query/forkoperator.md
+            - name: opérateur getschema
+              href: ./kusto/query/getschemaoperator.md
+            - name: 'invoke, opérateur'
+              href: ./kusto/query/invokeoperator.md
+            - name: opérateur join
+              items:
+                - name: vue d’ensemble de l’opérateur join
+                  href: ./kusto/query/joinoperator.md
+                - name: lecture aléatoire
+                  href: ./kusto/query/shufflequery.md
+                - name: Jointure entre clusters
+                  href: ./kusto/query/joincrosscluster.md
+                - name: Jonction de diffusion
+                  href: ./kusto/query/broadcastjoin.md
+                - name: Jointure de fenêtre de temps
+                  href: ./kusto/query/join-timewindow.md
+            - name: opérateur limit
+              href: ./kusto/query/limitoperator.md
+            - name: 'lookup, opérateur'
+              href: ./kusto/query/lookupoperator.md
+            - name: opérateur make-series
+              href: ./kusto/query/make-seriesoperator.md
+            - name: 'mv-apply, opérateur'
+              href: ./kusto/query/mv-applyoperator.md
+            - name: 'mv-expand, opérateur'
+              href: ./kusto/query/mvexpandoperator.md
+            - name: 'order, opérateur'
+              href: ./kusto/query/orderoperator.md
+            - name: opérateur project
+              href: ./kusto/query/projectoperator.md
+            - name: opérateur project-away
+              href: ./kusto/query/projectawayoperator.md
+            - name: 'project-rename, opérateur'
+              href: ./kusto/query/projectrenameoperator.md
+            - name: 'project-reorder, opérateur'
+              href: ./kusto/query/projectreorderoperator.md
+            - name: opérateur parse
+              href: ./kusto/query/parseoperator.md
+            - name: Opérateur parse-where
+              href: ./kusto/query/parsewhereoperator.md
+            - name: 'partition, opérateur'
+              href: ./kusto/query/partitionoperator.md
+            - name: 'print, opérateur'
+              href: ./kusto/query/printoperator.md
+            - name: opérateur range
+              href: ./kusto/query/rangeoperator.md
+            - name: opérateur reduce
+              href: ./kusto/query/reduceoperator.md
+            - name: 'render, opérateur'
+              href: ./kusto/query/renderoperator.md
+            - name: opérateur d’échantillon
+              href: ./kusto/query/sampleoperator.md
+            - name: opérateur sample-distinct
+              href: ./kusto/query/sampledistinctoperator.md
+            - name: opérateur search
+              href: ./kusto/query/searchoperator.md
+            - name: 'serialize, opérateur'
+              href: ./kusto/query/serializeoperator.md
+            - name: opérateur sort
+              href: ./kusto/query/sortoperator.md
+            - name: opérateur summarize
+              items:
+                - name: vue d’ensemble de l’opérateur summarize
+                  href: ./kusto/query/summarizeoperator.md
+                - name: Utilisation de hll() et de tdigest()
+                  href: ./kusto/query/usinghlltdigest.md
+                - name: lecture aléatoire
+                  href: ./kusto/query/shufflequery.md
+            - name: opérateur take
+              href: ./kusto/query/takeoperator.md
+            - name: opérateur top
+              href: ./kusto/query/topoperator.md
+            - name: Opérateur top-nested
+              href: ./kusto/query/topnestedoperator.md
+            - name: 'top-hitters, opérateur'
+              href: ./kusto/query/tophittersoperator.md
+            - name: opérateur union
+              href: ./kusto/query/unionoperator.md
+            - name: opérateur where
+              href: ./kusto/query/whereoperator.md
+        - name: Fonctions spéciales
+          items:
+            - name: cluster()
+              href: ./kusto/query/clusterfunction.md
+            - name: database()
+              href: ./kusto/query/databasefunction.md
+            - name: external_table()
+              href: ./kusto/query/externaltablefunction.md
+            - name: materialize()
+              href: ./kusto/query/materializefunction.md
+            - name: table()
+              href: ./kusto/query/tablefunction.md
+            - name: toscalar()
+              href: ./kusto/query/toscalarfunction.md
+        - name: Opérateurs scalaires
+          items:
+            - name: Opérateurs de bits (binaires)
+              href: ./kusto/query/binoperators.md
+            - name: Arithmétique DateTime/TimeSpan
+              href: ./kusto/query/datetime-timespan-arithmetic.md
+            - name: Opérateurs logiques (binaires)
+              href: ./kusto/query/logicaloperators.md
+            - name: Opérateurs numériques
+              href: ./kusto/query/numoperators.md
+            - name: Opérateurs de chaîne
+              href: ./kusto/query/datatypes-string-operators.md
+            - name: 'between, opérateur'
+              href: ./kusto/query/betweenoperator.md
+            - name: 'not-between, opérateur (!between)'
+              href: ./kusto/query/notbetweenoperator.md
+            - name: 'in et !in, opérateurs'
+              href: ./kusto/query/inoperator.md
+            - name: 'has_any, opérateur'
+              href: ./kusto/query/has-anyoperator.md
+        - name: Fonctions scalaires
+          items:
+            - name: Types de fonction scalaire
+              href: ./kusto/query/scalarfunctions.md
+            - name: abs()
+              href: ./kusto/query/abs-function.md
+            - name: acos()
+              href: ./kusto/query/acosfunction.md
+            - name: ago()
+              href: ./kusto/query/agofunction.md
+            - name: array_concat()
+              href: ./kusto/query/arrayconcatfunction.md
+            - name: array_iif()
+              href: ./kusto/query/arrayifffunction.md
+            - name: array_index_of()
+              href: ./kusto/query/arrayindexoffunction.md
+            - name: array_length()
+              href: ./kusto/query/arraylengthfunction.md
+            - name: array_rotate_left()
+              href: ./kusto/query/array_rotate_leftfunction.md
+            - name: array_rotate_right()
+              href: ./kusto/query/array_rotate_rightfunction.md
+            - name: array_shift_left()
+              href: ./kusto/query/array_shift_leftfunction.md
+            - name: array_shift_right()
+              href: ./kusto/query/array_shift_rightfunction.md
+            - name: array_slice()
+              href: ./kusto/query/arrayslicefunction.md
+            - name: array_split()
+              href: ./kusto/query/arraysplitfunction.md
+            - name: asin()
+              href: ./kusto/query/asinfunction.md
+            - name: assert()
+              href: ./kusto/query/assert-function.md
+            - name: atan()
+              href: ./kusto/query/atanfunction.md
+            - name: atan2()
+              href: ./kusto/query/atan2function.md
+            - name: bag_keys()
+              href: ./kusto/query/bagkeysfunction.md
+            - name: base64_decode_toarray()
+              href: ./kusto/query/base64_decode_toarrayfunction.md
+            - name: base64_decode_tostring()
+              href: ./kusto/query/base64_decode_tostringfunction.md
+            - name: base64_encode_fromarray()
+              href: ./kusto/query/base64_encode_fromarrayfunction.md
+            - name: base64_encode_tostring()
+              href: ./kusto/query/base64_encode_tostringfunction.md
+            - name: beta_cdf()
+              href: ./kusto/query/beta-cdffunction.md
+            - name: beta_inv()
+              href: ./kusto/query/beta-invfunction.md
+            - name: beta_pdf()
+              href: ./kusto/query/beta-pdffunction.md
+            - name: bin()
+              href: ./kusto/query/binfunction.md
+            - name: bin_at()
+              href: ./kusto/query/binatfunction.md
+            - name: bin_auto()
+              href: ./kusto/query/bin-autofunction.md
+            - name: binary_and()
+              href: ./kusto/query/binary-andfunction.md
+            - name: binary_not()
+              href: ./kusto/query/binary-notfunction.md
+            - name: binary_or()
+              href: ./kusto/query/binary-orfunction.md
+            - name: binary_shift_left()
+              href: ./kusto/query/binary-shift-leftfunction.md
+            - name: binary_shift_right()
+              href: ./kusto/query/binary-shift-rightfunction.md
+            - name: binary_xor()
+              href: ./kusto/query/binary-xorfunction.md
+            - name: bitset_count_ones()
+              href: ./kusto/query/bitset-count-onesfunction.md
+            - name: case()
+              href: ./kusto/query/casefunction.md
+            - name: ceiling()
+              href: ./kusto/query/ceilingfunction.md
+            - name: coalesce()
+              href: ./kusto/query/coalescefunction.md
+            - name: column_ifexists()
+              href: ./kusto/query/columnifexists.md
+            - name: cos()
+              href: ./kusto/query/cosfunction.md
+            - name: cot()
+              href: ./kusto/query/cotfunction.md
+            - name: countof()
+              href: ./kusto/query/countoffunction.md
+            - name: current_cluster_endpoint()
+              href: ./kusto/query/current-cluster-endpoint-function.md
+            - name: current_cursor()
+              href: ./kusto/query/cursorcurrent.md
+            - name: current_database()
+              href: ./kusto/query/current-database-function.md
+            - name: current_principal()
+              href: ./kusto/query/current-principalfunction.md
+            - name: current_principal_details()
+              href: ./kusto/query/current-principal-detailsfunction.md
+            - name: current_principal_is_member_of()
+              href: ./kusto/query/current-principal-ismemberoffunction.md
+            - name: cursor_after()
+              href: ./kusto/query/cursorafterfunction.md
+            - name: cursor_before_or_at()
+              href: ./kusto/query/cursorbeforeoratfunction.md
+            - name: cursor_current()
+              href: ./kusto/query/cursorcurrent.md
+            - name: datetime_add()
+              href: ./kusto/query/datetime-addfunction.md
+            - name: datetime_diff()
+              href: ./kusto/query/datetime-difffunction.md
+            - name: datetime_part()
+              href: ./kusto/query/datetime-partfunction.md
+            - name: dayofmonth()
+              href: ./kusto/query/dayofmonthfunction.md
+            - name: dayofweek()
+              href: ./kusto/query/dayofweekfunction.md
+            - name: dayofyear()
+              href: ./kusto/query/dayofyearfunction.md
+            - name: dcount_hll()
+              href: ./kusto/query/dcount-hllfunction.md
+            - name: degrees()
+              href: ./kusto/query/degreesfunction.md
+            - name: endofday()
+              href: ./kusto/query/endofdayfunction.md
+            - name: endofmonth()
+              href: ./kusto/query/endofmonthfunction.md
+            - name: endofweek()
+              href: ./kusto/query/endofweekfunction.md
+            - name: endofyear()
+              href: ./kusto/query/endofyearfunction.md
+            - name: estimate_data_size()
+              href: ./kusto/query/estimate-data-sizefunction.md
+            - name: exp()
+              href: ./kusto/query/exp-function.md
+            - name: exp10()
+              href: ./kusto/query/exp10-function.md
+            - name: exp2()
+              href: ./kusto/query/exp2-function.md
+            - name: extent_id()
+              href: ./kusto/query/extentidfunction.md
+            - name: extent_tags()
+              href: ./kusto/query/extenttagsfunction.md
+            - name: extract()
+              href: ./kusto/query/extractfunction.md
+            - name: extract_all()
+              href: ./kusto/query/extractallfunction.md
+            - name: extractjson()
+              href: ./kusto/query/extractjsonfunction.md
+            - name: floor()
+              href: ./kusto/query/floorfunction.md
+            - name: format_bytes()
+              href: ./kusto/query/format-bytesfunction.md
+            - name: format_datetime()
+              href: ./kusto/query/format-datetimefunction.md
+            - name: format_timespan()
+              href: ./kusto/query/format-timespanfunction.md
+            - name: gamma()
+              href: ./kusto/query/gammafunction.md
+            - name: getmonth()
+              href: ./kusto/query/getmonthfunction.md
+            - name: gettype()
+              href: ./kusto/query/gettypefunction.md
+            - name: getyear()
+              href: ./kusto/query/getyearfunction.md
+            - name: hash()
+              href: ./kusto/query/hashfunction.md
+            - name: hash_combine()
+              href: ./kusto/query/hash_combinefunction.md
+            - name: hash_many()
+              href: ./kusto/query/hash_manyfunction.md
+            - name: hash_sha256()
+              href: ./kusto/query/sha256hashfunction.md
+            - name: hll_merge()
+              href: ./kusto/query/hllmergefunction.md
+            - name: hourofday()
+              href: ./kusto/query/hourofdayfunction.md
+            - name: iif()
+              href: ./kusto/query/iiffunction.md
+            - name: indexof()
+              href: ./kusto/query/indexoffunction.md
+            - name: indexof_regex()
+              href: ./kusto/query/indexofregexfunction.md
+            - name: ingestion_time()
+              href: ./kusto/query/ingestiontimefunction.md
+            - name: ipv4_compare
+              href: ./kusto/query/ipv4-comparefunction.md
+            - name: ipv4_is_match
+              href: ./kusto/query/ipv4-is-matchfunction.md
+            - name: isascii()
+              href: ./kusto/query/isascii.md
+            - name: isempty()
+              href: ./kusto/query/isemptyfunction.md
+            - name: isfinite()
+              href: ./kusto/query/isfinitefunction.md
+            - name: isinf()
+              href: ./kusto/query/isinffunction.md
+            - name: isnan()
+              href: ./kusto/query/isnanfunction.md
+            - name: 'isnotempty(), notempty()'
+              href: ./kusto/query/isnotemptyfunction.md
+            - name: 'isnotnull(), notempty()'
+              href: ./kusto/query/isnotnullfunction.md
+            - name: isnull()
+              href: ./kusto/query/isnullfunction.md
+            - name: isutf8()
+              href: ./kusto/query/isutf8.md
+            - name: log()
+              href: ./kusto/query/log-function.md
+            - name: log10()
+              href: ./kusto/query/log10-function.md
+            - name: log2()
+              href: ./kusto/query/log2-function.md
+            - name: loggamma()
+              href: ./kusto/query/loggammafunction.md
+            - name: make_datetime()
+              href: ./kusto/query/make-datetimefunction.md
+            - name: make_string()
+              href: ./kusto/query/makestringfunction.md
+            - name: make_timespan()
+              href: ./kusto/query/make-timespanfunction.md
+            - name: max_of()
+              href: ./kusto/query/max-offunction.md
+            - name: min_of()
+              href: ./kusto/query/min-offunction.md
+            - name: monthofyear()
+              href: ./kusto/query/monthofyearfunction.md
+            - name: new_guid()
+              href: ./kusto/query/newguidfunction.md
+            - name: not()
+              href: ./kusto/query/notfunction.md
+            - name: now()
+              href: ./kusto/query/nowfunction.md
+            - name: pack()
+              href: ./kusto/query/packfunction.md
+            - name: pack_all()
+              href: ./kusto/query/packallfunction.md
+            - name: pack_array()
+              href: ./kusto/query/packarrayfunction.md
+            - name: pack_dictionary()
+              href: ./kusto/query/packdictionaryfunction.md
+            - name: parse_csv()
+              href: ./kusto/query/parsecsvfunction.md
+            - name: parse_ipv4()
+              href: ./kusto/query/parse-ipv4function.md
+            - name: parse_ipv4_mask()
+              href: ./kusto/query/parse-ipv4-maskfunction.md
+            - name: parse_json()
+              href: ./kusto/query/parsejsonfunction.md
+            - name: parse_path()
+              href: ./kusto/query/parsepathfunction.md
+            - name: parse_url()
+              href: ./kusto/query/parseurlfunction.md
+            - name: parse_urlquery()
+              href: ./kusto/query/parseurlqueryfunction.md
+            - name: parse_user_agent()
+              href: ./kusto/query/parse-useragentfunction.md
+            - name: parse_version()
+              href: ./kusto/query/parse-versionfunction.md
+            - name: parse_xml()
+              href: ./kusto/query/parse-xmlfunction.md
+            - name: percentile_tdigest()
+              href: ./kusto/query/percentile-tdigestfunction.md
+            - name: percentrank_tdigest()
+              href: ./kusto/query/percentrank-tdigestfunction.md
+            - name: pi()
+              href: ./kusto/query/pifunction.md
+            - name: pow()
+              href: ./kusto/query/powfunction.md
+            - name: radians()
+              href: ./kusto/query/radiansfunction.md
+            - name: rand()
+              href: ./kusto/query/randfunction.md
+            - name: range()
+              href: ./kusto/query/rangefunction.md
+            - name: rank_tdigest()
+              href: ./kusto/query/rank-tdigest.md
+            - name: repeat()
+              href: ./kusto/query/repeatfunction.md
+            - name: replace()
+              href: ./kusto/query/replacefunction.md
+            - name: reverse()
+              href: ./kusto/query/reversefunction.md
+            - name: round()
+              href: ./kusto/query/roundfunction.md
+            - name: set_difference()
+              href: ./kusto/query/setdifferencefunction.md
+            - name: set_has_element()
+              href: ./kusto/query/sethaselementfunction.md
+            - name: set_intersect()
+              href: ./kusto/query/setintersectfunction.md
+            - name: set_union()
+              href: ./kusto/query/setunionfunction.md
+            - name: sign()
+              href: ./kusto/query/signfunction.md
+            - name: sin()
+              href: ./kusto/query/sinfunction.md
+            - name: split()
+              href: ./kusto/query/splitfunction.md
+            - name: sqrt()
+              href: ./kusto/query/sqrtfunction.md
+            - name: startofday()
+              href: ./kusto/query/startofdayfunction.md
+            - name: startofmonth()
+              href: ./kusto/query/startofmonthfunction.md
+            - name: startofweek()
+              href: ./kusto/query/startofweekfunction.md
+            - name: startofyear()
+              href: ./kusto/query/startofyearfunction.md
+            - name: strcat()
+              href: ./kusto/query/strcatfunction.md
+            - name: strcat_array()
+              href: ./kusto/query/strcat-arrayfunction.md
+            - name: strcat_delim()
+              href: ./kusto/query/strcat-delimfunction.md
+            - name: strcmp()
+              href: ./kusto/query/strcmpfunction.md
+            - name: string_size()
+              href: ./kusto/query/stringsizefunction.md
+            - name: strlen()
+              href: ./kusto/query/strlenfunction.md
+            - name: strrep()
+              href: ./kusto/query/strrepfunction.md
+            - name: substring()
+              href: ./kusto/query/substringfunction.md
+            - name: tan()
+              href: ./kusto/query/tanfunction.md
+            - name: tdigest_merge()
+              href: ./kusto/query/tdigest-mergefunction.md
+            - name: to_utf8()
+              href: ./kusto/query/toutf8function.md
+            - name: tobool()
+              href: ./kusto/query/toboolfunction.md
+            - name: todatetime()
+              href: ./kusto/query/todatetimefunction.md
+            - name: todecimal()
+              href: ./kusto/query/todecimalfunction.md
+            - name: todouble()
+              href: ./kusto/query/todoublefunction.md
+            - name: todynamic()
+              href: ./kusto/query/todynamicfunction.md
+            - name: toguid()
+              href: ./kusto/query/toguidfunction.md
+            - name: tohex()
+              href: ./kusto/query/tohexfunction.md
+            - name: toint()
+              href: ./kusto/query/tointfunction.md
+            - name: tolong()
+              href: ./kusto/query/tolongfunction.md
+            - name: tolower()
+              href: ./kusto/query/tolowerfunction.md
+            - name: toreal()
+              href: ./kusto/query/todoublefunction.md
+            - name: tostring()
+              href: ./kusto/query/tostringfunction.md
+            - name: totimespan()
+              href: ./kusto/query/totimespanfunction.md
+            - name: toupper()
+              href: ./kusto/query/toupperfunction.md
+            - name: translate()
+              href: ./kusto/query/translatefunction.md
+            - name: treepath()
+              href: ./kusto/query/treepathfunction.md
+            - name: trim()
+              href: ./kusto/query/trimfunction.md
+            - name: trim_end()
+              href: ./kusto/query/trimendfunction.md
+            - name: trim_start()
+              href: ./kusto/query/trimstartfunction.md
+            - name: unixtime_microseconds_todatetime()
+              href: ./kusto/query/unixtime-microseconds-todatetimefunction.md
+            - name: unixtime_milliseconds_todatetime()
+              href: ./kusto/query/unixtime-milliseconds-todatetimefunction.md
+            - name: unixtime_nanoseconds_todatetime()
+              href: ./kusto/query/unixtime-nanoseconds-todatetimefunction.md
+            - name: unixtime_seconds_todatetime()
+              href: ./kusto/query/unixtime-seconds-todatetimefunction.md
+            - name: url_decode()
+              href: ./kusto/query/urldecodefunction.md
+            - name: url_encode()
+              href: ./kusto/query/urlencodefunction.md
+            - name: url_encode_component()
+              href: ./kusto/query/urlencodecomponentfunction.md
+            - name: weekofyear()
+              href: ./kusto/query/weekofyearfunction.md
+            - name: welch_test()
+              href: ./kusto/query/welch-testfunction.md
+            - name: zip()
+              href: ./kusto/query/zipfunction.md
+        - name: Fonctions d’agrégation
+          items:
+            - name: any()
+              href: ./kusto/query/any-aggfunction.md
+            - name: anyif()
+              href: ./kusto/query/anyif-aggfunction.md
+            - name: arg_max()
+              href: ./kusto/query/arg-max-aggfunction.md
+            - name: arg_min()
+              href: ./kusto/query/arg-min-aggfunction.md
+            - name: avg()
+              href: ./kusto/query/avg-aggfunction.md
+            - name: avgif()
+              href: ./kusto/query/avgif-aggfunction.md
+            - name: binary_all_and
+              href: ./kusto/query/binary-all-and-aggfunction.md
+            - name: binary_all_or
+              href: ./kusto/query/binary-all-or-aggfunction.md
+            - name: binary_all_xor
+              href: ./kusto/query/binary-all-xor-aggfunction.md
+            - name: buildschema()
+              href: ./kusto/query/buildschema-aggfunction.md
+            - name: count()
+              href: ./kusto/query/count-aggfunction.md
+            - name: countif()
+              href: ./kusto/query/countif-aggfunction.md
+            - name: dcount()
+              href: ./kusto/query/dcount-aggfunction.md
+            - name: dcountif()
+              href: ./kusto/query/dcountif-aggfunction.md
+            - name: hll()
+              href: ./kusto/query/hll-aggfunction.md
+            - name: hll_merge()
+              href: ./kusto/query/hll-merge-aggfunction.md
+            - name: make_bag()
+              href: ./kusto/query/make-bag-aggfunction.md
+            - name: make_bag_if()
+              href: ./kusto/query/make-bag-if-aggfunction.md
+            - name: make_list()
+              href: ./kusto/query/makelist-aggfunction.md
+            - name: make_list_if()
+              href: ./kusto/query/makelistif-aggfunction.md
+            - name: make_list_with_nulls()
+              href: ./kusto/query/make-list-with-nulls-aggfunction.md
+            - name: make_set()
+              href: ./kusto/query/makeset-aggfunction.md
+            - name: make_set_if()
+              href: ./kusto/query/makesetif-aggfunction.md
+            - name: max()
+              href: ./kusto/query/max-aggfunction.md
+            - name: maxif()
+              href: ./kusto/query/maxif-aggfunction.md
+            - name: min()
+              href: ./kusto/query/min-aggfunction.md
+            - name: minif()
+              href: ./kusto/query/minif-aggfunction.md
+            - name: percentiles()
+              href: ./kusto/query/percentiles-aggfunction.md
+            - name: stdev()
+              href: ./kusto/query/stdev-aggfunction.md
+            - name: stdevif()
+              href: ./kusto/query/stdevif-aggfunction.md
+            - name: stdevp()
+              href: ./kusto/query/stdevp-aggfunction.md
+            - name: sum()
+              href: ./kusto/query/sum-aggfunction.md
+            - name: sumif()
+              href: ./kusto/query/sumif-aggfunction.md
+            - name: tdigest()
+              href: ./kusto/query/tdigest-aggfunction.md
+            - name: tdigest_merge()
+              href: ./kusto/query/tdigest-merge-aggfunction.md
+            - name: variance()
+              href: ./kusto/query/variance-aggfunction.md
+            - name: varianceif()
+              href: ./kusto/query/varianceif-aggfunction.md
+            - name: variancep()
+              href: ./kusto/query/variancep-aggfunction.md
+        - name: Fonctions Windows
+          items:
+            - name: Vue d’ensemble des fonctions de fenêtre
+              href: ./kusto/query/windowsfunctions.md
+            - name: next()
+              href: ./kusto/query/nextfunction.md
+            - name: prev()
+              href: ./kusto/query/prevfunction.md
+            - name: row_cumsum()
+              href: ./kusto/query/rowcumsumfunction.md
+            - name: row_number()
+              href: ./kusto/query/rownumberfunction.md
+            - name: row_window_session()
+              href: ./kusto/query/row-window-session-function.md
+        - name: Agrégations des fenêtres dynamiques
+          items:
+            - name: rolling_percentile()
+              href: ./kusto/query/rolling-percentile-plugin.md
+        - name: Analyse de série chronologique
+          items:
+            - name: Vue d’ensemble de l’analyse des séries chronologiques
+              href: ./kusto/query/machine-learning-and-tsa.md
+            - name: opérateur make-series
+              href: ./kusto/query/make-seriesoperator.md
+            - name: series_add()
+              href: ./kusto/query/series-addfunction.md
+            - name: series_decompose()
+              href: ./kusto/query/series-decomposefunction.md
+            - name: series_decompose_anomalies()
+              href: ./kusto/query/series-decompose-anomaliesfunction.md
+            - name: series_decompose_forecast()
+              href: ./kusto/query/series-decompose-forecastfunction.md
+            - name: series_divide()
+              href: ./kusto/query/series-dividefunction.md
+            - name: series_equals()
+              href: ./kusto/query/series-equalsfunction.md
+            - name: series_fill_backward()
+              href: ./kusto/query/series-fill-backwardfunction.md
+            - name: series_fill_const()
+              href: ./kusto/query/series-fill-constfunction.md
+            - name: series_fill_forward()
+              href: ./kusto/query/series-fill-forwardfunction.md
+            - name: series_fill_linear()
+              href: ./kusto/query/series-fill-linearfunction.md
+            - name: series_fir()
+              href: ./kusto/query/series-firfunction.md
+            - name: series_fit_2lines()
+              href: ./kusto/query/series-fit-2linesfunction.md
+            - name: series_fit_2lines_dynamic()
+              href: ./kusto/query/series-fit-2lines-dynamicfunction.md
+            - name: series_fit_line()
+              href: ./kusto/query/series-fit-linefunction.md
+            - name: series_fit_line_dynamic()
+              href: ./kusto/query/series-fit-line-dynamicfunction.md
+            - name: series_greater()
+              href: ./kusto/query/series-greaterfunction.md
+            - name: series_greater_equals()
+              href: ./kusto/query/series-greater-equalsfunction.md
+            - name: series_iir()
+              href: ./kusto/query/series-iirfunction.md
+            - name: series_less()
+              href: ./kusto/query/series-lessfunction.md
+            - name: series_less_equals()
+              href: ./kusto/query/series-less-equalsfunction.md
+            - name: series_multiply()
+              href: ./kusto/query/series-multiplyfunction.md
+            - name: series_not_equals()
+              href: ./kusto/query/series-not-equalsfunction.md
+            - name: series_outliers()
+              href: ./kusto/query/series-outliersfunction.md
+            - name: series_pearson_correlation()
+              href: ./kusto/query/series-pearson-correlationfunction.md
+            - name: series_periods_detect()
+              href: ./kusto/query/series-periods-detectfunction.md
+            - name: series_periods_validate()
+              href: ./kusto/query/series-periods-validatefunction.md
+            - name: series_seasonal()
+              href: ./kusto/query/series-seasonalfunction.md
+            - name: series_stats()
+              href: ./kusto/query/series-statsfunction.md
+            - name: series_stats_dynamic()
+              href: ./kusto/query/series-stats-dynamicfunction.md
+            - name: series_subtract()
+              href: ./kusto/query/series-subtractfunction.md
+        - name: Machine Learning
+          items:
+            - name: autocluster
+              href: ./kusto/query/autoclusterplugin.md
+            - name: basket
+              href: ./kusto/query/basketplugin.md
+            - name: diffpatterns
+              href: ./kusto/query/diffpatternsplugin.md
+            - name: diffpatterns_text
+              href: ./kusto/query/diffpatterns-textplugin.md
+        - name: Géospatial
+          items:
+            - name: geo_distance_2points()
+              href: ./kusto/query/geo-distance-2points-function.md
+            - name: geo_distance_point_to_line()
+              href: ./kusto/query/geo-distance-point-to-line-function.md
+            - name: geo_geohash_to_central_point()
+              href: ./kusto/query/geo-geohash-to-central-point-function.md
+            - name: geo_point_in_circle()
+              href: ./kusto/query/geo-point-in-circle-function.md
+            - name: geo_point_in_polygon()
+              href: ./kusto/query/geo-point-in-polygon-function.md
+            - name: geo_point_to_geohash()
+              href: ./kusto/query/geo-point-to-geohash-function.md
+            - name: geo_point_to_s2cell()
+              href: ./kusto/query/geo-point-to-s2cell-function.md
+            - name: geo_s2cell_to_central_point()
+              href: ./kusto/query/geo-s2cell-to-central-point-function.md
+        - name: Analyse des utilisateurs
+          items:
+            - name: Plug-ins de l’analytique des utilisateurs
+              href: ./kusto/query/useranalytics.md
+            - name: Nombre d’utilisateurs actifs
+              href: ./kusto/query/active-users-count-plugin.md
+            - name: 'Métriques sur le nombre d’activités (valeurs totales, valeurs distinctes, nouvelles valeurs)'
+              href: ./kusto/query/activity-counts-metrics-plugin.md
+            - name: 'Engagement des activités (UAQ, WAU, UAM)'
+              href: ./kusto/query/activity-engagement-plugin.md
+            - name: 'Métriques sur les activités (conservation, évolution, nouvelles valeurs)'
+              href: ./kusto/query/activity-metrics-plugin.md
+            - name: 'Métriques sur les activités - Nouveau (conservation, évolution, nouvelles valeurs)'
+              href: ./kusto/query/new-activity-metrics-plugin.md
+            - name: Achèvement de la séquence d’entonnoir
+              href: ./kusto/query/funnel-sequence-completion-plugin.md
+            - name: Séquence d’entonnoir
+              href: ./kusto/query/funnel-sequence-plugin.md
+            - name: Nombre de sessions
+              href: ./kusto/query/session-count-plugin.md
+            - name: Nombre de fenêtres glissantes
+              href: ./kusto/query/sliding-window-counts-plugin.md
+        - name: Documentation de référence sur le langage de requête Kusto
+          items:
+            - name: Syntaxe RE2
+              href: ./kusto/query/re2.md
+            - name: Aide-mémoire SQL vers Kusto
+              href: ./kusto/query/sqlcheatsheet.md
     - name: Concepts
-      href: kusto/concepts/index.md
+      href: ./kusto/concepts/index.md
+      items:
+        - name: Prise en main
+          href: ./kusto/concepts/index.md
+          items:
+            - name: Bacs à sable
+              href: ./kusto/concepts/sandboxes.md
+        - name: Erreurs et divers
+          items:
+            - name: Limites de requête
+              href: ./kusto/concepts/querylimits.md
+            - name: Échecs des requêtes partielles
+              href: ./kusto/concepts/partialqueryfailures.md
+              items:
+                - name: Troncation des résultats
+                  href: ./kusto/concepts/resulttruncation.md
+                - name: Perte de contrôle des requêtes
+                  href: ./kusto/concepts/runawayqueries.md
+                - name: Dépassement de capacité
+                  href: ./kusto/concepts/overflow.md
+            - name: Requêtes interclusters et changements du schéma
+              href: ./kusto/concepts/crossclusterandschemachanges.md
+            - name: Cohérence des requêtes
+              href: ./kusto/concepts/queryconsistency.md
+            - name: Erreurs dans le code natif
+              href: ./kusto/concepts/errorsinnativecode.md
+            - name: Tables de faits et de dimension
+              href: ./kusto/concepts/fact-and-dimension-tables.md
+    - name: Gestion
+      href: ./kusto/management/index.md
+      items:
+        - name: Vue d’ensemble
+          href: ./kusto/management/index.md
+          items:
+            - name: Meilleures pratiques
+              href: ./kusto/management/best-practices.md
+        - name: schéma
+          href: ./kusto/management/schema.md
+          items:
+            - name: Bases de données
+              href: ./kusto/management/databases.md
+              items:
+                - name: .show databases
+                  href: ./kusto/management/show-databases.md
+                - name: .show database
+                  href: ./kusto/management/show-database.md
+                - name: .show cluster database
+                  href: ./kusto/management/show-cluster-database.md
+                - name: .alter database
+                  href: ./kusto/management/alter-database.md
+                - name: .show database schema
+                  href: ./kusto/management/show-schema-database.md
+            - name: Tables
+              items:
+                - name: Vue d’ensemble des tables
+                  href: ./kusto/management/tables.md
+                - name: .alter merge table
+                  href: ./kusto/management/alter-table-command.md
+                - name: .alter table
+                  href: ./kusto/management/alter-table-command.md
+                - name: .alter table docstring
+                  href: ./kusto/management/alter-table-docstring-command.md
+                - name: .alter table folder
+                  href: ./kusto/management/alter-table-folder-command.md
+                - name: .alter ingestion mapping
+                  href: ./kusto/management/alter-ingestion-mapping-command.md
+                - name: .create ingestion mapping
+                  href: ./kusto/management/create-ingestion-mapping-command.md
+                - name: .drop ingestion mapping
+                  href: ./kusto/management/drop-ingestion-mapping-command.md
+                - name: .show ingestion mapping
+                  href: ./kusto/management/show-ingestion-mapping-command.md
+                - name: .create table
+                  href: ./kusto/management/create-table-command.md
+                - name: .create tables
+                  href: ./kusto/management/create-tables-command.md
+                - name: .drop table(s)
+                  href: ./kusto/management/drop-table-command.md
+                - name: .rename table
+                  href: ./kusto/management/rename-table-command.md
+                - name: .show table
+                  href: ./kusto/management/show-tables-command.md
+                - name: .undo drop table
+                  href: ./kusto/management/undo-drop-table-command.md
+                - name: .show table details
+                  href: ./kusto/management/show-table-details-command.md
+                - name: .show table schema
+                  href: ./kusto/management/show-table-schema-command.md
+            - name: Tables externes
+              items:
+                - name: Commandes de contrôle des tables externes
+                  href: ./kusto/management/externaltables.md
+                - name: Tables SQL externes
+                  href: ./kusto/management/external-sql-tables.md
+                - name: Tables externes dans Stockage Azure ou Azure Data Lake
+                  href: ./kusto/management/external-tables-azurestorage-azuredatalake.md
+            - name: Colonnes
+              items:
+                - name: Vue d’ensemble des colonnes
+                  href: ./kusto/management/columns.md
+                - name: .alter column
+                  href: ./kusto/management/alter-column.md
+                - name: .alter-merge table column-docstrings
+                  href: ./kusto/management/alter-merge-table-column.md
+                - name: .drop column
+                  href: ./kusto/management/drop-column.md
+                - name: .rename column(s)
+                  href: ./kusto/management/rename-column.md
+            - name: Mappages
+              href: ./kusto/management/mappings.md
+            - name: Fonctions
+              items:
+                - name: Vue d’ensemble des fonctions
+                  href: ./kusto/management/functions.md
+                - name: .alter function
+                  href: ./kusto/management/alter-function.md
+                - name: .alter docstring function
+                  href: ./kusto/management/alter-docstring-function.md
+                - name: .alter folder function
+                  href: ./kusto/management/alter-folder-function.md
+                - name: .create function
+                  href: ./kusto/management/create-function.md
+                - name: .create-or-alter function
+                  href: ./kusto/management/create-alter-function.md
+                - name: .drop function
+                  href: ./kusto/management/drop-function.md
+                - name: .show function
+                  href: ./kusto/management/show-function.md
+        - name: Stratégies
+          items:
+            - name: Vue d’ensemble des stratégies
+              href: ./kusto/management/policies.md
+            - name: Stratégie de cache
+              items:
+                - name: Stratégie de cache
+                  href: ./kusto/management/cachepolicy.md
+                - name: Commande de stratégie de cache
+                  href: ./kusto/management/cache-policy.md
+            - name: Stratégie sur le moment de l’ingestion
+              items:
+                - name: Stratégie sur le moment de l’ingestion
+                  href: ./kusto/management/ingestiontimepolicy.md
+                - name: Commande sur le moment de l’ingestion
+                  href: ./kusto/management/ingestiontime-policy.md
+            - name: Stratégie de rétention
+              items:
+                - name: Stratégie de rétention
+                  href: ./kusto/management/retentionpolicy.md
+                - name: Commande sur la stratégie de rétention
+                  href: ./kusto/management/retention-policy.md
+            - name: Stratégie RowLevelSecurity
+              items:
+                - name: Stratégie de sécurité au niveau des lignes
+                  href: ./kusto/management/rowlevelsecuritypolicy.md
+                - name: Commande de stratégie row_level_security
+                  href: ./kusto/management/row-level-security-policy.md
+            - name: Stratégie RowOrder
+              items:
+                - name: Stratégie sur l’ordre des lignes
+                  href: ./kusto/management/roworderpolicy.md
+                - name: Commande RowOrder
+                  href: ./kusto/management/roworder-policy.md
+            - name: Mettre à jour la stratégie
+              items:
+                - name: Mettre à jour la stratégie
+                  href: ./kusto/management/updatepolicy.md
+                - name: Commande de stratégie de mise à jour
+                  href: ./kusto/management/update-policy.md
+            - name: Stratégie de traitement par lot
+              items:
+                - name: Stratégie de traitement par lot de l’ingestion
+                  href: ./kusto/management/batchingpolicy.md
+                - name: Commande de stratégie de traitement par lot de l’ingestion
+                  href: ./kusto/management/batching-policy.md
+            - name: Stratégie de fusion
+              items:
+                - name: Stratégie de fusion
+                  href: ./kusto/management/mergepolicy.md
+                - name: Commande de stratégie de fusion
+                  href: ./kusto/management/merge-policy.md
+            - name: Stratégie de partitionnement
+              items:
+                - name: Stratégie de partitionnement
+                  href: ./kusto/management/partitioningpolicy.md
+                - name: Commande de stratégie de partitionnement
+                  href: ./kusto/management/partitioning-policy.md
+            - name: Stratégie RestrictedViewAccess
+              items:
+                - name: Stratégie RestrictedViewAccess
+                  href: ./kusto/management/restrictedviewaccesspolicy.md
+                - name: Commande de stratégie restricted_view_access
+                  href: ./kusto/management/restrictedviewaccess-policy.md
+            - name: Stratégie de bac à sable
+              items:
+                - name: Stratégie de bac à sable
+                  href: ./kusto/management/sandboxpolicy.md
+                - name: Commande de stratégie de bac à sable
+                  href: ./kusto/management/sandbox-policy.md
+            - name: Stratégie de partitionnement
+              items:
+                - name: Stratégie de partitionnement
+                  href: ./kusto/management/shardingpolicy.md
+                - name: Commande de stratégie de sharding
+                  href: ./kusto/management/sharding-policy.md
+            - name: Stratégie d’ingestion en streaming
+              items:
+                - name: Stratégie d’ingestion en streaming
+                  href: ./kusto/management/streamingingestionpolicy.md
+                - name: Commande de stratégie streamingingestion
+                  href: ./kusto/management/streamingingestion-policy.md
+            - name: Stratégie de légende
+              href: ./kusto/management/calloutpolicy.md
+            - name: Stratégie de capacité
+              items:
+                - name: Stratégie de capacité
+                  href: ./kusto/management/capacitypolicy.md
+                - name: Commande de stratégie de capacité
+                  href: ./kusto/management/capacity-policy.md
+        - name: Rôles de sécurité
+          href: ./kusto/management/security-roles.md
+        - name: Ingestion de données
+          href: ./kusto/management/data-ingestion/index.md
+          items:
+            - name: Ingestion à partir du stockage
+              href: ./kusto/management/data-ingestion/ingest-from-storage.md
+            - name: Ingestion à partir d’une requête
+              href: ./kusto/management/data-ingestion/ingest-from-query.md
+            - name: Ingestion inline
+              href: ./kusto/management/data-ingestion/ingest-inline.md
+            - name: Ingérer à partir du stockage avec un abonnement Event Grid
+              href: ./kusto/management/data-ingestion/eventgrid.md
+            - name: Ingérer à partir d’Event Hub
+              href: ./kusto/management/data-ingestion/eventhub.md
+            - name: Ingérer à partir d’IoT Hub
+              href: ./kusto/management/data-ingestion/iothub.md
+        - name: Exportation de données
+          href: ./kusto/management/data-export/index.md
+          items:
+            - name: Vers le stockage cloud
+              href: ./kusto/management/data-export/export-data-to-storage.md
+            - name: Vers une table SQL
+              href: ./kusto/management/data-export/export-data-to-sql.md
+            - name: Vers une table externe
+              href: ./kusto/management/data-export/export-data-to-an-external-table.md
+            - name: Exportation de données continue
+              href: ./kusto/management/data-export/continuous-data-export.md
+        - name: Curseurs de base de données
+          href: ./kusto/management/databasecursor.md
+        - name: Informations système
+          href: ./kusto/management/systeminfo.md
+          items:
+            - name: Diagnostics
+              href: ./kusto/management/diagnostics.md
+            - name: Journal
+              href: ./kusto/management/journal.md
+            - name: Requêtes
+              href: ./kusto/management/queries.md
+            - name: Commandes
+              href: ./kusto/management/commands.md
+            - name: Commandes et requêtes
+              href: ./kusto/management/commands-and-queries.md
+            - name: Échecs d’ingestion
+              href: ./kusto/management/ingestionfailures.md
+            - name: Opérations
+              href: ./kusto/management/operations.md
+        - name: Contrôle d’accès
+          href: ./kusto/management/access-control/index.md
+          items:
+            - name: Identities
+              href: ./kusto/management/access-control/principals-and-identity-providers.md
+            - name: AAD
+              href: ./kusto/management/access-control/aad.md
+            - name: Rôles du principal
+              href: ./kusto/management/access-control/role-based-authorization.md
+            - name: "Procédure d’authentification\_AAD"
+              href: ./kusto/management/access-control/how-to-authenticate-with-aad.md
+            - name: "Procédure de provisionnement d’une application\_AAD"
+              href: ./kusto/management/access-control/how-to-provision-aad-app.md
+        - name: Gestion avancée des données
+          items:
+            - name: Vue d’ensemble des étendues (partitions de données)
+              href: ./kusto/management/extents-overview.md
+            - name: Commandes d’étendues
+              href: ./kusto/management/extents-commands.md
+            - name: Abonné aux clusters
+              href: ./kusto/management/cluster-follower.md
+            - name: Vidage des données
+              href: ./kusto/concepts/data-purge.md
+    - name: API
+      href: ./kusto/api/index.md
+      items:
+        - name: Vue d’ensemble
+          href: ./kusto/api/index.md
+          items:
+            - name: Bibliothèques clientes
+              href: ./kusto/api/client-libraries.md
+            - name: Chaînes de connexion
+              href: ./kusto/api/connection-strings/index.md
+              items:
+                - name: Chaînes de connexion Kusto
+                  href: ./kusto/api/connection-strings/kusto.md
+                - name: Chaînes de connexion de stockage
+                  href: ./kusto/api/connection-strings/storage.md
+        - name: API REST
+          href: ./kusto/api/rest/index.md
+          items:
+            - name: Authentification
+              href: ./kusto/api/rest/authentication.md
+            - name: Requête HTTP d’interrogation ou de gestion
+              href: ./kusto/api/rest/request.md
+            - name: Réponse HTTP d’interrogation ou de gestion
+              href: ./kusto/api/rest/response.md
+            - name: "Réponse HTTP d’interrogation\_v2"
+              href: ./kusto/api/rest/response2.md
+            - name: Interface utilisateur (liens ciblés)
+              href: ./kusto/api/rest/deeplink.md
+            - name: Ingestion de streaming
+              href: ./kusto/api/rest/streaming-ingest.md
+        - name: 'MS-TDS (SQL, ADO.NET, JDBC, ODBC)'
+          href: ./kusto/api/tds/index.md
+          items:
+            - name: T-SQL
+              href: ./kusto/api/tds/t-sql.md
+            - name: KQL over TDS
+              href: ./kusto/api/tds/tdskql.md
+            - name: Clients
+              href: ./kusto/api/tds/clients.md
+            - name: Serveur lié
+              href: ./kusto/api/tds/linkedserver.md
+            - name: AAD
+              href: ./kusto/api/tds/aad.md
+            - name: Problèmes connus
+              href: ./kusto/api/tds/sqlknownissues.md
+        - name: Kit de développement logiciel (SDK) .NET
+          items:
+            - name: Général
+              items:
+                - name: À propos du SDK
+                  href: ./kusto/api/netfx/about-the-sdk.md
+                - name: Contrôle du traçage
+                  href: ./kusto/api/netfx/controlling-tracing.md
+            - name: Kusto.Data
+              href: ./kusto/api/netfx/about-kusto-data.md
+              items:
+                - name: 'Propriétés des requêtes, ClientRequestProperties'
+                  href: ./kusto/api/netfx/request-properties.md
+            - name: Kusto.Ingest
+              href: ./kusto/api/netfx/about-kusto-ingest.md
+              items:
+                - name: Autorisations
+                  href: ./kusto/api/netfx/kusto-ingest-client-permissions.md
+                - name: Informations de référence sur le client
+                  href: ./kusto/api/netfx/kusto-ingest-client-reference.md
+                - name: Exceptions
+                  href: ./kusto/api/netfx/kusto-ingest-client-errors.md
+                - name: État de l’opération
+                  href: ./kusto/api/netfx/kusto-ingest-client-status.md
+                - name: Bonnes pratiques
+                  href: ./kusto/api/netfx/kusto-ingest-best-practices.md
+                - name: Exemples de code
+                  href: ./kusto/api/netfx/kusto-ingest-client-examples.md
+                - name: Procédure d’ingestion des données
+                  href: ./kusto/api/netfx/kusto-ingest-queued-ingest-sample.md
+                - name: Procédure d’ingestion des données avec l’API REST
+                  href: ./kusto/api/netfx/kusto-ingest-client-rest.md
+        - name: Kit de développement logiciel (SDK) Python
+          items:
+            - name: azure-kusto-python
+              href: ./kusto/api/python/kusto-python-client-library.md
+        - name: SDK R
+          items:
+            - name: azure-kusto-r
+              href: ./kusto/api/r/kusto-r-client-library.md
+        - name: Kit de développement logiciel (SDK) Java
+          items:
+            - name: azure-kusto-java
+              href: ./kusto/api/java/kusto-java-client-library.md
+        - name: SDK Node
+          items:
+            - name: azure-kusto-node
+              href: ./kusto/api/node/kusto-node-client-library.md
+        - name: Kit de développement logiciel (SDK) Go
+          items:
+            - name: azure-kusto-go
+              href: ./kusto/api/golang/kusto-golang-client-library.md
+        - name: PowerShell
+          items:
+            - name: Appel de Kusto à partir de PowerShell
+              href: ./kusto/api/powershell/powershell.md
+        - name: Intégration de l’IDE Monaco
+          items:
+            - name: Vue d’ensemble de monaco-kusto
+              href: ./kusto/api/monaco/monaco-kusto.md
+            - name: Incorporer l’expérience utilisateur web dans un iFrame
+              href: ./kusto/api/monaco/host-web-ux-in-iframe.md
+    - name: Outils
+      href: ./kusto/tools/index.md
+      items:
+        - name: Vue d’ensemble des outils
+          href: ./kusto/tools/index.md
+        - name: Requête ad hoc
+          items:
+            - name: Kusto.Explorer
+              href: ./kusto/tools/kusto-explorer.md
+              items:
+                - name: Options Kusto Explorer
+                  href: ./kusto/tools/kusto-explorer-options.md
+                - name: Raccourcis clavier
+                  href: ./kusto/tools/kusto-explorer-shortcuts.md
+                - name: Refactorisation de code
+                  href: ./kusto/tools/kusto-explorer-refactor.md
+                - name: Navigation dans le code
+                  href: ./kusto/tools/kusto-explorer-codenav.md
+                - name: Analyseur de code
+                  href: ./kusto/tools/kusto-explorer-code-analyzer.md
+            - name: Interface utilisateur web
+              href: 'https://docs.microsoft.com/azure/data-explorer/web-query-data'
+            - name: Kusto.Cli
+              href: ./kusto/tools/kusto-cli.md
+        - name: 'Visualisations, tableaux de bord et création de rapports'
+          items:
+            - name: Azure Notebooks
+              href: 'https://docs.microsoft.com/azure/data-explorer/azure-notebooks'
+            - name: Excel
+              items:
+                - name: Requête vide Excel
+                  href: 'https://docs.microsoft.com/azure/data-explorer/excel-blank-query'
+                - name: Connecteur Excel
+                  href: 'https://docs.microsoft.com/azure/data-explorer/excel-connector'
+            - name: Grafana
+              href: 'https://docs.microsoft.com/azure/data-explorer/grafana'
+            - name: Power BI
+              items:
+                - name: "Bonnes pratiques pour Power\_BI"
+                  href: 'https://docs.microsoft.com/azure/data-explorer/power-bi-best-practices'
+                - name: "Connecteur Power\_BI"
+                  href: 'https://docs.microsoft.com/azure/data-explorer/power-bi-connector'
+                - name: "Requête importée Power\_BI"
+                  href: 'https://docs.microsoft.com/azure/data-explorer/power-bi-imported-query'
+                - name: Requête SQL Power BI
+                  href: 'https://docs.microsoft.com/azure/data-explorer/power-bi-sql-query'
+        - name: Orchestration
+          items:
+            - name: Microsoft Flow (préversion)
+              items:
+                - name: "Connecteur Microsoft\_Flow"
+                  href: 'https://docs.microsoft.com/azure/data-explorer/flow'
+                - name: "Exemples d’utilisation du connecteur Microsoft\_Flow"
+                  href: 'https://docs.microsoft.com/azure/data-explorer/flow-usage'
+            - name: Microsoft Logic Apps (préversion)
+              href: ./kusto/tools/logicapps.md
+        - name: Ingestion de données
+          items:
+            - name: LightIngest
+              href: 'https://docs.microsoft.com/azure/data-explorer/lightingest'
+            - name: Connecteur Apache Spark
+              href: 'https://docs.microsoft.com/azure/data-explorer/spark-connector'
+        - name: Intégration du contrôle de code source
+          items:
+            - name: Synchroniser Kusto
+              href: ./kusto/tools/synckusto.md
+            - name: Azure Pipelines/DevOps
+              href: 'https://docs.microsoft.com/azure/data-explorer/devops'
 - name: Ressources
   items:
     - name: Blog

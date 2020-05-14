@@ -1,5 +1,5 @@
 ---
-title: Vue d’ensemble - Azure Data Explorer | Microsoft Docs
+title: Vue d’ensemble - Azure Data Explorer
 description: Cet article présente une vue d’ensemble d’Azure Data Explorer.
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/07/2019
-ms.openlocfilehash: 1c6c3cafef35c1292292e86da69a4d6ec03bb87c
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 7f36e5239ba183b87ab04349b873a0182363def7
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81490274"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83226480"
 ---
 # <a name="overview"></a>Vue d’ensemble
 
@@ -26,6 +26,7 @@ La syntaxe de l’instruction d’expression tabulaire comporte un flux de donn�
 
 Par exemple, la requête Kusto suivante a une seule instruction, qui est une instruction d’expression tabulaire. L’instruction commence par une référence à une table appelée `StormEvents` (la base de données qui héberge cette table est ici implicite et fait partie des informations de connexion). Les données (lignes) pour cette table sont ensuite filtrées par la valeur de la colonne `StartTime`, puis par la valeur de la colonne `State`. La requête retourne ensuite le nombre de lignes restantes.
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 StormEvents 
 | where StartTime >= datetime(2007-11-01) and StartTime < datetime(2007-12-01)

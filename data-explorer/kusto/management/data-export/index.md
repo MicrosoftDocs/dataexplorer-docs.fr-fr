@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/09/2019
-ms.openlocfilehash: e779571251baa6e87953e546d71adb98e7cfde61
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 88bb9e6541d9dc5c934affc8f777f836aad86ae1
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81490393"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373490"
 ---
 # <a name="data-export"></a>Exportation de données
 
@@ -21,10 +21,7 @@ L’exportation de données est le processus qui exécute une requête Kusto et 
 
 Il existe plusieurs méthodes d’exportation de données :
 
-* **Exportation côté client** : Dans sa forme la plus simple, l’exportation de données peut s’effectuer côté client (le client exécute une requête auprès du service, lit les résultats, puis les écrit quelque part). Cette forme d’exportation de données dépend de l’outil client utilisé pour effectuer l’exportation, le plus souvent vers le système de fichiers local où l’outil s’exécute. Parmi les outils qui prennent en charge ce modèle, citons [Kusto.Explorer](../../tools/kusto-explorer.md), l’[interface utilisateur web](https://docs.microsoft.com/azure/data-explorer/web-query-data), 
-
-
- entre autres.
+* **Exportation côté client** : Dans sa forme la plus simple, l’exportation de données peut s’effectuer côté client (le client exécute une requête auprès du service, lit les résultats, puis les écrit quelque part). Cette forme d’exportation de données dépend de l’outil client utilisé pour effectuer l’exportation, le plus souvent vers le système de fichiers local où l’outil s’exécute. Parmi les outils qui prennent en charge ce modèle, citons [Kusto.Explorer](../../tools/kusto-explorer.md), l’[interface utilisateur web](../../../web-query-data.md) et autres.
 
 * **Exportation côté service - tirage (pull)**  : Si la cible de l’exportation est une table Kusto (sur le même cluster/la même base de données que la requête ou sur en/une autre), utilisez le flux « ingestion à partir d’une requête » sur la table cible. Dans ce flux, une requête est exécutée et ses résultats sont immédiatement ingérés dans une table Kusto. Consultez [Ingestion des données](../data-ingestion/index.md).
 
