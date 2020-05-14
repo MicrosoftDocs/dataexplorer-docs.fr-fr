@@ -1,6 +1,6 @@
 ---
-title: Where, opérateur-Azure Explorateur de données | Microsoft Docs
-description: Cet article décrit Where, opérateur (has, Contains, StartsWith, EndsWith, correspond à Regex) dans Azure Explorateur de données.
+title: opérateur Where dans le langage de requête Kusto-Azure Explorateur de données
+description: Cet article décrit l’opérateur Where dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: fadf8aa8c21dac364793c73a38e68d55fc2a6f6d
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 7dc9d7166a1f286e14c81f269f32f894cbe9ff9d
+ms.sourcegitcommit: da7c699bb62e1c4564f867d4131d26286c5223a8
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83370372"
+ms.lasthandoff: 05/14/2020
+ms.locfileid: "83404175"
 ---
 # <a name="where-operator"></a>opérateur where
 
@@ -50,7 +50,7 @@ Pour obtenir des performances optimales :
 
 * **Simplest terms first** (termes les plus simples en premier) : si vous avez plusieurs clauses unies par `and`, insérez d’abord les clauses n’impliquant qu’une seule colonne. C’est pourquoi `Timestamp > ago(1d) and OpId == EventId` est plus adapté.
 
-Pour plus d’informations, reportez-vous au résumé des [opérateurs de chaîne disponibles](./datatypes-string-operators.md) et au résumé des [opérateurs numériques disponibles](./numoperators.md).
+Pour plus d’informations, consultez le résumé des [opérateurs de chaîne disponibles](./datatypes-string-operators.md) et le résumé des [opérateurs numériques disponibles](./numoperators.md).
 
 **Exemple**
 
@@ -61,9 +61,9 @@ Traces
     and ActivityId == SubActivityId 
 ```
 
-Les enregistrements qui ne sont pas datant de plus de 1 heure et proviennent de la source nommée « Mon_cluster », et ont deux colonnes de la même valeur. 
+Cet exemple récupère les enregistrements qui ne sont pas antérieurs à 1 heure, proviennent d’une source appelée `MyCluster` et ont deux colonnes de la même valeur. 
 
-Notez que nous plaçons la comparaison entre deux colonnes à la fin, car elle ne peut pas utiliser l’index et force une analyse.
+Notez que nous avons placé la comparaison entre deux colonnes en dernier, car elle ne peut pas utiliser l’index et force une analyse.
 
 **Exemple**
 
