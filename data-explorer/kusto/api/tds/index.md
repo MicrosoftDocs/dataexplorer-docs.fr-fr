@@ -1,6 +1,6 @@
 ---
-title: MS-TDS (prise en charge de T-SQL) - Azure Data Explorer | Microsoft Docs
-description: Cet article décrit MS-TDS (prise en charge de T-SQL) dans Azure Data Explorer.
+title: Prise en charge de MS-TDS T-SQL - Azure Data Explorer
+description: Cet article présente la prise en charge de MS-TDS T-SQL dans Azure Data Explorer.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,27 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/06/2019
-ms.openlocfilehash: 8aaea26b6c4e8a7f76c4129faeb681791f25ae7e
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: a128db995c78c0583bc7c7712c06292a2f6598d1
+ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81490546"
+ms.lasthandoff: 05/18/2020
+ms.locfileid: "83550535"
 ---
-# <a name="ms-tds-t-sql-support"></a>MS-TDS (prise en charge de T-SQL)
+# <a name="ms-tds-t-sql-support"></a>Prise en charge de MS-TDS T-SQL
 
-Kusto prend en charge un sous-ensemble du protocole de communication Microsoft SQL Server (MS-TDS), avec un sous-ensemble du langage de requête T-SQL, afin que les outils existants qui savent comment interroger SQL Server puissent fonctionner avec Kusto. Parmi les clients pris en charge, citons notamment Microsoft Excel, Microsoft Power BI.
+Azure Data Explorer (Kusto) prend en charge une partie du protocole de communication Microsoft SQL Server (MS-TDS) avec une partie du langage de requête T-SQL. Microsoft Excel et Microsoft Power BI font partie des nombreux outils pouvant fonctionner avec Azure Data Explorer (Kusto). Ces applications Microsoft savent également comment interroger SQL Server.
 
-Notez que pour qu’un outil client interroge Kusto par le biais de MS-TDS, le client doit utiliser l’authentification intégrée Azure Active Directory.
+> [!NOTE]
+> Utilisez l’authentification intégrée Azure Active Directory (Azure AD) comme outil client pour interroger Kusto via MS-TDS.
 
-Pour plus d’informations sur le langage de requête T-SQL tel qu’il est implémenté par Kusto, consultez [T-SQL](./t-sql.md). 
+## <a name="next-steps"></a>Étapes suivantes
 
-Consultez [Clients MS-TDS et Kusto](./clients.md) pour obtenir des exemples d’utilisation de Kusto à partir de clients connus qui utilisent MS-TDS/T-SQL.
+* [T-SQL](./t-sql.md) - Découvrez le langage de requête T-SQL tel qu’il est implémenté par Kusto. 
 
-Consultez [Kusto en tant que serveur lié à un serveur SQL](./linkedserver.md) pour plus d’informations sur la configuration d’un cluster Kusto en tant que serveur lié à un serveur SQL local.
+* [KQL sur TDS](./tdskql.md) - Découvrez l’exécution de requêtes KQL natives via des points de terminaison TDS.
 
-Consultez [MS-TDS avec Azure Active Directory](./aad.md) pour plus d’informations sur l’utilisation d’AAD par le biais de TDS pour la connexion à Kusto.
+* [Clients MS-TDS et Kusto](./clients.md) - Utilisez Azure Data Explorer à partir de clients connus qui se servent de MS-TDS/T-SQL.
 
-Consultez [KQL sur TDS](./tdskql.md) pour plus d’informations sur l’exécution de requêtes KQL natives par le biais d’un point de terminaison TDS. 
+* [Azure Data Explorer (Kusto) comme serveur lié à un serveur SQL](./linkedserver.md) - Configurez le cluster en tant que serveur lié à un serveur SQL local. 
 
-Enfin, consultez [ceci](./sqlknownissues.md) pour comprendre les principales différences entre l’implémentation de T-SQL par SQL Server et Kusto.
+* [MS-TDS avec Azure Active Directory](./aad.md) - Utilisez Azure AD via TDS pour vous connecter à Azure Data Explorer.
+
+* [Problèmes connus SQL](./sqlknownissues.md) - Découvrez les principales différences entre l’implémentation de T-SQL par SQL Server et Azure Data Explorer.

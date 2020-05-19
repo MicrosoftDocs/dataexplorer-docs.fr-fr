@@ -1,8 +1,8 @@
-- name: Documentation de l’Explorateur de données Azure
+- name: Documentation Azure Data Explorer
   href: index.yml
 - name: Vue d’ensemble
   items:
-    - name: "Qu’est-ce que l’Explorateur de données Azure\_?"
+    - name: "Qu’est-ce qu’Azure Data Explorer\_?"
       href: data-explorer-overview.md
 - name: Démarrages rapides
   expanded: true
@@ -1125,6 +1125,8 @@
               href: ./kusto/query/geo-point-to-s2cell-function.md
             - name: geo_s2cell_to_central_point()
               href: ./kusto/query/geo-s2cell-to-central-point-function.md
+            - name: geo_polygon_to_s2cells()
+              href: kusto/query/geo-polygon-to-s2cells-function.md
         - name: Analyse des utilisateurs
           items:
             - name: Plug-ins de l’analytique des utilisateurs
