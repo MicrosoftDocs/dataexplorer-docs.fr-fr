@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: d66e60d195500089a0649b519604a833ffd5386e
-ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
+ms.openlocfilehash: 0ecdee4171cb6deaa4cc6c233b8951c4eb54953c
+ms.sourcegitcommit: 9810acae3f1c83b8efe7b952d3bada2ff496b024
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83271058"
+ms.lasthandoff: 05/18/2020
+ms.locfileid: "83444696"
 ---
 # <a name="capacity-policy"></a>Stratégie de capacité
 
@@ -54,7 +54,7 @@ La capacité de fusion totale des étendues du cluster (comme indiqué par [. af
 `Number of nodes in cluster`x`MaximumConcurrentOperationsPerNode`
 
 > [!Note]
-> * `MaximumConcurrentOperationsPerNode`est ajusté automatiquement par le système dans la plage [1, 5]
+> * `MaximumConcurrentOperationsPerNode`est ajusté automatiquement par le système dans la plage [1, 5], sauf s’il a été défini sur une valeur supérieure.
 > * Dans les clusters comportant trois nœuds ou plus, le nœud d’administration ne participe pas aux opérations de fusion. Le `Number of nodes in cluster` est réduit d’une unité.
 
 ## <a name="extents-purge-rebuild-capacity"></a>Étendues purger la capacité de reconstruction
@@ -93,7 +93,7 @@ Minimum ( `ClusterMaximumConcurrentOperations` , `Number of nodes in cluster` * 
 Les étendues totales de la partition du cluster (comme indiqué par [. Show Capacity](../management/diagnostics.md#show-capacity)) sont définies par une propriété unique : `ClusterMaximumConcurrentOperations` .
 
 > [!Note]
-> `ClusterMaximumConcurrentOperations`est ajusté automatiquement par le système dans la plage [1, 16]
+> `ClusterMaximumConcurrentOperations`est ajusté automatiquement par le système dans la plage [1, 16], sauf s’il a été défini sur une valeur supérieure.
 
 ## <a name="defaults"></a>Valeurs par défaut
 

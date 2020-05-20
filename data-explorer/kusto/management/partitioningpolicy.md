@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: fc3fa6b081e48e09ed246144cd72785446395883
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: e6f103d8957416c55a4562fb646e8ccb17ddf1e5
+ms.sourcegitcommit: 9810acae3f1c83b8efe7b952d3bada2ff496b024
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373339"
+ms.lasthandoff: 05/18/2020
+ms.locfileid: "83444713"
 ---
 # <a name="data-partitioning-policy-preview"></a>Stratégie de partitionnement des données (préversion)
 
@@ -178,7 +178,7 @@ Les propriétés suivantes peuvent être définies dans le cadre de la stratégi
   * Cible maximale pour la somme du nombre de lignes des étendues sources d’une opération de partitionnement de données unique.
   * Cette propriété est *facultative*, avec sa valeur par défaut `0` (auquel cas, une cible par défaut de 5 millions enregistrements est activée).
 
-## <a name="notes"></a>Remarques
+## <a name="notes"></a>Notes
 
 ### <a name="the-data-partitioning-process"></a>Processus de partitionnement des données
 
@@ -212,8 +212,8 @@ La sortie comprend les éléments suivants :
 
 ### <a name="outliers-in-partitioned-columns"></a>Valeurs hors norme dans les colonnes partitionnées
 
-* Si une clé de partition de hachage comprend des valeurs significnatly plus fréquentes que d’autres, par exemple une chaîne vide, une valeur générique (par exemple `null` ou `N/A` ), ou une entité (par exemple, `tenant_id` ) qui est plus répandue dans le jeu de données, qui pourrait contribuer à la distribution déséquilibrée des données sur les nœuds du cluster et à la dégradation des performances des requêtes.
-* Si une clé de partition DateTime de plage uniforme a un pourcentage suffisamment élevé de valeurs qui sont « éloignées » de la majorité des valeurs de la colonne (par exemple, les valeurs DateTime du passé ou futur distant), cela peut augmenter le overhad du processus de partitionnement des données et entraîner de nombreuses petites extensions dont le cluster a besoin pour effectuer le suivi.
+* Si une clé de partition de hachage comprend des valeurs qui sont beaucoup plus fréquentes que d’autres, par exemple une chaîne vide, une valeur générique (par exemple `null` ou `N/A` ), ou qu’elles représentent une entité (par exemple, `tenant_id` ) qui est plus répandue dans le jeu de données, qui pourrait contribuer à la distribution déséquilibrée des données sur les nœuds du cluster et à la dégradation des
+* Si une clé de partition DateTime de plage uniforme a un pourcentage suffisamment élevé de valeurs qui sont « éloignées » de la majorité des valeurs de la colonne (par exemple, les valeurs DateTime du passé ou futur distant), cela peut augmenter la surcharge du processus de partitionnement des données et entraîner de nombreuses petites extensions dont le cluster a besoin pour effectuer le suivi.
 
 Dans ces deux cas, vous devez soit « corriger » les données, soit filtrer les enregistrements non pertinents dans les données avant ou au moment de l’ingestion (par exemple, à l’aide d’une [stratégie de mise à jour](updatepolicy.md)), afin de réduire la surcharge liée au partitionnement des données sur le cluster.
 

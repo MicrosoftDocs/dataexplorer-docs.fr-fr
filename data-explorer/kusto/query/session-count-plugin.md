@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 6a9596b71afabe1e80e866fef7f2a22f6b288631
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 1e173dcba48e8748562bad61e0f16786e957ca83
+ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372404"
+ms.lasthandoff: 05/18/2020
+ms.locfileid: "83550552"
 ---
 # <a name="session_count-plugin"></a>plug-in session_count
 
@@ -35,7 +35,7 @@ T | evaluate session_count(id, datetime_column, startofday(ago(30d)), startofday
 * *Start*: scalaire avec la valeur de la période de démarrage de l’analyse.
 * *End*: scalaire avec la valeur de la période de fin de l’analyse.
 * *Bin*: valeur constante scalaire de l’étape d’analyse de la session.
-* *LookBackWindow*: valeur constante scalaire représentant la période de lookback de session. Si l’ID de `IdColumn` s’affiche dans une fenêtre de temps dans laquelle `LookBackWindow` la session est considérée comme étant existante, si elle ne l’est pas, la session est considérée comme nouvelle.
+* *LookBackWindow*: valeur constante scalaire représentant la période de lookback de session. Si l’ID de `IdColumn` s’affiche dans une fenêtre de temps dans `LookBackWindow` , la session est considérée comme étant existante. Si l’ID ne s’affiche pas, la session est considérée comme nouvelle.
 * *dim1*, *dim2*,... : (facultatif) liste des colonnes de dimensions qui découpent le calcul du nombre de sessions.
 
 **Retourne**
@@ -51,14 +51,13 @@ Le schéma de la table de sortie est le suivant :
 
 **Exemples**
 
-
-Pour les besoins de l’exemple, nous allons rendre les données déterministes-une table avec deux colonnes :
+Pour cet exemple, les données sont déterministes et nous utilisons une table avec deux colonnes :
 - Chronologie : nombre en cours de 1 à 10 000
 - ID : ID de l’utilisateur, de 1 à 50
 
-`Id`s’affichent dans l' `Timeline` emplacement spécifique s’il s’agit d’un séparateur de `Timeline` (chronologie% ID = = 0).
+`Id`apparaît dans l' `Timeline` emplacement spécifique s’il s’agit d’un séparateur de `Timeline` (chronologie% ID = = 0).
 
-Cela signifie que l’événement avec `Id==1` s’affiche à n’importe quel `Timeline` emplacement, événement avec `Id==2` à chaque deuxième `Timeline` emplacement, et ainsi de suite.
+Un événement avec apparaît `Id==1` à n’importe quel `Timeline` emplacement, un événement avec `Id==2` à chaque deuxième `Timeline` emplacement, et ainsi de suite.
 
 Voici quelques 20 lignes de données :
 

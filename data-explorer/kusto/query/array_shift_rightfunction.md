@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/11/2019
-ms.openlocfilehash: 714c6c15443420abbc973593acb2f311a5507dc4
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 28a44365d6d79bf30ec188146d989f2af2ad12c1
+ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83225664"
+ms.lasthandoff: 05/18/2020
+ms.locfileid: "83550654"
 ---
 # <a name="array_shift_right"></a>array_shift_right()
 
@@ -21,17 +21,17 @@ ms.locfileid: "83225664"
 
 **Syntaxe**
 
-`array_shift_right(`*arr*, *shift_count* [, *fill_value* ]`)`
+`array_shift_right(`*`arr`*, *`shift_count`* [, *`fill_value`* ]`)`
 
 **Arguments**
 
-* *arr*: tableau d’entrée à fractionner, doit être un tableau dynamique.
-* *shift_count*: entier spécifiant le nombre de positions que les éléments de tableau seront décalés vers la droite. Si la valeur est négative, les éléments sont décalés vers la gauche.
-* *fill_value*: valeur scalaire utilisée pour insérer des éléments à la place de ceux qui ont été déplacés et supprimés. Valeur par défaut : valeur null ou chaîne vide (selon le type *arr* ).
+* *`arr`*: Tableau d’entrée à fractionner, doit être un tableau dynamique.
+* *`shift_count`*: Entier spécifiant le nombre de positions que les éléments du tableau seront décalés vers la droite. Si la valeur est négative, les éléments sont décalés vers la gauche.
+* *`fill_value`*: valeur scalaire utilisée pour insérer des éléments à la place de ceux qui ont été déplacés et supprimés. Valeur par défaut : valeur null ou chaîne vide (selon le type *arr* ).
 
 **Retourne**
 
-Tableau dynamique contenant la même quantité d’éléments que dans le tableau d’origine, où chaque élément a été déplacé en fonction de *shift_count*. Les nouveaux éléments ajoutés à la place des éléments supprimés auront la valeur *fill_value*.
+Tableau dynamique contenant la même quantité d’éléments que dans le tableau d’origine. Chaque élément a été déplacé en fonction de *`shift_count`* . Les nouveaux éléments ajoutés à la place des éléments supprimés auront la valeur *`fill_value`* .
 
 **Voir aussi**
 
@@ -64,7 +64,6 @@ Tableau dynamique contenant la même quantité d’éléments que dans le tablea
     |arr|arr_shift|
     |---|---|
     |[1, 2, 3, 4, 5]|[-1,-1, 1, 2, 3]|
-
 
 * Décalage vers la gauche de deux positions à l’aide d’une valeur de shift_count négative :
 

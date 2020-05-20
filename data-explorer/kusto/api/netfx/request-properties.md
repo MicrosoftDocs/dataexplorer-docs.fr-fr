@@ -1,6 +1,6 @@
 ---
-title: Propriétés de la demande Kusto & ClientRequestProperties-Azure Explorateur de données
-description: Cet article décrit les propriétés de la demande, ClientRequestProperties dans Azure Explorateur de données.
+title: Propriétés de la demande et ClientRequestProperties-Azure Explorateur de données
+description: Cet article décrit les propriétés des requêtes et les ClientRequestProperties dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,56 +8,60 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/23/2019
-ms.openlocfilehash: 52b1f73e539e57f82d3ec911a3ea69dcd6848e4a
-ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
+ms.openlocfilehash: 137a34ab211b72c2282d242840a46699d5feb3b3
+ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83382163"
+ms.lasthandoff: 05/18/2020
+ms.locfileid: "83550484"
 ---
-# <a name="request-properties-clientrequestproperties"></a>Propriétés de la demande, ClientRequestProperties
+# <a name="request-properties-and-clientrequestproperties"></a>Propriétés de la demande et ClientRequestProperties
 
-Lorsque vous effectuez une requête à partir de Kusto via le kit de développement logiciel (SDK) .NET, l’un d’eux fournit généralement les valeurs suivantes :
+Quand une demande est effectuée à partir de Kusto via le kit de développement logiciel (SDK) .NET, fournissez :
 
-1. Chaîne de connexion qui indique le point de terminaison de service auquel se connecter, les paramètres d’authentification et les informations similaires relatives à la connexion. Par programme, la chaîne de connexion est représentée par la `KustoConnectionStringBuilder` classe.
+* Chaîne de connexion qui indique le point de terminaison de service auquel se connecter, les paramètres d’authentification et les informations similaires relatives à la connexion. Par programme, la chaîne de connexion est représentée par la `KustoConnectionStringBuilder` classe.
 
-2. Nom de la base de données utilisée pour décrire l’étendue de la demande.
+* Nom de la base de données utilisée pour décrire l’étendue de la demande.
 
-3. Texte de la requête (requête ou commande) elle-même.
+* Texte de la requête (requête ou commande) elle-même.
 
-4. Propriétés supplémentaires que le client fournit au service et qui sont appliquées à la demande. Par programmation, ces propriétés sont détenues par une classe appelée `ClientRequestProperties` .
+* Propriétés supplémentaires fournies par le client au service et appliquées à la demande. Par programmation, ces propriétés sont détenues par une classe appelée `ClientRequestProperties` .
 
-Les propriétés de demande du client ont de nombreuses utilisations. Certaines d’entre elles sont utilisées pour faciliter le débogage (par exemple, en fournissant des chaînes de corrélation qui peuvent être utilisées pour suivre les interactions entre le client et le service), d’autres sont utilisées pour affecter les limites et les stratégies qui sont appliquées à la requête, tandis qu’une troisième catégorie de telles propriétés est [paramètres de requête](../../query/queryparametersstatement.md). La liste complète des propriétés prises en charge s’affiche dans cette page.
+##   <a name="clientrequestproperties"></a>ClientRequestProperties
 
-La `Kusto.Data.Common.ClientRequestProperties` classe contient trois types de données :
+Les propriétés de demande du client ont de nombreuses utilisations. 
+* Facilite le débogage. Par exemple, les propriétés peuvent fournir des chaînes de corrélation utilisées pour suivre les interactions entre le client et le service. 
+* Affecte les limites et les stratégies qui sont appliquées à la requête. 
+* les [paramètres de requête](../../query/queryparametersstatement.md) permettent aux applications clientes de paramétrer les requêtes Kusto en fonction de l’entrée utilisateur.
+[liste des propriétés prises en charge](#list-of-clientrequestproperties).
+
+La `Kusto.Data.Common.ClientRequestProperties` classe contient trois types de données.
 
 * Propriétés nommées.
-
-* Options (mappage d’un nom d’option à une valeur d’option).
-
-* Parameters (mappage d’un nom de paramètre de requête à une valeur de paramètre de requête).
+* Options : mappage d’un nom d’option à une valeur d’option.
+* Parameters : mappage d’un nom de paramètre de requête à une valeur de paramètre de requête.
 
 > [!NOTE]
-> Certaines propriétés nommées sont marquées comme « ne pas utiliser ». Ces propriétés ne doivent pas être spécifiées par les clients et n’ont aucun effet sur le service.
+> Certaines propriétés nommées sont marquées « ne pas utiliser ». Ces propriétés ne doivent pas être spécifiées par les clients et n’ont aucun effet sur le service.
 
 ## <a name="the-clientrequestid-x-ms-client-request-id-named-property"></a>Propriété nommée ClientRequestId (x-ms-client-Request-ID)
 
-Cette propriété nommée contient l’identité spécifiée par le client de la demande. Il est fortement recommandé de spécifier une valeur unique par demande par les clients pour chaque demande qu’ils envoient, car cela facilite le débogage (et est requis dans certains scénarios, tels que l’annulation de requête).
+Cette propriété nommée a l’identité spécifiée par le client de la demande. Les clients doivent spécifier une valeur unique par demande pour chaque demande qu’ils envoient. Cette valeur rend les échecs de débogage plus faciles à effectuer, et est nécessaire dans certains scénarios, par exemple pour l’annulation de requête.
 
-Le nom de programmation de cette propriété est `ClientRequestId` , et il se traduit par l’en-tête http `x-ms-client-request-id` .
+Le nom de programmation de la propriété est `ClientRequestId` , et il se traduit par l’en-tête http `x-ms-client-request-id` .
 
-Cette propriété est définie sur une valeur (aléatoire) par le kit de développement logiciel (SDK) si le client ne spécifie pas sa propre valeur.
+Cette propriété est définie sur une valeur (aléatoire) par le kit de développement logiciel (SDK) si le client ne spécifie pas de valeur.
 
 Le contenu de cette propriété peut être n’importe quelle chaîne unique imprimable, telle qu’un GUID.
-Toutefois, il est recommandé que les clients utilisent le modèle suivant :
+Toutefois, nous recommandons aux clients d’utiliser : *applicationName* `.` *ActivityName* `;` *UniqueID*
 
-*ApplicationName* `.` *ActivityName* `;` *UniqueID*
-
-Où *applicationName* identifie l’application cliente à l’origine de la demande, *ActivityName* identifie le type d’activité pour lequel l’application cliente émet la requête cliente et *UniqueID* identifie la requête spécifique.
+* *ApplicationName* identifie l’application cliente qui effectue la demande.
+* *ActivityName* identifie le type d’activité pour lequel l’application cliente émet la requête du client.
+* *UniqueID* identifie la requête spécifique.
 
 ## <a name="the-application-x-ms-app-named-property"></a>La propriété application (x-ms-App) nommée
 
-Cette propriété nommée contient le nom de l’application cliente qui effectue la demande, à des fins de suivi.
+La propriété de l’application (x-ms-App) nommée a le nom de l’application cliente qui effectue la demande et est utilisée pour le suivi.
 
 Le nom de programmation de cette propriété est `Application` , et il se traduit par l’en-tête http `x-ms-app` . Il peut être spécifié dans la chaîne de connexion Kusto sous la forme `Application Name for Tracing` .
 
@@ -65,26 +69,27 @@ Cette propriété sera définie sur le nom du processus hébergeant le kit de d�
 
 ## <a name="the-user-x-ms-user-named-property"></a>La propriété utilisateur (x-ms-User) nommée
 
-Cette propriété nommée contient l’identité de l’utilisateur qui effectue la demande, à des fins de suivi.
+La propriété de l’utilisateur (x-ms-User) nommé a l’identité de l’utilisateur qui effectue la demande et est utilisée pour le suivi.
 
 Le nom de programmation de cette propriété est `User` , et il se traduit par l’en-tête http `x-ms-user` . Il peut être spécifié dans la chaîne de connexion Kusto sous la forme `User Name for Tracing` .
 
 ## <a name="controlling-request-properties-using-the-rest-api"></a>Contrôle des propriétés de la demande à l’aide de l’API REST
 
-Lors de l’émission d’une requête HTTP auprès du service Kusto, utilisez l' `properties` emplacement dans le document JSON qui est le corps de la demande de publication pour fournir les propriétés de la demande. Notez que certaines propriétés (telles que l' « ID de demande client », qui est l’ID de corrélation fourni par le client au service pour l’identification de la demande) peuvent être fournies dans l’en-tête HTTP, et peuvent donc également être définies si HTTP est utilisé.
-Pour plus d’informations, consultez [l’objet demande de l’API REST Kusto](../rest/request.md) .
+Lors de l’émission d’une requête HTTP auprès du service Kusto, utilisez l' `properties` emplacement dans le document JSON qui est le corps de la demande de publication pour fournir les propriétés de la demande. 
+
+> [!NOTE]
+> Certaines des propriétés (telles que l' « ID de demande client », qui est l’ID de corrélation fourni par le client au service pour identifier la demande) peuvent être fournies dans l’en-tête HTTP et peuvent également être définies si HTTP est utilisé.
+Pour plus d’informations, consultez [l’objet demande de l’API REST Kusto](../rest/request.md).
 
 ## <a name="providing-values-for-query-parameterization-as-request-properties"></a>Fournir des valeurs pour le paramétrage de requête en tant que propriétés de demande
 
-Les requêtes Kusto peuvent faire référence à des paramètres de requête à l’aide d’une instruction [Declare Statement-Parameters](../../query/queryparametersstatement.md) spécialisée dans le texte de la requête. Cela permet aux applications clientes de paramétrer les requêtes Kusto en fonction de l’entrée de l’utilisateur de manière sécurisée (sans crainte des attaques par injection).
+Les requêtes Kusto peuvent faire référence à des paramètres de requête à l’aide d’une instruction [Declare Statement-Parameters](../../query/queryparametersstatement.md) spécialisée dans le texte de la requête. Cette instruction permet aux applications clientes de paramétrer les requêtes Kusto en fonction de l’entrée de l’utilisateur, de manière sécurisée et sans crainte d’attaques par injection.
 
-Par programmation, il est possible de définir des valeurs de propriétés à l’aide des `ClearParameter` `SetParameter` méthodes, et `HasParameter` .
+Par programme, définissez les valeurs des propriétés à l’aide des `ClearParameter` `SetParameter` méthodes, et `HasParameter` .
 
 Dans l’API REST, les paramètres de requête s’affichent dans la même chaîne encodée au format JSON que les autres propriétés de la requête.
 
-## <a name="sample-code-for-using-request-properties"></a>Exemple de code pour l’utilisation des propriétés de la demande
-
-Voici un exemple de code client :
+## <a name="sample-client-code-for-using-request-properties"></a>Exemple de code client pour l’utilisation de propriétés de demande
 
 ```csharp
 public static System.Data.IDataReader QueryKusto(
@@ -141,22 +146,18 @@ public static System.Data.IDataReader QueryKusto(
 
 ## <a name="list-of-clientrequestproperties"></a>Liste des ClientRequestProperties
 
-<!-- The following is auto-generated by running the following command: -->
-<!-- Kusto.Cli.exe -execute:"#crp -doc"                                -->
-
-<!-- The following text can be re-produced by running the Kusto.Cli.exe directive '#crp -doc' -->
-
+<!-- The following is auto-generated by running  Kusto.Cli.exe -execute:"#crp -doc"           -->
 <!-- The following text can be re-produced by running the Kusto.Cli.exe directive '#crp -doc' -->
 
 * `debug_query_externaldata_projection_fusion_disabled`(*OptionDebugQueryDisableExternalDataProjectionFusion*) : s’il est défini, ne fusiblet pas la projection dans l’opérateur ExternalData. Expression
-* `debug_query_fanout_threads_percent_external_data`(*OptionDebugQueryFanoutThreadsPercentExternalData*) : pourcentage de threads à défanoutr pour l’exécution pour les nœuds de données externes. Tiers
-* `deferpartialqueryfailures`(*OptionDeferPartialQueryFailures*) : si la valeur est true, désactive la création de rapports sur les échecs de requête partiels dans le cadre du jeu de résultats. Expression
+* `debug_query_fanout_threads_percent_external_data`(*OptionDebugQueryFanoutThreadsPercentExternalData*) : pourcentage de threads à partir duquel l’exécution doit être ventilée, pour les nœuds de données externes. Tiers
+* `deferpartialqueryfailures`(*OptionDeferPartialQueryFailures*) : si la valeur est true, désactive les rapports d’échecs de requête partiels dans le cadre du jeu de résultats. Expression
 * `max_memory_consumption_per_query_per_node`(*OptionMaxMemoryConsumptionPerQueryPerNode*) : remplace la quantité maximale de mémoire par défaut qu’une requête entière peut allouer par nœud. UInt64
-* `maxmemoryconsumptionperiterator`(*OptionMaxMemoryConsumptionPerIterator*) : remplace la quantité maximale par défaut de mémoire qu’un opérateur de requête peut allouer. UInt64
-* `maxoutputcolumns`(*OptionMaxOutputColumns*) : remplace le nombre maximal par défaut de colonnes qu’une requête est autorisée à produire. Long
+* `maxmemoryconsumptionperiterator`(*OptionMaxMemoryConsumptionPerIterator*) : remplace la quantité maximale de mémoire par défaut qu’un opérateur de requête peut allouer. UInt64
+* `maxoutputcolumns`(*OptionMaxOutputColumns*) : remplace le nombre maximal de colonnes par défaut qu’une requête peut produire. Long
 * `norequesttimeout`(*OptionNoRequestTimeout*) : permet de définir le délai d’expiration de la requête sur sa valeur maximale. Expression
 * `notruncation`(*OptionNoTruncation*) : permet de supprimer la troncation des résultats de la requête retournés à l’appelant. Expression
-* `push_selection_through_aggregation`(*OptionPushSelectionThroughAggregation*) : si la valeur est true, envoyer une sélection simple par le biais de l’agrégation [Boolean]
+* `push_selection_through_aggregation`(*OptionPushSelectionThroughAggregation*) : si la valeur est true, exécute un push de la sélection simple par le biais de l’agrégation [Boolean]
 * `query_admin_super_slacker_mode`(*OptionAdminSuperSlackerMode*) : si la valeur est true, déléguez l’exécution de la requête à un autre nœud [booléen]
 * `query_bin_auto_at`(*QueryBinAutoAt*) : lors de l’évaluation de la fonction bin_auto (), valeur de début à utiliser. [LiteralExpression]
 * `query_bin_auto_size`(*QueryBinAutoSize*) : lors de l’évaluation de la fonction bin_auto (), valeur de taille de l’emplacement à utiliser. [LiteralExpression]
@@ -164,33 +165,32 @@ public static System.Data.IDataReader QueryKusto(
 * `query_cursor_before_or_at_default`(*OptionQueryCursorBeforeOrAtDefault*) : valeur de paramètre par défaut de la fonction cursor_before_or_at () lorsqu’elle est appelée sans paramètres. [string]
 * `query_cursor_current`(*OptionQueryCursorCurrent*) : remplace la valeur de curseur retournée par les fonctions cursor_current () ou current_cursor (). [string]
 * `query_cursor_scoped_tables`(*OptionQueryCursorScopedTables*) : liste des noms de tables dont l’étendue doit être comcursor_after_default.. cursor_before_or_at_default (la limite supérieure est facultative). dynamique
-* `query_datascope`(*OptionQueryDataScope*) : contrôle le Datascope de la requête, que la requête s’applique à toutes les données ou à une partie seulement. ['default', 'all’ou’hotcache']
+* `query_datascope`(*OptionQueryDataScope*) : contrôle le Datascope de la requête, indiquant si la requête s’applique à toutes les données ou à une partie seulement de celle-ci. ['default', 'all’ou’hotcache']
 * `query_datetimescope_column`(*OptionQueryDateTimeScopeColumn*) : contrôle le nom de colonne pour l’étendue DateTime de la requête (query_datetimescope_to/query_datetimescope_from). Chaîne
-* `query_datetimescope_from`(*OptionQueryDateTimeScopeFrom*) : contrôle l’étendue DateTime de la requête (au plus tôt), utilisée comme filtre appliqué automatiquement sur query_datetimescope_column uniquement (si elle est définie). [DateTime]
-* `query_datetimescope_to`(*OptionQueryDateTimeScopeTo*) : contrôle l’étendue DateTime de la requête (dernière version), utilisée comme filtre appliqué automatiquement sur query_datetimescope_column uniquement (si elle est définie). [DateTime]
-* `query_distribution_nodes_span`(*OptionQueryDistributionNodesSpanSize*) : s’il est défini, contrôle le comportement de la fusion des sous-requêtes : le nœud en cours d’exécution introduira un niveau supplémentaire dans la hiérarchie des requêtes pour chaque sous-groupe de nœuds ; la taille du sous-groupe est définie par cette option. Tiers
-* `query_fanout_nodes_percent`(*OptionQueryFanoutNodesPercent*) : pourcentage de nœuds sur lesquels l’exécution sortante doit être exécutée. Tiers
-* `query_fanout_threads_percent`(*OptionQueryFanoutThreadsPercent*) : pourcentage de threads dans lequel défanout l’exécution. Tiers
+* `query_datetimescope_from`(*OptionQueryDateTimeScopeFrom*) : contrôle l’étendue DateTime de la requête (au plus tôt). La valeur est utilisée comme filtre appliqué automatiquement sur query_datetimescope_column uniquement (si elle est définie). [DateTime]
+* `query_datetime\scope_to`(*OptionQueryDateTimeScopeTo*) : contrôle l’étendue DateTime de la requête (la plus récente). La valeur est utilisée comme filtre appliqué automatiquement sur query_datetimescope_column uniquement (si elle est définie). [DateTime]
+* `query_distribution_nodes_span`(*OptionQueryDistributionNodesSpanSize*) : s’il est défini, contrôle le comportement de la fusion des sous-requêtes : le nœud en cours d’exécution introduira un niveau supplémentaire dans la hiérarchie des requêtes pour chaque sous-groupe de nœuds. Cette option définit la taille du sous-groupe. Tiers
+* `query_fanout_nodes_percent`(*OptionQueryFanoutNodesPercent*) : pourcentage de nœuds sur lesquels l’exécution doit être ventilée. Tiers
+* `query_fanout_threads_percent`(*OptionQueryFanoutThreadsPercent*) : pourcentage de threads à partir duquel l’exécution doit être ventilée. Tiers
 * `query_language`(*OptionQueryLanguage*) : contrôle la manière dont le texte de la requête doit être interprété. [« CSL », « kql » ou « SQL »]
 * `query_max_entities_in_union`(*OptionMaxEntitiesToUnion*) : remplace le nombre maximal par défaut de colonnes qu’une requête est autorisée à produire. Long
 * `query_now`(*OptionQueryNow*) : remplace la valeur DateTime retournée par la fonction Now (0). [DateTime]
-* `query_python_debug`(*OptionDebugPython*) : s’il est défini, générer une requête de débogage Python pour le nœud python énuméré (premier par défaut). [Booléen ou entier]
+* `query_python_debug`(*OptionDebugPython*) : si elle est définie, génère une requête de débogage Python pour le nœud python énuméré (premier par défaut). [Booléen ou entier]
 * `query_results_apply_getschema`(*OptionQueryResultsApplyGetSchema*) : si cette valeur est définie, récupère le schéma de chaque données tabulaire dans les résultats de la requête au lieu des données elles-mêmes. Expression
-* `query_results_cache_max_age`(*OptionQueryResultsCacheMaxAge*) : si positif, contrôle l’âge maximal des résultats de la requête mis en cache que Kusto est autorisé à renvoyer [TimeSpan]
-* `query_results_progressive_row_count`(*OptionProgressiveQueryMinRowCountPerUpdate*) : Conseil pour Kusto en fonction du nombre d’enregistrements à envoyer dans chaque mise à jour (prend effet uniquement si OptionResultsProgressiveEnabled est défini)
-* `query_results_progressive_update_period`(*OptionProgressiveProgressReportPeriod*) : Conseil pour Kusto quant à la fréquence d’envoi des frames de progression (prend effet uniquement si OptionResultsProgressiveEnabled est défini)
+* `query_results_cache_max_age`(*OptionQueryResultsCacheMaxAge*) : si positif, contrôle l’âge maximal des résultats de requête mis en cache, que Kusto peut retourner [TimeSpan]
+* `query_results_progressive_row_count`(*OptionProgressiveQueryMinRowCountPerUpdate*) : indique à Kusto le nombre d’enregistrements à envoyer dans chaque mise à jour. La valeur prend effet uniquement si OptionResultsProgressiveEnabled est défini
+* `query_results_progressive_update_period`(*OptionProgressiveProgressReportPeriod*) : indique à Kusto la fréquence d’envoi des frames de progression. La valeur prend effet uniquement si OptionResultsProgressiveEnabled est défini
 * `query_shuffle_broadcast_join`(*ShuffleBroadcastJoin*) : active la permutation sur la jonction de diffusion.
 * `query_take_max_records`(*OptionTakeMaxRecords*) : permet de limiter les résultats de la requête à ce nombre d’enregistrements. Long
 * `queryconsistency`(*OptionQueryConsistency*) : contrôle la cohérence des requêtes. [« strongconsistency » ou « normalconsistency » ou « weakconsistency »]
 * `request_callout_disabled`(*OptionRequestCalloutDisabled*) : s’il est spécifié, indique que la demande ne peut pas appeler un service fourni par l’utilisateur. Expression
 * `request_description`(*OptionRequestDescription*) : texte arbitraire que l’auteur de la demande souhaite inclure comme description de la demande. Chaîne
 * `request_external_table_disabled`(*OptionRequestExternalTableDisabled*) : s’il est spécifié, indique que la demande ne peut pas appeler de code dans le ExternalTable. Expression
-* `request_readonly`(*OptionRequestReadOnly*) : si spécifié, indique que la demande ne doit pas être en mesure d’écrire quoi que ce soit. Expression
+* `request_readonly`(*OptionRequestReadOnly*) : si spécifié, indique que la demande ne peut rien écrire. Expression
 * `request_remote_entities_disabled`(*OptionRequestRemoteEntitiesDisabled*) : si spécifié, indique que la demande ne peut pas accéder aux bases de données et aux clusters distants. Expression
-* `request_sandboxed_execution_disabled`(*OptionRequestSandboxedExecutionDisabled*) : s’il est spécifié, indique que la demande ne peut pas appeler de code dans le bac à sable (sandbox). Expression
+* `request_sandboxed_execution_disabled`(*OptionRequestSandboxedExecutionDisabled*) : si spécifié, indique que la demande ne peut pas appeler de code dans le bac à sable (sandbox). Expression
 * `results_progressive_enabled`(*OptionResultsProgressiveEnabled*) : s’il est défini, active le flux de requête progressif
 * `servertimeout`(*OptionServerTimeout*) : remplace le délai d’expiration de la demande par défaut. TimeSpan
-* `truncationmaxrecords`(*OptionTruncationMaxRecords*) : remplace le nombre maximal d’enregistrements par défaut qu’une requête est autorisée à renvoyer à l’appelant (troncation). Long
+* `truncationmaxrecords`(*OptionTruncationMaxRecords*) : remplace le nombre maximal d’enregistrements par défaut qu’une requête peut retourner à l’appelant (troncation). Long
 * `truncationmaxsize`(*OptionTruncationMaxSize*) : remplace la taille de données maximale par défaut qu’une requête est autorisée à retourner à l’appelant (troncation). Long
-* `validate_permissions`(*OptionValidatePermissions*) : valide les autorisations de l’utilisateur pour exécuter la requête et n’exécute pas la requête elle-même. Expression
-
+* `validate_permissions`(*OptionValidatePermissions*) : valide les autorisations de l’utilisateur pour effectuer la requête et n’exécute pas la requête elle-même. Expression

@@ -1,6 +1,6 @@
 ---
-title: isull() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit isull() dans Azure Data Explorer.
+title: IsNull ()-Azure Explorateur de données
+description: Cet article décrit IsNull () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: e26dca661ceac1ad209358b24b3f8d497a5c3049
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 4c57c7aba2bff2dfaecfa72b20ab76cc84ed17d6
+ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81513411"
+ms.lasthandoff: 05/18/2020
+ms.locfileid: "83550586"
 ---
 # <a name="isnull"></a>isnull()
 
-Évalue son seul argument `bool` et renvoie une valeur indiquant si l’argument évalue à une valeur nulle.
+Évalue son argument unique et retourne une `bool` valeur indiquant si l’argument correspond à une valeur null.
 
 ```kusto
 isnull(parse_json("")) == true
@@ -29,11 +29,11 @@ isnull(parse_json("")) == true
 
 **Retourne**
 
-True ou false selon si la valeur est null ou not null.
+True ou false, selon que la valeur est ou non null.
 
 **Remarques**
 
-* `string`valeurs ne peuvent pas être nulles. [L’utilisation estempty](./isemptyfunction.md) pour déterminer `string` si une valeur de type est vide ou non.
+* `string`les valeurs ne peuvent pas être null. Utilisez [IsEmpty](./isemptyfunction.md) pour déterminer si une valeur de type `string` est vide ou non.
 
 |x                |`isnull(x)`|
 |-----------------|-----------|

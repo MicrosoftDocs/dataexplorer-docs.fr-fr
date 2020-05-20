@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 6b649a06262153f80c4c35374e55a206be02c781
-ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
+ms.openlocfilehash: 2e88ba9af0b9563274e15eff8d1c1f6e997fb45c
+ms.sourcegitcommit: e66c5f4b833b4f6269bb7bfa5695519fcb11d9fa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83382282"
+ms.lasthandoff: 05/19/2020
+ms.locfileid: "83630018"
 ---
-# <a name="kustoingest---ingestion-permissions"></a>Kusto. deréception-autorisations d’ingestion
+# <a name="kustoingest---ingestion-permissions"></a>Kusto. deréception-autorisations d’ingestion 
 
 Cet article explique les autorisations à configurer sur votre service, pour que l’ingestion `Native` fonctionne.
 
 ## <a name="prerequisites"></a>Prérequis
-
+ 
 * Pour afficher et modifier les paramètres d’autorisation sur les services et bases de données Kusto, consultez [commandes de contrôle Kusto](../../management/security-roles.md).
 
 * Les applications Azure Active Directory (Azure AD) utilisées comme exemples de principaux dans les exemples suivants :
     * Azure AD App de test (2a904276-1234-5678-9012-66fc53add60b ; microsoft.com)
     * Azure AD App d’ingestion interne Kusto (76263cdb-1234-5678-9012-545644e9c404 ; microsoft.com)
-
+ 
 ## <a name="ingestion-permission-mode-for-queued-ingestion"></a>Mode d’autorisation ingestion pour l’ingestion en attente
 
 Le mode d’autorisation ingestion est défini dans [IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient). Ce mode limite la dépendance du code client sur le service Azure Explorateur de données. L’ingestion est effectuée en publiant un message d’ingestion Kusto dans une file d’attente Azure. La file d’attente, également appelée service d’ingestion, provient du service Azure Explorateur de données. Les artefacts de stockage intermédiaires seront créés par le client de réception à l’aide des ressources allouées par le service Azure Explorateur de données.
 
 Le diagramme présente l’interaction du client d’ingestion en attente avec Kusto.
 
-:::image type="content" source="../images/queued-ingest.jpg" alt-text="en attente-réception":::
+:::image type="content" source="../images/kusto-ingest-client-permissions/queued-ingest.png" alt-text="Ingestion en file d’attente":::
 
 ### <a name="permissions-on-the-engine-service"></a>Autorisations sur le service de moteur
 
@@ -42,7 +42,7 @@ Les niveaux d’autorisation minimum requis sont `Database Ingestor` et qui peuv
 Si la création de la table est requise, `Database User` ou si un rôle d’accès supérieur doit également être affecté.
 
 
-|Role                 |PrincipalType        |PrincipalDisplayName
+|Rôle                 |PrincipalType        |PrincipalDisplayName
 |---------------------|---------------------|------------
 |`Database Ingestor`  |Application Azure AD |`Test App (app id: 2a904276-1234-5678-9012-66fc53add60b)`
 |`Table Ingestor`     |Application Azure AD |`Test App (app id: 2a904276-1234-5678-9012-66fc53add60b)`
@@ -55,3 +55,4 @@ L’octroi des autorisations requises sur la base de données `DB1` ou `T1` la t
 .add database DB1 ingestors ('aadapp=2a904276-1234-5678-9012-66fc53add60b;microsoft.com') 'Test Azure AD App'
 .add table T1 ingestors ('aadapp=2a904276-1234-5678-9012-66fc53add60b;microsoft.com') 'Test Azure AD App'
 ```
+ 

@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 03/09/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 521165f5b0af31207d587f3d9514e7538d284258
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: fdd062abc02ff1d98ba935fc9016d0a1505e69c3
+ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227338"
+ms.lasthandoff: 05/18/2020
+ms.locfileid: "83550399"
 ---
 # <a name="current_principal_is_member_of"></a>current_principal_is_member_of()
 
@@ -37,7 +37,7 @@ print current_principal_is_member_of(
 
 **Arguments**
 
-* *liste d’expressions* : liste de littéraux de chaîne séparés par des virgules, où chaque littéral est une chaîne de nom complet (FQN) principale formée comme suit :  
+* *liste d’expressions* : liste de littéraux de chaîne séparés par des virgules, où chaque littéral est une chaîne de nom complet principal (FQN) formée comme suit :  
 *PrinciplaType* `=` *PrincipalId* `;` *TenantId*
 
 | PrincipalType   | Préfixe FQN  |
@@ -47,11 +47,11 @@ print current_principal_is_member_of(
 | Application AAD | `aadapp=`   |
 
 **Retourne**
-
+  
 La fonction retourne :
 * `true`: si le principal en cours d’exécution de la requête a été correctement mis en correspondance pour au moins un argument d’entrée.
 * `false`: si le principal en cours d’exécution de la requête n’est membre d’aucun `aadgroup=` argument FQN et n’est pas égal à l’un des `aaduser=` `aadapp=` arguments ou FQN.
-* `(null)`: si le principal en cours d’exécution de la requête n’est membre d’aucun argument `aadgroup=` FQN et n’est pas égal à l’un des `aaduser=` `aadapp=` arguments ou FQN, et qu’au moins un argument FQN n’a pas été résolu avec succès (n’a pas été ajouté à AAD). 
+* `(null)`: si le principal en cours d’exécution de la requête n’est membre d’aucun `aadgroup=` argument FQN et n’est pas égal à l’un des `aaduser=` `aadapp=` arguments ou FQN, et qu’au moins un argument FQN n’a pas été résolu avec succès (n’a pas été enfoncé dans Azure AD). 
 
 > [!NOTE]
 > Étant donné que la fonction retourne une valeur à trois États ( `true` , `false` et `null` ), il est important de s’appuyer uniquement sur les valeurs de retour positives pour confirmer la réussite de l’appartenance. En d’autres termes, les expressions suivantes ne sont pas les mêmes :

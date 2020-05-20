@@ -8,20 +8,20 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: c6b9d1d5cb971b5c9c51cf9f9918562f12323a03
-ms.sourcegitcommit: 061eac135a123174c85fe1afca4d4208c044c678
+ms.openlocfilehash: 348a614c8b3336085a59a113f18f6858f024e8c7
+ms.sourcegitcommit: e66c5f4b833b4f6269bb7bfa5695519fcb11d9fa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/05/2020
-ms.locfileid: "82799660"
+ms.lasthandoff: 05/19/2020
+ms.locfileid: "83630244"
 ---
 # <a name="embed-web-ui-in-an-iframe"></a>Incorporer l’interface utilisateur Web dans un IFRAME
 
 L’interface utilisateur Web d’Azure Explorateur de données peut être incorporée dans un IFRAME et hébergée sur des sites Web tiers.
+ 
+:::image type="content" source="../images/host-web-ux-in-iframe/web-ux.png" alt-text="Interface utilisateur Web d’Azure Explorateur de données":::
 
-![texte de remplacement](../images/web-ux.jpg "Interface utilisateur Web d’Azure Explorateur de données")
-
-L’intégration de l’expérience utilisateur Azure Explorateur de données Web à votre site Web permet à vos utilisateurs :
+L’intégration de l’expérience utilisateur Azure Explorateur de données Web dans votre site Web permet à vos utilisateurs d’effectuer les opérations suivantes :
 
 - Modifier les requêtes (comprend toutes les fonctionnalités de langage telles que la colorisation et IntelliSense)
 - Explorer visuellement les schémas de table
@@ -36,9 +36,9 @@ Toutes les fonctionnalités sont testées pour l’accessibilité et prennent en
 
 ## <a name="use-monaco-kusto-or-embed-the-web-ui"></a>Utiliser Monaco-Kusto ou incorporer l’interface utilisateur Web ?
 
-Monaco-Kusto améliore votre expérience de modification avec la saisie semi-automatique, la coloration, la refactorisation, le changement de nom et la définition. Elle vous permet de créer une solution pour l’authentification, l’exécution des requêtes, l’affichage des résultats et l’exploration des schémas. Monaco-Kusto vous offre également la flexibilité totale de l’expérience utilisateur qui répond à vos besoins.
+Monaco-Kusto offre une expérience de modification telle que la saisie semi-automatique, la colorisation, la refactorisation, le changement de nom et la définition de Go-to-definition. Elle vous oblige à créer une solution pour l’authentification, l’exécution des requêtes, l’affichage des résultats et l’exploration des schémas, mais vous offre la flexibilité totale de l’expérience utilisateur qui répond à vos besoins.
 
-L’incorporation de l’interface utilisateur Web d’Azure Explorateur de données vous offre des fonctionnalités très importantes. Toutefois, l’incorporation entraîne également une flexibilité limitée dans l’expérience utilisateur. Un ensemble fixe de paramètres de requête vous donne un contrôle limité sur l’apparence et le comportement du système.
+L’incorporation de l’interface utilisateur Web d’Azure Explorateur de données vous offre des fonctionnalités très limitées, mais elle offre une flexibilité limitée pour l’expérience utilisateur. Il existe un ensemble fixe de paramètres de requête qui permettent un contrôle limité de l’apparence et du comportement du système.
 
 ## <a name="how-to-embed-the-web-ui-in-an-iframe"></a>Comment incorporer l’interface utilisateur Web dans un IFRAME
 
@@ -54,11 +54,11 @@ Ajoutez le code suivant à votre site Web :
 
 Le `ibizaPortal` paramètre de requête indique à l’interface utilisateur Web d’Azure Explorateur de données de *ne pas* effectuer de redirection pour obtenir un jeton d’authentification. Cette action est nécessaire, car le site Web d’hébergement est chargé de fournir un jeton d’authentification à l’iframe incorporé.
 
-Remplacez `<cluster>` par le nom d’hôte du cluster que vous souhaitez charger dans le volet de connexion (par `help.kusto.windows.net`exemple :). Par défaut, le mode intégré iframe n’offre aucun moyen d’ajouter des clusters à partir de l’interface utilisateur, car le site Web d’hébergement est conscient du cluster requis.
+Remplacez `<cluster>` par le nom d’hôte du cluster que vous souhaitez charger dans le volet de connexion, par exemple `help.kusto.windows.net` . Par défaut, le mode intégré iframe n’offre aucun moyen d’ajouter des clusters à partir de l’interface utilisateur, car le site Web d’hébergement est conscient du cluster requis.
 
 ### <a name="handle-authentication"></a>Gérer l’authentification
 
-1. Quand la valeur est « iframe mode »`ibizaPortal=true`(), l’interface utilisateur Web d’Azure Explorateur de données ne tente pas de rediriger l’authentification. L’interface utilisateur Web utilise le mécanisme de publication de messages utilisé par les navigateurs pour demander et recevoir un jeton. Lors du chargement de la page, le message suivant est publié dans la fenêtre parente :
+1. Quand la valeur est « iframe mode » ( `ibizaPortal=true` ), l’interface utilisateur Web d’Azure Explorateur de données ne tente pas de rediriger l’authentification. L’interface utilisateur Web utilise le mécanisme de publication de messages utilisé par les navigateurs pour demander et recevoir un jeton. Lors du chargement de la page, le message suivant est publié dans la fenêtre parente :
 
    ```javascript
    window.parent.postMessage(
@@ -91,30 +91,30 @@ Remplacez `<cluster>` par le nom d’hôte du cluster que vous souhaitez charger
 
 ### <a name="feature-flags"></a>Indicateurs de fonctionnalités
 
-L’application d’hébergement peut souhaiter contrôler certains aspects de l’expérience utilisateur, tels que le masquage du volet connexion, ou la désactivation de la connexion à d’autres clusters.
-Dans ce scénario, l’explorateur Web prend en charge les indicateurs de fonctionnalité.
+L’application d’hébergement peut souhaiter contrôler certains aspects de l’expérience utilisateur. Par exemple, masquez le volet de connexion ou désactivez la connexion à d’autres clusters.
+Pour ce scénario, l’explorateur Web prend en charge les indicateurs de fonctionnalité.
 
-Un indicateur de fonctionnalité peut être utilisé dans l’URL en tant que paramètre de requête. Par exemple, si l’application d’hébergement souhaite désactiver l’ajout d’autres clusters, ils doivent utiliserhttps://dataexplorer.azure.com/?ShowConnectionButtons=false
+Un indicateur de fonctionnalité peut être utilisé dans l’URL en tant que paramètre de requête. Si l’application d’hébergement souhaite désactiver l’ajout d’autres clusters, elle doit utiliserhttps://dataexplorer.azure.com/?ShowConnectionButtons=false
 
-| Paramètre                 | Description                    | Valeur par défaut |
-| ----------------------- | ------------------------------ | ------------- |
-| ShowShareMenu           | Afficher l’élément de menu partager       | true          |
-| ShowConnectionButtons   | Afficher le bouton **Ajouter une connexion** qui ajoute un nouveau cluster                                                                                                              | true          |
-| ShowOpenNewWindowButton | Affichez le bouton **ouvrir dans le Web** qui ouvre une nouvelle fenêtre de navigateur. La fenêtre pointe vers https://dataexplorer.azure.com avec le cluster et la base de données appropriés dans l’étendue                                                                                                                        | false         |
-| ShowFileMenu            | Afficher le menu fichier (**Télécharger**, **onglet**, **contenu**, etc.)                                                                                                      | true          |
-| ShowToS                 | Afficher le **lien vers les conditions de service pour Azure Explorateur de données** à partir de la boîte de dialogue Paramètres                                                                                  | true          |
-| ShowPersona             | Affichez le nom d’utilisateur à partir du menu paramètres, dans l’angle supérieur droit                                                                                                      | true          |
-| IFrameAuth              | Si la valeur est true, l’explorateur Web s’attend à ce que l’iframe gère l’authentification et fournit un jeton via un message. Ce processus sera toujours vrai pour les scénarios iframe      | false         |
-| PersistAfterEachRun     | En règle générale, l’explorateur Web persiste dans l’événement de déchargement (Notez qu’en cas d’hébergement dans IFRAMES, il ne se déclenche pas toujours). Cet indicateur déclenchera alors l' **État local persistant** après chaque exécution de la requête. Toute perte de données qui se produit n’affecte que le texte qui n’a jamais été exécuté et limite son impact. | false         |
-| ShowSmoothIngestion     | Si la valeur est true, affiche l’expérience d’ingestion en 1 clic lorsque vous cliquez avec le bouton droit sur une base de données                                                                                        | true          |
-| RefreshConnection       | Si la valeur est true, actualise toujours le schéma lors du chargement de la page et ne dépend jamais du stockage local                                                                          | false         |
-| ShowPageHeader          | Si la valeur est true, affiche l’en-tête de page (qui comprend le titre et les paramètres Azure Explorateur de données)                                                                              | true          |
-| HideConnectionPane      | Si la valeur est true, le volet de connexion gauche ne s’affiche pas                                                                                                                      | false         |
-| SkipMonacoFocusOnInit   | Résout le problème de focus lors de l’hébergement sur iframe                                                                                                                            | false         |
+| Paramètre de                 | Description                                                                                                        | Valeur par défaut |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------ | ------------- |
+| ShowShareMenu           | Afficher l’élément de menu partager                                                                                           | true          |
+| ShowConnectionButtons   | Afficher le bouton **Ajouter une connexion** pour ajouter un nouveau cluster                                                            | true          |
+| ShowOpenNewWindowButton | Afficher le bouton **ouvrir dans** une interface utilisateur Web qui ouvre une nouvelle fenêtre de navigateur et pointer vers https://dataexplorer.azure.com avec le cluster et la base de données appropriés dans l’étendue           | false         |
+| ShowFileMenu            | Afficher le menu fichier (**Télécharger**, **onglet**, **contenu**, etc.)                                                 | true          |
+| ShowToS                 | Afficher le **lien vers les conditions de service pour Azure Explorateur de données** à partir de la boîte de dialogue Paramètres                             | true          |
+| ShowPersona             | Affichez le nom d’utilisateur à partir du menu paramètres, dans l’angle supérieur droit                                                 | true          |
+| IFrameAuth              | Si la valeur est true, l’explorateur Web s’attend à ce que l’iframe gère l’authentification et fournit un jeton via un message. Ce processus sera toujours vrai pour les scénarios iframe                                                                                                                                      | false         |
+| PersistAfterEachRun     | En général, l’explorateur Web persiste dans l’événement de déchargement. Lors de l’hébergement dans IFRAMES, il ne se déclenche pas toujours. Cet indicateur déclenchera alors l' **État local persistant** après chaque exécution de la requête. En conséquence, toute perte de données qui se produit n’affecte que le texte qui n’a jamais été exécuté, ce qui limite son impact          | false         |
+| ShowSmoothIngestion     | Si la valeur est true, affiche l’expérience d’ingestion en 1 clic lorsque vous cliquez avec le bouton droit sur une base de données                                   | true          |
+| RefreshConnection       | Si la valeur est true, actualise toujours le schéma lors du chargement de la page et ne dépend jamais du stockage local                      | false         |
+| ShowPageHeader          | Si la valeur est true, affiche l’en-tête de page qui contient le titre et les paramètres Azure Explorateur de données                            | true          |
+| HideConnectionPane      | Si la valeur est true, le volet de connexion gauche ne s’affiche pas                                                                  | false         |
+| SkipMonacoFocusOnInit   | Résout le problème de focus lors de l’hébergement sur iframe                                                                       | false         |
 
 ### <a name="feature-flag-presets"></a>Présélections d’indicateurs de fonctionnalités
 
-les présélections définissent une série d’indicateurs de fonctionnalités à la fois.
+Les présélections définissent une série d’indicateurs de fonctionnalités à la fois.
 Actuellement, il n’existe qu’une seule présélection.
 
 `IbizaPortal`: Modifie les valeurs par défaut des indicateurs suivants.

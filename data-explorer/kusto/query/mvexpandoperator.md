@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2019
-ms.openlocfilehash: a0d19f3466381bef3848365c2af27109e9699087
-ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
+ms.openlocfilehash: f8cf59e3aa263aef224301d871a2e1e15e1a290b
+ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83271313"
+ms.lasthandoff: 05/18/2020
+ms.locfileid: "83550519"
 ---
 # <a name="mv-expand-operator"></a>mv-expand, opérateur
 
@@ -32,21 +32,21 @@ Développe un tableau à valeurs multiples ou un conteneur de propriétés.
 * *ColumnName :* dans le résultat, les tableaux dans la colonne nommée sont développés en plusieurs lignes. 
 * *ArrayExpression :* expression produisant un tableau. Si ce formulaire est utilisé, une nouvelle colonne est ajoutée et la colonne existante est conservée.
 * *Name :* nom de la nouvelle colonne.
-* Nom de la *:* Indique le type sous-jacent des éléments du tableau, qui devient le type de la colonne produite par l’opérateur.
-    Notez que les valeurs du tableau qui ne sont pas conformes à ce type ne seront pas converties ; au lieu de cela, ils prennent une `null` valeur.
+* Nom de la *:* Indique le type sous-jacent des éléments du tableau, qui devient le type de la colonne produite par l’opérateur. Les valeurs non conformes dans le tableau ne seront pas converties. Au lieu de cela, ces valeurs prendront une `null` valeur.
 * *RowLimit :* nombre maximal de lignes générées à partir de chaque ligne d’origine. La valeur par défaut est 2147483647. 
-*Remarque*: la forme héritée et obsolète de l’opérateur `mvexpand` a une limite de lignes par défaut de 128.
+  > [!Note] 
+  > La forme héritée et obsolète de l’opérateur `mvexpand` a une limite de ligne par défaut de 128.
 * *IndexColumnName :* Si `with_itemindex` est spécifié, la sortie inclut une colonne supplémentaire (nommée *IndexColumnName*), qui contient l’index (à partir de 0) de l’élément dans la collection développée d’origine. 
 
 **Retourne**
 
-Plusieurs lignes pour chacune des valeurs dans n’importe quel tableau dans la colonne nommée ou dans l’expression de tableau.
-Si plusieurs colonnes ou expressions sont spécifiées, elles sont développées en parallèle. ainsi, pour chaque ligne d’entrée, il y a autant de lignes de sortie qu’il y a d’éléments dans l’expression développée la plus longue (les listes plus courtes sont complétées par des valeurs null). Si la valeur d’une ligne est un tableau vide, la ligne se développe en Nothing (ne s’affiche pas dans le jeu de résultats). Si la valeur d’une ligne n’est pas un tableau, la ligne est conservée telle quelle dans le jeu de résultats. 
+Plusieurs lignes pour chacune des valeurs d’un tableau qui se trouvent dans la colonne nommée ou dans l’expression de tableau.
+Si plusieurs colonnes ou expressions sont spécifiées, elles sont développées en parallèle. Pour chaque ligne d’entrée, il y aura autant de lignes de sortie qu’il y a d’éléments dans l’expression développée la plus longue (les listes plus courtes sont complétées par des valeurs null). Si la valeur d’une ligne est un tableau vide, la ligne se développe en Nothing (ne s’affiche pas dans le jeu de résultats). Toutefois, si la valeur d’une ligne n’est pas un tableau, la ligne est conservée telle quelle dans le jeu de résultats. 
 
 La colonne développée est toujours de type dynamique. Utilisez une conversion telle que `todatetime()` ou `tolong()` si vous souhaitez calculer ou agréger des valeurs.
 
 Deux modes de développement de conteneurs de propriétés sont pris en charge :
-* `bagexpansion=bag`: les conteneurs de propriétés sont développés en conteneurs de propriétés à entrée unique. Il s’agit du développement par défaut.
+* `bagexpansion=bag`: les conteneurs de propriétés sont développés en conteneurs de propriétés à entrée unique. Ce mode est l’extension par défaut.
 * `bagexpansion=array`: Les conteneurs de propriétés sont développés en structures de tableau de valeurs de clé à deux éléments `[` *key* `,` *value* `]` , ce qui permet d’accéder uniformément aux clés et aux valeurs (par exemple, en exécutant une agrégation de comptage distinct sur les noms de propriété). 
 
 **Exemples**
@@ -63,7 +63,6 @@ datatable (a:int, b:dynamic)[1,dynamic({"prop1":"a", "prop2":"b"})]
 |---|---|
 |1|{"Prop1" : "a"}|
 |1|{"Prop2" : "b"}|
-
 
 Si vous développez deux colonnes, vous devez d’abord « compresser » les colonnes applicables, puis les développer :
 
@@ -117,5 +116,5 @@ Consultez [nombre de graphiques d’activités dynamiques dans le temps](./sampl
 **Voir aussi**
 
 - [MV-opérateur apply](./mv-applyoperator.md) .
-- [résumez make_list ()](makelist-aggfunction.md) qui exécute la fonction opposée.
+- [résumez make_list ()](makelist-aggfunction.md), qui fait la fonction opposée.
 - le plug-in [bag_unpack ()](bag-unpackplugin.md) permettant de développer des objets JSON dynamiques dans des colonnes à l’aide de clés de conteneur de propriétés.

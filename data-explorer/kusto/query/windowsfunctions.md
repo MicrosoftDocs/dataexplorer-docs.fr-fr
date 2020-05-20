@@ -1,6 +1,6 @@
 ---
-title: Fonctions de fenêtre - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit les fonctions de fenêtre dans Azure Data Explorer.
+title: Fonctions de fenêtre-Azure Explorateur de données
+description: Cet article décrit les fonctions des fenêtres dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,47 +8,45 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/20/2019
-ms.openlocfilehash: ab4f6da2478ba4de81b2034c1cb07458daa80bd0
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: d876f26de796008e83b620e4511a31cdb4e23888
+ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81504248"
+ms.lasthandoff: 05/18/2020
+ms.locfileid: "83550688"
 ---
 # <a name="window-functions"></a>Fonctions Windows
 
-Les fonctions de fenêtre fonctionnent sur plusieurs rangées (enregistrements) dans une rangée définie à la fois.
-Contrairement aux fonctions d’agrégation, ils exigent que les lignes de l’ensemble de rangée soient **sérialisées** (ont un ordre spécifique pour eux), car les fonctions de fenêtre peuvent dépendre de l’ordre pour déterminer le résultat.
+Les fonctions de fenêtre opèrent sur plusieurs lignes (enregistrements) dans un ensemble de lignes à la fois. Contrairement aux fonctions d’agrégation, les fonctions de fenêtre requièrent que les lignes de l’ensemble de lignes soient sérialisées (selon un ordre spécifique). Les fonctions de fenêtre peuvent dépendre de l’ordre pour déterminer le résultat.
 
-Les fonctions de fenêtre ne peuvent pas être utilisées sur des ensembles de ligne qui ne sont pas sérialisés, et donneront une erreur lorsqu’elles sont utilisées dans un tel contexte par une requête. La façon la plus simple de sérialiser un ensemble de lignes est d’utiliser [l’opérateur de sérialisation](./serializeoperator.md), qui « gèle » simplement l’ordre des rangées (d’une manière arbitraire non spécifiée).
-Si l’ordre des lignes sérialisées est d’une importance sémantique, on peut utiliser [l’opérateur](./sortoperator.md) de tri pour forcer une commande particulière.
+Les fonctions de fenêtre ne peuvent être utilisées que sur des jeux sérialisés. Le moyen le plus simple de sérialiser un jeu de lignes consiste à utiliser l' [opérateur Serialize](./serializeoperator.md). Cet opérateur « fige » l’ordre des lignes de manière arbitraire. Si l’ordre des lignes sérialisées est sémantiquement important, utilisez l' [opérateur de tri](./sortoperator.md) pour forcer un ordre particulier.
 
-Le processus de sérialisation a un coût non négligeable qui lui est associé. Par exemple, il pourrait empêcher le parallélisme de requête dans beaucoup de scénarios. Par conséquent, il est fortement recommandé que la sérialisation ne soit pas appliquée inutilement, et que si nécessaire, la requête soit réarrangée afin que la sérialisation soit effectuée sur la plus petite rangée possible.
+Le processus de sérialisation est associé à un coût non négligeable. Par exemple, elle peut empêcher le parallélisme des requêtes dans de nombreux scénarios. Par conséquent, n’appliquez pas inutilement la sérialisation. Si nécessaire, réorganisez la requête pour effectuer la sérialisation sur le plus petit ensemble de lignes possible.
 
-## <a name="serialized-row-set"></a>Ensemble de rangées sérialisées
+## <a name="serialized-row-set"></a>Ensemble de lignes sérialisé
 
-Un ensemble de rangées arbitraires (comme une table ou la sortie d’un opérateur tabulaire) peut être sérialisé de l’une des façons suivantes :
+Un ensemble de lignes arbitraire (par exemple, une table ou la sortie d’un opérateur tabulaire) peut être sérialisé de l’une des manières suivantes :
 
-1. En triant l’ensemble de rangées. Voir ci-dessous pour une liste d’opérateurs qui émettent des ensembles de lignes triés.
-2. En utilisant [l’opérateur de sérialisation](./serializeoperator.md).
+1. En triant l’ensemble de lignes. Pour obtenir la liste des opérateurs qui émettent des ensembles de lignes triés, voir ci-dessous.
+2. À l’aide de l' [opérateur Serialize](./serializeoperator.md).
 
-Notez que de nombreux opérateurs tabulaires, tandis qu’en eux-mêmes, ils ne garantissent pas que leur résultat est sérialisé, ont la propriété que si l’entrée est sérialisée, est donc la sortie. Par exemple, cette propriété est garantie pour [l’opérateur d’extension,](./extendoperator.md)l’opérateur du [projet,](./projectoperator.md)et [l’opérateur où](./whereoperator.md).
+De nombreux opérateurs tabulaires sérialisent la sortie chaque fois que l’entrée est déjà sérialisée, même si l’opérateur ne garantit pas lui-même que le résultat est sérialisé. Par exemple, cette propriété est garantie pour l’opérateur [Extend](./extendoperator.md), l' [opérateur de projet](./projectoperator.md)et l' [opérateur WHERE](./whereoperator.md).
 
-## <a name="operators-that-emit-serialized-row-sets-by-sorting"></a>Opérateurs qui émettent des ensembles de lignes sérialisés en triant
+## <a name="operators-that-emit-serialized-row-sets-by-sorting"></a>Opérateurs émettant des jeux de lignes sérialisés par tri
 
 * [order, opérateur](./orderoperator.md)
 * [opérateur sort](./sortoperator.md)
-* [opérateur supérieur](./topoperator.md)
+* [opérateur top](./topoperator.md)
 * [top-hitters, opérateur](./tophittersoperator.md)
 * [Opérateur top-nested](./topnestedoperator.md)
 
-## <a name="operators-that-preserve-the-serialized-row-set-property"></a>Opérateurs qui préservent la propriété sérialisée ensemble de rangée
+## <a name="operators-that-preserve-the-serialized-row-set-property"></a>Opérateurs qui conservent la propriété de l’ensemble de lignes sérialisé
 
 * [opérateur extend](./extendoperator.md)
-* [opérateur mv-expand](./mvexpandoperator.md)
+* [mv-expand, opérateur](./mvexpandoperator.md)
 * [opérateur parse](./parseoperator.md)
 * [opérateur project](./projectoperator.md)
 * [opérateur project-away](./projectawayoperator.md)
 * [project-rename, opérateur](./projectrenameoperator.md)
 * [opérateur take](./takeoperator.md)
-* [où l’opérateur](./whereoperator.md)
+* [opérateur where](./whereoperator.md)
