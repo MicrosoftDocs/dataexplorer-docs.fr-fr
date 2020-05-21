@@ -4,16 +4,16 @@ description: Cet article décrit les mappages de données dans Azure Explorateur
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: ohbitton
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 03/30/2020
-ms.openlocfilehash: 2a3b402c04d5d1af85b2c2a042a23fbade7e2524
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.date: 05/19/2020
+ms.openlocfilehash: c4a64db6d1103aa2a004b816969ab73c7ba19943
+ms.sourcegitcommit: ee90472a4f9d751d4049744d30e5082029c1b8fa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82617644"
+ms.lasthandoff: 05/21/2020
+ms.locfileid: "83722063"
 ---
 # <a name="data-mappings"></a>Mappages de données
 
@@ -30,7 +30,7 @@ Chaque élément de la liste de mappage est construit à partir de trois propri�
 |`Properties`|Facultatif Conteneur de propriétés contenant des propriétés spécifiques pour chaque mappage, comme décrit dans chaque section ci-dessous.
 
 
-Tous les mappages peuvent être [créés au préalable](create-ingestion-mapping-command.md) et peuvent être référencés à partir de la `ingestionMappingReference` commande de réception à l’aide de paramètres.
+Tous les mappages peuvent être [créés au préalable](create-ingestion-mapping-command.md) et peuvent être référencés à partir de la commande de réception à l’aide de `ingestionMappingReference` paramètres.
 
 ## <a name="csv-mapping"></a>Mappage CSV
 
@@ -65,9 +65,9 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
 ```
 
 > [!NOTE]
-> Lorsque le mappage ci-dessus est fourni dans le `.ingest` cadre de la commande de contrôle, il est sérialisé en tant que chaîne JSON.
+> Lorsque le mappage ci-dessus est fourni dans le cadre de la `.ingest` commande de contrôle, il est sérialisé en tant que chaîne JSON.
 
-* Lorsque le mappage ci-dessus est [créé au préalable](create-ingestion-mapping-command.md) , il peut être référencé `.ingest` dans la commande de contrôle :
+* Lorsque le mappage ci-dessus est [créé au préalable](create-ingestion-mapping-command.md) , il peut être référencé dans la `.ingest` commande de contrôle :
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2")
@@ -78,7 +78,7 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
     )
 ```
 
-* Lorsque le mappage ci-dessus est fourni dans le `.ingest` cadre de la commande de contrôle, il est sérialisé en tant que chaîne JSON :
+* Lorsque le mappage ci-dessus est fourni dans le cadre de la `.ingest` commande de contrôle, il est sérialisé en tant que chaîne JSON :
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2")
@@ -93,7 +93,7 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
     )
 ```
 
-**Remarque :** Le format de mappage suivant, sans `Properties` conteneur de propriété, est actuellement pris en charge, mais peut être déconseillé à l’avenir.
+**Remarque :** Le format de mappage suivant, sans le `Properties` conteneur de propriétés, est déconseillé.
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2")
@@ -116,7 +116,7 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
 
 |Propriété|Description|
 |----|--|
-|`path`|Si commence par `$`: chemin d’accès JSON au champ qui devient le contenu de la colonne dans le document JSON (le chemin d’accès JSON qui indique le document entier `$`est). Si la valeur ne commence pas par `$`: une valeur constante est utilisée.|
+|`path`|Si commence par `$` : chemin d’accès JSON au champ qui devient le contenu de la colonne dans le document JSON (le chemin d’accès JSON qui indique le document entier est `$` ). Si la valeur ne commence pas par `$` : une valeur constante est utilisée.|
 |`transform`|Facultatif Transformation à appliquer sur le contenu avec des [transformations de mappage](#mapping-transformations).|
 
 ### <a name="example-of-json-mapping"></a>Exemple de mappage JSON
@@ -138,7 +138,7 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
 ```
 
 > [!NOTE]
-> Lorsque le mappage ci-dessus est fourni dans le `.ingest` cadre de la commande de contrôle, il est sérialisé en tant que chaîne JSON.
+> Lorsque le mappage ci-dessus est fourni dans le cadre de la `.ingest` commande de contrôle, il est sérialisé en tant que chaîne JSON.
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2")
@@ -149,7 +149,7 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
     )
 ```
 
-**Remarque :** Le format de mappage suivant, sans `Properties` conteneur de propriété, est actuellement pris en charge, mais peut être déconseillé à l’avenir.
+**Remarque :** Le format de mappage suivant, sans le `Properties` conteneur de propriétés, est déconseillé.
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2") 
@@ -173,13 +173,13 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
 |Propriété|Description|
 |----|--|
 |`Field`|Nom du champ dans l’enregistrement Avro.|
-|`Path`|Alternative à l' `field` utilisation de qui permet de détenir la partie interne d’un champ d’enregistrement Avro, si nécessaire. La valeur désigne un chemin d’accès JSON à partir de la racine de l’enregistrement. Pour plus d’informations, consultez les remarques ci-dessous. |
+|`Path`|Alternative à l’utilisation de `field` qui permet de détenir la partie interne d’un champ d’enregistrement Avro, si nécessaire. La valeur désigne un chemin d’accès JSON à partir de la racine de l’enregistrement. Pour plus d’informations, consultez les remarques ci-dessous. |
 |`transform`|Facultatif Transformation à appliquer au contenu à l’aide de [transformations prises en charge](#mapping-transformations).|
 
 **Remarques**
 >[!NOTE]
 > * `field`et `path` ne peuvent pas être utilisés ensemble, un seul est autorisé. 
-> * `path`Impossible de pointer `$` vers la racine uniquement, elle doit avoir au moins un niveau de chemin d’accès.
+> * `path`Impossible de pointer vers la racine `$` uniquement, elle doit avoir au moins un niveau de chemin d’accès.
 
 Les deux options ci-dessous sont égales :
 
@@ -211,7 +211,7 @@ Les deux options ci-dessous sont égales :
 ``` 
 
 > [!NOTE]
-> Lorsque le mappage ci-dessus est fourni dans le `.ingest` cadre de la commande de contrôle, il est sérialisé en tant que chaîne JSON.
+> Lorsque le mappage ci-dessus est fourni dans le cadre de la `.ingest` commande de contrôle, il est sérialisé en tant que chaîne JSON.
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2")
@@ -222,7 +222,7 @@ Les deux options ci-dessous sont égales :
     )
 ```
 
-**Remarque :** Le format de mappage suivant, sans `Properties` conteneur de propriété, est actuellement pris en charge, mais peut être déconseillé à l’avenir.
+**Remarque :** Le format de mappage suivant, sans le `Properties` conteneur de propriétés, est déconseillé.
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2") 
@@ -245,7 +245,7 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
 
 |Propriété|Description|
 |----|--|
-|`path`|Si commence par `$`: chemin d’accès JSON au champ qui deviendra le contenu de la colonne dans le document parquet (le chemin d’accès JSON qui indique le document `$`entier est). Si la valeur ne commence pas par `$`: une valeur constante est utilisée.|
+|`path`|Si commence par `$` : chemin d’accès JSON au champ qui deviendra le contenu de la colonne dans le document parquet (le chemin d’accès JSON qui indique le document entier est `$` ). Si la valeur ne commence pas par `$` : une valeur constante est utilisée.|
 |`transform`|Facultatif [mappages de transformations](#mapping-transformations) qui doivent être appliqués au contenu.
 
 
@@ -266,9 +266,9 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
 ```      
 
 > [!NOTE]
-> Lorsque le mappage ci-dessus est fourni dans le `.ingest` cadre de la commande de contrôle, il est sérialisé en tant que chaîne JSON.
+> Lorsque le mappage ci-dessus est fourni dans le cadre de la `.ingest` commande de contrôle, il est sérialisé en tant que chaîne JSON.
 
-* Lorsque le mappage ci-dessus est [créé au préalable](create-ingestion-mapping-command.md) , il peut être référencé `.ingest` dans la commande de contrôle :
+* Lorsque le mappage ci-dessus est [créé au préalable](create-ingestion-mapping-command.md) , il peut être référencé dans la `.ingest` commande de contrôle :
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2")
@@ -279,7 +279,7 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
     )
 ```
 
-* Lorsque le mappage ci-dessus est fourni dans le `.ingest` cadre de la commande de contrôle, il est sérialisé en tant que chaîne JSON :
+* Lorsque le mappage ci-dessus est fourni dans le cadre de la `.ingest` commande de contrôle, il est sérialisé en tant que chaîne JSON :
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2") 
@@ -302,7 +302,7 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
 
 |Propriété|Description|
 |----|--|
-|`path`|Si commence par `$`: chemin d’accès JSON au champ qui deviendra le contenu de la colonne dans le document orc (le chemin d’accès JSON qui indique le document `$`entier est). Si la valeur ne commence pas par `$`: une valeur constante est utilisée.|
+|`path`|Si commence par `$` : chemin d’accès JSON au champ qui deviendra le contenu de la colonne dans le document orc (le chemin d’accès JSON qui indique le document entier est `$` ). Si la valeur ne commence pas par `$` : une valeur constante est utilisée.|
 |`transform`|Facultatif [mappages de transformations](#mapping-transformations) qui doivent être appliqués au contenu.
 
 ### <a name="example-of-orc-mapping"></a>Exemple de mappage ORC
@@ -322,7 +322,7 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
 ```      
 
 > [!NOTE]
-> Lorsque le mappage ci-dessus est fourni dans le `.ingest` cadre de la commande de contrôle, il est sérialisé en tant que chaîne JSON.
+> Lorsque le mappage ci-dessus est fourni dans le cadre de la `.ingest` commande de contrôle, il est sérialisé en tant que chaîne JSON.
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2") 
