@@ -7,12 +7,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 07/17/2019
-ms.openlocfilehash: aa1cdb647190c804c5dc18d1575a6030f166a845
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: b7ca4a41bb15e9fb8a4f55a9d674b1536dddd5ae
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493329"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83226395"
 ---
 # <a name="query-data-in-azure-data-lake-using-azure-data-explorer"></a>Interroger des données dans Azure Data Lake à l'aide d'Azure Data Explorer
 
@@ -46,7 +46,7 @@ Azure Data Explorer s’intègre à Stockage Blob Azure et Azure Data Lake Stora
     > * Lorsque vous définissez une table externe avec des partitions, la structure de stockage doit être identique.
 Par exemple, si la table est définie avec une partition DateTime au format aaaa/mm/jj (par défaut), le chemin d’accès au fichier de stockage URI doit être *container1/aaaa/mm/jj/all_exported_blobs*. 
     > * Si la table externe est partitionnée par une colonne DateHeure, ajoutez toujours à votre requête un filtre de temps définissant une plage fermée. Par exemple, la requête `ArchivedProducts | where Timestamp between (ago(1h) .. 10m)` offrira de meilleurs résultats que la requête `ArchivedProducts | where Timestamp > ago(1h)` (avec plage ouverte). 
-    > * Tous les [formats d’ingestion pris en charge](ingest-data-overview.md#supported-data-formats) peuvent être interrogés à l’aide de tables externes.
+    > * Tous les [formats d’ingestion pris en charge](ingestion-supported-formats.md) peuvent être interrogés à l’aide de tables externes.
 
 1. La table externe est visible dans le volet gauche de l’interface utilisateur web
 

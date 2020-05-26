@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 03/29/2020
-ms.openlocfilehash: 07303130bbe33472f85e3d620ecd2eace555dbe2
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 24f22c2dd4a8e159e4d85c1917b1852e1eb039f4
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81491304"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83374373"
 ---
 # <a name="use-one-click-ingestion-to-ingest-data-to-a-new-table-in-azure-data-explorer"></a>Utiliser l’ingestion en un clic pour ingérer des données dans une nouvelle table d’Azure Data Explorer
 
@@ -109,5 +109,5 @@ L’ingestion continue vous permet de créer une grille d’événement qui éco
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Interroger des données dans l’interface utilisateur web Azure Data Explorer](/azure/data-explorer/web-query-data)
-* [Écrire des requêtes pour Azure Data Explorer à l’aide du langage de requête Kusto](/azure/data-explorer/write-queries)
+* [Interroger des données dans l’interface utilisateur web Azure Data Explorer](web-query-data.md)
+* [Écrire des requêtes pour Azure Data Explorer à l’aide du langage de requête Kusto](write-queries.md)

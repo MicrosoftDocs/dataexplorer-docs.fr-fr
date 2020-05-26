@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: 0ecdee4171cb6deaa4cc6c233b8951c4eb54953c
-ms.sourcegitcommit: 9810acae3f1c83b8efe7b952d3bada2ff496b024
+ms.openlocfilehash: 4a2b18f28840291fc02002239297b45f38be00be
+ms.sourcegitcommit: 4e46b497d518884693a142f4ae21ea497db81861
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/18/2020
-ms.locfileid: "83444696"
+ms.lasthandoff: 05/25/2020
+ms.locfileid: "83824915"
 ---
 # <a name="capacity-policy"></a>Stratégie de capacité
 
@@ -121,7 +121,7 @@ La stratégie de capacité par défaut a la représentation JSON suivante :
 ## <a name="control-commands"></a>Commandes de contrôle
 
 > [!WARNING]
-> Il est rarement recommandé de modifier une stratégie de capacité, en raison de l’impact potentiel sur les ressources disponibles du cluster.
+> Consultez l’équipe de Explorateur de données Azure avant de modifier une stratégie de capacité.
 
 * Utilisez la fonctionnalité [. afficher la capacité](capacity-policy.md#show-cluster-policy-capacity) de la stratégie de cluster pour afficher la stratégie de capacité actuelle du cluster.
 

@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 12/09/2019
-ms.openlocfilehash: 18bd73797070ba569d1a43a8c66ab92526682f36
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 874c667e210996a838573df7ad982cadc1bb3360
+ms.sourcegitcommit: 4cc56775f0ff1c71c062dd69746db9962c122b78
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82619157"
+ms.lasthandoff: 05/21/2020
+ms.locfileid: "83757150"
 ---
 # <a name="manage-cluster-horizontal-scaling-scale-out-in-azure-data-explorer-to-accommodate-changing-demand"></a>Gérer la mise à l'échelle horizontale d'un cluster (scale-out) dans Azure Data Explorer pour prendre en compte les fluctuations de la demande
 
@@ -37,7 +37,7 @@ La mise à l’échelle manuelle est le paramétrage par défaut lors de la cré
 
    ![Méthode de mise à l’échelle manuelle](media/manage-cluster-horizontal-scaling/manual-scale-method.png)
 
-### <a name="optimized-autoscale-preview"></a>Mise à l’échelle automatique (préversion)
+### <a name="optimized-autoscale"></a>Mise à l’échelle automatique optimisée
 
 La mise à l’échelle automatique optimisée est la méthode de mise à l’échelle automatique recommandée. Cette méthode optimise les performances et les coûts du cluster. Si le cluster approche un état de sous-utilisation, il sera mis à l’échelle en conséquence. Cette action réduit les coûts tout en conservant le niveau de performance. Si le cluster approche un état de surutilisation, il sera mis à l’échelle horizontalement pour assurer des performances optimales. Pour configurer la mise à l’échelle automatique optimisée :
 

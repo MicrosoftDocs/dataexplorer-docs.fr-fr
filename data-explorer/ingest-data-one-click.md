@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 03/29/2020
-ms.openlocfilehash: 5f424716a9227f22b4ec5b148d29798b0a55fa27
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 16db3eb2d925d12ba8eefa605b27566e9b4c1b04
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618375"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373815"
 ---
 # <a name="what-is-one-click-ingestion"></a>Présentation de l’ingestion en un clic 
 
@@ -26,7 +26,7 @@ L’ingestion en un clic est particulièrement utile lorsque vous procédez à l
 
 * Si vous n’avez pas d’abonnement Azure, créez un [compte Azure gratuit](https://azure.microsoft.com/free/) avant de commencer.
 * Créez [un cluster et une base de données Azure Data Explorer](create-cluster-database-portal.md).
-* Connectez-vous à [l’interface utilisateur web Azure Data Explorer](https://dataexplorer.azure.com/) et [ajoutez une connexion à votre cluster](/azure/data-explorer/web-query-data#add-clusters).
+* Connectez-vous à [l’interface utilisateur web Azure Data Explorer](https://dataexplorer.azure.com/) et [ajoutez une connexion à votre cluster](web-query-data.md#add-clusters).
 
 ## <a name="file-formats"></a>Formats de fichiers
 
@@ -74,5 +74,5 @@ L’Assistant Ingestion en un clic vous guide tout au long du processus d’inge
 ## <a name="next-steps"></a>Étapes suivantes
 
 * Décider si vous allez utiliser l’ingestion en un clic pour ingérer des données dans [une table existante](one-click-ingestion-existing-table.md) ou [une nouvelle table](one-click-ingestion-new-table.md)
-* [Interroger des données dans l’interface utilisateur web Azure Data Explorer](/azure/data-explorer/web-query-data)
-* [Écrire des requêtes pour Azure Data Explorer à l’aide du langage de requête Kusto](/azure/data-explorer/write-queries)
+* [Interroger des données dans l’interface utilisateur web Azure Data Explorer](web-query-data.md)
+* [Écrire des requêtes pour Azure Data Explorer à l’aide du langage de requête Kusto](write-queries.md)

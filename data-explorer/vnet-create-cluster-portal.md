@@ -7,16 +7,16 @@ ms.reviewer: basaba
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/24/2020
-ms.openlocfilehash: 80936da3e56fe0a73dcf146ba61630ceeb4bcb2a
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 097e175ff28d334532e85715f1f6401a96fa8f8c
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618511"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83374324"
 ---
 # <a name="create-an-azure-data-explorer-cluster-in-your-virtual-network"></a>Créer un cluster Azure Data Explorer dans votre réseau virtuel
 
-Azure Data Explorer prend en charge le déploiement d’un cluster dans un sous-réseau de votre réseau virtuel (VNet). Cette fonctionnalité vous permet d’accéder en privé au cluster depuis votre réseau virtuel Azure ou une ressource d’accès locale, comme Event Hub et le stockage dans votre réseau virtuel, et de restreindre le trafic entrant et sortant.
+Azure Data Explorer prend en charge le déploiement d’un cluster dans un sous-réseau de votre réseau virtuel (VNet). Cette fonctionnalité vous permet d’accéder en privé au cluster à partir d’un réseau virtuel Azure ou d’un réseau local, d’accéder à une ressource comme Event Hub ou le Stockage dans votre réseau virtuel, et de restreindre le trafic entrant et sortant.
 
 ## <a name="prerequisites"></a>Prérequis
 
@@ -68,7 +68,7 @@ Création du groupe de sécurité réseau :
     | Nom | AllowAzureDataExplorerManagement
     | | |
     
-1. Répétez les deux étapes précédentes pour toutes les dépendances entrantes et sortantes en fonction des [dépendances de déploiement du réseau virtuel](/azure/data-explorer/vnet-deployment#dependencies-for-vnet-deployment). Il est également possible de remplacer les règles de trafic sortant par une seule règle pour autoriser *Internet* pour les ports 443 et 80.
+1. Répétez les deux étapes précédentes pour toutes les dépendances entrantes et sortantes en fonction des [dépendances de déploiement du réseau virtuel](vnet-deployment.md#dependencies-for-vnet-deployment). Il est également possible de remplacer les règles de trafic sortant par une seule règle pour autoriser *Internet* pour les ports 443 et 80.
     
     Les règles du groupe de sécurité réseau pour les dépendances entrantes et sortantes doivent ressembler à ceci :
 
@@ -121,7 +121,7 @@ Pour créer le réseau virtuel et le sous-réseau :
     | | | |
 
     > [!NOTE]
-    > Pour les charges de travail de production, planifiez la taille du sous-réseau en fonction de [Planifier la taille du sous-réseau dans votre réseau virtuel](/azure/data-explorer/vnet-deployment#plan-subnet-size-in-your-vnet).
+    > Pour les charges de travail de production, planifiez la taille du sous-réseau en fonction de [Planifier la taille du sous-réseau dans votre réseau virtuel](vnet-deployment.md#plan-subnet-size-in-your-vnet).
 
 1. Sélectionnez **Vérifier + créer** pour passer en revue les détails de votre cluster, puis **Créer** pour le provisionner.
 

@@ -8,12 +8,12 @@ ms.reviewer: tomersh26
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/20/2020
-ms.openlocfilehash: 5b8e9844894df9c49c1abd703ebc5a14b4c7050c
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: b3ff40f04ba9152fa1b12b7211bf7a7cf07c69bb
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493141"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373934"
 ---
 # <a name="integrate-azure-data-explorer-with-azure-data-factory"></a>Intégrer Azure Data Explorer avec Azure Data Factory
 
@@ -51,7 +51,7 @@ Les [flux de données de mappage Azure Data Factory](/azure/data-factory/concept
 
 1. Créez le [flux de données de mappage](/azure/data-factory/data-flow-create).
 1. [Exportez les données dans Objet blob Azure](/azure/data-factory/data-flow-sink). 
-1. Définissez [Event Grid](/azure/data-explorer/ingest-data-event-grid) ou l’[activité de copie ADF](/azure/data-explorer/data-factory-load-data) pour ingérer les données dans Azure Data Explorer.
+1. Définissez [Event Grid](ingest-data-event-grid.md) ou l’[activité de copie ADF](data-factory-load-data.md) pour ingérer les données dans Azure Data Explorer.
 
 ## <a name="select-between-copy-and-azure-data-explorer-command-activities-when-copy-data"></a>Choisir entre les activités de copie et de commande Azure Data Explorer lors de la copie de données 
 
@@ -216,7 +216,7 @@ La valeur imprimée :
 * Découvrez comment [copier des données vers Azure Data Explorer à l’aide d’Azure Data Factory](data-factory-load-data.md).
 * Découvrez comment [utiliser un modèle Azure Data Factory pour la copie en bloc à partir d’une base de données vers Azure Data Explorer](data-factory-template.md).
 * Découvrez comment utiliser [l’activité de commande Azure Data Factory pour exécuter des commandes de contrôle Azure Data Explorer](data-factory-command-activity.md).
-* Découvrez les [requêtes Azure Data Explorer](/azure/data-explorer/web-query-data) pour l’interrogation de données.
+* Découvrez les [requêtes Azure Data Explorer](web-query-data.md) pour l’interrogation de données.
 
 
 

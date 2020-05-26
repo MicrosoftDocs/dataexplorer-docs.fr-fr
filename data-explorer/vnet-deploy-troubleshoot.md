@@ -7,12 +7,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/24/2020
-ms.openlocfilehash: b50b971a3b1980ad35a1a939bdf25f1c9e6ac7ba
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: bbbf120c0a24a7ed14bc558b7dcd739bf2cae595
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494001"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83374276"
 ---
 # <a name="troubleshoot-access-ingestion-and-operation-of-your-azure-data-explorer-cluster-in-your-virtual-network"></a>Résoudre les problèmes d’accès, d’ingestion et de fonctionnement de votre cluster Azure Data Explorer dans votre réseau virtuel
 
@@ -29,7 +29,7 @@ La première étape comprend la vérification de la connectivité TCP à l’aid
 # <a name="windows"></a>[Windows](#tab/windows)
 
    1. Téléchargez [TCping](https://www.elifulkerson.com/projects/tcping.php) sur l’ordinateur qui se connecte au cluster.
-   2. Envoyez une commande ping à la destination à partir de la machine source en utilisant la commande suivante :
+   1. Envoyez une commande ping à la destination à partir de la machine source en utilisant la commande suivante :
 
     ```cmd
      C:\> tcping -t yourcluster.kusto.windows.net 443 
@@ -47,7 +47,7 @@ La première étape comprend la vérification de la connectivité TCP à l’aid
     $ apt-get install netcat
      ```
 
-   2. Envoyez une commande ping à la destination à partir de la machine source en utilisant la commande suivante :
+   1. Envoyez une commande ping à la destination à partir de la machine source en utilisant la commande suivante :
 
      ```bash
      $ netcat -z -v yourcluster.kusto.windows.net 443
@@ -72,7 +72,7 @@ Si vous rencontrez des problèmes d’ingestion et que vous soupçonnez qu’ils
 
 ### <a name="check-ingestion-health"></a>Vérifier l’intégrité d’ingestion
 
-Vérifiez que les [métriques d’ingestion du cluster](/azure/data-explorer/using-metrics#ingestion-health-and-performance-metrics) indiquent un état sain.
+Vérifiez que les [métriques d’ingestion du cluster](using-metrics.md#ingestion-health-and-performance-metrics) indiquent un état sain.
 
 ### <a name="check-security-rules-on-data-source-resources"></a>Vérifier les règles de sécurité sur les ressources de source de données
 
@@ -150,7 +150,7 @@ Si la propriété *Findings* affiche un résultat vide, cela signifie que tous l
 
 ### <a name="check-network-security-group-nsg"></a>Vérifier le groupe de sécurité réseau (NSG)
 
-Vérifiez que le [groupe de sécurité réseau](/azure/virtual-network/security-overview) est correctement configuré, conformément aux instructions figurant dans [Dépendances pour le déploiement de réseau virtuel](/azure/data-explorer/vnet-deployment#dependencies-for-vnet-deployment)
+Vérifiez que le [groupe de sécurité réseau](/azure/virtual-network/security-overview) est correctement configuré, conformément aux instructions figurant dans [Dépendances pour le déploiement de réseau virtuel](vnet-deployment.md#dependencies-for-vnet-deployment)
 
 ### <a name="check-route-table"></a>Vérifier la table de routage
 
@@ -158,4 +158,4 @@ Si le sous-réseau du cluster a le tunneling forcé configuré vers le pare-feu 
 
 ### <a name="check-firewall-rules"></a>Vérifier les règles de pare-feu
 
-Si vous forcez le trafic sortant du sous-réseau de tunnel vers un pare-feu, vérifiez que les noms de domaine complet de toutes les dépendances (par exemple, *.blob.core.windows.net*) sont autorisés dans la configuration du pare-feu, comme décrit dans [Sécurisation du trafic sortant avec pare-feu](/azure/data-explorer/vnet-deployment#securing-outbound-traffic-with-firewall).
+Si vous forcez le trafic sortant du sous-réseau de tunnel vers un pare-feu, vérifiez que les noms de domaine complet de toutes les dépendances (par exemple, *.blob.core.windows.net*) sont autorisés dans la configuration du pare-feu, comme décrit dans [Sécurisation du trafic sortant avec pare-feu](vnet-deployment.md#securing-outbound-traffic-with-firewall).

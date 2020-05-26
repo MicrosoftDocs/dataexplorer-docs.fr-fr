@@ -7,12 +7,12 @@ ms.reviewer: guregini
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/12/2020
-ms.openlocfilehash: 7389bfdf437d5fc6e4872f9f35ed40d5cb7b2f16
-ms.sourcegitcommit: e1e35431374f2e8b515bbe2a50cd916462741f49
+ms.openlocfilehash: 8a4a4e68333255c322708993b1c9429a89ae7a00
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82108369"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373762"
 ---
 # <a name="visualize-data-from-azure-data-explorer-in-kibana-with-the-k2bridge-open-source-connector"></a>Visualiser des données à partir d’Azure Data Explorer dans Kibana avec le connecteur open source K2Bridge
 
@@ -46,7 +46,7 @@ Avant de pouvoir visualiser des données à partir d’Azure Data Explorer dans 
 
 * Un principal de service Azure Active Directory (Azure AD) autorisé à afficher des données dans Azure Data Explorer, notamment l’ID client et le secret client.
 
-    Nous recommandons un principal de service avec autorisation d’affichage et déconseillons l’utilisation d’autorisations de niveau supérieur. [Définissez les autorisations d’affichage du cluster pour le principal de service Azure AD](https://docs.microsoft.com/azure/data-explorer/manage-database-permissions#manage-permissions-in-the-azure-portal).
+    Nous recommandons un principal de service avec autorisation d’affichage et déconseillons l’utilisation d’autorisations de niveau supérieur. [Définissez les autorisations d’affichage du cluster pour le principal de service Azure AD](manage-database-permissions.md#manage-permissions-in-the-azure-portal).
 
     Pour plus d’informations sur le principal de service Azure AD, consultez [Créer un principal de service Azure AD](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal#create-an-azure-active-directory-application).
 

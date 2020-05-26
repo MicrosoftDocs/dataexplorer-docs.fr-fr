@@ -8,12 +8,12 @@ ms.reviewer: jasonh
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/15/2019
-ms.openlocfilehash: c937d69df73ed523d1e4f3f0614eadf249ced0f3
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 066f385e53c010f45979ec435e3446d880302e44
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493153"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373958"
 ---
 # <a name="copy-data-to-azure-data-explorer-by-using-azure-data-factory"></a>Copier des données dans Azure Data Explorer à l’aide d’Azure Data Factory 
 
@@ -245,4 +245,4 @@ Une fois que vous avez créé la connexion au service lié, le volet **Banque de
 
 * Découvrez le [connecteur Azure Data Explorer](/azure/data-factory/connector-azure-data-explorer) dans Azure Data Factory.
 * Apprenez-en davantage sur la modification des services liés, jeux de données et pipelines dans l’[interface utilisateur de Data Factory](/azure/data-factory/quickstart-create-data-factory-portal).
-* Découvrez les [requêtes Azure Data Explorer](/azure/data-explorer/web-query-data) pour l’interrogation de données.
+* Découvrez les [requêtes Azure Data Explorer](web-query-data.md) pour l’interrogation de données.

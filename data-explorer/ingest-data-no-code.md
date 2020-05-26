@@ -6,13 +6,13 @@ ms.author: orspodek
 ms.reviewer: kerend
 ms.service: data-explorer
 ms.topic: tutorial
-ms.date: 01/29/2020
-ms.openlocfilehash: 59a42c2a3e4efa8c8642bccf96b0040767753e65
-ms.sourcegitcommit: e1e35431374f2e8b515bbe2a50cd916462741f49
+ms.date: 05/19/2020
+ms.openlocfilehash: 0808d0dadd410ae6d220b03ef54191192b925a21
+ms.sourcegitcommit: ee90472a4f9d751d4049744d30e5082029c1b8fa
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82108335"
+ms.lasthandoff: 05/21/2020
+ms.locfileid: "83722182"
 ---
 # <a name="tutorial-ingest-and-query-monitoring-data-in-azure-data-explorer"></a>Tutoriel : Ingérer et interroger des données de supervision dans Azure Data Explorer 
 
@@ -196,7 +196,7 @@ Les journaux d’activité Azure sont des journaux de niveau d’abonnement qui 
 
 ## <a name="set-up-an-ingestion-pipeline-in-azure-data-explorer"></a>Configurer un pipeline d’ingestion dans Azure Data Explorer
 
-La configuration d’un pipeline Azure Data Explorer implique plusieurs étapes, comme la [création de tables et l’ingestion de données](/azure/data-explorer/ingest-sample-data#ingest-data). Vous pouvez également manipuler, mapper et mettre à jour les données.
+La configuration d’un pipeline Azure Data Explorer implique plusieurs étapes, comme la [création de tables et l’ingestion de données](ingest-sample-data.md#ingest-data). Vous pouvez également manipuler, mapper et mettre à jour les données.
 
 ### <a name="connect-to-the-azure-data-explorer-web-ui"></a>Se connecter à l’interface utilisateur web d’Azure Data Explorer
 
@@ -290,7 +290,7 @@ Utilisez l’interface utilisateur web d’Azure Data Explorer pour créer les t
 Pour mapper les données des métriques et journaux de diagnostic à la table, utilisez la requête suivante :
 
 ```kusto
-.create table DiagnosticRawRecords ingestion json mapping 'DiagnosticRawRecordsMapping' '[{"column":"Records","path":"$.records"}]'
+.create table DiagnosticRawRecords ingestion json mapping 'DiagnosticRawRecordsMapping' '[{"column":"Records","Properties":{"path":"$.records"}}]'
 ```
 
 # <a name="activity-logs"></a>[Journaux d’activité](#tab/activity-logs)
@@ -299,7 +299,7 @@ Pour mapper les données des métriques et journaux de diagnostic à la table, u
 Pour mapper les données des journaux d’activité à la table, utilisez la requête suivante :
 
 ```kusto
-.create table ActivityLogsRawRecords ingestion json mapping 'ActivityLogsRawRecordsMapping' '[{"column":"Records","path":"$.records"}]'
+.create table ActivityLogsRawRecords ingestion json mapping 'ActivityLogsRawRecordsMapping' '[{"column":"Records","Properties":{"path":"$.records"}}]'
 ```
 ---
 
@@ -336,7 +336,7 @@ Pour mapper les données des journaux d’activité à la table, utilisez la req
 # <a name="diagnostic-logs"></a>[Journaux de diagnostic](#tab/diagnostic-logs)
 #### <a name="create-data-update-policy-for-diagnostics-logs"></a>Créer une stratégie de mise à jour des données pour les journaux de diagnostic
 
-1. Créez une [fonction](kusto/management/functions.md) qui développe la collection des enregistrements de journaux de diagnostic pour que chaque valeur de la collection reçoive une ligne distincte. Vous allez activer les journaux d’ingestion sur un cluster Azure Data Explorer et utiliser un [schéma des journaux d’ingestion](/azure/data-explorer/using-diagnostic-logs#diagnostic-logs-schema). Vous allez créer une table pour les opérations d’ingestion réussies et ayant échoué, alors que certains champs seront vides pour l’ingestion réussie (ErrorCode, par exemple). Utilisez l’opérateur [`mv-expand`](kusto/query/mvexpandoperator.md) :
+1. Créez une [fonction](kusto/management/functions.md) qui développe la collection des enregistrements de journaux de diagnostic pour que chaque valeur de la collection reçoive une ligne distincte. Vous allez activer les journaux d’ingestion sur un cluster Azure Data Explorer et utiliser un [schéma des journaux d’ingestion](using-diagnostic-logs.md#diagnostic-logs-schema). Vous allez créer une table pour les opérations d’ingestion réussies et ayant échoué, alors que certains champs seront vides pour l’ingestion réussie (ErrorCode, par exemple). Utilisez l’opérateur [`mv-expand`](kusto/query/mvexpandoperator.md) :
 
     ```kusto
     .create function DiagnosticLogsExpand() {

@@ -7,18 +7,18 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/30/2019
-ms.openlocfilehash: 219a9014b120e0df74f8d9d286253fa933c8f05a
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: c0373d2e380f1a9fb826d0e40ffcc0284f6db09a
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493649"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373784"
 ---
 # <a name="streaming-ingestion-preview"></a>Ingestion de streaming (préversion)
 
 Utilisez l’ingestion de streaming lorsque vous avez besoin d’une faible latence avec une durée d’ingestion de moins de 10 secondes pour des volumes de données variés. Elle est utilisée pour optimiser le traitement opérationnel de nombreuses tables, dans une ou plusieurs bases de données où le flux de données dans chaque table est relativement faible (peu d’enregistrements par seconde), mais le volume global d’ingestion de données est élevé (des milliers d’enregistrements par seconde). 
 
-Utilisez l’ingestion en bloc à la place de l’ingestion de streaming lorsque la quantité de données dépasse 1 Mo par seconde et par table. Consultez [Vue d’ensemble de l’ingestion de données](/azure/data-explorer/ingest-data-overview) pour en apprendre plus sur les différentes méthodes d’ingestion.
+Utilisez l’ingestion en bloc à la place de l’ingestion de streaming lorsque la quantité de données dépasse 1 Mo par seconde et par table. Consultez [Vue d’ensemble de l’ingestion de données](ingest-data-overview.md) pour en apprendre plus sur les différentes méthodes d’ingestion.
 
 ## <a name="prerequisites"></a>Conditions préalables requises
 
@@ -48,7 +48,7 @@ Utilisez l’ingestion en bloc à la place de l’ingestion de streaming lorsque
 Il existe deux types d’ingestion de streaming pris en charge :
 
 
-* [**Hub d’événements**](/azure/data-explorer/ingest-data-event-hub), qui est utilisé comme source de données
+* [**Hub d’événements**](ingest-data-event-hub.md), qui est utilisé comme source de données
 * Une **ingestion personnalisée** vous demande d’écrire une application qui utilise l’une des bibliothèques clientes Azure Data Explorer. Consultez un [exemple d’ingestion de streaming](https://github.com/Azure/azure-kusto-samples-dotnet/tree/master/client/StreamingIngestionSample) pour voir un exemple d’application.
 
 ### <a name="choose-the-appropriate-streaming-ingestion-type"></a>Choisir le type d’ingestion de streaming approprié

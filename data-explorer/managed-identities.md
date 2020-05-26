@@ -7,16 +7,16 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/12/2020
-ms.openlocfilehash: 900bf815917a4b7c9841860d663a2183b1ab71b3
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 523330f5ace4d9f2d652eccbd746b039d66df749
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493601"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83374294"
 ---
 # <a name="configure-managed-identities-for-your-azure-data-explorer-cluster"></a>Configurer des identités managées pour votre cluster Azure Data Explorer
 
-Une [identité managée issue d’Azure Active Directory](/azure/active-directory/managed-identities-azure-resources/overview) permet à votre cluster d’accéder facilement aux autres ressources protégées par AAD telles qu’Azure Key Vault. Managée par la plateforme Azure, l’identité ne nécessite pas que vous approvisionniez ou permutiez de secrets. Cet article explique comment créer une identité managée pour des clusters Azure Data Explorer. La configuration des identités managées est actuellement prise en charge uniquement pour [activer les clés gérées par le client pour votre cluster](/azure/data-explorer/security#customer-managed-keys-with-azure-key-vault).
+Une [identité managée issue d’Azure Active Directory](/azure/active-directory/managed-identities-azure-resources/overview) permet à votre cluster d’accéder facilement aux autres ressources protégées par AAD telles qu’Azure Key Vault. Managée par la plateforme Azure, l’identité ne nécessite pas que vous approvisionniez ou permutiez de secrets. Cet article explique comment créer une identité managée pour des clusters Azure Data Explorer. La configuration des identités managées est actuellement prise en charge uniquement pour [activer les clés gérées par le client pour votre cluster](security.md#customer-managed-keys-with-azure-key-vault).
 
 > [!Note]
 > Les identités managées pour Azure Data Explorer ne se comportent pas comme prévu si votre cluster Azure Data Explorer est migré entre des abonnements ou des locataires. L’application devra obtenir une nouvelle identité, ce qui est possible en [désactivant](#disable-a-system-assigned-identity) et en [réactivant](#add-a-system-assigned-identity) la fonctionnalité. Les stratégies d’accès des ressources en aval devront également être mises à jour pour utiliser la nouvelle identité.
@@ -33,7 +33,7 @@ Attribuez une identité affectée par le système liée à votre cluster, qui se
 
 #### <a name="new-azure-data-explorer-cluster"></a>Nouveau cluster Azure Data Explorer
 
-1. [Créez un cluster Azure Data Explorer](/azure/data-explorer/create-cluster-database-portal#create-a-cluster). 
+1. [Créez un cluster Azure Data Explorer](create-cluster-database-portal.md#create-a-cluster). 
 1. Dans l’onglet **Sécurité** > **Identité affectée par le système**, sélectionnez **Activée**. Pour supprimer l’identité affectée par le système, sélectionnez **Désactivée**.
 2. Sélectionnez **Suivant : Balises >** ou **Examiner + Créer** pour créer le cluster.
 

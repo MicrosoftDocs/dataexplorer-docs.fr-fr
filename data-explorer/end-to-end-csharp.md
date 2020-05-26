@@ -6,13 +6,13 @@ ms.author: lugoldbe
 ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: conceptual
-ms.date: 02/03/2020
-ms.openlocfilehash: 8df2202d3a127c58cee90353a628bf933ea30a10
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.date: 05/19/2020
+ms.openlocfilehash: 53504f51f1a5bd80967c510bd4bff1ba47cd8e58
+ms.sourcegitcommit: ee90472a4f9d751d4049744d30e5082029c1b8fa
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493537"
+ms.lasthandoff: 05/21/2020
+ms.locfileid: "83722165"
 ---
 # <a name="end-to-end-blob-ingestion-into-azure-data-explorer-through-c"></a>Ingestion d’objets blob de bout en bout dans Azure Data Explorer par le biais de C#
 
@@ -153,14 +153,14 @@ using (var kustoClient = KustoClientFactory.CreateCslAdminProvider(kustoConnecti
 
     kustoClient.ExecuteControlCommand(command);
 
-    command = CslCommandGenerator.GenerateTableCsvMappingCreateCommand(
+    command = CslCommandGenerator.GenerateTableMappingCreateCommand(
+        Data.Ingestion.IngestionMappingKind.Csv,
         kustoTableName,
         kustoColumnMappingName,
-        new[]
-        {
-            new CsvColumnMapping { ColumnName = "EventTime", CslDataType="dateTime", Ordinal = 0 },
-            new CsvColumnMapping { ColumnName = "EventId", CslDataType="int", Ordinal = 1 },
-            new CsvColumnMapping { ColumnName = "EventSummary", CslDataType="string", Ordinal = 2 },
+        new ColumnMapping[] {
+            new ColumnMapping() { ColumnName = "EventTime", ColumnType = "dateTime", Properties = new Dictionary<string, string>() { { MappingConsts.Ordinal, "0" } } },
+            new ColumnMapping() { ColumnName = "EventId", ColumnType = "int", Properties = new Dictionary<string, string>() { { MappingConsts.Ordinal, "1" } } },
+            new ColumnMapping() { ColumnName = "EventSummary", ColumnType = "string", Properties = new Dictionary<string, string>() { { MappingConsts.Ordinal, "2" } } },
         });
     kustoClient.ExecuteControlCommand(command);
 }

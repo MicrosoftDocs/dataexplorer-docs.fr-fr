@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/01/2020
-ms.openlocfilehash: e9918452aaeefc2c4f144c60e2e7bdb70ac87f2b
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 8d4eeb47abb8eac2b042b64e65b55dac7e91d6c9
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494509"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83374056"
 ---
 # <a name="install-and-use-lightingest"></a>Installer et utiliser LightIngest
 
@@ -73,7 +73,7 @@ L’utilitaire peut extraire les données sources à partir d’un dossier local
 |-prefix               |             |string  |Facultatif  |Lorsque les données sources à ingérer résident dans le stockage d’objets BLOB, ce préfixe d’URL est partagé par tous les objets BLOB, à l’exclusion du nom du conteneur. <br>Par exemple, si les données sont dans `MyContainer/Dir1/Dir2`, le préfixe doit être `Dir1/Dir2`. La délimitation entre guillemets doubles est recommandée |
 |-pattern              |             |string  |Facultatif  |Modèle suivant lequel les fichiers sources/objets BLOB sont choisis. Prend en charge les caractères génériques. Par exemple : `"*.csv"`. Il est recommandé d’entourer la valeur de guillemets doubles |
 |-zipPattern           |             |string  |Facultatif  |Expression régulière à utiliser lors de la sélection des fichiers d’une archive ZIP à ingérer.<br>Tous les autres fichiers de l’archive sont ignorés. Par exemple, `"*.csv"`. Il est recommandé de l’entourer de guillemets doubles |
-|-format               |-f           |string  |Facultatif  |Format des données sources. Doit être dans l'un des [formats pris en charge](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats) |
+|-format               |-f           |string  |Facultatif  |Format des données sources. Doit être dans l'un des [formats pris en charge](ingestion-supported-formats.md) |
 |-ingestionMappingPath |-mappingPath |string  |Facultatif  |Chemin d’accès au fichier de mappage des colonnes d’ingestion (obligatoire pour les formats JSON et Avro). Consultez [mappages de données](kusto/management/mappings.md) |
 |-ingestionMappingRef  |-mappingRef  |string  |Facultatif  |Nom d’un mappage de colonnes d’ingestion créé au préalable (obligatoire pour les formats JSON et Avro). Consultez [mappages de données](kusto/management/mappings.md) |
 |-creationTimePattern  |             |string  |Facultatif  |Lorsque cette option est définie, elle est utilisée pour extraire la propriété CreationTime du chemin d’accès du fichier ou de l’objet BLOB. Consultez [Utilisation de l’argument CreationTimePattern](#using-creationtimepattern-argument) |

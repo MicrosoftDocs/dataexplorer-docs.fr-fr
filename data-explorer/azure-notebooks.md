@@ -7,19 +7,19 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/01/2020
-ms.openlocfilehash: 0f99e11be99f22feec73b72397b27522b90dbf49
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: d9564eec41fd78b3506994da2917f1d8765ee266
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492617"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373984"
 ---
 # <a name="use-azure-notebooks-to-analyze-data-in-azure-data-explorer"></a>Utiliser Azure Notebooks pour analyser les données dans Azure Data Explorer
 
 [Azure Notebooks](https://notebooks.azure.com/) est un service cloud Azure qui simplifie la création et le partage de [notebooks Jupyter](https://jupyter.org/). Azure Notebooks permet de combiner facilement la documentation, le code et les résultats de l’exécution du code.
 
 > [!Note]
-> * La procédure suivante utilise le client Python dans l’environnement Azure Notebooks pour interroger Azure Data Explorer. Toutefois, vous pouvez également utiliser [KQLmagic](https://docs.microsoft.com/azure/data-explorer/kqlmagic) pour interroger Azure Data Explorer.
+> * La procédure suivante utilise le client Python dans l’environnement Azure Notebooks pour interroger Azure Data Explorer. Toutefois, vous pouvez également utiliser [KQLmagic](kqlmagic.md) pour interroger Azure Data Explorer.
 > * Certains utilisateurs ont signalé des problèmes d’authentification lorsqu’ils utilisent Edge. Tant que ces problèmes ne sont pas résolus, utilisez un autre navigateur.
 
 ## <a name="create-a-project"></a>Création d’un projet

@@ -7,12 +7,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 06/03/2019
-ms.openlocfilehash: cd503948d2f48a0ca431b7e1ce9fbe5c178fc542
-ms.sourcegitcommit: 72eaa9e5169d79507ceb6ead4a2eb703121c2190
+ms.openlocfilehash: b7e8611ba6427880f15d57137e31010047c39e01
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774967"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83224610"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-by-using-azure-cli"></a>Créer un cluster et une base de données Azure Data Explorer avec Azure CLI
 
@@ -49,13 +49,19 @@ Les étapes suivantes ne sont pas obligatoires si vous exécutez des commandes d
     ```azurecli-interactive
     az account set --subscription MyAzureSub
     ```
+   
+1. Installez l’extension pour utiliser la dernière version de Kusto CLI :
+
+    ```azurecli-interactive
+    az extension add -n kusto
+    ```
 
 ## <a name="create-the-azure-data-explorer-cluster"></a>Créer le cluster Azure Data Explorer
 
 1. Créez votre cluster avec la commande suivante :
 
     ```azurecli-interactive
-    az kusto cluster create --name azureclitest --sku name="Standard_D13_v2" tier="Standard" --resource-group testrg --location westus
+    az kusto cluster create --cluster-name azureclitest --sku name="Standard_D13_v2" tier="Standard" --resource-group testrg --location westus
     ```
 
    |**Paramètre** | **Valeur suggérée** | **Description du champ**|
@@ -70,7 +76,7 @@ Les étapes suivantes ne sont pas obligatoires si vous exécutez des commandes d
 1. Exécutez la commande suivante pour vérifier si votre cluster a bien été créé :
 
     ```azurecli-interactive
-    az kusto cluster show --name azureclitest --resource-group testrg
+    az kusto cluster show --cluster-name azureclitest --resource-group testrg
     ```
 
 Si le résultat contient `provisioningState` avec la valeur `Succeeded`, alors le cluster a correctement été créé.
@@ -93,7 +99,7 @@ Si le résultat contient `provisioningState` avec la valeur `Succeeded`, alors l
 1. Exécutez la commande suivante pour voir la base de données que vous avez créée :
 
     ```azurecli-interactive
-    az kusto database show --name clidatabase --resource-group testrg --cluster-name azureclitest
+    az kusto database show --database-name clidatabase --resource-group testrg --cluster-name azureclitest
     ```
 
 Vous disposez maintenant d’un cluster et d’une base de données.
@@ -104,7 +110,7 @@ Vous disposez maintenant d’un cluster et d’une base de données.
 * Pour nettoyer les ressources, supprimez le cluster. Lorsque vous supprimez un cluster, cela supprime également toutes les bases de données qu’il contient. Utilisez la commande suivante pour supprimer votre cluster :
 
     ```azurecli-interactive
-    az kusto cluster delete --name azureclitest --resource-group testrg
+    az kusto cluster delete --cluster-name azureclitest --resource-group testrg
     ```
 
 ## <a name="next-steps"></a>Étapes suivantes

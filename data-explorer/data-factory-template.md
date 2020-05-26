@@ -8,12 +8,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 09/08/2019
-ms.openlocfilehash: 884f4e956b37c2def6c25d0acdf20f15eddf7767
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: e1c51132ddb36a206a97236b6ceb4553a62e6d2c
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493225"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373911"
 ---
 # <a name="copy-in-bulk-from-a-database-to-azure-data-explorer-by-using-the-azure-data-factory-template"></a>Copier en bloc à partir d’une base de données vers Azure Data Explorer à l’aide du modèle Azure Data Factory 
 
@@ -113,7 +113,7 @@ Vous pouvez maintenant utiliser le modèle pour copier efficacement de grandes q
 
 * Découvrez comment [copier des données vers Azure Data Explorer à l’aide d’Azure Data Factory](data-factory-load-data.md).
 * Découvrez le [connecteur Azure Data Explorer](/azure/data-factory/connector-azure-data-explorer) dans Azure Data Factory.
-* Découvrez les [requêtes Azure Data Explorer](/azure/data-explorer/web-query-data) pour l’interrogation de données.
+* Découvrez les [requêtes Azure Data Explorer](web-query-data.md) pour l’interrogation de données.
 
 
 

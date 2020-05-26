@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 11/27/2018
-ms.openlocfilehash: 7e1c7dd313f42884132fe014367c0402418be708
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 1853b85215da63a753a7867cb9d4354c5b99731a
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492905"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373961"
 ---
 # <a name="connect-to-azure-data-explorer-from-azure-databricks-by-using-python"></a>Se connecter à Azure Data Explorer à partir d’Azure Databricks en utilisant Python
 
@@ -20,7 +20,7 @@ ms.locfileid: "81492905"
 
 ## <a name="prerequisites"></a>Conditions préalables requises
 
-- [Créez un cluster et une base de données Azure Data Explorer](/azure/data-explorer/create-cluster-database-portal).
+- [Créez un cluster et une base de données Azure Data Explorer](create-cluster-database-portal.md).
 - [Créez un espace de travail Azure Databricks](/azure/azure-databricks/quickstart-create-databricks-workspace-portal#create-an-azure-databricks-workspace). Sous **Service Azure Databricks**, dans la liste déroulante **Niveau tarifaire**, sélectionnez **Premium**. Ceci vous permet d’utiliser des secrets Azure Databricks pour stocker vos informations d’identification et les référencer dans des notebooks et des travaux.
 
 - [Créez un cluster](https://docs.azuredatabricks.net/user-guide/clusters/create.html) dans Azure Databricks avec les spécifications suivantes (paramètres minimum nécessaires pour exécuter les exemples de notebooks) :

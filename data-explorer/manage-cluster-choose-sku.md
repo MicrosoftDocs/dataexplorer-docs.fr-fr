@@ -7,12 +7,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 07/14/2019
-ms.openlocfilehash: 2d078f9715a0cfa171f0c88776a4ab78c15215a8
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: a2735a4f469ecf6dea9856a1ee8f0036ffc38fe5
+ms.sourcegitcommit: 8a88534eb6aa2c4260e97b7afd1818ce32786001
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494485"
+ms.lasthandoff: 05/20/2020
+ms.locfileid: "83708458"
 ---
 # <a name="select-the-correct-vm-sku-for-your-azure-data-explorer-cluster"></a>Sélectionner la bonne référence SKU de machine virtuelle pour votre cluster Azure Data Explorer 
 
@@ -70,17 +70,18 @@ Les spécifications techniques des machines virtuelles du cluster Azure Data Exp
 
 |**Nom**| **Catégorie** | **Taille du disque SSD** | **Cœurs** | **RAM** | **Disques de stockage Premium (1&nbsp;To)**| **Nombre minimum d'instances par cluster** | **Nombre maximum d'instances par cluster**
 |---|---|---|---|---|---|---|---
-|D11 v2| Optimisé pour le calcul | 75&nbsp;Go    | 2 | 14&nbsp;Go | 0 | 1 | 8 (sauf pour les références SKU de développement/test où il est de 1)
-|D12 v2| Optimisé pour le calcul | 150&nbsp;Go   | 4 | 28&nbsp;Go | 0 | 2 | 16
-|D13 v2| Optimisé pour le calcul | 307&nbsp;Go   | 8 | 56&nbsp;Go | 0 | 2 | 1 000
-|D14 v2| Optimisé pour le calcul | 614&nbsp;Go   | 16| 112&nbsp;Go | 0 | 2 | 1 000
-|DS13 v2 + 1&nbsp;TB&nbsp;PS| Optimisé pour le stockage | 1&nbsp;To | 8 | 56&nbsp;Go | 1 | 2 | 1 000
-|DS13 v2 + 2&nbsp;TB&nbsp;PS| Optimisé pour le stockage | 2&nbsp;To | 8 | 56&nbsp;Go | 2 | 2 | 1 000
-|DS14 v2 + 3&nbsp;TB&nbsp;PS| Optimisé pour le stockage | 3&nbsp;To | 16 | 112&nbsp;Go | 2 | 2 | 1 000
-|DS14 v2 + 4&nbsp;TB&nbsp;PS| Optimisé pour le stockage | 4&nbsp;To | 16 | 112&nbsp;Go | 4 | 2 | 1 000
-|L4s v1| Optimisé pour le stockage | 650&nbsp;Go | 4 | 32&nbsp;Go | 0 | 2 | 16
-|L8s v1| Optimisé pour le stockage | 1,3&nbsp;To | 8 | 64&nbsp;Go | 0 | 2 | 1 000
-|L16s_1| Optimisé pour le stockage | 2,6&nbsp;To | 16| 128&nbsp;Go | 0 | 2 | 1 000
+|Dev(No SLA)_Standard_D11_v2| Optimisé pour le calcul | 75&nbsp;Go    | 1 | 14&nbsp;Go | 0 | 1 | 1
+|Standard_D11_v2| Optimisé pour le calcul | 75&nbsp;Go    | 2 | 14&nbsp;Go | 0 | 2 | 8 
+|Standard_D12_v2| Optimisé pour le calcul | 150&nbsp;Go   | 4 | 28&nbsp;Go | 0 | 2 | 16
+|Standard_D13_v2| Optimisé pour le calcul | 307&nbsp;Go   | 8 | 56&nbsp;Go | 0 | 2 | 1 000
+|Standard_D14_v2| Optimisé pour le calcul | 614&nbsp;Go   | 16| 112&nbsp;Go | 0 | 2 | 1 000
+|Standard_DS13_v2 + 1&nbsp;To&nbsp;PS| Optimisé pour le stockage | 1&nbsp;To | 8 | 56&nbsp;Go | 1 | 2 | 1 000
+|Standard_DS13_v2 + 2&nbsp;To&nbsp;PS| Optimisé pour le stockage | 2&nbsp;To | 8 | 56&nbsp;Go | 2 | 2 | 1 000
+|Standard_DS14_v2 + 3&nbsp;To&nbsp;PS| Optimisé pour le stockage | 3&nbsp;To | 16 | 112&nbsp;Go | 2 | 2 | 1 000
+|Standard_DS14_v2 + 4&nbsp;To&nbsp;PS| Optimisé pour le stockage | 4&nbsp;To | 16 | 112&nbsp;Go | 4 | 2 | 1 000
+|Standard_L4s| Optimisé pour le stockage | 650&nbsp;Go | 4 | 32&nbsp;Go | 0 | 2 | 16
+|Standard_L8s| Optimisé pour le stockage | 1,3&nbsp;To | 8 | 64&nbsp;Go | 0 | 2 | 1 000
+|Standard_L16s| Optimisé pour le stockage | 2,6&nbsp;To | 16| 128&nbsp;Go | 0 | 2 | 1 000
 
 * Vous pouvez visualiser la liste mise à jour des références SKU de machine virtuelle par région à l’aide de l’[API ListSkus](/dotnet/api/microsoft.azure.management.kusto.clustersoperationsextensions.listskus?view=azure-dotnet) Azure Data Explorer. 
 * Découvrez-en plus sur les [différentes références SKU](/azure/virtual-machines/windows/sizes). 

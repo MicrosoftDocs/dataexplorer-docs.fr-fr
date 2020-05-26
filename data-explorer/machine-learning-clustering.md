@@ -7,16 +7,16 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/29/2019
-ms.openlocfilehash: e2adedec36696c7974ecb2e7f7c62d65329c368f
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: abef0650485ac1feb53d43f42559c5a7fdfb75c3
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494489"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83374031"
 ---
 # <a name="machine-learning-capability-in-azure-data-explorer"></a>Fonctionnalité d’apprentissage automatique dans Azure Data Explorer
 
-Azure Data Explorer, une plateforme d’analyse des Big Data, est utilisée pour surveiller l’intégrité du service, la qualité de service ou le comportement anormal d’appareils en dysfonctionnement à l’aide de fonctions de [prévision et de détection d’anomalie intégrées](/azure/data-explorer/anomaly-detection). Si un modèle anormal est détecté, une analyse de la cause racine est effectuée pour atténuer ou résoudre l’anomalie.
+Azure Data Explorer, une plateforme d’analyse des Big Data, est utilisée pour surveiller l’intégrité du service, la qualité de service ou le comportement anormal d’appareils en dysfonctionnement à l’aide de fonctions de [prévision et de détection d’anomalie intégrées](anomaly-detection.md). Si un modèle anormal est détecté, une analyse de la cause racine est effectuée pour atténuer ou résoudre l’anomalie.
 
 Le processus de diagnostic est long et complexe et effectué par des experts du domaine. Le processus comprend l’extraction et la jonction de données supplémentaires issues de sources différentes pour le même délai d’exécution, la recherche de modifications dans la distribution des valeurs sur plusieurs dimensions, la création de graphiques de variables supplémentaires, et d’autres techniques en fonction des connaissances de domaine et de l’intuition. Dans la mesure où ces scénarios de diagnostic sont courants dans Azure Data Explorer, les plug-ins d’apprentissage automatique sont disponibles pour simplifier la phase de diagnostic et raccourcir la durée de l’analyse de la cause racine.
 
@@ -38,7 +38,7 @@ demo_clustering1
 
 ![Graphique temporel des exceptions de service](media/machine-learning-clustering/service-exceptions-timechart.png)
 
-Le nombre d’exceptions de service se met en corrélation avec l’ensemble du trafic de service. Vous pouvez voir clairement le modèle quotidien pour les jours ouvrables allant du lundi au vendredi, avec une augmentation du nombre d’exceptions de service à la mi journée et une baisse de ces nombres au cours de la nuit. Ces nombres restent faibles et stables pendant le week-end. Des pics d’exception peuvent être détectés à l’aide de la [détection d’anomalie de série chronologique](/azure/data-explorer/anomaly-detection?#time-series-anomaly-detection) dans Azure Data Explorer.
+Le nombre d’exceptions de service se met en corrélation avec l’ensemble du trafic de service. Vous pouvez voir clairement le modèle quotidien pour les jours ouvrables allant du lundi au vendredi, avec une augmentation du nombre d’exceptions de service à la mi journée et une baisse de ces nombres au cours de la nuit. Ces nombres restent faibles et stables pendant le week-end. Des pics d’exception peuvent être détectés à l’aide de la [détection d’anomalie de série chronologique](anomaly-detection.md#time-series-anomaly-detection) dans Azure Data Explorer.
 
 Le deuxième pic de données se produit le mardi après-midi. La requête suivante est utilisée pour diagnostiquer ce pic de manière plus approfondie. Utilisez la requête pour redessiner le graphique autour du pic dans une résolution plus élevée (huit heures dans des emplacements d’une minute) pour vérifier s’il s’agit d’un pic pointu et afficher ses bordures.
 

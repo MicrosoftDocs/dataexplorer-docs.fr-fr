@@ -1,6 +1,6 @@
 ---
-title: Politiques de fusion d’étendues - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la politique de fusion d’Étendues dans Azure Data Explorer.
+title: Stratégie de fusion des extensions-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit les étendues de la stratégie de fusion dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,56 +8,56 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 771af22f07a770b0da1196871e9132393524aab9
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: cfb75520a5fa173757395628948c8630a258f935
+ms.sourcegitcommit: 4e46b497d518884693a142f4ae21ea497db81861
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81520721"
+ms.lasthandoff: 05/25/2020
+ms.locfileid: "83824898"
 ---
-# <a name="extents-merge-policy"></a>Politiques de fusion d’étendues
-La politique de fusion définit si et comment [Les étendues (Data Shards)](../management/extents-overview.md) dans le cluster Kusto devraient être fusionnées.
+# <a name="extents-merge-policy"></a>Stratégie de fusion des étendues
+La stratégie de fusion définit si et comment les [étendues (données partitions)](../management/extents-overview.md) du cluster Kusto doivent être fusionnées.
 
-Il y a 2 saveurs pour les opérations de fusion : `Merge` (qui reconstruit les index), et `Rebuild` (qui réingére complètement les données).
+Il existe 2 versions pour les opérations de fusion : `Merge` (qui reconstruit les index) et `Rebuild` (qui recrée complètement les données).
 
-Les deux types d’opération se traduisent par une seule mesure qui remplace les étendues de source.
+Les deux types d’opérations entraînent une seule extension qui remplace les extensions sources.
 
-Par défaut, les opérations de reconstruction sont préférées, et seulement s’il reste des étendues qui ne correspondaient pas aux critères de reconstruction, ils sont tentés d’être fusionnés.  
+Par défaut, les opérations de régénération sont préférées et, uniquement s’il existe des extensions restantes qui ne correspondent pas aux critères de reconstruction, elles sont tentées d’être fusionnées.  
 
 *Remarques :*
-- L’utilisation *d’étiquettes différentes* `drop-by` entraînera la non fusion de ces étendues, même si une politique de fusion a été définie (voir [Le marquage de l’étendue).](../management/extents-overview.md#extent-tagging)
-- Les étendues dont l’union des étiquettes dépasse la longueur des caractères 1M ne seront pas fusionnées.
-- La politique de [Sharding](./shardingpolicy.md) de la base de données et de la table a également un certain effet sur la façon dont les étendues sont fusionnées.
+- Les extensions de balisage utilisant *different* `drop-by` des balises différentes entraînent la non-fusion de ces étendues, même si une stratégie de fusion a été définie (Voir l' [étiquetage des étendues](../management/extents-overview.md#extent-tagging)).
+- Les extensions dont l’Union de balises dépasse la longueur de 1 million de caractères ne sont pas fusionnées ensemble.
+- La [stratégie partitionnement](./shardingpolicy.md) de la base de données ou de la table a également un effet sur la façon dont les extensions sont fusionnées ensemble.
 
-La politique de fusion contient les propriétés suivantes :
+La stratégie de fusion contient les propriétés suivantes :
 
 - **RowCountUpperBoundForMerge**:
     - La valeur par défaut est 0.
-    - Nombre maximal de rangées autorisées de l’étendue fusionnée.
-    - S’applique aux opérations de fusion, pas à la reconstruction.  
+    - Nombre maximal de lignes autorisées de l’étendue fusionnée.
+    - S’applique aux opérations de fusion, et non à la régénération.  
 - **MaxExtentsToMerge**:
-    - Par défaut à 100.
-    - Nombre maximal autorisé d’étendues à fusionner en une seule opération.
+    - La valeur par défaut est 100.
+    - Nombre maximal d’étendues autorisées à fusionner en une seule opération.
     - S’applique aux opérations de fusion.
 - **LoopPeriod**:
-    - Défauts à 01:00:00 (1 heure).
-    - Le temps maximum d’attente entre le démarrage de 2 itérations consécutives d’opérations de fusion/reconstruction (effectuée par le service de gestion des données).
-    - S’applique à la fois aux opérations de fusion et de reconstruction.
+    - La valeur par défaut est 01:00:00 (1 heure).
+    - Délai d’attente maximal entre deux itérations consécutives d’opérations de fusion et de régénération (effectuées par le service Gestion des données).
+    - S’applique aux opérations de fusion et de régénération.
 - **AllowRebuild**:
-    - Par défaut à «vrai».
-    - Définit si `Rebuild` les opérations sont activées (dans `Merge` ce cas, elles sont préférées aux opérations).
+    - La valeur par défaut est « true ».
+    - Définit si les `Rebuild` opérations sont activées (dans ce cas, elles sont préférées aux `Merge` opérations).
 - **AllowMerge**:
-    - Par défaut à «vrai».
-    - Définit si `Merge` les opérations sont activées (dans ce `Rebuild` cas, elles sont moins préférées que les opérations).
+    - La valeur par défaut est « true ».
+    - Définit si les `Merge` opérations sont activées (dans ce cas, elles sont moins préférées que les `Rebuild` opérations).
 - **MaxRangeInHours**:
-    - Par défaut 8.
-    - Différence maximale autorisée (en heures) entre les 2 temps de création des différentes étendues, de sorte qu’ils peuvent encore être fusionnés.
-    - Les timestamps sont ceux de la création d’étendue, et ne se rapportent pas aux données réelles contenues dans les étendues.
-    - S’applique à la fois aux opérations de fusion et de reconstruction.
-    - Une meilleure pratique est que cette valeur soit corrélée avec la politique de [rétention](./retentionpolicy.md)de la base de données / table *SoftDeletePeriod*, ou la [politique cache](./cachepolicy.md) *DataHotSpan* (le plus bas des deux), de sorte qu’il est entre 2-3% de ce dernier.
+    - La valeur par défaut est 8.
+    - Différence maximale autorisée (en heures) entre les deux durées de création d’extensions différentes, afin qu’elles puissent toujours être fusionnées.
+    - Les horodateurs sont ceux de la création d’étendues et ne sont pas liés aux données réelles contenues dans les étendues.
+    - S’applique aux opérations de fusion et de régénération.
+    - Une meilleure pratique est que cette valeur soit corrélée avec le *SoftDeletePeriod*de la [stratégie de rétention](./retentionpolicy.md)de la base de données/de la table, ou le *DataHotSpan* de la [stratégie de cache](./cachepolicy.md)(le plus bas des deux), afin qu’elle soit comprise entre 2-3% de la dernière.
 
-**`MaxRangeInHours`Exemples:**
-|min (SoftDeletePeriod (Politique de rétention), DataHotSpan (Politique cache))|Max Range In Hours (Politique de fusion)
+**`MaxRangeInHours`illustre**
+|min (SoftDeletePeriod (stratégie de rétention), DataHotSpan (stratégie de cache))|Plage maximale en heures (stratégie de fusion)
 |---|---
 |7 jours (168 heures)| 4
 |14 jours (336 heures)| 8
@@ -68,8 +68,8 @@ La politique de fusion contient les propriétés suivantes :
 |365 jours (8 760 heures)| 250
 
 > [!WARNING]
-> Il est rarement recommandé de modifier une politique de fusion d’étendues sans consulter d’abord l’équipe Kusto.
+> Consultez l’équipe de Explorateur de données Azure avant de modifier une stratégie de fusion d’étendues.
 
-Lorsqu’une base de données est créée, elle est définie avec la politique de fusion par défaut (une politique avec les valeurs par défaut mentionnées ci-dessus), qui est, par défaut, héritée par défaut de toutes les tables créées dans la base de données (sauf si leurs politiques sont explicitement remplacées au niveau de la table).
+Lorsqu’une base de données est créée, elle est définie avec la stratégie de fusion par défaut (une stratégie avec les valeurs par défaut mentionnées ci-dessus), qui est, par défaut, héritée par toutes les tables créées dans la base de données (sauf si leurs stratégies sont remplacées explicitement au niveau de la table).
 
-Les commandes de contrôle qui permettent de gérer les politiques de fusion pour les bases de données / tables peuvent être trouvées [ici](../management/merge-policy.md).
+Les commandes de contrôle qui permettent de gérer les stratégies de fusion pour les bases de données/tables sont disponibles [ici](../management/merge-policy.md).

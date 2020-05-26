@@ -7,12 +7,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 09/24/2019
-ms.openlocfilehash: ee9d740a3bd9748611b4e822f5204eee2633b1bf
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 0d02b5916cabc3645a3d61a9154ed31061c762aa
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492809"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373896"
 ---
 # <a name="create-database-and-table-policies-for-azure-data-explorer-by-using-c"></a>Créer des stratégies de base de données et de table pour Azure Data Explorer en utilisant le langage C#
 
@@ -37,7 +37,7 @@ L’Explorateur de données Azure est un service d’exploration de données rap
 * Installez le [package NuGet Microsoft.IdentityModel.Clients.ActiveDirectory](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory/) pour l’authentification.
 
 ## <a name="authentication"></a>Authentification
-Une application Azure Active Directory (Azure AD) et un principal de service ayant accès aux ressources sont nécessaires pour exécuter les exemples de cet article. Vous pouvez utiliser la même application Azure AD pour l’authentification à partir [d’un cluster de test et d’une base de données](create-cluster-database-csharp.md#authentication). Si vous souhaitez utiliser une autre application Azure AD, consultez [Créer une application Azure AD](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal) pour créer une application Azure AD gratuite et ajouter une attribution de rôle au niveau de l’étendue de l’abonnement. Cet article montre également comment obtenir `Directory (tenant) ID`, `Application ID` et `Client secret`. Vous devrez peut-être ajouter la nouvelle application Azure AD en tant que principal dans la base de données. Pour plus d’informations, consultez [Gérer les autorisations de base de données d’Azure Data Explorer](https://docs.microsoft.com/azure/data-explorer/manage-database-permissions).
+Une application Azure Active Directory (Azure AD) et un principal de service ayant accès aux ressources sont nécessaires pour exécuter les exemples de cet article. Vous pouvez utiliser la même application Azure AD pour l’authentification à partir [d’un cluster de test et d’une base de données](create-cluster-database-csharp.md#authentication). Si vous souhaitez utiliser une autre application Azure AD, consultez [Créer une application Azure AD](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal) pour créer une application Azure AD gratuite et ajouter une attribution de rôle au niveau de l’étendue de l’abonnement. Cet article montre également comment obtenir `Directory (tenant) ID`, `Application ID` et `Client secret`. Vous devrez peut-être ajouter la nouvelle application Azure AD en tant que principal dans la base de données. Pour plus d’informations, consultez [Gérer les autorisations de base de données d’Azure Data Explorer](manage-database-permissions.md).
 
 ## <a name="alter-database-retention-policy"></a>Stratégie de conservation de modification de base de données
 Définit une stratégie de rétention avec une période de suppression réversible de 10 jours.

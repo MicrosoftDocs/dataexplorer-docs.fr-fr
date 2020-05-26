@@ -7,12 +7,12 @@ ms.reviewer: gabilehner
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 11/07/2019
-ms.openlocfilehash: 4c385551f8983219dddf840f7a2d590809b030a3
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 35fd37db22b2f07dcee9d7f67c700414a4cfc5d3
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492757"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373846"
 ---
 # <a name="use-follower-database-to-attach-databases-in-azure-data-explorer"></a>Utiliser une base de données d’abonné pour joindre des bases de données dans Azure Data Explorer
 
@@ -29,8 +29,8 @@ L’attachement d’une base de données à un autre cluster à l’aide de la f
 ## <a name="prerequisites"></a>Conditions préalables requises
 
 1. Si vous ne disposez pas d’abonnement Azure, créez un [compte gratuit](https://azure.microsoft.com/free/) avant de commencer.
-1. [Créez un cluster et une base de données](/azure/data-explorer/create-cluster-database-portal) pour le responsable et l’abonné.
-1. [Ingérez des données](/azure/data-explorer/ingest-sample-data) dans la base de données de responsable à l’aide de l’une des différentes méthodes présentées dans [Vue d’ensemble de l’ingestion](/azure/data-explorer/ingest-data-overview).
+1. [Créez un cluster et une base de données](create-cluster-database-portal.md) pour le responsable et l’abonné.
+1. [Ingérez des données](ingest-sample-data.md) dans la base de données de responsable à l’aide de l’une des différentes méthodes présentées dans [Vue d’ensemble de l’ingestion](/azure/data-explorer/ingest-data-overview).
 
 ## <a name="attach-a-database"></a>Attacher une base de données
 
@@ -370,7 +370,7 @@ Pour plus d’informations sur l’utilisation des commandes de contrôle pour c
 
 ### <a name="manage-permissions"></a>Gérer les autorisations
 
-La gestion de l’autorisation de base de données en lecture seule est identique à celle de tous les types de bases de données. Consultez [Gérer les autorisations dans le Portail Azure](/azure/data-explorer/manage-database-permissions#manage-permissions-in-the-azure-portal).
+La gestion de l’autorisation de base de données en lecture seule est identique à celle de tous les types de bases de données. Consultez [Gérer les autorisations dans le Portail Azure](manage-database-permissions.md#manage-permissions-in-the-azure-portal).
 
 ### <a name="configure-caching-policy"></a>Configurer la stratégie de mise en cache
 
@@ -379,8 +379,8 @@ L’administrateur de base de données d’abonné peut modifier la [stratégie 
 ## <a name="limitations"></a>Limites
 
 * Les clusters de l’abonné et du responsable doivent se trouver dans la région.
-* [L’ingestion de streaming](/azure/data-explorer/ingest-data-streaming) ne peut pas être utilisée sur une base de données suivie.
-* Le chiffrement des données à l’aide de [clés gérées par le client](/azure/data-explorer/security#customer-managed-keys-with-azure-key-vault) n’est pas pris en charge sur les clusters principaux et les clusters suivants. 
+* [L’ingestion de streaming](ingest-data-streaming.md) ne peut pas être utilisée sur une base de données suivie.
+* Le chiffrement des données à l’aide de [clés gérées par le client](security.md#customer-managed-keys-with-azure-key-vault) n’est pas pris en charge sur les clusters principaux et les clusters suivants. 
 * Vous ne pouvez pas supprimer une base de données attachée à un autre cluster avant de la détacher.
 * Vous ne pouvez pas supprimer un cluster qui dispose d’une base de données attachée à un autre cluster avant de la détacher.
 * Vous ne pouvez pas arrêter un cluster qui dispose d’une ou plusieurs bases de données de responsable ou d’abonné. 

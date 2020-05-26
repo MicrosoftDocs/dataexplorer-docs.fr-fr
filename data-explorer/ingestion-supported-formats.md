@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/19/2020
-ms.openlocfilehash: 93451dd1237905754ac834cb335f5d8a02157ac7
-ms.sourcegitcommit: 29018b3db4ea7d015b1afa65d49ecf918cdff3d6
+ms.openlocfilehash: c591c4f774f3af99004d398898b288256861bb75
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "82030053"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373717"
 ---
 # <a name="data-formats-supported-by-azure-data-explorer-for-ingestion"></a>Formats de données pris en charge par Azure Data Explorer pour l’ingestion
 
@@ -34,6 +34,7 @@ L’ingestion des données est le processus par lequel les données sont ajouté
 |TSV      |`.tsv`      |Fichier texte avec des valeurs séparées par des tabulations (`\t`).|
 |TSVE     |`.tsv`      |Fichier texte avec des valeurs séparées par des tabulations (`\t`). Une barre oblique inverse (`\`) est utilisée pour l’échappement.|
 |TXT      |`.txt`      |Fichier texte dont les lignes sont délimitées par `\n`. Les lignes vides sont ignorées.|
+|W3CLOGFILE |`.log`    |Format du [fichier journal web](https://www.w3.org/TR/WD-logfile.html) standardisé par le W3C.|
 
 ## <a name="supported-data-compression-formats"></a>Formats de compression de données pris en charge
 
@@ -57,5 +58,5 @@ Les noms d’objets blob ou de fichiers qui n’incluent pas les extensions de f
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* Découvrez-en plus sur l’[ingestion de données](/azure/data-explorer/ingest-data-overview).
+* Découvrez-en plus sur l’[ingestion de données](ingest-data-overview.md).
 * Découvrez-en plus sur les [propriétés d’ingestion de données Azure Data Explorer](ingestion-properties.md).

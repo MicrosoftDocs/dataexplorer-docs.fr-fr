@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/19/2020
-ms.openlocfilehash: 04f7d0de687d168fe6df7bfcc535cbafde2d4446
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: c66d7e11b3f64633a0dda33f7a3fa2f974536caa
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492677"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373724"
 ---
 # <a name="azure-data-explorer-data-ingestion-properties"></a>Propriétés d’ingestion des données Azure Data Explorer 
 
@@ -41,5 +41,5 @@ Le tableau suivant liste les propriétés prises en charge par Azure Data Explor
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* En savoir plus sur l’[ingestion des données](/azure/data-explorer/ingest-data-overview)
+* En savoir plus sur l’[ingestion des données](ingest-data-overview.md)
 * En savoir plus sur les [formats de données pris en charge](ingestion-supported-formats.md)

@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/19/2020
-ms.openlocfilehash: 1319b8cd6ac8a0eb83381c24bcde9996458e47a7
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: ffe641c6e96db1378be7a8ce845685fb2b66715f
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494049"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83374306"
 ---
 # <a name="monitor-azure-data-explorer-performance-health-and-usage-with-metrics"></a>Superviser les performances, l’intégrité et l’utilisation d’Azure Data Explorer avec des métriques
 
@@ -110,6 +110,6 @@ Informations supplémentaires concernant les [métriques de cluster Azure Data E
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Tutoriel : Ingérer et interroger des données de supervision dans Azure Data Explorer](/azure/data-explorer/ingest-data-no-code)
-* [Superviser les opérations d’ingestion d’Azure Data Explorer à l’aide des journaux de diagnostic](/azure/data-explorer/using-diagnostic-logs)
+* [Tutoriel : Ingérer et interroger des données de supervision dans Azure Data Explorer](ingest-data-no-code.md)
+* [Superviser les opérations d’ingestion d’Azure Data Explorer à l’aide des journaux de diagnostic](using-diagnostic-logs.md)
 * [Démarrage rapide : Interroger des données dans Azure Data Explorer](web-query-data.md)
