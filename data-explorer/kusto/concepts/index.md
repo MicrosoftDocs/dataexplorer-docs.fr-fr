@@ -1,6 +1,6 @@
 ---
-title: Bien démarrer avec Kusto - Azure Data Explorer | Microsoft Docs
-description: Cet article montre comment commencer à utiliser Kusto dans Azure Data Explorer.
+title: Bien démarrer avec Kusto
+description: Cet article montre comment commencer à utiliser Kusto.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,31 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 5b66dd59dd17f1671c68e63e35ee62f56e6ec8fe
-ms.sourcegitcommit: c4aea69fafa9d9fbb814764eebbb0ae93fa87897
+ms.openlocfilehash: 0a56878c8b79e651afcd1b8ce18a3220dc304211
+ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "81610365"
+ms.lasthandoff: 05/26/2020
+ms.locfileid: "83863385"
 ---
 # <a name="getting-started-with-kusto"></a>Bien démarrer avec Kusto
 
-Kusto est un service permettant de stocker des Big Data et d’exécuter des tâches d’analytique interactives sur ces données.
+Azure Data Explorer est un service permettant de stocker et d’exécuter une analytique interactive sur le Big Data.
 
-Il est basé sur des systèmes de gestion de base de données relationnelle et prend en charge des entités, telles que des bases de données, des tables et des colonnes. De plus, il fournit des opérateurs de requête d’analytique complexes (colonnes calculées, recherche et filtrage de lignes, regroupement par agrégats, jointures).
+Il est basé sur des systèmes de gestion de base de données relationnelle, prenant en charge des entités comme des bases de données, des tables et des colonnes. Les requêtes analytiques complexes sont effectuées avec le langage de requête Kusto. Certains opérateurs de requête incluent des colonnes calculées, la recherche et le filtrage des lignes, des regroupements par agrégats et des jointures.
 
-Les excellentes performances de requêtes et d’ingestion des données de Kusto sont obtenues en « sacrifiant » la possibilité de mettre à jour localement des lignes seules, ainsi que des contraintes et des transactions intertables. Par conséquent, il complète, plutôt qu’il ne remplace, les systèmes SGBDR traditionnels dans les scénarios tels que l’OLTP et l’entreposage des données.
+Les excellentes performances de requêtes et d’ingestion des données du service sont obtenues en « sacrifiant » la possibilité de mettre à jour localement des lignes seules, ainsi que des contraintes et des transactions intertables. Par conséquent, il complète, plutôt qu’il ne remplace, les systèmes SGBDR traditionnels dans les scénarios tels que l’OLTP et l’entreposage des données.
 
-En tant que service Big Data, Kusto gère aussi bien les données structurées, que les données semi-structurées (ex : types imbriqués similaires à JSON) ou non structurées (texte libre).
+Les données structurées, semi-structurées (ex : types imbriqués similaires à JSON) et non structurées (texte libre) sont gérées aussi bien les unes que les autres.
 
-## <a name="interacting-with-kusto"></a>Interaction avec Kusto
+## <a name="interacting-with-azure-data-explorer"></a>Interaction avec Azure Data Explorer
 
-Pour les utilisateurs, le principal moyen d’interagir avec Kusto est d’utiliser l’un des nombreux [outils clients](../tools/index.md) qui sont disponibles pour Kusto. Même si l’envoi de [requêtes SQL](../api/tds/t-sql.md) à Kusto est pris en charge, le principal moyen d’interagir avec Kusto est d’utiliser le [langage de requête Kusto](../query/index.md) pour envoyer des requêtes de données, et d’utiliser les [commandes de contrôle](../management/index.md) pour gérer les entités Kusto, découvrir les métadonnées, etc. Les requêtes et les commandes de contrôle sont de courts « programmes » textuels.
+Pour les utilisateurs, le principal moyen d’interagir avec Kusto est d’utiliser l’un des nombreux [outils clients](../tools/index.md) disponibles. Même si l’envoi de [requêtes SQL](../api/tds/t-sql.md) est pris en charge, le principal moyen d’interagir est d’utiliser le [langage de requête Kusto](../query/index.md) pour envoyer des requêtes de données, et d’utiliser les [commandes de contrôle](../management/index.md) pour gérer les entités, découvrir les métadonnées, etc. Les requêtes et les commandes de contrôle sont de courts « programmes » textuels.
 
-## <a name="queries"></a>Requêtes
+## <a name="kusto-queries"></a>Requêtes Kusto
 
-Une requête Kusto est une requête en lecture seule qui permet de traiter des données Kusto et de retourner les résultats de ce traitement, sans modifier les données ou les métadonnées Kusto. Les requêtes Kusto peuvent utiliser le [langage SQL](../api/tds/t-sql.md) ou le [langage de requête Kusto](../query/index.md).
-À titre d’exemple, la requête suivante compte le nombre de lignes de la table `Logs` pour lesquelles la valeur de la colonne `Level` est égale à la chaîne `Critical` :
+Une requête est une demande en lecture seule qui permet de traiter des données et de retourner les résultats de ce traitement, sans modifier les données ou les métadonnées. Les requêtes Kusto peuvent utiliser le [langage SQL](../api/tds/t-sql.md) ou le [langage de requête Kusto](../query/index.md). À titre d’exemple, la requête suivante compte le nombre de lignes de la table `Logs` pour lesquelles la valeur de la colonne `Level` est égale à la chaîne `Critical` :
 
 ```kusto
 Logs
@@ -50,7 +49,7 @@ Les commandes de contrôle sont des requêtes qui sont envoyées à Kusto pour t
 .create table Logs (Level:string, Text:string)
 ```
 
-Les commandes de contrôle ont leur propre syntaxe, qui ne fait pas partie de la syntaxe du langage de requête Kusto, bien que les deux partagent un grand nombre de concepts. Les commandes de contrôle se distinguent des requêtes par le fait que le premier caractère du texte d’une commande est un point (`.`) (ce qui n’est pas possible pour une requête).
+Les commandes de contrôle ont leur propre syntaxe (qui ne fait pas partie de la syntaxe du langage de requête Kusto, bien que les deux partagent un grand nombre de concepts). Les commandes de contrôle se distinguent des requêtes par le fait que le premier caractère du texte d’une commande est un point (`.`) (ce qui n’est pas possible pour une requête).
 Cette différence permet d’éviter de nombreux types d’attaques de sécurité, car elle empêche l’incorporation de commandes de contrôle à l’intérieur de requêtes.
 
-Toutes les commandes de contrôle ne modifient pas les données ou les métadonnées Kusto. De nombreuses commandes (celles qui commencent par `.show`) sont utilisées pour afficher des métadonnées ou des données relatives à Kusto. Par exemple, la commande `.show tables` retourne la liste de toutes les tables de la base de données active.
+Toutes les commandes de contrôle ne modifient pas les données ou les métadonnées. De nombreuses commandes (celles qui commencent par `.show`) sont utilisées pour afficher des métadonnées ou des données. Par exemple, la commande `.show tables` retourne la liste de toutes les tables de la base de données active.

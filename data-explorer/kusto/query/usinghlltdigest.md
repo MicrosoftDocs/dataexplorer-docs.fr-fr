@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/19/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: ce86e24fbd13221fe333f281dac3ba3b6ac73a1f
-ms.sourcegitcommit: da7c699bb62e1c4564f867d4131d26286c5223a8
+ms.openlocfilehash: 3f1371fe298b2d0e066fc3a278cc3b560050416c
+ms.sourcegitcommit: 283cce0e7635a2d8ca77543f297a3345a5201395
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/14/2020
-ms.locfileid: "83404242"
+ms.lasthandoff: 05/27/2020
+ms.locfileid: "84011582"
 ---
 # <a name="partitioning-and-composing-intermediate-results-of-aggregations"></a>Partitionnement et composition des résultats intermédiaires des agrégations
 
@@ -133,7 +133,7 @@ Les limites de Kusto sont atteintes avec les jeux de données trop volumineux, o
 
 ::: zone pivot="azuredataexplorer"
 
-Pour résoudre ce problème, des données nouvellement ajoutées peuvent être ajoutées à une table temporaire en tant que `hll` `tdigest` valeurs ou à l’aide de [`hll()`](hll-aggfunction.md) lorsque l’opération requise est `dcount` ou [`tdigest()`](tdigest-aggfunction.md) lorsque l’opération requise est un centile à l’aide [`set/append`](../management/data-ingestion/index.md) de ou de [`update policy`](../management/updatepolicy.md) . Dans ce cas, les résultats intermédiaires de `dcount` ou `tdigest` sont enregistrés dans un autre jeu de données, qui doit être plus petit que le plus grand cible.
+Pour résoudre ce problème, des données nouvellement ajoutées peuvent être ajoutées à une table temporaire en tant que `hll` `tdigest` valeurs ou à l’aide de [`hll()`](hll-aggfunction.md) lorsque l’opération requise est `dcount` ou [`tdigest()`](tdigest-aggfunction.md) lorsque l’opération requise est un centile à l’aide [`set/append`](../../ingest-data-overview.md) de ou de [`update policy`](../management/updatepolicy.md) . Dans ce cas, les résultats intermédiaires de `dcount` ou `tdigest` sont enregistrés dans un autre jeu de données, qui doit être plus petit que le plus grand cible.
 
 ::: zone-end
 

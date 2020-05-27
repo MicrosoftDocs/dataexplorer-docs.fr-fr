@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: d46a8669c523955f74d3f489c7b10e5b0f7ccef6
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: e35245cf767e3cf82ab61d5ce0704015d996cd7c
+ms.sourcegitcommit: 283cce0e7635a2d8ca77543f297a3345a5201395
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373282"
+ms.lasthandoff: 05/27/2020
+ms.locfileid: "84011370"
 ---
 # <a name="externaldata-operator"></a>externaldata, opérateur
 
@@ -33,7 +33,7 @@ L' `externaldata` opérateur retourne une table dont le schéma est défini dans
 
 * *StorageConnectionString*: la [chaîne de connexion de stockage](../api/connection-strings/storage.md) décrit l’artefact de stockage contenant les données à retourner.
 
-* *Prop1*, *valeur1*,... : propriétés supplémentaires qui décrivent comment interpréter les données récupérées à partir du stockage, comme indiqué sous [Propriétés](../management/data-ingestion/index.md)d’ingestion.
+* *Prop1*, *valeur1*,... : propriétés supplémentaires qui décrivent comment interpréter les données récupérées à partir du stockage, comme indiqué sous [Propriétés](../../ingestion-properties.md)d’ingestion.
     * Propriétés actuellement prises en charge : `format` et `ignoreFirstRecord` .
     * Formats de données pris en charge : l’un des [formats de données](../../ingestion-supported-formats.md) d’ingestion est pris en charge, notamment,,, `csv` `tsv` `json` `parquet` , `avro` .
 

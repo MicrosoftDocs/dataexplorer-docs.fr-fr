@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: 4a2b18f28840291fc02002239297b45f38be00be
-ms.sourcegitcommit: 4e46b497d518884693a142f4ae21ea497db81861
+ms.openlocfilehash: 21514de40910691e878dbc6d237d810a13676b40
+ms.sourcegitcommit: 283cce0e7635a2d8ca77543f297a3345a5201395
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/25/2020
-ms.locfileid: "83824915"
+ms.lasthandoff: 05/27/2020
+ms.locfileid: "84011531"
 ---
 # <a name="capacity-policy"></a>Stratégie de capacité
 
@@ -131,7 +131,7 @@ La stratégie de capacité par défaut a la représentation JSON suivante :
 
 Kusto limite le nombre de demandes simultanées pour les commandes initiées par l’utilisateur suivantes :
 
-* Ingestions (comprend toutes les commandes répertoriées [ici](../management/data-ingestion/index.md))
+* Ingestions (comprend toutes les commandes répertoriées [ici](../../ingest-data-overview.md))
    * La limite est définie dans la [stratégie de capacité](#capacity-policy).
 * Purge
    * La globalisation est actuellement fixée à un par cluster.

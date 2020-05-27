@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/09/2019
-ms.openlocfilehash: 88bb9e6541d9dc5c934affc8f777f836aad86ae1
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: f8c05967d684f9723dd26085eddda7261a7eb19b
+ms.sourcegitcommit: 283cce0e7635a2d8ca77543f297a3345a5201395
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373490"
+ms.lasthandoff: 05/27/2020
+ms.locfileid: "84011395"
 ---
 # <a name="data-export"></a>Exportation de données
 
@@ -23,7 +23,7 @@ Il existe plusieurs méthodes d’exportation de données :
 
 * **Exportation côté client** : Dans sa forme la plus simple, l’exportation de données peut s’effectuer côté client (le client exécute une requête auprès du service, lit les résultats, puis les écrit quelque part). Cette forme d’exportation de données dépend de l’outil client utilisé pour effectuer l’exportation, le plus souvent vers le système de fichiers local où l’outil s’exécute. Parmi les outils qui prennent en charge ce modèle, citons [Kusto.Explorer](../../tools/kusto-explorer.md), l’[interface utilisateur web](../../../web-query-data.md) et autres.
 
-* **Exportation côté service - tirage (pull)**  : Si la cible de l’exportation est une table Kusto (sur le même cluster/la même base de données que la requête ou sur en/une autre), utilisez le flux « ingestion à partir d’une requête » sur la table cible. Dans ce flux, une requête est exécutée et ses résultats sont immédiatement ingérés dans une table Kusto. Consultez [Ingestion des données](../data-ingestion/index.md).
+* **Exportation côté service - tirage (pull)**  : Si la cible de l’exportation est une table Kusto (sur le même cluster/la même base de données que la requête ou sur en/une autre), utilisez le flux « ingestion à partir d’une requête » sur la table cible. Dans ce flux, une requête est exécutée et ses résultats sont immédiatement ingérés dans une table Kusto. Consultez [Ingestion des données](../../../ingest-data-overview.md).
 
 
 

@@ -1,6 +1,6 @@
 ---
-title: .créer-fusion - Azure Data Explorer ( Microsoft Docs
-description: Cet article décrit les tables .create-merge dans Azure Data Explorer.
+title: . créer-fusionner des tables-Azure Explorateur de données
+description: Cet article décrit la commande. créer-fusionner des tables dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,30 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/04/2020
-ms.openlocfilehash: 408046e198710c4b825a399fcb90960411de1041
-ms.sourcegitcommit: e94be7045d71a0435b4171ca3a7c30455e6dfa57
+ms.openlocfilehash: 2f80ea54ece66440dc7a6b40d9d571f04bd3e26b
+ms.sourcegitcommit: 283cce0e7635a2d8ca77543f297a3345a5201395
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81744449"
+ms.lasthandoff: 05/27/2020
+ms.locfileid: "84011514"
 ---
-# <a name="create-merge-tables"></a>.créer-fusion
+# <a name="create-merge-tables"></a>. créer-fusionner des tables
 
-Permet de créer et/ou d’étendre les schémas des tables existantes dans une seule opération en vrac, dans le cadre d’une base de données spécifique.
+Vous permet de créer et d’étendre les schémas de tables existantes en une seule opération en bloc, dans le contexte d’une base de données spécifique.
 
-Nécessite [l’autorisation de l’utilisateur de base de données,](../management/access-control/role-based-authorization.md)ainsi que [l’autorisation d’administration de table](../management/access-control/role-based-authorization.md) pour étendre les tables existantes.
+> [!NOTE]
+> Nécessite l' [autorisation de l’utilisateur de base de données](../management/access-control/role-based-authorization.md).
+> Nécessite une [autorisation d’administrateur de table](../management/access-control/role-based-authorization.md) pour étendre des tables existantes.
 
 **Syntaxe**
 
-`.create-merge``tables` *TableName1* ([columnName:columnType], ...) [`,` *TableName2* ([columnName:columnType], ...) ... ]
+`.create-merge``tables` *TableName1* ([ColumnName : ColumnType],...) [ `,` *TableName2* ([ColumnName : ColumnType],...)...]
 
-* Des tableaux spécifiés qui n’existent pas seront créés.
-* Les tableaux spécifiés qui existent déjà verront leurs schémas étendus :
-    * Des colonnes non existantes seront ajoutées à la _fin_ du schéma de la table existante.
-    * Les colonnes existantes qui ne sont pas spécifiées dans la commande ne seront pas supprimées du schéma de la table existante.
-    * Les colonnes existantes qui sont spécifiées avec un type de données différent dans la commande à celle dans le schéma du tableau existant conduira à un échec (aucune table ne sera créée ou étendue).
+* Les tables spécifiées qui n’existent pas sont créées.
+* Les schémas des tables spécifiées qui existent déjà sont étendus.
+    * Les colonnes inexistantes seront ajoutées à la _fin_ du schéma de la table existante.
+    * Les colonnes existantes qui ne sont pas spécifiées dans la commande ne sont pas supprimées du schéma de la table existante.
+    * Les colonnes existantes qui sont spécifiées avec un type de données dans la commande qui est différente de celle des schémas de la table existante entraînent un échec. Aucune table n’est créée ou étendue.
 
-**Exemple** 
+**Exemple**
 
 ```kusto
 .create-merge tables 
@@ -41,7 +43,7 @@ Nécessite [l’autorisation de l’utilisateur de base de données,](../managem
 
 **Sortie de retour**
 
-| TableName | nom_base_de_données  | Dossier | DocString (en) |
+| TableName | nom_base_de_données  | Dossier | DocString |
 |-----------|---------------|--------|-----------|
-| MyLogs (En)    | TopComparison TopComparison |        |           |
-| MyUsers (en)   | TopComparison TopComparison |        |           |
+| Mylogs)    | Comparaison de la |        |           |
+| MyUsers   | Comparaison de la |        |           |

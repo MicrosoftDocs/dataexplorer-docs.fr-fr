@@ -1,4 +1,4 @@
-- name: Documentation de l’Explorateur de données Azure
+- name: Documentation Azure Data Explorer
   href: index.yml
 - name: Vue d’ensemble
   items:
@@ -220,8 +220,6 @@
               href: language-extensions.md
         - name: Base de données
           items:
-            - name: Bases de données d’abonné
-              href: follower.md
             - name: Gérer des autorisations de base de données
               href: manage-database-permissions.md
             - name: Ajouter un principal de base de données
@@ -254,6 +252,12 @@
           href: using-metrics.md
         - name: Utiliser Resource Health pour superviser l’intégrité du cluster
           href: monitor-with-resource-health.md
+    - name: Partager des données
+      items:
+        - name: Utiliser Azure Data Share
+          href: data-share.md
+        - name: Bases de données d’abonné
+          href: follower.md
     - name: Intégrer aux autres outils
       items:
         - name: Azure Data Factory
@@ -1248,11 +1252,11 @@
                   href: ./kusto/management/show-table-schema-command.md
             - name: Tables externes
               items:
-                - name: Commandes de contrôle des tables externes
+                - name: Commandes de contrôle générales des tables externes
                   href: ./kusto/management/externaltables.md
-                - name: Tables SQL externes
+                - name: Créer et modifier des tables SQL externes
                   href: ./kusto/management/external-sql-tables.md
-                - name: Tables externes dans Stockage Azure ou Azure Data Lake
+                - name: Créer et modifier des tables externes dans Stockage Azure ou Azure Data Lake
                   href: ./kusto/management/external-tables-azurestorage-azuredatalake.md
             - name: Colonnes
               items:
@@ -1561,9 +1565,12 @@
         - name: Requête ad hoc
           items:
             - name: Kusto.Explorer
-              href: ./kusto/tools/kusto-explorer.md
               items:
-                - name: Options Kusto Explorer
+                - name: Installation et interface utilisateur de Kusto.Explorer
+                  href: ./kusto/tools/kusto-explorer.md
+                - name: Utilisation de Kusto.Explorer
+                  href: ./kusto/tools/kusto-explorer-using.md
+                - name: Options de Kusto.Explorer
                   href: ./kusto/tools/kusto-explorer-options.md
                 - name: Raccourcis clavier
                   href: ./kusto/tools/kusto-explorer-shortcuts.md
@@ -1573,6 +1580,8 @@
                   href: ./kusto/tools/kusto-explorer-codenav.md
                 - name: Analyseur de code
                   href: ./kusto/tools/kusto-explorer-code-analyzer.md
+                - name: Résolution des problèmes de Kusto.Explorer
+                  href: ./kusto/tools/kusto-explorer-troubleshooting.md
             - name: Interface utilisateur web
               href: ./web-query-data.md
             - name: Kusto.Cli
