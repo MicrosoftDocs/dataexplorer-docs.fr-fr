@@ -10,20 +10,20 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: bb25fd556ab59dc5bdf5c533435f99deb6b32fdb
-ms.sourcegitcommit: da7c699bb62e1c4564f867d4131d26286c5223a8
+ms.openlocfilehash: 26c6d660cb254ec2df6600e90437d7db7ca748f4
+ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/14/2020
-ms.locfileid: "83404220"
+ms.lasthandoff: 05/26/2020
+ms.locfileid: "83863147"
 ---
 # <a name="cross-database-and-cross-cluster-queries"></a>Requêtes entre plusieurs bases de données et clusters
 
 ::: zone pivot="azuredataexplorer"
 
 Chaque requête Kusto opère dans le contexte du cluster actuel et de la base de données par défaut.
-* Dans [Kusto Explorer](../tools/kusto-explorer.md), la base de données par défaut est celle sélectionnée dans le [volet connexions](../tools/kusto-explorer.md#connections-panel) et le cluster actuel est la connexion contenant cette base de données.
-* Lors de l’utilisation de la [bibliothèque cliente Kusto](../api/netfx/about-kusto-data.md), le cluster actuel et la base de données par défaut sont spécifiés respectivement par les `Data Source` `Initial Catalog` Propriétés et des [chaînes de connexion Kusto](../api/connection-strings/kusto.md) .
+* Dans [Kusto Explorer](../tools/kusto-explorer.md) , la base de données par défaut est celle qui est sélectionnée dans le [volet connexions](../tools/kusto-explorer.md#connections-panel) et le cluster actuel est la connexion contenant cette base de données.
+* Lors de l’utilisation de la [bibliothèque cliente Kusto](../api/netfx/about-kusto-data.md) , le cluster actif et la base de données par défaut sont spécifiés respectivement par les `Data Source` `Initial Catalog` Propriétés et des [chaînes de connexion Kusto](../api/connection-strings/kusto.md) .
 
 ## <a name="queries"></a>Requêtes
 Pour accéder aux tables à partir de toute base de données autre que la base de données par défaut, vous devez utiliser la syntaxe de *nom qualifié* : pour accéder à la base de données dans le cluster actuel :

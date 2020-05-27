@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/23/2020
-ms.openlocfilehash: 9cf2ec4371f4aeef8a68cb65fb2b946b9c393054
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 8e96b97754600d308526a4cb059907521fda0521
+ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372370"
+ms.lasthandoff: 05/26/2020
+ms.locfileid: "83862926"
 ---
 # <a name="set_has_element"></a>set_has_element()
 
@@ -30,7 +30,7 @@ Détermine si le jeu spécifié contient l’élément spécifié.
 
 **Retourne**
 
-True ou false selon que la valeur existe ou non dans le tableau.
+True ou false selon que la valeur existe dans le tableau.
 
 **Exemple**
 
@@ -40,10 +40,10 @@ print arr=dynamic(["this", "is", "an", "example"])
 | project Result=set_has_element(arr, "example")
 ```
 
-|Résultats|
+|Résultat|
 |---|
 |1|
 
 **Voir aussi**
 
-Si vous êtes également intéressé par la position à laquelle la valeur existe dans le tableau, vous pouvez utiliser [array_index_of (arr, value)](arrayindexoffunction.md). Les deux fonctions sont les mêmes, en termes de performances.
+Utilisez [`array_index_of(arr, value)`](arrayindexoffunction.md) pour rechercher la position à laquelle la valeur existe dans le tableau. Les deux fonctions sont tout aussi performantes.

@@ -8,12 +8,12 @@ ms.reviewer: ohbitton
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/19/2020
-ms.openlocfilehash: 3a89af281b2376e7fc06d07643af8e95a6c97cd2
-ms.sourcegitcommit: ee90472a4f9d751d4049744d30e5082029c1b8fa
+ms.openlocfilehash: 49a689b88e508285f2876f2e86208afceda0872b
+ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/21/2020
-ms.locfileid: "83722097"
+ms.lasthandoff: 05/26/2020
+ms.locfileid: "83863249"
 ---
 # <a name="kustoingest-client-interfaces-and-classes"></a>Interfaces et classes du client Kusto. inréception
 
@@ -23,7 +23,7 @@ Les interfaces et les classes principales de la bibliothèque Kusto. deréceptio
 * [Classe ExtendedKustoIngestClient](#class-extendedkustoingestclient): extensions de l’interface d’ingestion principale.
 * [classe KustoIngestFactory](#class-kustoingestfactory): la fabrique principale pour les clients d’ingestion.
 * [classe KustoIngestionProperties](#class-kustoingestionproperties): classe utilisée pour fournir des propriétés d’ingestion courantes.
-* classe IngestionMapping : classe utilisée pour décrire le mappage de données pour l’ingestion.
+* [classe IngestionMapping](#class-ingestionmapping): classe utilisée pour décrire le mappage de données pour l’ingestion.
 * [Enum DataSourceFormat](#enum-datasourceformat): formats de source de données pris en charge (par exemple, CSV, JSON)
 * [Interface IKustoQueuedIngestClient](#interface-ikustoqueuedingestclient): interface décrivant les opérations qui s’appliquent uniquement à la réception en file d’attente.
 * [Classe KustoQueuedIngestionProperties](#class-kustoqueuedingestionproperties): propriétés qui s’appliquent uniquement à la réception en file d’attente.
@@ -377,6 +377,28 @@ public class KustoIngestionProperties
 }
 ```
 
+## <a name="class-ingestionmapping"></a>IngestionMapping de classe
+
+Contient une référence à un mappage existant ou une liste de mappages de colonnes.
+
+|Propriété   |Signification    |
+|-----------|-----------|
+|IngestionMappings | Mappages de colonnes, chacun décrivant les données de la colonne cible et sa source |
+|IngestionMappingKind | Type de mappage décrit dans la propriété IngestionMappings-l’un des éléments suivants : CSV, JSON, Avro, parquet, SStream, ORC, ApacheAvro ou W3CLogFile |
+|IngestionMappingReference | Nom de mappage créé au préalable |
+
+```csharp
+public class IngestionMapping
+{
+    public IEnumerable<ColumnMapping> IngestionMappings { get; set; }
+    public IngestionMappingKind IngestionMappingKind { get; set; }
+    public string IngestionMappingReference { get; set; }
+
+    public IngestionMapping()
+    public IngestionMapping(IngestionMapping ingestionMapping)
+}
+```
+
 ## <a name="enum-datasourceformat"></a>Énumération DataSourceFormat
 
 ```csharp
@@ -416,7 +438,6 @@ var kustoIngestionProperties = new KustoIngestionProperties("TargetDatabase", "T
             Properties = new Dictionary<string, string>() {
             { MappingConsts.Ordinal, "1"} }
         } },
-        // IngestionMappingReference = mappingName, the pre-created mapping name
     },
     ValidationPolicy = new ValidationPolicy { ValidationImplications = ValidationImplications.Fail, ValidationOptions = ValidationOptions.ValidateCsvInputConstantColumns },
     Format = DataSourceFormat.csv

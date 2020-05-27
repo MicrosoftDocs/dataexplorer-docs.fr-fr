@@ -1,6 +1,6 @@
 ---
-title: Tables externes dans Azure Storage ou Azure Data Lake-Azure Explorateur de données
-description: Cet article décrit la gestion des tables externes dans Azure Explorateur de données.
+title: Créer et modifier des tables externes dans Azure Storage ou Azure Data Lake-Azure Explorateur de données
+description: Cet article explique comment créer et modifier des tables externes dans le stockage Azure ou Azure Data Lake
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 1c7670dfb06e95f227a4b828a86b980005eeeac9
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 2ef238d863f2f3fe181814ac14e3605de21a5aff
+ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373353"
+ms.lasthandoff: 05/26/2020
+ms.locfileid: "83863368"
 ---
-# <a name="external-tables-in-azure-storage-or-azure-data-lake"></a>Tables externes dans le stockage Azure ou Azure Data Lake
+# <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Créer et modifier des tables externes dans le stockage Azure ou Azure Data Lake
 
 La commande suivante décrit comment créer une table externe. La table peut être située dans le stockage d’objets BLOB Azure, Azure Data Lake Store Gen1 ou Azure Data Lake Store Gen2. 
 Les [chaînes de connexion de stockage](../api/connection-strings/storage.md) décrivent la création de la chaîne de connexion pour chacune de ces options. 
@@ -35,7 +35,7 @@ Les [chaînes de connexion de stockage](../api/connection-strings/storage.md) d�
 
 Crée ou modifie une nouvelle table externe dans la base de données dans laquelle la commande est exécutée.
 
-**Parameters**
+**Paramètres**
 
 * *TableName* -nom de la table externe. Doit suivre les règles pour les [noms d’entité](../query/schema-entities/entity-names.md). Une table externe ne peut pas avoir le même nom qu’une table normale dans la même base de données.
 * *Schéma-schéma* de données externes au format : `ColumnName:ColumnType[, ColumnName:ColumnType ...]` . Si le schéma de données externes est inconnu, utilisez le plug-in [infer_storage_schema](../query/inferstorageschemaplugin.md) , qui peut déduire le schéma en fonction du contenu du fichier externe.
@@ -170,7 +170,7 @@ with
 
 |TableName|TableType|Dossier|DocString|Propriétés|ConnectionStrings|Partitions|
 |---|---|---|---|---|---|---|
-|ExternalMultiplePartitions|Objet blob|ExternalTables|Docs|{"Format" : "CSV", "Compressed" : false, "CompressionType" : null, "FileExtension" : "CSV", "IncludeHeaders" : "none", "Encoding" : null, "NamePrefix" : null}|["https://storageaccount.blob.core.windows.net/container1;*******"]}|[{"StringFormat" : "CustomerName = {0} ", "ColumnName" : "customerName", "ordinal" : 0}, PartitionBy " :" 1.00:00:00 "," ColumnName " :" timestamp "," ordinal " : 1}]|
+|ExternalMultiplePartitions|Objet blob|ExternalTables|Documents|{"Format" : "CSV", "Compressed" : false, "CompressionType" : null, "FileExtension" : "CSV", "IncludeHeaders" : "none", "Encoding" : null, "NamePrefix" : null}|["https://storageaccount.blob.core.windows.net/container1;*******"]}|[{"StringFormat" : "CustomerName = {0} ", "ColumnName" : "customerName", "ordinal" : 0}, PartitionBy " :" 1.00:00:00 "," ColumnName " :" timestamp "," ordinal " : 1}]|
 
 ### <a name="artifact-filtering-logic"></a>Logique de filtrage d’artefact
 
@@ -217,7 +217,7 @@ dataformat=parquet
 
 **Syntaxe :** 
 
-`.show``external` `table` *TableName*`artifacts`
+`.show` `external` `table` *TableName* `artifacts`
 
 **Sortie**
 
@@ -251,7 +251,7 @@ Crée un nouveau mappage. Pour plus d’informations, consultez [mappages de don
 
 **Exemple de sortie**
 
-| Nom     | Type | Mappage                                                           |
+| Nom     | Genre | Mappage                                                           |
 |----------|------|-------------------------------------------------------------------|
 | mapping1 | JSON | [{"ColumnName" : "RowNumber", "ColumnType" : "int", "Properties" : {"path" : "$. RowNumber"}}, {"ColumnName" : "rowguid", "ColumnType" : "", "Properties" : {"path" : "$. rowguid"}}] |
 
@@ -269,7 +269,7 @@ Modifie un mappage existant.
 
 **Exemple de sortie**
 
-| Nom     | Type | Mappage                                                                |
+| Nom     | Genre | Mappage                                                                |
 |----------|------|------------------------------------------------------------------------|
 | mapping1 | JSON | [{"ColumnName" : "RowNumber", "ColumnType" : "", "Properties" : {"path" : "$. RowNumber"}}, {"ColumnName" : "rowguid", "ColumnType" : "", "Properties" : {"path" : "$. rowguid"}}] |
 
@@ -291,7 +291,7 @@ Affichez les mappages (tout ou partie spécifiés par nom).
 
 **Exemple de sortie**
 
-| Nom     | Type | Mappage                                                                         |
+| Nom     | Genre | Mappage                                                                         |
 |----------|------|---------------------------------------------------------------------------------|
 | mapping1 | JSON | [{"ColumnName" : "RowNumber", "ColumnType" : "", "Properties" : {"path" : "$. RowNumber"}}, {"ColumnName" : "rowguid", "ColumnType" : "", "Properties" : {"path" : "$. rowguid"}}] |
 
@@ -306,3 +306,7 @@ Supprime le mappage de la base de données.
 ```kusto
 .drop external table MyExternalTable JSON mapping "Mapping1" 
 ```
+## <a name="next-steps"></a>Étapes suivantes
+
+* [Commandes de contrôle générales de table externe](externaltables.md)
+* [Créer et modifier des tables SQL externes](external-sql-tables.md)

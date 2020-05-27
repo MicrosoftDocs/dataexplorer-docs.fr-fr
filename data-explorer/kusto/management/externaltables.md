@@ -1,27 +1,23 @@
 ---
-title: Commandes de contrôle de table externe-Azure Explorateur de données
-description: Cet article décrit les commandes de contrôle de table externe dans Azure Explorateur de données.
+title: Commandes de contrôle général de la table externe Kusto-Azure Explorateur de données
+description: Cet article décrit les commandes générales de contrôle de table externe
 services: data-explorer
 author: orspod
 ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 03/24/2020
-ms.openlocfilehash: 580f675360b96d56d43e1100cbba97d09a95c945
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.date: 05/26/2020
+ms.openlocfilehash: a08f1f154c0efa17164d15a075456e2b6fab3212
+ms.sourcegitcommit: a562ce255ac706ca1ca77d272a97b5975235729d
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227704"
+ms.lasthandoff: 05/26/2020
+ms.locfileid: "83867084"
 ---
-# <a name="external-table-control-commands"></a>Commandes de contrôle de table externe
+# <a name="external-table-general-control-commands"></a>Commandes de contrôle générales de table externe
 
-Pour obtenir une vue d’ensemble des tables externes, consultez [tables externes](../query/schema-entities/externaltables.md) . 
-
-## <a name="common-external-tables-control-commands"></a>Commandes de contrôle de tables externes communes
-
-Les commandes suivantes s’appliquent à _toute_ table externe (de tout type).
+Pour obtenir une vue d’ensemble des tables externes, consultez [tables externes](../query/schema-entities/externaltables.md) . Les commandes suivantes s’appliquent à _toute_ table externe (de tout type).
 
 ## <a name="show-external-tables"></a>. afficher les tables externes
 
@@ -32,7 +28,7 @@ Les commandes suivantes s’appliquent à _toute_ table externe (de tout type).
 
 `.show` `external` `tables`
 
-`.show``external` `table` *TableName*
+`.show` `external` `table` *TableName*
 
 **Sortie**
 
@@ -54,7 +50,7 @@ Les commandes suivantes s’appliquent à _toute_ table externe (de tout type).
 
 | TableName | TableType | Dossier         | DocString | Propriétés |
 |-----------|-----------|----------------|-----------|------------|
-| T         | Objet blob      | ExternalTables | Docs      | {}         |
+| T         | Objet blob      | ExternalTables | Documents      | {}         |
 
 
 ## <a name="show-external-table-schema"></a>. afficher le schéma de la table externe
@@ -66,7 +62,7 @@ Les commandes suivantes s’appliquent à _toute_ table externe (de tout type).
 
 `.show``external` `table` *TableName* `schema` `as` ( `json`  |  `csl` )
 
-`.show``external` `table` *TableName*`cslschema`
+`.show` `external` `table` *TableName* `cslschema`
 
 **Sortie**
 
@@ -95,14 +91,14 @@ Les commandes suivantes s’appliquent à _toute_ table externe (de tout type).
 
 | TableName | schéma    | nom_base_de_données | Dossier         | DocString |
 |-----------|----------------------------------|--------------|----------------|-----------|
-| T         | {« Name » : « ExternalBlob »,<br>« Dossier » : « ExternalTables »,<br>« DocString » : « docs »,<br>"OrderedColumns" : [{"Name" : "x", "type" : "System. Int64", "CslType" : "long", "DocString" : ""}, {"Name" : "s", "type" : "System. String", "CslType" : "String", "DocString" : ""}]} | DB           | ExternalTables | Docs      |
+| T         | {« Name » : « ExternalBlob »,<br>« Dossier » : « ExternalTables »,<br>« DocString » : « docs »,<br>"OrderedColumns" : [{"Name" : "x", "type" : "System. Int64", "CslType" : "long", "DocString" : ""}, {"Name" : "s", "type" : "System. String", "CslType" : "String", "DocString" : ""}]} | DB           | ExternalTables | Documents      |
 
 
 *CSL*
 
 | TableName | schéma          | nom_base_de_données | Dossier         | DocString |
 |-----------|-----------------|--------------|----------------|-----------|
-| T         | x:long,s:string | DB           | ExternalTables | Docs      |
+| T         | x:long,s:string | DB           | ExternalTables | Documents      |
 
 ## <a name="drop-external-table"></a>. supprimer la table externe
 
@@ -112,7 +108,7 @@ Les commandes suivantes s’appliquent à _toute_ table externe (de tout type).
 
 **Syntaxe :**  
 
-`.drop``external` `table` *TableName*
+`.drop` `external` `table` *TableName*
 
 **Sortie**
 
@@ -126,5 +122,9 @@ Retourne les propriétés de la table supprimée. Consultez [. afficher les tabl
 
 | TableName | TableType | Dossier         | DocString | schéma       | Propriétés |
 |-----------|-----------|----------------|-----------|-----------------------------------------------------|------------|
-| T         | Objet blob      | ExternalTables | Docs      | [{"Name" : "x", "CslType" : "long"},<br> {"Name" : "s", "CslType" : "String"}] | {}         |
+| T         | Objet blob      | ExternalTables | Documents      | [{"Name" : "x", "CslType" : "long"},<br> {"Name" : "s", "CslType" : "String"}] | {}         |
 
+## <a name="next-steps"></a>Étapes suivantes
+
+* [Créer et modifier des tables externes dans le stockage Azure ou Azure Data Lake](external-tables-azurestorage-azuredatalake.md)
+* [Créer et modifier des tables SQL externes](external-sql-tables.md)

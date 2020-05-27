@@ -8,19 +8,19 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: cfb75520a5fa173757395628948c8630a258f935
-ms.sourcegitcommit: 4e46b497d518884693a142f4ae21ea497db81861
+ms.openlocfilehash: f0398fbc19842b3cce7fe69c8cb61258d0aeaaa6
+ms.sourcegitcommit: a562ce255ac706ca1ca77d272a97b5975235729d
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/25/2020
-ms.locfileid: "83824898"
+ms.lasthandoff: 05/26/2020
+ms.locfileid: "83867033"
 ---
 # <a name="extents-merge-policy"></a>Stratégie de fusion des étendues
 La stratégie de fusion définit si et comment les [étendues (données partitions)](../management/extents-overview.md) du cluster Kusto doivent être fusionnées.
 
-Il existe 2 versions pour les opérations de fusion : `Merge` (qui reconstruit les index) et `Rebuild` (qui recrée complètement les données).
+Il existe deux types d’opérations de fusion : `Merge` (qui reconstruit les index) et `Rebuild` (qui reconstruit complètement les données).
 
-Les deux types d’opérations entraînent une seule extension qui remplace les extensions sources.
+Les deux types d’opérations entraînent une seule extension, qui remplace les extensions sources.
 
 Par défaut, les opérations de régénération sont préférées et, uniquement s’il existe des extensions restantes qui ne correspondent pas aux critères de reconstruction, elles sont tentées d’être fusionnées.  
 
@@ -32,8 +32,14 @@ Par défaut, les opérations de régénération sont préférées et, uniquement
 La stratégie de fusion contient les propriétés suivantes :
 
 - **RowCountUpperBoundForMerge**:
-    - La valeur par défaut est 0.
+    - Configuration par défaut :
+      - 0 (illimité) pour les stratégies qui ont été définies avant le 2020 juin.
+      - 16 millions pour les stratégies qui ont été définies à partir du 2020 juin.
     - Nombre maximal de lignes autorisées de l’étendue fusionnée.
+    - S’applique aux opérations de fusion, et non à la régénération.  
+- **OriginalSizeMBUpperBoundForMerge**:
+    - La valeur par défaut est 0 (illimité).
+    - Taille maximale autorisée (en Mo) de l’étendue fusionnée.
     - S’applique aux opérations de fusion, et non à la régénération.  
 - **MaxExtentsToMerge**:
     - La valeur par défaut est 100.
@@ -41,7 +47,7 @@ La stratégie de fusion contient les propriétés suivantes :
     - S’applique aux opérations de fusion.
 - **LoopPeriod**:
     - La valeur par défaut est 01:00:00 (1 heure).
-    - Délai d’attente maximal entre deux itérations consécutives d’opérations de fusion et de régénération (effectuées par le service Gestion des données).
+    - Durée d’attente maximale entre le démarrage de deux itérations consécutives d’opérations de fusion et de régénération (effectuées par le service Gestion des données).
     - S’applique aux opérations de fusion et de régénération.
 - **AllowRebuild**:
     - La valeur par défaut est « true ».
@@ -51,21 +57,22 @@ La stratégie de fusion contient les propriétés suivantes :
     - Définit si les `Merge` opérations sont activées (dans ce cas, elles sont moins préférées que les `Rebuild` opérations).
 - **MaxRangeInHours**:
     - La valeur par défaut est 8.
-    - Différence maximale autorisée (en heures) entre les deux durées de création d’extensions différentes, afin qu’elles puissent toujours être fusionnées.
+    - Différence maximale autorisée (en heures) entre deux durées de création d’étendues différentes, afin qu’elles puissent toujours être fusionnées.
     - Les horodateurs sont ceux de la création d’étendues et ne sont pas liés aux données réelles contenues dans les étendues.
     - S’applique aux opérations de fusion et de régénération.
     - Une meilleure pratique est que cette valeur soit corrélée avec le *SoftDeletePeriod*de la [stratégie de rétention](./retentionpolicy.md)de la base de données/de la table, ou le *DataHotSpan* de la [stratégie de cache](./cachepolicy.md)(le plus bas des deux), afin qu’elle soit comprise entre 2-3% de la dernière.
 
 **`MaxRangeInHours`illustre**
-|min (SoftDeletePeriod (stratégie de rétention), DataHotSpan (stratégie de cache))|Plage maximale en heures (stratégie de fusion)
-|---|---
-|7 jours (168 heures)| 4
-|14 jours (336 heures)| 8
-|30 jours (720 heures)| 18
-|60 jours (1 440 heures)| 36
-|90 jours (2 160 heures)| 60
-|180 jours (4 320 heures)| 120
-|365 jours (8 760 heures)| 250
+
+|min (SoftDeletePeriod (stratégie de rétention), DataHotSpan (stratégie de cache))|Plage maximale en heures (stratégie de fusion)|
+|--------------------------------------------------------------------|---------------------------------|
+|7 jours (168 heures)                                                  | 4                               |
+|14 jours (336 heures)                                                 | 8                               |
+|30 jours (720 heures)                                                 | 18                              |
+|60 jours (1 440 heures)                                               | 36                              |
+|90 jours (2 160 heures)                                               | 60                              |
+|180 jours (4 320 heures)                                              | 120                             |
+|365 jours (8 760 heures)                                              | 250                             |
 
 > [!WARNING]
 > Consultez l’équipe de Explorateur de données Azure avant de modifier une stratégie de fusion d’étendues.
