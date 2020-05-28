@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: e6f103d8957416c55a4562fb646e8ccb17ddf1e5
-ms.sourcegitcommit: 9810acae3f1c83b8efe7b952d3bada2ff496b024
+ms.openlocfilehash: b2bb03511afed386e4c7519471481b7ecf5b6291
+ms.sourcegitcommit: e82e1bcfcb456e89a1afb19fc6e874ca9d70c575
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/18/2020
-ms.locfileid: "83444713"
+ms.lasthandoff: 05/27/2020
+ms.locfileid: "84110896"
 ---
 # <a name="data-partitioning-policy-preview"></a>Stratégie de partitionnement des données (préversion)
 
@@ -24,16 +24,16 @@ La stratégie de partitionnement définit si et comment les [étendues (données
 
 L’objectif principal de la stratégie est d’améliorer les performances des requêtes qui sont limitées à un petit sous-ensemble de valeurs dans la ou les colonnes partitionnées et/ou l’agrégat/la jointure sur une colonne de chaîne de cardinalité élevée. Un avantage potentiel secondaire est une meilleure compression des données.
 
-> [!WARNING]
+> [!CAUTION]
 > Bien qu’il n’y ait aucune limite codée en dur définie sur la quantité de tables sur lesquelles la stratégie peut être définie, chaque table supplémentaire ajoute une surcharge au processus de partitionnement des données en arrière-plan qui s’exécute sur les nœuds du cluster et peut nécessiter des ressources supplémentaires à partir du cluster-voir [capacité](#capacity).
 
 ## <a name="partition-keys"></a>Clés de partition
 
 Les types de clés de partition suivants sont pris en charge :
 
-|Type                                                   |Type de colonne |Propriétés de la partition                    |Valeur de partition                                        |
+|Genre                                                   |Type de colonne |Propriétés de la partition                    |Valeur de partition                                        |
 |-------------------------------------------------------|------------|----------------------------------------|-------------------------------------------------------|
-|[Code de hachage](#hash-partition-key)                            |`string`    |`Function`, `MaxPartitionCount`, `Seed` | `Function`(`ColumnName`, `MaxPartitionCount`, `Seed`) |
+|[Hash](#hash-partition-key)                            |`string`    |`Function`, `MaxPartitionCount`, `Seed` | `Function`(`ColumnName`, `MaxPartitionCount`, `Seed`) |
 |[Plage uniforme](#uniform-range-datetime-partition-key) |`datetime`  |`RangeSize`, `Reference`                | `bin_at`(`ColumnName`, `RangeSize`, `Reference`)      |
 
 ### <a name="hash-partition-key"></a>Clé de partition de hachage
@@ -187,7 +187,7 @@ Les propriétés suivantes peuvent être définies dans le cadre de la stratégi
 * Le partitionnement des données s’exécute uniquement sur les extensions chaudes, quelle que soit la valeur de la `EffectiveDateTime` propriété dans la stratégie.
   * Si le partitionnement des extensions à froid est nécessaire, vous devez ajuster temporairement la [stratégie de mise en cache en](cachepolicy.md) conséquence.
 
-#### <a name="monitoring"></a>Surveillance
+#### <a name="monitoring"></a>Monitoring
 
 * Vous pouvez surveiller la progression/l’état du partitionnement dans un cluster à l’aide de la commande [. afficher les diagnostics](../management/diagnostics.md#show-diagnostics) :
 
