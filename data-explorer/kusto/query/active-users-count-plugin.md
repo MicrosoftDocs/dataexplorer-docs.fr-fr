@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 22d3744cfa83a003830acc07710fd459003dbf20
-ms.sourcegitcommit: 9fe6ee7db15a5cc92150d3eac0ee175f538953d2
+ms.openlocfilehash: b40ca669df7671b1451166f6bfc1c7c680713166
+ms.sourcegitcommit: 1f50c6688a2b8d8a3976c0cd0ef40cde2ef76749
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/07/2020
-ms.locfileid: "82907200"
+ms.lasthandoff: 05/29/2020
+ms.locfileid: "84202957"
 ---
 # <a name="active_users_count-plugin"></a>plug-in active_users_count
 
@@ -27,7 +27,7 @@ T | evaluate active_users_count(id, datetime_column, startofday(ago(30d)), start
 
 **Syntaxe**
 
-*T* `| evaluate` `,` *TimelineColumn* `,` *Bin* *dim2* *IdColumn* `,` *Period* *End* `,` *LookbackWindow* `,` *dim1* *Start* `,` IdColumn TimelineColumn`,` Start`,` End`,` LookbackWindow period`,` *ActivePeriodsCount* bin [dim1 dim2...] `active_users_count(``)`
+*T* `| evaluate` `active_users_count(` *IdColumn* `,` *TimelineColumn* `,` *Start* `,` *end* `,` *LookbackWindow* `,` *period* `,` *ActivePeriodsCount* `,` *bin* `,` [*dim1* `,` *dim2* `,` ...]`)`
 
 **Arguments**
 
@@ -39,7 +39,7 @@ T | evaluate active_users_count(id, datetime_column, startofday(ago(30d)), start
 * *LookbackWindow*: fenêtre de temps glissante définissant une période dans laquelle l’apparence de l’utilisateur est vérifiée. La période de lookback commence à ([apparence actuelle]-[fenêtre lookback]) et se termine le ([apparence actuelle]). 
 * *Période*: valeur scalaire constante TimeSpan à compter comme apparence unique (un utilisateur est compté comme actif s’il apparaît dans au moins un ActivePeriodsCount distinct de ce TimeSpan.
 * *ActivePeriodsCount*: nombre minimal de périodes actives distinctes pour décider si l’utilisateur est actif. Les utilisateurs actifs sont ceux qui ont été affichés au moins (égal ou supérieur à) nombre de périodes actives.
-* *Bin*: valeur constante scalaire de la période de l’étape d’analyse. Peut être une valeur numérique/DateTime/timestamp, ou une chaîne qui est `week` / `month` / `year`. Toutes les périodes seront les fonctions [startOfWeek](startofweekfunction.md)/[StartOfMonth](startofmonthfunction.md)/[STARTOFYEAR](startofyearfunction.md) correspondantes.
+* *Bin*: valeur constante scalaire de la période de l’étape d’analyse. Peut être une valeur numérique/DateTime/timestamp, ou une chaîne qui est `week` / `month` / `year` . Toutes les périodes seront les fonctions [startOfWeek](startofweekfunction.md) / [StartOfMonth](startofmonthfunction.md) / [STARTOFYEAR](startofyearfunction.md) correspondantes.
 * *dim1*, *dim2*,... : (facultatif) liste des colonnes de dimensions qui découpent le calcul des métriques d’activité.
 
 **Retourne**
@@ -88,7 +88,7 @@ T | evaluate active_users_count(User, Timestamp, Start, End, LookbackWindow, Per
 |2018-07-01 00:00:00.0000000|1|
 |2018-07-15 00:00:00.0000000|1|
 
-Un utilisateur est considéré comme actif si l’un des critères suivants est respecté : 
+Un utilisateur est considéré comme actif si les deux critères suivants sont remplis : 
 * L’utilisateur s’est vu dans au moins trois jours distincts (période = 1J, ActivePeriods = 3).
 * L’utilisateur s’est vu dans une fenêtre lookback de 8D avant et y compris son apparence actuelle.
 
