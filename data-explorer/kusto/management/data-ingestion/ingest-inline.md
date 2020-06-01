@@ -1,6 +1,6 @@
 ---
-title: Commande Inline. deréception (push)-Azure Explorateur de données | Microsoft Docs
-description: Cet article décrit la commande Inline. deréception (push) dans Azure Explorateur de données.
+title: Commande inline de réception (push)-Azure Explorateur de données
+description: Cet article décrit la commande Inline. deréception (push)
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,44 +8,45 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 2b1766b295fd348639d8d91c8308a3ed0a35a3dc
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 2ac3a9a414d31492917cfb1768ce7bb1d7d8abb1
+ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373415"
+ms.lasthandoff: 06/01/2020
+ms.locfileid: "84257924"
 ---
-# <a name="the-ingest-inline-command-push"></a>Commande Inline. deréception (push)
+# <a name="ingest-inline-command-push"></a>. réception de la commande inline (push)
 
 Cette commande ingère les données dans une table en « poussant » les données incorporées inline dans le texte de la commande.
 
 > [!NOTE]
-> L’objectif principal de cette commande est d’effectuer des tests manuels ad hoc.
-> Pour l’utilisation en production, il est recommandé d’utiliser d’autres méthodes d’ingestion plus appropriées pour la distribution en bloc d’énormes quantités de données, telles que l’ingestion [du stockage](./ingest-from-storage.md).
+> Cette commande est utilisée pour les tests manuels ad hoc.
+> Pour une utilisation en production, nous vous recommandons d’utiliser d’autres méthodes d’ingestion plus adaptées à la distribution en bloc d’énormes quantités de données, telles que l’ingestion [du stockage](./ingest-from-storage.md).
 
 **Syntaxe**
 
 `.ingest``inline` `into` `table` *TableName* [ `with` `(` *IngestionPropertyName* `=` *IngestionPropertyValue* [ `,` ...] `)` ] `<|` *Données*
 
-
-
 **Arguments**
 
-* *TableName* est le nom de la table vers laquelle les données sont ingérées.
-  Le nom de la table est toujours relatif à la base de données en contexte, et son schéma est le schéma qui sera utilisé pour les données si aucun objet de mappage de schéma n’est fourni.
+* *TableName* est le nom de la table dans laquelle les données sont ingérées.
+  Le nom est toujours relatif à la base de données en contexte.
+  Le schéma de table est le schéma qui sera utilisé pour les données si aucun objet de mappage de schéma n’est fourni.
 
 * *Data* est le contenu de données à ingérer. Sauf modification contraire des propriétés d’ingestion, ce contenu est analysé en tant que CSV.
-  Notez que contrairement à la plupart des commandes et des requêtes de contrôle, le texte de la partie *données* de la commande ne doit pas respecter les conventions syntaxiques de la langue (par exemple, les espaces sont importants, la `//` combinaison n’est pas traitée comme un commentaire, etc.)
+ 
+> [!NOTE]
+> Contrairement à la plupart des commandes et des requêtes de contrôle, le texte de la partie *données* de la commande ne doit pas nécessairement respecter les conventions syntaxiques de la langue. Par exemple, les caractères d’espace blanc sont importants ou la `//` combinaison n’est pas traitée comme un commentaire.
 
 * *IngestionPropertyName*, *IngestionPropertyValue*: nombre quelconque de [Propriétés](../../../ingestion-properties.md) d’ingestion qui affectent le processus d’ingestion.
 
 **Résultats**
 
-Le résultat de la commande est une table avec autant d’enregistrements qu’il y a de données partitions (« extents ») générées par la commande.
-Si aucun partitions de données n’a été généré, un seul enregistrement est retourné avec un ID d’extension vide (valeur zéro).
+Le résultat de la commande est une table avec autant d’enregistrements qu’il y a de données générées partitions (« extents »).
+Si aucun partitions de données n’est généré, un seul enregistrement est retourné avec un ID d’extension vide (de valeur zéro).
 
-|Nom       |Type      |Description                                                                |
-|-----------|----------|---------------------------------------------------------------------------|
+|Nom       |Type      |Description                                                 |
+|-----------|----------|------------------------------------------------------------|
 |ExtentId   |`guid`    |Identificateur unique pour le partition de données qui a été généré par la commande.|
 
 **Exemples**
@@ -60,10 +61,9 @@ Wide Shoes,50
 "Coats with ""quotes""",5
 ```
 
-
-
 <!--
-It is possible to generate inline ingests commands using the Kusto.Data client library. (Note that compression does allow one to embed newlines in quoted fields) 
+You can generate inline ingests commands using the Kusto.Data client library. 
+(Note that compression does let you embed new lines in quoted fields) 
 
     Kusto.Data.Common.CslCommandGenerator.GenerateTableIngestPushCommand(tableName, compressed: true, csvData: csvStream);
 

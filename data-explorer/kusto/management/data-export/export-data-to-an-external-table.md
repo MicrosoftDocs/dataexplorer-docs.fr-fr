@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 7b4bade1ca874157ec843103a8bcf5236b49abfe
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 28aca460089c6dc3b70aecaff11b26cfe1c1baf4
+ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227789"
+ms.lasthandoff: 06/01/2020
+ms.locfileid: "84258060"
 ---
 # <a name="export-data-to-an-external-table"></a>Exporter des données vers une table externe
 
@@ -30,7 +30,7 @@ Les propriétés de la table sont spécifiées lors [de la création de la table
 |Paramètre de sortie |Type |Description
 |---|---|---
 |ExternalTableName  |String |Nom de la table externe.
-|Path|String|Chemin de sortie.
+|Chemin d’accès|String|Chemin de sortie.
 |NumRecords|String| Nombre d’enregistrements exportés dans le chemin d’accès.
 
 **Remarques :**
@@ -42,7 +42,8 @@ Les propriétés de la table sont spécifiées lors [de la création de la table
 * Les propriétés suivantes sont prises en charge dans le cadre de la commande d’exportation. Pour plus d’informations, consultez la section [Exporter vers le stockage](export-data-to-storage.md) : 
    * `sizeLimit`, `parquetRowGroupSize`, `distributed`.
 
-   * Si la table externe est partitionnée, les artefacts exportés sont écrits dans leurs répertoires respectifs, en fonction des définitions de partition, comme indiqué dans l' [exemple](#partitioned-external-table-example). 
+* Si la table externe est partitionnée, les artefacts exportés sont écrits dans leurs répertoires respectifs, en fonction des définitions de partition, comme indiqué dans l' [exemple](#partitioned-external-table-example). 
+  * Si une valeur de partition est null/vide ou qu’il s’agit d’une valeur de répertoire non valide, selon les définitions du stockage cible, elle est remplacée par la valeur par défaut `__DEFAULT_PARTITION__` . 
 
 * Le nombre de fichiers écrits par partition dépend des paramètres suivants :
    * Si la table externe comprend uniquement des partitions DateTime, ou aucune partition, le nombre de fichiers écrits (pour chaque partition, le cas échéant) doit être le nombre de nœuds du cluster (ou plus, si `sizeLimit` est atteint). Lorsque l’opération d’exportation est distribuée, tous les nœuds du cluster sont exportés simultanément. Pour désactiver la distribution, afin qu’un seul nœud effectue les écritures, affectez la valeur `distributed` false. Ce processus créera moins de fichiers, mais réduira les performances d’exportation.
@@ -58,7 +59,7 @@ ExternalBlob est une table externe non partitionnée.
 .export to table ExternalBlob <| T
 ```
 
-|ExternalTableName|Path|NumRecords|
+|ExternalTableName|Chemin d’accès|NumRecords|
 |---|---|---|
 |ExternalBlob|http://storage1.blob.core.windows.net/externaltable1cont1/1_58017c550b384c0db0fea61a8661333e.csv|10|
 
@@ -82,7 +83,7 @@ dataformat=csv
 .export to table PartitionedExternalBlob <| T
 ```
 
-|ExternalTableName|Path|NumRecords|
+|ExternalTableName|Chemin d’accès|NumRecords|
 |---|---|---|
 |ExternalBlob|http://storageaccount.blob.core.windows.net/container1/CustomerName=customer1/2019/01/01/fa36f35c-c064-414d-b8e2-e75cf157ec35_1_58017c550b384c0db0fea61a8661333e.csv|10|
 |ExternalBlob|http://storageaccount.blob.core.windows.net/container1/CustomerName=customer2/2019/01/01/fa36f35c-c064-414d-b8e2-e75cf157ec35_2_b785beec2c004d93b7cd531208424dc9.csv|10|

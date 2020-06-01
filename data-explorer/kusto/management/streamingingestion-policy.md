@@ -8,27 +8,26 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 1c3ce0c0d383d07375333b08de336503d1578b1a
-ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
+ms.openlocfilehash: 55ed390a1c98a307d2bb38476458f29fc9c92997
+ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83381993"
+ms.lasthandoff: 06/01/2020
+ms.locfileid: "84258009"
 ---
 # <a name="streaming-ingestion-policy-management"></a>Gestion de la stratégie d’ingestion de streaming
 
-La stratégie d’ingestion de streaming peut être attachée à une base de données ou à une table pour permettre l’ingestion de la diffusion en continu vers ces emplacements. La stratégie définit également les magasins de lignes utilisés pour l’ingestion de diffusion en continu.
+La stratégie d’ingestion de streaming peut être définie sur une table pour permettre l’ingestion de la diffusion en continu dans cette table. La stratégie peut également être définie au niveau de la base de données pour appliquer le même paramètre aux tables actuelles et futures.
 
-Pour plus d’informations sur l’ingestion de la diffusion en continu, voir ingestion de [diffusion en continu (](../../ingest-data-streaming.md)préversion). Pour en savoir plus sur la stratégie d’ingestion de diffusion en continu, consultez Stratégie d’ingestion de [streaming](streamingingestionpolicy.md).
+Pour plus d’informations, consultez ingestion de la [diffusion en continu](../../ingest-data-streaming.md). Pour en savoir plus sur la stratégie d’ingestion de diffusion en continu, consultez Stratégie d’ingestion de [streaming](streamingingestionpolicy.md).
 
-## <a name="show-policy-streamingingestion"></a>. afficher la stratégie streamingingestion
+## <a name="display-the-policy"></a>Afficher la stratégie
 
 La `.show policy streamingingestion` commande affiche la stratégie d’ingestion de diffusion en continu de la base de données ou de la table.
-
+ 
 **Syntaxe**
 
-`.show``database` `policy` `streamingingestion` 
- MyDatabase `.show` `table`MyTable `policy``streamingingestion`
+`.show``{database|table}` &lt; nom &gt; de l' `policy` entité`streamingingestion`
 
 **Retourne**
 
@@ -38,77 +37,84 @@ Cette commande retourne une table avec les colonnes suivantes :
 |---|---|---
 |PolicyName|`string`|Nom de la stratégie-StreamingIngestionPolicy
 |EntityName|`string`|Nom de la base de données ou de la table
-|Stratégie    |`string`|Objet JSON qui définit la stratégie d’ingestion de diffusion en continu, mise en forme en tant qu' [objet de stratégie](#streaming-ingestion-policy-object) d’ingestion de streaming
+|Policy    |`string`|[objet de stratégie d’ingestion de streaming](#streaming-ingestion-policy-object)
 
-**Exemple**
+**Exemples**
 
 ```kusto
-.show database DB1 policy streamingingestion 
-.show table T1 policy streamingingestion 
+.show database DB1 policy streamingingestion
+
+.show table T1 policy streamingingestion
 ```
 
-|PolicyName|EntityName|Stratégie|ChildEntities|EntityType|
+|PolicyName|EntityName|Policy|ChildEntities|EntityType|
 |---|---|---|---|---|
-|StreamingIngestionPolicy|DB1|{"NumberOfRowStores" : 4}
+|StreamingIngestionPolicy|DB1|{"IsEnabled" : true, "HintAllocatedRate" : null}
 
-### <a name="streaming-ingestion-policy-object"></a>Objet de stratégie d’ingestion de streaming
+## <a name="change-the-policy"></a>Modifier la stratégie
 
-|Propriété  |Type    |Description                                                       |
-|----------|--------|------------------------------------------------------------------|
-|NumberOfRowStores |`int`  |Nombre de magasins de lignes attribués à l’entité|
-|SealIntervalLimit|`TimeSpan?`|Limite facultative pour les intervalles entre les opérations de scellement sur la table. La plage valide est comprise entre 1 et 24 heures. Par défaut : 24 heures.|
-|SealThresholdBytes|`int?`|Limite facultative pour la quantité de données à prendre pour une seule opération d’étanchéité sur la table. La plage valide pour la valeur est comprise entre 10 et 200 Mo. Valeur par défaut : 200 Mo.|
-
-## <a name="alter-policy-streamingingestion"></a>. Alter Policy streamingingestion
-
-La `.alter policy streamingingestion` commande définit la stratégie streamingingestion de la base de données ou de la table.
+La `.alter[-merge] policy streamingingestion` famille de commandes fournit des moyens de modifier la stratégie d’ingestion de diffusion en continu de la base de données ou de la table.
 
 **Syntaxe**
 
-* `.alter``database` `policy` MyDatabase `streamingingestion` *StreamingIngestionPolicyObject*
+* `.alter``{database|table}` &lt; &gt; nom `policy` de `streamingingestion` l’entité`[enable|disable]`
 
-* `.alter``database` `policy` MyDatabase `streamingingestion``enable`
+* `.alter`objet de stratégie d’ingestion de `{database|table}` &lt; diffusion en &gt; `policy` `streamingingestion` &lt; [continu](#streaming-ingestion-policy-object) de nom d’entité&gt;
 
-* `.alter``database` `policy` MyDatabase `streamingingestion``disable`
+* `.alter-merge`objet de stratégie d’ingestion de `{database|table}` &lt; diffusion en &gt; `policy` `streamingingestion` &lt; [continu](#streaming-ingestion-policy-object) de nom d’entité&gt;
 
-* `.alter``table` `policy` MyTable `streamingingestion` *StreamingIngestionPolicyObject*
-
-* `.alter``table` `policy` MyTable `streamingingestion``enable`
-
-* `.alter``table` `policy` MyTable `streamingingestion``disable`
-
-**Remarques**
-
-1. *StreamingIngestionPolicyObject* est un objet JSON pour lequel l’objet de stratégie d’ingestion de streaming est défini.
-
-2. `enable`-définir la stratégie d’ingestion de streaming sur 4 rowstores si la stratégie n’est pas définie ou si elle est déjà définie avec 0 rowstores, sinon la commande ne fait rien.
-
-3. `disable`-définir la stratégie d’ingestion de streaming avec 0 rowstores si la stratégie est déjà définie avec un rowstores positif, sinon la commande ne fait rien.
-
-**Exemple**
-
-```kusto
-.alter database MyDatabase policy streamingingestion '{  "NumberOfRowStores": 4}'
-
-.alter table MyTable policy streamingingestion '{  "NumberOfRowStores": 4}'
-```
-
-## <a name="delete-policy-streamingingestion"></a>. supprimer la stratégie streamingingestion
-
-La `.delete policy streamingingestion` commande supprime la stratégie streamingingestion de la base de données ou de la table.
-
-**Syntaxe** 
-
-`.delete``database`MyDatabase `policy``streamingingestion`
-
-`.delete``table`MyTable `policy``streamingingestion`
+> [!Note]
+>
+> * Permet de modifier l’état activé/désactivé de l’ingestion de diffusion en continu sans modifier les autres propriétés de la stratégie ou définir les valeurs par défaut des propriétés si la stratégie n’a pas été définie précédemment sur l’entité.
+>
+> * Permet de remplacer l’intégralité de la stratégie d’ingestion de diffusion en continu sur l’entité. l' [objet de stratégie](#streaming-ingestion-policy-object) d’ingestion de streaming doit inclure toutes les propriétés obligatoires.
+>
+> * Permet de remplacer uniquement les propriétés spécifiées de la stratégie d’ingestion de streaming sur l’entité. L' [objet de stratégie](#streaming-ingestion-policy-object) d’ingestion de streaming peut inclure une partie ou aucune des propriétés obligatoires.
 
 **Retourne**
 
-La commande supprime l’objet de stratégie de la table ou de la base de données streamingingestion, puis retourne la sortie de la commande correspondante [. afficher la stratégie streamingingestion](#show-policy-streamingingestion) .
+La commande modifie la table ou l’objet de stratégie de base de données `streamingingestion` , puis retourne la sortie [ `.show policy` `streamingingestion` ](#display-the-policy) de la commande correspondante.
 
-**Exemple**
+**Exemples**
 
 ```kusto
-.delete database MyDatabase policy streamingingestion 
+.alter database DB1 policy streamingingestion enable
+
+.alter table T1 policy streamingingestion disable
+
+.alter database DB1 policy streamingingestion '{"IsEnabled": true, "HintAllocatedRate": 2.1}'
+
+.alter table T1 streamingingestion '{"IsEnabled": true}'
+
+.alter-merge database DB1 policy streamingingestion '{"IsEnabled": false}'
+
+.alter-merge table T1 policy streamingingestion '{"HintAllocatedRate": 1.5}'
 ```
+
+## <a name="delete-the-policy"></a>Supprimer la stratégie
+
+La `.delete policy streamingingestion` commande supprime la stratégie streamingingestion de la base de données ou de la table.
+
+**Syntaxe**
+
+`.delete``{database|table}` &lt; nom &gt; de l' `policy` entité`streamingingestion`
+
+**Retourne**
+
+La commande supprime l’objet de stratégie de la table ou de la base de données streamingingestion, puis retourne la sortie de la commande correspondante [. afficher la stratégie streamingingestion](#display-the-policy) .
+
+**Exemples**
+
+```kusto
+.delete database DB1 policy streamingingestion
+
+.delete table T1 policy streamingingestion
+```
+
+### <a name="streaming-ingestion-policy-object"></a>Objet de stratégie d’ingestion de streaming
+
+Dans l’entrée et la sortie des commandes de gestion, l’objet de stratégie d’ingestion de streaming est une chaîne au format JSON qui comprend les propriétés suivantes.
+|Propriété  |Type    |Description                                                       |Obligatoire ou facultatif |
+|----------|--------|------------------------------------------------------------------|-------|
+|IsEnabled |`bool`  |L’ingestion de diffusion en continu est-elle activée pour l’entité| Obligatoire|
+|HintAllocatedRate|`double`|Fréquence estimée des entrées de données en Go/heure| Facultatif|

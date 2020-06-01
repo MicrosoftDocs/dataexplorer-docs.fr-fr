@@ -7,12 +7,12 @@ ms.reviewer: itsagui
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/26/2020
-ms.openlocfilehash: 13ad30e53ff38e627f44bac96010ae6d21902cee
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: a75329c6aaad4fa31301104f9407ac36d25c3002
+ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493073"
+ms.lasthandoff: 06/01/2020
+ms.locfileid: "84257890"
 ---
 # <a name="configure-customer-managed-keys-using-the-azure-portal"></a>Configurer des clés gérées par le client à l’aide du Portail Azure
 
@@ -20,6 +20,7 @@ ms.locfileid: "81493073"
 > * [Portail](customer-managed-keys-portal.md)
 > * [C#](customer-managed-keys-csharp.md)
 > * [Modèle Azure Resource Manager](customer-managed-keys-resource-manager.md)
+> * [INTERFACE DE LIGNE DE COMMANDE](customer-managed-keys-cli.md)
 
 [!INCLUDE [data-explorer-configure-customer-managed-keys](includes/data-explorer-configure-customer-managed-keys.md)]
 

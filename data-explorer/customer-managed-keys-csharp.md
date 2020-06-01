@@ -7,12 +7,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/06/2020
-ms.openlocfilehash: e394d928774624ac3c7faacab7726570272da82a
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: ff2edd1e64aa3ef44c96ecf15d6a859eadd49e69
+ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492993"
+ms.lasthandoff: 06/01/2020
+ms.locfileid: "84257873"
 ---
 # <a name="configure-customer-managed-keys-using-c"></a>Configurer des clés gérées par le client à l’aide de C#
 
@@ -20,6 +20,7 @@ ms.locfileid: "81492993"
 > * [Portail](customer-managed-keys-portal.md)
 > * [C#](customer-managed-keys-csharp.md)
 > * [Modèle Azure Resource Manager](customer-managed-keys-resource-manager.md)
+> * [INTERFACE DE LIGNE DE COMMANDE](customer-managed-keys-cli.md)
 
 [!INCLUDE [data-explorer-configure-customer-managed-keys](includes/data-explorer-configure-customer-managed-keys.md)]
 
@@ -29,7 +30,7 @@ ms.locfileid: "81492993"
 
 Cette section vous montre comment configurer le chiffrement avec des clés gérées par le client à l’aide du client C# Azure Data Explorer. 
 
-### <a name="prerequisites"></a>Conditions préalables requises
+### <a name="prerequisites"></a>Prérequis
 
 * Si vous n’avez pas encore installé Visual Studio 2019, vous pouvez télécharger et utiliser la version **gratuite** [Visual Studio 2019 Community Edition](https://www.visualstudio.com/downloads/). Veillez à activer **le développement Azure** lors de l’installation de Visual Studio.
 
@@ -41,7 +42,7 @@ Cette section vous montre comment configurer le chiffrement avec des clés gér�
 
 * Installez le [package NuGet Microsoft.IdentityModel.Clients.ActiveDirectory](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory/) pour l’authentification.
 
-### <a name="authentication"></a>Authentication
+### <a name="authentication"></a>Authentification
 
 Pour exécuter les exemples de cet article, [créez une application Azure AD](/azure/active-directory/develop/howto-create-service-principal-portal) et un principal de service pouvant accéder aux ressources. Vous pouvez ajouter l’attribution de rôle à l’étendue de l’abonnement et récupérer les `Directory (tenant) ID`, `Application ID` et `Client Secret` requis.
 

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/09/2019
-ms.openlocfilehash: 2c4443c0a9301dbc6bb3e65392163da0cc237f74
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 55864dd408f35c59398ea1b93f18c0834a611a90
+ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82617882"
+ms.lasthandoff: 06/01/2020
+ms.locfileid: "84258094"
 ---
 # <a name="kql-over-tds"></a>KQL over TDS
 
@@ -25,7 +25,7 @@ Kusto permet l’exécution de [fonctions stockées](../../query/schema-entities
 
 Par exemple, la fonction stockée MyFunction :
 
-|Nom |Paramètres|body|Dossier|DocString
+|Nom |Paramètres|Corps|Dossier|DocString
 |---|---|---|---|---
 |MyFunction |(myLimit : long)| {StormEvents &#124; limite myLimit}|Mondossier|Fonction Demo avec un paramètre||
 
@@ -49,7 +49,7 @@ peut être appelée comme suit :
   }
 ```
 
-> [! Remarque :] appelez des fonctions stockées avec un schéma explicite `kusto`nommé, pour faire la distinction entre les fonctions stockées Kusto et les procédures stockées système SQL émulées.
+> [! Remarque :] appelez des fonctions stockées avec un schéma explicite nommé `kusto` , pour faire la distinction entre les fonctions stockées Kusto et les procédures stockées système SQL émulées.
 
 Vous pouvez également appeler des fonctions stockées Kusto à partir de T-SQL, comme les fonctions tabulaires SQL :
 
@@ -61,7 +61,7 @@ Créer des requêtes KQL optimisées et les encapsuler dans des fonctions stock�
 
 ## <a name="executing-kql-query"></a>Exécution de la requête KQL
 
-La procédure `sp_execute_kql` stockée exécute des requêtes [KQL](../../query/index.md) (y compris des requêtes paramétrables). Cette procédure est similaire à celle de `sp_executesql`SQL Server.
+La procédure stockée `sp_execute_kql` exécute des requêtes [KQL](../../query/index.md) (y compris des requêtes paramétrables). Cette procédure est similaire à celle de SQL Server `sp_executesql` .
 
 Le premier paramètre de `sp_execute_kql` est la requête KQL. Vous pouvez introduire des paramètres supplémentaires et ils agiront comme des [paramètres de requête](../../query/queryparametersstatement.md).
 
@@ -88,4 +88,5 @@ Par exemple :
   }
 ```
 
-> [! Remarque :] il n’est pas nécessaire de déclarer des paramètres lors de l’appel via TDS, car les types de paramètres sont définis via le protocole.
+> [!NOTE]
+> Il n’est pas nécessaire de déclarer des paramètres lors de l’appel via TDS, car les types de paramètres sont définis via le protocole.

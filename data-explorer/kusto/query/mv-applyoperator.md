@@ -8,21 +8,24 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 80e38c1782a4476181fe73c5f77d6460f2ef539f
-ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
+ms.openlocfilehash: 8fd83615de466c238a590273b228c118e2cd1b46
+ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83271228"
+ms.lasthandoff: 06/01/2020
+ms.locfileid: "84257838"
 ---
 # <a name="mv-apply-operator"></a>mv-apply, opérateur
 
-L' `mv-apply` opérateur développe chaque enregistrement de sa table d’entrée dans une sous-table, applique une sous-requête à chaque sous-table et retourne l’Union des résultats de toutes les sous-requêtes.
+Applique une sous-requête à chaque enregistrement et retourne l’Union des résultats de toutes les sous-requêtes.
 
 Par exemple, supposons qu’une table `T` possède une colonne `Metric` de type `dynamic` dont les valeurs sont des tableaux de `real` nombres. La requête suivante localise les deux valeurs les plus importantes dans chaque `Metric` valeur et retourne les enregistrements correspondant à ces valeurs.
 
 ```kusto
-T | mv-apply Metric to typeof(real) on (top 2 by Metric desc)
+T | mv-apply Metric to typeof(real) on 
+(
+   top 2 by Metric desc
+)
 ```
 
 L' `mv-apply` opérateur a les étapes de traitement suivantes :

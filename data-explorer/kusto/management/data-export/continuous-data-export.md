@@ -4,16 +4,16 @@ description: Cet article décrit l’exportation continue de données dans Azure
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/27/2020
-ms.openlocfilehash: e1978746eaac35b96b05131e79378c391b5e138b
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 4ea4532d8547011b2b281988ff1534cd1d49da86
+ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227772"
+ms.lasthandoff: 06/01/2020
+ms.locfileid: "84258077"
 ---
 # <a name="continuous-data-export"></a>Exportation de données continue
 
@@ -22,11 +22,12 @@ Exportez en continu des données à partir de Kusto vers une [table externe](../
 L’exportation de données continue vous oblige à [créer une table externe](../external-tables-azurestorage-azuredatalake.md#create-or-alter-external-table) , puis à [créer une définition d’exportation continue](#create-or-alter-continuous-export) pointant vers la table externe. 
 
 > [!NOTE] 
-> * Kusto ne prend pas en charge l’exportation des enregistrements historiques ingérés avant la création de l’exportation continue (dans le cadre de l’exportation continue). Les enregistrements historiques peuvent être exportés séparément à l’aide de la [commande d’exportation](export-data-to-an-external-table.md)(non continue). Pour plus d’informations, consultez [exportation de données historiques](#exporting-historical-data). 
+> * Kusto ne prend pas en charge l’exportation des enregistrements historiques ingérés avant la création de l’exportation continue (dans le cadre de l’exportation continue). Les enregistrements historiques peuvent être exportés séparément à l’aide de la [commande d’exportation](export-data-to-an-external-table.md)(non continue). Pour plus d’informations, consultez [exportation de données historiques](#exporting-historical-data).
 > * L’exportation continue ne fonctionne pas pour les données ingérées à l’aide de l’ingestion de diffusion en continu. 
 > * Actuellement, l’exportation continue ne peut pas être configurée sur une table sur laquelle une [stratégie de sécurité au niveau des lignes](../../management/rowlevelsecuritypolicy.md) est activée.
 > * L’exportation continue n’est pas prise en charge pour les tables externes avec `impersonate` dans leurs [chaînes de connexion](../../api/connection-strings/storage.md).
- 
+> * Si les artefacts utilisés par l’exportation continue sont destinés à déclencher des notifications Event Grid, reportez-vous à la [section problèmes connus dans la documentation de Event Grid](../data-ingestion/eventgrid.md#known-issues).
+
 ## <a name="notes"></a>Notes
 
 * La garantie d’exportation « exactement une fois » concerne uniquement les fichiers signalés dans la [commande Afficher les artefacts exportés](#show-continuous-export-artifacts). 
@@ -146,7 +147,7 @@ Retourne tous les artefacts exportés par l’exportation continue dans toutes l
 |-------------------|----------|----------------------------------------|
 | Timestamp         | Datetime | Horodateur de l’exécution de l’exportation continue |
 | ExternalTableName | String   | Nom de la table externe             |
-| Path              | String   | Chemin de sortie                            |
+| Chemin d’accès              | String   | Chemin de sortie                            |
 | NumRecords        | long     | Nombre d’enregistrements exportés dans le chemin     |
 
 **Exemple :** 
@@ -155,7 +156,7 @@ Retourne tous les artefacts exportés par l’exportation continue dans toutes l
 .show continuous-export MyExport exported-artifacts | where Timestamp > ago(1h)
 ```
 
-| Timestamp                   | ExternalTableName | Path             | NumRecords | SizeInBytes |
+| Timestamp                   | ExternalTableName | Chemin d’accès             | NumRecords | SizeInBytes |
 |-----------------------------|-------------------|------------------|------------|-------------|
 | 2018-12-20 07:31:30.2634216 | ExternalBlob      | `http://storageaccount.blob.core.windows.net/container1/1_6ca073fd4c8740ec9a2f574eaa98f579.csv` | 10                          | 1 024              |
 
