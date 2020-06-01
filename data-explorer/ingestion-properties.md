@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/19/2020
-ms.openlocfilehash: c66d7e11b3f64633a0dda33f7a3fa2f974536caa
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 25e80458dc4f0432e0f9e4c385fb71c4b8bf3997
+ms.sourcegitcommit: 283cce0e7635a2d8ca77543f297a3345a5201395
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373724"
+ms.lasthandoff: 05/27/2020
+ms.locfileid: "84011565"
 ---
 # <a name="azure-data-explorer-data-ingestion-properties"></a>Propriétés d’ingestion des données Azure Data Explorer 
 
@@ -36,7 +36,7 @@ Le tableau suivant liste les propriétés prises en charge par Azure Data Explor
 |`policy_ingestiontime`|Valeur booléenne qui, si elle est spécifiée, indique d’activer ou non la [stratégie de durée d’ingestion](kusto/management/ingestiontimepolicy.md) sur une table créée par cette commande. Par défaut, il s’agit de `true`.|`with (policy_ingestiontime=false)`|
 |`recreate_schema` |Valeur booléenne qui, si elle est spécifiée, indique si la commande peut recréer ou non le schéma de la table. Cette propriété s’applique uniquement à la commande `.set-or-replace`. Cette propriété est prioritaire sur la propriété `extend_schema` si les deux sont définies.|`with (recreate_schema=true)`|
 |`tags`|Liste d’[étiquettes](kusto/management/extents-overview.md#extent-tagging) à associer aux données ingérées, sous forme de chaîne JSON |`with (tags="['Tag1', 'Tag2']")`|
-|`validationPolicy`|Chaîne JSON qui indique les validations à exécuter pendant l’ingestion. Consultez [Ingestion des données](kusto/management/data-ingestion/index.md) pour avoir une explication des différentes options.| `with (validationPolicy='{"ValidationOptions":1, "ValidationImplications":1}')` (stratégie par défaut)|
+|`validationPolicy`|Chaîne JSON qui indique les validations à exécuter pendant l’ingestion. Consultez [Ingestion des données](ingest-data-overview.md) pour avoir une explication des différentes options.| `with (validationPolicy='{"ValidationOptions":1, "ValidationImplications":1}')` (stratégie par défaut)|
 |`zipPattern`|Utilisez cette propriété en cas d’ingestion des données à partir d’un stockage qui a une archive ZIP. Il s’agit d’une valeur de chaîne indiquant l’expression régulière à utiliser pour sélectionner les fichiers de l’archive ZIP à ingérer.  Tous les autres fichiers de l’archive sont ignorés.|`with (zipPattern="*.csv")`|
 
 ## <a name="next-steps"></a>Étapes suivantes
