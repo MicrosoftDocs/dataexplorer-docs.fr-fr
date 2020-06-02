@@ -8,19 +8,21 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: ce7751d7ac60d23f9ffa0fc84992050fe1036131
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: b6bc95158c1dd161a17572342c6a99bdf9d37235
+ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83370483"
+ms.lasthandoff: 06/01/2020
+ms.locfileid: "84257907"
 ---
 # <a name="azure-data-explorer-tools"></a>Outils Azure Data Explorer
 
 ## <a name="ad-hoc-query-tools"></a>Outils de requête ad hoc
 
-
-* [Kusto.Explorer](./kusto-explorer.md)principal outil de bureau pour l’interrogation et le contrôle de Kusto
+* Kusto.Explorer
+   * [Installation et interface utilisateur de Kusto.Explorer](./kusto-explorer.md) - principal outil de bureau pour l’interrogation et le contrôle de Kusto
+   * [Utilisation de Kusto.Explorer](./kusto-explorer-using.md)
+   * [Résolution des problèmes de Kusto.Explorer](kusto-explorer-troubleshooting.md)
 * [Interface utilisateur web](../../web-query-data.md) - interface utilisateur web pour l’interrogation de Kusto
 
 ## <a name="visualizations-dashboards-and-reporting-tools"></a>Visualisations, tableaux de bord et outils de création de rapports
@@ -39,6 +41,7 @@ ms.locfileid: "83370483"
    * [Requête SQL Power BI](../../power-bi-sql-query.md)
 
 * [Grafana](../../grafana.md)
+* [Connecteur open source K2Bridge](../../k2bridge.md) - Visualiser des données à partir d’Azure Data Explorer dans Kibana
 
 ## <a name="orchestration-tools"></a>Outils d’orchestration
 
@@ -54,8 +57,8 @@ ms.locfileid: "83370483"
 
 
 * [LightIngest](../../lightingest.md)utilitaire d’aide pour l’ingestion des données ad hoc dans Azure Data Explorer
- 
-
+* [Ingestion en un clic](../../ingest-data-one-click.md) - outil permettant d’ingérer rapidement des données et de suggérer automatiquement tables et structures de mappage
+* [Azure Data Factory](azure-data-factory.md).
 
 
 ## <a name="source-control-integration-tools"></a>Outils d’intégration du contrôle de code source
