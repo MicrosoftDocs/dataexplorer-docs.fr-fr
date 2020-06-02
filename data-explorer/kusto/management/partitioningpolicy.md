@@ -8,19 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: b2bb03511afed386e4c7519471481b7ecf5b6291
-ms.sourcegitcommit: e82e1bcfcb456e89a1afb19fc6e874ca9d70c575
+ms.openlocfilehash: 829e23fc087e732db4a555f3007f760249df15fe
+ms.sourcegitcommit: d660e39f24bd9a0e1c788cb86d4da9afd981cfc9
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/27/2020
-ms.locfileid: "84110896"
+ms.lasthandoff: 06/01/2020
+ms.locfileid: "84268066"
 ---
 # <a name="data-partitioning-policy-preview"></a>Stratégie de partitionnement des données (préversion)
 
 La stratégie de partitionnement définit si et comment les [étendues (données partitions)](../management/extents-overview.md) doivent être partitionnées pour une table spécifique.
-
-> [!NOTE]
-> La fonctionnalité de partitionnement des données est en version *préliminaire*.
 
 L’objectif principal de la stratégie est d’améliorer les performances des requêtes qui sont limitées à un petit sous-ensemble de valeurs dans la ou les colonnes partitionnées et/ou l’agrégat/la jointure sur une colonne de chaîne de cardinalité élevée. Un avantage potentiel secondaire est une meilleure compression des données.
 
@@ -187,7 +184,7 @@ Les propriétés suivantes peuvent être définies dans le cadre de la stratégi
 * Le partitionnement des données s’exécute uniquement sur les extensions chaudes, quelle que soit la valeur de la `EffectiveDateTime` propriété dans la stratégie.
   * Si le partitionnement des extensions à froid est nécessaire, vous devez ajuster temporairement la [stratégie de mise en cache en](cachepolicy.md) conséquence.
 
-#### <a name="monitoring"></a>Monitoring
+#### <a name="monitoring"></a>Surveillance
 
 * Vous pouvez surveiller la progression/l’état du partitionnement dans un cluster à l’aide de la commande [. afficher les diagnostics](../management/diagnostics.md#show-diagnostics) :
 
