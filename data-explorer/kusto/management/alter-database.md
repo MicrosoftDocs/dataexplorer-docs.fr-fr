@@ -1,6 +1,6 @@
 ---
-title: .alter base de données prettyname - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit .alter base de données prettyname dans Azure Data Explorer.
+title: . ALTER DATABASE prettyname-Azure Explorateur de données
+description: Cet article décrit la `.alter` commande Database Pretty Name.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,27 +8,26 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1b362b547dc980676108ec169a0abb97f189375b
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 0fc445a7d85f52d672b92163cc358d8f3a741c68
+ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81522591"
+ms.lasthandoff: 06/02/2020
+ms.locfileid: "84294506"
 ---
-# <a name="alter-database-prettyname"></a>.modifier la base de données joliname
+# <a name="alter-database-prettyname"></a>. ALTER DATABASE prettyname
 
-Modifie le joli nom (amical) d’une base de données.
+Modifie le nom convivial d’une base de données.
 
-Nécessite [databaseAdmin permission](../management/access-control/role-based-authorization.md).
+Requiert l' [autorisation DatabaseAdmin](../management/access-control/role-based-authorization.md).
 
 **Syntaxe**
 
-`.alter``database` *DatabaseName* `prettyname` `'` *DatabasePrettyName*`'`
+`.alter``database` *DatabaseName* `prettyname` Databasename `'` *DatabasePrettyName*`'`
 
 **Sortie de retour**
  
 |Paramètre de sortie |Type |Description 
 |---|---|---
 |nom_base_de_données |String |Nom de la base de données.
-|PrettyName (En) |String |Le joli nom de la base de données.
-
+|PrettyName |String |Nom convivial de la base de données

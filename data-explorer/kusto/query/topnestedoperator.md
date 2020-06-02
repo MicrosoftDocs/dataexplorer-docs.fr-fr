@@ -8,62 +8,86 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f87606442dcc5d7c9e7e0fceec379c37169757c3
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: a2a8f4fa92a7b8722097ec3595674b855a90f216
+ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83370767"
+ms.lasthandoff: 06/02/2020
+ms.locfileid: "84294659"
 ---
 # <a name="top-nested-operator"></a>Opérateur top-nested
 
-produit les premiers résultats hiérarchiques, où chaque niveau est une vue détaillée des valeurs du niveau précédent. 
+Produit une agrégation hiérarchique et une sélection des valeurs principales, où chaque niveau est un raffinement du précédent.
 
 ```kusto
 T | top-nested 3 of Location with others="Others" by sum(MachinesNumber), top-nested 4 of bin(Timestamp,5m) by sum(MachinesNumber)
 ```
 
-Il est utile pour les scénarios de visualisation de tableau de bord, ou lorsqu’il est nécessaire de répondre à une question qui ressemble à : «Rechercher les valeurs Top-N de K1 (à l’aide d’une agrégation); pour chacune d’elles, recherchez les valeurs les plus importantes de la fonction M (à l’aide d’une autre agrégation). ..."
+L' `top-nested` opérateur accepte les données tabulaires comme entrée et une ou plusieurs clauses d’agrégation.
+La première clause Aggregation (la plus à gauche) divise les enregistrements d’entrée en partitions, en fonction des valeurs uniques d’une expression sur ces enregistrements. La clause conserve ensuite un certain nombre d’enregistrements qui agrandissent ou réduisent cette expression sur les enregistrements. La clause Aggregation suivante applique ensuite une fonction similaire, de manière imbriquée. Chaque clause suivante est appliquée à la partition produite par la clause précédente. Ce processus se poursuit pour toutes les clauses d’agrégation.
+
+Par exemple, l' `top-nested` opérateur peut être utilisé pour répondre à la question suivante : «pour une table contenant les chiffres des ventes, tels que le pays, le vendeur et le montant vendu : Quels sont les cinq premiers pays par vente ? Quels sont les trois principaux représentants de chacun de ces pays ?»
 
 **Syntaxe**
 
-*T* `|` `top-nested` [*N1*] `of` *expression1* [ `with others=` *ConstExpr1*] `by` [*AggName1* `=` ] *Aggregation1* [ `asc`  |  `desc` ] [ `,` ...]
+*T* `|` `top-nested` *TopNestedClause2* [ `,` *TopNestedClause2*...]
+
+Où *TopNestedClause* a la syntaxe suivante :
+
+[*N*] `of` [ *`ExprName`* `=` ] *`Expr`* [ `with` `others` `=` *`ConstExpr`* ] `by` [ *`AggName`* `=` ] *`Aggregation`* `asc`  |  `desc` []
 
 **Arguments**
 
-pour chaque règle imbriquée de niveau supérieur :
-* *N1*: nombre de premières valeurs à retourner pour chaque niveau de la hiérarchie. Facultatif (en cas d’omission, toutes les valeurs distinctes seront retournées).
-* *Expression1*: expression par laquelle sélectionner les valeurs supérieures. En général, il s’agit d’un nom de colonne dans *T*, ou d’une opération compartimentage (par exemple, `bin()` ) sur une telle colonne. 
-* *ConstExpr1*: si elle est spécifiée, pour le niveau d’imbrication applicable, une ligne supplémentaire est ajoutée, qui contient le résultat agrégé pour les autres valeurs qui ne sont pas incluses dans les valeurs supérieures.
-* *Aggregation1*: appel à une fonction d’agrégation qui peut être l’une des suivantes : [Sum ()](sum-aggfunction.md), [Count ()](count-aggfunction.md), [Max ()](max-aggfunction.md), [min ()](min-aggfunction.md), [DCount ()](dcountif-aggfunction.md), [AVG (](avg-aggfunction.md)), [centile ()](percentiles-aggfunction.md), [percentilew (](percentiles-aggfunction.md)) ou n’importe quelle combinaison de algebric de ces agrégations.
-* `asc` ou `desc` (valeur par défaut) peut s’afficher pour indiquer si la sélection provient du bas ou du haut de la plage.
+Pour chaque *TopNestedClause*:
+
+* *`N`*: Littéral de type `long` indiquant le nombre de premières valeurs à retourner pour ce niveau de hiérarchie.
+  En cas d’omission, toutes les valeurs distinctes sont retournées.
+
+* *`ExprName`*: Si ce paramètre est spécifié, définit le nom de la colonne de sortie correspondant aux valeurs de *`Expr`* .
+
+* *`Expr`*: Expression sur l’enregistrement d’entrée indiquant la valeur à retourner pour ce niveau de hiérarchie.
+  En général, il s’agit d’une référence de colonne pour l’entrée tabulaire (*T*), ou d’un calcul (tel que `bin()` ) sur une telle colonne.
+
+* *`ConstExpr`*: S’il est spécifié, pour chaque enregistrement de niveau de hiérarchie 1 est ajouté avec la valeur qui est l’agrégation sur tous les enregistrements qui n’ont pas été « en fait le haut ».
+
+* *`AggName`*: Si ce paramètre est spécifié, cet identificateur définit le nom de colonne dans la sortie pour la valeur d' *agrégation*.
+
+* *`Aggregation`*: Expression numérique indiquant l’agrégation à appliquer à tous les enregistrements partageant la même valeur de *`Expr`* . La valeur de cette agrégation détermine quel enregistrement obtenu est « Top ».
+  
+  Les fonctions d’agrégation suivantes sont prises en charge :
+   * [Sum ()](sum-aggfunction.md),
+   * [Count ()](count-aggfunction.md),
+   * [Max ()](max-aggfunction.md),
+   * [min ()](min-aggfunction.md),
+   * [DCount ()](dcountif-aggfunction.md),
+   * [AVG ()](avg-aggfunction.md),
+   * [centile ()](percentiles-aggfunction.md)et
+   * [percentilew ()](percentiles-aggfunction.md). Toute combinaison algébrique des agrégations est également prise en charge.
+
+* `asc`ou `desc` (la valeur par défaut) peut sembler pour contrôler si la sélection est en fait du « bas » ou « supérieur » de la plage de valeurs agrégées.
 
 **Retourne**
 
-Une table Hierarchial qui inclut des colonnes d’entrée et pour chacune une nouvelle colonne est produite pour inclure le résultat de l’agrégation pour le même niveau pour chaque élément.
-Les colonnes sont organisées dans le même ordre que les colonnes d’entrée et la nouvelle colonne produite est proche de la colonne agrégée. Chaque enregistrement a une structure Hierarchial où chaque valeur est sélectionnée après l’application de toutes les règles imbriquées précédentes sur tous les niveaux précédents, puis l’application de la règle du niveau actuel sur cette sortie.
-Cela signifie que les n premières valeurs du niveau i sont calculées pour chaque valeur du niveau i-1.
- 
-**Conseils**
+Cet opérateur retourne une table qui comporte deux colonnes pour chaque clause Aggregation :
 
-* Utiliser le changement de nom des colonnes dans pour les résultats de l' *agrégation* : T | Top-imbriqué 3 de l’emplacement par MachinesNumberForLocation = Sum (MachinesNumber)...
+* Une colonne contient les valeurs distinctes du calcul de la clause *`Expr`* (avec le nom de colonne *ExprName* si elle est spécifiée)
 
-* Le nombre d’enregistrements renvoyés peut être assez important. jusqu’à (*N1*+ 1) \* (*N2*+ 1) \* ... \* (*nm*+ 1) (où m est le nombre de niveaux et *ni* est le nombre supérieur pour le niveau i).
+* Une colonne contient le résultat du calcul de l' *agrégation* (avec le nom de colonne *AggregationName* s’il est spécifié).
 
-* L’agrégation doit recevoir une colonne numérique avec une fonction d’agrégation qui est l’une des mentionnées ci-dessus.
+**Commentaires**
 
-* Utilisez l' `with others=` option pour récupérer la valeur agrégée de toutes les autres valeurs qui ne sont pas des N premières valeurs dans un certain niveau.
+Les colonnes d’entrée qui ne sont pas spécifiées comme *`Expr`* valeurs ne sont pas générées.
+Pour obtenir toutes les valeurs à un certain niveau, ajoutez un nombre d’agrégations qui :
 
-* Si vous n’êtes pas intéressé par l’obtention `with others=` d’un certain niveau, les valeurs NULL sont ajoutées (pour la colonne aggreagated et la clé de niveau, consultez l’exemple ci-dessous).
+* Omet la valeur de *N*
+* Utilise le nom de colonne comme valeur de*`Expr`*
+* Utilise `Ignore=max(1)` comme agrégation, puis ignore (ou projeter) la colonne `Ignore` .
 
+Le nombre d’enregistrements peut croître de façon exponentielle avec le nombre de clauses d’agrégation ((N1 + 1) \* (N2 + 1). \* ..). La croissance des enregistrements est encore plus rapide si aucune limite *n* n’est spécifiée. Prenez en compte que cet opérateur peut consommer une quantité considérable de ressources.
 
-* Il est possible de retourner des colonnes supplémentaires pour les candidats imbriqués sélectionnés en ajoutant des instructions imbriquées supplémentaires comme celles-ci (voir les exemples ci-dessous) :
+Dans les cas où la distribution de l’agrégation est considérablement non uniforme, limitez le nombre de valeurs distinctes à retourner (à l’aide de *N*) et utilisez l' `with others=` option *ConstExpr* pour obtenir une indication du « poids » de tous les autres cas.
 
-```kusto
-top-nested 2 of ...., ..., ..., top-nested of <additionalRequiredColumn1> by max(1), top-nested of <additionalRequiredColumn2> by max(1)
-```
-
-**Exemple**
+**Exemples**
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -82,8 +106,7 @@ StormEvents
 |TEXAS|123400,5101|Respect des lois|37228,5966|PERRYTON|289,3178|
 |TEXAS|123400,5101|Observateur chevronné|13997,7124|CLAUDE|421,44|
 
-
-* Avec d’autres exemples :
+Utilisez l’option « avec d’autres » :
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -128,7 +151,7 @@ La requête suivante affiche les mêmes résultats pour le premier niveau utilis
 |1149279,5923|
 
 
-Demande d’une autre colonne (EventType) au résultat supérieur imbriqué : 
+Demandez une autre colonne (EventType) au résultat supérieur imbriqué : 
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -150,7 +173,7 @@ StormEvents
 |TEXAS|123400,5101|Respect des lois|37228,5966|PERRYTON|289,3178|Crue|
 |TEXAS|123400,5101|Respect des lois|37228,5966|PERRYTON|289,3178|Crue soudaine|
 
-Pour trier le résultat par le dernier niveau imbriqué (dans cet exemple par EndLocation) et donner un ordre de tri d’index pour chaque valeur dans ce niveau (par groupe) :
+Donnez un ordre de tri d’index pour chaque valeur de ce niveau (par groupe) pour trier le résultat par le dernier niveau imbriqué (dans cet exemple, par EndLocation) :
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

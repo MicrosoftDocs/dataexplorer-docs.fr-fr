@@ -1,6 +1,6 @@
 ---
-title: Gestion de journal - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la gestion du Journal dans Azure Data Explorer.
+title: Gestion des journaux-Azure Explorateur de données
+description: Cet article décrit la gestion des journaux dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,78 +8,68 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/19/2019
-ms.openlocfilehash: bbe5ab4bda42fdfd9382c7e71da85789c13f6987
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 64b0f8179a328ce811747b05a90516fd8b6029be
+ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81520789"
+ms.lasthandoff: 06/02/2020
+ms.locfileid: "84294404"
 ---
 # <a name="journal-management"></a>Gestion des journaux
 
- `Journal`contient des informations sur les opérations de métadonnées effectuées dans la base de données Kusto.
+ `Journal`contient des informations sur les opérations de métadonnées effectuées sur la base de données Azure Explorateur de données.
 
-Les opérations de métadonnées pourraient être le résultat d’une commande de contrôle exécutée par l’utilisateur ou des commandes de contrôle interne exécutées par le système (comme les étendues de chute par rétention).
+Les opérations de métadonnées peuvent résulter d’une commande de contrôle qu’un utilisateur a exécutée, ou de commandes de contrôle internes exécutées par le système, telles que les étendues de suppression par rétention.
 
-**Remarques :**
+> [!NOTE]
+> * Les opérations de métadonnées qui englobent l' *Ajout* de nouvelles étendues, telles que `.ingest` , `.append` `.move` et d’autres, n’auront pas d’événements correspondants affichés dans le `Journal` .
+> * Les données dans les colonnes de l’ensemble de résultats, ainsi que le format dans lequel elles sont présentées, ne sont pas contractuels. 
+  Il n’est pas recommandé d’établir une dépendance sur ces dernières.
 
-- Les opérations de métadonnées qui `.ingest` `.append`englobent *l’ajout* de nouvelles étendues (comme, et `.move` d’autres) n’auront pas d’événements correspondants montrés dans le `Journal`.
-- Les données dans les colonnes de l’ensemble de résultats, ainsi que le format dans lequel il est présenté, ne sont *pas* contractuelles, et donc prendre une dépendance à leur égard *n’est pas* recommandée.
-
-|Événement        |EventTimestamp     |Base de données  |EntityName|Mise à jourEntityName|EntityVersion|EntityContainerName|
+|Événement        |EventTimestamp     |Base de données  |EntityName|UpdatedEntityName|EntityVersion|EntityContainerName|
 |-------------|-------------------|----------|----------|-----------------|-------------|-------------------|
-|TABLEAU DE CRÉATION |2017-01-05 14:25:07|InterneDb (interne)|MyTable1 (en)  |MyTable1 (en)         |v7.0         |InterneDb (interne)         |
-|RENAME-TABLE |2017-01-13 10:30:01|InterneDb (interne)|MyTable1 (en)  |MyTable2 (en)         |v8.0         |InterneDb (interne)         |  
+|CRÉER UNE TABLE |2017-01-05 14:25:07|InternalDb|MyTable1  |MyTable1         |7.0         |InternalDb         |
+|RENAME-TABLE |2017-01-13 10:30:01|InternalDb|MyTable1  |MyTable2         |v 8.0         |InternalDb         |  
 
-|OriginalEntityState (en)|Mise à jourEntityState                                              |ChangeCommand (en)                                                                                                          |Principal            |
+|OriginalEntityState|UpdatedEntityState                                              |ChangeCommand                                                                                                          |Principal            |
 |-------------------|----------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|---------------------|
-|.                  |Nom: MyTable1, Attributs: Name'[MyTable1]. [col1]', Type’I32'|.créer la table MyTable1 (col1:int)                                                                                      |imike@fabrikam.com
-|.                  |Les propriétés db (trop longtemps pour être affichées ici)               |.créer la base dehttps://imfbkm.blob.core.windows.net/mddonnées TestDB persister (" ' ' 'https://imfbkm.blob.core.windows.net/data' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' ' '|Application AAD id-76263cdb-abcd-545644e9c404
-|Nom: MyTable1, Attributs: Name'[MyTable1]. [col1]', Type’I32'|Nom: MyTable2, Attributs: Name'[MyTable1]. [col1]', Type’I32'|.rename table MyTable1 à MyTable2|rdmik@fabrikam.com
+|.                  |Nom : MyTable1, attributs : Name = ' [MyTable1]. [col1] ', type = 'i32 '|. Create table MyTable1 (col1 : int)                                                                                      |imike@fabrikam.com
+|.                  |Propriétés de la base de données (trop longue pour être affichée ici)         |. Create Database TestDB Persist (@ " https://imfbkm.blob.core.windows.net/md ", @ " https://imfbkm.blob.core.windows.net/data ")|ID d’application Azure AD = 76263cdb-ABCD-545644e9c404
+|Nom : MyTable1, attributs : Name = ' [MyTable1]. [col1] ', type = 'i32 '|Nom : MyTable2, attributs : Name = ' [MyTable1]. [col1] ', type = 'i32 '|. Renommez la table MyTable1 en MyTable2|rdmik@fabrikam.com
 
+|Élément                 |Description                                                              |                                
+|---------------------|-------------------------------------------------------------------------|
+|Événement                |Nom de l’événement de métadonnées                                                  |
+|EventTimestamp       |L’horodateur de l’événement                                                      |                        
+|Base de données             |Les métadonnées de cette base de données ont été modifiées après l’événement                |
+|EntityName           |Nom de l’entité sur laquelle l’opération a été exécutée avant la modification    |
+|UpdatedEntityName    |Nouveau nom d’entité après la modification                                     |
+|EntityVersion        |La nouvelle version des métadonnées (DB/cluster) qui suit la modification               |
+|EntityContainerName  |Nom du conteneur d’entités (Entity = colonne, Container = table)               |
+|OriginalEntityState  |État de l’entité (propriétés de l’entité) avant la modification            |
+|UpdatedEntityState   |Nouvel état après la modification                                           |
+|ChangeCommand        |Commande de contrôle exécutée qui a déclenché la modification des métadonnées          |
+|Principal            |Principal (utilisateur/application) qui a exécuté la commande de contrôle               |
+    
+## <a name="show-journal"></a>. afficher le journal
 
-Événement - le nom de l’événement métadonnées.
-
-EventTimestamp - l’ampoule de l’événement.
-
-Base de données - Les métadonnées de cette base de données ont été modifiées à la suite de l’événement.
-
-EntityName - le nom de l’entité, l’opération a été exécutée, avant le changement.
-
-UpdatedEntityName - le nouveau nom de l’entité après le changement.
-
-EntityVersion - la nouvelle version métadonnées (db/cluster) après le changement.
-
-EntityContainerName - le nom du conteneur de l’entité (c.-à-d. : entité-colonne, table de conteneur).
-
-OriginalEntityState - l’état de l’entité (propriétés d’entité) avant le changement.
-
-UpdatedEntityState - le nouvel État après le changement.
-
-ChangeCommand - la commande de contrôle exécutée qui a déclenché le changement de métadonnées.
-
-Principal - le principal (utilisateur/application) qui a exécuté la commande de contrôle.
-                    
-## <a name="show-journal"></a>.voir journal
-
-La `.show journal` commande renvoie une liste de modifications de métadonnées, sur les bases de données/clusters que l’utilisateur a accès à l’administration.
+La `.show journal` commande retourne une liste de modifications de métadonnées sur les bases de données ou le cluster auquel l’utilisateur a accès administrateur.
 
 **autorisations**
 
-Tout le monde (accès par cluster) peut exécuter la commande. 
+Tout le monde (accès au cluster) peut exécuter la commande. 
 
-Les résultats retournés comprendront : 
-1. Toutes les entrées de journal de l’utilisateur exécutant la commande. 
-2. Toutes les entrées de journaux des bases de données auxquelles l’utilisateur exécutant la commande a accès à l’administration. 
-3. Toutes les entrées de journal de cluster si l’utilisateur exécutant la commande est un administrateur de cluster. 
+Les résultats retournés sont les suivants : 
+- Toutes les entrées de journal de l’utilisateur qui exécute la commande. 
+- Toutes les entrées de journal des bases de données auxquelles l’utilisateur qui exécute la commande ont un accès administrateur à. 
+- Toutes les entrées de journal de cluster si l’utilisateur qui exécute la commande est un administrateur de cluster. 
 
-## <a name="show-database-databasename-journal"></a>.afficher la base de données *DatabaseName* journal 
+## <a name="show-database-databasename-journal"></a>. afficher le journal de base de données *DatabaseName* 
 
-La `.show` `database` commande *DatabaseName renvoie* `journal` la revue pour les modifications spécifiques des métadonnées de base de données.
+La `.show` `database` commande *DatabaseName* `journal` retourne le journal des modifications de métadonnées de base de données spécifiques.
 
 **autorisations**
 
-Tout le monde (accès par cluster) peut exécuter la commande. Les résultats retournés comprendront : 
-1. Toutes les entrées journal de base de données *DatabaseName* si l’utilisateur exécutant la commande est un administrateur de base de données dans *DatabaseName*. 
-2. Sinon, toutes les entrées de journal de base de données *DatabaseName* et de l’utilisateur exécutant la commande. 
-
+Tout le monde (accès au cluster) peut exécuter la commande. Les résultats retournés sont les suivants : 
+- Toutes les entrées de journal de la base de données *DatabaseName* si l’utilisateur qui exécute la commande est un administrateur de base de données dans *DatabaseName*. 
+- Dans le cas contraire, toutes les entrées de journal de la base de données `DatabaseName` et de l’utilisateur exécutent la commande. 

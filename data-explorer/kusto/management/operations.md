@@ -1,5 +1,5 @@
 ---
-title: Gestion des opérations-Azure Explorateur de données | Microsoft Docs
+title: Gestion des opérations-Azure Explorateur de données
 description: Cet article décrit Operations Management dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 40103d399feb61e994639c9447510ef90fef652d
-ms.sourcegitcommit: 283cce0e7635a2d8ca77543f297a3345a5201395
+ms.openlocfilehash: ac3d44fadf614606bc63e6a9aa3b8318419d0c70
+ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/27/2020
-ms.locfileid: "84011463"
+ms.lasthandoff: 06/02/2020
+ms.locfileid: "84294387"
 ---
 # <a name="operations-management"></a>Gestion des opérations
 
-## <a name="show-operations"></a>. afficher les opérations
+## <a name="show-operations"></a>. afficher les opérations 
 
 `.show``operations`la commande retourne une table avec toutes les opérations administratives, en cours d’exécution et terminées, qui ont été exécutées au cours des deux dernières semaines (qui est actuellement la configuration de la période de rétention).
 
@@ -26,25 +26,25 @@ ms.locfileid: "84011463"
 |||
 |---|---| 
 |`.show` `operations`              |Retourne toutes les opérations que le cluster traite ou les opérations que le cluster a traitées
-|`.show``operations` *OperationId*|Retourne l’état de l’opération pour un ID spécifique 
+|`.show` `operations` *OperationId*|Retourne l’état de l’opération pour un ID spécifique 
 |`.show``operations` `(` *OperationId1* `,` *OperationId2* `,` ...)|Retourne l’état des opérations pour des ID spécifiques
 
 **Résultats**
  
 |Paramètre de sortie |Type |Description
 |---|---|---
-|id |Chaîne |Identificateur de l’opération
-|Opération |Chaîne |Alias de la commande admin
-|NodeId |Chaîne |Si la commande a une exécution à distance (par exemple, DataIngestPull)-NodeId contient l’ID du nœud distant en cours d’exécution
+|id |String |Identificateur de l’opération
+|Opération |String |Alias de la commande admin
+|NodeId |String |Si la commande a une exécution à distance (par exemple, DataIngestPull)-NodeId contient l’ID du nœud distant en cours d’exécution
 |StartedOn |DateTime |Date/heure (au format UTC) à laquelle l’opération a démarré
 |LastUpdatedOn |DateTime |Date/heure (au format UTC) de la dernière mise à jour de l’opération (peut être une étape à l’intérieur de l’opération ou une étape d’achèvement)
 |Duration |DateTime |TimeSpan entre LastUpdateOn et StartedOn
-|State |Chaîne |État de la commande : peut avoir les valeurs « en cours », « terminé » ou « échec »
-|Statut |Chaîne |Chaîne d’aide supplémentaire qui contient des erreurs d’opérations ayant échoué
+|État |String |État de la commande : peut avoir les valeurs « en cours », « terminé » ou « échec »
+|État |String |Chaîne d’aide supplémentaire qui contient des erreurs d’opérations ayant échoué
  
 **Exemple**
  
-|id |Opération |ID du nœud |Démarré le |Dernière mise à jour le |Duration |State |Statut 
+|id |Opération |ID du nœud |Démarré le |Dernière mise à jour le |Duration |État |État 
 |--|--|--|--|--|--|--|--
 |3827def6-0773-4f2a-859e-c02cf395deaf |SchemaShow | |2015-01-06 08:47:01.0000000 |2015-01-06 08:47:01.0000000 |0001-01-01 00:00:00.0000000 |Effectué |
 |841fafa4-076a-4cba-9300-4836da0d9c75 |DataIngestPull |Kusto. Azure. Svc_IN_1 |2015-01-06 08:47:02.0000000 |2015-01-06 08:48:19.0000000 |0001-01-01 00:01:17.0000000 |Effectué |
@@ -57,13 +57,13 @@ ms.locfileid: "84011463"
 Les opérations peuvent (éventuellement) conserver leurs résultats, et les résultats peuvent être récupérés lorsque l’opération est terminée, à l’aide de `.show` `operation` `details` .
 
 > [!NOTE]
-> Toutes les commandes de contrôle ne conservent pas leurs résultats. Les commandes qui effectuent, en général, le font par défaut uniquement sur les exécutions asynchrones, à l’aide du `async` mot clé. Pour plus d’informations, consultez la documentation spécifique à la commande. Par exemple, consultez [exportation de données](data-export/index.md)).
+> Toutes les commandes de contrôle ne conservent pas leurs résultats. Les commandes qui effectuent, en général, le font par défaut uniquement sur les exécutions asynchrones, à l’aide du `async` mot clé. Reportez-vous à la documentation de la commande spécifique et vérifiez-la. Par exemple, consultez [exportation de données](data-export/index.md)).
 > Le schéma de sortie de la `.show` `operations` `details` commande est le même que celui retourné par l’exécution synchrone de la commande.
 > La `.show` `operation` `details` commande ne peut être appelée qu’une fois l’opération terminée avec succès. Utilisez la [commande Afficher les opérations](#show-operations)) pour vérifier l’état de l’opération avant d’exécuter cette commande.
 
 **Syntaxe**
 
-`.show``operation` *OperationId*`details`
+`.show` `operation` *OperationId* `details`
 
 **Résultats**
 
@@ -81,7 +81,6 @@ Le résultat est différent selon le type d’opération et correspond au schém
     h@"https://storage1.blob.core.windows.net/containerName2;secretKey" 
   ) 
   <| myLogs 
-
 ```
 
 La commande d’exportation asynchrone a retourné l’ID d’opération suivant :
@@ -96,9 +95,7 @@ Cet ID d’opération peut être utilisé lorsque la commande est terminée pour
 .show operation 56e51622-eb49-4d1a-b896-06a03178efcd details 
 ```
 
-**Résultats**
-
-|Path|NumRecords|
+|Chemin d’accès|NumRecords |
 |---|---|
 |http://storage1.blob.core.windows.net/containerName/1_d08afcae2f044c1092b279412dcb571b.csv|10|
 |http://storage1.blob.core.windows.net/containerName/2_454c0f1359e24795b6529da8a0101330.csv|15|
