@@ -1,5 +1,5 @@
 ---
-title: . afficher les mappages d’ingestion-Azure Explorateur de données | Microsoft Docs
+title: . afficher les mappages d’ingestion-Azure Explorateur de données
 description: Cet article décrit. afficher les mappages d’ingestion dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
@@ -8,20 +8,20 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/04/2020
-ms.openlocfilehash: 711861a07896b7bdc4cf57bebbf1cdd0e01d064a
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 3c19426410046d7ff2357b4967333db8b039d9e6
+ms.sourcegitcommit: f7101c6b41ec250d05f4cb6092e2939958b37b40
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82617168"
+ms.lasthandoff: 06/03/2020
+ms.locfileid: "84328991"
 ---
 # <a name="show-ingestion-mappings"></a>. afficher les mappages d’ingestion
 
 Affichez les mappages d’ingestion (tout ou partie du nom spécifiés).
 
-* `.show``table` *TableName* TableName `ingestion` *MappingKind*  `mappings`
+* `.show``table` *TableName* `ingestion` *MappingKind*  `mappings`
 
-* `.show``table` *TableName* TableName `ingestion` *MappingKind* MappingKind`mapping` *MappingName*   
+* `.show``table` *TableName* `ingestion` *MappingKind* `mapping` *MappingName*   
 
 Afficher tous les mappages d’ingestion à partir de tous les types de mappages :
 
@@ -39,6 +39,6 @@ Afficher tous les mappages d’ingestion à partir de tous les types de mappages
 
 **Exemple de sortie**
 
-| Nom     | Type | Mappage     |
+| Nom     | Genre | Mappage     |
 |----------|------|-------------|
-| mapping1 | CSV  | [{« Name » : « RowNumber », « DataType » : « int », « CsvDataType » : null, « ordinal » : 0, « ConstValue » : null}, {« Name » : « rowguid », « DataType » : « String », « CsvDataType » : null, « ordinal » : 1, « ConstValue » : NULL}] |
+| mapping1 | CSV  | `[{"Name":"rownumber","DataType":"int","CsvDataType":null,"Ordinal":0,"ConstValue":null},{"Name":"rowguid","DataType":"string","CsvDataType":null,"Ordinal":1,"ConstValue":null}]` |

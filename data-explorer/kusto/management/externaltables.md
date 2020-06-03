@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/26/2020
-ms.openlocfilehash: a08f1f154c0efa17164d15a075456e2b6fab3212
-ms.sourcegitcommit: a562ce255ac706ca1ca77d272a97b5975235729d
+ms.openlocfilehash: 293ee468f31fafafdf08da1632c93b04b0a8adf2
+ms.sourcegitcommit: f7101c6b41ec250d05f4cb6092e2939958b37b40
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/26/2020
-ms.locfileid: "83867084"
+ms.lasthandoff: 06/03/2020
+ms.locfileid: "84329008"
 ---
 # <a name="external-table-general-control-commands"></a>Commandes de contrôle générales de table externe
 
@@ -28,7 +28,7 @@ Pour obtenir une vue d’ensemble des tables externes, consultez [tables externe
 
 `.show` `external` `tables`
 
-`.show` `external` `table` *TableName*
+`.show``external` `table` *TableName*
 
 **Sortie**
 
@@ -62,7 +62,7 @@ Pour obtenir une vue d’ensemble des tables externes, consultez [tables externe
 
 `.show``external` `table` *TableName* `schema` `as` ( `json`  |  `csl` )
 
-`.show` `external` `table` *TableName* `cslschema`
+`.show``external` `table` *TableName*`cslschema`
 
 **Sortie**
 
@@ -108,11 +108,11 @@ Pour obtenir une vue d’ensemble des tables externes, consultez [tables externe
 
 **Syntaxe :**  
 
-`.drop` `external` `table` *TableName*
+`.drop``external` `table` *TableName*
 
 **Sortie**
 
-Retourne les propriétés de la table supprimée. Consultez [. afficher les tables externes](#show-external-tables).
+Retourne les propriétés de la table supprimée. Pour plus d’informations, consultez [. afficher les tables externes](#show-external-tables).
 
 **Exemples :**
 
@@ -126,5 +126,5 @@ Retourne les propriétés de la table supprimée. Consultez [. afficher les tabl
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Créer et modifier des tables externes dans le stockage Azure ou Azure Data Lake](external-tables-azurestorage-azuredatalake.md)
+* [Créer et modifier des tables externes dans Stockage Azure ou Azure Data Lake](external-tables-azurestorage-azuredatalake.md)
 * [Créer et modifier des tables SQL externes](external-sql-tables.md)

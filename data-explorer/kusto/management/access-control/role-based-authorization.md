@@ -1,6 +1,6 @@
 ---
-title: Autorisation basée sur les rôles à Kusto - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit l’autorisation basée sur les rôles dans Kusto dans Azure Data Explorer.
+title: Autorisation basée sur les rôles dans Kusto-Azure Explorateur de données
+description: Cet article décrit l’autorisation basée sur les rôles dans Kusto dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,32 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/14/2020
-ms.openlocfilehash: fe7013e3ee4b842dc2dcb2e251c342897fa4e489
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 8e961d389b365d77c7dddd557a28a158add2e3f3
+ms.sourcegitcommit: f7101c6b41ec250d05f4cb6092e2939958b37b40
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81522625"
+ms.lasthandoff: 06/03/2020
+ms.locfileid: "84329076"
 ---
-# <a name="role-based-authorization-in-kusto"></a>Autorisation basée sur les rôles à Kusto
+# <a name="role-based-authorization-in-kusto"></a>Autorisation basée sur les rôles dans Kusto
 
+L' **autorisation** est le processus qui consiste à autoriser ou non une autorisation du principal de sécurité à effectuer une action.
+Kusto utilise un modèle de **contrôle d’accès en fonction du rôle** , sous lequel les principaux authentifiés sont mappés aux **rôles**et accèdent à l’accès en fonction des rôles qui leur sont attribués.
 
-
-**L’autorisation** est le processus d’autorisation ou d’autorisation d’une autorisation principale de sécurité pour effectuer une action.
-Kusto utilise un modèle **de contrôle d’accès basé sur** les rôles, en vertu duquel les directeurs authentifiés sont cartographiés aux **rôles,** et obtenir l’accès en fonction des rôles qui leur sont assignés.
-
-Le service **Kusto Engine** a les rôles suivants :
+Le service du **moteur Kusto** a les rôles suivants :
 
 |Role                       |Autorisations                                                                                                                                                  |
 |---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|Toutes les bases de données admin        |peut faire "n’importe quoi" dans la portée de n’importe quelle base de données; Peut montrer et modifier certaines stratégies de niveau cluster.                                                           |
-|Administrateur de base de données             |Peut faire "n’importe quoi" dans la portée d’une base de données particulière.                                                                                                     |
-|Utilisateur de base de données              |Peut lire toutes les données et métadonnées de la base de données; en outre, peut créer des tableaux (devenant ainsi l’administrateur de table pour cette table) et fonctionne dans la base de données.|
-|Tous les téléspectateurs de bases de données       |Peut lire toutes les données et métadonnées de n’importe quelle base de données.                                                                                                              |
-|Observateur de base de données            |Peut lire toutes les données et métadonnées d’une base de données particulière.                                                                                                     |
-|Ingéreur de base de données          |Peut ingérer des données pour toutes les tables existantes dans la base de données, mais pas interroger les données.                                                                              |
-|Observateur non restreint de base de données|Peut interroger toutes les tables de la base de données qui ont activé la [politique RestrictedViewAccess.](../restrictedviewaccess-policy.md)                                |
-|Moniteur de base de données           |Peut `.show` exécuter des commandes dans le cadre de la base de données et de ses entités enfant.                                                                          |
-|Admin fonction             |Peut modifier la fonction, supprimer la fonction ou accorder des autorisations d’administration à un autre directeur.                                                                         |
-|Administrateur de table                |Peut effectuer n’importe quelle opération dans la portée d’une table particulière.                                                                                                          |
-|Ingéreur de table             |Peut ingérer des données dans la portée d’une table particulière, mais pas interroger les données.                                                                                  |
+|Administration de toutes les bases de données        |Peut faire tout ce qui se trouve dans l’étendue d’une base de données. Peut afficher et modifier certaines stratégies au niveau du cluster                                                               |
+|Administrateur de base de données             |Peut faire tout ce qui se trouve dans l’étendue d’une base de données particulière                                                                                                         |
+|Utilisateur de base de données              |Peut lire toutes les données et métadonnées de la base de données. En outre, peut créer des tables et devenir l’administrateur de table pour ces tables, et créer des fonctions dans la base de données.|
+|Visionneuse de toutes les bases de données       |Peut lire toutes les données et métadonnées de n’importe quelle base de données                                                                                                               |
+|Observateur de base de données            |Peut lire toutes les données et métadonnées d’une base de données particulière                                                                                                       |
+|Ingéreur de base de données          |Peut ingérer des données dans toutes les tables existantes de la base de données, mais ne peut pas interroger les données                                                                             |
+|Observateur non restreint de base de données|Peut interroger toutes les tables de la base de données pour lesquelles la [stratégie RestrictedViewAccess](../restrictedviewaccess-policy.md) est activée                                |
+|Moniteur de base de données           |Peut exécuter des `.show` commandes dans le contexte de la base de données et de ses entités enfants                                                                           |
+|Admin de fonction             |Peut modifier la fonction, supprimer la fonction ou accorder des autorisations d’administrateur à un autre principal                                                                         |
+|Administrateur de table                |Peut faire tout ce qui se trouve dans l’étendue d’une table particulière                                                                                                           |
+|Ingéreur de table             |Peut ingérer des données dans l’étendue d’une table particulière, mais ne peut pas interroger les données                                                                                 |
