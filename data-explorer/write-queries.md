@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/07/2019
-ms.openlocfilehash: 7b43218d3d1894341ce997f4cfddcc3abbf1e39c
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 4490310664a7c27a319ce758a63b1dc90be8bef0
+ms.sourcegitcommit: 3cdb365c0174e517fb5cb16784da278ceb801b23
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493557"
+ms.lasthandoff: 05/29/2020
+ms.locfileid: "84214415"
 ---
 # <a name="write-queries-for-azure-data-explorer"></a>Rédiger des requêtes pour l’Explorateur de données Azure
 
@@ -31,7 +31,7 @@ Vous pouvez exécuter les requêtes dans cet article de deux manières :
 
 ## <a name="overview-of-the-query-language"></a>Vue d’ensemble du langage de requête
 
-Un langage de requête dans l’Explorateur de données Azure est une demande en lecture seule pour traiter les données et retourner les résultats. La demande est formulée en texte brut, à l’aide d’un modèle de flux de données conçu pour faciliter la lecture, la création et l’automatisation de la syntaxe. La requête utilise des entités de schéma qui sont organisées dans une hiérarchie similaire à SQL : bases de données, tables et colonnes.
+Une requête dans Azure Data Explorer est une demande en lecture seule visant à traiter des données et à retourner des résultats. La demande est formulée en texte brut, à l’aide d’un modèle de flux de données conçu pour faciliter la lecture, la création et l’automatisation de la syntaxe. La requête utilise des entités de schéma qui sont organisées dans une hiérarchie similaire à SQL : bases de données, tables et colonnes.
 
 La requête se compose d’une séquence d’instructions de requête, délimitées par un point-virgule (`;`), une instruction au moins étant une instruction d’expression tabulaire, qui est une instruction qui génère des données organisées dans un maillage sous forme de tableau de colonnes et de lignes. Les instructions d’expression tabulaire de la requête produisent les résultats de la requête.
 

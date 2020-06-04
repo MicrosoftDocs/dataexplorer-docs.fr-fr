@@ -7,20 +7,20 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/30/2019
-ms.openlocfilehash: c0373d2e380f1a9fb826d0e40ffcc0284f6db09a
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 4bbb076b4c21ac2f93b2bdaf775d513483332934
+ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373784"
+ms.lasthandoff: 06/01/2020
+ms.locfileid: "84257958"
 ---
 # <a name="streaming-ingestion-preview"></a>Ingestion de streaming (préversion)
 
 Utilisez l’ingestion de streaming lorsque vous avez besoin d’une faible latence avec une durée d’ingestion de moins de 10 secondes pour des volumes de données variés. Elle est utilisée pour optimiser le traitement opérationnel de nombreuses tables, dans une ou plusieurs bases de données où le flux de données dans chaque table est relativement faible (peu d’enregistrements par seconde), mais le volume global d’ingestion de données est élevé (des milliers d’enregistrements par seconde). 
 
-Utilisez l’ingestion en bloc à la place de l’ingestion de streaming lorsque la quantité de données dépasse 1 Mo par seconde et par table. Consultez [Vue d’ensemble de l’ingestion de données](ingest-data-overview.md) pour en apprendre plus sur les différentes méthodes d’ingestion.
+Utilisez l’ingestion en bloc à la place de l’ingestion en streaming quand la quantité de données dépasse 4 Go par heure et par table. Consultez [Vue d’ensemble de l’ingestion de données](ingest-data-overview.md) pour en apprendre plus sur les différentes méthodes d’ingestion.
 
-## <a name="prerequisites"></a>Conditions préalables requises
+## <a name="prerequisites"></a>Prérequis
 
 * Si vous n’avez pas d’abonnement Azure, créez un [compte Azure gratuit](https://azure.microsoft.com/free/) avant de commencer.
 * Connectez-vous à l’[interface utilisateur web](https://dataexplorer.azure.com/).
@@ -47,9 +47,8 @@ Utilisez l’ingestion en bloc à la place de l’ingestion de streaming lorsque
 
 Il existe deux types d’ingestion de streaming pris en charge :
 
-
-* [**Hub d’événements**](ingest-data-event-hub.md), qui est utilisé comme source de données
-* Une **ingestion personnalisée** vous demande d’écrire une application qui utilise l’une des bibliothèques clientes Azure Data Explorer. Consultez un [exemple d’ingestion de streaming](https://github.com/Azure/azure-kusto-samples-dotnet/tree/master/client/StreamingIngestionSample) pour voir un exemple d’application.
+* [**Event Hub**](ingest-data-event-hub.md), qui est utilisé comme source de données.
+* Une **ingestion personnalisée** vous demande d’écrire une application qui utilise l’une des [bibliothèques clientes](kusto/api/client-libraries.md) Azure Data Explorer. Consultez un [exemple d’ingestion de streaming](https://github.com/Azure/azure-kusto-samples-dotnet/tree/master/client/StreamingIngestionSample) pour voir un exemple d’application.
 
 ### <a name="choose-the-appropriate-streaming-ingestion-type"></a>Choisir le type d’ingestion de streaming approprié
 
@@ -64,7 +63,7 @@ Il existe deux types d’ingestion de streaming pris en charge :
 > La désactivation de l’ingestion de streaming peut prendre plusieurs heures.
 
 1. Supprimez la [stratégie d’ingestion de streaming](kusto/management/streamingingestionpolicy.md) de toutes les tables et bases de données appropriées. La suppression de la stratégie d’ingestion de streaming déclenche le déplacement des données d’ingestion de streaming du stockage initial vers le stockage permanent dans le stockage de colonnes (étendues ou partitions). Le déplacement des données peut durer de quelques secondes à quelques heures, en fonction de la quantité de données qui se trouvent dans le stockage initial et de la façon dont le processeur et la mémoire sont utilisés par le cluster.
-1. Dans le portail Azure, accédez à votre cluster Azure Data Explorer. Dans **Paramètres**, sélectionnez **Configurations**. 
+1. Dans le portail Azure, accédez à votre cluster Azure Data Explorer. Dans **Paramètres**, sélectionnez **Configurations**.
 1. Dans le volet **Configurations**, sélectionnez **Désactivé** pour désactiver **Ingestion de streaming**.
 1. Sélectionnez **Enregistrer**.
 
@@ -72,10 +71,11 @@ Il existe deux types d’ingestion de streaming pris en charge :
 
 ## <a name="limitations"></a>Limites
 
-* L’ingestion de streaming ne prend pas en charge les [curseurs de base de données](kusto/management/databasecursor.md) ni le [mappage des données](kusto/management/mappings.md). Seul un mappage de données [précréé](kusto/management/create-ingestion-mapping-command.md) est pris en charge. 
-* La capacité et les performances d’ingestion de streaming évoluent avec l’augmentation des tailles de cluster et de machine virtuelle. Les ingestions simultanées sont limitées à 6 ingestions par cœur. Par exemple, pour les SKU 16 cœurs, telles que D14 et L16, la charge maximale prise en charge est de 96 ingestions simultanées. Pour les SKU 2 cœurs, telles que D11, la charge maximale prise en charge est de 12 ingestions simultanées.
-* La taille limite des données par demande d’ingestion est de 4 Mo.
-* Les mises à jour de schéma, telles que la création et la modification de tables et de mappages d’ingestion, peuvent prendre jusqu’à cinq minutes pour le service d’ingestion de streaming.
+* Les [curseurs de base de données](kusto/management/databasecursor.md) ne sont pas pris en charge pour la base de données si une [stratégie d’ingestion en streaming](kusto/management/streamingingestionpolicy.md) est définie et activée pour la base de données elle-même ou l’une de ses tables.
+* Le [mappage de données](kusto/management/mappings.md) doit être [précréé](kusto/management/create-ingestion-mapping-command.md) pour être utilisée dans une ingestion en streaming. Les demandes d’ingestion en streaming individuelles ne prennent pas en charge les mappages de données inline.
+* La capacité et les performances d’ingestion de streaming évoluent avec l’augmentation des tailles de cluster et de machine virtuelle. Le nombre de demandes d’ingestion simultanées est limité à six par cœur. Par exemple, pour les références SKU 16 cœurs telles que D14 et L16, la charge maximale prise en charge est de 96 demandes d’ingestion simultanées. Pour les références SKU 2 cœurs telles que D11, la charge maximale prise en charge est de 12 demandes d’ingestion simultanées.
+* La taille limite des données par demande d’ingestion en streaming est de 4 Mo.
+* Il peut s’écouler jusqu’à cinq minutes avant que les mises à jour de schéma soient accessibles au service d’ingestion en streaming. La création et la modification de tables et de mappages d’ingestion sont des exemples de ces mises à jour. 
 * L’activation de l’ingestion de streaming sur un cluster, même lorsque les données ne sont pas ingérées via streaming, utilise une partie du disque SSD local des machines du cluster pour les données d’ingestion de streaming et réduit le stockage disponible pour le cache à chaud.
 * Les [étiquettes d’étendue](kusto/management/extents-overview.md#extent-tagging) ne peuvent pas être définies dans les données d’ingestion de streaming.
 
