@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2019
-ms.openlocfilehash: f8cf59e3aa263aef224301d871a2e1e15e1a290b
-ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
+ms.openlocfilehash: de0b2696ba5974a7261b4f397214e3ade59fc9cb
+ms.sourcegitcommit: 31af2dfa75b5a2f59113611cf6faba0b45d29eb5
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/18/2020
-ms.locfileid: "83550519"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84454097"
 ---
 # <a name="mv-expand-operator"></a>mv-expand, opérateur
 
@@ -111,7 +111,7 @@ range x from 1 to 4 step 1
 
 **Autres exemples**
 
-Consultez [nombre de graphiques d’activités dynamiques dans le temps](./samples.md#concurrent-activities).
+Consultez [nombre de graphiques d’activités dynamiques dans le temps](./samples.md#chart-concurrent-sessions-over-time).
 
 **Voir aussi**
 

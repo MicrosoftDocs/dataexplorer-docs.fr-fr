@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: fe44323dabb246438f18c9ab01eec0008ad4fe97
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: ffb14b110904bcf94a69d3abeed2fc0b542b0448
+ms.sourcegitcommit: 31af2dfa75b5a2f59113611cf6faba0b45d29eb5
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372964"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84454131"
 ---
 # <a name="samples"></a>Exemples
 
@@ -38,12 +38,11 @@ StormEvents
 
 :::image type="content" source="images/samples/060.png" alt-text="060":::
 
-<a name="activities"></a>
 ## <a name="get-sessions-from-start-and-stop-events"></a>Obtenir des sessions à partir d’événements de démarrage et d’arrêt
 
 Imaginons un journal d’événements, dans lequel certains événements marquent le début ou la fin d’une session ou d’une activité étendue. 
 
-|Nom|City|SessionId|Timestamp|
+|Name|City|SessionId|Timestamp|
 |---|---|---|---|
 |Démarrer|London|2817330|2015-12-09T10:12:02.32|
 |Game|London|2817330|2015-12-09T10:12:52.45|
@@ -104,7 +103,7 @@ Ensuite, nous effectuons des regroupements par heure de démarrage et adresse IP
 
 :::image type="content" source="images/samples/040.png" alt-text="040"::: 
 
-Ensuite, nous pouvons ajouter du code pour compter les durées dans des emplacements faciles à dimensionner. Nous avons une petite préférence pour un graphique à barres, donc nous divisez par `1s` pour convertir les intervalles en nombres. 
+Ensuite, nous pouvons ajouter du code pour compter les durées dans des emplacements facilement dimensionnés. Nous avons une petite préférence pour un graphique à barres, donc nous divisez par `1s` pour convertir les intervalles en nombres. 
 
 
       // Count the frequency of each duration:
@@ -185,7 +184,6 @@ on UnitOfWorkId
 | extend SaveFactor = sum_NormalizedLoad / sum_CurrentLoad 
 ```
 
-<a name="concurrent-activities"><a/>
 ## <a name="chart-concurrent-sessions-over-time"></a>Sessions simultanées du graphique au fil du temps
 
 Supposons que nous disposons d’une table d’activités avec des heures de début et de fin pour chacune d’elles.  Nous souhaitons afficher un graphique temporel qui montre le nombre d’activités en cours d’exécution simultanément à un moment donné.
@@ -295,7 +293,7 @@ Voici une explication pas à pas de la requête ci-dessus :
    La table n’est pas utilisée pour les opérations autres que pour `mv-expand` .
 3. Utilisation de l' `mv-expand` opérateur sur la `range` fonction pour créer autant de lignes qu’il y a de casiers de 5 minutes entre `StartTime` et `EndTime` .
 4. Tout avec un `Count` de `0` .
-5. Enfin, nous utilisons l' `summarize` opérateur pour regrouper des emplacements de l’argument d’origine (gauche ou externe) à `union` et des emplacements de l’argument interne vers celui-ci (c’est-à-dire, les lignes bin null). Cela garantit que la sortie comporte une ligne par emplacement, dont la valeur est égale à zéro ou au nombre d’origine.  
+5. Enfin, nous utilisons l' `summarize` opérateur pour regrouper des emplacements de l’argument d’origine (gauche ou externe) à `union` et des emplacements de l’argument interne vers celui-ci (c’est-à-dire, les lignes bin null). Cela permet de s’assurer que la sortie comporte une ligne par emplacement, dont la valeur est égale à zéro ou au nombre d’origine.  
 
 ## <a name="get-more-out-of-your-data-in-kusto-using-machine-learning"></a>Tirez le meilleur parti de vos données dans Kusto à l’aide de Machine Learning 
 
@@ -545,7 +543,7 @@ datatable(id:string, timestamp:datetime, bla:string)           // (1)
 | project-away dummy0, dummy1, dummy2                          // (5)
 ```
 
-Remarques
+Notes
 1. Le `datatable` est un moyen de générer des données de test à des fins de démonstration. En réalité, bien sûr, vous auriez les données ici.
 2. Cette ligne signifie essentiellement « retourner toutes les valeurs distinctes de `id` ».
 3. Cette ligne retourne ensuite, pour les 2 premiers enregistrements qui maximisent la `timestamp` colonne, les colonnes du niveau précédent (ici, juste `id` ) et la colonne spécifiée à ce niveau (ici, `timestamp` ).
