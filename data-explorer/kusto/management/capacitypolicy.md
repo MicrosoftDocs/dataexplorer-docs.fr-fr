@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: 21514de40910691e878dbc6d237d810a13676b40
-ms.sourcegitcommit: 283cce0e7635a2d8ca77543f297a3345a5201395
+ms.openlocfilehash: bb3ee687e995af7d4161ca111f9efbe91c1b9ca0
+ms.sourcegitcommit: a60ad8da32f16c5d9ce35b62e7331d7439081e3d
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/27/2020
-ms.locfileid: "84011531"
+ms.lasthandoff: 06/06/2020
+ms.locfileid: "84466304"
 ---
 # <a name="capacity-policy"></a>Stratégie de capacité
 
@@ -45,16 +45,19 @@ Minimum ( `ClusterMaximumConcurrentOperations` , `Number of nodes in cluster` * 
 
 ## <a name="extents-merge-capacity"></a>Capacité de fusion des étendues
 
-|Propriété                           |Type    |Description                                                                                    |
-|-----------------------------------|--------|-----------------------------------------------------------------------------------------------|
-|MaximumConcurrentOperationsPerNode |long    |Valeur maximale pour le nombre d’opérations de fusion/régénération d’étendues simultanées sur un seul nœud |
+|Propriété                           |Type    |Description                                                                                                |
+|-----------------------------------|--------|-----------------------------------------------------------------------------------------------------------|
+|MinimumConcurrentOperationsPerNode |long    |Valeur minimale pour le nombre d’opérations de fusion/régénération d’étendues simultanées sur un nœud unique. Valeur par défaut : 1. |
+|MaximumConcurrentOperationsPerNode |long    |Valeur maximale pour le nombre d’opérations de fusion/régénération d’étendues simultanées sur un nœud unique. Valeur par défaut : 5 |
 
 La capacité de fusion totale des étendues du cluster (comme indiqué par [. afficher la capacité](../management/diagnostics.md#show-capacity)) est calculée par :
 
-`Number of nodes in cluster`x`MaximumConcurrentOperationsPerNode`
+`Number of nodes in cluster`x`Concurrent operations per node`
+
+La valeur effective de `Concurrent operations per node` est automatiquement ajustée par le système dans la plage [ `MinimumConcurrentOperationsPerNode` , `MaximumConcurrentOperationsPerNode` ].
+
 
 > [!Note]
-> * `MaximumConcurrentOperationsPerNode`est ajusté automatiquement par le système dans la plage [1, 5], sauf s’il a été défini sur une valeur supérieure.
 > * Dans les clusters comportant trois nœuds ou plus, le nœud d’administration ne participe pas aux opérations de fusion. Le `Number of nodes in cluster` est réduit d’une unité.
 
 ## <a name="extents-purge-rebuild-capacity"></a>Étendues purger la capacité de reconstruction
@@ -86,14 +89,14 @@ Minimum ( `ClusterMaximumConcurrentOperations` , `Number of nodes in cluster` * 
 
 ## <a name="extents-partition-capacity"></a>Capacité de partition des étendues
 
-|Propriété                           |Type    |Description                                                                             |
-|-----------------------------------|--------|----------------------------------------------------------------------------------------|
-|ClusterMaximumConcurrentOperations |long    |Valeur maximale pour le nombre d’opérations de partition d’étendues simultanées dans un cluster. |
+|Propriété                           |Type    |Description                                                                                         |
+|-----------------------------------|--------|----------------------------------------------------------------------------------------------------|
+|ClusterMinimumConcurrentOperations |long    |Valeur minimale pour le nombre d’opérations de partition d’étendues simultanées dans un cluster. Valeur par défaut : 1.  |
+|ClusterMaximumConcurrentOperations |long    |Valeur maximale pour le nombre d’opérations de partition d’étendues simultanées dans un cluster. Valeur par défaut : 16 |
 
-Les étendues totales de la partition du cluster (comme indiqué par [. Show Capacity](../management/diagnostics.md#show-capacity)) sont définies par une propriété unique : `ClusterMaximumConcurrentOperations` .
+Les étendues totales de la partition du cluster (comme indiqué par [. Affichez la capacité](../management/diagnostics.md#show-capacity)).
 
-> [!Note]
-> `ClusterMaximumConcurrentOperations`est ajusté automatiquement par le système dans la plage [1, 16], sauf s’il a été défini sur une valeur supérieure.
+La valeur effective de `Concurrent operations` est automatiquement ajustée par le système dans la plage [ `ClusterMinimumConcurrentOperations` , `ClusterMaximumConcurrentOperations` ].
 
 ## <a name="defaults"></a>Valeurs par défaut
 
