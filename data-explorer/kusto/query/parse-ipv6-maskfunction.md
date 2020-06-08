@@ -8,14 +8,14 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 99618c4d171e8ccade39ce50b9a0d46f9769f5f8
-ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
+ms.openlocfilehash: ec4c398d9079cd5e01875bd1d92ae06db0bb0908
+ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84301229"
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84512569"
 ---
-# <a name="parse_ipv6_mask"></a>parse_ipv6_mask ()
+# <a name="parse_ipv6_mask"></a>parse_ipv6_mask()
  
 Convertit la chaîne IPv6/IPv4 et le masque réseau en une représentation sous forme de chaîne IPv6 canonique.
 
@@ -73,9 +73,3 @@ datatable(ip_string:string, netmask:long)
 |:: 192.168.255.255|128|0000:0000:0000:0000:0000 : FFFF : c0a8 : FFFF|
 |:: 192.168.255.255/24|128|0000:0000:0000:0000:0000 : FFFF : c0a8 : FF00|
 
-## <a name="next-steps"></a>Étapes suivantes
-
-Pour d’autres fonctions similaires, consultez :
-
-* [parse_ipv4_mask()](parse-ipv4-maskfunction.md)
-* [parse_ipv6 ()](parse-ipv6function.md)

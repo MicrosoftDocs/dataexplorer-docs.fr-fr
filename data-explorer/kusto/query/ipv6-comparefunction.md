@@ -8,14 +8,14 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/27/2020
-ms.openlocfilehash: d666a819f777ab87ce0bfc3822278e8f60ec3985
-ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
+ms.openlocfilehash: 7d63ce48ba54377fa79ccd13484b2b9b08794bc6
+ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84301297"
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84512365"
 ---
-# <a name="ipv6_compare"></a>ipv6_compare ()
+# <a name="ipv6_compare"></a>ipv6_compare()
 
 Compare deux chaînes d’adresse réseau IPv6 ou IPv4. Les deux chaînes IPv6 sont analysées et comparées en tenant compte du masque de préfixe IP combiné calculé à partir des préfixes d’arguments et de l' `PrefixMask` argument facultatif.
 
@@ -130,9 +130,3 @@ datatable(ip1_string:string, ip2_string:string, prefix:long)
 |:: FFFF : c0a8:0101|192.168.1.255|120|0|
 |:: 192.168.1.1/30|192.168.1.255/24|127|0|
 
-## <a name="next-steps"></a>Étapes suivantes
-
-Pour d’autres fonctions similaires, consultez :
-
-* [ipv6_is_match ()](ipv6-is-matchfunction.md)
-* [ipv4_compare ()](ipv4-comparefunction.md)

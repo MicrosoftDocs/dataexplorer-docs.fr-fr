@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7dc9d7166a1f286e14c81f269f32f894cbe9ff9d
-ms.sourcegitcommit: da7c699bb62e1c4564f867d4131d26286c5223a8
+ms.openlocfilehash: 116f585fe8a09b4befddd7d1429229ad1bac886f
+ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/14/2020
-ms.locfileid: "83404175"
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84512468"
 ---
 # <a name="where-operator"></a>opérateur where
 
@@ -23,7 +23,7 @@ Filtre une table d’après le sous-ensemble de lignes correspondant à un préd
 T | where fruit=="apple"
 ```
 
-**Alias**`filter`
+**Alias** `filter`
 
 **Syntaxe**
 
@@ -38,7 +38,9 @@ T | where fruit=="apple"
 
 Les lignes de *T* dont *Predicate* est `true`.
 
-**Notes** Valeurs NULL : toutes les fonctions de filtrage retournent false en cas de comparaison avec les valeurs NULL. Vous pouvez utiliser des fonctions spéciales acceptant les valeurs NULL pour écrire des requêtes qui acceptent les valeurs NULL dans Account : [IsNull ()](./isnullfunction.md), [IsNotNull ()](./isnotnullfunction.md), [IsEmpty ()](./isemptyfunction.md), [IsNotEmpty ()](./isnotemptyfunction.md). 
+**Notes** Valeurs NULL : toutes les fonctions de filtrage retournent false en cas de comparaison avec les valeurs NULL. Vous pouvez utiliser des fonctions spéciales prenant en charge les valeurs NULL pour écrire des requêtes qui gèrent des valeurs NULL.
+
+[IsNull ()](./isnullfunction.md), [IsNotNull ()](./isnotnullfunction.md), [IsEmpty ()](./isemptyfunction.md), [IsNotEmpty ()](./isnotemptyfunction.md). 
 
 **Conseils**
 
@@ -72,3 +74,4 @@ Traces | where * has "Kusto"
 ```
 
 Toutes les lignes dans lesquelles le mot « Kusto » apparaît dans une colonne.
+ 

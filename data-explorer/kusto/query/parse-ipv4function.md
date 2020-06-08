@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 459b94d4fdb8dbd9d294367b2cee49aab9800406
-ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
+ms.openlocfilehash: b0377cd8af302d2680c0ee451d05f4b4b083ccec
+ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84294591"
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84512603"
 ---
 # <a name="parse_ipv4"></a>parse_ipv4()
 
@@ -35,9 +35,11 @@ parse_ipv4('192.1.168.1') < parse_ipv4('192.1.168.2') == true
 ## <a name="ip-prefix-notation"></a>Notation de préfixe IP
 
 Les adresses IP peuvent être définies à `IP-prefix notation` l’aide d’une barre oblique ( `/` ).
-L’adresse IP à gauche de la barre oblique ( `/` ) est l’adresse IP de base. Le nombre (1 à 32) à droite de la barre oblique (/) est le nombre de 1 bit contigu dans le masque réseau. 
+L’adresse IP à gauche de la barre oblique ( `/` ) est l’adresse IP de base. Le nombre (1 à 32) à droite de la barre oblique (/) est le nombre de 1 bit contigu dans le masque réseau.
 
-**Exemple :** 192.168.2.0/24 aura un net/Masque_Sous_réseau associé contenant 24 bits contigus ou 255.255.255.0 au format décimal avec points.
+**Exemple**
+
+192.168.2.0/24 aura un net/Masque_Sous_réseau associé contenant 24 bits contigus ou 255.255.255.0 au format décimal avec points.
 
 **Retourne**
 

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: bfa44859987d8f3c4f11221fd8370290f08f9a67
-ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
+ms.openlocfilehash: cd9d0f9156387f3a42d41b000aefc9eac0793f9d
+ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83382044"
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84512501"
 ---
 # <a name="ingest-from-query-set-append-set-or-append-set-or-replace"></a>Réception à partir de la requête (. Set,. Append,. set-or-Append,. set-or-Replace)
 
@@ -38,7 +38,7 @@ Ces commandes exécutent une requête ou une commande de contrôle, et informent
 
 **Arguments**
 
-* `async`: S’il est spécifié, la commande est immédiatement retournée et continue l’ingestion en arrière-plan. Les résultats de la commande incluent une `OperationId` valeur qui peut ensuite être utilisée avec la `.show operation` commande pour récupérer l’état d’achèvement de l’ingestion et les résultats.
+* `async`: S’il est spécifié, la commande est immédiatement retournée et continue l’ingestion en arrière-plan. Les résultats de la commande incluent une `OperationId` valeur qui peut ensuite être utilisée avec la `.show operations` commande pour récupérer l’état d’achèvement de l’ingestion et les résultats.
 * *TableName*: nom de la table à laquelle les données doivent être ingérées.
   Le nom de la table est toujours relatif à la base de données en contexte.
 * *PropertyName*, *PropertyValue*: nombre quelconque de propriétés d’ingestion qui affectent le processus d’ingestion.

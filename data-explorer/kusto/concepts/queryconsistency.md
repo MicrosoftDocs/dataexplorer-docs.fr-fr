@@ -1,6 +1,6 @@
 ---
-title: Cohérence de requête - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la cohérence de requête dans Azure Data Explorer.
+title: Cohérence des requêtes-Azure Explorateur de données
+description: Cet article décrit la cohérence des requêtes dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,21 +8,21 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/20/2019
-ms.openlocfilehash: b66540af2d2d4bef4571249474cd618e69eb2261
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 8b4d1df4dc9a035764f9d50a4f9c4dcf452da67e
+ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81523101"
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84512263"
 ---
 # <a name="query-consistency"></a>Cohérence des requêtes
 
-Kusto prend en charge deux modèles de cohérence de requête : **fort** et **faible.**
+Kusto prend en charge deux modèles de cohérence des requêtes : **fort** et **faible**.
 
-Les requêtes fortement cohérentes (par défaut) ont une garantie de « lecture-mon-changements ». Un client qui envoie une commande de contrôle et qui reçoit une reconnaissance positive que la commande a été complétée avec succès sera assuré que toute requête immédiatement après observera les résultats de la commande.
+Les requêtes fortement cohérentes (par défaut) disposent d’une garantie de « lecture-mes-changes ». Si vous envoyez une commande de contrôle et recevez un accusé de réception indiquant que la commande a été exécutée avec succès, vous êtes assuré que toute requête immédiatement après observe les résultats de la commande.
 
-Les requêtes faiblement cohérentes (doivent être explicitement activées par le client) ne font pas la garantie. Les clients qui font des requêtes peuvent observer une certaine latence (habituellement 1-2 minutes) entre les changements et les requêtes reflétant ces changements.
+Les requêtes faiblement cohérentes qui doivent être activées explicitement par le client ne disposent pas de cette garantie. Les clients effectuant des requêtes peuvent observer une certaine latence (généralement de 1-2 minutes) entre les modifications et les requêtes reflétant ces modifications.
 
-L’avantage des requêtes faiblement cohérentes est qu’il réduit la charge sur le nœud de cluster qui gère les modifications de base de données. En général, il est recommandé que les clients essaient d’abord le modèle fortement cohérent et passent à l’utilisation de la cohérence faible si absolument nécessaire.
+L’avantage des requêtes faiblement cohérentes est qu’elle réduit la charge sur le nœud de cluster qui gère les modifications de la base de données. En général, nous vous recommandons d’essayer d’abord le modèle fortement cohérent. Basculez vers en utilisant des requêtes peu cohérentes uniquement si nécessaire.
 
-Le passage à des requêtes faiblement cohérentes se fait en définissant la propriété lors de la `queryconsistency` prise [d’un appel REST API](../api/rest/request.md). Les utilisateurs du client Kusto .NET peuvent également le définir dans la [chaîne de connexion Kusto](../api/connection-strings/kusto.md) ou comme un drapeau dans les [propriétés de demande](../api/netfx/request-properties.md)du client .
+Pour basculer vers des requêtes faiblement cohérentes, définissez la `queryconsistency` propriété lors d’un [appel d’API REST](../api/rest/request.md). Les utilisateurs du client .NET peuvent également le définir dans la [chaîne de connexion Kusto](../api/connection-strings/kusto.md) ou en tant qu’indicateur dans les [Propriétés de demande du client](../api/netfx/request-properties.md).

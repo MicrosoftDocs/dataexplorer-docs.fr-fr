@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/09/2019
-ms.openlocfilehash: 55864dd408f35c59398ea1b93f18c0834a611a90
-ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
+ms.openlocfilehash: 071658bf2277dd0ddb4734aaf0b59a7a44c8fe27
+ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/01/2020
-ms.locfileid: "84258094"
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84512348"
 ---
 # <a name="kql-over-tds"></a>KQL over TDS
 
@@ -25,7 +25,7 @@ Kusto permet l’exécution de [fonctions stockées](../../query/schema-entities
 
 Par exemple, la fonction stockée MyFunction :
 
-|Nom |Paramètres|Corps|Dossier|DocString
+|Nom |Paramètres|body|Dossier|DocString
 |---|---|---|---|---
 |MyFunction |(myLimit : long)| {StormEvents &#124; limite myLimit}|Mondossier|Fonction Demo avec un paramètre||
 
@@ -49,7 +49,8 @@ peut être appelée comme suit :
   }
 ```
 
-> [! Remarque :] appelez des fonctions stockées avec un schéma explicite nommé `kusto` , pour faire la distinction entre les fonctions stockées Kusto et les procédures stockées système SQL émulées.
+> [!NOTE]
+> Appelez des fonctions stockées avec un schéma explicite nommé `kusto` , pour faire la distinction entre les fonctions stockées Kusto et les procédures stockées système SQL émulées.
 
 Vous pouvez également appeler des fonctions stockées Kusto à partir de T-SQL, comme les fonctions tabulaires SQL :
 

@@ -8,14 +8,14 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/27/2020
-ms.openlocfilehash: d7858a67719bbde9a1ecedee5888abc7d0662e1e
-ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
+ms.openlocfilehash: 6de336566f58f5cb0435ca22250cd7a07e8601cd
+ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84301212"
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84512586"
 ---
-# <a name="parse_ipv6"></a>parse_ipv6 ()
+# <a name="parse_ipv6"></a>parse_ipv6()
 
 Convertit une chaîne IPv6 ou IPv4 en une représentation sous forme de chaîne IPv6 canonique.
 
@@ -61,10 +61,4 @@ datatable(ip_string:string, netmask:long)
 |192.168.255.255/24|30|3232300800|
 |255.255.255.255|24|4294967040|
 
-## <a name="next-steps"></a>Étapes suivantes
 
-Pour d’autres fonctions similaires, consultez :
-
-* [parse_ipv4()](parse-ipv4function.md)
-* [ipv6_compare ()](ipv6-comparefunction.md)
-* [ipv6_is_match ()](ipv6-is-matchfunction.md)

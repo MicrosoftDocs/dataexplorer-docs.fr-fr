@@ -1,6 +1,6 @@
 ---
-title: hll_merge() (fonction d’agrégation) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit hll_merge () (fonction d’agrégation) dans Azure Data Explorer.
+title: hll_merge () (fonction d’agrégation)-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit hll_merge () (fonction d’agrégation) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/15/2019
-ms.openlocfilehash: 4700d5c87bf0f29f7bba86d56114a6a61092da94
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 59c6f6a11b108cf6e74ceb59d3483ea1a95f7002
+ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81514108"
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84512382"
 ---
-# <a name="hll_merge-aggregation-function"></a>hll_merge))(fonction d’agrégation)
+# <a name="hll_merge-aggregation-function"></a>hll_merge () (fonction d’agrégation)
 
-Fusionne les résultats HLL à travers le groupe en valeur HLL unique.
+Fusionne `HLL` les résultats dans le groupe en une seule `HLL` valeur.
 
-* Peut être utilisé uniquement dans le contexte de l’agrégation à l’intérieur [résumer](summarizeoperator.md).
+* Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md).
 
-En savoir plus sur [l’algorithme sous-jacent (*H*yper*L*og*L*og) et la précision d’estimation](dcount-aggfunction.md#estimation-accuracy).
+Pour plus d’informations, voir [algorithme sous-jacent (*H*yper*l*og*l*) et précision](dcount-aggfunction.md#estimation-accuracy)de l’estimation.
 
 **Syntaxe**
 
-`summarize``hll_merge(` *Expr Expr*`)`
+`summarize``hll_merge(` *Expr*`)`
 
 **Arguments**
 
-* *Expr*: Expression qui sera utilisée pour le calcul de l’agrégation. 
+* `*Expr*`: Expression qui sera utilisée pour le calcul de l’agrégation.
 
 **Retourne**
 
-Les valeurs de hll fusionnées *d’Expr* à travers le groupe.
+La fonction retourne les valeurs fusionnées `hll` de `*Expr*` dans le groupe.
  
 **Conseils**
 
-1) Vous pouvez utiliser la fonction [dcount_hll] (dcount-hllfunction.md) qui calculera le dcount à partir de fonctions d’agrégation de hll /hll-merge.
+1) Utilisez la fonction [dcount_hll] (DCount-hllfunction.MD) pour calculer le `dcount` à partir des `hll`  /  `hll-merge` fonctions d’agrégation.

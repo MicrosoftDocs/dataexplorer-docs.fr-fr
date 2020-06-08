@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/20/2019
-ms.openlocfilehash: 864638f8e03487a35eefa83fa3951d2ecefc27c7
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 80e20e70bc51045f68fd3ef2068f099d750b2b3f
+ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372537"
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84512433"
 ---
 # <a name="series_outliers"></a>series_outliers()
 
 Notation des points d’anomalies dans une série.
 
-Prend une expression contenant un tableau numérique dynamique comme entrée et génère un tableau numérique dynamique de même longueur. Chaque valeur du tableau indique un score d’anomalie possible à l’aide [du test de Tukey](https://en.wikipedia.org/wiki/Outlier#Tukey.27s_test). Une valeur supérieure à 1,5 ou inférieure à -1,5 indique respectivement une anomalie de hausse ou de baisse dans le même élément de l’entrée.   
+La fonction prend une expression avec un tableau numérique dynamique comme entrée et génère un tableau numérique dynamique de même longueur. Chaque valeur du tableau indique le score d’une anomalie possible, à l’aide de [« test de Tukey »](https://en.wikipedia.org/wiki/Outlier#Tukey.27s_test). Une valeur supérieure à 1,5 dans le même élément de l’entrée indique une anomalie de hausse ou de refus. Une valeur inférieure à-1,5 indique une anomalie de refus.
 
 **Syntaxe**
 
@@ -28,10 +28,10 @@ Prend une expression contenant un tableau numérique dynamique comme entrée et 
 **Arguments**
 
 * *x*: cellule de tableau dynamique qui est un tableau de valeurs numériques
-* *genre*: algorithme de détection des valeurs hors norme. Prend actuellement en charge `"tukey"` (Tukey traditionnel) et `"ctukey"` (Tukey personnalisé). La valeur par défaut est `"ctukey"`
-* *ignore_val*: valeur numérique indiquant des valeurs manquantes dans la série, la valeur par défaut est double (null). Le score des valeurs NULL et ignore est défini sur `0` .
-* *min_percentile*: pour le calcul de la plage quantile normale, la valeur par défaut est 10, les valeurs personnalisées prises en charge sont comprises dans la plage `[2.0, 98.0]` ( `ctukey` uniquement) 
-* *max_percentile*: identique, la valeur par défaut est 90, les valeurs personnalisées prises en charge sont comprises dans la plage `[2.0, 98.0]` (ctukey uniquement) 
+* *genre*: algorithme de détection des valeurs hors norme. Prend actuellement en charge `"tukey"` (« Tukey » traditionnel) et `"ctukey"` (personnalisé « Tukey »). La valeur par défaut est `"ctukey"`
+* *ignore_val*: valeur numérique indiquant les valeurs manquantes dans la série. La valeur par défaut est double (null). Le score des valeurs NULL et ignore est défini sur`0`
+* *min_percentile*: pour le calcul de la plage inter-quantile normale. La valeur par défaut est 10, les valeurs personnalisées prises en charge sont comprises dans la plage `[2.0, 98.0]` ( `ctukey` uniquement)
+* *max_percentile*: identique, la valeur par défaut est 90, les valeurs personnalisées prises en charge sont comprises dans la plage `[2.0, 98.0]` (ctukey uniquement)
 
 Le tableau suivant décrit les différences entre `"tukey"` et `"ctukey"` :
 
@@ -40,13 +40,12 @@ Le tableau suivant décrit les différences entre `"tukey"` et `"ctukey"` :
 | `"tukey"` | 25% / 75%              | Non                             |
 | `"ctukey"`| 10% / 90%              | Oui                            |
 
-
 > [!TIP]
-> La méthode la plus pratique pour utiliser cette fonction consiste à l’appliquer aux résultats de l’opérateur [Make-Series](make-seriesoperator.md) .
+> La meilleure façon d’utiliser cette fonction consiste à l’appliquer aux résultats de l’opérateur [Make-Series](make-seriesoperator.md) .
 
 **Exemple**
 
-Supposons que vous ayez une série chronologique avec un bruit qui crée des valeurs hors norme et que vous souhaitiez remplacer ces valeurs hors norme (le bruit) par la valeur moyenne, vous pouvez utiliser series_outliers () pour détecter les valeurs hors norme, puis les remplacer :
+Une série chronologique avec un bruit crée des valeurs hors norme. Si vous souhaitez remplacer ces valeurs hors norme (bruit) par la valeur moyenne, utilisez series_outliers () pour détecter les valeurs hors norme, puis remplacez-les.
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
