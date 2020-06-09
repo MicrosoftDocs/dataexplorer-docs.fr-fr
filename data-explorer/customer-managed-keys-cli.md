@@ -7,12 +7,12 @@ ms.reviewer: astauben
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 06/01/2020
-ms.openlocfilehash: 570ec818a330074cdf46075571d831c718273e64
-ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
+ms.openlocfilehash: bc8ce7a3d85a64a2a19e4194e7c9e6ab23b0fef6
+ms.sourcegitcommit: a7e040fc844098323aa1c00e254bcbcd41fe587f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/01/2020
-ms.locfileid: "84262114"
+ms.lasthandoff: 06/04/2020
+ms.locfileid: "84426533"
 ---
 # <a name="configure-customer-managed-keys-using-azure-cli"></a>Configurer des clés gérées par le client avec Azure CLI
 
@@ -21,11 +21,11 @@ ms.locfileid: "84262114"
 > * [C#](customer-managed-keys-csharp.md)
 > * [Modèle Azure Resource Manager](customer-managed-keys-resource-manager.md)
 > * [INTERFACE DE LIGNE DE COMMANDE](customer-managed-keys-cli.md)
+> * [PowerShell](customer-managed-keys-powershell.md)
 
 [!INCLUDE [data-explorer-configure-customer-managed-keys](includes/data-explorer-configure-customer-managed-keys.md)]
 
-## <a name="enable-encryption-with-customer-managed-keys-in-the-azure-portal"></a>Activer le chiffrement avec des clés gérées par le client dans le Portail Azure
-
+## <a name="enable-encryption-with-customer-managed-keys-using-azure-cli"></a>Activer le chiffrement avec des clés gérées par le client avec Azure CLI
 Cet article explique comment activer le chiffrement des clés gérées par le client à l’aide du client Azure CLI. Par défaut, le chiffrement Azure Data Explorer utilise des clés gérées par Microsoft. Configurez votre cluster Azure Data Explorer pour utiliser des clés gérées par le client et spécifiez la clé à lui associer.
 
 1. Exécutez la commande ci-après pour vous connecter à Azure :

@@ -7,19 +7,29 @@ ms.author: orspodek
 ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: conceptual
-ms.date: 01/30/2020
-ms.openlocfilehash: b1d888471c93409826abe523ae6ae4df39e120c3
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.date: 06/02/2020
+ms.openlocfilehash: b1351ceb9fe4b81a818ca41728a588dddfb4c5a2
+ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83374260"
+ms.lasthandoff: 06/02/2020
+ms.locfileid: "84294676"
 ---
 # <a name="data-visualization-with-azure-data-explorer"></a>Visualisation des données avec Azure Data Explorer 
 
 Azure Data Explorer est un service d’exploration des données rapide et hautement scalable pour les données de journal et de télémétrie qui servent à créer des solutions d’analytique complexes pour les grandes quantités de données. Azure Data Explorer s’intègre avec de nombreux outils de visualisation, ce qui vous permet de visualiser vos données et partager les résultats dans votre organisation. Ces données peuvent être transformées en informations actionnables pour un plus grand impact sur votre entreprise.
 
 La visualisation et la création de rapports de données sont des étapes essentielles du processus d’analytique des données. Azure Data Explorer prend en charge de nombreux services BI. Vous pouvez ainsi utiliser celui qui convient le mieux à votre scénario et à votre budget.
+
+## <a name="azure-data-explorer-dashboards"></a>Tableaux de bord Azure Data Explorer
+
+Les tableaux de bord Azure Data Explorer sont une application web qui vous permet d’exécuter des requêtes et de créer des tableaux de bord dans l’application web autonome, l’[interface utilisateur web](web-query-data.md). Les tableaux de bord Azure Data Explorer offrent trois avantages principaux :
+
+* Exportation des requêtes en mode natif de l’interface utilisateur web vers des tableaux de bord Azure Data Explorer 
+* Exploration des données dans l’interface utilisateur web
+* Optimisation des performances de rendu des tableaux de bord
+
+Pour plus d’informations, consultez [Visualiser des données avec des tableaux de bord Azure Data Explorer](azure-data-explorer-dashboards.md).
 
 ## <a name="kusto-query-language-visualizations"></a>Visualisations du langage de requête Kusto
 
@@ -45,7 +55,7 @@ Azure Data Explorer offre la possibilité de se connecter à [Microsoft Excel](h
 
 ## <a name="kibana"></a>Kibana
 
-Azure Data Explorer permet de se connecter à [Kibana (page Discover)](https://www.elastic.co/guide/en/kibana/6.8/discover.html) à l’aide de K2Bridge, connecteur open source. Vous [configurez Azure Data Explorer en tant que source de données pour Kibana, puis vous visualisez les données](k2bridge.md).
+Azure Data Explorer permet de se connecter à [Kibana](https://www.elastic.co/guide/en/kibana/6.8/discover.html) à l’aide de K2Bridge, connecteur open source. Vous [configurez Azure Data Explorer en tant que source de données pour Kibana, puis vous visualisez les données](k2bridge.md).
 
 ## <a name="odbc-connector"></a>Connecteur ODBC
 

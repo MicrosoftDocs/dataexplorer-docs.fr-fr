@@ -7,12 +7,12 @@ ms.reviewer: gabilehner
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 11/07/2019
-ms.openlocfilehash: 35fd37db22b2f07dcee9d7f67c700414a4cfc5d3
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 942c0577b8fb784af74cf09aec4c8a68a7be8dda
+ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373846"
+ms.lasthandoff: 06/02/2020
+ms.locfileid: "84294557"
 ---
 # <a name="use-follower-database-to-attach-databases-in-azure-data-explorer"></a>Utiliser une base de données d’abonné pour joindre des bases de données dans Azure Data Explorer
 
@@ -26,7 +26,7 @@ L’attachement d’une base de données à un autre cluster à l’aide de la f
 * Un cluster unique peut suivre des bases de données à partir de plusieurs clusters de responsable. 
 * Un cluster peut contenir à la fois des bases de données d’abonné et des bases de données de responsable
 
-## <a name="prerequisites"></a>Conditions préalables requises
+## <a name="prerequisites"></a>Prérequis
 
 1. Si vous ne disposez pas d’abonnement Azure, créez un [compte gratuit](https://azure.microsoft.com/free/) avant de commencer.
 1. [Créez un cluster et une base de données](create-cluster-database-portal.md) pour le responsable et l’abonné.
@@ -34,7 +34,7 @@ L’attachement d’une base de données à un autre cluster à l’aide de la f
 
 ## <a name="attach-a-database"></a>Attacher une base de données
 
-Vous pouvez utiliser différentes méthodes pour joindre une base de données. Dans cet article, nous abordons l’attachement d’une base de données à l’aide de C# ou d’un modèle Azure Resource Manager. Pour joindre une base de données, vous devez disposer d’autorisations sur le cluster du responsable et le cluster de l’abonné. Pour plus d’informations sur les autorisations, consultez [Gérer les autorisations](#manage-permissions).
+Vous pouvez utiliser différentes méthodes pour joindre une base de données. Dans cet article, nous abordons l’attachement d’une base de données à l’aide de C#, Python ou d’un modèle Azure Resource Manager. Pour attacher une base de données, vous devez disposer d’un utilisateur, d’un groupe, d’un principal du service ou d’une identité managée avec au moins le rôle de contributeur sur le cluster du responsable et le cluster de l’abonné. Vous pouvez ajouter ou supprimer des attributions de rôles avec le [portail Azure](/azure/role-based-access-control/role-assignments-portal), [PowerShell](/azure/role-based-access-control/role-assignments-powershell), [Azure CLI](/azure/role-based-access-control/role-assignments-cli) et un [modèle ARM](/azure/role-based-access-control/role-assignments-template). Vous pouvez en savoir plus sur le [Contrôle d’accès en fonction du rôle Azure (Azure RBAC)](/azure/role-based-access-control/overview) et les [différents rôles](/azure/role-based-access-control/rbac-and-directory-admin-roles). 
 
 ### <a name="attach-a-database-using-c"></a>Attacher une base de données avec C#
 
@@ -208,7 +208,7 @@ Vous pouvez déployer le modèle Azure Resource Manager [à l’aide du Portail 
 |Nom de la base de données     |      Le nom de la base de données à suivre. Si vous souhaitez suivre toutes les bases de données du responsable, utilisez « * ».   |
 |ID de ressource du cluster du responsable    |   L’ID de la ressource du cluster du responsable.      |
 |Type de modification des principaux par défaut    |   Le type de modification du principal par défaut. Peut être `Union`, `Replace` ou `None`. Pour plus d’informations sur le type de modification du principal par défaut, consultez [Commande de contrôle du type de modification du principal](kusto/management/cluster-follower.md#alter-follower-database-principals-modification-kind).      |
-|Location   |   L’emplacement de toutes les ressources. Le responsable et l’abonné doivent se trouver au même emplacement.       |
+|Emplacement   |   L’emplacement de toutes les ressources. Le responsable et l’abonné doivent se trouver au même emplacement.       |
  
 ### <a name="verify-that-the-database-was-successfully-attached"></a>Vérifiez que la base de données a bien été attachée.
 
@@ -252,6 +252,9 @@ var attachedDatabaseConfigurationsName = "uniqueName";
 resourceManagementClient.AttachedDatabaseConfigurations.Delete(followerResourceGroupName, followerClusterName, attachedDatabaseConfigurationsName);
 ```
 
+Pour détacher une base de données du côté abonné, vous devez disposer d’un utilisateur, d’un groupe, d’un principal du service ou d’une identité managée avec au moins le rôle de contributeur sur le cluster de l’abonné.
+Dans l’exemple ci-dessus, nous utilisons le principal du service.
+
 ### <a name="detach-the-attached-follower-database-from-the-leader-cluster"></a>Détacher la base de données de l’abonné attachée du cluster du responsable
 
 Le cluster du responsable peut détacher toute base de données attachée comme suit :
@@ -281,6 +284,8 @@ var followerDatabaseDefinition = new FollowerDatabaseDefinition()
 
 resourceManagementClient.Clusters.DetachFollowerDatabases(leaderResourceGroupName, leaderClusterName, followerDatabaseDefinition);
 ```
+
+Pour détacher une base de données du côté responsable, vous devez disposer d’un utilisateur, d’un groupe, d’un principal du service ou d’une identité managée avec au moins le rôle de contributeur sur le cluster du responsable. Dans l’exemple ci-dessus, nous utilisons le principal du service.
 
 ## <a name="detach-the-follower-database-using-python"></a>Détacher la base de données de l’abonné en utilisant Python
 
@@ -314,6 +319,8 @@ attached_database_configurationName = "uniqueName"
 #Returns an instance of LROPoller, see https://docs.microsoft.com/python/api/msrest/msrest.polling.lropoller?view=azure-python
 poller = kusto_management_client.attached_database_configurations.delete(follower_resource_group_name, follower_cluster_name, attached_database_configurationName)
 ```
+Pour détacher une base de données du côté abonné, vous devez disposer d’un utilisateur, d’un groupe, d’un principal du service ou d’une identité managée avec au moins le rôle de contributeur sur le cluster de l’abonné.
+Dans l’exemple ci-dessus, nous utilisons le principal du service.
 
 ### <a name="detach-the-attached-follower-database-from-the-leader-cluster"></a>Détacher la base de données de l’abonné attachée du cluster du responsable
 
@@ -353,6 +360,9 @@ cluster_resource_id = "/subscriptions/" + follower_subscription_id + "/resourceG
 #Returns an instance of LROPoller, see https://docs.microsoft.com/python/api/msrest/msrest.polling.lropoller?view=azure-python
 poller = kusto_management_client.clusters.detach_follower_databases(resource_group_name = leader_resource_group_name, cluster_name = leader_cluster_name, cluster_resource_id = cluster_resource_id, attached_database_configuration_name = attached_database_configuration_name)
 ```
+
+Pour détacher une base de données du côté responsable, vous devez disposer d’un utilisateur, d’un groupe, d’un principal du service ou d’une identité managée avec au moins le rôle de contributeur sur le cluster du responsable.
+Dans l’exemple ci-dessus, nous utilisons le principal du service.
 
 ## <a name="manage-principals-permissions-and-caching-policy"></a>Gérer les principaux, les autorisations et la stratégie de mise en cache
 

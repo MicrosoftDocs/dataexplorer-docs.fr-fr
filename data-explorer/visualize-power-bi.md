@@ -1,20 +1,20 @@
 ---
-title: 'Tutoriel : Visualiser des données depuis l’Explorateur de données Azure dans Power BI'
+title: 'Tutoriel : Visualiser des données Azure Data Explorer dans Power BI'
 description: Dans ce tutoriel, vous découvrez comment vous connecter à l’Explorateur de données Azure avec Power BI et comment visualiser vos données.
 author: orspod
 ms.author: orspodek
 ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: tutorial
-ms.date: 09/24/2018
-ms.openlocfilehash: d37cef094bfc1200182f7cf23dc68d396c126eb2
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.date: 06/02/2020
+ms.openlocfilehash: bde567a3c41a226ca0a8304d7ab4ed42f3fa65bf
+ms.sourcegitcommit: 8953d09101f4358355df60ab09e55e71bc255ead
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81491954"
+ms.lasthandoff: 06/04/2020
+ms.locfileid: "84420915"
 ---
-# <a name="tutorial-visualize-data-from-azure-data-explorer-in-power-bi"></a>Tutoriel : Visualiser des données depuis l’Explorateur de données Azure dans Power BI
+# <a name="tutorial-visualize-data-from-azure-data-explorer-in-power-bi"></a>Tutoriel : Visualiser des données Azure Data Explorer dans Power BI
 
 L’Explorateur de données Azure est un service d’exploration de données rapide et hautement évolutive pour les données des journaux et les données de télémétrie. Power BI est une solution d’analytique métier qui vous permet de visualiser vos données et de partager les résultats dans votre organisation. Dans ce tutoriel, vous découvrez d’abord comment afficher des visuels dans l’Explorateur de données Azure. Vous vous connectez ensuite à l’Explorateur de données Azure avec Power BI, vous générez un rapport basé sur des exemples de données et vous le publiez sur le service Power BI.
 
@@ -29,7 +29,7 @@ Dans ce tutoriel, vous allez apprendre à :
 > * Créer un rapport avec des visuels
 > * Publier et partager le rapport
 
-## <a name="prerequisites"></a>Conditions préalables requises
+## <a name="prerequisites"></a>Prérequis
 
 En plus des abonnements Azure et Power BI, les éléments suivants sont nécessaires pour effectuer ce tutoriel :
 
@@ -85,7 +85,7 @@ Vous vous connectez maintenant à l’Explorateur de données Azure dans Power B
 
     ![Obtenir des données](media/visualize-power-bi/get-data-more.png)
 
-1. Recherchez *Azure Data Explorer*, sélectionnez **Azure Data Explorer (bêta)** , puis **Se connecter**.
+1. Recherchez *Azure Data Explorer*, sélectionnez **Azure Data Explorer**, puis **Se connecter**.
 
     ![Rechercher et obtenir des données](media/visualize-power-bi/search-get-data.png)
 
