@@ -1,6 +1,6 @@
 ---
-title: anyif() (fonction d’agrégation) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit anyif() (fonction d’agrégation) dans Azure Data Explorer.
+title: anyif () (fonction d’agrégation)-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit anyif () (fonction d’agrégation) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,42 +8,42 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 813df821bad1b7e57315dad9bcd7b1387a2cd678
-ms.sourcegitcommit: 29018b3db4ea7d015b1afa65d49ecf918cdff3d6
+ms.openlocfilehash: 54431e2d088f60fa8ea2a56bffea9faa374faeda
+ms.sourcegitcommit: aaada224e2f8824b51e167ddb6ff0bab92e5485f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "82030075"
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84626667"
 ---
-# <a name="anyif-aggregation-function"></a>anyif() (fonction d’agrégation)
+# <a name="anyif-aggregation-function"></a>anyif () (fonction d’agrégation)
 
-Choisit arbitrairement un enregistrement pour chaque groupe dans un [opérateur de résumé](summarizeoperator.md) pour lequel le prédicat est vrai, et retourne la valeur d’une expression sur chaque enregistrement.
+Sélectionne de façon arbitraire un enregistrement pour chaque groupe dans un [opérateur de synthèse](summarizeoperator.md), pour lequel le prédicat a la valeur « true ». La fonction retourne la valeur d’une expression sur chaque enregistrement de ce type.
 
 **Syntaxe**
 
-`summarize`Expr , *Predicate* )' *Expr* `anyif` `(`
+`summarize``anyif` `(` *Expr*, *prédicat*`)`
 
 **Arguments**
 
-* *Expr*: Une expression sur chaque enregistrement sélectionné à partir de l’entrée pour revenir.
-* *Prédication*: Prédicez pour indiquer quels documents peuvent être pris en considération pour évaluation.
+* *Expr*: expression sur chaque enregistrement sélectionné à partir de l’entrée à retourner.
+* *Predicate*: prédicat pour indiquer les enregistrements qui peuvent être pris en compte pour l’évaluation.
 
 **Retourne**
 
-La `anyif` fonction d’agrégation renvoie la valeur de l’expression calculée pour chacun des enregistrements choisis au hasard à partir de chaque groupe de l’opérateur de résumé. Seuls les enregistrements pour lesquels les rendements *predicate* sont vrais peuvent être sélectionnés (si le prédicat ne retourne pas vrai, une valeur nulle est produite).
+La `anyif` fonction d’agrégation retourne la valeur de l’expression calculée pour chaque enregistrement sélectionné de façon aléatoire dans chaque groupe de l’opérateur de synthèse. Seuls les enregistrements pour lesquels le *prédicat* retourne la valeur « true » peuvent être sélectionnés. Si le prédicat ne retourne pas la valeur « true », une valeur null est générée.
 
 **Remarques**
 
-Cette fonction est utile lorsque vous voulez obtenir un échantillon de valeur d’une colonne par valeur de la clé du groupe composé, sous réserve que certains prédicent être vrai.
+Cette fonction est utile lorsque vous souhaitez obtenir un exemple de valeur d’une colonne par valeur de clé de groupe composée, selon un prédicat qui est « true ».
 
-La fonction tente de retourner une valeur non nulle/non vide, si cette valeur est présente.
+La fonction tente de retourner une valeur non NULL/non vide, si une telle valeur est présente.
 
 **Exemples**
 
-Afficher le continent aléatoire qui a une population de 300 millions à 600 millions:
+Affichez un continent aléatoire avec un remplissage de 300 à 600 millions.
 
 ```kusto
 Continents | summarize anyif(Continent, Population between (300000000 .. 600000000))
 ```
 
-:::image type="content" source="images/aggfunction/any1.png" alt-text="N’importe quel 1":::
+:::image type="content" source="images/aggfunction/any1.png" alt-text="N’importe lequel 1":::

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a2a8f4fa92a7b8722097ec3595674b855a90f216
-ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
+ms.openlocfilehash: 3fc4cfa307a283c4eb21ba60e3b83ba89b574757
+ms.sourcegitcommit: aaada224e2f8824b51e167ddb6ff0bab92e5485f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84294659"
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84626677"
 ---
 # <a name="top-nested-operator"></a>Opérateur top-nested
 
@@ -48,7 +48,7 @@ Pour chaque *TopNestedClause*:
 * *`Expr`*: Expression sur l’enregistrement d’entrée indiquant la valeur à retourner pour ce niveau de hiérarchie.
   En général, il s’agit d’une référence de colonne pour l’entrée tabulaire (*T*), ou d’un calcul (tel que `bin()` ) sur une telle colonne.
 
-* *`ConstExpr`*: S’il est spécifié, pour chaque enregistrement de niveau de hiérarchie 1 est ajouté avec la valeur qui est l’agrégation sur tous les enregistrements qui n’ont pas été « en fait le haut ».
+* *`ConstExpr`*: Si elle est spécifiée, pour chaque niveau de hiérarchie, 1 enregistrement est ajouté avec la valeur qui est l’agrégation sur tous les enregistrements qui n’ont pas été « en fait le haut ».
 
 * *`AggName`*: Si ce paramètre est spécifié, cet identificateur définit le nom de colonne dans la sortie pour la valeur d' *agrégation*.
 
@@ -72,7 +72,7 @@ Cet opérateur retourne une table qui comporte deux colonnes pour chaque clause 
 
 * Une colonne contient les valeurs distinctes du calcul de la clause *`Expr`* (avec le nom de colonne *ExprName* si elle est spécifiée)
 
-* Une colonne contient le résultat du calcul de l' *agrégation* (avec le nom de colonne *AggregationName* s’il est spécifié).
+* Une colonne contient le résultat du calcul de l' *agrégation* (avec le nom de colonne *AggregationName* si elle est spécifiée)
 
 **Commentaires**
 
@@ -85,7 +85,7 @@ Pour obtenir toutes les valeurs à un certain niveau, ajoutez un nombre d’agr�
 
 Le nombre d’enregistrements peut croître de façon exponentielle avec le nombre de clauses d’agrégation ((N1 + 1) \* (N2 + 1). \* ..). La croissance des enregistrements est encore plus rapide si aucune limite *n* n’est spécifiée. Prenez en compte que cet opérateur peut consommer une quantité considérable de ressources.
 
-Dans les cas où la distribution de l’agrégation est considérablement non uniforme, limitez le nombre de valeurs distinctes à retourner (à l’aide de *N*) et utilisez l' `with others=` option *ConstExpr* pour obtenir une indication du « poids » de tous les autres cas.
+Si la distribution de l’agrégation est considérablement non uniforme, limitez le nombre de valeurs distinctes à retourner (à l’aide de *N*) et utilisez l' `with others=` option *ConstExpr* pour obtenir une indication du « poids » de tous les autres cas.
 
 **Exemples**
 
@@ -97,7 +97,7 @@ StormEvents
   top-nested 1 of EndLocation by sum(BeginLat)
 ```
 
-|État|aggregated_State|Source|aggregated_Source|EndLocation|aggregated_EndLocation|
+|State|aggregated_State|Source|aggregated_Source|EndLocation|aggregated_EndLocation|
 |---|---|---|---|---|---|
 |KANSAS|87771.2355000001|Respect des lois|18744,823|FT SCOTT|264,858|
 |KANSAS|87771.2355000001|Public|22855,6206|BUCKLIN|488,2457|
@@ -118,7 +118,7 @@ StormEvents
 
 ```
 
-|État|aggregated_State|Source|aggregated_Source|EndLocation|aggregated_EndLocation|
+|State|aggregated_State|Source|aggregated_Source|EndLocation|aggregated_EndLocation|
 |---|---|---|---|---|---|
 |KANSAS|87771.2355000001|Respect des lois|18744,823|FT SCOTT|264,858|
 |KANSAS|87771.2355000001|Public|22855,6206|BUCKLIN|488,2457|
@@ -136,8 +136,7 @@ StormEvents
 |TEXAS|123400,5101|||Tous les autres emplacements de fin|58523.2932000001|
 |Tous les autres États|1149279,5923|||Tous les autres emplacements de fin|1149279,5923|
 
-
-La requête suivante affiche les mêmes résultats pour le premier niveau utilisé dans l’exemple ci-dessus :
+La requête suivante affiche les mêmes résultats pour le premier niveau utilisé dans l’exemple ci-dessus.
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -151,7 +150,7 @@ La requête suivante affiche les mêmes résultats pour le premier niveau utilis
 |1149279,5923|
 
 
-Demandez une autre colonne (EventType) au résultat supérieur imbriqué : 
+Demandez une autre colonne (EventType) au résultat supérieur imbriqué.
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -160,7 +159,7 @@ StormEvents
 | project-away tmp
 ```
 
-|État|aggregated_State|Source|aggregated_Source|EndLocation|aggregated_EndLocation|Type d’événement|
+|State|aggregated_State|Source|aggregated_Source|EndLocation|aggregated_EndLocation|Type d’événement|
 |---|---|---|---|---|---|---|
 |KANSAS|87771.2355000001|Observateur chevronné|21279,7083|SHARON SPGS|388,7404|Vent d’orage|
 |KANSAS|87771.2355000001|Observateur chevronné|21279,7083|SHARON SPGS|388,7404|Grêle|
@@ -185,7 +184,7 @@ StormEvents
 | mv-expand EndLocations, endLocationSums, indicies
 ```
 
-|État|Source|EndLocations|endLocationSums|indices|
+|State|Source|EndLocations|endLocationSums|index|
 |---|---|---|---|---|
 |TEXAS|Observateur chevronné|CLAUDE|421,44|0|
 |TEXAS|Observateur chevronné|AMARILLO|316,8892|1|

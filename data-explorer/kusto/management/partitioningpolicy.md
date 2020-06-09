@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: f17bd3736d2a154dd287459bd779088517eebcbc
-ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
+ms.openlocfilehash: e8125c6d0c327c98b80c4aeed6c587df12fdf91d
+ms.sourcegitcommit: aaada224e2f8824b51e167ddb6ff0bab92e5485f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84294489"
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84626648"
 ---
 # <a name="data-partitioning-policy-preview"></a>Stratégie de partitionnement des données (préversion)
 
@@ -177,7 +177,7 @@ Les propriétés suivantes peuvent être définies dans le cadre de la stratégi
   * Cible maximale pour la somme du nombre de lignes des étendues sources d’une opération de partitionnement de données unique.
   * Cette propriété est facultative. Sa valeur par défaut est `0` , avec une cible par défaut de 5 millions enregistrements.
 
-## <a name="notes"></a>Notes
+## <a name="notes"></a>Remarques
 
 ### <a name="the-data-partitioning-process"></a>Processus de partitionnement des données
 
@@ -201,6 +201,17 @@ La sortie comprend les éléments suivants :
   * `MinPartitioningPercentageInSingleTable`: Pourcentage minimal de données partitionnées dans toutes les tables qui ont une stratégie de partitionnement de données dans le cluster.
       * Si ce pourcentage reste constamment inférieur à 90%, évaluez la capacité de partitionnement du cluster (voir [capacité](partitioningpolicy.md#capacity)).
   * `TableWithMinPartitioningPercentage`: Nom qualifié complet de la table dont le pourcentage de partitionnement est indiqué ci-dessus.
+
+* Pour surveiller les commandes de partitionnement et l’utilisation de leurs ressources, vous pouvez utiliser les [commandes. Show](commands.md). Par exemple :
+
+```kusto
+.show commands 
+| where StartedOn > ago(1d)
+| where CommandType == "ExtentsPartition"
+| parse Text with ".partition async table " TableName " extents" *
+| summarize count(), sum(TotalCpu), avg(tolong(ResourcesUtilization.MemoryPeak)) by TableName, bin(StartedOn, 15m)
+| render timechart with(ysplit = panels)
+```
 
 #### <a name="capacity"></a>Capacité
 
