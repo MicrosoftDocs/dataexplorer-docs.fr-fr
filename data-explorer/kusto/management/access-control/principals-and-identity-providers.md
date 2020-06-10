@@ -1,6 +1,6 @@
 ---
-title: Principaux et fournisseurs d’identité - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit les principaux et les fournisseurs d’identité d’Azure Data Explorer.
+title: Principaux et fournisseurs d’identité-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit les principaux et les fournisseurs d’identité dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,49 +8,48 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a0638ba0031162dadbb4b9a2815940e66d4dcfb3
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 4e34c724799cffe38db93869e96fcfae83a92b55
+ms.sourcegitcommit: be1bbd62040ef83c08e800215443ffee21cb4219
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81522642"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84664991"
 ---
-# <a name="principals-and-identity-providers"></a>Directeurs d’école et fournisseurs d’identité
+# <a name="principals-and-identity-providers"></a>Principaux et fournisseurs d’identité
 
-Le modèle d’autorisation Kusto prend en charge plusieurs fournisseurs d’identité (idP) et plusieurs types principaux.
-Cet article passe en revue les principaux types pris en charge et démontre leur utilisation avec [les commandes d’affectation de rôle .](../../management/security-roles.md)
+Le modèle d’autorisation Kusto prend en charge plusieurs fournisseurs d’identité (fournisseurs) et plusieurs types principaux.
+Cet article passe en revue les types de principal pris en charge et illustre leur utilisation avec les [commandes d’attribution de rôle](../../management/security-roles.md).
 
 ### <a name="azure-active-directory"></a>Azure Active Directory
-Azure Active Directory (AAD) est le service d’annuaire cloud multi-locataires préféré d’Azure et son fournisseur d’identité, capable d’authentifier les principaux de sécurité ou de fédérer avec d’autres fournisseurs d’identité, tels que l’Active Directory de Microsoft.
+Azure Active Directory (AAD) est le service d’annuaire et le fournisseur d’identité Cloud mutualisés d’Azure, qui peuvent authentifier les principaux de sécurité ou se fédérer avec d’autres fournisseurs d’identité, tels que les Active Directory de Microsoft.
 
-AAD est la méthode préférée pour l’authentification à Kusto. Plusieurs scénarios d’authentification sont ainsi pris en charge :
+AAD est la méthode recommandée pour l’authentification auprès de Kusto. Plusieurs scénarios d’authentification sont ainsi pris en charge :
 * **Authentification de l’utilisateur** (ouverture de session interactive) : utilisée pour authentifier les principaux humains.
 * **Authentification de l’application** (ouverture de session non interactive) : utilisée pour authentifier les services et les applications qui doivent s’exécuter/s’authentifier en l’absence d’utilisateur humain.
 
->REMARQUE : Azure Active Directory n’autorise pas l’authentification des comptes de service (qui sont par définition des entités AD pré-prématurées).
-L’équivalent AAD du compte de service AD est l’application AAD.
+> [!NOTE]
+> Azure Active Directory n’autorise pas l’authentification de comptes de service (qui sont par définition sur des entités AD local).
+L’équivalent AAD du compte de service Active Directory est l’application AAD.
 
-#### <a name="aad-group-principals"></a>Directeurs du Groupe AAD
-Kusto ne prend en charge que les directeurs du Groupe de sécurité (et non ceux du Groupe de distribution). Tentative de configurer l’accès pour un DG sur un cluster Kusto se traduira par une erreur.
+#### <a name="aad-group-principals"></a>Principaux de groupe AAD
+Kusto prend uniquement en charge les principaux de groupe de sécurité (et non les groupes de distribution). La tentative de configuration de l’accès pour une DG sur un cluster Kusto génère une erreur.
 
 #### <a name="aad-tenants"></a>Locataires AAD
 
+Si le locataire AAD n’est pas explicitement spécifié, Kusto tente de le résoudre à partir de l’UPN (UniversalPrincipalName, par exemple, `johndoe@fabrikam.com` ), s’il est fourni. Si votre principal n’inclut pas les informations sur le locataire (pas dans le formulaire UPN), vous devez le mentionner explicitement en ajoutant l’ID ou le nom du locataire au descripteur principal.
 
->Si le locataire de l’AAD n’est pas explicitement spécifié, Kusto tentera de le `johndoe@fabrikam.com`résoudre à partir de l’UPN (UniversalPrincipalName, par exemple, ), si elle est fournie.
-Si votre mandant n’inclut pas les renseignements sur le locataire (et non sous forme d’UPN), vous devez en parler explicitement en versant la pièce d’identité ou le nom du locataire au descripteur principal.
-
-**Exemples pour les directeurs d’AAD**
+**Exemples pour les principaux AAD**
 
 |Locataire AAD |Type |Syntaxe |
 |-----------|-----|-------|
-|Implicite (UPN)  |Utilisateur  |`aaduser=`*UserEmailAddress (en)*
-|Explicite (ID)   |Utilisateur  |`aaduser=`*UserEmailAddress*`;`*TenantId* ou `aaduser=` *ObjectID*`;`*TenantId*
-|Explicite (Nom) |Utilisateur  |`aaduser=`*UserEmailAddress*`;`*TenantName* ou `aaduser=` *ObjectID*`;`*TenantName*
+|Implicite (UPN)  |Utilisateur  |`aaduser=`*UserEmailAddress*
+|Explicite (ID)   |Utilisateur  |`aaduser=`*UserEmailAddress* `;` *TenantId* ou `aaduser=` *ObjectID* `;` *TenantId*
+|Explicite (nom) |Utilisateur  |`aaduser=`*UserEmailAddress* `;` *TenantName* ou `aaduser=` *ObjectID* `;` *TenantName*
 |Implicite (UPN)  |Groupe |`aadgroup=`*GroupEmailAddress*
-|Explicite (ID)   |Groupe |`aadgroup=`*GroupObjectId*`;`*TenantId* ou`aadgroup=`*GroupDisplayName*`;`*TenantId*
-|Explicite (Nom) |Groupe |`aadgroup=`*GroupObjectId*`;`*TenantName* ou`aadgroup=`*GroupDisplayName TenantName*`;`*TenantName*
-|Explicite (UPN)  |Application   |`aadapp`=*ApplicationDisplayName*`;`*TenantId*
-|Explicite (Nom) |Application   |`aadapp=`*ApplicationId*`;`*TenantName (en)*
+|Explicite (ID)   |Groupe |`aadgroup=`*GroupObjectId* `;` *TenantId* ou `aadgroup=` *groupDisplayName* `;` *TenantId*
+|Explicite (nom) |Groupe |`aadgroup=`*GroupObjectId* `;` *TenantName* ou `aadgroup=` *groupDisplayName* `;` *TenantName*
+|Explicite (UPN)  |Application   |`aadapp`=*ApplicationDisplayName* `;` *TenantId*
+|Explicite (nom) |Application   |`aadapp=`*ApplicationID* `;` *TenantName*
 
 ```kusto
 // No need to specify AAD tenant for UPN, as Kusto performs the resolution by itself
@@ -68,9 +67,9 @@ Les comptes Microsoft (MSA) désignent tous les comptes d’utilisateur non orga
 Kusto prend en charge l’authentification de l’utilisateur pour les MSA (notez qu’il n’existe aucun concept de groupe de sécurité), identifiés par leur UPN (nom d’utilisateur principal).
 Quand un principal MSA est configuré sur une ressource Kusto, Kusto ne tente **pas** de résoudre l’UPN fourni.
 
-**Exemples pour les directeurs de msA**
+**Exemples pour les principaux MSA**
 
-|Fournisseur d’identité (IdP)  |Type  |Syntaxe |
+|Fournisseur d’identité  |Type  |Syntaxe |
 |-----|------|-------|
 |Live.com |Utilisateur  |`msauser=`john.doe@live.com`
 

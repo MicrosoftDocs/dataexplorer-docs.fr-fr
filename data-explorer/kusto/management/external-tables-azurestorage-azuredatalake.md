@@ -8,222 +8,273 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 2ef238d863f2f3fe181814ac14e3605de21a5aff
-ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
+ms.openlocfilehash: 296c6e245b7157c09c7af59132fd8bfa686fc9f7
+ms.sourcegitcommit: be1bbd62040ef83c08e800215443ffee21cb4219
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/26/2020
-ms.locfileid: "83863368"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84665042"
 ---
-# <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Créer et modifier des tables externes dans le stockage Azure ou Azure Data Lake
+# <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Créer et modifier des tables externes dans Stockage Azure ou Azure Data Lake
 
-La commande suivante décrit comment créer une table externe. La table peut être située dans le stockage d’objets BLOB Azure, Azure Data Lake Store Gen1 ou Azure Data Lake Store Gen2. 
-Les [chaînes de connexion de stockage](../api/connection-strings/storage.md) décrivent la création de la chaîne de connexion pour chacune de ces options. 
+La commande suivante décrit comment créer une table externe située dans le stockage d’objets BLOB Azure, Azure Data Lake Store Gen1 ou Azure Data Lake Store Gen2. 
 
 ## <a name="create-or-alter-external-table"></a>. Create ou. Alter External table
 
 **Syntaxe**
 
-( `.create`  |  `.alter` ) `external` `table` *TableName* (*Schema*)  
+( `.create`  |  `.alter` ) `external` `table` *[TableName](#table-name)* `(` *[Schéma](#schema)* TableName`)`  
 `kind` `=` (`blob` | `adl`)  
-[ `partition` `by` *Partition* [.... `,` ]]  
-`dataformat` `=` *Format*  
-`(`  
-*StorageConnectionString* [ `,` ...]  
-`)`  
-[ `with` `(` [ `docstring` `=` *Documentation*] [ `,` `folder` `=` *NomDossier*], *property_name* `=` *valeur* `,` ... `)` ]
+[ `partition` `by` `(` *[Partitions](#partitions)* `)` [ `pathformat` `=` `(` *[PathFormat](#path-format)* `)` ]]  
+`dataformat``=` * [Format](#format)*  
+`(`*[StorageConnectionString](#connection-string)* [ `,` ...]`)`   
+[ `with` `(` *[PropertyName](#properties)* `=` *[Valeur](#properties)* NomPropriété `,` ... `)` ]  
 
 Crée ou modifie une nouvelle table externe dans la base de données dans laquelle la commande est exécutée.
 
+> [!NOTE]
+> * Si la table existe, la `.create` commande échoue avec une erreur. Utilisez `.alter` pour modifier des tables existantes. 
+> * La modification du schéma, du format ou de la définition de partition d’une table d’objets BLOB externe n’est pas prise en charge. 
+> * L’opération requiert l' [autorisation utilisateur de base de données](../management/access-control/role-based-authorization.md) pour `.create` et l’autorisation d’administrateur de [table](../management/access-control/role-based-authorization.md) pour `.alter` . 
+
 **Paramètres**
 
-* *TableName* -nom de la table externe. Doit suivre les règles pour les [noms d’entité](../query/schema-entities/entity-names.md). Une table externe ne peut pas avoir le même nom qu’une table normale dans la même base de données.
-* *Schéma-schéma* de données externes au format : `ColumnName:ColumnType[, ColumnName:ColumnType ...]` . Si le schéma de données externes est inconnu, utilisez le plug-in [infer_storage_schema](../query/inferstorageschemaplugin.md) , qui peut déduire le schéma en fonction du contenu du fichier externe.
-* *Partition* : une ou plusieurs définitions de partition (facultatif). Consultez la syntaxe de partition ci-dessous.
-* *Format* : format de données. Tous les [formats](../../ingestion-supported-formats.md) d’ingestion sont pris en charge pour l’interrogation. L’utilisation de la table externe pour le [scénario d’exportation](data-export/export-data-to-an-external-table.md) se limite aux formats suivants : `CSV` , `TSV` , `JSON` , `Parquet` .
-* *StorageConnectionString* : un ou plusieurs chemins d’accès aux conteneurs d’objets BLOB de stockage BLOB Azure ou Azure Data Lake Store systèmes de fichiers (répertoires virtuels ou dossiers), y compris les informations d’identification. Pour plus d’informations, consultez [chaînes de connexion de stockage](../api/connection-strings/storage.md) . Fournissez plus d’un compte de stockage unique pour éviter la limitation du stockage lors de l' [exportation](data-export/export-data-to-an-external-table.md) de grandes quantités de données vers la table externe. L’exportation répartit les écritures entre tous les comptes fournis. 
+<a name="table-name"></a>
+*TableName*
 
-**Syntaxe de la partition**
+Nom de la table externe qui respecte les règles de [noms d’entité](../query/schema-entities/entity-names.md) .
+Une table externe ne peut pas avoir le même nom qu’une table normale dans la même base de données.
 
-[ `format_datetime =` *DateTimePartitionFormat*] `bin(` *TimestampColumnName*, *PartitionByTimeSpan*`)`  
-|   
-[*StringFormatPrefix*] *StringColumnName* [*StringFormatSuffix*])
+<a name="schema"></a>
+*Schéma*
 
-**Paramètres de partition**
+Le schéma de données externes est décrit en utilisant le format suivant :
 
-* *DateTimePartitionFormat* : format de la structure de répertoires requise dans le chemin de sortie (facultatif). Si le partitionnement est défini et que le format n’est pas spécifié, la valeur par défaut est « yyyy/MM/JJ/HH/MM ». Ce format est basé sur PartitionByTimeSpan. Par exemple, si vous partitionnez par 1J, structure sera « yyyy/MM/JJ ». Si vous partitionnez par 1 h, la structure sera « yyyy/MM/JJ/HH ».
-* *TimestampColumnName* : colonne DateTime sur laquelle la table est partitionnée. La colonne timestamp doit exister dans la définition de schéma de la table externe et la sortie de la requête d’exportation, lors de l’exportation vers la table externe.
-* *PartitionByTimeSpan* -TimeSpan littéral par lequel partitionner.
-* *StringFormatPrefix* : littéral de chaîne constant qui fera partie du chemin d’artefact, concaténé avant la valeur de la table (facultatif).
-* *StringFormatSuffix* : littéral de chaîne constant qui fera partie du chemin d’artefact, concaténé après la valeur de la table (facultatif).
-* *StringColumnName* : colonne de chaîne sur laquelle la table est partitionnée. La colonne de chaîne doit exister dans la définition de schéma de la table externe.
+&nbsp;&nbsp;*ColumnName* `:` *ColumnType* [ `,` *ColumnName* `:` *ColumnType* ...]
 
-**Propriétés facultatives**:
+où *ColumnName* respecte les règles d' [affectation de noms d’entités](../query/schema-entities/entity-names.md) et *ColumnType* est l’un des [types de données pris en charge](../query/scalar-data-types/index.md).
+
+> [!TIP]
+> Si le schéma de données externes est inconnu, utilisez le plug-in [déduire le \_ \_ schéma de stockage](../query/inferstorageschemaplugin.md) , qui permet de déduire le schéma en fonction du contenu du fichier externe.
+
+<a name="partitions"></a>
+*Partitions*
+
+Liste séparée par des virgules des colonnes par lesquelles une table externe est partitionnée. La colonne de partition peut exister dans le fichier de données lui-même ou dans la partie sa du chemin d’accès du fichier (en savoir plus sur les [colonnes virtuelles](#virtual-columns)).
+
+La liste partitions est toute combinaison de colonnes de partition, spécifiée à l’aide de l’une des formes suivantes :
+
+* Partition représentant une [colonne virtuelle](#virtual-columns).
+
+  *PartitionName* `:` (`datetime` | `string`)
+
+* Partition, en fonction d’une valeur de colonne de chaîne.
+
+  *PartitionName* `:` `string` `=` *ColumnName*
+
+* Partition, en fonction d’un [hachage](../query/hashfunction.md)de valeur de colonne de chaîne, *numéro*modulo.
+
+  *PartitionName* `:` `long` `=` `hash` `(` *ColumnName* `,` *Nombre* de ColumnName`)`
+
+* Partition, en fonction de la valeur tronquée d’une colonne DateTime. Consultez la documentation sur [STARTOFYEAR](../query/startofyearfunction.md), [StartOfMonth](../query/startofmonthfunction.md), [startOfWeek](../query/startofweekfunction.md), [startofday](../query/startofdayfunction.md) ou [bin](../query/binfunction.md) functions.
+
+  *PartitionName* `:` `datetime` `=` ( `startofyear` \| `startofmonth` \| `startofweek` \| `startofday` ) `(` *ColumnName*`)`  
+  *PartitionName* `:` `datetime` `=` `bin` `(` *ColumnName* `,` *Intervalle* de ColumnName`)`
+
+
+<a name="path-format"></a>
+*PathFormat*
+
+Format de chemin d’accès au fichier d’URI de données externes, qui peut être spécifié en plus des partitions. Le format du chemin d’accès est une séquence d’éléments de partition et de séparateurs de texte :
+
+&nbsp;&nbsp;[*StringSeparator*] *Partition* [*StringSeparator*] [*partition* [*StringSeparator*]...]  
+
+où *partition* fait référence à une partition déclarée dans la `partition` `by` clause, et *StringSeparator* est un texte placé entre guillemets.
+
+Le préfixe du chemin d’accès au fichier d’origine peut être construit à l’aide d’éléments de partition rendus sous forme de chaînes et séparés par des séparateurs de texte Pour spécifier le format utilisé pour le rendu d’une valeur de partition DateTime, vous pouvez utiliser la macro suivante :
+
+&nbsp;&nbsp;`datetime_pattern``(` *DateTimeFormat* `,` *PartitionName* DateTimeFormat`)`  
+
+où *DateTimeFormat* adhère à la spécification de format .net, avec une extension qui permet de placer les spécificateurs de format entre accolades. Par exemple, les deux formats suivants sont équivalents :
+
+&nbsp;&nbsp;`'year='yyyy'/month='MM`les`year={yyyy}/month={MM}`
+
+Par défaut, les valeurs DateTime sont rendues à l’aide des formats suivants :
+
+| Fonction de partition    | Format par défaut |
+|-----------------------|----------------|
+| `startofyear`         | `yyyy`         |
+| `startofmonth`        | `yyyy/MM`      |
+| `startofweek`         | `yyyy/MM/dd`   |
+| `startofday`          | `yyyy/MM/dd`   |
+| `bin(`*Chronique*`, 1d)` | `yyyy/MM/dd`   |
+| `bin(`*Chronique*`, 1h)` | `yyyy/MM/dd/HH` |
+| `bin(`*Chronique*`, 1m)` | `yyyy/MM/dd/HH/mm` |
+
+Si *PathFormat* est omis de la définition de la table externe, il est supposé que toutes les partitions, exactement dans le même ordre que celui dans lequel elles sont définies, sont séparées par un `/` séparateur. Les partitions sont rendues à l’aide de leur présentation de chaîne par défaut.
+
+<a name="format"></a>
+*Format*
+
+Format de données, l’un des [formats](../../ingestion-supported-formats.md)d’ingestion.
+
+> [!NOTE]
+> L’utilisation de la table externe pour le [scénario d’exportation](data-export/export-data-to-an-external-table.md) se limite aux formats suivants : `CSV` , `TSV` `JSON` et `Parquet` .
+
+<a name="connection-string"></a>
+*StorageConnectionString*
+
+Un ou plusieurs chemins d’accès aux conteneurs d’objets BLOB de stockage d’objets BLOB Azure ou Azure Data Lake Store systèmes de fichiers (répertoires virtuels ou dossiers), y compris les informations d’identification.
+Pour plus d’informations, consultez [chaînes de connexion de stockage](../api/connection-strings/storage.md) .
+
+> [!TIP]
+> Fournissez plus d’un compte de stockage unique pour éviter la limitation du stockage lors de l' [exportation](data-export/export-data-to-an-external-table.md) de grandes quantités de données vers la table externe. L’exportation répartit les écritures entre tous les comptes fournis. 
+
+<a name="properties"></a>
+*Propriétés facultatives*
 
 | Propriété         | Type     | Description       |
 |------------------|----------|-------------------------------------------------------------------------------------|
 | `folder`         | `string` | Dossier de la table                                                                     |
 | `docString`      | `string` | Chaîne documentant la table                                                       |
-| `compressed`     | `bool`   | Si cette valeur est définie, indique si les objets BLOB sont compressés en tant que `.gz` fichiers                  |
-| `includeHeaders` | `string` | Pour les objets BLOB CSV ou TSV, indique si les objets BLOB contiennent un en-tête                     |
-| `namePrefix`     | `string` | Si cette valeur est définie, indique le préfixe des objets BLOB. Lors des opérations d’écriture, tous les objets BLOB sont écrits avec ce préfixe. Sur les opérations de lecture, seuls les objets BLOB avec ce préfixe sont lus. |
-| `fileExtension`  | `string` | S’il est défini, indique les extensions de fichier des objets BLOB. Lors de l’écriture, les noms d’objets BLOB se terminent par ce suffixe. En lecture, seuls les objets BLOB avec cette extension de fichier seront lus.           |
+| `compressed`     | `bool`   | Si cette valeur est définie, indique si les fichiers sont compressés en tant que `.gz` fichiers (utilisés dans le [scénario d’exportation](data-export/export-data-to-an-external-table.md) uniquement). |
+| `includeHeaders` | `string` | Pour les fichiers CSV ou TSV, indique si les fichiers contiennent un en-tête                     |
+| `namePrefix`     | `string` | Si cette valeur est définie, indique le préfixe des fichiers. Lors des opérations d’écriture, tous les fichiers sont écrits avec ce préfixe. Sur les opérations de lecture, seuls les fichiers avec ce préfixe sont lus. |
+| `fileExtension`  | `string` | S’il est défini, indique les extensions de fichier des fichiers. Lors de l’écriture, les noms de fichiers se terminent par ce suffixe. Lors de la lecture, seuls les fichiers avec cette extension de fichier seront lus.           |
 | `encoding`       | `string` | Indique comment le texte est encodé : `UTF8NoBOM` (valeur par défaut) ou `UTF8BOM` .             |
 
-Pour plus d’informations sur les paramètres de table externe dans les requêtes, consultez [logique de filtrage d’artefact](#artifact-filtering-logic).
-
-> [!NOTE]
-> * Si la table existe, la `.create` commande échoue avec une erreur. Utilisez `.alter` pour modifier des tables existantes. 
-> * La modification du schéma, du format ou de la définition de partition d’une table d’objets BLOB externe n’est pas prise en charge. 
-
-Requiert l' [autorisation utilisateur de base de données](../management/access-control/role-based-authorization.md) pour `.create` et l’autorisation d’administrateur de [table](../management/access-control/role-based-authorization.md) pour `.alter` . 
+> [!TIP]
+> Pour en savoir plus sur le rôle `namePrefix` et les `fileExtension` Propriétés lus dans le filtrage des fichiers de données pendant la requête, consultez la section [logique de filtrage de fichiers](#file-filtering) .
  
-**Exemple** 
+<a name="examples"></a>
+**Illustre** 
 
-Table externe non partitionnée. Tous les artefacts sont censés être directement sous le ou les conteneurs définis :
+Table externe non partitionnée. Les fichiers de données sont censés être placés directement sous le ou les conteneurs définis :
 
 ```kusto
-.create external table ExternalBlob (x:long, s:string) 
-kind=blob
-dataformat=csv
+.create external table ExternalTable (x:long, s:string)  
+kind=blob 
+dataformat=csv 
 ( 
-   h@'https://storageaccount.blob.core.windows.net/container1;secretKey'
-)
-with 
-(
-   docstring = "Docs",
-   folder = "ExternalTables"
-)  
+   h@'https://storageaccount.blob.core.windows.net/container1;secretKey' 
+) 
 ```
 
-Table externe partitionnée par dateTime. Les artefacts se trouvent dans des répertoires au format « YYYY/MM/JJ » dans le ou les chemins d’accès définis :
+Table externe partitionnée par date. Les fichiers de date sont censés être placés dans des répertoires de format DateTime par défaut `yyyy/MM/dd` :
 
 ```kusto
-.create external table ExternalAdlGen2 (Timestamp:datetime, x:long, s:string) 
+.create external table ExternalTable (Timestamp:datetime, x:long, s:string) 
 kind=adl
-partition by bin(Timestamp, 1d)
-dataformat=csv
+partition by (Date:datetime = bin(Timestamp, 1d)) 
+dataformat=csv 
 ( 
    h@'abfss://filesystem@storageaccount.dfs.core.windows.net/path;secretKey'
 )
-with 
-(
-   docstring = "Docs",
-   folder = "ExternalTables"
-)  
 ```
 
-Table externe partitionnée par dateTime avec un format de répertoire « Year = yyyy/month = MM/Day = DD » :
+Une table externe partitionnée par mois, avec un format de répertoire `year=yyyy/month=MM` :
 
 ```kusto
-.create external table ExternalPartitionedBlob (Timestamp:datetime, x:long, s:string) 
-kind=blob
-partition by format_datetime="'year='yyyy/'month='MM/'day='dd" bin(Timestamp, 1d)
-dataformat=csv
+.create external table ExternalTable (Timestamp:datetime, x:long, s:string) 
+kind=blob 
+partition by (Month:datetime = startofmonth(Timestamp)) 
+pathformat = (datetime_pattern("'year='yyyy'/month='MM", Month)) 
+dataformat=csv 
+( 
+   h@'https://storageaccount.blob.core.windows.net/container1;secretKey' 
+) 
+```
+
+Une table externe partitionnée d’abord par nom de client, puis par date. La structure de répertoire attendue est, par exemple `customer_name=Softworks/2019/02/01` :
+
+```kusto
+.create external table ExternalTable (Timestamp:datetime, CustomerName:string) 
+kind=blob 
+partition by (CustomerNamePart:string = CustomerName, Date:datetime = startofday(Timestamp)) 
+pathformat = ("customer_name=" CustomerNamePart "/" Date)
+dataformat=csv 
+(  
+   h@'https://storageaccount.blob.core.windows.net/container1;secretKey' 
+)
+```
+
+Une table externe partitionnée d’abord par le hachage du nom de client (modulo dix), puis par date. La structure de répertoire attendue est, par exemple, `customer_id=5/dt=20190201` . Les noms de fichiers de données se terminent par l' `.txt` extension :
+
+```kusto
+.create external table ExternalTable (Timestamp:datetime, CustomerName:string) 
+kind=blob 
+partition by (CustomerId:long = hash(CustomerName, 10), Date:datetime = startofday(Timestamp)) 
+pathformat = ("customer_id=" CustomerId "/dt=" datetime_pattern("yyyyMMdd", Date)) 
+dataformat=csv 
 ( 
    h@'https://storageaccount.blob.core.windows.net/container1;secretKey'
 )
-with 
-(
-   docstring = "Docs",
-   folder = "ExternalTables"
-)
+with (fileExtension = ".txt")
 ```
 
-Une table externe avec des partitions de données mensuelles et un format de répertoire « yyyy/MM » :
+**Exemple de sortie**
+
+|TableName|TableType|Dossier|DocString|Propriétés|ConnectionStrings|Partitions|PathFormat|
+|---------|---------|------|---------|----------|-----------------|----------|----------|
+|ExternalTable|Objet blob|ExternalTables|Docs|{"Format" : "CSV", "Compressed" : false, "CompressionType" : null, "FileExtension" : null, "IncludeHeaders" : "none", "Encoding" : null, "NamePrefix" : null}|["https://storageaccount.blob.core.windows.net/container1;\*\*\*\*\*\*\*"]|[{« Mod » : 10, « Name » : « CustomerId », « ColumnName » : « CustomerName », « ordinal » : 0}, {« Function » : « StartOfDay », « Name » : « date », « ColumnName » : « timestamp », « ordinal » : 1}]|«Customer \_ ID = "CustomerID"/DT = "DateTime \_ pattern (" AAAAMMJJ ", date)|
+
+<a name="virtual-columns"></a>
+**Colonnes virtuelles**
+
+Lorsque les données sont exportées à partir de Spark, les colonnes de partition (spécifiées dans la méthode du writer tableau `partitionBy` ) ne sont pas écrites dans les fichiers de données. Ce processus évite la duplication des données, car les données sont déjà présentes dans les noms de « dossiers ». Par exemple, `column1=<value>/column2=<value>/` et Spark peut le reconnaître lors de la lecture.
+
+Les tables externes prennent en charge la syntaxe suivante pour spécifier des colonnes virtuelles :
 
 ```kusto
-.create external table ExternalPartitionedBlob (Timestamp:datetime, x:long, s:string) 
-kind=blob
-partition by format_datetime="yyyy/MM" bin(Timestamp, 1d)
-dataformat=csv
-( 
-   h@'https://storageaccount.blob.core.windows.net/container1;secretKey'
-)
-with 
-(
-   docstring = "Docs",
-   folder = "ExternalTables"
-)
-```
-
-Table externe avec deux partitions. La structure de répertoires est la concaténation des deux partitions : mise en forme de CustomerName suivie du format dateTime par défaut. Par exemple, « CustomerName = n ° de la année/2011/11/11 » :
-
-```kusto
-.create external table ExternalMultiplePartitions (Timestamp:datetime, CustomerName:string) 
-kind=blob
-partition by 
-   "CustomerName="CustomerName,
-   bin(Timestamp, 1d)
-dataformat=csv
-( 
-   h@'https://storageaccount.blob.core.windows.net/container1;secretKey'
-)
-with 
-(
-   docstring = "Docs",
-   folder = "ExternalTables"   
-)
-```
-
-**Sortie**
-
-|TableName|TableType|Dossier|DocString|Propriétés|ConnectionStrings|Partitions|
-|---|---|---|---|---|---|---|
-|ExternalMultiplePartitions|Objet blob|ExternalTables|Documents|{"Format" : "CSV", "Compressed" : false, "CompressionType" : null, "FileExtension" : "CSV", "IncludeHeaders" : "none", "Encoding" : null, "NamePrefix" : null}|["https://storageaccount.blob.core.windows.net/container1;*******"]}|[{"StringFormat" : "CustomerName = {0} ", "ColumnName" : "customerName", "ordinal" : 0}, PartitionBy " :" 1.00:00:00 "," ColumnName " :" timestamp "," ordinal " : 1}]|
-
-### <a name="artifact-filtering-logic"></a>Logique de filtrage d’artefact
-
-Lors de l’interrogation d’une table externe, le moteur de requête améliore les performances en filtrant les artefacts de stockage externe non pertinents (objets BLOB). Le processus d’itération sur les objets BLOB et de choix du traitement d’un objet blob est décrit ci-dessous.
-
-1. Créez un modèle d’URI qui représente un emplacement où les objets BLOB sont trouvés. Initialement, le modèle d’URI est égal à une chaîne de connexion fournie dans le cadre de la définition de la table externe. Si des partitions sont définies, elles sont ajoutées au modèle d’URI.
-Par exemple, si la chaîne de connexion est : `https://storageaccount.blob.core.windows.net/container1` et qu’une partition DateTime est définie : `partition by format_datetime="yyyy-MM-dd" bin(Timestamp, 1d)` , le modèle d’URI correspondant est : `https://storageaccount.blob.core.windows.net/container1/yyyy-MM-dd` , et nous allons Rechercher des objets BLOB sous les emplacements qui correspondent à ce modèle.
-Si une partition de chaîne supplémentaire `"CustomerId" customerId` est définie, le modèle d’URI correspondant est : `https://storageaccount.blob.core.windows.net/container1/yyyy-MM-dd/CustomerId=*` .
-
-1. Pour tous les objets BLOB *directs* trouvés sous le ou les modèles d’URI que vous avez créés, consultez :
-
-   * Les valeurs de partition correspondent aux prédicats utilisés dans une requête.
-   * Le nom de l’objet BLOB commence par `NamePrefix` , si une telle propriété est définie.
-   * Le nom de l’objet BLOB se termine par `FileExtension` , si une telle propriété est définie.
-
-Une fois que toutes les conditions sont réunies, l’objet blob est extrait et traité par le moteur de requête.
-
-### <a name="spark-virtual-columns-support"></a>Prise en charge des colonnes virtuelles Spark
-
-Lorsque les données sont exportées à partir de Spark, les colonnes de partition (spécifiées dans la méthode du writer tableau `partitionBy` ) ne sont pas écrites dans les fichiers de données. Ce processus évite la duplication des données, car les données sont déjà présentes dans les noms de « dossiers ». Par exemple, `column1=<value>/column2=<value>/` et Spark peut le reconnaître lors de la lecture. Toutefois, Kusto nécessite que les colonnes de partition soient présentes dans les données elles-mêmes. La prise en charge des colonnes virtuelles dans Kusto est prévue. À ce moment-là, utilisez la solution de contournement suivante : lors de l’exportation de données à partir de Spark, créez une copie de toutes les colonnes sur lesquelles les données sont partitionnées avant d’écrire un tableau :
-
-```kusto
-df.withColumn("_a", $"a").withColumn("_b", $"b").write.partitionBy("_a", "_b").parquet("...")
-```
-
-Lors de la définition d’une table externe dans Kusto, spécifiez les colonnes de partition comme dans l’exemple suivant :
-
-```kusto
-.create external table ExternalSparkTable(a:string, b:datetime) 
-kind=blob
-partition by 
-   "_a="a,
-   format_datetime="'_b='yyyyMMdd" bin(b, 1d)
+.create external table ExternalTable (EventName:string, Revenue:double)  
+kind=blob  
+partition by (CustomerName:string, Date:datetime)  
+pathformat = ("customer=" CustomerName "/date=" datetime_pattern("yyyyMMdd", Date))  
 dataformat=parquet
 ( 
    h@'https://storageaccount.blob.core.windows.net/container1;secretKey'
 )
 ```
 
+<a name="file-filtering"></a>
+**Logique de filtrage de fichier**
+
+Lors de l’interrogation d’une table externe, le moteur de requête améliore les performances en filtrant les fichiers de stockage externe inutiles. Le processus d’itération sur les fichiers et de détermination de la nécessité de traiter un fichier est décrit ci-dessous.
+
+1. Générez un modèle d’URI qui représente un emplacement où les fichiers sont trouvés. Initialement, le modèle d’URI est égal à une chaîne de connexion fournie dans le cadre de la définition de la table externe. Si des partitions sont définies, elles sont rendues à l’aide de *[PathFormat](#path-format)*, puis ajoutées au modèle d’URI.
+
+2. Pour tous les fichiers trouvés sous le ou les modèles d’URI créés, activez la case à cocher :
+
+   * Les valeurs de partition correspondent aux prédicats utilisés dans une requête.
+   * Le nom de l’objet BLOB commence par `NamePrefix` , si une telle propriété est définie.
+   * Le nom de l’objet BLOB se termine par `FileExtension` , si une telle propriété est définie.
+
+Une fois que toutes les conditions sont remplies, le fichier est extrait et traité par le moteur de requête.
+
+> [!NOTE]
+> Le modèle d’URI initial est généré à l’aide de valeurs de prédicat de requête. Cela fonctionne mieux pour un ensemble limité de valeurs de chaîne, ainsi que pour des plages de temps fermées. 
+
 ## <a name="show-external-table-artifacts"></a>. afficher les artefacts de table externe
 
-* Retourne une liste de tous les artefacts qui seront traités lors de l’interrogation d’une table externe donnée.
-* Nécessite l' [autorisation de l’utilisateur de base de données](../management/access-control/role-based-authorization.md).
+Retourne une liste de tous les fichiers qui seront traités lors de l’interrogation d’une table externe donnée.
+
+> [!NOTE]
+> L’opération requiert l' [autorisation utilisateur de base de données](../management/access-control/role-based-authorization.md).
 
 **Syntaxe :** 
 
-`.show` `external` `table` *TableName* `artifacts`
+`.show``external` `table` *TableName* `artifacts` [ `limit` *MaxResults*]
+
+où *MaxResults* est un paramètre facultatif, qui peut être défini pour limiter le nombre de résultats.
 
 **Sortie**
 
 | Paramètre de sortie | Type   | Description                       |
 |------------------|--------|-----------------------------------|
-| Uri              | string | URI de l’artefact de stockage externe |
+| Uri              | string | URI du fichier de données de stockage externe |
+
+> [!TIP]
+> L’itération sur tous les fichiers référencés par une table externe peut être relativement coûteuse, en fonction du nombre de fichiers. Veillez à utiliser le `limit` paramètre si vous souhaitez simplement voir des exemples d’URI.
 
 **Exemples :**
 

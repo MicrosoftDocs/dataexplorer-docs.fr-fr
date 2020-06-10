@@ -7,20 +7,17 @@ ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 03/30/2020
-ms.openlocfilehash: e8125c6d0c327c98b80c4aeed6c587df12fdf91d
-ms.sourcegitcommit: aaada224e2f8824b51e167ddb6ff0bab92e5485f
+ms.date: 06/10/2020
+ms.openlocfilehash: 768f07307a6f43c2af2db79bc1221c140b7c9a6f
+ms.sourcegitcommit: be1bbd62040ef83c08e800215443ffee21cb4219
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84626648"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84664972"
 ---
-# <a name="data-partitioning-policy-preview"></a>Stratégie de partitionnement des données (préversion)
+# <a name="data-partitioning-policy"></a>Stratégie de partitionnement des données
 
 La stratégie de partitionnement définit si et comment les [étendues (données partitions)](../management/extents-overview.md) doivent être partitionnées pour une table spécifique.
-
-> [!NOTE]
-> La fonctionnalité de partitionnement des données est en version *préliminaire*.
 
 L’objectif principal de la stratégie est d’améliorer les performances des requêtes qui sont connues pour limiter le jeu de données des valeurs dans les colonnes partitionnées, ou agréger/joindre sur une colonne de chaîne de cardinalité élevée. La stratégie peut également entraîner une meilleure compression des données.
 
@@ -177,7 +174,7 @@ Les propriétés suivantes peuvent être définies dans le cadre de la stratégi
   * Cible maximale pour la somme du nombre de lignes des étendues sources d’une opération de partitionnement de données unique.
   * Cette propriété est facultative. Sa valeur par défaut est `0` , avec une cible par défaut de 5 millions enregistrements.
 
-## <a name="notes"></a>Remarques
+## <a name="notes"></a>Notes
 
 ### <a name="the-data-partitioning-process"></a>Processus de partitionnement des données
 
@@ -188,21 +185,21 @@ Les propriétés suivantes peuvent être définies dans le cadre de la stratégi
 
 #### <a name="monitoring"></a>Surveillance
 
-* Vous pouvez surveiller la progression ou l’état du partitionnement dans un cluster. Utilisez la commande [. afficher les diagnostics](../management/diagnostics.md#show-diagnostics) .
+Utilisez la commande [. afficher les diagnostics](../management/diagnostics.md#show-diagnostics) pour surveiller la progression ou l’état du partitionnement dans un cluster.
 
-```kusto
-.show diagnostics
-| project MinPartitioningPercentageInSingleTable,
-          TableWithMinPartitioningPercentage
-```
+    ```kusto
+    .show diagnostics
+    | project MinPartitioningPercentageInSingleTable,
+              TableWithMinPartitioningPercentage
+    ```
 
-La sortie comprend les éléments suivants :
+    The output includes:
 
-  * `MinPartitioningPercentageInSingleTable`: Pourcentage minimal de données partitionnées dans toutes les tables qui ont une stratégie de partitionnement de données dans le cluster.
+    * `MinPartitioningPercentageInSingleTable`: Pourcentage minimal de données partitionnées dans toutes les tables qui ont une stratégie de partitionnement de données dans le cluster.
       * Si ce pourcentage reste constamment inférieur à 90%, évaluez la capacité de partitionnement du cluster (voir [capacité](partitioningpolicy.md#capacity)).
-  * `TableWithMinPartitioningPercentage`: Nom qualifié complet de la table dont le pourcentage de partitionnement est indiqué ci-dessus.
+    * `TableWithMinPartitioningPercentage`: Nom qualifié complet de la table dont le pourcentage de partitionnement est indiqué ci-dessus.
 
-* Pour surveiller les commandes de partitionnement et l’utilisation de leurs ressources, vous pouvez utiliser les [commandes. Show](commands.md). Par exemple :
+Utilisez les [commandes. Show](commands.md) pour surveiller les commandes de partitionnement et leur utilisation des ressources. Par exemple :
 
 ```kusto
 .show commands 
