@@ -145,7 +145,11 @@
     - name: Visualiser les données
       items:
         - name: Tableaux de bord Azure Data Explorer
-          href: azure-data-explorer-dashboards.md
+          items:
+            - name: Utilisation de tableaux de bord
+              href: azure-data-explorer-dashboards.md
+            - name: Utilisation des paramètres de tableau de bord
+              href: dashboard-parameters.md
         - name: Power BI
           items:
             - name: Meilleures pratiques
@@ -1233,7 +1237,7 @@
                 - name: Vue d’ensemble des tables
                   href: ./kusto/management/tables.md
                 - name: .alter merge table
-                  href: ./kusto/management/alter-table-command.md
+                  href: ./kusto/management/alter-merge-table-command.md
                 - name: .alter table
                   href: ./kusto/management/alter-table-command.md
                 - name: .alter table docstring
