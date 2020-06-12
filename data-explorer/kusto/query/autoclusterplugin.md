@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 0b2d76c0dd7a3ee0724db67aa8cb0cd9229748fa
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: bfa5286a03d06282682953a23c6b2a2705c58a9c
+ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83225528"
+ms.lasthandoff: 06/11/2020
+ms.locfileid: "84717068"
 ---
 # <a name="autocluster-plugin"></a>plug-in de clusters
 
@@ -21,7 +21,7 @@ ms.locfileid: "83225528"
 T | evaluate autocluster()
 ```
 
-AutoCluster recherche les modèles courants d’attributs discrets (dimensions) dans les données et réduit les résultats de la requête d’origine (qu’elle fasse 100 ou 100 000 lignes) à un petit nombre de modèles. AutoCluster a été développé pour analyser les échecs (par exemple, les exceptions, les incidents) mais peut éventuellement fonctionner sur n’importe quel jeu de données filtré. 
+`autocluster`recherche des modèles communs d’attributs discrets (dimensions) dans les données. Il réduit ensuite les résultats de la requête d’origine, qu’il s’agisse de 100 ou 100 000 lignes, avec un petit nombre de modèles. Le plug-in a été développé pour faciliter l’analyse des défaillances (telles que les exceptions ou les incidents), mais peut éventuellement fonctionner sur n’importe quel jeu de données filtré.
 
 **Syntaxe**
 
@@ -29,11 +29,11 @@ AutoCluster recherche les modèles courants d’attributs discrets (dimensions) 
 
 **Retourne**
 
-AutoCluster retourne un jeu de modèles (généralement petit) qui permettent de capturer des parties de données comportant des valeurs courantes partagées par plusieurs attributs discrets. Chaque modèle est représenté par une ligne dans les résultats. 
+Le `autocluster` plug-in retourne un ensemble de modèles (généralement petit). Les modèles capturent des portions des données avec des valeurs communes partagées sur plusieurs attributs discrets. Chaque modèle dans les résultats est représenté par une ligne.
 
-La première colonne est l’ID de segment. Les deux colonnes suivantes correspondent au nombre et au pourcentage de lignes de la requête d’origine capturées par le modèle. Les colonnes restantes sont issues de la requête d’origine et leur valeur est soit une valeur spécifique de la colonne soit une valeur générique (null par défaut), qui correspond à des valeurs de variables. 
+La première colonne est l’ID de segment. Les deux colonnes suivantes contiennent le nombre et le pourcentage de lignes de la requête d’origine qui sont capturés par le modèle. Les colonnes restantes proviennent de la requête d’origine. Leur valeur est soit une valeur spécifique de la colonne, soit une valeur de caractère générique (null par défaut) qui signifie des valeurs de variables.
 
-Notez que les modèles ne sont pas distincts : ils peuvent se chevaucher et ne couvrent généralement pas toutes les lignes d’origine. Certaines lignes peuvent n’appartenir à aucun modèle.
+Les modèles ne sont pas distincts, peuvent se chevaucher et ne couvrent généralement pas toutes les lignes d’origine. Certaines lignes peuvent n’appartenir à aucun modèle.
 
 > [!TIP]
 > Utilisez [Where](./whereoperator.md) et [Project](./projectoperator.md) dans le canal d’entrée pour réduire les données uniquement à ce qui vous intéresse.
@@ -44,36 +44,18 @@ Notez que les modèles ne sont pas distincts : ils peuvent se chevaucher et ne c
 
 `T | evaluate autocluster(`[*SizeWeight*, *WeightColumn*, *NumSeeds*, *CustomWildcard*, *CustomWildcard*,...]`)`
 
-Tous les arguments sont facultatifs, mais ils doivent alors être ordonnés comme ci-dessus. Pour indiquer que la valeur par défaut doit être utilisée, insérez le signe tilde - ’ ~’ (voir les exemples ci-dessous).
+Tous les arguments sont facultatifs, mais ils doivent alors être ordonnés comme ci-dessus. Pour indiquer que la valeur par défaut doit être utilisée, placez la valeur de tilde de chaîne « ~ » (consultez la colonne « example » dans la table).
 
-Arguments disponibles :
+|Argument        | Type, plage, valeur par défaut              |Description                | Exemple                                        |
+|----------------|-----------------------------------|---------------------------|------------------------------------------------|
+| SizeWeight     | 0 < *double* < 1 [par défaut : 0,5]   | Vous donne un contrôle sur l’équilibre entre le générique (couverture élevée) et les valeurs informatives (nombreuses). Si vous augmentez la valeur, cela réduit généralement le nombre de modèles, et chaque modèle a tendance à couvrir un pourcentage plus élevé. Si vous diminuez la valeur, cela produit généralement des modèles plus spécifiques avec davantage de valeurs partagées et une couverture de pourcentage plus faible. La formule sous-capot est une moyenne géométrique pondérée entre le score générique normalisé et le score informatif avec les pondérations `SizeWeight` et`1-SizeWeight`                   | `T | evaluate autocluster(0.8)`                |
+|WeightColumn    | *column_name*                     | Considère chaque ligne de l’entrée en fonction de la pondération spécifiée (par défaut, chaque ligne a une pondération de « 1 »). L’argument doit être un nom de colonne numérique (tel que int, long, Real). Il est courant d’utiliser une colonne de pondération en prenant en compte l’échantillonnage ou la création de compartiments/l’agrégation des données déjà incorporées dans chaque ligne.                                                                                                       | `T | evaluate autocluster('~', sample_Count)` | 
+| NumSeeds        | *int* [valeur par défaut : 25]              | Le nombre de valeurs initiales détermine le nombre de points de recherche locaux initiaux de l’algorithme. Dans certains cas, selon la structure des données et si vous augmentez le nombre de graines, le nombre (ou la qualité) des résultats augmente dans l’espace de recherche développé avec un compromis de requête plus lent. La valeur a réduit les résultats dans les deux sens. par conséquent, si vous la réduisez au-dessous de cinq, vous obtiendrez des améliorations de performances négligeables. Si vous augmentez à plus de 50, il générera rarement des modèles supplémentaires.                                         | `T | evaluate autocluster('~', '~', 15)`       |
+| CustomWildcard  | *« any_value_per_type »*           | Définit la valeur de caractère générique pour un type spécifique dans la table de résultats. Elle indique que le modèle actuel n’a pas de restriction sur cette colonne. La valeur par défaut est null, car la chaîne par défaut est une chaîne vide. Si la valeur par défaut est une bonne valeur dans les données, une autre valeur de caractère générique doit être utilisée (par exemple, `*` ).                                                                                                                | `T | evaluate autocluster('~', '~', '~', '*', int(-1), double(-1), long(0), datetime(1900-1-1))` |
 
-* SizeWeight-0 < *double* < 1 [par défaut : 0,5]
+## <a name="examples"></a>Exemples
 
-    Vous permet de contrôler l’équilibre entre le générique (couverture élevée) et l’informatif (nombreuses valeurs partagées). L’augmentation de la valeur réduit généralement le nombre de modèles, et chaque modèle a tendance à couvrir un pourcentage plus élevé. La diminution de la valeur produit généralement des modèles plus spécifiques avec davantage de valeurs partagées et un pourcentage de couverture moins élevé. Le sous la formule de capot est une moyenne géométrique pondérée entre le score générique normalisé et le score informatif avec `SizeWeight` et `1-SizeWeight` comme poids. 
-
-    Exemple : `T | evaluate autocluster(0.8)`
-
-* WeightColumn - *nom_colonne*
-
-    Considère chaque ligne de l’entrée en fonction de la pondération spécifiée (par défaut, chaque ligne a une pondération de « 1 »). L’argument doit être un nom de colonne numérique (par exemple, int, long, real). Il est courant d’utiliser une colonne de pondération en prenant en compte l’échantillonnage ou la création de compartiments/l’agrégation des données déjà incorporées dans chaque ligne.
-    
-    Exemple : `T | evaluate autocluster('~', sample_Count)` 
-
-* NumSeeds- *int* [par défaut : 25] 
-
-    Le nombre de valeurs initiales détermine le nombre de points de recherche locaux initiaux de l’algorithme. Dans certains cas, selon la structure des données, l’augmentation du nombre de valeurs initiales augmente le nombre (ou la qualité) des résultats par le biais d’un espace de recherche plus important avec un compromis de requête plus lent. La valeur a réduit les résultats dans les deux sens, si bien que sa diminution est inférieure à 5 pour obtenir des améliorations de performances négligeables et une augmentation de la valeur supérieure à 50 générera rarement des modèles supplémentaires.
-
-    Exemple : `T | evaluate autocluster('~', '~', 15)`
-
-* CustomWildcard- *« any_value_per_type »*
-
-    Définit la valeur de caractère générique pour un type spécifique dans la table de résultats qui indique que le modèle actuel ne présente pas de restriction sur cette colonne.
-    La valeur par défaut est null, la chaîne par défaut est une chaîne vide. Si la valeur par défaut est une valeur viable dans les données, une autre valeur de caractère générique doit être utilisée (par exemple, `*` ).
-
-    Exemple : `T | evaluate autocluster('~', '~', '~', '*', int(-1), double(-1), long(0), datetime(1900-1-1))`
-
-**Exemple**
+### <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -84,13 +66,13 @@ StormEvents
 | evaluate autocluster(0.6)
 ```
 
-|ID de segment|Count|Pourcentage|État|Type d’événement|Dommage|
+|ID de segment|Count|Pourcentage|State|Type d’événement|Dommage|
 |---|---|---|---|---|---|---|---|---|
 |0|2278|38,7||Grêle|Non
 |1|512|8,7||Vent d’orage|YES
 |2|898|15,3|TEXAS||
 
-**Exemple avec des caractères génériques personnalisés**
+### <a name="example-with-custom-wildcards"></a>Exemple avec des caractères génériques personnalisés
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -101,18 +83,15 @@ StormEvents
 | evaluate autocluster(0.2, '~', '~', '*')
 ```
 
-|ID de segment|Count|Pourcentage|État|Type d’événement|Dommage|
+|ID de segment|Count|Pourcentage|State|Type d’événement|Dommage|
 |---|---|---|---|---|---|---|---|---|
 |0|2278|38,7|\*|Grêle|Non
 |1|512|8,7|\*|Vent d’orage|YES
 |2|898|15,3|TEXAS|\*|\*
 
-**Voir aussi**
+## <a name="see-also"></a>Voir aussi
 
 * [basket](./basketplugin.md)
 * [abaisse](./reduceoperator.md)
 
-**Informations supplémentaires**
-
-* AutoCluster repose en grande partie sur l’algorithme Seed-Expand décrit dans le document suivant : [Algorithms for Telemetry Data Mining using Discrete Attributes](https://www.scitepress.org/DigitalLibrary/PublicationsDetail.aspx?ID=d5kcrO+cpEU=&t=1). 
-
+* `autocluster`repose en grande partie sur l’algorithme Seed-Expand du document suivant : [algorithmes pour l’exploration de données de télémétrie à l’aide d’attributs discrets](https://www.scitepress.org/DigitalLibrary/PublicationsDetail.aspx?ID=d5kcrO+cpEU=&t=1). 

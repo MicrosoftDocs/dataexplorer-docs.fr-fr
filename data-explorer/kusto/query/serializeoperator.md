@@ -1,6 +1,6 @@
 ---
-title: opérateur de sérialisation - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit l’opérateur de sérialisation dans Azure Data Explorer.
+title: opérateur de sérialisation-Azure Explorateur de données
+description: Cet article décrit l’opérateur Serialize dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 5402d1e1fcceb42f02643bf24918ed07beddaed7
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 708a5ccd5f8402dedb074a6ab8c17b1d7762839c
+ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81509110"
+ms.lasthandoff: 06/11/2020
+ms.locfileid: "84717119"
 ---
 # <a name="serialize-operator"></a>serialize, opérateur
 
-Marque que l’ordre de l’ensemble de ligne d’entrée est sûr pour l’utilisation des fonctions de fenêtre.
+Marque que l’ordre de l’ensemble de lignes d’entrée peut être utilisé en toute sécurité pour les fonctions de fenêtre.
 
-L’opérateur a une signification déclarative, et il marque la ligne d’entrée définie comme sérialisée (commandée) afin que [les fonctions de fenêtre](./windowsfunctions.md) puissent être appliquées à elle.
+L’opérateur a une signification déclarative. Elle marque l’ensemble de lignes d’entrée comme étant sérialisé (ordonné), afin que les [fonctions de fenêtre](./windowsfunctions.md) puissent être appliquées à celle-ci.
 
 ```kusto
 T | serialize rn=row_number()
@@ -27,9 +27,9 @@ T | serialize rn=row_number()
 
 **Syntaxe**
 
-`serialize`[*Nom1* `=` *Expr1* [`,` *Name2* `=` *Expr2*]...]
+`serialize`[*Nom1* `=` *Expr1* [ `,` *nom2* `=` *expr2*]...]
 
-* Les paires *Name*/*Expr* sont similaires à celles de l’opérateur [d’extension.](./extendoperator.md)
+* Les paires *nom* / *expr* sont similaires à celles de l' [opérateur Extend](./extendoperator.md).
 
 **Exemple**
 
@@ -43,12 +43,12 @@ Traces
 | serialize rn = row_number()
 ```
 
-L’ensemble de la ligne de sortie des opérateurs suivants est marqué comme sérialisé :
+L’ensemble de lignes de sortie des opérateurs suivants est marqué comme étant sérialisé.
 
-[gamme](./rangeoperator.md), [trier](./sortoperator.md), [ordre](./orderoperator.md), [haut](./topoperator.md), [top-hitters](./tophittersoperator.md), [getschema](./getschemaoperator.md).
+[plage](./rangeoperator.md), [Tri](./sortoperator.md), [ordre](./orderoperator.md), [haut](./topoperator.md), [haut-Hitters](./tophittersoperator.md), [GetSchema](./getschemaoperator.md).
 
-L’ensemble de la ligne de sortie des opérateurs suivants est marqué comme non-sérialisé :
+L’ensemble de lignes de sortie des opérateurs suivants est marqué comme non sérialisé.
 
-[échantillon](./sampleoperator.md), [échantillon distinct](./sampledistinctoperator.md), [distinct](./distinctoperator.md), [rejoindre](./joinoperator.md), [top-nested](./topnestedoperator.md), [compter](./countoperator.md), [résumer](./summarizeoperator.md), [facette](./facetoperator.md), [mv-expand](./mvexpandoperator.md), [évaluer](./evaluateoperator.md), [réduire par](./reduceoperator.md), [make-series](./make-seriesoperator.md)
+[Sample](./sampleoperator.md), [Sample-distinct](./sampledistinctoperator.md), [distinct](./distinctoperator.md), [join](./joinoperator.md), [combriqued](./topnestedoperator.md), [Count](./countoperator.md), [Resume](./summarizeoperator.md), [facette](./facetoperator.md), [MV-Expand](./mvexpandoperator.md), [Evaluate](./evaluateoperator.md), [reduire par](./reduceoperator.md), [Make-Series](./make-seriesoperator.md)
 
-Tous les autres opérateurs préservent la propriété de sérialisation (si l’ensemble de la ligne d’entrée est sérialisé, il en va de même pour l’ensemble de la ligne de sortie).
+Tous les autres opérateurs conservent la propriété de sérialisation. Si l’ensemble de lignes d’entrée est sérialisé, l’ensemble de lignes de sortie est également sérialisé.

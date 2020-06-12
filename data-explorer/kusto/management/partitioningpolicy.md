@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/10/2020
-ms.openlocfilehash: 768f07307a6f43c2af2db79bc1221c140b7c9a6f
-ms.sourcegitcommit: be1bbd62040ef83c08e800215443ffee21cb4219
+ms.openlocfilehash: 2a54d6e8bdb891500778f2043f2b1aa4094162d2
+ms.sourcegitcommit: 743e8b1def28bc8f875b22b857ec345eeb7e5acc
 ms.translationtype: MT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 06/10/2020
-ms.locfileid: "84664972"
+ms.locfileid: "84671442"
 ---
 # <a name="data-partitioning-policy"></a>Stratégie de partitionnement des données
 
@@ -187,17 +187,16 @@ Les propriétés suivantes peuvent être définies dans le cadre de la stratégi
 
 Utilisez la commande [. afficher les diagnostics](../management/diagnostics.md#show-diagnostics) pour surveiller la progression ou l’état du partitionnement dans un cluster.
 
-    ```kusto
-    .show diagnostics
-    | project MinPartitioningPercentageInSingleTable,
-              TableWithMinPartitioningPercentage
-    ```
+```kusto
+.show diagnostics
+| project MinPartitioningPercentageInSingleTable, TableWithMinPartitioningPercentage
+```
 
-    The output includes:
+La sortie comprend les éléments suivants :
 
-    * `MinPartitioningPercentageInSingleTable`: Pourcentage minimal de données partitionnées dans toutes les tables qui ont une stratégie de partitionnement de données dans le cluster.
-      * Si ce pourcentage reste constamment inférieur à 90%, évaluez la capacité de partitionnement du cluster (voir [capacité](partitioningpolicy.md#capacity)).
-    * `TableWithMinPartitioningPercentage`: Nom qualifié complet de la table dont le pourcentage de partitionnement est indiqué ci-dessus.
+  * `MinPartitioningPercentageInSingleTable`: Pourcentage minimal de données partitionnées dans toutes les tables qui ont une stratégie de partitionnement de données dans le cluster.
+    * Si ce pourcentage reste constamment inférieur à 90%, évaluez la capacité de partitionnement du cluster (voir [capacité](partitioningpolicy.md#capacity)).
+  * `TableWithMinPartitioningPercentage`: Nom qualifié complet de la table dont le pourcentage de partitionnement est indiqué ci-dessus.
 
 Utilisez les [commandes. Show](commands.md) pour surveiller les commandes de partitionnement et leur utilisation des ressources. Par exemple :
 

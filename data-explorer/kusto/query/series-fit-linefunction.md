@@ -8,24 +8,24 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 876eeaa4550a5433354d50dd44fae3920177d335
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: f0401a5b10d2feb74c629e6b04b127e6d36057ad
+ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372677"
+ms.lasthandoff: 06/11/2020
+ms.locfileid: "84717170"
 ---
 # <a name="series_fit_line"></a>series_fit_line()
 
 Applique la régression linéaire sur une série, en retournant plusieurs colonnes.  
 
-Prend une expression contenant un tableau numérique dynamique comme entrée et effectue une [régression linéaire](https://en.wikipedia.org/wiki/Line_fitting) afin de trouver la ligne qui la correspond le mieux. Cette fonction doit être utilisée sur des tableaux de séries chronologiques, pour correspondre à la sortie de l’opérateur make-series. Il génère les colonnes suivantes :
-* `rsquare`: [r-Square](https://en.wikipedia.org/wiki/Coefficient_of_determination) est une mesure standard de la qualité adaptée. Il s’agit d’un nombre dans la plage [0-1], où 1 est la meilleure correspondance possible, et 0 signifie que les données sont totalement désordonnées et ne correspondent à aucune ligne 
-* `slope`: pente de la ligne approximative (il s’agit d’un de y = ax + b)
-* `variance`: variance des données d’entrée
-* `rvariance`: variance résiduelle qui est l’écart entre les valeurs des données d’entrée et les valeurs approximatives.
-* `interception`: interception de la ligne approximative (il s’agit de b de y = ax + b)
-* `line_fit`: tableau numérique contenant une série de valeurs de la ligne la mieux adaptée. La longueur de la série est égale à la longueur du tableau d’entrée. Elle est principalement utilisée pour les graphiques.
+Accepte une expression contenant un tableau numérique dynamique comme entrée et effectue une [régression linéaire](https://en.wikipedia.org/wiki/Line_fitting) pour trouver la ligne qui la correspond le mieux. Cette fonction doit être utilisée sur des tableaux de séries chronologiques, pour correspondre à la sortie de l’opérateur make-series. La fonction génère les colonnes suivantes :
+* `rsquare`: [r-Square](https://en.wikipedia.org/wiki/Coefficient_of_determination) est une mesure standard de la qualité adaptée. La valeur est un nombre compris dans la plage [0-1], où 1-est le meilleur ajustement possible, et 0 signifie que les données ne sont pas ordonnées et ne correspondent à aucune ligne. 
+* `slope`: Pente de la ligne approximative ("a" à partir de y = ax + b).
+* `variance`: Variance des données d’entrée.
+* `rvariance`: Variance résiduelle qui est l’écart entre les valeurs des données d’entrée et les valeurs approximatives.
+* `interception`: Interception de la ligne approximative ("b" à partir de y = ax + b).
+* `line_fit`: Tableau numérique contenant une série de valeurs de la ligne la mieux adaptée. La longueur de la série est égale à la longueur du tableau d’entrée. Valeur utilisée pour la représentation graphique.
 
 **Syntaxe**
 
