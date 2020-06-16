@@ -19,7 +19,7 @@
       href: write-queries.md
     - name: Ingestion programmatique d’objets blob (E2E)
       items:
-        - name: 'C#'
+        - name: C#
           href: end-to-end-csharp.md
         - name: Python
           href: end-to-end-python.md
@@ -58,7 +58,7 @@
           href: create-cluster-database-cli.md
         - name: PowerShell
           href: create-cluster-database-powershell.md
-        - name: 'C#'
+        - name: C#
           href: create-cluster-database-csharp.md
         - name: Python
           href: create-cluster-database-python.md
@@ -75,14 +75,16 @@
             - name: Ingestion en un clic dans une table existante
               href: one-click-ingestion-existing-table.md
         - name: Ingestion de streaming
-          href: ingest-data-streaming.md
+          items:
+            - name: Ingestion de streaming
+              href: ingest-data-streaming.md
         - name: Utilisation de LightIngest
           href: lightingest.md
         - name: Event Hub
           items:
             - name: Portail Azure
               href: ingest-data-event-hub.md
-            - name: 'C#'
+            - name: C#
               href: data-connection-event-hub-csharp.md
             - name: Python
               href: data-connection-event-hub-python.md
@@ -92,7 +94,7 @@
           items:
             - name: Portail Azure
               href: ingest-data-event-grid.md
-            - name: 'C#'
+            - name: C#
               href: data-connection-event-grid-csharp.md
             - name: Python
               href: data-connection-event-grid-python.md
@@ -102,7 +104,7 @@
           items:
             - name: Portail Azure
               href: ingest-data-iot-hub.md
-            - name: 'C#'
+            - name: C#
               href: data-connection-iot-hub-csharp.md
             - name: Python
               href: data-connection-iot-hub-python.md
@@ -196,7 +198,7 @@
           items:
             - name: Portail
               href: customer-managed-keys-portal.md
-            - name: 'C#'
+            - name: C#
               href: customer-managed-keys-csharp.md
             - name: "Modèle Azure\_Resource\_Manager"
               href: customer-managed-keys-resource-manager.md
@@ -220,7 +222,7 @@
               href: check-cluster-health.md
             - name: Ajouter un principal de cluster
               items:
-                - name: 'C#'
+                - name: C#
                   href: cluster-principal-csharp.md
                 - name: Python
                   href: cluster-principal-python.md
@@ -234,7 +236,7 @@
               href: manage-database-permissions.md
             - name: Ajouter un principal de base de données
               items:
-                - name: 'C#'
+                - name: C#
                   href: database-principal-csharp.md
                 - name: Python
                   href: database-principal-python.md
@@ -242,7 +244,7 @@
                   href: database-principal-resource-manager.md
             - name: Stratégies
               items:
-                - name: 'C#'
+                - name: C#
                   href: database-table-policies-csharp.md
                 - name: Python
                   href: database-table-policies-python.md
@@ -609,6 +611,8 @@
               href: ./kusto/query/atan2function.md
             - name: bag_keys()
               href: ./kusto/query/bagkeysfunction.md
+            - name: bag_merge()
+              href: ./kusto/query/bag-merge-function.md
             - name: base64_decode_toarray()
               href: ./kusto/query/base64_decode_toarrayfunction.md
             - name: base64_decode_tostring()
@@ -773,7 +777,7 @@
               href: ./kusto/query/isnanfunction.md
             - name: 'isnotempty(), notempty()'
               href: ./kusto/query/isnotemptyfunction.md
-            - name: 'isnotnull(), notempty()'
+            - name: 'isnotnull(), notnull()'
               href: ./kusto/query/isnotnullfunction.md
             - name: isnull()
               href: ./kusto/query/isnullfunction.md
@@ -1238,6 +1242,8 @@
                   href: ./kusto/management/alter-database.md
                 - name: .show database schema
                   href: ./kusto/management/show-schema-database.md
+                - name: .execute database script
+                  href: ./kusto/management/execute-database-script.md
             - name: Tables
               items:
                 - name: Vue d’ensemble des tables
@@ -1422,6 +1428,12 @@
               href: ./kusto/management/data-ingestion/eventhub.md
             - name: Ingérer à partir d’IoT Hub
               href: ./kusto/management/data-ingestion/iothub.md
+            - name: Ingestion de streaming
+              items:
+                - name: Ingestion de streaming et changements de schéma
+                  href: ./kusto/management/data-ingestion/streaming-ingestion-schema-changes.md
+                - name: Effacer le cache de schéma pour l’ingestion de streaming
+                  href: ./kusto/management/data-ingestion/clear-schema-cache-command.md
         - name: Exportation de données
           href: ./kusto/management/data-export/index.md
           items:
