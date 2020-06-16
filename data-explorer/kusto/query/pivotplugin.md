@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a046cc369dd466defa50916ee78b2c29f5f88ea0
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 4662b1bd9f68778cab1f799f564499e23add5812
+ms.sourcegitcommit: 6a0bd5b84f9bd739510c6a75277dec3a9e851edd
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373217"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84788900"
 ---
 # <a name="pivot-plugin"></a>plug-in pivot
 
@@ -30,7 +30,7 @@ T | evaluate pivot(PivotColumn)
 **Arguments**
 
 * *pivotColumn*: colonne à faire pivoter. chaque valeur unique de cette colonne sera une colonne dans la table de sortie.
-* *fonction d’agrégation*: (facultatif) agrège plusieurs lignes de la table d’entrée en une seule ligne dans la table de sortie. Fonctions actuellement prises en charge : `min()` , `max()` ,, `any()` `sum()` , `dcount()` , `avg()` , `stdev()` , `variance()` et `count()` (la valeur par défaut est `count()` ).
+* *fonction d’agrégation*: (facultatif) agrège plusieurs lignes de la table d’entrée en une seule ligne dans la table de sortie. Fonctions actuellement prises en charge : `min()` , `max()` , `any()` , `sum()` , `dcount()` , `avg()` , `stdev()` , `variance()` , `make_list()` , `make_bag()` , `make_set()` , `count()` (la valeur par défaut est `count()` ).
 * noms de colonne *Colonne1*, *Column2*,... : (facultatif). La table de sortie contient une colonne supplémentaire pour chaque colonne spécifiée. valeur par défaut : toutes les colonnes autres que la colonne de tableau croisé dynamique et la colonne d’agrégation.
 
 **Retourne**

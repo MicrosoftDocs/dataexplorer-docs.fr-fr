@@ -1,6 +1,6 @@
 ---
-title: Curseurs de base de données - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit les curseurs de base de données dans Azure Data Explorer.
+title: Curseurs de base de données-Azure Explorateur de données
+description: Cet article décrit les curseurs de base de données dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,39 +8,41 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 90ec677a7eaf1f326509828b5415b022742fd9ed
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 75dc0aa0ff23bfb4f08be9fac84fa34cf9526508
+ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81521316"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84780624"
 ---
 # <a name="database-cursors"></a>Curseurs de base de données
 
-Un **curseur de base de données** est un objet au niveau de la base de données qui permet d’interroger une base de données plusieurs fois et d’obtenir des résultats cohérents même s’il y a des opérations continues d’appendice/de conservation des données qui se déroulent en parallèle avec les requêtes.
+Un **curseur de base de données** est un objet de niveau base de données qui vous permet d’interroger plusieurs fois une base de données. Vous obtiendrez des résultats cohérents même si `data-append` des `data-retention` opérations ou se produisent en parallèle avec les requêtes.
 
-Les curseurs de base de données sont conçus pour aborder deux scénarios importants :
+Les curseurs de base de données sont conçus pour répondre à deux scénarios importants :
 
-* La possibilité de répéter la même requête plusieurs fois et d’obtenir les mêmes résultats, tant que la requête indique le « même ensemble de données ».
+* La possibilité de répéter plusieurs fois la même requête et d’obtenir les mêmes résultats, tant que la requête indique « même jeu de données ».
 
-* La possibilité d’effectuer une requête « exactement une fois » (une requête qui ne fait que « voir » les données qu’une requête précédente n’a pas vu parce que les données n’étaient pas disponibles à l’époque).
-   Cela permet, par exemple, d’itérer à travers toutes les données nouvellement arrivées dans un tableau sans crainte de traiter le même enregistrement deux fois ou de sauter des enregistrements par erreur.
+* La possibilité de créer une requête « exactement une fois ». Cette requête ne voit que les données qu’une requête précédente ne s’est pas affichée, car les données n’étaient pas disponibles.
+   La requête vous permet d’effectuer des itérations, par exemple, à travers toutes les données nouvellement arrivées dans une table sans crainte de traiter le même enregistrement deux fois ou en ignorant les enregistrements par erreur.
 
-Le curseur de base de données est représenté dans la `string`langue de requête comme une valeur scalaire de type . La valeur réelle doit être considérée comme opaque et il n’y a aucun support pour toute opération autre que l’économie de sa valeur et / ou en utilisant les fonctions de curseur noté ci-dessous.
+Le curseur de base de données est représenté dans le langage de requête sous la forme d’une valeur scalaire de type `string` . La valeur réelle doit être considérée comme opaque et il n’y a aucune prise en charge pour toute opération autre que d’enregistrer sa valeur ou d’utiliser les fonctions de curseur indiquées ci-dessous.
 
 ## <a name="cursor-functions"></a>Fonctions curseur
 
-Kusto fournit trois fonctions pour aider à mettre en œuvre les deux scénarios ci-dessus :
+Kusto fournit trois fonctions pour vous aider à implémenter les deux scénarios ci-dessus :
 
-* [cursor_current):](../query/cursorcurrent.md)Utilisez cette fonction pour récupérer la valeur actuelle du curseur de base de données.
-   Vous pouvez utiliser cette valeur comme argument aux deux autres fonctions.
-   Cette fonction a également `current_cursor()`un synonyme, .
+* [cursor_current ()](../query/cursorcurrent.md): utilisez cette fonction pour récupérer la valeur actuelle du curseur de la base de données.
+   Vous pouvez utiliser cette valeur comme argument pour les deux autres fonctions.
+   Cette fonction a également un synonyme, `current_cursor()` .
 
-* [cursor_after (rhs:string)](../query/cursorafterfunction.md): Cette fonction spéciale peut être utilisée sur les enregistrements de table qui ont activé la [politique IngestionTime.](ingestiontime-policy.md) Il renvoie une valeur `bool` scalaire de `ingestion_time()` type indiquant si la `rhs` valeur du curseur de base de données de l’enregistrement vient après la valeur du curseur de base de données.
+* [cursor_after (RHS : String)](../query/cursorafterfunction.md): cette fonction spéciale peut être utilisée sur les enregistrements de table pour lesquels la [stratégie IngestionTime](ingestiontime-policy.md) est activée. Elle retourne une valeur scalaire de type `bool` indiquant si la valeur du `ingestion_time()` curseur de la base de données de l’enregistrement vient après la `rhs` valeur du curseur de la base de données.
 
-* [cursor_before_or_at (rhs:string)](../query/cursorbeforeoratfunction.md): Cette fonction spéciale peut être utilisée sur les enregistrements de table qui ont activé la [politique IngestionTime.](ingestiontime-policy.md) Il renvoie une valeur `bool` scalaire de `ingestion_time()` type indiquant si la `rhs` valeur du curseur de base de données de l’enregistrement vient après la valeur du curseur de base de données.
+* [cursor_before_or_at (RHS : String)](../query/cursorbeforeoratfunction.md): cette fonction spéciale peut être utilisée sur les enregistrements de table pour lesquels la [stratégie IngestionTime](ingestiontime-policy.md) est activée. Elle retourne une valeur scalaire de type `bool` indiquant si la valeur du `ingestion_time()` curseur de la base de données de l’enregistrement vient après la `rhs` valeur du curseur de la base de données.
 
-Les deux fonctions`cursor_after` `cursor_before_or_at`spéciales ( et ) ont également un effet secondaire: Quand ils sont utilisés, Kusto émettra la **valeur actuelle du curseur de base de données** à l’ensemble `@ExtendedProperties` de résultat de la requête. Le nom de propriété pour `Cursor`le curseur est, et sa valeur est un seul `string`. Par exemple :
+Les deux fonctions spéciales ( `cursor_after` et `cursor_before_or_at` ) ont également un effet secondaire : quand elles sont utilisées, Kusto émet la **valeur actuelle du curseur de base de données** dans le `@ExtendedProperties` jeu de résultats de la requête. Le nom de la propriété pour le curseur est `Cursor` , et sa valeur est un unique `string` . 
+
+Par exemple :
 
 ```json
 {"Cursor" : "636040929866477946"}
@@ -48,17 +50,17 @@ Les deux fonctions`cursor_after` `cursor_before_or_at`spéciales ( et ) ont éga
 
 ## <a name="restrictions"></a>Restrictions
 
-Les curseurs de base de données ne peuvent être utilisés qu’avec des tableaux pour lesquels la [stratégie IngestionTime](ingestiontime-policy.md) a été activée. Chaque enregistrement dans un tel tableau est associé à la valeur du curseur de base de données qui était en vigueur lorsque l’enregistrement a été ingéré, et donc la fonction [ingestion_time))](../query/ingestiontimefunction.md) peut être utilisée.
+Les curseurs de base de données ne peuvent être utilisés qu’avec les tables pour lesquelles la [stratégie IngestionTime](ingestiontime-policy.md) a été activée. Chaque enregistrement dans une telle table est associé à la valeur du curseur de base de données qui était en vigueur lors de l’ingestion de l’enregistrement.
+Par conséquent, la fonction [ingestion_time ()](../query/ingestiontimefunction.md) peut être utilisée.
 
-L’objet curseur de base de données ne contient aucune valeur significative à moins que la base de données ait au moins une table qui a une [stratégie IngestionTime](ingestiontime-policy.md) définie.
-En outre, il est seulement garanti que cette valeur est mise à jour comme nécessaire par l’historique de l’ingestion dans de telles tables et les requêtes exécutent que la référence de ces tables. Il pourrait, ou non, être mis à jour dans d’autres cas.
+L’objet curseur de base de données ne contient aucune valeur significative, sauf si la base de données a au moins une table qui a une [stratégie IngestionTime](ingestiontime-policy.md) définie.
+Cette valeur est garantie pour la mise à jour, en fonction des besoins de l’historique d’ingestion, dans ces tables et les requêtes exécutées, qui font référence à ces tables. Elle peut, ou non, être mise à jour dans d’autres cas.
 
-Le processus d’ingestion engage d’abord les données (de sorte qu’elles sont disponibles pour la requête), et seulement alors attribue une valeur de curseur réelle à chaque enregistrement. Cela signifie que si l’on tente de demander des données immédiatement après l’achèvement de l’ingestion à l’aide d’un curseur de base de données, les résultats pourraient ne pas encore incorporer les derniers enregistrements ajoutés, parce qu’ils n’ont pas encore été attribués la valeur du curseur. De même, la récupération de la valeur actuelle du curseur de base de données à plusieurs reprises pourrait retourner la même valeur (même si l’ingestion a été faite entre les deux) parce que seule l’engagement curseur mettra à jour sa valeur.
+Le processus d’ingestion valide d’abord les données, afin qu’elles soient disponibles pour l’interrogation, et attribue uniquement une valeur de curseur réelle à chaque enregistrement. Si vous tentez de rechercher des données immédiatement après la fin de l’ingestion à l’aide d’un curseur de base de données, il se peut que les résultats n’intègrent pas encore les derniers enregistrements ajoutés, car la valeur de curseur n’a pas encore été affectée. En outre, la récupération de la valeur du curseur de base de données en cours peut retourner plusieurs fois la même valeur, même si l’ingestion a été effectuée dans between, car seule une validation de curseur peut mettre à jour sa valeur.
 
-## <a name="example-processing-of-records-exactly-once"></a>Exemple : Traitement des dossiers exactement une fois
+## <a name="example-processing-records-exactly-once"></a>Exemple : traitement d’enregistrements exactement une fois
 
-Supposons `Employees` la `[Name, Salary]`table avec schéma .
-Pour traiter continuellement de nouveaux enregistrements au fur et à mesure qu’ils sont ingérés dans la table, utilisez la procédure suivante :
+Pour une table `Employees` avec schéma `[Name, Salary]` , pour traiter continuellement de nouveaux enregistrements à mesure qu’ils sont ingérés dans la table, utilisez le processus suivant :
 
 ```kusto
 // [Once] Enable the IngestionTime policy on table Employees

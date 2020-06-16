@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 296c6e245b7157c09c7af59132fd8bfa686fc9f7
-ms.sourcegitcommit: be1bbd62040ef83c08e800215443ffee21cb4219
+ms.openlocfilehash: 7bcba1cbcbcbd712278696d897febaee5714703f
+ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84665042"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84780590"
 ---
 # <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Créer et modifier des tables externes dans Stockage Azure ou Azure Data Lake
 
@@ -297,14 +297,14 @@ Crée un nouveau mappage. Pour plus d’informations, consultez [mappages de don
 **Exemple** 
  
 ```kusto
-.create external table MyExternalTable JSON mapping "Mapping1" '[{ "column" : "rownumber", "datatype" : "int", "path" : "$.rownumber"},{ "column" : "rowguid", "path" : "$.rowguid" }]'
+.create external table MyExternalTable json mapping "Mapping1" '[{"Column": "rownumber", "Properties": {"Path": "$.rownumber"}}, {"Column": "rowguid", "Properties": {"Path": "$.rowguid"}}]'
 ```
 
 **Exemple de sortie**
 
 | Nom     | Genre | Mappage                                                           |
 |----------|------|-------------------------------------------------------------------|
-| mapping1 | JSON | [{"ColumnName" : "RowNumber", "ColumnType" : "int", "Properties" : {"path" : "$. RowNumber"}}, {"ColumnName" : "rowguid", "ColumnType" : "", "Properties" : {"path" : "$. rowguid"}}] |
+| mapping1 | JSON | [{"ColumnName" : "RowNumber", "Properties" : {"path" : "$. RowNumber"}}, {"ColumnName" : "rowguid", "Properties" : {"path" : "$. rowguid"}}] |
 
 ## <a name="alter-external-table-mapping"></a>. modification du mappage de tables externes
 
@@ -315,14 +315,14 @@ Modifie un mappage existant.
 **Exemple** 
  
 ```kusto
-.alter external table MyExternalTable JSON mapping "Mapping1" '[{ "column" : "rownumber", "path" : "$.rownumber"},{ "column" : "rowguid", "path" : "$.rowguid" }]'
+.alter external table MyExternalTable json mapping "Mapping1" '[{"Column": "rownumber", "Properties": {"Path": "$.rownumber"}}, {"Column": "rowguid", "Properties": {"Path": "$.rowguid"}}]'
 ```
 
 **Exemple de sortie**
 
 | Nom     | Genre | Mappage                                                                |
 |----------|------|------------------------------------------------------------------------|
-| mapping1 | JSON | [{"ColumnName" : "RowNumber", "ColumnType" : "", "Properties" : {"path" : "$. RowNumber"}}, {"ColumnName" : "rowguid", "ColumnType" : "", "Properties" : {"path" : "$. rowguid"}}] |
+| mapping1 | JSON | [{"ColumnName" : "RowNumber", "Properties" : {"path" : "$. RowNumber"}}, {"ColumnName" : "rowguid", "Properties" : {"path" : "$. rowguid"}}] |
 
 ## <a name="show-external-table-mappings"></a>. afficher les mappages de tables externes
 
@@ -335,16 +335,16 @@ Affichez les mappages (tout ou partie spécifiés par nom).
 **Exemple** 
  
 ```kusto
-.show external table MyExternalTable JSON mapping "Mapping1" 
+.show external table MyExternalTable json mapping "Mapping1" 
 
-.show external table MyExternalTable JSON mappings 
+.show external table MyExternalTable json mappings 
 ```
 
 **Exemple de sortie**
 
 | Nom     | Genre | Mappage                                                                         |
 |----------|------|---------------------------------------------------------------------------------|
-| mapping1 | JSON | [{"ColumnName" : "RowNumber", "ColumnType" : "", "Properties" : {"path" : "$. RowNumber"}}, {"ColumnName" : "rowguid", "ColumnType" : "", "Properties" : {"path" : "$. rowguid"}}] |
+| mapping1 | JSON | [{"ColumnName" : "RowNumber", "Properties" : {"path" : "$. RowNumber"}}, {"ColumnName" : "rowguid", "Properties" : {"path" : "$. rowguid"}}] |
 
 ## <a name="drop-external-table-mapping"></a>. supprimer le mappage de table externe
 
@@ -355,7 +355,7 @@ Supprime le mappage de la base de données.
 **Exemple** 
  
 ```kusto
-.drop external table MyExternalTable JSON mapping "Mapping1" 
+.drop external table MyExternalTable json mapping "Mapping1" 
 ```
 ## <a name="next-steps"></a>Étapes suivantes
 

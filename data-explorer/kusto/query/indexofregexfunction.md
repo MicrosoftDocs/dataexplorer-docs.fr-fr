@@ -1,6 +1,6 @@
 ---
-title: indexof_regex() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit indexof_regex() dans Azure Data Explorer.
+title: indexof_regex ()-Azure Explorateur de données
+description: Cet article décrit indexof_regex () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,40 +8,47 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 6da0523e85bab4883c50708ffe3f7d087fdd8c8f
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 72797b54c3ba431b4a846f9e9661e9693359cceb
+ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81513887"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84780454"
 ---
 # <a name="indexof_regex"></a>indexof_regex()
 
-Fonction indique l’index zéro de la première occurrence d’une chaîne spécifiée dans la chaîne d’entrée. Les allumettes à cordes simples ne se chevauchent pas. 
+La fonction signale l’index de base zéro de la première occurrence d’une chaîne spécifiée dans la chaîne d’entrée. Les correspondances de chaînes brutes ne se chevauchent pas.
 
 Voir [`indexof()`](indexoffunction.md).
 
 **Syntaxe**
 
-`indexof_regex(`*source*`,`*de recherche*`[,`*start_index*`[,`*occurrence* *de longueur*`[,``]]])`
+`indexof_regex(`*source* `,` *recherche* `[,` *start_index* `[,` *longueur* `[,` *occurrence*`]]])`
 
 **Arguments**
 
-* *source*: chaîne d’entrée.  
-* *lookup*: corde à rechercher.
-* *start_index*: poste de départ de recherche (facultatif).
-* *longueur*: nombre de positions de caractère à examiner, -1 définissant la longueur illimitée (facultatif).
-* *:* est l’occurrence Par défaut 1 (facultatif).
+|Arguments     | Description                                     |Obligatoire ou facultatif|
+|--------------|-------------------------------------------------|--------------------|
+|source        | Chaîne d’entrée                                    |Obligatoire            |
+|recherche        | Chaîne à rechercher                                  |Obligatoire            |
+|start_index   | Position de début de la recherche                           |Facultatif            |
+|length        | Nombre de positions de caractère à examiner. -1 définit une longueur illimitée |Facultatif            |
+|occurrence    | Recherche l’index de la N-ième apparence du modèle. 
+                 La valeur par défaut est 1, l’index de la première occurrence |Facultatif            |
 
 **Retourne**
 
-Position de l’indice zéro de la *recherche*.
+Position d’index de base zéro de la *recherche*.
 
-Retourne -1 si la chaîne ne se trouve pas dans l’entrée.
-En cas de paramètres de *longueur* non pertinent (moins de 0) *start_index,* *occurrence* ou (moins de -1) - retours *nuls*.
+* Retourne-1 si la chaîne est introuvable dans l’entrée.
+* Retourne *null* si :
+     * start_index est inférieur à 0.
+     * l’occurrence est inférieure à 0.
+     * le paramètre de longueur est inférieur à-1.
 
 
 **Exemples**
+
 ```kusto
 print
  idx1 = indexof_regex("abcabc", "a.c") // lookup found in input string
@@ -51,6 +58,6 @@ print
  , idx5 = indexof_regex("abcabc", "a|ab", -1)  // invalid input
 ```
 
-|idx1 (idx1)|idx2 (idx2)|idx3 (idx3)|idx4 (idx4)|idx5 (idx5)
-|----|----|----|----|----
-|0   |3   |-1  |-1  |    
+|idx1|idx2|idx3|idx4|idx5|
+|----|----|----|----|----|
+|0   |3   |-1  |-1  |    |

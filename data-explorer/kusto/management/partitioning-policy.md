@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/04/2020
-ms.openlocfilehash: 1ad9b359422b51084f1be1c64d27d656313d9296
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 51068a63adb16626c8b2812fde40782d2ac4a8f1
+ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82616318"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84780573"
 ---
 # <a name="data-partitioning-policy-management"></a>Gestion des stratégies de partitionnement des données
 
@@ -29,7 +29,7 @@ La `.show` commande affiche la stratégie de partitionnement appliquée à la ta
 
 ### <a name="output"></a>Output
 
-|Nom de stratégie | Nom de l’entité | Stratégie | Entités enfants | Type d'entité
+|Nom de stratégie | Nom de l’entité | Policy | Entités enfants | Type d'entité
 |---|---|---|---|---
 |DataPartitioning | Nom de la table | Sérialisation JSON de l’objet de stratégie | null | Table de charge de travail
 
@@ -49,7 +49,41 @@ La prise en compte des modifications apportées à la stratégie peut prendre ju
 
 ### <a name="examples"></a>Exemples
 
-#### <a name="setting-all-properties-of-the-policy-explicitly-at-table-level"></a>Définition explicite de toutes les propriétés de la stratégie au niveau de la table
+#### <a name="setting-a-policy-with-a-hash-partition-key"></a>Définition d’une stratégie avec une clé de partition de hachage
+
+```kusto
+.alter table [table_name] policy partitioning @'{'
+  '"PartitionKeys": ['
+    '{'
+      '"ColumnName": "my_string_column",'
+      '"Kind": "Hash",'
+      '"Properties": {'
+        '"Function": "XxHash64",'
+        '"MaxPartitionCount": 256,'
+      '}'
+    '}'
+  ']'
+'}'
+```
+
+#### <a name="setting-a-policy-with-a-uniform-range-datetime-partition-key"></a>Définition d’une stratégie avec une clé de partition DateTime de plage uniforme
+
+```kusto
+.alter table [table_name] policy partitioning @'{'
+  '"PartitionKeys": ['
+    '{'
+      '"ColumnName": "my_datetime_column",'
+      '"Kind": "UniformRange",'
+      '"Properties": {'
+        '"Reference": "1970-01-01T00:00:00",'
+        '"RangeSize": "1.00:00:00"'
+      '}'
+    '}'
+  ']'
+'}'
+```
+
+#### <a name="setting-a-policy-with-both-kinds-of-partition-keys"></a>Définition d’une stratégie avec les deux types de clés de partition
 
 ```kusto
 .alter table [table_name] policy partitioning @'{'

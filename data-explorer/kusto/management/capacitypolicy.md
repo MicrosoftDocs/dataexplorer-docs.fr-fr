@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: bb3ee687e995af7d4161ca111f9efbe91c1b9ca0
-ms.sourcegitcommit: a60ad8da32f16c5d9ce35b62e7331d7439081e3d
+ms.openlocfilehash: a7f34f51ee38b10c51c469c0145081f5bb702d8f
+ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/06/2020
-ms.locfileid: "84466304"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84780216"
 ---
 # <a name="capacity-policy"></a>Stratégie de capacité
 
-Une stratégie de capacité est utilisée pour contrôler les ressources de calcul utilisées pour les opérations de gestion des données sur le cluster.
+Une stratégie de capacité est utilisée pour contrôler les ressources de calcul des opérations de gestion des données sur le cluster.
 
 ## <a name="the-capacity-policy-object"></a>Objet de stratégie de capacité
 
@@ -33,10 +33,10 @@ La stratégie de capacité est composée des éléments suivants :
 
 |Propriété                           |Type    |Description                                                                                                                                                                               |
 |-----------------------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|ClusterMaximumConcurrentOperations |long    |Valeur maximale pour le nombre d’opérations simultanées d’ingestion dans un cluster                                                                                                            |
-|CoreUtilizationCoefficient         |double  |Un coefficient pour le pourcentage de cœurs à utiliser lors du calcul de la capacité d’ingestion (le résultat du calcul sera toujours normalisé par `ClusterMaximumConcurrentOperations` ) |                                                                                                                             |
+|ClusterMaximumConcurrentOperations |long    |Valeur maximale pour le nombre d’opérations simultanées d’ingestion dans un cluster                                          |
+|CoreUtilizationCoefficient         |double  |Un coefficient pour le pourcentage de cœurs à utiliser lors du calcul de la capacité d’ingestion. Le résultat du calcul sera toujours normalisé par`ClusterMaximumConcurrentOperations`                          |
 
-La capacité d’ingestion totale du cluster (comme indiqué par [. afficher la capacité](../management/diagnostics.md#show-capacity)) est calculée par :
+La capacité d’ingestion totale du cluster, comme indiqué par la fonction [. afficher la capacité](../management/diagnostics.md#show-capacity), est calculée par :
 
 Minimum ( `ClusterMaximumConcurrentOperations` , `Number of nodes in cluster` * maximum (1, `Core count per node`  *  `CoreUtilizationCoefficient` ))
 
@@ -47,15 +47,14 @@ Minimum ( `ClusterMaximumConcurrentOperations` , `Number of nodes in cluster` * 
 
 |Propriété                           |Type    |Description                                                                                                |
 |-----------------------------------|--------|-----------------------------------------------------------------------------------------------------------|
-|MinimumConcurrentOperationsPerNode |long    |Valeur minimale pour le nombre d’opérations de fusion/régénération d’étendues simultanées sur un nœud unique. Valeur par défaut : 1. |
-|MaximumConcurrentOperationsPerNode |long    |Valeur maximale pour le nombre d’opérations de fusion/régénération d’étendues simultanées sur un nœud unique. Valeur par défaut : 5 |
+|MinimumConcurrentOperationsPerNode |long    |Valeur minimale pour le nombre d’opérations de fusion/régénération d’étendues simultanées sur un nœud unique. La valeur par défaut est 1 |
+|MaximumConcurrentOperationsPerNode |long    |Valeur maximale pour le nombre d’opérations de fusion/régénération d’étendues simultanées sur un nœud unique. La valeur par défaut est 5 |
 
-La capacité de fusion totale des étendues du cluster (comme indiqué par [. afficher la capacité](../management/diagnostics.md#show-capacity)) est calculée par :
+La capacité de fusion totale des étendues du cluster, comme indiqué par la fonction [. afficher la capacité](../management/diagnostics.md#show-capacity), est calculée par :
 
 `Number of nodes in cluster`x`Concurrent operations per node`
 
 La valeur effective de `Concurrent operations per node` est automatiquement ajustée par le système dans la plage [ `MinimumConcurrentOperationsPerNode` , `MaximumConcurrentOperationsPerNode` ].
-
 
 > [!Note]
 > * Dans les clusters comportant trois nœuds ou plus, le nœud d’administration ne participe pas aux opérations de fusion. Le `Number of nodes in cluster` est réduit d’une unité.
@@ -77,10 +76,10 @@ Les étendues totales du cluster purgent la capacité de reconstruction (comme i
 
 |Propriété                           |Type    |Description                                                                                                                                                                            |
 |-----------------------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|ClusterMaximumConcurrentOperations |long    |Valeur maximale pour le nombre d’opérations d’exportation simultanées dans un cluster.                                                                                                           |
+|ClusterMaximumConcurrentOperations |long    |Valeur maximale pour le nombre d’opérations d’exportation simultanées dans un cluster.                                           |
 |CoreUtilizationCoefficient         |double  |Coefficient pour le pourcentage de cœurs à utiliser lors du calcul de la capacité d’exportation. Le résultat du calcul sera toujours normalisé par `ClusterMaximumConcurrentOperations` . |
 
-La capacité d’exportation totale du cluster (comme indiqué par [. afficher la capacité](../management/diagnostics.md#show-capacity)) est calculée par :
+La capacité d’exportation totale du cluster, comme indiqué par [. afficher la capacité](../management/diagnostics.md#show-capacity), est calculée par :
 
 Minimum ( `ClusterMaximumConcurrentOperations` , `Number of nodes in cluster` * maximum (1, `Core count per node`  *  `CoreUtilizationCoefficient` ))
 
@@ -138,9 +137,9 @@ Kusto limite le nombre de demandes simultanées pour les commandes initiées par
    * La limite est définie dans la [stratégie de capacité](#capacity-policy).
 * Purge
    * La globalisation est actuellement fixée à un par cluster.
-   * La capacité de reconstruction de vidage est utilisée en interne pour déterminer le nombre d’opérations de reconstruction simultanées pendant les commandes de vidage. Les commandes de vidage ne seront pas bloquées/limitées en raison de ce processus, mais elles fonctionnent plus rapidement ou plus lentement en fonction de la capacité de régénération de purge.
+   * La capacité de reconstruction de vidage est utilisée en interne pour déterminer le nombre d’opérations de reconstruction simultanées pendant les commandes de vidage. Les commandes de vidage ne sont pas bloquées/limitées en raison de ce processus, mais elles fonctionnent plus rapidement ou plus lentement en fonction de la capacité de régénération de purge.
 * Exports
    * La limite est définie dans la [stratégie de capacité](#capacity-policy).
 
-Lorsque le cluster détecte qu’une opération a dépassé l’opération simultanée autorisée, il répond avec un code HTTP 429 (« limité »).
+Lorsque le cluster détecte qu’une opération a dépassé l’opération simultanée autorisée, il répond avec un code HTTP 429, « limité ».
 Réessayez l’opération après un certain intervalle.

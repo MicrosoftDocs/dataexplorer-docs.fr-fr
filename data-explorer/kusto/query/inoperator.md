@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/18/2019
-ms.openlocfilehash: cd11362c15e5ecfb80eab57b57b22f190f47da05
-ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
+ms.openlocfilehash: 3f45f579ad47dbdc9bf1fca707826948a598f63d
+ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83271568"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84780165"
 ---
 # <a name="in-and-in-operators"></a>in et !in, opérateurs
 
@@ -45,19 +45,19 @@ Table1 | where col in ('value1', 'value2')
 
 * *T* -entrée tabulaire dont les enregistrements doivent être filtrés.
 * *col* : colonne à filtrer.
-* *liste d’expressions* : liste séparée par des virgules d’expressions tabulaires, scalaires ou littérales.  
-* *expression tabulaire* : expression tabulaire qui possède un ensemble de valeurs (dans une expression case comporte plusieurs colonnes, la première colonne est utilisée).
+* *liste d’expressions* : liste séparée par des virgules d’expressions tabulaires, scalaires ou littérales.
+* *expression tabulaire* : expression tabulaire qui possède un ensemble de valeurs. Si l’expression contient plusieurs colonnes, la première colonne est utilisée.
 
 **Retourne**
 
-Lignes dans *T* pour lesquelles le prédicat est`true`
+Lignes dans *T* pour lesquelles le prédicat est `true` .
 
-**Remarques**
+**Notes**
 
-* La liste d’expressions peut produire jusqu’à `1,000,000` valeurs    
-* Les tableaux imbriqués sont aplatis en une seule liste de valeurs, par exemple se `x in (dynamic([1,[2,3]]))` transforme en`x in (1,2,3)` 
-* Dans le cas d’expressions tabulaires, la première colonne du jeu de résultats est sélectionnée.   
-* L’ajout de' ~ 'à l’opérateur rend les valeurs non sensibles à la casse de la recherche : `x in~ (expression)` ou `x !in~ (expression)` .
+* La liste d’expressions peut produire jusqu’à `1,000,000` valeurs.
+* Les tableaux imbriqués sont aplatis en une seule liste de valeurs. Par exemple, `x in (dynamic([1,[2,3]]))` devient `x in (1,2,3)`.
+* Dans les expressions tabulaires, la première colonne du jeu de résultats est sélectionnée.
+* L’ajout de' ~ 'à l’opérateur rend les valeurs’recherche non sensible à la casse : `x in~ (expression)` ou `x !in~ (expression)` .
 
 **Exemples :**  
 
@@ -181,8 +181,7 @@ StormEvents | where State in (InterestingStates()) | count
 |---|
 |4775|  
 
-
-Voici la définition de la fonction :  
+Définition de la fonction.
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
