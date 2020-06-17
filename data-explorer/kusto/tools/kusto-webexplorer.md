@@ -1,6 +1,6 @@
 ---
-title: Kusto.WebExplorer - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit Kusto.WebExplorer dans Azure Data Explorer.
+title: Kusto. webexplorer-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit Kusto. webexplorer dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,56 +8,56 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 1f6926df09a207cfea2b9201ef57f36932a63f74
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: d53f12c4a0c4dd2bce669dbe004b8f325db27af5
+ms.sourcegitcommit: 4986354cc1ba25c584e4f3c7eac7b5ff499f0cf1
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81523866"
+ms.lasthandoff: 06/16/2020
+ms.locfileid: "84856391"
 ---
-# <a name="kustowebexplorer"></a>Kusto.WebExplorer Kusto.WebExplorer
+# <a name="kustowebexplorer"></a>Kusto. webexplorer
 
-Kusto.WebExplorer est une application web qui peut être utilisée pour envoyer des requêtes et des commandes de contrôle à un service Kusto. L’application est hébergée à [https://dataexplorer.azure.com/]https://aka.ms/kweet court-lié par [ ].
+Kusto. webexplorer est une application Web qui peut être utilisée pour envoyer des requêtes et contrôler des commandes à un service Kusto. L’application est hébergée https://dataexplorer.azure.com/ par https://aka.ms/kwe .
 
 
 
-Kusto.WebExplorer peut également être hébergé par d’autres portails Web dans un IFRAME HTML.
-(Par exemple, cela est fait par le [portail Azure](https://portal.azure.com).) Voir [Monaco IDE](../api/monaco/monaco-kusto.md) pour plus de détails sur la façon de l’accueillir et l’éditeur monégasque qu’il utilise.
+Kusto. webexplorer peut également être hébergé par d’autres portails Web dans un IFRAME HTML.
+(Par exemple, cette opération est effectuée par l' [portail Azure](https://portal.azure.com).) Pour plus d’informations sur l’hébergement et l’éditeur Monaco utilisé, consultez [IDE de Monaco](../api/monaco/monaco-kusto.md) .
 
-## <a name="connect-to-multiple-clusters"></a>Connectez-vous à plusieurs clusters
+## <a name="connect-to-multiple-clusters"></a>Se connecter à plusieurs clusters
 
-Vous pouvez désormais connecter plusieurs clusters et basculer entre les bases de données et les clusters.
+Vous pouvez maintenant connecter plusieurs clusters et basculer entre les bases de données et les clusters.
 L’outil est conçu pour identifier facilement le cluster et la base de données auxquels vous êtes connecté.
 
-![texte de remplacement](./Images/KustoTools-WebExplorer/AddingCluster.gif "AjoutCluster")
+![texte de remplacement](./Images/KustoTools-WebExplorer/AddingCluster.gif "AddingCluster")
 
-## <a name="recall-results"></a>Résultats de rappel
+## <a name="recall-results"></a>Résultats du rappel
 
-Souvent, au cours de l’analyse, nous 2000 requêtes et pouvons avoir à revoir les résultats des requêtes précédentes. Vous pouvez utiliser cette fonctionnalité pour rappeler vos résultats sans avoir à réexécuter la requête. Les données sont servies à partir du cache local du côté client.
+Souvent, lors de l’analyse, nous exécutons plusieurs requêtes et vous devrez peut-être revisiter les résultats des requêtes précédentes. Vous pouvez utiliser cette fonctionnalité pour rappeler vos résultats sans avoir à réexécuter la requête. Les données sont traitées à partir du cache côté client local.
 
-![texte de remplacement](./Images/KustoTools-WebExplorer/RecallResults.gif "RappelResults")
+![texte de remplacement](./Images/KustoTools-WebExplorer/RecallResults.gif "RecallResults")
 
-## <a name="enhanced-results-grid-control"></a>Amélioration du contrôle de la grille de résultats
+## <a name="enhanced-results-grid-control"></a>Contrôle de grille des résultats améliorés
 
-La grille de table vous permet de sélectionner plusieurs lignes, colonnes et cellules. Calculez les agrégats en sélectionnant plusieurs cellules (comme Excel) et pivotez les données.
+La grille de table vous permet de sélectionner plusieurs lignes, colonnes et cellules. Calculez des agrégats en sélectionnant plusieurs cellules (comme Excel) et faites pivoter les données.
 
 ![texte de remplacement](./Images/KustoTools-WebExplorer/EnhancedGrid.gif "EnhancedGrid")
 
-## <a name="intellisense--formatting"></a>Intellisense & Formatting
+## <a name="intellisense--formatting"></a>Mise en forme des & IntelliSense
 
-Vous pouvez utiliser le format joliment imprimé en utilisant la clé de raccourci "Shift 'Alt 'F", le pliage du code (décrivant) et IntelliSense.
+Vous pouvez utiliser le format d’impression simple en utilisant la touche de raccourci « Maj + Alt + F », le repli de code (mode plan) et IntelliSense.
 
-![texte de remplacement](./Images/KustoTools-WebExplorer/Formating.gif "Formatage")
+![texte de remplacement](./Images/KustoTools-WebExplorer/Formating.gif "Mise en forme")
 
-## <a name="deep-linking"></a>Lien profond
+## <a name="deep-linking"></a>Liaison profonde
 
-Vous pouvez copier juste le lien profond ou le lien profond et la requête. Vous pouvez également formater l’URL pour inclure le cluster, la base de données et la requête en utilisant le modèle suivant :
+Vous pouvez copier uniquement le lien profond ou le lien profond et la requête. Vous pouvez également mettre en forme l’URL pour inclure le cluster, la base de données et la requête à l’aide du modèle suivant :
 
-`https://dataexplorer.azure.com/`[`clusters/` *Cluster* Cluster`/databases/` [ *Base de données* `?` *[Options]]*
+`https://dataexplorer.azure.com/`[ `clusters/` *Cluster* [ `/databases/` *Database* [ `?` *options*]]]
 
-Les options suivantes peuvent être spécifiées :
+Les options suivantes peuvent être spécifiées :
 
-* `workspace=empty`: Indique la création d’un nouvel espace de travail vide (aucun rappel des clusters, onglets et requêtes précédents ne sera effectué).
+* `workspace=empty`: Indique de créer un nouvel espace de travail vide (aucun rappel des clusters, onglets et requêtes précédents n’est effectué).
 
 
 
@@ -65,5 +65,5 @@ Les options suivantes peuvent être spécifiées :
 
 ## <a name="feedback"></a>Commentaires
 
-Vous pouvez soumettre vos commentaires via l’outil.
+Vous pouvez envoyer vos commentaires via l’outil.
 ![texte de remplacement](./Images/KustoTools-WebExplorer/Feedback.gif "Commentaires")

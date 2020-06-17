@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: f51e05abac44b85ab328e7df5645eeab51d2a274
-ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
+ms.openlocfilehash: fa97777da8173034098037f1aceec385a4c206de
+ms.sourcegitcommit: 3848b8db4c3a16bda91c4a5b7b8b2e1088458a3a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/18/2020
-ms.locfileid: "83550620"
+ms.lasthandoff: 06/16/2020
+ms.locfileid: "84818599"
 ---
 # <a name="tables"></a>Tables
 
@@ -22,7 +22,7 @@ Les tables sont des entités nommées qui contiennent des données. Une table po
 Les tables occupent le même espace de noms que les [fonctions stockées](./stored-functions.md).
 Si une fonction stockée et une table ont toutes les deux le même nom, la fonction stockée est sélectionnée.
 
-**Remarques**  
+**Notes**  
 
 * Les noms de table respectent la casse.
 * Les noms de tables suivent les règles pour les [noms d’entité](./entity-names.md).
@@ -60,3 +60,6 @@ Il est également possible de référencer une table à l’aide de la [fonction
 let counter=(TableName:string) { table(TableName) | count };
 counter("StormEvents")
 ```
+
+> [!NOTE]
+> Utilisez la `table()` fonction Special pour spécifier explicitement l’étendue des données de la table. Par exemple, utilisez cette fonction pour limiter le traitement aux données de la table qui se trouve dans le cache à chaud.

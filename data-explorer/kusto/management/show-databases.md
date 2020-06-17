@@ -1,6 +1,6 @@
 ---
-title: .afficher les bases de données - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit .show bases de données dans Azure Data Explorer.
+title: . afficher les bases de données-Azure Explorateur de données
+description: Cet article décrit. afficher les bases de données dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1827c3ea20d984c6846ef9feb603398020efe275
-ms.sourcegitcommit: c4aea69fafa9d9fbb814764eebbb0ae93fa87897
+ms.openlocfilehash: e5ff64db05bb85d88ed3da3347ea95cf02b0234b
+ms.sourcegitcommit: 3848b8db4c3a16bda91c4a5b7b8b2e1088458a3a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "81610181"
+ms.lasthandoff: 06/16/2020
+ms.locfileid: "84818542"
 ---
-# <a name="show-databases"></a>.afficher les bases de données
+# <a name="show-databases"></a>.show databases
 
-Renvoie un tableau dans lequel chaque enregistrement correspond à une base de données dans le cluster auquel l’utilisateur a accès.
+Retourne une table dans laquelle chaque enregistrement correspond à une base de données du cluster à laquelle l’utilisateur a accès.
 
-Pour voir retourner un tableau montrant les propriétés de la base de données contextuelle, voir [.afficher la base de données](show-database.md).
+Pour obtenir une table qui indique les propriétés de la base de données de contexte, consultez [`.show database`](show-database.md) .
 
 **Syntaxe**
 
@@ -29,11 +29,11 @@ Pour voir retourner un tableau montrant les propriétés de la base de données 
 
 |Nom de la colonne       |Type de colonne|Description                                                                  |
 |------------------|-----------|-----------------------------------------------------------------------------|
-|nom_base_de_données      |`string`   |Le nom de la base de données tel qu’attaché au cluster.                         |
-|PersistantStorage |`string`   |La « racine » persistante de stockage de la base de données. (Uniquement réservé à un usage interne.)      |
-|Version           |`string`   |Version de la base de données. (Uniquement réservé à un usage interne.)                        |
-|IsCurrent         |`bool`     |La question de savoir si cette base de données est le contexte de la base de données de la demande.                |
-|Base de donnéesAccessMode|`string`   |Un `ReadWrite`de `ReadOnly` `ReadOnlyFollowing`, `ReadWriteEphemeral`, , ou .|
-|PrettyName (En)        |`string`   |Le joli nom de la base de données, le cas échéant.                                    |
-|ReservedSlot1     |`bool`     |Réservé. (Uniquement réservé à un usage interne.)                                           |
-|DatabaseId        |`guid`     |Un identifiant unique à l’échelle mondiale pour la base de données. (Uniquement réservé à un usage interne.)      |
+|nom_base_de_données      |`string`   |Nom de la base de données attachée au cluster                    |
+|PersistentStorage |`string`   |« Racine » de stockage persistant de la base de données. Usage interne uniquement          |
+|Version           |`string`   |Version de la base de données. Usage interne uniquement                       |
+|IsCurrent         |`bool`     |Indique si cette base de données est le contexte de base de données de la demande                    |
+|DatabaseAccessMode|`string`   |L’une des,, `ReadWrite` `ReadOnly` `ReadOnlyFollowing` ou`ReadWriteEphemeral`    |
+|PrettyName        |`string`   |Nom convivial de la base de données, le cas échéant                        |
+|ReservedSlot1     |`bool`     |Réservé. Usage interne uniquement              |
+|DatabaseId        |`guid`     |Identificateur global unique de la base de données. Usage interne uniquement          |
