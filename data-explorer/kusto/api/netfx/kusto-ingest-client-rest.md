@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 02/19/2020
-ms.openlocfilehash: 96409849823850ef9fd939f9e359d75d3e6d5bf1
-ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
+ms.openlocfilehash: 83af540389087f0e1d9fdbd04266ab7ecaca0c5a
+ms.sourcegitcommit: b12e03206c79726d5b4055853ec3fdaa8870c451
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83382146"
+ms.lasthandoff: 06/18/2020
+ms.locfileid: "85069166"
 ---
 # <a name="ingestion-without-kustoingest-library"></a>Ingestion sans la bibliothèque Kusto. deréception
 
@@ -22,7 +22,7 @@ La bibliothèque Kusto. Adout est préférable pour la réception de données da
 Cet article vous montre comment utiliser l’ingestion en *attente* dans Azure Explorateur de données pour les pipelines de niveau production.
 
 > [!NOTE]
-> Le code ci-dessous est écrit en C# et utilise le kit de développement logiciel (SDK) stockage Azure, la bibliothèque d’authentification ADAL et le package NewtonSoft. JSON pour simplifier l’exemple de code. Si nécessaire, le code correspondant peut être remplacé par des appels d' [API REST Azure Storage](https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api) appropriés, un [package non-.net Adal](https://docs.microsoft.com/azure/active-directory/develop/active-directory-authentication-libraries)et tout package de gestion JSON disponible.
+> Le code ci-dessous est écrit en C# et utilise le kit de développement logiciel (SDK) stockage Azure, la bibliothèque d’authentification ADAL et le NewtonSoft.JSsur le package, afin de simplifier l’exemple de code. Si nécessaire, le code correspondant peut être remplacé par des appels d' [API REST Azure Storage](https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api) appropriés, un [package non-.net Adal](https://docs.microsoft.com/azure/active-directory/develop/active-directory-authentication-libraries)et tout package de gestion JSON disponible.
 
 Cet article traite du mode de réception recommandé. Pour la bibliothèque Kusto. deréception, son entité correspondante est l’interface [IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient) . Ici, le code client interagit avec le service Azure Explorateur de données en publiant des messages de notification d’ingestion dans une file d’attente Azure. Les références aux messages sont obtenues à partir du service Kusto Gestion des données (également connu sous le nom de « réception »). L’interaction avec le service doit être authentifiée à l’aide de Azure Active Directory (Azure AD).
 
@@ -240,7 +240,7 @@ internal static string UploadFileToBlobContainer(string filePath, string blobCon
 
 ### <a name="compose-the-azure-data-explorer-ingestion-message"></a>Composer le message d’ingestion d’Azure Explorateur de données
 
-Le package NewtonSoft. JSON compose à nouveau une demande d’ingestion valide pour identifier la base de données et la table cibles, et pointe vers l’objet BLOB.
+Le NewtonSoft.JSsur le package compose à nouveau une demande d’ingestion valide pour identifier la base de données et la table cibles, et pointe vers l’objet BLOB.
 Le message est publié dans la file d’attente Azure sur laquelle le service de Gestion des données Kusto approprié écoute.
 
 Voici quelques points à prendre en compte.
@@ -265,14 +265,15 @@ internal static string PrepareIngestionMessage(string db, string table, string d
     message.Add("DatabaseName", db);
     message.Add("TableName", table);
     message.Add("RetainBlobOnSuccess", true);   // Do not delete the blob on success
-    message.Add("Format", "json");              // Data is in JSON format
     message.Add("FlushImmediately", true);      // Do not aggregate
     message.Add("ReportLevel", 2);              // Report failures and successes (might incur perf overhead)
     message.Add("ReportMethod", 0);             // Failures are reported to an Azure Queue
 
     message.Add("AdditionalProperties", new JObject(
                                             new JProperty("authorizationContext", identityToken),
-                                            new JProperty("jsonMappingReference", mappingRef)));
+                                            new JProperty("jsonMappingReference", mappingRef),
+                                            // Data is in JSON format
+                                            new JProperty("format", "json")));
     return message.ToString();
 }
 ```

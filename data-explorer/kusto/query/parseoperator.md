@@ -4,20 +4,21 @@ description: Cet article décrit l’opérateur d’analyse dans Azure Explorate
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 8255f3d0c3dc0006029f06c7a0da4b41dfbaa1b7
-ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
+ms.openlocfilehash: 07318a64781678410374f902ff8fe5514a4bdd17
+ms.sourcegitcommit: f9d3f54114fb8fab5c487b6aea9230260b85c41d
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83271333"
+ms.lasthandoff: 06/18/2020
+ms.locfileid: "85071899"
 ---
 # <a name="parse-operator"></a>opérateur parse
 
-évalue une expression de chaîne et analyse sa valeur dans une ou plusieurs colonnes calculées. Pour les chaînes analysées sans succès, les colonnes calculées auront des valeurs NULL.
+évalue une expression de chaîne et analyse sa valeur dans une ou plusieurs colonnes calculées. Pour les chaînes analysées sans succès, les colonnes calculées auront des valeurs NULL. 
+
 Consultez opérateur [Parse-WHERE](parsewhereoperator.md) qui filtre les chaînes non analysées avec succès.
 
 ```kusto
