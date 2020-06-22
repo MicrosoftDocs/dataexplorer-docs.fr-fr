@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 11/19/2019
-ms.openlocfilehash: d31765d72d37b0146cf7ba8a42e02722296bf80e
-ms.sourcegitcommit: 436cd515ea0d83d46e3ac6328670ee78b64ccb05
+ms.openlocfilehash: a69362b590acee99fbe9b57d9303099f0033d458
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81663466"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128493"
 ---
-# <a name="entities"></a>Entités
+# <a name="entity-types"></a>Types d’entités
 
 Les requêtes Kusto s’exécutent dans le contexte d’une base de données Kusto attachée à un cluster Kusto. Les données incluses dans la base de données sont organisées dans des tables, auxquelles la requête peut faire référence, et au sein d’une table, elles sont organisées sous la forme d’une grille rectangulaire de colonnes et de lignes. De plus, les requêtes peuvent faire référence à des fonctions stockées dans la base de données, qui sont des fragments de requête disponibles pouvant être réutilisés.
 
