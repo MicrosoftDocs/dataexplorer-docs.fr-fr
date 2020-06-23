@@ -1,6 +1,6 @@
 ---
-title: toscalar() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit toscalar() dans Azure Data Explorer.
+title: toscalar ()-Azure Explorateur de données
+description: Cet article décrit toscalar () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,43 +8,43 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 60fe8123760a9921bfa7abfacbbdffba6dba8d7b
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 15d9056ec21eb6f25ccbc985d659f310d670f02d
+ms.sourcegitcommit: 085e212fe9d497ee6f9f477dd0d5077f7a3e492e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81505897"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85133411"
 ---
 # <a name="toscalar"></a>toscalar()
 
-Retourne une valeur constante scalaire de l’expression évaluée. 
+Retourne une valeur de constante scalaire de l’expression évaluée. 
 
-Cette fonction est utile pour les requêtes qui nécessitent des calculs par étapes, comme par exemple le calcul d’un nombre total d’événements, puis l’utiliser pour les groupes de filtrage qui dépassent certains pour cent de tous les événements. 
+Cette fonction est utile pour les requêtes qui requièrent des calculs intermédiaires. Par exemple, calculez le nombre total d’événements, puis utilisez le résultat pour filtrer les groupes qui dépassent un certain pourcentage de tous les événements.
 
 **Syntaxe**
 
-`toscalar(`*Expression*`)`
+`toscalar(`*Formule*`)`
 
 **Arguments**
 
-* *Expression*: Expression qui sera évaluée pour la conversion scalar  
+* *Expression*: expression qui sera évaluée pour la conversion scalaire.
 
 **Retourne**
 
-Une valeur constante scalaire de l’expression évaluée.
-Si le résultat d’expression est un tabulaire, alors la première colonne et la première rangée seront prises pour la conversion.
+Valeur de constante scalaire de l’expression évaluée.
+Si le résultat est un tableau, la première colonne et la première ligne sont prises pour la conversion.
 
 > [!TIP]
-> Vous pouvez utiliser une [instruction de laisser](letstatement.md) pour `toscalar()`la lisibilité de la requête lors de l’utilisation .
+> Vous pouvez utiliser une [instruction Let](letstatement.md) pour améliorer la lisibilité de la requête lors de l’utilisation de `toscalar()` .
 
-**Remarques**
+**Notes**
 
 `toscalar()`peut être calculé un nombre constant de fois pendant l’exécution de la requête.
-En d’autres termes, `toscalar()` la fonction ne peut pas être appliquée au niveau de la rangée de (pour chaque ligne scénario).
+La `toscalar()` fonction ne peut pas être appliquée au niveau de la ligne (scénario pour chaque ligne).
 
 **Exemples**
 
-La requête suivante `Start` `End` évalue, `Step` et comme constantes scalaires `range` - et l’utiliser pour l’évaluation. 
+Évaluez `Start` `End` `Step` les constantes, et en tant que constantes scalaires, et utilisez le résultat pour l' `range` évaluation.
 
 ```kusto
 let Start = toscalar(print x=1);

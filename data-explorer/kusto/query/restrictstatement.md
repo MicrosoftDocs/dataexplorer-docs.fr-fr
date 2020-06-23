@@ -10,24 +10,24 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 094cec5b467c35eb9dbeeb756362bd13c77873ce
-ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
+ms.openlocfilehash: 8476680ad5b8206dcd7dfe98bf116bb5b6dcefdc
+ms.sourcegitcommit: 085e212fe9d497ee6f9f477dd0d5077f7a3e492e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82737774"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85133449"
 ---
 # <a name="restrict-statement"></a>Restrict, instruction
 
 ::: zone pivot="azuredataexplorer"
 
-L’instruction Restrict limite l’ensemble des entités de table ou de vue qui sont visibles pour les instructions de requête qui la suivent. Par exemple, dans une base de données qui comprend deux`A`tables `B`(,), l’application peut empêcher le reste de la requête d' `B` accéder à et de « voir » une forme limitée `A` de table à l’aide d’une vue.
+L’instruction Restrict limite l’ensemble des entités de table ou de vue qui sont visibles pour les instructions de requête qui la suivent. Par exemple, dans une base de données qui comprend deux tables ( `A` , `B` ), l’application peut empêcher le reste de la requête d’accéder à `B` et de « voir » une forme limitée de table à `A` l’aide d’une vue.
 
-Le scénario principal de l’instruction Restrict est destiné aux applications de couche intermédiaire qui acceptent les requêtes des utilisateurs et souhaitent appliquer un mécanisme de sécurité au niveau des lignes à ces requêtes. L’application de niveau intermédiaire peut préfixer la requête de l’utilisateur avec un **modèle logique**, un ensemble d’instructions Let définissant des vues qui limitent l’accès de l’utilisateur `T | where UserId == "..."`aux données (par exemple,). Lorsque la dernière instruction est ajoutée, elle limite l’accès de l’utilisateur au modèle logique uniquement.
+Le scénario principal de l’instruction Restrict est destiné aux applications de couche intermédiaire qui acceptent les requêtes des utilisateurs et souhaitent appliquer un mécanisme de sécurité au niveau des lignes à ces requêtes. L’application de niveau intermédiaire peut préfixer la requête de l’utilisateur avec un **modèle logique**, un ensemble d’instructions Let définissant des vues qui limitent l’accès de l’utilisateur aux données (par exemple, `T | where UserId == "..."` ). Lorsque la dernière instruction est ajoutée, elle limite l’accès de l’utilisateur au modèle logique uniquement.
 
 **Syntaxe**
 
-`restrict``access` `,` [EntitySpecifier [...]]*EntitySpecifier* `to` `(``)`
+`restrict``access` `to` `(` [*EntitySpecifier* [ `,` ...]]`)`
 
 Où *EntitySpecifier* est l’un des éléments suivants :
 * Identificateur défini par une instruction Let comme vue tabulaire.
@@ -36,14 +36,14 @@ Où *EntitySpecifier* est l’un des éléments suivants :
 
 Toutes les tables, vues tabulaires ou modèles qui ne sont pas spécifiés par l’instruction Restrict deviennent « invisibles » pour le reste de la requête. 
 
-**Remarques**
+**Notes**
 
 L’instruction Restrict peut être utilisée pour restreindre l’accès aux entités d’une autre base de données ou d’un autre cluster (les caractères génériques ne sont pas pris en charge dans les noms de cluster).
 
 **Arguments**
 
 L’instruction Restrict peut obtenir un ou plusieurs paramètres qui définissent la restriction permissive lors de la résolution de noms de l’entité. L’entité peut être :
-- [instruction Let](./letstatement.md) qui apparaît `restrict` avant l’instruction. 
+- [instruction Let](./letstatement.md) qui apparaît avant l' `restrict` instruction. 
 
 ```kusto
 // Limit access to 'Test' let statement only
@@ -105,7 +105,7 @@ RestrictedData | summarize IrsLovesMe=sum(Salary) by Year, Month
 restrict access to (database().Table1);
 Table1 | count
 
-// Restricting acess to Table1 in the current database and Table2 in database 'DB2'
+// Restricting access to Table1 in the current database and Table2 in database 'DB2'
 restrict access to (database().Table1, database('DB2').Table2);
 union 
     (Table1),

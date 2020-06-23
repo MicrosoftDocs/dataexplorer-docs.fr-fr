@@ -1,6 +1,6 @@
 ---
-title: .créer ou modifier la fonction - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la fonction .create-or-alter dans Azure Data Explorer.
+title: . Create-or-ALTER, fonction-Azure Explorateur de données
+description: Cet article décrit la fonction. Create-or-ALTER dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,22 +8,22 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/11/2020
-ms.openlocfilehash: 9e9c24f7fda44d6c44b8f78d8622b525268a341a
-ms.sourcegitcommit: e94be7045d71a0435b4171ca3a7c30455e6dfa57
+ms.openlocfilehash: f19ca38f344f10b9dd8e4491b467eaad5ca022bc
+ms.sourcegitcommit: a034b6a795ed5e62865fcf9340906f91945b3971
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81744270"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85197240"
 ---
 # <a name="create-or-alter-function"></a>.create-or-alter function
 
-Crée une fonction stockée ou modifie une fonction existante et la stocke à l’intérieur des métadonnées de base de données.
+Crée une fonction stockée ou modifie une fonction existante et la stocke dans les métadonnées de la base de données.
 
 ```kusto
 .create-or-alter function [with (docstring = '<description>', folder='<name>')] [FunctionName] ([paramName:paramType], ...) { CSL-statement }
 ```
 
-Si la fonction avec le *FunctionName* fourni n’existe pas dans les métadonnées de base de données, la commande crée une nouvelle fonction. Si la fonction existe déjà, cette fonction sera modifiée.
+Si la fonction avec l' *nomfonction* fourni n’existe pas dans les métadonnées de la base de données, la commande crée une nouvelle fonction. Sinon, cette fonction sera modifiée.
 
 **Exemple**
 
@@ -34,6 +34,6 @@ Si la fonction avec le *FunctionName* fourni n’existe pas dans les métadonné
 } 
 ```
 
-|Nom|Paramètres|body|Dossier|DocString (en)|
+|Nom|Paramètres|Corps|Dossier|DocString|
 |---|---|---|---|---|
-|TestFunction|(myLimit:int)|StormEvents &#124; prendre myLimit|MyFolder (en)|Fonction de démonstration avec paramètre|
+|TestFunction|(myLimit : int)|{StormEvents &#124; Take myLimit}|Mondossier|Fonction Demo avec un paramètre|

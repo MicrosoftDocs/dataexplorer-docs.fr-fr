@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/22/2020
-ms.openlocfilehash: 348d9d1e9f50beb258138febf064b97b8c18c488
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 693c639ab3240ac555916a5f6862e7d57dba65e5
+ms.sourcegitcommit: 085e212fe9d497ee6f9f477dd0d5077f7a3e492e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372167"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85133428"
 ---
 # <a name="sql-to-kusto-query-translation"></a>Traduction de requêtes SQL vers Kusto
 
-Kusto prend en charge le sous-ensemble du langage SQL. Consultez la liste des [problèmes connus liés à SQL](../api/tds/sqlknownissues.md) pour obtenir la liste complète des fonctionnalités non prises en charge.
+Kusto prend en charge un sous-ensemble du langage SQL. Consultez la liste des [problèmes connus liés à SQL](../api/tds/sqlknownissues.md) pour obtenir la liste complète des fonctionnalités non prises en charge.
 
-La langue principale d’interaction avec Kusto est KQL (langage de requête Kusto) et, pour faciliter la transition et l’apprentissage, vous pouvez utiliser le service Kusto pour convertir des requêtes SQL en KQL. Pour ce faire, vous pouvez envoyer une requête SQL à Kusto services en le préfixant avec le verbe « EXPLAIN ».
+La langue principale d’interaction avec Kusto est KQL (langage de requête Kusto). Pour faciliter la transition et l’apprentissage de l’expérience, vous pouvez utiliser Kusto pour convertir des requêtes SQL en KQL. Envoyer une requête SQL à Kusto, en le faisant précéder du verbe’EXPLAIN'.
 
 Par exemple :
 
@@ -35,7 +35,7 @@ SELECT COUNT_BIG(*) as C FROM StormEvents
 
 ## <a name="sql-to-kusto-cheat-sheet"></a>Aide-mémoire SQL vers Kusto
 
-Le tableau ci-dessous montre des exemples de requêtes dans SQL et leurs KQL equivalients.
+Le tableau ci-dessous montre des exemples de requêtes dans SQL et leurs équivalents KQL.
 
 |Category |Requête SQL |Requête Kusto
 |---|---|---
@@ -52,7 +52,7 @@ Comparaison (booléen) |<code>SELECT * FROM dependencies<br>WHERE !(success)</co
 Distinct |<code>SELECT DISTINCT name, type  FROM dependencies</code> |<code>dependencies<br>&#124; summarize by name, type</code>
 Regroupement, agrégation |<code>SELECT name, AVG(duration) FROM dependencies<br>GROUP BY name</code> |<code>dependencies<br>&#124; summarize avg(duration) by name</code>
 Alias de colonne, extension |<code>SELECT operationName as Name, AVG(duration) as AvgD FROM dependencies<br>GROUP BY name</code> |<code>dependencies<br>&#124; summarize AvgD = avg(duration) by operationName<br>&#124; project Name = operationName, AvgD</code>
-Commande |<code>SELECT name, timestamp FROM dependencies<br>ORDER BY timestamp ASC</code> |<code>dependencies<br>&#124; project name, timestamp<br>&#124; order by timestamp asc nulls last</code>
+Organisation |<code>SELECT name, timestamp FROM dependencies<br>ORDER BY timestamp ASC</code> |<code>dependencies<br>&#124; project name, timestamp<br>&#124; order by timestamp asc nulls last</code>
 Top n par mesure |<code>SELECT TOP 100 name, COUNT(*) as Count FROM dependencies<br>GROUP BY name<br>ORDER BY Count DESC</code> |<code>dependencies<br>&#124; summarize Count = count() by name<br>&#124; top 100 by Count desc</code>
 Union |<code>SELECT * FROM dependencies<br>UNION<br>SELECT * FROM exceptions</code> |<code>union dependencies, exceptions</code>
 --|<code>SELECT * FROM dependencies<br>WHERE timestamp > ...<br>UNION<br>SELECT * FROM exceptions<br>WHERE timestamp > ...</code> |<code>dependencies<br>&#124; where timestamp > ago(1d)<br>&#124; union<br>&nbsp;&nbsp;(exceptions<br>&nbsp;&nbsp;&#124; where timestamp > ago(1d))</code>

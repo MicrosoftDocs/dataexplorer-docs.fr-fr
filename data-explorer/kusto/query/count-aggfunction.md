@@ -1,31 +1,49 @@
 ---
-title: compte() (fonction d’agrégation) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit le compte () (fonction d’agrégation) dans Azure Data Explorer.
+title: Count () (fonction d’agrégation)-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit Count () (fonction d’agrégation) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 01/23/2020
-ms.openlocfilehash: 59b898d44507d844db1f714ef15effa004e5546f
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.date: 06/21/2020
+ms.openlocfilehash: 6a06be43773a356e903b25b2697e75b8342ed7f8
+ms.sourcegitcommit: 085e212fe9d497ee6f9f477dd0d5077f7a3e492e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81516998"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85133470"
 ---
-# <a name="count-aggregation-function"></a>compte() (fonction d’agrégation)
+# <a name="count-aggregation-function"></a>Count () (fonction d’agrégation)
 
-Renvoie un nombre de dossiers par groupe de synthèse (ou au total, si la résumation se fait sans regroupement).
+Retourne le nombre d’enregistrements par groupe de synthèse (ou au total, si le résumé est effectué sans regroupement).
 
-* Ne peut être utilisé que dans le contexte de l’agrégation à l’intérieur [résumer](summarizeoperator.md)
-* Utilisez la fonction d’agrégation [countif](countif-aggfunction.md) pour ne compter `true`que les enregistrements pour lesquels certains prédicent sur les retours.
+* Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
+* Utilisez la fonction d’agrégation [NB.si](countif-aggfunction.md) pour compter uniquement les enregistrements pour lesquels un prédicat est retourné `true` .
 
 **Syntaxe**
 
-Résumer`count()`
+résumer`count()`
 
 **Retourne**
 
-Renvoie un nombre de dossiers par groupe de synthèse (ou au total, si la résumation se fait sans regroupement).
+Retourne le nombre d’enregistrements par groupe de synthèse (ou au total, si le résumé est effectué sans regroupement).
+
+**Exemple**
+
+Comptage des événements dans les États commençant par letter `W` :
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
+```kusto
+StormEvents
+| where State startswith "W"
+| summarize Count=count() by State
+```
+
+|State|Count|
+|---|---|
+|WEST VIRGINIA|757|
+|WYOMING|396|
+|WASHINGTON|261|
+|WISCONSIN|1850|
