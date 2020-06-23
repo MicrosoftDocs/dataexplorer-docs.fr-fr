@@ -8,19 +8,23 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/20/2019
-ms.openlocfilehash: 8b03970aacafef932f6397e64afdf871dc086bc1
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: fbdf7b1a9a9f5b65e6c6ee7a78fe64afba2893af
+ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372630"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85264791"
 ---
 # <a name="series_iir"></a>series_iir()
 
 Applique un filtre à réponse impulsionnelle infinie sur une série.  
 
-Prend une expression contenant un tableau numérique dynamique comme entrée et applique un filtre à [réponse impulsionnelle infinie](https://en.wikipedia.org/wiki/Infinite_impulse_response) . En spécifiant les coefficients de filtre, il peut être utilisé, par exemple, pour calculer la somme cumulée de la série, pour appliquer des opérations de lissage, ainsi que divers filtres passe- [haut](https://en.wikipedia.org/wiki/High-pass_filter), [passe-bande](https://en.wikipedia.org/wiki/Band-pass_filter) et passe- [bas](https://en.wikipedia.org/wiki/Low-pass_filter) . La fonction prend comme entrée la colonne qui contient le tableau dynamique et deux tableaux dynamiques statiques des coefficients *a* et *b* du filtre, et applique le filtre sur la colonne. Elle génère une nouvelle colonne de tableau dynamique, qui contient la sortie filtrée.  
- 
+La fonction prend une expression contenant un tableau numérique dynamique comme entrée, et applique un filtre à [réponse impulsionnelle infinie](https://en.wikipedia.org/wiki/Infinite_impulse_response) . En spécifiant les coefficients de filtre, la fonction peut être utilisée :
+* pour calculer la somme cumulée de la série
+* pour appliquer des opérations de lissage
+* pour appliquer différents filtres passe- [haut](https://en.wikipedia.org/wiki/High-pass_filter), [passe-bande](https://en.wikipedia.org/wiki/Band-pass_filter)et passe- [bas](https://en.wikipedia.org/wiki/Low-pass_filter)
+
+La fonction prend comme entrée la colonne qui contient le tableau dynamique et deux tableaux dynamiques statiques des coefficients *a* et *b* du filtre, et applique le filtre sur la colonne. Elle génère une nouvelle colonne de tableau dynamique, qui contient la sortie filtrée.  
 
 **Syntaxe**
 
@@ -33,11 +37,11 @@ Prend une expression contenant un tableau numérique dynamique comme entrée et 
 * *r*: une expression constante, telle que *b*. Contient les coefficients dénominateurs du filtre.
 
 > [!IMPORTANT]
-> Le premier élément de `a` (c.-à-d. `a[0]` ) ne doit pas est zéro (pour éviter la division par 0 ; consultez la formule ci-dessous).
+> Le premier élément de `a` (autrement dit, `a[0]` ) ne doit pas être égal à zéro, afin d’éviter la division par 0. Consultez la [formule ci-dessous](#the-filters-recursive-formula).
 
-**En savoir plus sur la formule récursive du filtre**
+## <a name="the-filters-recursive-formula"></a>Formule récursive du filtre
 
-* Étant donné un tableau d’entrée X et des tableaux de coefficients a, b de longueurs n_a et n_b respectivement, la fonction de transfert du filtre, générant le tableau de sortie Y, est définie par (voir également dans Wikipédia) :
+* Imaginez un tableau d’entrée X et coefficient les tableaux a et b de longueurs n_a et n_b respectivement. La fonction de transfert du filtre qui va générer le tableau de sortie Y est définie par :
 
 <div align="center">
 Y<sub>i</sub> = a<sub>0</sub><sup>-1</sup>(b<sub>0</sub>x<sub>i</sub> 
@@ -45,9 +49,9 @@ Y<sub>i</sub> = a<sub>0</sub><sup>-1</sup>(b<sub>0</sub>x<sub>i</sub>
  - a<sub>1</sub>y<sub>i-1</sub>-a<sub>2</sub>y<sub>i-2</sub> - ...-a<sub>n<sub>a</sub>-1</sub>y<sub>i-n<sub>a</sub>-1</sub>)
 </div>
 
-**Exemple**
+## <a name="example"></a>Exemple
 
-Le calcul de la somme cumulée peut être effectué par un filtre IIR avec coefficients *a*= [1,-1] et *b*= [1] :  
+Calculer une somme cumulée. Utilisez le filtre IIR avec les coefficients *a*= [1,-1] et *b*= [1] :  
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

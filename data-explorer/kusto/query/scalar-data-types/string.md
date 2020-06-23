@@ -1,6 +1,6 @@
 ---
-title: Le type de données de chaîne - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit le type de données de chaîne dans Azure Data Explorer.
+title: Type de données String-Azure Explorateur de données
+description: Cet article décrit le type de données String dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,34 +8,34 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 8c040045ba7146cf56487ca3a8729372084d3bf2
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: e7c043a9b4d8b141d2dc45e88022e191e6483c35
+ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81509620"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85264808"
 ---
-# <a name="the-string-data-type"></a>Le type de données de chaîne
+# <a name="the-string-data-type"></a>Type de données String
 
-Le `string` type de données représente une chaîne Unicode. (Les cordes Kusto sont codées dans UTF-8 et par défaut sont limitées à 1 Mo.)
+Le `string` type de données représente une chaîne Unicode. Les chaînes Kusto sont encodées au format UTF-8 et sont par défaut limitées à 1 Mo.
 
 ## <a name="string-literals"></a>Littéraux de chaîne
 
-Il existe plusieurs façons d’encoder les littérals du `string` type de données :
+Il existe plusieurs façons d’encoder des littéraux du `string` type de données.
 
-* En enfermant la chaîne en`"`double-citations ( ):`"This is a string literal. Single quote characters (') do not require escaping. Double quote characters (\") are escaped by a backslash (\\)"`
-* En enfermant la chaîne en`'`une seule citation ( ):`'Another string literal. Single quote characters (\') require escaping by a backslash (\\). Double quote characters (") do not require escaping.'`
+* Placez la chaîne entre guillemets doubles ( `"` ) :`"This is a string literal. Single quote characters (') don't require escaping. Double quote characters (\") are escaped by a backslash (\\)"`
+* Placez la chaîne entre des guillemets simples ( `'` ) :`'Another string literal. Single quote characters (\') require escaping by a backslash (\\). Double quote characters (") do not require escaping.'`
 
-Dans les deux représentations ci-dessus, le caractère de barre oblique inverse (`\`) indique s’échapper.
-Il est utilisé pour échapper aux caractères`\t`de citation,`\n`caractères`\\`onglet ( ), personnages newline ( ), et lui-même ( ).
+Dans les deux représentations ci-dessus, la barre oblique inverse ( `\` ) indique un caractère d’échappement.
+Il est utilisé pour échapper les caractères de guillemet englobant, les caractères de tabulation ( `\t` ), les caractères de saut de ligne ( `\n` ) et lui-même ( `\\` ).
 
-Les littérals de cordes Verbatim sont également pris en charge. Sous cette forme, le personnage`\`de barre oblique inverse ( ) se tient pour lui-même, pas comme un personnage d’évasion:
+Les littéraux de chaîne Verbatim sont également pris en charge. Dans ce formulaire, la barre oblique inverse ( `\` ) correspond à elle-même, et non pas à un caractère d’échappement.
 
-* Enfermé dans des doubles-citations (`"`):`@"This is a verbatim string literal that ends with a backslash\"`
-* Enfermés en une`'`seule citation ( ):`@'This is a verbatim string literal that ends with a backslash\'`
+* Entourez les guillemets doubles ( `"` ) :`@"This is a verbatim string literal that ends with a backslash\"`
+* Insérer des guillemets simples ( `'` ) :`@'This is a verbatim string literal that ends with a backslash\'`
 
-Deux littérals de chaîne dans le texte de requête avec rien entre eux, ou séparés seulement par l’espace blanc et les commentaires, sont automatiquement concatenated ensemble pour former une nouvelle chaîne littérale (jusqu’à ce qu’une telle substitution ne puisse pas être faite).
-Par exemple, les expressions `13`suivantes donnent tous les rendements :
+Deux littéraux de chaîne dans la requête sans rien entre eux, ou séparés uniquement par un espace blanc et des commentaires, joignez automatiquement pour former un nouveau littéral de chaîne.
+Par exemple, les expressions suivantes donnent toute la longueur `13` .
 
 ```kusto
 print strlen("Hello"', '@"world!"); // Nothing between them
@@ -64,18 +64,20 @@ print myPath1 = @'C:\Folder\filename.txt'
 print s = '\\n.*(>|\'|=|\")[a-zA-Z0-9/+]{86}=='
 ```
 
-Comme on peut le voir, quand une chaîne`"`est enfermée`'`dans des doubles citations ( ), le personnage de citation unique ( ) ne nécessite pas de s’échapper et vice-versa. Il est ainsi plus facile de citer des chaînes selon le contexte.
+Comme vous pouvez le constater, quand une chaîne est entourée de guillemets doubles ( `"` ), le caractère à guillemet simple ( `'` ) ne nécessite pas d’échappement, et d’autre part. Cette méthode facilite le devis des chaînes en fonction du contexte.
 
-## <a name="obfuscated-string-literals"></a>Littérals de cordes obfusques
+## <a name="obfuscated-string-literals"></a>Littéraux de chaîne obscurcis
 
-Le système suit les requêtes et les stocke à des fins de télémétrie et d’analyse.
-Par exemple, le texte de requête peut être mis à la disposition du propriétaire du cluster. Si le texte de requête comprend des informations secrètes (comme les mots de passe), cela peut divulguer des informations qui doivent être gardées privées. Pour éviter que cela ne se produise, l’auteur de requête peut marquer des littérals de cordes spécifiques comme **des littérals de cordes obscurcis.**
-Ces littérals dans le texte de requête sont`*`automatiquement remplacés par un certain nombre de caractères d’étoile, de sorte qu’ils ne sont pas disponibles pour une analyse ultérieure.
+Le système effectue le suivi des requêtes et les stocke à des fins de télémétrie et d’analyse.
+Par exemple, le texte de la requête peut être mis à la disposition du propriétaire du cluster. Si le texte de la requête contient des informations secrètes, telles que des mots de passe, il peut y avoir des fuites d’informations qui doivent rester privées. Pour éviter qu’une telle fuite ne se produise, l’auteur de la requête peut marquer des littéraux de chaîne spécifiques comme des **littéraux de chaîne obscurcis**.
+Ces littéraux dans le texte de la requête sont automatiquement remplacés par un nombre de `*` caractères étoile (), afin qu’ils ne soient pas disponibles pour une analyse ultérieure.
 
 > [!IMPORTANT]
-> Il est **fortement recommandé** que tous les littérals de chaîne qui contiennent des informations secrètes soient marqués comme des littérals obscurcis de chaîne.
+> Marquez tous les littéraux de chaîne qui contiennent des informations secrètes comme littéraux de chaîne obscurcis.
 
-Une chaîne obfusquée littérale peut être formée en prenant une chaîne `h` "régulière" littérale, et en pré-dépenses d’un ou d’un `H` personnage en face de lui. Par exemple :
+Un littéral de chaîne obscurci peut être formé en acceptant un littéral de chaîne « normal » et en ajoutant un `h` caractère ou un `H` caractère devant celui-ci. 
+
+Par exemple :
 
 ```kusto
 h'hello'
@@ -84,7 +86,9 @@ h"hello"
 ```
 
 > [!NOTE]
-> Dans de nombreux cas, seule une partie de la chaîne littérale est secrète. Il est très utile dans ces cas de diviser le littéral en une partie non secrète et une partie secrète, puis seulement marquer la partie secrète comme obscurci. Par exemple :
+> Dans de nombreux cas, seule une partie du littéral de chaîne est secrète. Dans ce cas, fractionnez le littéral en un composant non secret et un composant secret. Ensuite, marquez uniquement la partie secrète comme obscurcie.
+
+Par exemple :
 
 ```kusto
 print x="https://contoso.blob.core.windows.net/container/blob.txt?"

@@ -8,41 +8,42 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/10/2019
-ms.openlocfilehash: b98c551cb1ded8da291d4510b45a86d560f325b1
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 5a8ce5a66da871dfaa6f65a0fbc8addeb0f42926
+ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83371028"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85264589"
 ---
 # <a name="tdigest-aggregation-function"></a>tdigest () (fonction d’agrégation)
 
-Calcule les résultats intermédiaires de [`percentiles()`](percentiles-aggfunction.md) dans le groupe. 
+Calcule les résultats intermédiaires de [`percentiles()`](percentiles-aggfunction.md) dans le groupe.
 
-* Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md).
+> [!NOTE]
+> Peut uniquement être utilisé dans le contexte de l’agrégation, à l’intérieur d’une [synthèse](summarizeoperator.md).
 
-En savoir plus sur l' [algorithme sous-jacent (T-Digest) et l’erreur estimée](percentiles-aggfunction.md#estimation-error-in-percentiles).
+Pour plus d’informations, consultez l' [algorithme sous-jacent (T-Digest) et l’erreur estimée](percentiles-aggfunction.md#estimation-error-in-percentiles).
 
 **Syntaxe**
 
-`summarize``tdigest(` *Expr* [ `,` *WeightExpr*]`)`
+`summarize` `tdigest`(*`Expr`* [`,` *`WeightExpr`*])
 
 **Arguments**
 
-* *Expr*: expression qui sera utilisée pour le calcul de l’agrégation. 
-* *WeightExpr*: expression qui sera utilisée comme poids des valeurs pour le calcul de l’agrégation.
+* *Expr*: expression utilisée pour le calcul de l’agrégation.
+* *WeightExpr*: expression utilisée comme poids des valeurs pour le calcul d’agrégation.
 
     
 **Retourne**
 
-Résultats intermédiaires des centiles pondérés de *expr* dans le groupe.
+Résultats intermédiaires des centiles pondérés de `*Expr*` l’ensemble du groupe.
  
  
 **Conseils**
 
-1) Vous pouvez utiliser la fonction d’agrégation [tdigest_merge ()](tdigest-merge-aggfunction.md) pour fusionner à nouveau la sortie de tdigest dans un autre groupe.
+* Utilisez la fonction d’agrégation [tdigest_merge ()](tdigest-merge-aggfunction.md) pour fusionner à nouveau la sortie de `tdigest` dans un autre groupe.
 
-2) Vous pouvez utiliser la fonction [percentile_tdigest ()](percentile-tdigestfunction.md) pour calculer le centile/percentilew des résultats tdigest.
+* Utilisez la fonction [percentile_tdigest ()](percentile-tdigestfunction.md) pour calculer le centile/percentilew des `tdigest` résultats.
 
 **Exemples**
 
@@ -52,7 +53,7 @@ StormEvents
 | summarize tdigest(DamageProperty) by State
 ```
 
-|État|tdigest_DamageProperty|
+|State|tdigest_DamageProperty|
 |---|---|
 |SUD DE L’ATLANTIQUE|[[5], [0], [193]]|
 |Floride|[[5], [250, 10, 600000, 5000, 375000, 15000000, 20000, 6000000, 0, 110000, 150000, 500, 12000, 30000, 15000, 46000000, 7000000, 6200000, 200000, 40000, 8000, 52000000, 62000000, 1200000, 130000, 1500000, 4000000, 7000, 250000, 875000, 3000, 100000, 10600000, 300000, 1000000, 25000, 75000, 2000, 60000, 10000, 170000, 350000, 50000, 1000, 16000, 80 500, 400000], [9, 1, 1, 22, 1, 1, 9, 1842, 1, 3, 7, 2, 4, 7, 1, 1, 1, 2, 5, 3, 3, 1, 1, 1, 1, 2, 2, 1, 1, 9, 7, 1, 1, 2, 5, 2, 9, 2, 27, 1, 1, 7, 27, 1, 1, 1, 1]]|

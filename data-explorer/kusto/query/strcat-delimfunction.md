@@ -1,6 +1,6 @@
 ---
-title: strcat_delim() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit strcat_delim() dans Azure Data Explorer.
+title: strcat_delim ()-Azure Explorateur de données
+description: Cet article décrit strcat_delim () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,31 +8,31 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f944af741cd5f655c2c9b090ddebc6cc35a47766
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: f6a78a5abb92aa93fe8b1ae15ea8968f71bde07c
+ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81506934"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85264553"
 ---
 # <a name="strcat_delim"></a>strcat_delim()
 
-Concatenates entre 2 et 64 arguments, avec délimitation, fourni comme premier argument.
+Concatène entre 2 et 64 arguments, avec le délimiteur, fourni comme premier argument.
 
- * Dans le cas où les arguments ne sont pas de type de chaîne, ils seront convertis de force en chaîne.
+ * Si les arguments ne sont pas de type chaîne, ils seront convertis en chaîne.
 
 **Syntaxe**
 
-`strcat_delim(`*dlimiter*,*argument1*,*argument2* [, *argumentN*]`)`
+`strcat_delim(`*Delimiter*, *argument1*, *argument2*[, *argumentN*]`)`
 
 **Arguments**
 
-* *délimitateur*: expression de cordes, qui sera utilisée comme séparateur.
-* *argument1* ... *argumentN* : expressions à concatenated.
+* *délimiteur*: expression de chaîne qui sera utilisée comme séparateur.
+* *argument1* ... *argumentN*: expressions à concaténer.
 
 **Retourne**
 
-Arguments, concatenated à une seule corde avec *delimiter*.
+Arguments, concaténés à une chaîne unique avec *délimiteur*.
 
 **Exemples**
 

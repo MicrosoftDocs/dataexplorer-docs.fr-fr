@@ -1,6 +1,6 @@
 ---
-title: indexof() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit indexof() dans Azure Data Explorer.
+title: IndexOf ()-Explorateur de données Azure
+description: Cet article décrit IndexOf () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,40 +8,40 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 698cc7c13c3d665f9f5cfe25a31269dc763c51fb
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 2d5accaa0e6f6c4c6e5d5261a9709ba965de6965
+ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81513938"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85264960"
 ---
 # <a name="indexof"></a>indexof()
 
-Fonction indique l’index zéro de la première occurrence d’une chaîne spécifiée dans la chaîne d’entrée.
+Signale l’index de base zéro de la première occurrence d’une chaîne spécifiée dans la chaîne d’entrée.
 
-Si la chaîne de recherche ou d’entrée n’est pas de type de chaîne - lance de force la valeur à la ficelle.
+Si la recherche ou la chaîne d’entrée n’est pas de type *chaîne* , la fonction effectue un cast forcé de la valeur en *chaîne*.
 
-Voir [`indexof_regex()`](indexofregexfunction.md).
+Pour plus d’informations, consultez [`indexof_regex()`](indexofregexfunction.md).
 
 **Syntaxe**
 
-`indexof(`*source*`,`*de recherche*`[,`*start_index*`[,`*occurrence* *de longueur*`[,``]]])`
+`indexof(`*source* `,` *recherche* `[,` *start_index* `[,` *longueur* `[,` *occurrence*`]]])`
 
 **Arguments**
 
 * *source*: chaîne d’entrée.  
-* *lookup*: corde à rechercher.
-* *start_index*: poste de départ de recherche (facultatif).
-* *longueur*: nombre de positions de caractère à examiner, -1 définissant la longueur illimitée (facultatif).
-* *:* est l’occurrence Par défaut 1 (facultatif).
+* *Lookup*: chaîne à rechercher.
+* *start_index*: position de début de la recherche. facultatif.
+* *longueur*: nombre de positions de caractère à examiner. La valeur-1 signifie une longueur illimitée. facultatif.
+* *occurrence*: numéro de l’occurrence. Valeur par défaut  1. facultatif.
 
 **Retourne**
 
-Position de l’indice zéro de la *recherche*.
+Position d’index de base zéro de la *recherche*.
 
-Retourne -1 si la chaîne ne se trouve pas dans l’entrée.
+Retourne-1 si la chaîne est introuvable dans l’entrée.
 
-En cas de paramètres de *longueur* non pertinent (moins de 0) *start_index,* *occurrence* ou (moins de -1) - retours *nuls*.
+Si *ce paramètre n'* est pas pertinent (inférieur à 0) *start_index*, *occurrence*ou (inférieur à-1), retourne la *valeur null*.
 
 **Exemples**
 ```kusto
@@ -57,6 +57,6 @@ print
  , idx9 = indexof("abcdefgabcdefg", "cde", 1, -1, 3)   // the third occurrence of lookup is not in researched range
 ```
 
-|idx1 (idx1)|idx2 (idx2)|idx3 (idx3)|idx4 (idx4)|idx5 (idx5)|idx6 (en)|idx7 (idx7)|idx8 (en)|idx9 (en)|
+|idx1|idx2|idx3|idx4|idx5|idx6|idx7|idx8|idx9|
 |----|----|----|----|----|----|----|----|----|
 |2   |2   |-1  |-1  |    |4   |2   |9   |-1  |

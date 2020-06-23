@@ -1,6 +1,6 @@
 ---
-title: opérateur ExternalData-Azure Explorateur de données | Microsoft Docs
-description: Cet article décrit l’opérateur ExternalData dans Azure Explorateur de données.
+title: opérateur ExternalData-Azure Explorateur de données
+description: Cet article décrit l’opérateur de données externes dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: f8878a3c4589dca3cfacf935a787e8c754ab3ede
-ms.sourcegitcommit: a8575e80c65eab2a2118842e59f62aee0ff0e416
+ms.openlocfilehash: 4534705156669447a89cb5d85c360071dfcb2b2a
+ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/17/2020
-ms.locfileid: "84942673"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85264995"
 ---
 # <a name="externaldata-operator"></a>externaldata, opérateur
 
-L' `externaldata` opérateur retourne une table dont le schéma est défini dans la requête elle-même, et dont les données sont lues à partir d’un artefact de stockage externe (tel qu’un objet BLOB dans le stockage d’objets BLOB Azure).
+L' `externaldata` opérateur retourne une table dont le schéma est défini dans la requête elle-même, et dont les données sont lues à partir d’un artefact de stockage externe, tel qu’un objet BLOB dans le stockage d’objets BLOB Azure.
 
 **Syntaxe**
 
@@ -25,7 +25,7 @@ L' `externaldata` opérateur retourne une table dont le schéma est défini dans
 
 **Arguments**
 
-* *ColumnName*, *ColumnType*: définit le schéma de la table.
+* *ColumnName*, *ColumnType*: les arguments définissent le schéma de la table.
   La syntaxe est la même que celle utilisée lors de la définition d’une table dans [. Create table](../management/create-table-command.md).
 
 * *StorageConnectionString*: la [chaîne de connexion de stockage](../api/connection-strings/storage.md) décrit l’artefact de stockage contenant les données à retourner.
@@ -39,7 +39,7 @@ L' `externaldata` opérateur retourne une table dont le schéma est défini dans
 
 **Retourne**
 
-L' `externaldata` opérateur retourne une table de données du schéma donné dont les données ont été analysées à partir de l’artefact de stockage spécifié indiqué par la chaîne de connexion de stockage.
+L' `externaldata` opérateur retourne une table de données du schéma donné dont les données ont été analysées à partir de l’artefact de stockage spécifié, indiqué par la chaîne de connexion de stockage.
 
 **Exemples**
 
@@ -68,7 +68,7 @@ with(format="csv")
 | summarize count() by ProductId
 ```
 
-L’exemple ci-dessus peut être considéré comme un moyen rapide d’interroger plusieurs fichiers de données sans définir de [table externe](schema-entities/externaltables.md). 
+L’exemple ci-dessus peut être considéré comme un moyen rapide d’interroger plusieurs fichiers de données sans définir de [table externe](schema-entities/externaltables.md).
 
->[!NOTE]
->Le partitionnement des données n’est pas reconnu par l' `externaldata()` opérateur.
+> [!NOTE]
+> Le partitionnement des données n’est pas reconnu par l' `externaldata()` opérateur.

@@ -1,6 +1,6 @@
 ---
-title: dcount() (fonction d’agrégation) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit dcount() (fonction d’agrégation) dans Azure Data Explorer.
+title: DCount () (fonction d’agrégation)-Azure Explorateur de données
+description: Cet article décrit DCount () (fonction d’agrégation) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,29 +8,29 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 6f1df8c93d21b73be3753468708a119177d4d602
-ms.sourcegitcommit: 29018b3db4ea7d015b1afa65d49ecf918cdff3d6
+ms.openlocfilehash: 7f8464ed7dca8d712900bb7a1047875b6292d243
+ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "82030403"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85265012"
 ---
-# <a name="dcount-aggregation-function"></a>dcount)) (fonction d’agrégation)
+# <a name="dcount-aggregation-function"></a>DCount () (fonction d’agrégation)
 
-Renvoie une estimation du nombre de valeurs distinctes prises par une expression scalaire dans le groupe sommaire.
+Retourne une estimation du nombre de valeurs distinctes prises par une expression scalaire dans le groupe de résumé.
 
 **Syntaxe**
 
-... `|` `,` *Accuracy*`)` *Expr* Expr [ Précision ] ... `summarize` `dcount` `(`
+... `|` `summarize` `dcount` `(`*`Expr`*[, *`Accuracy`*]`)` ...
 
 **Arguments**
 
-* *Expr*: Une expression scalaire dont les valeurs distinctes doivent être comptées.
-* *Précision*: `int` Un littéral optionnel qui définit l’exactitude d’estimation demandée. Voir ci-dessous pour les valeurs prises en charge. Si elle n’est pas `1` précisée, la valeur par défaut est utilisée.
+* *Expr*: expression scalaire dont les valeurs distinctes doivent être comptées.
+* *Précision*: un `int` littéral facultatif qui définit la précision d’estimation demandée. Voir ci-dessous pour connaître les valeurs prises en charge. S’il n’est pas spécifié, la valeur par défaut `1` est utilisée.
 
 **Retourne**
 
-Retourne une estimation du nombre de valeurs distinctes de *Expr* dans le groupe.
+Retourne une estimation du nombre de valeurs distinctes de *`Expr`* dans le groupe.
 
 **Exemple**
 
@@ -38,27 +38,29 @@ Retourne une estimation du nombre de valeurs distinctes de *Expr* dans le groupe
 PageViewLog | summarize countries=dcount(country) by continent
 ```
 
-:::image type="content" source="images/dcount-aggfunction/dcount.png" alt-text="D compte":::
+:::image type="content" source="images/dcount-aggfunction/dcount.png" alt-text="Nombre D":::
 
-**Remarques**
+**Notes**
 
-La `dcount()` fonction d’agrégation est principalement utile pour estimer la cardinalité des ensembles énormes. Il échange les performances pour l’exactitude, et peut donc retourner un résultat qui varie entre les exécutions (l’ordre des entrées peut avoir un effet sur sa sortie).
+La `dcount()` fonction d’agrégation est principalement utile pour estimer la cardinalité des jeux énormes. Elle génère des performances plus précises et peut retourner un résultat qui varie entre les exécutions. L’ordre des entrées peut avoir un effet sur sa sortie.
 
-Pour obtenir un compte précis `V` des `G`valeurs distinctes de groupé par :
+Obtient un nombre exact de valeurs distinctes `V` groupées par `G` .
 
 ```kusto
 T | summarize by V, G | summarize count() by G
 ```
 
-Ce calcul exigera beaucoup de `V` mémoire interne puisque les valeurs `G`distinctes de sont multipliées par le nombre de valeurs distinctes de ; Par conséquent, il peut entraîner des erreurs de mémoire ou de grands temps d’exécution. `dcount()`offre une alternative rapide et fiable :
+Ce calcul nécessite une grande quantité de mémoire interne, car les valeurs distinctes de `V` sont multipliées par le nombre de valeurs distinctes de `G` .
+Cela peut entraîner des erreurs de mémoire ou des temps d’exécution importants. 
+`dcount()`offre une alternative rapide et fiable :
 
 ```kusto
 T | summarize dcount(B) by G | count
 ```
 
-## <a name="estimation-accuracy"></a>Précision d’estimation
+## <a name="estimation-accuracy"></a>Précision de l’estimation
 
-La `dcount()` fonction globale utilise une variante de [l’algorithme HyperLogLog (HLL),](https://en.wikipedia.org/wiki/HyperLogLog)qui fait une estimation stochastique de la cardinalité définie. L’algorithme fournit un "knob" qui peut être utilisé pour équilibrer la précision et le temps d’exécution / taille de la mémoire:
+La `dcount()` fonction Aggregate utilise une variante de l' [algorithme HYPERLOGLOG (HLL)](https://en.wikipedia.org/wiki/HyperLogLog), qui effectue une estimation stochastique de la cardinalité Set. L’algorithme fournit un « bouton » qui peut être utilisé pour équilibrer la précision et la durée d’exécution par taille de mémoire :
 
 |Précision|Erreur (%)|Nombre d’entrées   |
 |--------|---------|--------------|
@@ -69,12 +71,14 @@ La `dcount()` fonction globale utilise une variante de [l’algorithme HyperLogL
 |       4|      0.2|2<sup>18</sup>|
 
 > [!NOTE]
-> La colonne « nombre d’entrées » est le nombre de compteurs 1-byte dans la mise en œuvre HLL.
+> La colonne « nombre d’entrées » est le nombre de compteurs sur 1 octet dans l’implémentation de HLL.
 
-L’algorithme comprend quelques dispositions pour faire un compte parfait (zéro erreur) si la cardinalité `1`définie est assez petite (1000 valeurs lorsque le niveau de précision est , et 8000 valeurs si le niveau de précision est `2`).
+L’algorithme comprend certaines dispositions pour faire un compte parfait (zéro erreur), si la cardinalité définie est suffisamment petite :
+* Lorsque le niveau de précision est `1` , 1000 valeurs sont retournées
+* Lorsque le niveau de précision est `2` , 8000 valeurs sont retournées
 
-L’erreur liée est probabiliste, pas une limite théorique. La valeur est l’écart standard de la distribution d’erreurs (le sigma), et 99,7% des estimations auront une erreur relative de moins de 3 fois sigma.
+L’erreur liée est probabiliste et non une limite théorique. La valeur est l’écart type de la distribution des erreurs (Sigma) et 99,7% des estimations auront une erreur relative de moins de 3 x Sigma.
 
-Ce qui suit décrit la fonction de distribution de probabilité de l’erreur d’estimation relative (en pourcentages) pour tous les paramètres de précision pris en charge :
+L’illustration suivante montre la fonction de distribution de probabilité de l’erreur d’estimation relative, en pourcentage, pour tous les paramètres de précision pris en charge :
 
-:::image type="content" border="false" source="images/dcount-aggfunction/hll-error-distribution.png" alt-text="distribution d’erreurs hll":::
+:::image type="content" border="false" source="images/dcount-aggfunction/hll-error-distribution.png" alt-text="distribution des erreurs HLL":::

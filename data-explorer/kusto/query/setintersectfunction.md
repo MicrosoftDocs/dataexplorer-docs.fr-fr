@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/02/2019
-ms.openlocfilehash: 23b751dce38f5b595ba081c9a29e1b1a5442c96f
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: f611f660a791117159ad5fce4c024914d9e6909b
+ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372350"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85264740"
 ---
 # <a name="set_intersect"></a>set_intersect()
 
-Retourne un `dynamic` tableau (JSON) de l’ensemble de toutes les valeurs distinctes qui se trouvent dans tous les tableaux-(Arr1 ∩ Arr2 ∩...).
+Retourne un `dynamic` tableau de l’ensemble de toutes les valeurs distinctes qui se trouvent dans tous les tableaux (Arr1 ∩ Arr2 ∩...).
 
 **Syntaxe**
 
@@ -45,7 +45,7 @@ range x from 1 to 3 step 1
 
 |Colonne1|
 |---|
-|[1]|
+| [1]|
 |2|
 |1,3|
 
