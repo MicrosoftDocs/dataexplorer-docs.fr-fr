@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: dfb957189eb0d9be552cf12b32ef57452a375c51
-ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
+ms.openlocfilehash: b70ee322d4718f78a37144b650a147c5c9965a60
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84512552"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85129020"
 ---
-# <a name="percentile-percentiles"></a>centile (), centile ()
+# <a name="percentile-percentiles-aggregation-function"></a>centile (), centile () (fonction d’agrégation)
 
 Retourne une estimation pour le [centile le plus proche](#nearest-rank-percentile) de la population défini par `*Expr*` .
 La précision dépend de la densité de population dans la région du centile. Cette fonction ne peut être utilisée que dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)

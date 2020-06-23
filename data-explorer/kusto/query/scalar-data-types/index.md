@@ -4,16 +4,16 @@ description: Cet article décrit les types de données scalaires dans Azure Data
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/27/2020
-ms.openlocfilehash: 3ef87217beee62fe4cecf7ee95dfe8daba49af7a
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 95bb28c81ec3221569758ead8a289bdf81d32d3d
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81490240"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128646"
 ---
 # <a name="scalar-data-types"></a>Types de données scalaires
 
@@ -26,22 +26,22 @@ Kusto fournit un ensemble de types de données système qui définissent tous le
 
 Le tableau suivant liste les types de données pris en charge par Kusto, ainsi que les alias supplémentaires que vous pouvez utiliser pour y faire référence et un type .NET Framework à peu près équivalent.
 
-| Type       | Nom(s) supplémentaire(s)   | Type .NET équivalent              | gettype()   |Type de stockage (nom interne)|
-| ---------- | -------------------- | --------------------------------- | ----------- |----------------------------|
-| `bool`     | `boolean`            | `System.Boolean`                  | `int8`      |`I8`                        |
-| `datetime` | `date`               | `System.DateTime`                 | `datetime`  |`DateTime`                  |
-| `dynamic`  |                      | `System.Object`                   | `array` ou `dictionary`, ou l’une des autres valeurs |`Dynamic`|
-| `guid`     | `uuid`, `uniqueid`   | `System.Guid`                     | `guid`      |`UniqueId`                  |
-| `int`      |                      | `System.Int32`                    | `int`       |`I32`                       |
-| `long`     |                      | `System.Int64`                    | `long`      |`I64`                       |
-| `real`     | `double`             | `System.Double`                   | `real`      |`R64`                       |
-| `string`   |                      | `System.String`                   | `string`    |`StringBuffer`              |
-| `timespan` | `time`               | `System.TimeSpan`                 | `timespan`  |`TimeSpan`                  |
-| `decimal`  |                      | `System.Data.SqlTypes.SqlDecimal` | `decimal`   | `Decimal`                  |
+| Type       | Nom(s) supplémentaire(s)   | Type .NET équivalent              | gettype()   |
+| ---------- | -------------------- | --------------------------------- | ----------- |
+| `bool`     | `boolean`            | `System.Boolean`                  | `int8`      |
+| `datetime` | `date`               | `System.DateTime`                 | `datetime`  |
+| `dynamic`  |                      | `System.Object`                   | `array` ou `dictionary`, ou l’une des autres valeurs |
+| `guid`     | `uuid`, `uniqueid`   | `System.Guid`                     | `guid`      |
+| `int`      |                      | `System.Int32`                    | `int`       |
+| `long`     |                      | `System.Int64`                    | `long`      |
+| `real`     | `double`             | `System.Double`                   | `real`      |
+| `string`   |                      | `System.String`                   | `string`    |
+| `timespan` | `time`               | `System.TimeSpan`                 | `timespan`  |
+| `decimal`  |                      | `System.Data.SqlTypes.SqlDecimal` | `decimal`   |
 
-Tous les types de données incluent une valeur « Null » spéciale, qui représente l’absence de données ou une incompatibilité de données. Par exemple, cette valeur est générée quand vous essayez d’ingérer la chaîne `"abc"` dans une colonne `int`.
+Tous les types de données non-chaînes incluent une valeur « Null » spéciale, qui représente l’absence de données ou une incompatibilité de données. Par exemple, cette valeur est générée quand vous essayez d’ingérer la chaîne `"abc"` dans une colonne `int`.
 Il est impossible de matérialiser cette valeur explicitement, mais vous pouvez détecter si une expression correspond à cette valeur à l’aide de la fonction `isnull()`.
 
 > [!WARNING]
-> À la rédaction de cet article, la prise en charge du type `guid` est incomplète. Nous recommandons vivement aux équipes d’utiliser des valeurs de type `string` à la place.
-
+> La prise en charge du type `guid` est incomplète.
+> Nous recommandons vivement aux équipes d’utiliser des valeurs de type `string` à la place.

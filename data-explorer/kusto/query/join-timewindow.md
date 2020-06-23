@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 4741da4367bb1a350c7310ea21ebe5ce9b91b06b
-ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
+ms.openlocfilehash: d23d76fdcc592435a8ec7fa24ef5d0dfd5186c68
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83271483"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128454"
 ---
-# <a name="joining-within-time-window"></a>Jointure dans la fenêtre de temps
+# <a name="time-window-join"></a>Jointure de fenêtre de temps
 
 Il est souvent utile de joindre deux jeux de données volumineux sur une clé de cardinalité élevée (par exemple, un ID d’opération ou un ID de session) et de limiter davantage les enregistrements de droite ( `$right` ) qui doivent être mis en correspondance pour chaque enregistrement de gauche ( `$left` ) en ajoutant une restriction sur la « durée de la distance » entre les `datetime` colonnes à gauche et à droite. Cela diffère de l’opération de jointure Kusto habituelle comme, en plus de la partie « Equi-Join » (correspondant à la clé de cardinalité élevée ou aux jeux de données de gauche et de droite), le système peut également appliquer une fonction de distance et l’utiliser pour accélérer considérablement la jointure. Notez qu’une fonction de distance ne se comporte pas comme une égalité (c’est-à-dire que, si `dist(x,y)` et `dist(y,z)` ont la valeur true, elle ne suit pas `dist(x,z)` également la valeur true). *En interne, nous faisons parfois référence à This en tant que « jointure diagonale ».*
 

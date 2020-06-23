@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/26/2020
-ms.openlocfilehash: 293ee468f31fafafdf08da1632c93b04b0a8adf2
-ms.sourcegitcommit: f7101c6b41ec250d05f4cb6092e2939958b37b40
+ms.openlocfilehash: 8e419d471419a291b3680c4b91d3e6908b2e7f2e
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/03/2020
-ms.locfileid: "84329008"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128833"
 ---
 # <a name="external-table-general-control-commands"></a>Commandes de contrôle générales de table externe
 
@@ -28,7 +28,7 @@ Pour obtenir une vue d’ensemble des tables externes, consultez [tables externe
 
 `.show` `external` `tables`
 
-`.show``external` `table` *TableName*
+`.show` `external` `table` *TableName*
 
 **Sortie**
 
@@ -50,7 +50,7 @@ Pour obtenir une vue d’ensemble des tables externes, consultez [tables externe
 
 | TableName | TableType | Dossier         | DocString | Propriétés |
 |-----------|-----------|----------------|-----------|------------|
-| T         | Objet blob      | ExternalTables | Documents      | {}         |
+| T         | Objet blob      | ExternalTables | Docs      | {}         |
 
 
 ## <a name="show-external-table-schema"></a>. afficher le schéma de la table externe
@@ -62,7 +62,7 @@ Pour obtenir une vue d’ensemble des tables externes, consultez [tables externe
 
 `.show``external` `table` *TableName* `schema` `as` ( `json`  |  `csl` )
 
-`.show``external` `table` *TableName*`cslschema`
+`.show` `external` `table` *TableName* `cslschema`
 
 **Sortie**
 
@@ -91,14 +91,14 @@ Pour obtenir une vue d’ensemble des tables externes, consultez [tables externe
 
 | TableName | schéma    | nom_base_de_données | Dossier         | DocString |
 |-----------|----------------------------------|--------------|----------------|-----------|
-| T         | {« Name » : « ExternalBlob »,<br>« Dossier » : « ExternalTables »,<br>« DocString » : « docs »,<br>"OrderedColumns" : [{"Name" : "x", "type" : "System. Int64", "CslType" : "long", "DocString" : ""}, {"Name" : "s", "type" : "System. String", "CslType" : "String", "DocString" : ""}]} | DB           | ExternalTables | Documents      |
+| T         | {« Name » : « ExternalBlob »,<br>« Dossier » : « ExternalTables »,<br>« DocString » : « docs »,<br>"OrderedColumns" : [{"Name" : "x", "type" : "System. Int64", "CslType" : "long", "DocString" : ""}, {"Name" : "s", "type" : "System. String", "CslType" : "String", "DocString" : ""}]} | DB           | ExternalTables | Docs      |
 
 
 *CSL*
 
 | TableName | schéma          | nom_base_de_données | Dossier         | DocString |
 |-----------|-----------------|--------------|----------------|-----------|
-| T         | x:long,s:string | DB           | ExternalTables | Documents      |
+| T         | x:long,s:string | DB           | ExternalTables | Docs      |
 
 ## <a name="drop-external-table"></a>. supprimer la table externe
 
@@ -108,7 +108,7 @@ Pour obtenir une vue d’ensemble des tables externes, consultez [tables externe
 
 **Syntaxe :**  
 
-`.drop``external` `table` *TableName*
+`.drop``external` `table` *TableName* [ `ifexists` ]
 
 **Sortie**
 
@@ -122,7 +122,7 @@ Retourne les propriétés de la table supprimée. Pour plus d’informations, co
 
 | TableName | TableType | Dossier         | DocString | schéma       | Propriétés |
 |-----------|-----------|----------------|-----------|-----------------------------------------------------|------------|
-| T         | Objet blob      | ExternalTables | Documents      | [{"Name" : "x", "CslType" : "long"},<br> {"Name" : "s", "CslType" : "String"}] | {}         |
+| T         | Objet blob      | ExternalTables | Docs      | [{"Name" : "x", "CslType" : "long"},<br> {"Name" : "s", "CslType" : "String"}] | {}         |
 
 ## <a name="next-steps"></a>Étapes suivantes
 

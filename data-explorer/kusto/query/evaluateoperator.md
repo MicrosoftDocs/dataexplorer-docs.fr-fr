@@ -1,53 +1,57 @@
 ---
-title: évaluer l’opérateur de plugin - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit évaluer l’opérateur de plugin dans Azure Data Explorer.
+title: évaluer l’opérateur de plug-in-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit évaluer l’opérateur de plug-in dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: 1aae36df29abf705ba821abdc2d1da96e4635a60
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: d01b3b5178801fe1b5e55f51987564674ce4aeae
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81515740"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128629"
 ---
-# <a name="evaluate-plugin-operator"></a>evaluate plugin, opérateur
+# <a name="evaluate-operator-plugins"></a>évaluer les plug-ins d’opérateur
 
-Invoque une extension de requête côté service (plugin).
+Appelle une extension de requête côté service (plug-in).
 
-L’opérateur `evaluate` est un opérateur tabulaire qui offre la possibilité d’invoquer des extensions de langage de requête connues sous le nom **de plugins**. Les plugins peuvent être activés ou désactivés (contrairement à d’autres constructions linguistiques qui sont toujours disponibles) et ne sont pas « liés » par la nature relationnelle de la langue (par exemple, ils peuvent ne pas avoir un schéma de sortie prédéfini, statiquement déterminé).
+L' `evaluate` opérateur est un opérateur tabulaire qui donne la possibilité d’appeler des extensions de langage de requête appelées **plug-ins**. Les plug-ins peuvent être activés ou désactivés (contrairement à d’autres constructions de langage, qui sont toujours disponibles) et ne sont pas « liés » par la nature relationnelle de la langue (par exemple, ils peuvent ne pas avoir un schéma de sortie prédéfini, déterminé statiquement).
 
 **Syntaxe** 
 
-[*T* `|`T `evaluate` ] [ *assessParameters* ] *PluginName* `(` `,` [*PluginArg1* [ *PluginArg2*]...`)`
+[*T* `|` ] `evaluate` [ *evaluateParameters* ] *PluginName* `(` [*PluginArg1* [ `,` *PluginArg2*]...`)`
 
 Où :
 
-* *T* est une entrée tabulaire facultative au plugin. (Certains plugins ne prennent aucune entrée et agissent comme une source de données tabulaire.)
-* *PluginName* est le nom obligatoire du plugin invoqué.
-* *PluginArg1*, ... sont les arguments facultatifs pour le plugin.
-* *évaluerParameters*: Paramètres nuls ou plus (séparés dans l’espace) sous la forme de *valeur nomine* `=` *Value* qui contrôlent le comportement du plan d’évaluation et d’exécution. Les paramètres suivants sont pris en charge : 
+* *T* est une entrée tabulaire facultative dans le plug-in. (Certains plug-ins n’acceptent aucune entrée et agissent comme une source de données tabulaires.)
+* *PluginName* est le nom obligatoire du plug-in appelé.
+* *PluginArg1*,... arguments facultatifs du plug-in.
+* *evaluateParameters*: zéro ou plusieurs paramètres (séparés par des espaces) sous la forme d’une valeur de *nom* `=` *Value* qui contrôlent le comportement de l’opération d’évaluation et du plan d’exécution. Chaque plug-in peut décider différemment comment gérer chaque paramètre. Reportez-vous à la documentation de chaque plug-in pour obtenir un comportement spécifique.  
+
+Les paramètres suivants sont pris en charge : 
 
   |Nom                |Valeurs                           |Description                                |
   |--------------------|---------------------------------|-------------------------------------------|
-  |`hint.distribution` |`single`, `per_node`, `per_shard`| [Conseils de distribution](#distribution-hints) |
+  |`hint.distribution` |`single`, `per_node`, `per_shard`| [Indicateurs de distribution](#distributionhints) |
+  |`hint.pass_filters` |`true`, `false`| Autorisez `evaluate` l’opérateur à transférer tous les filtres correspondants avant le plug-in. Le filtre est considéré comme « mis en correspondance » s’il fait référence à une colonne existante avant l' `evaluate` opérateur. Valeur par défaut : `false` |
+  |`hint.pass_filters_column` |*column_name*| Autorisez l’opérateur de plug-in à transférer des filtres faisant référence à *column_name* avant le plug-in. Le paramètre peut être utilisé plusieurs fois avec des noms de colonnes différents. |
 
-**Remarques**
+**Notes**
 
-* Syntactiquement, `evaluate` se comporte de la même manière que [l’opérateur invoque](./invokeoperator.md), qui invoque des fonctions tabulaires.
-* Les plugins fournis par l’opérateur d’évaluation ne sont pas liés par les règles régulières d’exécution des requêtes ou d’évaluation des arguments.
-Les plugins spécifiques peuvent avoir des restrictions spécifiques. Par exemple, les plugins dont le schéma de sortie dépend des données (par exemple, [bag_unpack plugin)](./bag-unpackplugin.md)ne peuvent pas être utilisés lors de l’exécution des requêtes à grappes croisées.
+* Syntaxiquement, `evaluate` se comporte de la même façon que l' [opérateur d’appel](./invokeoperator.md), qui appelle des fonctions tabulaires.
+* Les plug-ins fournis par le biais de l’opérateur Evaluate ne sont pas liés par les règles régulières d’exécution de la requête ou d’évaluation des arguments.
+* Des plug-ins spécifiques peuvent avoir des restrictions spécifiques. Par exemple, les plug-ins dont le schéma de sortie dépend des données (par exemple, le plug-in [bag_unpack](./bag-unpackplugin.md) et le [plug-in pivot](./pivotplugin.md)) ne peuvent pas être utilisés lors de requêtes entre clusters.
 
-## <a name="distribution-hints"></a>Conseils de distribution
+<a id="distributionhints"/>**Indicateurs de distribution**</a>
 
-Les conseils de distribution spécifient comment l’exécution du plugin sera répartie sur plusieurs nœuds de cluster. Chaque plugin peut implémenter un support différent pour la distribution. La documentation du plugin spécifie les options de distribution prises en charge par le plugin.
+Les indicateurs de distribution spécifient la façon dont l’exécution du plug-in sera répartie entre plusieurs nœuds de cluster. Chaque plug-in peut implémenter une prise en charge différente pour la distribution. La documentation du plug-in spécifie les options de distribution prises en charge par le plug-in.
 
 Valeurs possibles :
 
-* `single`: Une seule instance du plugin s’exécutera sur l’ensemble des données de requête.
-* `per_node`: Si la requête avant l’appel plugin est distribuée entre les nœuds, alors une instance du plugin s’exécutera sur chaque nœud sur les données qu’il contient.
-* `per_shard`: Si les données avant l’appel plugin sont distribuées sur des éclats, alors une instance du plugin s’exécutera sur chaque fragment de données.
+* `single`: Une seule instance du plug-in s’exécutera sur l’ensemble des données de la requête.
+* `per_node`: Si la requête avant l’appel de plug-in est distribuée entre les nœuds, une instance du plug-in s’exécutera sur chaque nœud sur les données qu’elle contient.
+* `per_shard`: Si les données avant l’appel du plug-in sont distribuées entre les partitions, une instance du plug-in est exécutée sur chaque partition des données.

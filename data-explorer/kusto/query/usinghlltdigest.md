@@ -10,14 +10,14 @@ ms.topic: reference
 ms.date: 02/19/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 3f1371fe298b2d0e066fc3a278cc3b560050416c
-ms.sourcegitcommit: 283cce0e7635a2d8ca77543f297a3345a5201395
+ms.openlocfilehash: 8da464bca228df5a813f50e68fab5ddb2aa926cf
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/27/2020
-ms.locfileid: "84011582"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128663"
 ---
-# <a name="partitioning-and-composing-intermediate-results-of-aggregations"></a>Partitionnement et composition des résultats intermédiaires des agrégations
+# <a name="using-hll-and-tdigest"></a>Utilisation de hll() et de tdigest()
 
 Supposons que vous souhaitez calculer le nombre d’utilisateurs distincts tous les jours au cours des sept derniers jours. Vous pouvez exécuter une `summarize dcount(user)` fois par jour avec une étendue filtrée sur les sept derniers jours. Cette méthode est inefficace, car chaque fois que le calcul est exécuté, il existe un chevauchement de six jours avec le calcul précédent. Vous pouvez également calculer un agrégat pour chaque jour, puis combiner ces agrégats. Cette méthode vous oblige à « mémoriser » les six derniers résultats, mais c’est bien plus efficace.
 

@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a41a45fb12fafe62fffd6c13e5ea9ecff55bb355
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 0ff4ad4adbae580e34c946eb9d18ca3337d3c49c
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373009"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128884"
 ---
-# <a name="rolling_percentile-plugin"></a>plug-in rolling_percentile
+# <a name="rolling_percentile-plugin"></a>plug-in rolling_percentile ()
 
 Retourne une estimation pour le centile spécifié de la population *ValueColumn* dans une fenêtre de taille de *BinsPerWindow* enchaînée (coulissante) par *emplacement*.
 

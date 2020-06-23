@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/20/2019
-ms.openlocfilehash: d876f26de796008e83b620e4511a31cdb4e23888
-ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
+ms.openlocfilehash: 1e93764058c6d890568e90f67472ec4306a092f8
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/18/2020
-ms.locfileid: "83550688"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128697"
 ---
-# <a name="window-functions"></a>Fonctions Windows
+# <a name="window-functions-overview"></a>Vue d’ensemble des fonctions de fenêtre
 
 Les fonctions de fenêtre opèrent sur plusieurs lignes (enregistrements) dans un ensemble de lignes à la fois. Contrairement aux fonctions d’agrégation, les fonctions de fenêtre requièrent que les lignes de l’ensemble de lignes soient sérialisées (selon un ordre spécifique). Les fonctions de fenêtre peuvent dépendre de l’ordre pour déterminer le résultat.
 

@@ -8,14 +8,14 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/27/2020
-ms.openlocfilehash: ccbd01faae3e71941c1bf4542f473410753155cf
-ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
+ms.openlocfilehash: 640c331b177642735d875f615772dcdbb6ec68d8
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84294574"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128867"
 ---
-# <a name="scalar-functions"></a>Fonctions scalaires
+# <a name="scalar-function-types"></a>Types de fonction scalaire
 
 ## <a name="binary-functions"></a>Fonctions binaires
 
@@ -76,11 +76,11 @@ ms.locfileid: "84294574"
 
 |Nom de fonction     |Description                                          |
 |-------------------------|--------------------------------------------------------|
-|[array_concat()](arrayconcatfunction.md)|Concatène un certain nombre de tableaux dynamiques en un seul tableau.|
+|[array_concat ()](arrayconcatfunction.md)|Concatène un certain nombre de tableaux dynamiques en un seul tableau.|
 |[array_iif()](arrayifffunction.md)|Applique la fonction IIF au niveau des éléments sur les tableaux.|
 |[array_index_of()](arrayindexoffunction.md)|Recherche l’élément spécifié dans le tableau et retourne sa position.|
-|[array_length()](arraylengthfunction.md)|Calcule le nombre d’éléments dans un tableau dynamique.|
-|[array_slice()](arrayslicefunction.md)|Extrait un segment d’un tableau dynamique.|
+|[array_length ()](arraylengthfunction.md)|Calcule le nombre d’éléments dans un tableau dynamique.|
+|[array_slice ()](arrayslicefunction.md)|Extrait un segment d’un tableau dynamique.|
 |[array_split()](arraysplitfunction.md)|Génère un tableau de tableaux fractionnés à partir du tableau d’entrée.|
 |[bag_keys()](bagkeysfunction.md)|Énumère toutes les clés racines dans un objet de jeu de propriétés dynamique.|
 |[pack()](packfunction.md)|Crée un objet dynamique (jeu de propriétés) à partir d’une liste de noms et de valeurs.|
@@ -114,18 +114,18 @@ ms.locfileid: "84294574"
 
 |Nom de fonction     |Description                                          |
 |-------------------------|--------------------------------------------------------|
-|[abs()](abs-function.md)|Calcule la valeur absolue de l’entrée.|
-|[acos()](acosfunction.md)|Retourne l’angle dont le cosinus est le nombre spécifié (l’opération inverse de COS ()).|
-|[asin()](asinfunction.md)|Retourne l’angle dont le sinus est le nombre spécifié (l’opération inverse de Sin ()).|
-|[atan()](atanfunction.md)|Retourne l’angle dont la tangente est le nombre spécifié (l’opération inverse de Tan ()).|
+|[ABS ()](abs-function.md)|Calcule la valeur absolue de l’entrée.|
+|[ACOS ()](acosfunction.md)|Retourne l’angle dont le cosinus est le nombre spécifié (l’opération inverse de COS ()).|
+|[ASIN ()](asinfunction.md)|Retourne l’angle dont le sinus est le nombre spécifié (l’opération inverse de Sin ()).|
+|[ATAN ()](atanfunction.md)|Retourne l’angle dont la tangente est le nombre spécifié (l’opération inverse de Tan ()).|
 |[atan2()](atan2function.md)|Calcule l’angle, en radians, entre l’axe des abscisses positif et le rayon depuis l’origine jusqu’au point (y, x).|
 |[beta_cdf()](beta-cdffunction.md)|Retourne la fonction de distribution bêta cumulative standard.|
 |[beta_inv()](beta-invfunction.md)|Retourne l’inverse de la fonction de densité bêta cumulative de probabilité bêta.|
 |[beta_pdf()](beta-pdffunction.md)|Retourne la fonction de densité de probabilité bêta.|
-|[cos()](cosfunction.md)|Retourne la fonction cosinus.|
-|[cot()](cotfunction.md)|Calcule la cotangente trigonométrique de l’angle spécifié, en radians.|
-|[degrees()](degreesfunction.md)|Convertit la valeur d’angle en radians en valeur en degrés, à l’aide de la formule degrés = (180/PI) * angle-in-radians.|
-|[exp()](exp-function.md)|Fonction exponentielle base-e de x, qui est e élevée à la puissance x : e ^ x.|
+|[COS ()](cosfunction.md)|Retourne la fonction cosinus.|
+|[Cot ()](cotfunction.md)|Calcule la cotangente trigonométrique de l’angle spécifié, en radians.|
+|[degrés ()](degreesfunction.md)|Convertit la valeur d’angle en radians en valeur en degrés, à l’aide de la formule degrés = (180/PI) * angle-in-radians.|
+|[exp ()](exp-function.md)|Fonction exponentielle base-e de x, qui est e élevée à la puissance x : e ^ x.|
 |[exp10()](exp10-function.md)|Fonction exponentielle en base 10 de x, qui est 10 élevée à la puissance x : 10 ^ x.|
 |[exp2()](exp2-function.md)|Fonction exponentielle en base 2 de x, qui est 2 élevée à la puissance x : 2 ^ x.|
 |[gamma()](gammafunction.md)|Calcule la fonction gamma.|
@@ -135,23 +135,22 @@ ms.locfileid: "84294574"
 |[isfinite()](isfinitefunction.md)|Retourne une valeur indiquant si l’entrée est une valeur finie (n’est pas infinie ou NaN).|
 |[isinf()](isinffunction.md)|Retourne une valeur indiquant si l’entrée est une valeur infinie (positive ou négative).|
 |[isnan()](isnanfunction.md)|Retourne une valeur indiquant si l’entrée n’est pas un nombre (NaN).|
-|[log()](log-function.md)|Retourne la fonction de logarithme népérien.|
-|[log10()](log10-function.md)|Retourne la fonction de logarithme (base 10) courant.|
+|[log ()](log-function.md)|Retourne la fonction de logarithme népérien.|
+|[log10 ()](log10-function.md)|Retourne la fonction de logarithme (base 10) courant.|
 |[log2()](log2-function.md)|Retourne la fonction de logarithme en base 2.|
 |[loggamma()](loggammafunction.md)|Calcule le journal de la valeur absolue de la fonction gamma.|
-|[Not ()](notfunction.md)|Inverse la valeur de son argument bool.|
-|[pi()](pifunction.md)|Retourne la valeur constante de pi (π).|
+|[not()](notfunction.md)|Inverse la valeur de son argument bool.|
+|[pi ()](pifunction.md)|Retourne la valeur constante de pi (π).|
 |[pow()](powfunction.md)|Retourne un résultat de l’élévation à Power.|
-|[radians()](radiansfunction.md)|Convertit la valeur d’angle en degrés en radians, à l’aide de la formule radians = (PI/180) * angle-in-degrees.|
+|[radians ()](radiansfunction.md)|Convertit la valeur d’angle en degrés en radians, à l’aide de la formule radians = (PI/180) * angle-in-degrees.|
 |[Rand ()](randfunction.md)|Retourne un nombre aléatoire.|
 |[Plage ()](rangefunction.md)|Génère un tableau dynamique contenant une série de valeurs uniformément espacées.|
-|[round()](roundfunction.md)|Retourne la source arrondie à la précision spécifiée.|
-|[sign()](signfunction.md)|Signe d’une expression numérique.|
-|[sin()](sinfunction.md)|Retourne la fonction sinus.|
-|[sqrt()](sqrtfunction.md)|Retourne la fonction racine carrée.|
-|[tan()](tanfunction.md)|Retourne la fonction tangente.|
+|[Round ()](roundfunction.md)|Retourne la source arrondie à la précision spécifiée.|
+|[Sign ()](signfunction.md)|Signe d’une expression numérique.|
+|[Sin ()](sinfunction.md)|Retourne la fonction sinus.|
+|[sqrt ()](sqrtfunction.md)|Retourne la fonction racine carrée.|
+|[Tan ()](tanfunction.md)|Retourne la fonction tangente.|
 |[welch_test()](welch-testfunction.md)|Calcule la valeur p de la [fonction Welch-test](https://en.wikipedia.org/wiki/Welch%27s_t-test).|
-
 
 ## <a name="metadata-functions"></a>Fonctions de métadonnées
 
@@ -169,23 +168,21 @@ ms.locfileid: "84294574"
 |[extent_tags()](extenttagsfunction.md)|Retourne un tableau dynamique avec les balises du partition de données (« Extent ») dans lequel réside l’enregistrement en cours.|
 |[ingestion_time()](ingestiontimefunction.md)|Récupère les $IngestionTime colonne DateTime masquée de l’enregistrement, ou null.|
 
-
 ## <a name="rounding-functions"></a>Arrondir les fonctions
 
 |Nom de fonction     |Description                                          |
 |-------------------------|--------------------------------------------------------|
 |[bin()](binfunction.md)|Arrondit les valeurs à l’entier inférieur multiple d’une taille bin donnée.|
 |[bin_at()](binatfunction.md)|Arrondit les valeurs à un « chutier » de taille fixe, avec un contrôle sur le point de départ de l’emplacement. (Voir aussi fonction bin.)|
-|[ceiling()](ceilingfunction.md)|Calcule le plus petit entier supérieur ou égal à l’expression numérique spécifiée.|
+|[plafond ()](ceilingfunction.md)|Calcule le plus petit entier supérieur ou égal à l’expression numérique spécifiée.|
 |[Floor ()](floorfunction.md)|Arrondit les valeurs à l’entier inférieur multiple d’une taille bin donnée.|
-
 
 ## <a name="conditional-functions"></a>Fonctions conditionnelles
 
 |Nom de fonction     |Description                                          |
 |-------------------------|--------------------------------------------------------|
 |[case()](casefunction.md)|Évalue une liste de prédicats et retourne la première expression de résultat dont le prédicat est respecté.|
-|[COALESCE ()](coalescefunction.md)|Évalue une liste d’expressions et retourne la première expression non null (ou non vide pour String).|
+|[coalesce()](coalescefunction.md)|Évalue une liste d’expressions et retourne la première expression non null (ou non vide pour String).|
 |[IIF ()/IFF ()](iiffunction.md)|Évalue le premier argument (le prédicat) et retourne la valeur du deuxième ou du troisième argument, selon que le prédicat est évalué à true (deuxième) ou false (troisième).|
 |[max_of()](max-offunction.md)|Retourne la valeur maximale de plusieurs expressions numériques évaluées.|
 |[min_of()](min-offunction.md)|Retourne la valeur minimale de plusieurs expressions numériques évaluées.|
@@ -241,22 +238,22 @@ ms.locfileid: "84294574"
 |[extract()](extractfunction.md)|Obtient une correspondance pour une expression régulière à partir d’une chaîne de texte.|
 |[extract_all()](extractallfunction.md)|Obtenir toutes les correspondances pour une expression régulière à partir d’une chaîne de texte.|
 |[extractjson()](extractjsonfunction.md)|Obtient un élément spécifié à partir d’un texte JSON à l’aide d’une expression de chemin.|
-|[indexof()](indexoffunction.md)|La fonction signale l’index de base zéro de la première occurrence d’une chaîne spécifiée dans la chaîne d’entrée.|
+|[IndexOf ()](indexoffunction.md)|La fonction signale l’index de base zéro de la première occurrence d’une chaîne spécifiée dans la chaîne d’entrée.|
 |[isempty()](isemptyfunction.md)|Retourne la valeur true si l’argument est une chaîne vide ou a la valeur null.|
 |[isnotempty()](isnotemptyfunction.md)|Retourne la valeur true si l’argument n’est pas une chaîne vide ou une valeur null.|
-|[IsNotNull ()](isnotnullfunction.md)|Retourne la valeur true si l’argument n’a pas la valeur null.|
-|[isnull()](isnullfunction.md)|Évalue son argument unique et retourne une valeur booléenne indiquant si l’argument correspond à une valeur null.|
+|[isnotnull()](isnotnullfunction.md)|Retourne la valeur true si l’argument n’a pas la valeur null.|
+|[IsNull ()](isnullfunction.md)|Évalue son argument unique et retourne une valeur booléenne indiquant si l’argument correspond à une valeur null.|
 |[parse_csv()](parsecsvfunction.md)|Fractionne une chaîne donnée représentant des valeurs séparées par des virgules et retourne un tableau de chaînes avec ces valeurs.|
 |[parse_ipv4()](parse-ipv4function.md)|Convertit l’entrée en une représentation de nombre longue (signée 64 bits).|
 |[parse_ipv4_mask()](parse-ipv4-maskfunction.md)|Convertit la chaîne d’entrée et le masque de préfixe IP en une représentation de nombre longue (signée 64 bits).|
-|[parse_ipv6 ()](parse-ipv6function.md)|Convertit une chaîne IPv6 ou IPv4 en une représentation sous forme de chaîne IPv6 canonique.|
-|[parse_ipv6_mask ()](parse-ipv6-maskfunction.md)|Convertit la chaîne IPv6 ou IPv4 et le masque réseau en une représentation sous forme de chaîne IPv6 canonique.|
+|[parse_ipv6()](parse-ipv6function.md)|Convertit une chaîne IPv6 ou IPv4 en une représentation sous forme de chaîne IPv6 canonique.|
+|[parse_ipv6_mask()](parse-ipv6-maskfunction.md)|Convertit la chaîne IPv6 ou IPv4 et le masque réseau en une représentation sous forme de chaîne IPv6 canonique.|
 |[parse_json()](parsejsonfunction.md)|Interprète une chaîne comme une valeur JSON) et retourne la valeur comme dynamique.|
 |[parse_url()](parseurlfunction.md)|Analyse une chaîne d’URL absolue et retourne un objet dynamique qui contient toutes les parties de l’URL.|
 |[parse_urlquery()](parseurlqueryfunction.md)|Analyse une chaîne de requête d’URL et retourne un objet dynamique contenant les paramètres de requête.|
 |[parse_version()](parse-versionfunction.md)|Convertit la représentation sous forme de chaîne d’entrée d’une version en nombre décimal comparable.|
 |[remplacer ()](replacefunction.md)|Remplace toutes les correspondances d’expression régulière par une autre chaîne.|
-|[reverse()](reversefunction.md)|La fonction effectue l’inversion de la chaîne d’entrée.|
+|[inverse ()](reversefunction.md)|La fonction effectue l’inversion de la chaîne d’entrée.|
 |[split()](splitfunction.md)|Fractionne une chaîne donnée en fonction d’un délimiteur donné et retourne un tableau de chaînes avec les sous-chaînes contenues.|
 |[strcat()](strcatfunction.md)|Concatène entre 1 et 64 arguments.|
 |[strcat_delim()](strcat-delimfunction.md)|Concatène entre 2 et 64 arguments, avec le délimiteur, fourni comme premier argument.|
@@ -264,26 +261,26 @@ ms.locfileid: "84294574"
 |[strlen()](strlenfunction.md)|Retourne la longueur, en caractères, de la chaîne d’entrée.|
 |[strrep()](strrepfunction.md)|Répète le nombre de fois spécifié pour la chaîne (valeur par défaut : 1).|
 |[Substring ()](substringfunction.md)|Extrait une sous-chaîne d’une chaîne source à partir d’un index jusqu’à la fin de la chaîne.|
-|[ToUpper ()](toupperfunction.md)|Convertit une chaîne en majuscules.|
+|[toupper()](toupperfunction.md)|Convertit une chaîne en majuscules.|
 |[translate()](translatefunction.md)|Remplace un jeu de caractères (« searchList ») par un autre jeu de caractères (« replacementList ») dans une chaîne donnée.|
-|[trim()](trimfunction.md)|Supprime toutes les correspondances de début et de fin de l’expression régulière spécifiée.|
+|[Trim ()](trimfunction.md)|Supprime toutes les correspondances de début et de fin de l’expression régulière spécifiée.|
 |[trim_end()](trimendfunction.md)|Supprime la correspondance de fin de l’expression régulière spécifiée.|
 |[trim_start()](trimstartfunction.md)|Supprime la correspondance de début de l’expression régulière spécifiée.|
-|[url_decode ()](urldecodefunction.md)|La fonction convertit l’URL encodée en une représentation d’URL régulière.|
-|[url_encode ()](urlencodefunction.md)|La fonction convertit les caractères de l’URL d’entrée dans un format qui peut être transmis sur Internet.|
+|[url_decode()](urldecodefunction.md)|La fonction convertit l’URL encodée en une représentation d’URL régulière.|
+|[url_encode()](urlencodefunction.md)|La fonction convertit les caractères de l’URL d’entrée dans un format qui peut être transmis sur Internet.|
 
 ## <a name="ipv4ipv6-functions"></a>Fonctions IPv4/IPv6
 
 |Nom de fonction     |Description                                          |
 |-------------------------|--------------------------------------------------------|
-|[ipv4_compare ()](ipv4-comparefunction.md)|Compare deux chaînes IPv4.|
-|[ipv4_is_match ()](ipv4-is-matchfunction.md)|Correspond à deux chaînes IPv4.|
+|[ipv4_compare()](ipv4-comparefunction.md)|Compare deux chaînes IPv4.|
+|[ipv4_is_match()](ipv4-is-matchfunction.md)|Correspond à deux chaînes IPv4.|
 |[parse_ipv4()](parse-ipv4function.md)|Convertit une chaîne d’entrée en une représentation de nombre longue (signée 64 bits).|
 |[parse_ipv4_mask()](parse-ipv4-maskfunction.md)|Convertit la chaîne d’entrée et le masque de préfixe IP en une représentation de nombre longue (signée 64 bits).|
-|[ipv6_compare ()](ipv6-comparefunction.md)|Compare deux chaînes IPv4 ou IPv6.|
-|[ipv6_is_match ()](ipv6-is-matchfunction.md)|Correspond à deux chaînes IPv4 ou IPv6.|
-|[parse_ipv6 ()](parse-ipv6function.md)|Convertit une chaîne IPv6 ou IPv4 en une représentation sous forme de chaîne IPv6 canonique.|
-|[parse_ipv6_mask ()](parse-ipv6-maskfunction.md)|Convertit la chaîne IPv6 ou IPv4 et le masque réseau en une représentation sous forme de chaîne IPv6 canonique.|
+|[ipv6_compare()](ipv6-comparefunction.md)|Compare deux chaînes IPv4 ou IPv6.|
+|[ipv6_is_match()](ipv6-is-matchfunction.md)|Correspond à deux chaînes IPv4 ou IPv6.|
+|[parse_ipv6()](parse-ipv6function.md)|Convertit une chaîne IPv6 ou IPv4 en une représentation sous forme de chaîne IPv6 canonique.|
+|[parse_ipv6_mask()](parse-ipv6-maskfunction.md)|Convertit la chaîne IPv6 ou IPv4 et le masque réseau en une représentation sous forme de chaîne IPv6 canonique.|
 
 ## <a name="type-functions"></a>Fonctions de type
 

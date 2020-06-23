@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: fb842bcda70c2986bd754f55184413eec594d412
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: a93a8b493959b6d335f01b9d3fcda24ae7c31748
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373126"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128935"
 ---
-# <a name="queries"></a>Requêtes
+# <a name="query-operators"></a>Opérateurs de requête
 
 Une requête est une opération en lecture seule sur les données ingérées d’un cluster Kusto Engine. Les requêtes s’exécutent toujours dans le contexte d’une base de données particulière du cluster (même si elles peuvent également faire référence à des données dans une autre base de données, ou même dans un autre cluster).
 

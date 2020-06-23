@@ -1,6 +1,6 @@
 ---
-title: todouble()/toreal() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit todouble()/toreal() dans Azure Data Explorer.
+title: ToDouble ()/TOREAL ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit ToDouble ()/TOREAL () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: eb9c976f1646f71fcf8b345899037461f58f4ef0
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: e62432773d99d74a46022cad3199f3bab0cae50b
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81506322"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128453"
 ---
-# <a name="todoubletoreal"></a>todouble()/toreal()
+# <a name="todouble-toreal"></a>ToDouble (), TOREAL ()
 
-Convertit l’entrée en `real`valeur de type . (`todouble()` `toreal()` et sont synonymes.)
+Convertit l’entrée en une valeur de type `real` . ( `todouble()` et `toreal()` sont des synonymes).
 
 ```kusto
 toreal("123.4") == 123.4
@@ -25,16 +25,16 @@ toreal("123.4") == 123.4
 
 **Syntaxe**
 
-`toreal(`*Expr*`)`
-`todouble(`*Expr Expr Expr Expr Expr Expr*`)`
+`toreal(`*Expr* `)` 
+ Expr `todouble(` *Expr*`)`
 
 **Arguments**
 
-* *Expr*: Une expression dont la valeur sera `real`convertie en valeur de type .
+* *Expr*: expression dont la valeur sera convertie en une valeur de type `real` .
 
 **Retourne**
 
-Si la conversion est réussie, le `real`résultat est une valeur de type .
-Si la conversion n’est pas `real(null)`réussie, le résultat est la valeur .
+Si la conversion réussit, le résultat est une valeur de type `real` .
+Si la conversion échoue, le résultat est la valeur `real(null)` .
 
-*Remarque*: Préférez utiliser [le double () ou réel ()](./scalar-data-types/real.md) lorsque c’est possible.
+*Remarque*: préférez utiliser [double () ou Real ()](./scalar-data-types/real.md) lorsque cela est possible.

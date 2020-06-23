@@ -10,18 +10,18 @@ ms.topic: reference
 ms.date: 12/10/2019
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 6e383ce9fdcf373452c0b7d710302669e7987395
-ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
+ms.openlocfilehash: 778b8c276d6264b890c0b0be7b127f578663a64d
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82737842"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85129054"
 ---
-# <a name="query-statements"></a>Instructions de requête
+# <a name="query-statement-types"></a>Types d’instruction de requête
 
 ::: zone pivot="azuredataexplorer"
 
-Une requête se compose d’une ou plusieurs **instructions de requête**, séparées par un point`;`-virgule ().
+Une requête se compose d’une ou plusieurs **instructions de requête**, séparées par un point-virgule ( `;` ).
 Au moins une de ces instructions de requête doit être une [instruction d’expression tabulaire](./tabularexpressionstatements.md).
 L’instruction d’expression tabulaire génère un ou plusieurs résultats tabulaires.
 Lorsque la requête contient plusieurs instructions d’expression tabulaire, la requête contient un [lot](./batches.md) d’instructions d’expression tabulaire, et les résultats tabulaires générés par ces instructions sont tous retournés par la requête.

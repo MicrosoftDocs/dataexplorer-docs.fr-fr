@@ -1,6 +1,6 @@
 ---
-title: Opérateur de projet - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit l’opérateur du projet dans Azure Data Explorer.
+title: Opérateur de projet-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit l’opérateur Project dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: de13c240180d00b82736a0dd35cb83c08639682f
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 76ead8fabe755d5e3e200a767cb8b7518121b2ac
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81510929"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128952"
 ---
-# <a name="project-operator"></a>Opérateur de projet
+# <a name="project-operator"></a>opérateur project
 
 Sélectionnez les colonnes à inclure, renommer ou supprimer, puis insérez les nouvelles colonnes calculées. 
 
-L’ordre des colonnes dans le résultat est déterminé par l’ordre des arguments. Seules les colonnes spécifiées dans les arguments sont incluses dans le résultat. Toutes les autres colonnes dans l’entrée sont abandonnées.  (Voir aussi `extend`.)
+L’ordre des colonnes dans le résultat est déterminé par l’ordre des arguments. Seules les colonnes spécifiées dans les arguments sont incluses dans le résultat. Toutes les autres colonnes de l’entrée sont supprimées.  (Voir aussi `extend`.)
 
 ```kusto
 T | project cost=price*quantity, price
@@ -27,17 +27,17 @@ T | project cost=price*quantity, price
 
 **Syntaxe**
 
-*T* `| project` *ColumnName* [`=` `,` *Expression*] [ ...]
+*T* `| project` *ColumnName* [ `=` *expression*] [ `,` ...]
   
-or
+ou
   
-*T* `| project` [*ColumnName* | `(`*ColumnName*`,`[ ]`)` `=`] *Expression* [`,` ...]
+*T* `| project` [*ColumnName*  |  `(` *ColumnName*[ `,` ] `)` `=` ] *expression* [ `,` ...]
 
 **Arguments**
 
-* *T*: La table d’entrée.
-* *Nom de colonne:* Nom facultatif d’une colonne à apparaître dans la sortie. S’il n’y a pas *d’expression,* alors *ColumnName* est obligatoire et une colonne de ce nom doit apparaître dans l’entrée. S’il est omis, le nom sera automatiquement généré. Si *Expression* renvoie plus d’une colonne, une liste de noms de colonnes peut être spécifiée entre parenthèses. Dans ce cas, les colonnes de sortie *d’Expression*recevront les noms spécifiés, laissant tomber tout le reste des colonnes de sortie, s’il y en a. Si la liste des noms de colonnes n’est pas spécifiée, toutes les colonnes de sortie *d’Expression*avec des noms générés seront ajoutées à la sortie.
-* *Expression :* expression scalaire facultative faisant référence aux colonnes d’entrée. Si *ColumnName n’est* pas omis, alors *Expression* est obligatoire.
+* *T*: table d’entrée.
+* *ColumnName :* Nom facultatif d’une colonne à afficher dans la sortie. S’il n’y a aucune *expression*, *ColumnName* est obligatoire et une colonne de ce nom doit apparaître dans l’entrée. En cas d’omission, le nom est généré automatiquement. Si l' *expression* retourne plusieurs colonnes, une liste de noms de colonnes peut être spécifiée entre parenthèses. Dans ce cas, les colonnes de sortie de l' *expression*reçoivent les noms spécifiés, en supprimant toutes les autres colonnes de sortie, le cas échéant. Si la liste des noms de colonnes n’est pas spécifiée, toutes les colonnes de sortie de l' *expression*avec des noms générés sont ajoutées à la sortie.
+* *Expression :* expression scalaire facultative faisant référence aux colonnes d’entrée. Si *ColumnName* n’est pas omis, *expression* est obligatoire.
 
     Il est possible de retourner une nouvelle colonne calculée portant le même nom qu’une colonne figurant dans l’entrée.
 
@@ -58,4 +58,4 @@ T
     B=2*B                      // Calculate a new column B from the old B
 ```
 
-[series_stats](series-statsfunction.md) est un exemple d’une fonction qui renvoie plusieurs colonnes.
+[series_stats](series-statsfunction.md) est un exemple de fonction qui retourne plusieurs colonnes.
