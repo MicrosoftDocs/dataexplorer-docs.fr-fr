@@ -1,6 +1,6 @@
 ---
-title: Stratégie de partitionnement de données (version préliminaire)-Azure Explorateur de données
-description: Cet article décrit la stratégie de partitionnement des données (préversion) dans Azure Explorateur de données.
+title: Stratégie de partitionnement des données-Azure Explorateur de données
+description: Cet article décrit la stratégie de partitionnement des données dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/10/2020
-ms.openlocfilehash: 2a54d6e8bdb891500778f2043f2b1aa4094162d2
-ms.sourcegitcommit: 743e8b1def28bc8f875b22b857ec345eeb7e5acc
+ms.openlocfilehash: 3ab402833e4aebd5499fcb383dd803e9a6a815ed
+ms.sourcegitcommit: 93510ef1e5570ce4da2cbf76eb77946c93a7dec8
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84671442"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "85372483"
 ---
 # <a name="data-partitioning-policy"></a>Stratégie de partitionnement des données
 
@@ -28,7 +28,7 @@ L’objectif principal de la stratégie est d’améliorer les performances des 
 
 Les types de clés de partition suivants sont pris en charge.
 
-|Genre                                                   |Type de colonne |Propriétés de la partition                    |Valeur de partition                                        |
+|Type                                                   |Type de colonne |Propriétés de la partition                    |Valeur de partition                                        |
 |-------------------------------------------------------|------------|----------------------------------------|----------------------|
 |[Hash](#hash-partition-key)                            |`string`    |`Function`, `MaxPartitionCount`, `Seed` | `Function`(`ColumnName`, `MaxPartitionCount`, `Seed`) |
 |[Plage uniforme](#uniform-range-datetime-partition-key) |`datetime`  |`RangeSize`, `Reference`                | `bin_at`(`ColumnName`, `RangeSize`, `Reference`)      |
@@ -173,6 +173,7 @@ Les propriétés suivantes peuvent être définies dans le cadre de la stratégi
 * **MaxRowCountPerOperation**:
   * Cible maximale pour la somme du nombre de lignes des étendues sources d’une opération de partitionnement de données unique.
   * Cette propriété est facultative. Sa valeur par défaut est `0` , avec une cible par défaut de 5 millions enregistrements.
+    * Vous pouvez envisager de définir une valeur inférieure à 5 millions. vous constatez que les opérations de partitionnement consomment une très grande quantité de mémoire/processeur, par opération (voir #monitoring).
 
 ## <a name="notes"></a>Notes
 

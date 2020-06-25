@@ -8,14 +8,12 @@ ms.reviewer: amitof
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/16/2020
-zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
-zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 7373af48ef581e4b64f1cfc34ece0c16a416fc08
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: 4bfc7b591683940e10d2737ec776421f65d1427a
+ms.sourcegitcommit: 93510ef1e5570ce4da2cbf76eb77946c93a7dec8
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85128901"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "85372466"
 ---
 # <a name="query-results-cache"></a>Cache des résultats de requête
 
@@ -38,7 +36,7 @@ La valeur de l’option est un `timespan` qui indique l’âge maximal du cache 
 
 ### <a name="identical-queries"></a>Requêtes identiques
 
-Le query_results_cache renvoie des résultats uniquement pour les requêtes considérées comme « identiques » à une requête mise en cache antérieure. Deux requêtes sont considérées comme identiques si toutes les conditions suivantes sont remplies :
+Le cache des résultats de la requête retourne des résultats uniquement pour les requêtes considérées comme « identiques » à une requête mise en cache antérieure. Deux requêtes sont considérées comme identiques si toutes les conditions suivantes sont remplies :
 
 * Les deux requêtes ont la même représentation (en tant que chaînes UTF-8).
 * Les deux requêtes sont faites à la même base de données.
@@ -51,7 +49,7 @@ Le query_results_cache renvoie des résultats uniquement pour les requêtes cons
 
 Les résultats de la requête ne seront pas mis en cache si l’une des conditions suivantes est vraie :
  
-* La requête fait référence à une table avec laquelle la stratégie [RestrictedViewAccess](../management/restrictedviewaccesspolicy.md) est activée.
+* La requête fait référence à une table pour laquelle la stratégie [RestrictedViewAccess](../management/restrictedviewaccesspolicy.md) est activée.
 * La requête fait référence à une table pour laquelle la stratégie [RowLevelSecurity](../management/rowlevelsecuritypolicy.md) est activée.
 * La requête utilise l’une des fonctions suivantes :
     * [current_principal](current-principalfunction.md)
