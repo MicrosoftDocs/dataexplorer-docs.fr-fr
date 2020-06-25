@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: 606d48c4bda583ad82404a1b25119ec9beb4c5a9
-ms.sourcegitcommit: 6f56b169fda0b74f9569004555a574d8973b1021
+ms.openlocfilehash: 8a979d91b008be7a93626aa7f58865cb5466076b
+ms.sourcegitcommit: c3bbb9a6bfd7c5506f05afb4968fdc2043a9fbbf
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84748935"
+ms.lasthandoff: 06/24/2020
+ms.locfileid: "85332571"
 ---
 # <a name="the-dynamic-data-type"></a>Le type de données Dynamic
 
@@ -57,7 +57,7 @@ Pour des raisons pratiques, `dynamic` les littéraux qui apparaissent dans le te
 print d=dynamic({"a": datetime(1970-05-11)})
 ```
 
-Pour analyser une `string` valeur qui suit les règles d’encodage JSON dans une `dynamic` valeur, utilisez la `parse_json` fonction. Par exemple :
+Pour analyser une `string` valeur qui suit les règles d’encodage JSON dans une `dynamic` valeur, utilisez la `parse_json` fonction. Par exemple :
 
 * `parse_json('[43, 21, 65]')` : tableau de nombres
 * `parse_json('{"name":"Alan", "age":21, "address":{"street":432,"postcode":"JLK32P"}}')`-dictionnaire
@@ -124,7 +124,7 @@ L’accès à un sous-objet d’une `dynamic` valeur produit une autre `dynamic`
 | X | parse_json (' [100101102] ')| tableau|
 |X [0]|parse_json (' 100 ')|dynamique|
 |ToInt ((X [1])|101| int|
-| O | parse_json (' {"a1" : 100, "a b c" : "2015-01-01"} ')| dictionnaire|
+| Y | parse_json (' {"a1" : 100, "a b c" : "2015-01-01"} ')| dictionnaire|
 |Y. a1|parse_json (' 100 ')|dynamique|
 |Y ["a b c"]| parse_json (« 2015-01-01 »)|dynamique|
 |ToDate (Y ["a b c"])|DateTime (2015-01-01)| DATETIME|
@@ -168,6 +168,7 @@ En outre, il existe plusieurs fonctions d’agrégation qui créent des `dynamic
 | *value* `!in` *array*| True s’il n’existe aucun élément de *array* qui est égal à *value*
 |[`array_length(`ensemble`)`](../arraylengthfunction.md)| Null si ce n’est pas un tableau
 |[`bag_keys(`conteneur propriétés`)`](../bagkeysfunction.md)| Énumère toutes les clés racines dans un objet de jeu de propriétés dynamique.
+|[`bag_merge(`BAG1,..., bagN`)`](../bag-merge-function.md)| Fusionne des conteneurs de propriétés dynamiques dans un conteneur de propriétés dynamique avec toutes les propriétés fusionnées.
 |[`extractjson(`chemin d’accès, objet`)`](../extractjsonfunction.md)|Utilise le chemin pour accéder à l’objet.
 |[`parse_json(`code`)`](../parsejsonfunction.md)| Convertit une chaîne JSON en un objet dynamique.
 |[`range(`de, à, étape`)`](../rangefunction.md)| Tableau de valeurs
@@ -179,4 +180,3 @@ En outre, il existe plusieurs fonctions d’agrégation qui créent des `dynamic
 |[`summarize make_list_if(`colonne, prédicat `)`](../makelistif-aggfunction.md)| Aplatit des groupes de lignes et place les valeurs de la colonne dans un tableau (avec un prédicat).
 |[`summarize make_list_with_nulls(`colonne `)`](../make-list-with-nulls-aggfunction.md)| Aplatit des groupes de lignes et place les valeurs de la colonne dans un tableau, y compris les valeurs NULL.
 |[`summarize make_set(`chronique`)`](../makeset-aggfunction.md) | Aplatit des groupes de lignes et place les valeurs de la colonne dans un tableau, sans duplication.
-|[`summarize make_bag(`chronique`)`](../make-bag-aggfunction.md) | Fusionne les valeurs du conteneur de propriétés (dictionnaire) de la colonne dans un jeu de propriétés, sans duplication de clé.

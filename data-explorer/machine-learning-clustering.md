@@ -7,24 +7,36 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/29/2019
-ms.openlocfilehash: abef0650485ac1feb53d43f42559c5a7fdfb75c3
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 4665064a645ad0001251a0c7246c9d799ff6e638
+ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83374031"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84780488"
 ---
 # <a name="machine-learning-capability-in-azure-data-explorer"></a>Fonctionnalité d’apprentissage automatique dans Azure Data Explorer
 
-Azure Data Explorer, une plateforme d’analyse des Big Data, est utilisée pour surveiller l’intégrité du service, la qualité de service ou le comportement anormal d’appareils en dysfonctionnement à l’aide de fonctions de [prévision et de détection d’anomalie intégrées](anomaly-detection.md). Si un modèle anormal est détecté, une analyse de la cause racine est effectuée pour atténuer ou résoudre l’anomalie.
+Azure Data Explorer est une plateforme d’analytique de Big Data. Il est utilisé pour superviser l’intégrité des services, la qualité de service (QoS) ou les appareils défaillants. Les fonctions de [détection d’anomalies et de prévision](anomaly-detection.md) intégrées recherchent tout comportement anormal. En cas de détection d’un tel modèle, une analyse de la cause racine est exécutée pour atténuer ou résoudre l’anomalie.
 
-Le processus de diagnostic est long et complexe et effectué par des experts du domaine. Le processus comprend l’extraction et la jonction de données supplémentaires issues de sources différentes pour le même délai d’exécution, la recherche de modifications dans la distribution des valeurs sur plusieurs dimensions, la création de graphiques de variables supplémentaires, et d’autres techniques en fonction des connaissances de domaine et de l’intuition. Dans la mesure où ces scénarios de diagnostic sont courants dans Azure Data Explorer, les plug-ins d’apprentissage automatique sont disponibles pour simplifier la phase de diagnostic et raccourcir la durée de l’analyse de la cause racine.
+Le processus de diagnostic est long et complexe, et effectué par des experts du domaine. Ce processus inclut les éléments suivants :
+* Récupération et jointure de données supplémentaires issues de sources différentes pour le même délai d’exécution
+* Recherche de changements dans la distribution des valeurs sur plusieurs dimensions
+* Création de graphiques de variables supplémentaires
+* Autres techniques basées sur les connaissances du domaine et l’intuition
 
-Azure Data Explorer a trois plug-ins de Machine Learning : [`autocluster`](kusto/query/autoclusterplugin.md), [`basket`](kusto/query/basketplugin.md) et [`diffpatterns`](kusto/query/diffpatternsplugin.md). Tous les plug-ins implémentent des algorithmes de clustering. Les plug-ins `autocluster` et `basket` regroupent en cluster un jeu d’enregistrements unique et le plug-in `diffpatterns` regroupe en cluster les différences entre deux jeux.
+Dans la mesure où ces scénarios de diagnostic sont courants dans Azure Data Explorer, les plug-ins de machine learning sont disponibles pour simplifier la phase de diagnostic et raccourcir la durée de l’analyse de la cause racine.
+
+Azure Data Explorer a trois plug-ins de Machine Learning : [`autocluster`](kusto/query/autoclusterplugin.md), [`basket`](kusto/query/basketplugin.md) et [`diffpatterns`](kusto/query/diffpatternsplugin.md). Tous les plug-ins implémentent des algorithmes de clustering. Les plug-ins `autocluster` et `basket` regroupent en cluster un jeu d’enregistrements unique, et le plug-in `diffpatterns` regroupe en cluster les différences entre deux jeux d’enregistrements.
 
 ## <a name="clustering-a-single-record-set"></a>Clustering d’un jeu d’enregistrements unique
 
-Un scénario courant comprend un jeu de données sélectionné selon un critère spécifique, telle qu’une période montrant un comportement anormal, des mesures de températures élevées sur un appareil, des commandes longue durée et les utilisateurs dépensant le plus. Nous aimerions un moyen facile et rapide de rechercher des modèles courants (segments) dans les données. Les modèles sont un sous-ensemble du jeu de données dont les enregistrements partagent les mêmes valeurs sur plusieurs dimensions (colonnes catégorielles). La requête suivante génère et affiche une série chronologique d’exceptions de service sur une semaine dans des emplacements de dix minutes  :
+Un scénario courant comprend un jeu de données sélectionné selon un critère spécifique, par exemple :
+* Période montrant un comportement anormal
+* Mesures de températures élevées sur un appareil
+* Commandes longue durée
+* Utilisateurs dépensant le plus. Vous souhaitez disposer d’un moyen simple et rapide de rechercher des modèles (segments) courants dans les données. Les modèles sont un sous-ensemble du jeu de données dont les enregistrements partagent les mêmes valeurs sur plusieurs dimensions (colonnes catégorielles). 
+
+La requête suivante génère et affiche une série chronologique d’exceptions de service au cours d’une période d’une semaine, dans des emplacements de dix minutes :
 
 **\[** [**Cliquer pour exécuter la requête**](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAAA5XPsaoCQQyF4d6nCFa7oHCtZd9B0F6G8ajByWTJZHS5+PDOgpVgYRn485EkOAnno9NAriWGFKw7QfQYUy0O43zZ0JNKFQnG/5jrbmeIXHBgwd6DjH2/JVqk2QrTL1aYvlifa4tni29YlzaiUK4yRK3Zu54006dBZ1N5/+X6PqpRI23+pFGGfIKRtz5egzk92K+dsycMyz3szhGEKWJ01lxI760O9ABuq0bMcvV2hqFoqnOz7F9BdSHlSgEAAA==) **\]**
 
@@ -38,9 +50,9 @@ demo_clustering1
 
 ![Graphique temporel des exceptions de service](media/machine-learning-clustering/service-exceptions-timechart.png)
 
-Le nombre d’exceptions de service se met en corrélation avec l’ensemble du trafic de service. Vous pouvez voir clairement le modèle quotidien pour les jours ouvrables allant du lundi au vendredi, avec une augmentation du nombre d’exceptions de service à la mi journée et une baisse de ces nombres au cours de la nuit. Ces nombres restent faibles et stables pendant le week-end. Des pics d’exception peuvent être détectés à l’aide de la [détection d’anomalie de série chronologique](anomaly-detection.md#time-series-anomaly-detection) dans Azure Data Explorer.
+Le nombre d’exceptions de service se met en corrélation avec l’ensemble du trafic de service. Vous pouvez voir clairement le modèle quotidien pour les jours ouvrables (du lundi au vendredi). Il y a une augmentation du nombre d’exceptions de service à la mi-journée et une baisse pendant la nuit. Ces nombres restent faibles et stables pendant le week-end. Des pics d’exception peuvent être détectés à l’aide de la [détection d’anomalie de série chronologique](anomaly-detection.md#time-series-anomaly-detection) dans Azure Data Explorer.
 
-Le deuxième pic de données se produit le mardi après-midi. La requête suivante est utilisée pour diagnostiquer ce pic de manière plus approfondie. Utilisez la requête pour redessiner le graphique autour du pic dans une résolution plus élevée (huit heures dans des emplacements d’une minute) pour vérifier s’il s’agit d’un pic pointu et afficher ses bordures.
+Le deuxième pic de données se produit le mardi après-midi. La requête suivante permet d’affiner le diagnostic et de vérifier s’il s’agit d’un pic pointu. La requête redessine le graphique autour du pic dans une résolution plus élevée de huit heures dans des emplacements d’une minute. Vous pouvez ensuite étudier ses bordures.
 
 **\[** [**Cliquer pour exécuter la requête**](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAAAyXNwQrCMBAE0Hu/YvHUooWkghSl/yDoyUsJyWpCk2xJNnjx403pbeYwbzwyBBdnnoxiZBewHYS89GLshzNIeRWiuzUGA83al8yYXPzI5gdBLdjnWjFDLGHSVCK3HVCEe0LtMj4r9mAVVngnCvsLMO3hOFqo2goyVCxhNJhgu9dWJYavY9uyY4/T4UV1XVm2CEM0kFe34AnkBhXGOs7kCzuKh+4P3/XM5M8AAAA=) **\]**
 
@@ -53,7 +65,7 @@ demo_clustering1
 
 ![Examiner de manière plus approfondie le graphique temporel du pic](media/machine-learning-clustering/focus-spike-timechart.png)
 
-Nous observons un pic de deux minutes étroit de 15 h 00 à 15 h 02. Dans la requête suivante, comptez les exceptions dans cette fenêtre de deux minutes :
+Vous pouvez observer un pic étroit de deux minutes entre 15h00 et 15h02. Dans la requête suivante, comptez les exceptions dans cette fenêtre de deux minutes :
 
 **\[** [**Cliquer pour exécuter la requête**](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAAA8tJLVHIzcyLL0hNzI4vsU1JLEktycxN1TAyMDTTNbDQNTJWMDS1MjDQtObKASlNrCCk1AioNCU1Nz8+Oae0uCS1KDMv3ZCrRqE8I7UoVSGgKDU5szg1BKgvuCQxt0AhKbWkPDU1TwPhBj09hCWaQI3J+aV5JQACnQoRpwAAAA==) **\]**
 
@@ -106,7 +118,7 @@ demo_clustering1
 
 ### <a name="use-autocluster-for-single-record-set-clustering"></a>Utiliser autocluster() pour le clustering d’un jeu d’enregistrements unique
 
-Même s’il existe moins d’un millier d’exceptions, il est toujours difficile de repérer les segments communs dans la mesure où chaque colonne comporte plusieurs valeurs. Vous pouvez utiliser le plug-in [`autocluster()`](kusto/query/autoclusterplugin.md) pour extraire instantanément une petite liste de segments communs et rechercher les clusters intéressants situés dans la période de deux minutes du pic comme indiqué dans la requête suivante :
+Même s’il existe moins d’un millier d’exceptions, il est toujours difficile de repérer les segments communs, car chaque colonne comporte plusieurs valeurs. Vous pouvez utiliser le plug-in [`autocluster()`](kusto/query/autoclusterplugin.md) pour extraire instantanément une courte liste de segments communs et rechercher les clusters intéressants compris dans la période des deux minutes du pic, comme indiqué dans la requête suivante :
 
 **\[** [**Cliquer pour exécuter la requête**](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAAA4WOsQrCMBRF937FG5OhJYkoovQfBN1DbC8aTNqSvlgHP94IQkf3c+65AUzRD3aCe1hue8dgHyGM0rta7WuzIb09KCWPVfii7vUPNQXtEUfbhTwzkh9uunrTckcCnRI6P+NSvDO7ONEVvACDWD80zRqRRcTThVxa5DKPv00hP81KL1+4AAAA) **\]**
 
@@ -126,9 +138,9 @@ demo_clustering1
 | 3 | 68 | 6.99588477366255 | scus | su3 | 90d3d2fc7ecc430c9621ece335651a01 |  |
 | 4 | 55 | 5.65843621399177 | weu | su4 | be1d6d7ac9574cbc9a22cb8ee20f16fc |  |
 
-Vous pouvez voir dans les résultats ci-dessus que le segment le plus dominant contient 65,74 % du total des enregistrements d’exceptions totale et qu’il partage quatre dimensions. Le segment suivant est beaucoup moins courant et contient seulement 9,67 % des enregistrements et partage trois dimensions. Les autres segments sont encore moins courants. 
+Vous pouvez voir, dans les résultats ci-dessus, que le segment le plus dominant contient 65,74 % du total des enregistrements d’exceptions et qu’il partage quatre dimensions. Le segment suivant est beaucoup moins courant. Il contient seulement 9,67 % des enregistrements et partage trois dimensions. Les autres segments sont encore moins courants.
 
-Autocluster utilise un algorithme propriétaire pour explorer plusieurs dimensions et extraire des segments intéressants. « Intéressant » signifie que chaque segment couvre de manière importante le jeu d’enregistrements et le jeu de fonctionnalités. Les segments sont également divergents, ce qui signifie que chacun d’eux est considérablement différent des autres. Un ou plusieurs de ces segments peuvent être pertinents pour le processus d’analyse de la cause racine. Pour réduire le temps passé à examiner et évaluer les segments, autocluster extrait uniquement une petite liste de segments.
+Autocluster utilise un algorithme propriétaire pour explorer plusieurs dimensions et extraire des segments intéressants. « Intéressant » signifie que chaque segment couvre de manière importante le jeu d’enregistrements et le jeu de fonctionnalités. Les segments sont également divergents, ce qui signifie que chacun d’eux est différent des autres. Un ou plusieurs de ces segments peuvent être pertinents pour le processus d’analyse de la cause racine. Pour réduire le temps passé à examiner et évaluer les segments, autocluster extrait uniquement une petite liste de segments.
 
 ### <a name="use-basket-for-single-record-set-clustering"></a>Utiliser basket() pour le clustering d’un jeu d’enregistrements unique
 
@@ -160,15 +172,15 @@ demo_clustering1
 | 11 | 90 | 9.25925925925926 |  |  |  | 10007006 |  |
 | 12 | 57 | 5.8641975308642 |  |  |  |  | 00000000-0000-0000-0000-000000000000 |
 
-Cette requête implémente l’algorithme Apriori pour explorer les jeux d’articles et extrait tous les segments dont la couverture du jeu d’enregistrements est au-dessus d’un seuil (valeur par défaut 5 %). Vous pouvez voir qu’un nombre plus important de segments a été extrait avec des segments similaires (par exemple, les segments 0,1 ou 2,3).
+Le plug-in basket implémente l’algorithme *« Apriori »* pour l’exploration de données d’un ensemble d’éléments. Il extrait tous les segments dont la couverture du jeu d’enregistrements est supérieure à un seuil (valeur par défaut : 5 %). Vous pouvez voir qu’un nombre plus important de segments ont été extraits avec des segments similaires, comme les segments 0, 1 ou 2, 3.
 
-Les deux plug-ins sont puissants et simples d’utilisation. Toutefois, leur gros inconvénient est qu’ils mettent en cluster un jeu d’enregistrements unique de manière non supervisée (sans libellé). Il est donc difficile de savoir si les modèles extraits caractérisent le jeu d’enregistrements sélectionné (enregistrements anormaux) ou le jeu d’enregistrements global.
+Les deux plug-ins sont puissants et simples d’utilisation. Leur inconvénient est qu’ils mettent en cluster un jeu d’enregistrements unique de manière non supervisée et sans étiquette. Il est difficile de savoir si les modèles extraits caractérisent le jeu d’enregistrements sélectionné, des enregistrements anormaux ou le jeu d’enregistrements global.
 
 ## <a name="clustering-the-difference-between-two-records-sets"></a>Mettre en cluster la différence entre deux jeux d’enregistrements
 
-Le plug-in [`diffpatterns()`](kusto/query/diffpatternsplugin.md) permet de résoudre la limite de `autocluster` et `basket`. `Diffpatterns` prend deux jeux d’enregistrements et extrait les principaux segments qui diffèrent entre eux. Un jeu contient généralement le jeu d’enregistrements anormal en cours d’étude (un analysé par `autocluster` et `basket`). L’autre contient le jeu d’enregistrements de référence (de base). 
+Le plug-in [`diffpatterns()`](kusto/query/diffpatternsplugin.md) permet de résoudre la limite de `autocluster` et `basket`. `Diffpatterns` prend deux jeux d’enregistrements et extrait les principaux segments qui diffèrent. Un jeu contient généralement le jeu d’enregistrements anormaux actuellement examiné. L’un est analysé par `autocluster` et `basket`. L’autre jeu contient le jeu d’enregistrements de référence : la base de référence.
 
-Dans la requête ci-dessous, nous utilisons `diffpatterns` pour rechercher les clusters intéressants situés dans la période de deux minutes du pic, qui diffèrent de ceux des clusters de la ligne de base. Nous définissons la fenêtre de référence comme correspondant aux huit minutes précédant 15 h 00 (début du pic). Nous devons également étendre par une colonne binaire (AB) indiquant si un enregistrement spécifique appartient au jeu de référence ou au jeu anormal. `Diffpatterns` implémente un algorithme d’apprentissage supervisé, où les deux libellés de classe ont été générés selon le rapport entre l’indicateur anormal et l’indicateur de référence (AB).
+Dans la requête ci-dessous, `diffpatterns` recherche les clusters intéressants situés dans la période des deux minutes du pic, qui diffèrent des clusters de la base de référence. La fenêtre de la base de référence est définie comme correspondant aux huit minutes précédant 15h00, moment du début du pic. Vous étendez par une colonne binaire (AB) et vous indiquez si un enregistrement spécifique appartient à la base de référence ou au jeu anormal. `Diffpatterns` implémente un algorithme d’apprentissage supervisé, où les deux libellés de classe ont été générés selon le rapport entre l’indicateur anormal et l’indicateur de référence (AB).
 
 **\[** [**Cliquer pour exécuter la requête**](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAAA42QzU+DQBDF7/wVcwOi5UtrmhJM4OzBRO9kWqbtpssuYacfGv94t0CrxFTd02by5jfvPUkMtVBlQ7gtOauQiUVNXhLFD5NoNknuIJ7Oo8hPHXmS4vEvaXKWWuoCDUmh6Jr8fj79Tv6HfOanEIbwRLgnQFhjAwviA5EC3hCcCYCq6gamEVsC1oB7LfoRt6iMYKEVvGtFQXfeNFKc7mXe2MjNVzl+mARR6lRU63Ipd4apFWodOx9w2FBL4D23tBSGXi3mhbG+OPPGVQTB+ITvg24dGN7vlN5JTxhc+dYAHZls4LzIxGr1k/B4iXcLbq50jfLNtd9i8OB2jD3KnW0dKstokG08Zby8uLbyCfX/tG46AgAA) **\]**
 
@@ -195,7 +207,7 @@ demo_clustering1
 | 5 | 55 | 252 | 5.66 | 20.45 | 14.8 | weu | su4 | be1d6d7ac9574cbc9a22cb8ee20f16fc |  |
 | 6 | 57 | 204 | 5.86 | 16.56 | 10.69 |  |  |  |  |
 
-Le segment plus dominant est le même segment que celui extrait par `autocluster`, sa couverture sur la fenêtre anormale de deux minutes est également de 65,74 %. Toutefois, sa couverture sur la fenêtre de référence de huit minutes est seulement de 1,7 %. La différence est de 64,04 %. Cette différence semble être liée au pic d’activité anormale. Vous pouvez vérifier cette hypothèse en fractionnant le graphique d’origine avec, d’un côté, les enregistrements appartenant à ce segment qui pose problème et, de l’autre, les autres segments comme indiqué dans la requête ci-dessous :
+Le segment le plus dominant est le même segment que celui extrait par `autocluster`. Sa couverture sur la fenêtre anormale de deux minutes est également de 65,74 %. Toutefois, sa couverture sur la fenêtre de base de référence de huit minutes est seulement de 1,7 %. La différence est de 64,04 %. Cette différence semble être liée au pic d’activité anormale. Pour vérifier cette hypothèse, divisez le graphique d’origine pour distinguer les enregistrements qui appartiennent à ce segment problématique et ceux des autres segments. Consultez la requête ci-dessous.
 
 **\[** [**Cliquer pour exécuter la requête**](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAAA5WRsWrDMBCG9zzF4cmGGuJUjh2Ktw7tUkLTzuEsnRNRnRQkuSQlD185yRTo0EWIO913/J8MRWBttxE6iC5INOhzRey20owhktd2V8EZwsiMXv/Q9Dpfe5I60Idm2kTkQ1E8AczMxMLjf1h4/IN1PzY7Ax0jWQWBdomvhyF/p512FroOMsIxA0zdTdpKn1bHSzmMzbX8TAfjTkw2vqpLp69VpYQaatEogXOBsqrbtl5WDake6yabXWjkv7WkFxeuPGqG5VzWqhQrIUqx6B/L1WKB6aBViy01imT2ANnau94QT9c35xlNVqQAjF9UhpSHAtiRO+lGG/MCUoZ7CTB4x7ePie5mNbk4QDVn6E+ThUT0SQh5iGlM7tHHX4WFgLHOAQAA) **\]**
 
@@ -215,6 +227,6 @@ Ce graphique permet de constater que le pic du mardi après-midi est survenu en 
 
 ## <a name="summary"></a>Résumé
 
-Les plug-ins de Machine Learning d’Azure Data Explorer sont utiles dans de nombreux scénarios. Les plug-ins `autocluster` et `basket` implémentent un algorithme d’apprentissage non supervisé et sont faciles à utiliser. `Diffpatterns` implémente un algorithme d’apprentissage supervisé et, bien que plus complexe, il est plus puissant pour extraire les segments de différenciation en vue de l’analyse de la cause racine.
+Les plug-ins de Machine Learning d’Azure Data Explorer sont utiles dans de nombreux scénarios. Les plug-ins `autocluster` et `basket` implémentent un algorithme d’apprentissage non supervisé et sont simples d’utilisation. `Diffpatterns` implémente un algorithme d’apprentissage supervisé et, bien que plus complexe, il est plus efficace pour l’extraction des segments de différenciation en vue d’une analyse de la cause racine.
 
-Ces plug-ins sont utilisés de manière interactive dans des scénarios ad-hoc et dans des services de surveillance en temps réel quasi automatiques. Dans Azure Data Explorer, la détection d’anomalie de série chronologique est suivie d’un processus de diagnostic hautement optimisé pour répondre aux normes de performance nécessaires.
+Ces plug-ins sont utilisés de manière interactive dans des scénarios ad-hoc et dans des services de surveillance en temps réel quasi automatiques. Dans Azure Data Explorer, la détection des anomalies de série chronologique est suivie d’un processus de diagnostic. Ce processus est hautement optimisé pour répondre aux normes de performances nécessaires.

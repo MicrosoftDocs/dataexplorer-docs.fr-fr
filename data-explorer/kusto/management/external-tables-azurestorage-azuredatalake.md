@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 7bcba1cbcbcbd712278696d897febaee5714703f
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: 828f2450db7f6afabf33f72d813af6f0007ada6b
+ms.sourcegitcommit: c3bbb9a6bfd7c5506f05afb4968fdc2043a9fbbf
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780590"
+ms.lasthandoff: 06/24/2020
+ms.locfileid: "85332602"
 ---
 # <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Créer et modifier des tables externes dans Stockage Azure ou Azure Data Lake
 
@@ -89,7 +89,7 @@ Format de chemin d’accès au fichier d’URI de données externes, qui peut ê
 
 &nbsp;&nbsp;[*StringSeparator*] *Partition* [*StringSeparator*] [*partition* [*StringSeparator*]...]  
 
-où *partition* fait référence à une partition déclarée dans la `partition` `by` clause, et *StringSeparator* est un texte placé entre guillemets.
+où *partition* fait référence à une partition déclarée dans la `partition` `by` clause, et *StringSeparator* est un texte placé entre guillemets. Les éléments de partition consécutifs doivent être séparés à l’aide de *StringSeparator*.
 
 Le préfixe du chemin d’accès au fichier d’origine peut être construit à l’aide d’éléments de partition rendus sous forme de chaînes et séparés par des séparateurs de texte Pour spécifier le format utilisé pour le rendu d’une valeur de partition DateTime, vous pouvez utiliser la macro suivante :
 
@@ -236,6 +236,9 @@ dataformat=parquet
 )
 ```
 
+> [!NOTE]
+> Actuellement, les colonnes virtuelles ne sont pas prises en charge pour les formats de données suivants : `CSV` , `TSV` ,,,, `TSVE` `SCsv` `SOHsv` `PSV` `RAW` et `TXT` .
+
 <a name="file-filtering"></a>
 **Logique de filtrage de fichier**
 
@@ -302,7 +305,7 @@ Crée un nouveau mappage. Pour plus d’informations, consultez [mappages de don
 
 **Exemple de sortie**
 
-| Nom     | Genre | Mappage                                                           |
+| Nom     | Type | Mappage                                                           |
 |----------|------|-------------------------------------------------------------------|
 | mapping1 | JSON | [{"ColumnName" : "RowNumber", "Properties" : {"path" : "$. RowNumber"}}, {"ColumnName" : "rowguid", "Properties" : {"path" : "$. rowguid"}}] |
 
@@ -320,7 +323,7 @@ Modifie un mappage existant.
 
 **Exemple de sortie**
 
-| Nom     | Genre | Mappage                                                                |
+| Nom     | Type | Mappage                                                                |
 |----------|------|------------------------------------------------------------------------|
 | mapping1 | JSON | [{"ColumnName" : "RowNumber", "Properties" : {"path" : "$. RowNumber"}}, {"ColumnName" : "rowguid", "Properties" : {"path" : "$. rowguid"}}] |
 
@@ -342,7 +345,7 @@ Affichez les mappages (tout ou partie spécifiés par nom).
 
 **Exemple de sortie**
 
-| Nom     | Genre | Mappage                                                                         |
+| Nom     | Type | Mappage                                                                         |
 |----------|------|---------------------------------------------------------------------------------|
 | mapping1 | JSON | [{"ColumnName" : "RowNumber", "Properties" : {"path" : "$. RowNumber"}}, {"ColumnName" : "rowguid", "Properties" : {"path" : "$. rowguid"}}] |
 

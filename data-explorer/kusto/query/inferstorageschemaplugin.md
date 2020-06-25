@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 5c430fd0ca18265c5800165b33bfe14126aee02a
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 5fd6221e4b877d066050f932a564f71d56d8c168
+ms.sourcegitcommit: c3bbb9a6bfd7c5506f05afb4968fdc2043a9fbbf
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373269"
+ms.lasthandoff: 06/24/2020
+ms.locfileid: "85332554"
 ---
-# <a name="infer_storage_schema-plugin"></a>plug-in infer_storage_schema
+# <a name="infer_storage_schema-plugin"></a>infer_storage_schema, plug-in
 
 Ce plug-in déduit le schéma de données externes et le retourne en tant que chaîne de schéma CSL. La chaîne peut être utilisée lors de la [création de tables externes](../management/external-tables-azurestorage-azuredatalake.md#create-or-alter-external-table).
 
@@ -32,7 +32,7 @@ evaluate infer_storage_schema(options)
 
 **Syntaxe**
 
-`evaluate``infer_storage_schema(` *Options*`)`
+`evaluate` `infer_storage_schema(` *Options* `)`
 
 **Arguments**
 
@@ -51,6 +51,7 @@ Un argument d' *options* unique est une valeur constante de type `dynamic` qui c
 Le `infer_storage_schema` plug-in retourne une table de résultats unique contenant une seule ligne/colonne contenant une chaîne de schéma CSL.
 
 > [!NOTE]
+> * Les clés secrètes de l’URI du conteneur de stockage doivent disposer des autorisations pour la *liste* , en plus de la *lecture*.
 > * La stratégie d’inférence de schéma « tout » est une opération très « coûteuse », car elle implique la lecture de *tous les* artefacts trouvés et la fusion de leur schéma.
 > * Certains types retournés ne sont peut-être pas des types réels en raison d’une mauvaise estimation de type (ou, suite à un processus de fusion de schéma). C’est pourquoi vous devez examiner le résultat avec soin avant de créer une table externe.
 

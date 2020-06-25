@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/30/2019
-ms.openlocfilehash: 4bbb076b4c21ac2f93b2bdaf775d513483332934
-ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
+ms.openlocfilehash: 66118ad7b91d1bcfdd52679d4bfa3dc5ebc4c281
+ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/01/2020
-ms.locfileid: "84257958"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84780233"
 ---
 # <a name="streaming-ingestion-preview"></a>Ingestion de streaming (préversion)
 
@@ -75,7 +75,7 @@ Il existe deux types d’ingestion de streaming pris en charge :
 * Le [mappage de données](kusto/management/mappings.md) doit être [précréé](kusto/management/create-ingestion-mapping-command.md) pour être utilisée dans une ingestion en streaming. Les demandes d’ingestion en streaming individuelles ne prennent pas en charge les mappages de données inline.
 * La capacité et les performances d’ingestion de streaming évoluent avec l’augmentation des tailles de cluster et de machine virtuelle. Le nombre de demandes d’ingestion simultanées est limité à six par cœur. Par exemple, pour les références SKU 16 cœurs telles que D14 et L16, la charge maximale prise en charge est de 96 demandes d’ingestion simultanées. Pour les références SKU 2 cœurs telles que D11, la charge maximale prise en charge est de 12 demandes d’ingestion simultanées.
 * La taille limite des données par demande d’ingestion en streaming est de 4 Mo.
-* Il peut s’écouler jusqu’à cinq minutes avant que les mises à jour de schéma soient accessibles au service d’ingestion en streaming. La création et la modification de tables et de mappages d’ingestion sont des exemples de ces mises à jour. 
+* Les mises à jour de schéma, telles que la création et la modification de tables et de mappages d’ingestion, peuvent prendre jusqu’à cinq minutes pour le service d’ingestion de streaming. Pour plus d’informations, consultez [Ingestion de streaming et changements de schéma](kusto/management/data-ingestion/streaming-ingestion-schema-changes.md).
 * L’activation de l’ingestion de streaming sur un cluster, même lorsque les données ne sont pas ingérées via streaming, utilise une partie du disque SSD local des machines du cluster pour les données d’ingestion de streaming et réduit le stockage disponible pour le cache à chaud.
 * Les [étiquettes d’étendue](kusto/management/extents-overview.md#extent-tagging) ne peuvent pas être définies dans les données d’ingestion de streaming.
 

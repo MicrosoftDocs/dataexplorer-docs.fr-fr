@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/26/2020
-ms.openlocfilehash: 46e3821514ca5b06852f7e8428b12cf9f80e29a4
-ms.sourcegitcommit: a562ce255ac706ca1ca77d272a97b5975235729d
+ms.openlocfilehash: 7f012b5b99cdf12ab1ace452838860aff312a28d
+ms.sourcegitcommit: b0cbb89e88b64a36880e6d34b4d6779283174456
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/26/2020
-ms.locfileid: "83867796"
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84633748"
 ---
 # <a name="visualize-data-with-azure-data-explorer-dashboards"></a>Visualiser des données avec des tableaux de bord Azure Data Explorer
 
@@ -56,7 +56,7 @@ Ajoutez les sources de données nécessaires pour générer les tableaux de bord
 
 ## <a name="use-parameters"></a>Utiliser des paramètres
 
-Les paramètres permettent d’utiliser des filtres de tableau de bord. Les paramètres améliorent considérablement les performances de rendu des tableaux de bord et vous permettent d’utiliser les valeurs de filtre le plus tôt possible dans la requête.
+Les paramètres permettent d’utiliser des filtres de tableau de bord. Les paramètres améliorent considérablement les performances de rendu des tableaux de bord et vous permettent d’utiliser les valeurs de filtre le plus tôt possible dans la requête. Pour plus d’informations sur l’utilisation des paramètres, consultez [Utiliser des paramètres dans des tableaux de bord Azure Data Explorer](dashboard-parameters.md).
 
 1. Sélectionnez **Paramètres** dans la barre supérieure. Sélectionnez le bouton **Nouveau paramètre** dans le volet **Paramètres**.
 
@@ -102,4 +102,5 @@ Les paramètres permettent d’utiliser des filtres de tableau de bord. Les para
 
 ## <a name="next-steps"></a>Étapes suivantes
 
+* [Utiliser des paramètres dans des tableaux de bord Azure Data Explorer](dashboard-parameters.md)
 * [Interroger des données dans Azure Data Explorer](web-query-data.md)

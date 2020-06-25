@@ -6,13 +6,13 @@ ms.author: orspodek
 ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: quickstart
-ms.date: 07/04/2019
-ms.openlocfilehash: 145e452a3a914e1026d6da11f2ce38e85fa724f0
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.date: 06/15/2020
+ms.openlocfilehash: 05c9a805e1391a34fe2d751c33178fcac16d15a9
+ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81491294"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84780131"
 ---
 # <a name="quickstart-query-data-in-azure-data-explorer-web-ui"></a>Démarrage rapide : Interroger des données dans l’interface utilisateur web Azure Data Explorer
 
@@ -163,25 +163,62 @@ Maintenant que vous avez vu comment fonctionnent les requêtes simples, voyons c
 
 ## <a name="share-queries"></a>Partager des requêtes
 
-Souvent, vous souhaitez partager les requêtes que vous créez. Vous pouvez fournir un lien ciblé afin que les utilisateurs avec un accès au cluster puissent exécuter les requêtes.
+Souvent, vous souhaitez partager les requêtes que vous créez. 
 
 1. Dans la fenêtre de requête, sélectionnez la première requête que vous avez copiée.
 
-1. En haut de la fenêtre de la requête, sélectionnez **Partager**.
+1. En haut de la fenêtre de la requête, sélectionnez **Partager**. 
 
-1. Sélectionnez **Lien et requête dans le Presse-papiers**.
+:::image type="content" source="media/web-query-data/share-menu.png" alt-text="Menu Partager":::
+
+Les options suivantes sont disponibles dans le menu déroulant :
+* Lien dans le Presse-papiers
+* [Lien et requête dans le Presse-papiers](#provide-a-deep-link)
+* Lien, requête et résultats dans le Presse-papiers
+* [Épingler au tableau de bord](#pin-to-dashboard)
+* [Requête vers Power BI](power-bi-imported-query.md)
+
+### <a name="provide-a-deep-link"></a>Fournir un lien ciblé
+
+Vous pouvez fournir un lien ciblé afin que les utilisateurs avec un accès au cluster puissent exécuter les requêtes.
+
+1. Dans **Partager**, sélectionnez **Lien et requête dans le Presse-papiers**.
 
 1. Copiez le lien et la requête dans un fichier texte.
 
 1. Collez le lien dans une nouvelle fenêtre de navigateur. Une fois la requête exécutée, le résultat doit ressembler à ceci.
 
-    ![Requête partagée](media/web-query-data/shared-query.png)
+    :::image type="content" source="media/web-query-data/shared-query.png" alt-text="Lien ciblé d’une requête partagée":::
+
+### <a name="pin-to-dashboard"></a>Épingler au tableau de bord
+
+Quand vous effectuez une exploration des données à l’aide de requêtes dans l’interface utilisateur web et que vous trouvez les données dont vous avez besoin, vous pouvez les épingler à un tableau de bord pour une supervision continue. 
+
+Pour épingler une requête :
+
+1. Dans **Partager**, sélectionnez **Épingler au tableau de bord**.
+
+1. Dans le volet **Épingler au tableau de bord** :
+    1. Fournissez un **Nom de requête**.
+    1. Sélectionnez **Utiliser l’existant** ou **Créer un nouveau**.
+    1. Fournissez le **Nom du tableau de bord**.
+    1. Cochez la case **Afficher le tableau de bord après sa création** (s’il s’agit d’un nouveau tableau de bord).
+    1. Sélectionnez **Épingler**.
+
+    :::image type="content" source="media/web-query-data/pin-to-dashboard.png" alt-text="Volet Épingler au tableau de bord":::
+    
+> [!NOTE]
+> **Épingler au tableau de bord** épingle uniquement la requête sélectionnée. Pour créer la source de données du tableau de bord et traduire des commandes de rendu en visuel dans le tableau de bord, vous devez sélectionner la base de données appropriée dans la liste de bases de données.
+
+## <a name="export-query-results"></a>Exporter des résultats de requête
+
+Pour exporter les résultats de la requête dans un fichier CSV, sélectionnez **Fichier** > **Exporter au format CSV**.
+
+:::image type="content" source="media/web-query-data/export-results.png" alt-text="Exporter les résultats dans un fichier CSV":::
 
 ## <a name="provide-feedback"></a>Fournir des commentaires
 
-L’Explorateur de données est actuellement en préversion, vos commentaires sur votre expérience sont les bienvenus. Vous pouvez les partager maintenant ou attendre d’avoir passé plus de temps dessus.
-
-1. En haut à droite de l’application, sélectionnez l’icône de commentaires : ![Icône de commentaires](media/web-query-data/icon-feedback.png).
+1. En haut à droite de l’application, sélectionnez l’icône de commentaires ![Icône de commentaires](media/web-query-data/icon-feedback.png).
 
 1. Entrez vos commentaires et sélectionnez **Envoyer**.
 
