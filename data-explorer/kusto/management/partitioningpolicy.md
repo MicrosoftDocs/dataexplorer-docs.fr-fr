@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/10/2020
-ms.openlocfilehash: 3ab402833e4aebd5499fcb383dd803e9a6a815ed
-ms.sourcegitcommit: 93510ef1e5570ce4da2cbf76eb77946c93a7dec8
+ms.openlocfilehash: 433d8786ad3664d02387efacd7dcd3865b4deb13
+ms.sourcegitcommit: ddafa58deb79417bd6f36e8bb3ad106d375b63e1
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "85372483"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85448500"
 ---
 # <a name="data-partitioning-policy"></a>Stratégie de partitionnement des données
 
@@ -22,7 +22,7 @@ La stratégie de partitionnement définit si et comment les [étendues (données
 L’objectif principal de la stratégie est d’améliorer les performances des requêtes qui sont connues pour limiter le jeu de données des valeurs dans les colonnes partitionnées, ou agréger/joindre sur une colonne de chaîne de cardinalité élevée. La stratégie peut également entraîner une meilleure compression des données.
 
 > [!CAUTION]
-> Aucune limite codée en dur n’est définie sur le nombre de tables sur lesquelles la stratégie peut être définie. Toutefois, chaque table supplémentaire ajoute une surcharge au processus de partitionnement des données en arrière-plan qui s’exécute sur les nœuds du cluster. Cela peut entraîner l’utilisation de plus de ressources de clusters. Pour plus d’informations, consultez [Capacity](#capacity).
+> Aucune limite codée en dur n’est définie sur le nombre de tables sur lesquelles la stratégie peut être définie. Toutefois, chaque table supplémentaire ajoute une surcharge au processus de partitionnement des données en arrière-plan qui s’exécute sur les nœuds du cluster. Cela peut entraîner l’utilisation de plus de ressources de clusters. Pour plus d’informations, consultez [surveillance](#monitoring) et [capacité](#capacity).
 
 ## <a name="partition-keys"></a>Clés de partition
 
@@ -30,7 +30,7 @@ Les types de clés de partition suivants sont pris en charge.
 
 |Type                                                   |Type de colonne |Propriétés de la partition                    |Valeur de partition                                        |
 |-------------------------------------------------------|------------|----------------------------------------|----------------------|
-|[Hash](#hash-partition-key)                            |`string`    |`Function`, `MaxPartitionCount`, `Seed` | `Function`(`ColumnName`, `MaxPartitionCount`, `Seed`) |
+|[Code de hachage](#hash-partition-key)                            |`string`    |`Function`, `MaxPartitionCount`, `Seed` | `Function`(`ColumnName`, `MaxPartitionCount`, `Seed`) |
 |[Plage uniforme](#uniform-range-datetime-partition-key) |`datetime`  |`RangeSize`, `Reference`                | `bin_at`(`ColumnName`, `RangeSize`, `Reference`)      |
 
 ### <a name="hash-partition-key"></a>Clé de partition de hachage
