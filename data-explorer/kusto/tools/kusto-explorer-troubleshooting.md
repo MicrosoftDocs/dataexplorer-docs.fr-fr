@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/13/2020
-ms.openlocfilehash: 8fe86f16eef79fca0db22fd3048cc3841c57d189
-ms.sourcegitcommit: 8953d09101f4358355df60ab09e55e71bc255ead
+ms.openlocfilehash: 19ffbe2f5e14a2c003c24d145b713970e6bb31b8
+ms.sourcegitcommit: 4eb64e72861d07cedb879e7b61a59eced74517ec
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84420898"
+ms.lasthandoff: 06/29/2020
+ms.locfileid: "85517764"
 ---
 # <a name="troubleshooting"></a>Résolution des problèmes
 
@@ -163,9 +163,9 @@ Si nécessaire, vous pouvez réinitialiser complètement Kusto. Explorer. La pro
 
 1. Dans Windows, ouvrez **modifier ou supprimer un programme** (également appelé **programmes et fonctionnalités**).
 1. Sélectionnez chaque élément qui commence par `Kusto.Explorer` .
-1. Sélectionner **Désinstaller**.
+1. Sélectionnez **Désinstaller**.
 
-   Si cette procédure ne permet pas de désinstaller l’application (problème connu avec les applications ClickOnce), consultez [cet article sur la pile Overflow qui explique comment procéder.
+   Si cette procédure ne permet pas de désinstaller l’application (problème connu avec les applications ClickOnce), consultez [cet article pour obtenir des instructions](https://stackoverflow.com/questions/10896223/how-do-i-completely-uninstall-a-clickonce-application-from-my-computer).
 
 1. Supprimez le dossier `%LOCALAPPDATA%\Kusto.Explorer` , qui supprime toutes les connexions, l’historique, etc.
 
