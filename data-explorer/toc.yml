@@ -229,6 +229,7 @@
                 - name: "Modèle Azure\_Resource\_Manager"
                   href: cluster-principal-resource-manager.md
             - name: Gérer les extensions de langage de cluster
+              displayName: 'Python, R'
               href: language-extensions.md
         - name: Base de données
           items:
@@ -742,6 +743,8 @@
               href: ./kusto/query/hash_combinefunction.md
             - name: hash_many()
               href: ./kusto/query/hash_manyfunction.md
+            - name: hash_md5()
+              href: ./kusto/query/md5hashfunction.md
             - name: hash_sha256()
               href: ./kusto/query/sha256hashfunction.md
             - name: hll_merge()
