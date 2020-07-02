@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/02/2019
-ms.openlocfilehash: f611f660a791117159ad5fce4c024914d9e6909b
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: 6739b01f996c04829a1fdb78eab96f6e51b011bb
+ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264740"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85763665"
 ---
 # <a name="set_intersect"></a>set_intersect()
 
@@ -25,7 +25,7 @@ Retourne un `dynamic` tableau de l’ensemble de toutes les valeurs distinctes q
 
 **Arguments**
 
-* *Arr1... arrN*: tableaux d’entrée pour créer un ensemble d’intersection (au moins deux tableaux). Tous les arguments doivent être des tableaux dynamiques (voir [pack_array](packarrayfunction.md)). 
+* *Arr1... arrN*: tableaux d’entrée pour créer un ensemble d’intersection (au moins deux tableaux). Tous les arguments doivent être des tableaux dynamiques. Pour plus d’informations, consultez [pack_array](packarrayfunction.md). 
 
 **Retourne**
 

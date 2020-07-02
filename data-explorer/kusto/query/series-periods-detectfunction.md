@@ -8,21 +8,26 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2019
-ms.openlocfilehash: a3f2a325b63306f7fec6b11eb3e684d3918bc7d5
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 876966391e67ad2f8f25a900dfc4c92bf0bfd11e
+ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372522"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85763261"
 ---
 # <a name="series_periods_detect"></a>series_periods_detect()
 
 Recherche les périodes les plus significatives qui existent dans une série chronologique.  
 
-Très souvent, une mesure mesurant le trafic d’une application est caractérisée par deux périodes importantes : une fois par semaine et par jour. En raison de ces séries chronologiques, `series_periods_detect()` doit détecter ces 2 périodes dominantes.  
-La fonction prend comme entrée une colonne contenant un tableau dynamique de séries chronologiques (en général, le résultat de l’opérateur [Make-Series](make-seriesoperator.md) ), deux `real` nombres définissant la taille minimale et maximale de la période (par exemple, le nombre d’emplacements, par exemple, la taille d’une période quotidienne) à rechercher et un `long` nombre qui définit le nombre total de périodes pour la fonction à rechercher. La fonction génère 2 colonnes :
-* *périodes*: tableau dynamique contenant les périodes trouvées (en unités de la taille de l’emplacement), classées par score
-* *scores*: tableau dynamique contenant des valeurs comprises entre 0 et 1, chacun mesurant l’importance d’un point à sa position respective dans le tableau des *périodes*
+Souvent, une mesure mesurant le trafic d’une application est caractérisée par deux périodes importantes : une fois par semaine et par jour. La fonction `series_periods_detect()` détecte ces deux périodes dominantes dans une série chronologique.  
+La fonction prend comme entrée :
+* Colonne contenant un tableau dynamique de séries chronologiques. En règle générale, la colonne est le résultat de l’opérateur [Make-Series](make-seriesoperator.md) .
+* Deux `real` nombres définissant la taille minimale et maximale de la période, le nombre d’emplacements à rechercher. Par exemple, pour un casier 1H, la taille d’une période quotidienne est de 24. 
+* `long`Nombre qui définit le nombre total de périodes de recherche de la fonction. 
+
+La fonction génère deux colonnes :
+* *périodes*: tableau dynamique contenant les périodes qui ont été trouvées, en unités de taille de compartiment, classées par leurs scores.
+* *scores*: tableau dynamique contenant des valeurs comprises entre 0 et 1. Chaque tableau mesure l’importance d’une période à sa position respective dans le tableau des *périodes* .
  
 **Syntaxe**
 
@@ -33,19 +38,18 @@ La fonction prend comme entrée une colonne contenant un tableau dynamique de s�
 * *x*: expression scalaire de tableau dynamique qui est un tableau de valeurs numériques, généralement le résultat des opérateurs [Make-Series](make-seriesoperator.md) ou [make_list](makelist-aggfunction.md) .
 * *min_period*: `real` nombre spécifiant la période minimale à rechercher.
 * *max_period*: `real` nombre spécifiant la période maximale à rechercher.
-* *num_periods*: `long` nombre spécifiant le nombre maximal de périodes requis. Il s’agit de la longueur des tableaux dynamiques de sortie.
+* *num_periods*: `long` nombre spécifiant le nombre maximal de périodes requis. Ce nombre correspond à la longueur des tableaux dynamiques de sortie.
 
 > [!IMPORTANT]
 > * L’algorithme peut détecter les périodes qui contiennent au moins 4 points et au plus la moitié de la longueur de la série. 
 >
-> * Vous devez définir le *min_period* un peu plus bas et *max_period* un peu au-dessus des périodes que vous vous attendez à trouver dans la série chronologique. Par exemple, si vous avez un signal regroupé toutes les heures et que vous recherchez à la fois des > quotidiennes et des périodes hebdomadaires (24 & 168 respectivement), vous pouvez définir *min_period*= 0,8 \* 24 *max_period*= 1,2 \* 168, en laissant 20% de marges autour de ces périodes.
+> * Définissez le *min_period* un peu plus bas et *max_period* un peu plus haut, les périodes que vous vous attendez à trouver dans la série chronologique. Par exemple, si vous avez un signal agrégé toutes les heures et que vous recherchez des périodes quotidiennes et hebdomadaires (respectivement 24 et 168 heures), vous pouvez définir *min_period*= 0,8 \* 24, *max_period*= 1,2 \* 168, et conserver 20% de marges autour de ces périodes.
 >
-> * La série chronologique d’entrée doit être régulière, c’est-à-dire agrégée dans des emplacements constants (ce qui est toujours le cas si elle a été créée à l’aide de la [série make](make-seriesoperator.md)). Dans le cas contraire, le résultat n’est pas significatif.
-
+> * La série chronologique d’entrée doit être normale. Autrement dit, agrégé dans des emplacements constants, ce qui est toujours le cas s’il a été créé à l’aide de la [série make](make-seriesoperator.md). Dans le cas contraire, le résultat n’est pas significatif.
 
 **Exemple**
 
-La requête suivante incorpore une capture instantanée d’un mois du trafic d’une application, agrégée deux fois par jour (par exemple, la taille de l’emplacement est de 12 heures).
+La requête suivante incorpore une capture instantanée d’un mois du trafic d’une application, regroupée deux fois par jour. La taille de l’emplacement est de 12 heures.
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -56,7 +60,7 @@ print y=dynamic([80,139,87,110,68,54,50,51,53,133,86,141,97,156,94,149,95,140,77
 
 :::image type="content" source="images/series-periods/series-periods.png" alt-text="Périodes de série":::
 
-S’exécuter `series_periods_detect()` sur cette série entraîne la période hebdomadaire (14 points longs) :
+En cours `series_periods_detect()` d’exécution sur cette série, produit une période hebdomadaire de 14 points.
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -70,4 +74,5 @@ print y=dynamic([80,139,87,110,68,54,50,51,53,133,86,141,97,156,94,149,95,140,77
 | [14.0, 0.0] | [0,84, 0,0]  |
 
 
-Notez que la période quotidienne qui peut également être observée dans le graphique est introuvable, car l’échantillonnage est trop grossiste (12 h bin Size). par conséquent, une période quotidienne de 2 emplacements fait souffler la taille de la période minimale de 4 points requis par l’algorithme.
+> [!NOTE] 
+> La période quotidienne qui peut également être observée dans le graphique est introuvable, car l’échantillonnage est trop grossiste (12 h bin Size). par conséquent, une période quotidienne de 2 emplacements est inférieure à la taille minimale de 4 points, requise par l’algorithme.

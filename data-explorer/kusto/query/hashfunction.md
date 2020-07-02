@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a44f817ea57a114400f45e9ca2a841150b4590a6
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: b0a8f1b2a72ceb154b7252b3218718a9c23968cb
+ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226803"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85763858"
 ---
 # <a name="hash"></a>hash()
 
@@ -35,7 +35,7 @@ Valeur de hachage du scalaire donné, modulo la valeur de mod donnée (si spéci
 > [!WARNING]
 > L’algorithme utilisé pour calculer le hachage est xxhash.
 > Cet algorithme peut changer à l’avenir, et la seule garantie est qu’au sein d’une même requête, tous les appels de cette méthode utilisent le même algorithme.
-> Par conséquent, il est recommandé aux utilisateurs de ne pas stocker les résultats de `hash()` dans une table. Si les valeurs de hachage persistantes sont requises, utilisez [hash_sha256 ()](./sha256hashfunction.md) à la place (mais notez qu’il est bien plus complexe à calculer que `hash()` ).
+> Par conséquent, il est recommandé de ne pas stocker les résultats de `hash()` dans une table. Si les valeurs de hachage persistantes sont requises, utilisez [hash_sha256 ()](./sha256hashfunction.md) ou [hash_md5 ()](./md5hashfunction.md) à la place. Notez que ces fonctions sont plus complexes à calculer que `hash()` ).
 
 **Exemples**
 

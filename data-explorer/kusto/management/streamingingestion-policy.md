@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 55ed390a1c98a307d2bb38476458f29fc9c92997
-ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
+ms.openlocfilehash: e8d02634ad0c56b2e1e369d4c2cd86c63bdad155
+ms.sourcegitcommit: 56bb7b69654900ed63310ac9537ae08b72bf7209
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/01/2020
-ms.locfileid: "84258009"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85814192"
 ---
 # <a name="streaming-ingestion-policy-management"></a>Gestion de la stratégie d’ingestion de streaming
 
@@ -114,7 +114,8 @@ La commande supprime l’objet de stratégie de la table ou de la base de donné
 ### <a name="streaming-ingestion-policy-object"></a>Objet de stratégie d’ingestion de streaming
 
 Dans l’entrée et la sortie des commandes de gestion, l’objet de stratégie d’ingestion de streaming est une chaîne au format JSON qui comprend les propriétés suivantes.
-|Propriété  |Type    |Description                                                       |Obligatoire ou facultatif |
-|----------|--------|------------------------------------------------------------------|-------|
-|IsEnabled |`bool`  |L’ingestion de diffusion en continu est-elle activée pour l’entité| Obligatoire|
-|HintAllocatedRate|`double`|Fréquence estimée des entrées de données en Go/heure| Facultatif|
+
+|Propriété|Type|Description|Obligatoire ou facultatif
+|---|---|---|---
+|IsEnabled|`bool`|L’ingestion de diffusion en continu est-elle activée pour l’entité| Obligatoire
+|HintAllocatedRate|`double`|Fréquence estimée des entrées de données en Go/heure|Facultatif

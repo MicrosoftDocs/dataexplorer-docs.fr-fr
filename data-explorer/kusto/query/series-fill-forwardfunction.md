@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: dc421c8321985d001bb08ba85965cf017b1d51c6
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 7ea5210f0370b495c48615d28e763bf6e396d46e
+ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372772"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85763695"
 ---
 # <a name="series_fill_forward"></a>series_fill_forward()
 
@@ -31,13 +31,13 @@ Une expression contenant un tableau numérique dynamique est l’entrée. La fon
 * *x*: expression scalaire de tableau dynamique, qui est un tableau de valeurs numériques. 
 * *missing_value_placeholder*: paramètre facultatif, qui spécifie un espace réservé pour une valeur manquante à remplacer. La valeur par défaut est `double` (*null*).
 
-**Remarques**
+**Notes**
 
 * Spécifiez *null* comme valeur par défaut pour appliquer les fonctions d’interpolation après [Make-Series](make-seriesoperator.md): 
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
-make-series num=count() default=long(null) on TimeStamp in range(ago(1d), ago(1h), 1h) by Os, Browser
+make-series num=count() default=long(null) on TimeStamp from ago(1d) to ago(1h) step 1h by Os, Browser
 ```
 
 * Le *missing_value_placeholder* peut être de n’importe quel type qui sera converti en types d’éléments réels. Les deux `double` (*null*) `long` (*null*) et `int` (*null*) ont la même signification.

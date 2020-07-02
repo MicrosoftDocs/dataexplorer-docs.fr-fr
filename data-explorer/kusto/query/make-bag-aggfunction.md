@@ -1,6 +1,6 @@
 ---
-title: make_bag() (fonction d’agrégation) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit make_bag () (fonction d’agrégation) dans Azure Data Explorer.
+title: make_bag () (fonction d’agrégation)-Azure Explorateur de données
+description: Cet article décrit la fonction d’agrégation make_bag () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,41 +8,41 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 16f5f5663c4807a766d99c12020ff0a46c4db336
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 7c0d6ae10c21b1df55aaa3584f4f40e830b58d2c
+ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81512986"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85763444"
 ---
-# <a name="make_bag-aggregation-function"></a>make_bag)) (fonction d’agrégation)
+# <a name="make_bag-aggregation-function"></a>make_bag () (fonction d’agrégation)
 
-Retourne `dynamic` un sac de propriété (JSON) de toutes les valeurs d’Expr dans le groupe. *Expr*
+Retourne un `dynamic` conteneur de propriétés (JSON) (dictionnaire) de toutes les valeurs de *`Expr`* dans le groupe.
 
-* Ne peut être utilisé que dans le contexte de l’agrégation à l’intérieur [résumer](summarizeoperator.md)
+* Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 
 **Syntaxe**
 
-`summarize``make_bag(` *Expr* `,` [ *MaxSize*]`)`
+`summarize``make_bag(` *`Expr`* [ `,` *MaxSize*]`)`
 
 **Arguments**
 
-* *Expr*: Expression `dynamic` de type qui sera utilisée pour le calcul de l’agrégation.
-* *MaxSize* est une limite d’intégrisation facultative sur le nombre maximum d’éléments retournés (par défaut est *1048576*). La valeur MaxSize ne peut excéder 1048576.
+* *Expr*: expression de type `dynamic` utilisée pour les calculs d’agrégation.
+* *MaxSize* est une limite d’entier facultative sur le nombre maximal d’éléments retournés. La valeur par défaut est *1048576*. La valeur MaxSize ne peut pas dépasser *1048576*.
 
 **Remarque**
 
-Une variante héritée et `make_dictionary()` obsolète de cette fonction : a une limite par défaut de *MaxSize* 128.
+Une variante héritée et obsolète de la fonction `make_dictionary()` a une limite par défaut de *MaxSize* = 128.
 
 **Retourne**
 
-Retourne `dynamic` un sac de propriété (JSON) de toutes les valeurs d’Expr dans le groupe qui sont des sacs de propriété (dictionnaires). *Expr*
-Les valeurs non-dictionnaire seront ignorées.
-Si une clé apparaît dans plus d’une ligne, une valeur arbitraire (sur les valeurs possibles pour cette clé) sera choisie.
+Retourne un `dynamic` conteneur de propriétés (JSON) (dictionnaire) de toutes les valeurs de *`Expr`* dans le groupe, qui sont des conteneurs de propriétés.
+Les valeurs autres que les dictionnaires seront ignorées.
+Si une clé apparaît dans plusieurs lignes, une valeur arbitraire, en dehors des valeurs possibles pour cette clé, est sélectionnée.
 
 **Voir aussi**
 
-Utilisez le [plugin bag_unpack)pour](bag-unpackplugin.md) étendre les objets JSON dynamiques en colonnes à l’aide de clés de sac de propriété. 
+Utilisez le plug-in [bag_unpack ()](bag-unpackplugin.md) pour développer des objets JSON dynamiques dans des colonnes qui utilisent des clés de conteneur de propriétés. 
 
 **Exemples**
 
@@ -61,9 +61,9 @@ T
 
 |dict|
 |----|
-|"prop01": "val_a", "prop02": "val_b", "prop03": "val_c" |
+|{"prop01" : "val_a", "prop02" : "val_b", "prop03" : "val_c"} |
 
-Utilisez [bag_unpack()](bag-unpackplugin.md) plugin pour transformer les clés du sac dans la sortie make_bag)en colonnes. 
+Utilisez le plug-in [bag_unpack ()](bag-unpackplugin.md) pour transformer les clés de conteneur dans la sortie make_bag () en colonnes. 
 
 ```kusto
 let T = datatable(prop:string, value:string)

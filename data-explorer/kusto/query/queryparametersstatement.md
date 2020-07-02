@@ -1,5 +1,5 @@
 ---
-title: Instruction de déclaration des paramètres de requête-Azure Explorateur de données | Microsoft Docs
+title: Instruction de déclaration des paramètres de requête-Azure Explorateur de données
 description: Cet article décrit l’instruction de déclaration des paramètres de requête dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
@@ -10,40 +10,41 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: a76755d04179b3d311e79798162c61db764455d7
-ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
+ms.openlocfilehash: 0373525d0f1e369af31b17595900128e0d4e0bf4
+ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82737808"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85763346"
 ---
 # <a name="query-parameters-declaration-statement"></a>Instruction de déclaration des paramètres de requête
 
 ::: zone pivot="azuredataexplorer"
 
-Les requêtes envoyées à Kusto peuvent inclure, en plus du texte de la requête lui-même, un ensemble de paires nom/valeur appelées **paramètres de requête**. Le texte de la requête peut ensuite référencer une ou plusieurs valeurs de paramètres de requête en spécifiant leurs noms et le type à l’aide d’une **instruction de déclaration de paramètres de requête**.
+Les requêtes envoyées à Kusto peuvent inclure un jeu de paires nom/valeur. Les paires sont appelées *paramètres de requête*, ainsi que le texte de requête lui-même. La requête peut référencer une ou plusieurs valeurs, en spécifiant des noms et un type, dans une *instruction de déclaration de paramètres de requête*.
 
 Les paramètres de requête ont deux utilisations principales :
 
-1. Comme mécanisme de protection contre **les attaques par injection**.
-2. Comme un moyen de paramétrer des requêtes.
+* Comme mécanisme de protection contre les attaques par injection.
+* Comme un moyen de paramétrer des requêtes.
 
-En particulier, les applications clientes qui combinent les entrées fournies par l’utilisateur dans les requêtes qu’elles envoient ensuite à Kusto doivent utiliser ce mécanisme pour se protéger contre l’équivalent Kusto des attaques par [injection SQL](https://en.wikipedia.org/wiki/SQL_injection) .
+En particulier, les applications clientes qui combinent les entrées fournies par l’utilisateur dans les requêtes qu’elles envoient ensuite à Kusto doivent utiliser le mécanisme pour se protéger contre l’équivalent Kusto des attaques par [injection SQL](https://en.wikipedia.org/wiki/SQL_injection) .
 
 ## <a name="declaring-query-parameters"></a>Déclaration des paramètres de requête
 
-Pour pouvoir référencer des paramètres de requête, le texte de la requête (ou les fonctions qu’il utilise) doit d’abord déclarer le paramètre de requête qu’il utilise. Pour chaque paramètre, la déclaration fournit le nom et le type scalaire. Éventuellement, le paramètre peut également avoir une valeur par défaut à utiliser si la requête ne fournit pas de valeur concrète pour le paramètre. Kusto analyse ensuite la valeur du paramètre de requête en fonction de ses règles d’analyse normales pour ce type.
+Pour référencer des paramètres de requête, le texte de requête ou les fonctions qu’il utilise, vous devez d’abord déclarer le paramètre de requête qu’il utilise. Pour chaque paramètre, la déclaration fournit le nom et le type scalaire. Éventuellement, le paramètre peut également avoir une valeur par défaut. La valeur par défaut est utilisée si la requête ne fournit pas de valeur concrète pour le paramètre. Kusto analyse ensuite la valeur du paramètre de requête, en fonction de ses règles d’analyse normales pour ce type.
 
 **Syntaxe**
 
-`declare``query_parameters` `:` *Type1* `,` *Name1* `=` Nom1 type1 [DefaultValue1] [...] *DefaultValue1* `(``);`
+`declare``query_parameters` `(` *Nom1* `:` *type1* [ `=` *DefaultValue1*] [ `,` ...]`);`
 
 * *Nom1*: nom d’un paramètre de requête utilisé dans la requête.
-* *Type1*: le type correspondant (par exemple `string`, `datetime`, etc.) Les valeurs fournies par l’utilisateur sont encodées sous forme de chaînes, pour que Kusto applique la méthode d’analyse appropriée au paramètre de requête pour obtenir une valeur fortement typée.
-* *DefaultValue1*: valeur par défaut facultative pour le paramètre. Il doit s’agir d’un littéral du type scalaire approprié.
+* *Type1*: type correspondant, tel que `string` ou `datetime` .
+  Les valeurs fournies par l’utilisateur sont encodées sous forme de chaînes, pour que Kusto applique la méthode d’analyse appropriée au paramètre de requête pour obtenir une valeur fortement typée.
+* *DefaultValue1*: valeur par défaut facultative pour le paramètre. Cette valeur doit être un littéral du type scalaire approprié.
 
 > [!NOTE]
-> À l’instar des [fonctions définies](functions/user-defined-functions.md)par l' `dynamic` utilisateur, les paramètres de requête de type ne peuvent pas avoir de valeurs par défaut.
+> À l’instar des [fonctions définies](functions/user-defined-functions.md)par l’utilisateur, les paramètres de requête de type `dynamic` ne peuvent pas avoir de valeurs par défaut.
 
 **Exemples**
 
@@ -59,13 +60,13 @@ T | where Likelihood > percentage
 
 ## <a name="specifying-query-parameters-in-a-client-application"></a>Spécification des paramètres de requête dans une application cliente
 
-Les noms et les valeurs des paramètres de requête sont `string` fournis en tant que valeurs par l’application qui effectue la requête. Aucun nom ne peut être répété.
+Les noms et les valeurs des paramètres de requête sont fournis en tant que `string` valeurs par l’application qui effectue la requête. Aucun nom ne peut être répété.
 
-L’interprétation des valeurs est effectuée en fonction de l’instruction de déclaration des paramètres de la requête. Chaque valeur est analysée comme s’il s’agissait d’un littéral dans le corps d’une requête en fonction du type spécifié par l’instruction de déclaration des paramètres de la requête.
+L’interprétation des valeurs est effectuée en fonction de l’instruction de déclaration des paramètres de la requête. Chaque valeur est analysée comme s’il s’agissait d’un littéral dans le corps d’une requête. L’analyse est effectuée en fonction du type spécifié par l’instruction de déclaration des paramètres de la requête.
 
 ### <a name="rest-api"></a>API REST
 
-Les paramètres de requête sont fournis par les applications `properties` clientes par le biais de l’emplacement de l’objet JSON du corps de la `Parameters`demande, dans un conteneur de propriétés imbriquées appelé. Par exemple, voici le corps d’un appel d’API REST à Kusto qui calcule l’âge d’un utilisateur (vraisemblablement, en faisant en sorte que l’application demande à l’utilisateur son anniversaire) :
+Les paramètres de requête sont fournis par les applications clientes par le biais `properties` de l’emplacement de l’objet JSON du corps de la demande, dans un conteneur de propriétés imbriquées appelé `Parameters` . Par exemple, voici le corps d’un appel d’API REST à Kusto qui calcule l’âge d’un utilisateur, vraisemblablement en demandant à l’application de demander l’anniversaire de l’utilisateur.
 
 ``` json
 {
@@ -78,11 +79,11 @@ Les paramètres de requête sont fournis par les applications `properties` clien
 
 ### <a name="kusto-net-sdk"></a>Kit de développement logiciel (SDK) .NET Kusto
 
-Pour fournir les noms et les valeurs des paramètres de requête lors de l’utilisation de la bibliothèque cliente .net Kusto, l' `ClientRequestProperties` un crée une nouvelle instance `HasParameter`de `SetParameter`l’objet `ClearParameter` , puis utilise les méthodes, et pour manipuler les paramètres de requête. Notez que cette classe fournit un certain nombre de surcharges fortement typées `SetParameter`pour ; en interne, ils génèrent le littéral approprié du langage de requête et l’envoient sous forme de `string` par le biais de l’API REST, comme décrit ci-dessus. Le texte de la requête doit toujours [déclarer les requêtes](#declaring-query-parameters).
+Pour fournir les noms et les valeurs des paramètres de requête lors de l’utilisation de la bibliothèque cliente .NET Kusto, l’un crée une nouvelle instance de l’objet, puis `ClientRequestProperties` utilise les `HasParameter` `SetParameter` méthodes, et `ClearParameter` pour manipuler les paramètres de requête. Cette classe fournit un certain nombre de surcharges fortement typées pour `SetParameter` ; en interne, elle génère le littéral approprié du langage de requête et l’envoie en tant que `string` par le biais de l’API REST, comme décrit ci-dessus. Le texte de la requête doit toujours [déclarer les paramètres de requête](#declaring-query-parameters).
 
 ### <a name="kustoexplorer"></a>Kusto.Explorer
 
-Pour définir les paramètres de requête envoyés lors d’une demande au service, utilisez l’icône « clé » des **paramètres** de`ALT` + `P`requête ().
+Pour définir les paramètres de requête envoyés lors d’une demande au service, utilisez l’icône « clé » des **paramètres de requête** ( `ALT`  +  `P` ).
 
 ::: zone-end
 

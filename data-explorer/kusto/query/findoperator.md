@@ -1,6 +1,6 @@
 ---
-title: trouver opérateur - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit l’opérateur de recherche dans Azure Data Explorer.
+title: opérateur de recherche-Azure Explorateur de données
+description: Cet article décrit l’opérateur de recherche dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,20 +10,20 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 4c3db23128c47c86639f15286cbcbcb748157386
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 4be61920fe22c7b77eb54f849e86ba06a8bf533b
+ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81765910"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85763816"
 ---
 # <a name="find-operator"></a>Opérateur find
 
-Trouve des lignes qui correspondent à un prédicat à travers un ensemble de tables.
+Recherche les lignes qui correspondent à un prédicat dans un ensemble de tables.
 
 ::: zone pivot="azuredataexplorer"
 
-La portée `find` de la peut également être multi-base de données ou multi-cluster.
+La portée du `find` peut également être une base de données croisée ou entre plusieurs clusters.
 
 ```kusto
 find in (Table1, Table2, Table3) where Fruit=="apple"
@@ -45,128 +45,135 @@ find in (Table1, Table2, Table3) where Fruit=="apple"
 
 ## <a name="syntax"></a>Syntaxe
 
-* `find`[`withsource`=*ColumnName*] `in` `(` *[Tableau* `,` [ *Tableau*, ...] `)`] `where` *Predicate* [`project-smart`  |  `project` *ColumnName* [`:``,` *ColumnType*] [ *ColumnName*[`:`*ColumnType*], ...] [`,` `pack(*)`]] 
+* `find`[ `withsource` = *ColumnName*] [ `in` `(` *table* [ `,` *table*,...] `)` ] `where` *Predicate* [ `project-smart`  |  `project` *ColumnName* [ `:` *ColumnType*] [ `,` *ColumnName*[ `:` *ColumnType*],...] [`,` `pack(*)`]] 
 
-* `find`*Predicate* `project-smart`  |  `project` [ *ColumnName*`:`[*ColumnType*] [`,` *ColumnName*[`:`*ColumnType*], ...] [`, pack(*)`]] 
+* `find`*Predicate* [ `project-smart`  |  `project` *ColumnName*[ `:` *ColumnType*] [ `,` *ColumnName*[ `:` *ColumnType*],...] [`, pack(*)`]] 
 
 ## <a name="arguments"></a>Arguments
 
 ::: zone pivot="azuredataexplorer"
 
-* `withsource=`*ColumnName*: Facultatif. Par défaut, la sortie comprendra une colonne appelée *source_* dont les valeurs indiquent quelle table source a contribué chaque ligne. Si spécifié, *ColumnName* sera utilisé au lieu de *source_* .
-Si la requête efficacement (après correspondance wildcard) références tables de plus d’une base de données (base de données par défaut compte toujours), la valeur de cette colonne aura un nom de table qualifié avec la base de données. De même, les qualifications __des clusters et des bases de données__ seront présentes dans la valeur si plus d’un cluster est référencé.
-* *Predicate*: [voir les détails](./findoperator.md#predicate-syntax). Une `boolean` [expression](./scalar-data-types/bool.md) sur les colonnes des tableaux d’entrée *Table* `,` *[Tableau*,]. Il est évalué pour chaque rangée dans chaque tableau d’entrée. 
-* `Table` : facultatif. Par *défaut, trouver* effectuera une recherche dans toutes les tables de la base de données actuelle
-    *  Le nom d’une `Events` table, tel que ou
+* `withsource=`*ColumnName*: facultatif. Par défaut, la sortie inclut une colonne appelée *source_* dont les valeurs indiquent la table source qui a participé à chaque ligne. S’il est spécifié, *ColumnName* sera utilisé à la place de *source_*.
+Après la correspondance des caractères génériques, si la requête fait référence à des tables de plusieurs bases de données (y compris la base de données par défaut), la valeur de cette colonne aura un nom de table qualifié avec la base de données. De même, les compétences de *cluster* et *de base de données* sont présentes dans la valeur si plusieurs clusters sont référencés.
+* *Predicate*: `boolean` [expression](./scalar-data-types/bool.md) sur les colonnes de la *table* de tables d’entrée [ `,` *table*,...]. Elle est évaluée pour chaque ligne de chaque table d’entrée. Pour plus d’informations, consultez détails de la [syntaxe de prédicat](./findoperator.md#predicate-syntax).
+* `Table`: facultatif. Par défaut, *Find* recherchera dans toutes les tables de la base de données active, pour :
+    *  Nom d’une table, tel que`Events`
     *  Expression de requête, telle que `(Events | where id==42)`
-    *  Ensemble de tables spécifié par un caractère générique. Par exemple, `E*` formerait l’union de toutes les `E`tables dans la base de données dont les noms commencent .
-* `project-smart` | `project`: [voir les](./findoperator.md#output-schema) `project-smart` détails s’ils ne sont pas spécifiés seront utilisés par défaut
+    *  Ensemble de tables spécifié par un caractère générique. Par exemple, `E*` formerait l’Union de toutes les tables de la base de données dont le nom commence par `E` .
+* `project-smart` | `project`: S’il n’est pas spécifié, `project-smart` sera utilisé par défaut. Pour plus d’informations, consultez [sortie-Détails du schéma](./findoperator.md#output-schema).
 
 ::: zone-end
 
 ::: zone pivot="azuremonitor"
 
-* `withsource=`*ColumnName*: Facultatif. Par défaut, la sortie comprendra une colonne appelée *source_* dont les valeurs indiquent quelle table source a contribué chaque ligne. Si spécifié, *ColumnName* sera utilisé au lieu de *source_* .
-* *Predicate*: [voir les détails](./findoperator.md#predicate-syntax). Une `boolean` [expression](./scalar-data-types/bool.md) sur les colonnes des tableaux d’entrée *Table* `,` *[Tableau*,]. Il est évalué pour chaque rangée dans chaque tableau d’entrée. 
-* `Table` : facultatif. Par défaut *trouver* cherchera dans toutes les tables
-    *  Le nom d’une `Events` table, tel que ou
+* `withsource=`*ColumnName*: facultatif. Par défaut, la sortie inclut une colonne appelée *source_* dont les valeurs indiquent la table source qui a apporté chaque ligne. S’il est spécifié, *ColumnName* sera utilisé à la place de *source_*.
+* *Predicate*: `boolean` [expression](./scalar-data-types/bool.md) sur les colonnes de la *table* de tables d’entrée [ `,` *table*,...]. Elle est évaluée pour chaque ligne de chaque table d’entrée. Pour plus d’informations, consultez détails de la [syntaxe de prédicat](./findoperator.md#predicate-syntax).
+* `Table`: facultatif. Par défaut, *Rechercher* recherche dans toutes les tables les éléments suivants :
+    *  Nom d’une table, tel que`Events` 
     *  Expression de requête, telle que `(Events | where id==42)`
-    *  Ensemble de tables spécifié par un caractère générique. Par exemple, `E*` formerait l’union de `E`toutes les tables dont les noms commencent .
-* `project-smart` | `project`: [voir les](./findoperator.md#output-schema) `project-smart` détails s’ils ne sont pas spécifiés seront utilisés par défaut
+    *  Ensemble de tables spécifié par un caractère générique. Par exemple, `E*` formerait l’Union de toutes les tables dont les noms commencent par `E` .
+* `project-smart` | `project`: S’il n’est pas spécifié, `project-smart` est utilisé par défaut. Pour plus d’informations, consultez [sortie-Détails du schéma](./findoperator.md#output-schema).
 
 ::: zone-end
 
 ## <a name="returns"></a>Retours
 
-Transformation des lignes dans *la table* `,` *[Tableau*, `true`...] pour lequel *Predicate* est . Les lignes sont transformées selon le schéma de sortie tel que décrit ci-dessous.
+Transformation des lignes de la *table* [ `,` *table*,...] pour lesquelles le *prédicat* est `true` . Les lignes sont transformées en fonction du [schéma de sortie](#output-schema).
 
-## <a name="output-schema"></a>Production Schema
+## <a name="output-schema"></a>Schéma de sortie
 
-**colonne source_**
+**source_ colonne**
 
-La sortie de l’opérateur de recherche inclura toujours une colonne *de source_* avec le nom de table source. La colonne peut être `withsource` rebaptisée à l’aide du paramètre.
+La sortie de l’opérateur de recherche inclut toujours une *source_* colonne avec le nom de la table source. Vous pouvez renommer la colonne à l’aide du `withsource` paramètre.
 
 **colonnes de résultats**
 
-Les tableaux sources qui ne contiennent aucune colonne utilisée par l’évaluation prédicée seront filtrés.
+Les tables sources qui ne contiennent aucune colonne utilisée par l’évaluation de prédicat sont filtrées.
 
-Lors `project-smart`de l’utilisation , les colonnes qui apparaîtront dans la sortie sera:
-1. Colonnes qui apparaissent explicitement dans le prédicat
-2. Colonnes qui sont communes à toutes les tables filtrées Le reste des colonnes `pack_` sera emballé dans un sac de propriété et apparaîtra dans une colonne supplémentaire.
-Une colonne qui est référencée explicitement par le prédicat et apparaît dans plusieurs tableaux avec plusieurs types, aura une colonne différente dans le schéma de résultat pour chaque type. Chacun des noms de colonnes sera construit à partir du nom de colonne d’origine et du type, séparé par un soulignement.
+Lorsque vous utilisez `project-smart` , les colonnes qui s’affichent dans la sortie sont les suivantes :
+* Colonnes qui s’affichent explicitement dans le prédicat.
+* Colonnes communes à toutes les tables filtrées.
 
-Lors de `project` *l’utilisation de ColumnName*`:`[`:`*ColumnType*] [`,` *ColumnName*[*ColumnType*], ...] [`,` `pack(*)`]:
-1. Le tableau de résultat inclura les colonnes spécifiées dans la liste. Si un tableau source ne contient pas une certaine colonne, les valeurs dans les lignes correspondantes seront nulles.
-2. Lors de la spécifier un *ColumnType* avec un *ColumnName*, cette colonne dans le **résultat** aura le type donné, et les valeurs seront jetées à ce type si nécessaire. Notez que cela n’aura pas d’effet sur le type de colonne lors de l’évaluation du *Predicate*.
-3. Lorsqu’elle `pack(*)` est utilisée, le reste des colonnes sera emballé dans `pack_` un sac de propriété et apparaîtra dans une colonne supplémentaire
+Le reste des colonnes sera empaqueté dans un conteneur de propriétés et apparaîtra dans une colonne supplémentaire `pack_` .
+Une colonne référencée explicitement par le prédicat et apparaissant dans plusieurs tables avec plusieurs types, aura une colonne différente dans le schéma de résultat pour chaque type. Chacun des noms de colonnes est construit à partir du nom et du type de la colonne d’origine, séparés par un trait de soulignement.
 
-**colonne pack_**
+Lors de l’utilisation `project` de *ColumnName*[ `:` *ColumnType*] [ `,` *ColumnName*[ `:` *ColumnType*],...] [`,` `pack(*)`]:
+* La table de résultats inclut les colonnes spécifiées dans la liste. Si une table source ne contient pas une certaine colonne, les valeurs des lignes correspondantes sont null.
+* Lorsque vous spécifiez un *ColumnType* avec un *ColumnName*, cette colonne dans le « résultat » aura le type donné, et les valeurs seront converties en ce type si nécessaire. La conversion n’aura pas d’effet sur le type de colonne lors de l’évaluation du *prédicat*.
+* Lorsque `pack(*)` est utilisé, le reste des colonnes est empaqueté dans un conteneur de propriétés et apparaît dans une `pack_` colonne supplémentaire.
 
-Cette colonne contiendra un sac de propriété avec les données de toutes les colonnes qui n’apparaissent pas dans le schéma de sortie. Le nom de colonne source servira de nom de propriété et la valeur de la colonne servira de valeur de propriété.
+**pack_ colonne**
 
-## <a name="predicate-syntax"></a>Syntaxe prédicat
+Cette colonne contient un conteneur de propriétés avec les données de toutes les colonnes qui n’apparaissent pas dans le schéma de sortie. Le nom de la colonne source servira de nom de propriété et la valeur de colonne servira de valeur de propriété.
 
-Veuillez consulter [l’opérateur de](./whereoperator.md) certains résumés des fonctions de filtrage.
+## <a name="predicate-syntax"></a>Syntaxe de prédicat
 
-trouver opérateur prend en `* has` charge une syntaxe alternative pour *terme* , et en utilisant juste *terme* va rechercher un terme à travers toutes les colonnes d’entrée
+L’opérateur de *recherche* prend en charge une autre syntaxe pour le `* has` terme, et l’utilisation d’un *terme*, recherchera un terme dans toutes les colonnes d’entrée.
+
+Pour obtenir un résumé de certaines fonctions de filtrage, consultez [Where, opérateur](./whereoperator.md).
 
 ## <a name="notes"></a>Notes
 
-* Si `project` la clause fait référence à une colonne qui apparaît dans plusieurs tableaux et qui comporte plusieurs types, un type doit suivre cette référence de colonne dans la clause de projet
-* Si une colonne apparaît dans plusieurs `project-smart` tableaux et a plusieurs types et est en `find`usage, il y aura une colonne correspondante pour chaque type dans le résultat de l’Union, comme décrit dans [le syndicat](./unionoperator.md)
-* Lors de l’utilisation *de projet-intelligent*, les changements dans le prédicat, dans les tables à source ensemble ou dans le schéma des tables peuvent entraîner des changements dans le schéma de sortie. Si un schéma de résultat constant est nécessaire, utilisez le *projet* à la place
-* `find`la portée ne peut pas inclure les [fonctions](../management/functions.md). Pour inclure une fonction dans la portée de la recherche - définir une [instruction de laisser](./letstatement.md) avec mot clé de [vue](./letstatement.md)
+* Si la `project` clause fait référence à une colonne qui apparaît dans plusieurs tables et possède plusieurs types, un type doit suivre cette référence de colonne dans la clause Project
+* Si une colonne apparaît dans plusieurs tables et a plusieurs types et `project-smart` est en cours d’utilisation, il y aura une colonne correspondante pour chaque type dans le `find` résultat de, comme décrit dans [Union](./unionoperator.md)
+* Lorsque vous utilisez *Project-Smart*, les modifications apportées au prédicat, dans les tables sources définies ou dans le schéma de la table, peuvent entraîner une modification du schéma de sortie. Si un schéma de résultat constant est nécessaire, utilisez plutôt *Project*
+* `find`l’étendue ne peut pas inclure de [fonctions](../management/functions.md). Pour inclure une fonction dans l’étendue de recherche, définissez une [instruction Let](./letstatement.md) avec le [mot clé View](./letstatement.md).
 
-## <a name="performance-tips"></a>Conseils pour les performances
+## <a name="performance-tips"></a>Conseils sur les performances
 
-* Utiliser [des tableaux](../management/tables.md) par opposition aux expressions [tabulaires](./tabularexpressionstatements.md)- en `union` cas d’expression tabulaire, l’opérateur de recherche retombe à une requête qui peut entraîner une dégradation des performances
-* Si une colonne qui apparaît dans plusieurs tableaux et a plusieurs types fait partie de la clause de projet, `find` préférez ajouter un *ColumnType* à la clause de projet sur la modification de la table avant de la passer à (voir astuce précédente)
-* Ajouter des filtres basés sur le temps au prédicat (à l’aide d’une valeur de colonne de date ou [d’une ingestion_time))](./ingestiontimefunction.md))
-* Préférez rechercher dans des colonnes spécifiques sur la recherche texte intégrale 
-* Préférez ne pas référence explicitement colonnes qui apparaît dans plusieurs tableaux et a plusieurs types. Si le prédicat est valide lors de la résolution de ce type de colonnes pour plus d’un type, la requête se repliera sur l’union
-
-[voir des exemples](./findoperator.md#examples-of-cases-where-find-will-perform-as-union)
-
+* Utilisez des [tables](../management/tables.md) plutôt que des [expressions tabulaires](./tabularexpressionstatements.md).
+Si l’expression est tabulaire, l’opérateur de recherche revient à une `union` requête qui peut entraîner une dégradation des performances.
+* Si une colonne qui apparaît dans plusieurs tables et a plusieurs types, fait partie de la clause Project, préférez ajouter un *ColumnType* à la clause Project sur la modification de la table avant de la passer à `find` .
+* Ajoutez des filtres basés sur le temps au prédicat. Utilisez une valeur de colonne datetime ou [ingestion_time ()](./ingestiontimefunction.md).
+* Recherchez dans des colonnes spécifiques plutôt que dans une recherche en texte intégral.
+* Il est préférable de ne pas faire référence à des colonnes qui apparaissent dans plusieurs tables et qui ont plusieurs types. Si le prédicat est valide lors de la résolution de ce type de colonnes pour plusieurs types, la requête revient à Union.
+Par exemple, consultez [exemples de cas où la fonction Find se comporte comme une Union](./findoperator.md#examples-of-cases-where-find-will-act-as-union).
+ 
 ## <a name="examples"></a>Exemples
 
 ::: zone pivot="azuredataexplorer"
 
-###  <a name="term-lookup-across-all-tables-in-current-database"></a>Recherche à terme sur toutes les tables (dans la base de données actuelle)
+### <a name="term-lookup-across-all-tables-in-current-database"></a>Recherche de terme dans toutes les tables de la base de données active
 
-La requête suivante trouve toutes les lignes de toutes les tables `Kusto`de la base de données actuelle dans laquelle toute colonne inclut le mot . Les enregistrements qui en résultent sont transformés en fonction du [schéma de sortie.](#output-schema) 
+La requête recherche toutes les lignes de toutes les tables de la base de données active dans lesquelles toute colonne contient le mot `Kusto` .
+Les enregistrements résultants sont transformés en fonction du [schéma de sortie](#output-schema).
 
 ```kusto
 find "Kusto"
 ```
 
-## <a name="term-lookup-across-all-tables-matching-a-name-pattern-in-the-current-database"></a>Recherche à terme sur toutes les tables correspondant à un modèle de nom (dans la base de données actuelle)
+## <a name="term-lookup-across-all-tables-matching-a-name-pattern-in-the-current-database"></a>Recherche de terme dans toutes les tables correspondant à un modèle de nom dans la base de données active
 
-La requête suivante trouve toutes les lignes de toutes les `K`tables de la base `Kusto`de données actuelle dont le nom commence par , et dans lequel toute colonne comprend le mot .
-Les enregistrements qui en résultent sont transformés en fonction du [schéma de sortie.](#output-schema) 
+La requête recherche toutes les lignes de toutes les tables de la base de données active dont le nom commence par `K` , et dans laquelle toute colonne contient le mot `Kusto` .
+Les enregistrements résultants sont transformés en fonction du [schéma de sortie](#output-schema).
 
 ```kusto
 find in (K*) where * has "Kusto"
 ```
 
-###  <a name="term-lookup-across-all-tables-in-all-databases-in-the-cluster"></a>Recherche à terme sur toutes les tables dans toutes les bases de données (dans le cluster)
+### <a name="term-lookup-across-all-tables-in-all-databases-in-the-cluster"></a>Recherche de terme dans toutes les tables de toutes les bases de données du cluster
 
-La requête suivante trouve toutes les lignes de toutes les tables `Kusto`dans toutes les bases de données dans lesquelles toute colonne inclut le mot . Il s’agit d’une requête [de requête de base de données croisées.](./cross-cluster-or-database-queries.md) Les enregistrements qui en résultent sont transformés en fonction du [schéma de sortie.](#output-schema) 
+La requête recherche toutes les lignes de toutes les tables de toutes les bases de données dans lesquelles une colonne contient le mot `Kusto` .
+Cette requête est une requête [de base de données croisée](./cross-cluster-or-database-queries.md) .
+Les enregistrements résultants sont transformés en fonction du [schéma de sortie](#output-schema).
 
 ```kusto
 find in (database('*').*) "Kusto"
 ```
 
-### <a name="term-lookup-across-all-tables-and-databases-matching-a-name-pattern-in-the-cluster"></a>Recherche à terme sur toutes les tables et bases de données correspondant à un modèle de nom (dans le cluster)
+### <a name="term-lookup-across-all-tables-and-databases-matching-a-name-pattern-in-the-cluster"></a>Recherche de terme dans toutes les tables et bases de données correspondant à un modèle de nom dans le cluster
 
-La requête suivante trouve toutes les lignes de `K` toutes les tables dont `B` le nom commence dans `Kusto`toutes les bases de données dont le nom commence par et dans lequel toute colonne comprend le mot . Les enregistrements qui en résultent sont transformés en fonction du [schéma de sortie.](#output-schema) 
+La requête recherche toutes les lignes de toutes les tables dont le nom commence par `K` dans toutes les bases de données dont le nom commence par `B` et dans lequel une colonne contient le mot `Kusto` .
+Les enregistrements résultants sont transformés en fonction du [schéma de sortie](#output-schema).
 
 ```kusto
 find in (database("B*").K*) where * has "Kusto"
 ```
 
-### <a name="term-lookup-in-several-clusters"></a>Recherche à terme dans plusieurs clusters
+### <a name="term-lookup-in-several-clusters"></a>Recherche de terme dans plusieurs clusters
 
-La requête suivante trouve toutes les lignes de `K` toutes les tables dont `B` le nom commence dans `Kusto`toutes les bases de données dont le nom commence par et dans lequel toute colonne comprend le mot . Les enregistrements qui en résultent sont transformés en fonction du [schéma de sortie.](#output-schema) 
+La requête recherche toutes les lignes de toutes les tables dont le nom commence par `K` dans toutes les bases de données dont le nom commence par `B` et dans lequel une colonne contient le mot `Kusto` .
+Les enregistrements résultants sont transformés en fonction du [schéma de sortie](#output-schema).
 
 ```kusto
 find in (cluster("cluster1").database("B*").K*, cluster("cluster2").database("C*".*))
@@ -177,9 +184,10 @@ where * has "Kusto"
 
 ::: zone pivot="azuremonitor"
 
-### <a name="term-lookup-across-all-tables"></a>Recherche à terme sur toutes les tables
+### <a name="term-lookup-across-all-tables"></a>Recherche de terme dans toutes les tables
 
-La requête suivante trouve toutes les lignes de toutes `Kusto`les tables dans lesquelles n’importe quelle colonne inclut le mot . Les enregistrements qui en résultent sont transformés en fonction du [schéma de sortie.](#output-schema) 
+La requête recherche toutes les lignes de toutes les tables dans lesquelles toute colonne contient le mot `Kusto` .
+Les enregistrements résultants sont transformés en fonction du [schéma de sortie](#output-schema).
 
 ```kusto
 find "Kusto"
@@ -187,30 +195,30 @@ find "Kusto"
 
 ::: zone-end
 
-## <a name="examples-of-find-output-results"></a>Exemples `find` de résultats de sortie  
+## <a name="examples-of-find-output-results"></a>Exemples de `find` résultats de sortie  
 
-Les exemples `find` suivants montrent comment peut être utilisé sur deux tables: EventsTable1 et EventsTable2. Supposons que nous avons le contenu suivant de ces deux tables: 
+Les exemples suivants montrent comment `find` peut être utilisé sur deux tables : *EventsTable1* et *EventsTable2*.
+Supposons que nous ayons le contenu suivant de ces deux tables :
 
-### <a name="eventstable1"></a>ÉvénementsTable1
+### <a name="eventstable1"></a>EventsTable1
 
-|Session_id|Level|EventText|Version
+|Session_Id|Level|EventText|Version
 |---|---|---|---|
-|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Information|Quelques textes1|v1.0.0
-|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Error|Quelques textes2|v1.0.0
-|28b8e46e-3c31-43cf-83cb-48921c3986fc|Error|Quelques text 3|v1.0.1
-|8f057b11-3281-45c3-a856-05ebb18a3c59|Information|Quelques text4|v1.1.0
+|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Information|Certaines Texte1|v 1.0.0
+|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Error|Un Texte2|v 1.0.0
+|28b8e46e-3c31-43cf-83cb-48921c3986fc|Error|Certains Text3|v 1.0.1
+|8f057b11-3281-45c3-a856-05ebb18a3c59|Information|Un Text4|v 1.1.0
 
-### <a name="eventstable2"></a>ÉvénementsTable2
+### <a name="eventstable2"></a>EventsTable2
 
-|Session_id|Level|EventText|EventName
+|Session_Id|Level|EventText|EventName
 |---|---|---|---|
-|f7d5f95f-f580-4ea6-830b-5776c8d64fdd|Information|Un autre texte1|Événement1
-|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Information|Quelques autres textes2|Événement2
-|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Error|Quelques autres textes3|Événement3
-|15eaeab5-8576-4b58-8fc6-478f75d8fee4|Error|Quelques autres textes4|Événement4
+|f7d5f95f-f580-4ea6-830b-5776c8d64fdd|Information|Autre Texte1|Event1
+|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Information|Autre Texte2|Event2
+|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Error|Autre Text3|Event3
+|15eaeab5-8576-4b58-8fc6-478f75d8fee4|Error|Autre Text4|Event4
 
-
-### <a name="search-in-common-columns-project-common-and-uncommon-columns-and-pack-the-rest"></a>Rechercher dans des colonnes communes, projeter des colonnes communes et rares et emballer le reste  
+### <a name="search-in-common-columns-project-common-and-uncommon-columns-and-pack-the-rest"></a>Recherchez dans des colonnes communes, projetez des colonnes communes et peu courantes, et Empaquetez le reste  
 
 ```kusto
 find in (EventsTable1, EventsTable2) 
@@ -220,39 +228,39 @@ find in (EventsTable1, EventsTable2)
 
 |source_|EventText|Version|EventName|pack_
 |---|---|---|---|---|
-|ÉvénementsTable1|Quelques textes2|v1.0.0||"Session_Id":"acbd207d-51aa-4df7-bfa7-be70eb68f04e", "Level":"Error"
-|ÉvénementsTable2|Quelques autres textes3||Événement3|"Session_Id":"acbd207d-51aa-4df7-bfa7-be70eb68f04e", "Level":"Error"
+|EventsTable1|Un Texte2|v 1.0.0||{« Session_Id » : « acbd207d-51aa-4df7-BFA7-be70eb68f04e », « Level » : « Error »}
+|EventsTable2|Autre Text3||Event3|{« Session_Id » : « acbd207d-51aa-4df7-BFA7-be70eb68f04e », « Level » : « Error »}
 
 
-### <a name="search-in-common-and-uncommon-columns"></a>Rechercher dans des colonnes courantes et rares
+### <a name="search-in-common-and-uncommon-columns"></a>Rechercher dans les colonnes courantes et inhabituelles
 
 ```kusto
 find Version == 'v1.0.0' or EventName == 'Event1' project Session_Id, EventText, Version, EventName
 ```
 
-|source_|Session_id|EventText|Version|EventName|
+|source_|Session_Id|EventText|Version|EventName|
 |---|---|---|---|---|
-|ÉvénementsTable1|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Quelques textes1|v1.0.0
-|ÉvénementsTable1|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Quelques textes2|v1.0.0
-|ÉvénementsTable2|f7d5f95f-f580-4ea6-830b-5776c8d64fdd|Un autre texte1||Événement1
+|EventsTable1|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Certaines Texte1|v 1.0.0
+|EventsTable1|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Un Texte2|v 1.0.0
+|EventsTable2|f7d5f95f-f580-4ea6-830b-5776c8d64fdd|Autre Texte1||Event1
 
-Remarque : dans la pratique, les lignes ```Version == 'v1.0.0'``` *EventsTable1* seront filtrées avec des lignes ```EventName == 'Event1'``` predicate et *EventsTable2* sera filtrée avec predicate.
+Remarque : dans la pratique, les lignes *EventsTable1* sont filtrées avec le ```Version == 'v1.0.0'``` prédicat et les lignes *EventsTable2* sont filtrées avec le ```EventName == 'Event1'``` prédicat.
 
-### <a name="use-abbreviated-notation-to-search-across-all-tables-in-the-current-database"></a>Utilisez une notation abrégée pour rechercher sur toutes les tables de la base de données actuelle
+### <a name="use-abbreviated-notation-to-search-across-all-tables-in-the-current-database"></a>Utilisez la notation abrégée pour effectuer une recherche dans toutes les tables de la base de données active
 
 ```kusto
 find Session_Id == 'acbd207d-51aa-4df7-bfa7-be70eb68f04e'
 ```
 
-|source_|Session_id|Level|EventText|pack_|
+|source_|Session_Id|Level|EventText|pack_|
 |---|---|---|---|---|
-|ÉvénementsTable1|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Information|Quelques textes1|"Version":"v1.0.0"
-|ÉvénementsTable1|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Error|Quelques textes2|"Version":"v1.0.0"
-|ÉvénementsTable2|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Information|Quelques autres textes2|"EventName":"Event2"
-|ÉvénementsTable2|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Error|Quelques autres textes3|"EventName":"Event3"
+|EventsTable1|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Information|Certaines Texte1|{"Version" : "v 1.0.0"}
+|EventsTable1|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Error|Un Texte2|{"Version" : "v 1.0.0"}
+|EventsTable2|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Information|Autre Texte2|{"EventName" : "event2"}
+|EventsTable2|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Error|Autre Text3|{"EventName" : "Event3"}
 
 
-### <a name="return-the-results-from-each-row-as-a-property-bag"></a>Retourner les résultats de chaque rangée comme un sac de propriété
+### <a name="return-the-results-from-each-row-as-a-property-bag"></a>Retourne les résultats de chaque ligne en tant que conteneur de propriétés
 
 ```kusto
 find Session_Id == 'acbd207d-51aa-4df7-bfa7-be70eb68f04e' project pack(*)
@@ -260,15 +268,15 @@ find Session_Id == 'acbd207d-51aa-4df7-bfa7-be70eb68f04e' project pack(*)
 
 |source_|pack_|
 |---|---|
-|ÉvénementsTable1|"Session_Id":"acbd207d-51aa-4df7-bfa7-be70eb68f04e", "Level":"Information", "EventText":"Some Text1", "Version":"v1.0.0"
-|ÉvénementsTable1|"Session_Id":"acbd207d-51aa-4df7-bfa7-be70eb68f04e", "Level":"Error", "EventText":"Some Text2", "Version":"v1.0.0"
-|ÉvénementsTable2|"Session_Id":"acbd207d-51aa-4df7-bfa7-be70eb68f04e", "Level":"Information", "EventText":"Some Other Text2", "EventName":"Event2"
-|ÉvénementsTable2|"Session_Id":"acbd207d-51aa-4df7-bfa7-be70eb68f04e", "Level":"Error", "EventText":"Some Other Text3", "EventName":"Event3"
+|EventsTable1|{« Session_Id » : « acbd207d-51aa-4df7-BFA7-be70eb68f04e », « Level » : « information », « EventText » : « Some Text1 », « version » : « v 1.0.0 »}
+|EventsTable1|{« Session_Id » : « acbd207d-51aa-4df7-BFA7-be70eb68f04e », « Level » : « Error », « EventText » : « Some text2 », « version » : « v 1.0.0 »}
+|EventsTable2|{« Session_Id » : « acbd207d-51aa-4df7-BFA7-be70eb68f04e », « Level » : « information », « EventText » : « Other text2 », « EventName » : « event2 »}
+|EventsTable2|{« Session_Id » : « acbd207d-51aa-4df7-BFA7-be70eb68f04e », « Level » : « Error », « EventText » : « Some Other », « EventName » : « Event3 »}
 
 
-## <a name="examples-of-cases-where-find-will-perform-as-union"></a>Exemples de `find` cas où les`union`
+## <a name="examples-of-cases-where-find-will-act-as-union"></a>Exemples de cas où `find` agira comme`union`
 
-### <a name="using-a-non-tabular-expression-as-find-operand"></a>Utilisation d’une expression non tabulaire comme trouver l’opéra
+### <a name="using-a-non-tabular-expression-as-find-operand"></a>Utilisation d’une expression non tabulaire comme opérande de recherche
 
 ```kusto
 let PartialEventsTable1 = view() { EventsTable1 | where Level == 'Error' };
@@ -276,9 +284,9 @@ find in (PartialEventsTable1, EventsTable2)
      where Session_Id == 'acbd207d-51aa-4df7-bfa7-be70eb68f04e'
 ```
 
-### <a name="referencing-a-column-that-appears-in-multiple-tables-and-has-multiple-types"></a>Référencement d’une colonne qui apparaît dans plusieurs tableaux et a plusieurs types
+### <a name="referencing-a-column-that-appears-in-multiple-tables-and-has-multiple-types"></a>Référencement d’une colonne qui apparaît dans plusieurs tables et a plusieurs types
 
-Supposons que nous avons créé deux tables en courant: 
+Supposons que nous ayons créé deux tables en exécutant : 
 
 ```kusto
 .create tables 
@@ -286,16 +294,18 @@ Supposons que nous avons créé deux tables en courant:
   Table2 (Level:string, Timestamp:datetime, ProcessId:int64)
 ```
 
-* La requête suivante sera exécutée sous la forme `union`de :
+* La requête suivante sera exécutée en tant que `union` .
+
 ```kusto
 find in (Table1, Table2) where ProcessId == 1001
 ```
 
-Et le schéma de résultat de sortie sera __(Level:string, Timestamp, ProcessId_string, ProcessId_int)__
+Le schéma de résultat de sortie sera *(Level : String, timestamp, ProcessId_string, ProcessId_int)*.
 
-* La requête suivante sera également exécutée, `union` mais produira un schéma de résultat différent :
+* La requête suivante sera également exécutée en tant que `union` , mais produira un schéma de résultat différent.
+
 ```kusto
 find in (Table1, Table2) where ProcessId == 1001 project Level, Timestamp, ProcessId:string 
 ```
 
-Et le schéma de résultat de sortie sera __(Level:string, Timestamp, ProcessId_string)__
+Le schéma de résultat de sortie sera *(niveau : chaîne, horodatage, ProcessId_string)*

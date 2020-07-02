@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 4cec053990457a6b33c7446c5b32c63713320de9
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 4bf68800cc10bf301f6a5738d47e670905c2c46d
+ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372761"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85763641"
 ---
 # <a name="series_fill_linear"></a>series_fill_linear()
 
@@ -34,13 +34,13 @@ Prend une expression contenant un tableau numérique dynamique comme entrée, ef
 * *fill_edges*: valeur booléenne qui indique si *missing_value_placeholder* au début et à la fin du tableau doit être remplacé par la valeur la plus proche. *True* par défaut. Si la valeur est *false*, *missing_value_placeholder* au début et à la fin du tableau sera préservé.
 * *constant_value*: le paramètre facultatif pertinent uniquement pour les tableaux est constitué entièrement de valeurs *null* . Ce paramètre spécifie une valeur de constante avec laquelle remplir la série. La valeur par défaut est *0*. L’affectation de la valeur `double` (*null*) à ce paramètre permet de conserver les valeurs *null* là où elles se trouvent.
 
-**Remarques**
+**Notes**
 
 * Pour appliquer des fonctions d’interpolation après [Make-Series](make-seriesoperator.md), spécifiez *null* comme valeur par défaut : 
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
-make-series num=count() default=long(null) on TimeStamp in range(ago(1d), ago(1h), 1h) by Os, Browser
+make-series num=count() default=long(null) on TimeStamp from ago(1d) to ago(1h) step 1h by Os, Browser
 ```
 
 * Le *missing_value_placeholder* peut être de n’importe quel type qui sera converti en types d’éléments réels. Par conséquent, `double` (*null*), `long` (*null*) ou `int` (*null*) ont la même signification.
