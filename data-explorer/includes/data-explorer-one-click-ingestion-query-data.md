@@ -4,21 +4,20 @@ ms.service: data-explorer
 ms.topic: include
 ms.date: 30/03/2020
 ms.author: orspodek
-ms.openlocfilehash: 02af5b17f62d45771ee2765dca9d989d409dd99f
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 5087cd5d7f9147d2232016007fea44eba678b651
+ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81491284"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85265171"
 ---
-## <a name="query-data"></a>Interroger des données
+## <a name="quick-queries-and-tools"></a>Requêtes rapides et outils
 
-1. Sélectionnez le bouton **v** pour ouvrir la requête. Copiez la requête dans l’interface utilisateur web pour la modifier.
-
-1. Dans le menu de droite, sélectionnez **Requêtes rapides** et **Outils** : 
+1. Dans le menu de droite, sélectionnez **Requêtes rapides** ou **Outils** : 
 
     * Les **requêtes rapides** incluent des liens vers l’interface utilisateur web avec des exemples de requêtes.
     * Les **Outils** incluent un lien vers des **commandes Drop** dans l’interface utilisateur web. Celles-ci vous permettent de résoudre les problèmes en exécutant les commandes `.drop` appropriées.
 
-    > [!TIP]
+    > [!NOTE]
     > L'utilisation des commandes `.drop` peut entraîner une perte de données. Utilisez-les avec précaution.
+    > Les commandes Drop annulent uniquement les modifications apportées par ce flux d’ingestion (nouvelles étendues et colonnes). Aucune autre chose ne sera supprimée.

@@ -7,12 +7,12 @@ ms.reviewer: basaba
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/24/2020
-ms.openlocfilehash: 097e175ff28d334532e85715f1f6401a96fa8f8c
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 753c2a21812c850613c2c2462394b6b0bde8b740
+ms.sourcegitcommit: 4eb64e72861d07cedb879e7b61a59eced74517ec
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83374324"
+ms.lasthandoff: 06/29/2020
+ms.locfileid: "85517951"
 ---
 # <a name="create-an-azure-data-explorer-cluster-in-your-virtual-network"></a>Créer un cluster Azure Data Explorer dans votre réseau virtuel
 
@@ -88,7 +88,7 @@ Pour créer les adresses IP publiques de requête (moteur) :
     **Paramètre** | **Valeur suggérée** | **Description du champ**
     |---|---|---|
     | Version de l’adresse IP | IPv4 | Sélectionnez la version IP. Nous prenons uniquement en charge l’IPv4.|
-    | Sku | standard | Nous avons besoin d’un point de terminaison URI de requête (moteur) **standard**. |
+    | Sku | Standard | Nous avons besoin d’un point de terminaison URI de requête (moteur) **standard**. |
     | Nom | engine-pip | Choisissez un nom qui identifie votre groupe adresse IP publique dans le groupe de ressources.
     | Abonnement | Votre abonnement | Sélectionnez l’abonnement Azure que vous souhaitez utiliser pour votre adresse IP publique.|
     | Resource group | Votre groupe de ressources | Utilisez un groupe de ressources existant ou créez-en un. |
@@ -97,9 +97,7 @@ Pour créer les adresses IP publiques de requête (moteur) :
 
 1. Sélectionnez **Créer** pour créer l’adresse IP publique.
 
-1. Pour créer l’adresse IP publique d’ingestion (Gestion des données), suivez les mêmes instructions et sélectionnez 
-    * **Référence (SKU)**  : De base
-    * **Affectation d'adresses IP** : statique
+1. Pour créer l’adresse IP publique d’ingestion (Gestion des données), suivez les mêmes instructions.
 
 ## <a name="create-virtual-network-and-subnet"></a>Créer un réseau virtuel et un sous-réseau
 

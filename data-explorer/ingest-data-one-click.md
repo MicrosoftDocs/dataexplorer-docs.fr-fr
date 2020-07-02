@@ -7,18 +7,26 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 03/29/2020
-ms.openlocfilehash: 16db3eb2d925d12ba8eefa605b27566e9b4c1b04
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 26b1633a13aa6ffbd98109e94113679620845160
+ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373815"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85264507"
 ---
-# <a name="what-is-one-click-ingestion"></a>Présentation de l’ingestion en un clic 
+# <a name="what-is-one-click-ingestion"></a>Présentation de l’ingestion en un clic
 
-L’ingestion en un clic vous permet d’ingérer rapidement des données et de suggérer automatiquement tables et structures de mappage, en fonction d’une source de données dans Azure Data Explorer. 
+L’ingestion en un clic rend le processus d’ingestion de données simple, rapide et intuitif. L’ingestion en un clic vous aide à ingérer des données, créer des tables de base de données et mapper des structures rapidement. Sélectionnez des données de différents types de sources dans des formats différents, qu’il s’agisse d’un processus d’ingestion unique ou continu.
 
-À l’aide de l’interface utilisateur web d’Azure Data Explorer, vous pouvez ingérer des données à partir du stockage (fichier d’objets blob), d’un fichier local ou d’un conteneur (jusqu’à 10 000 objets blob). Vous pouvez également définir une grille d’événement sur un conteneur pour l’ingestion continue. Les données peuvent être ingérées dans une table existante ou nouvelle, au format JSON, CSV et dans d’[autres formats](#file-formats). Selon la source de données, l’ingestion en un clic peut proposer une structure pour une nouvelle table et un mappage de table, et fournir une plateforme intuitive permettant d’ajuster le mappage et la structure d’une table nouvelle ou existante. L’ingestion en un clic permet d’ingérer les données dans la table en quelques minutes seulement.
+Les fonctionnalités suivantes rendent l’ingestion en un clic particulièrement utile :
+
+* Expérience intuitive guidée par l’Assistant Ingestion
+* Ingestion des données en quelques minutes
+* Ingestion des données de différents types de sources : fichier local, objets blob et conteneurs (jusqu’à 10 000 objets blob)
+* Ingestion des données dans divers [formats](#file-formats)
+* Ingestion des données dans des tables nouvelles ou existantes
+* Schéma et mappage de table suggérés et faciles à changer
+* Ingestion continue aisée et rapide à partir d’un conteneur avec Event Grid
 
 L’ingestion en un clic est particulièrement utile lorsque vous procédez à l’ingestion de données pour la première fois, ou lorsque le schéma de vos données ne vous est pas familier.
 
@@ -39,40 +47,76 @@ L’ingestion en un clic prend en charge l’ingestion d’une nouvelle table à
 * TSVE
 * PSV
 
+## <a name="ingest-new-data"></a>Ingérer de nouvelles données
+
+L’Assistant Ingestion en un clic vous guide tout au long du processus d’ingestion en un clic.
+
+* Pour accéder à l’Assistant Ingestion en un clic à partir de l’écran d’accueil **Bienvenue dans Azure Data Explorer** de votre cluster, effectuez les deux premières étapes ([création de cluster et création de base de données](#prerequisites)), puis sélectionnez **Ingérer de nouvelles données**.
+
+    :::image type="content" source="media/ingest-data-one-click/welcome-ingestion.png" alt-text="Ingérer de nouvelles données à partir de l’écran de bienvenue dans Azure Data Explorer":::
+
+* Pour accéder à l’Assistant à partir de l’[interface utilisateur web d’Azure Data Explorer](https://dataexplorer.azure.com/), dans le menu de gauche, cliquez avec le bouton droit sur la ligne de **base de données** ou de **table**, puis sélectionnez **Ingérer de nouvelles données (préversion)** .
+
+    :::image type="content" source="media/ingest-data-one-click/one-click-ingestion-in-webui.png" alt-text="Sélectionner l’ingestion en un clic dans l’interface utilisateur web":::
+
+<!-- TODO either change the local file tutorial to blob storage or create another one to show users how to do this-->
+
 ## <a name="one-click-ingestion-wizard"></a>Assistant Ingestion en un clic
 
-L’Assistant Ingestion en un clic vous guide tout au long du processus d’ingestion en un clic. 
+> [!NOTE]
+> Cette section décrit l’Assistant de façon générale. Les options que vous sélectionnez dépendent du format de données que vous ingérez, du type de source de données à partir duquel vous effectuez l’ingestion et de la destination de celle-ci (table nouvelle ou existante).
+>
+> Pour obtenir des exemples de scénarios, consultez :
+> * Ingestion dans [une nouvelle table à partir d’un conteneur au format CSV](one-click-ingestion-new-table.md)
+> * Ingestion dans une [table existante à partir d’un fichier local au format JSON](one-click-ingestion-existing-table.md) 
 
-> [!Note]
-> Cette section décrit l’Assistant de façon générale. Les options que vous sélectionnez varient selon que vous procédez à une ingestion dans une table nouvelle ou existante. Pour plus d'informations, consultez les pages suivantes :
-    > * Ingérer dans une [nouvelle table](one-click-ingestion-new-table.md)
-    > * Ingérer dans une [table existante](one-click-ingestion-existing-table.md) 
-    
-1. Pour accéder à l’Assistant, dans le menu de gauche de l’interface utilisateur web d’Azure Data Explorer, cliquez avec le bouton droit sur la ligne de *base de données* ou de *table*, puis sélectionnez **Ingérer de nouvelles données (préversion)** .
-
-    ![Sélectionner l'ingestion en un clic dans l'interface utilisateur web](media/ingest-data-one-click/one-click-ingestion-in-webui.png)   
-
-1. L’Assistant vous guide dans les options suivantes :
+* L’Assistant vous guide dans les options suivantes :
     * Ingérer dans une [table existante](one-click-ingestion-existing-table.md)
     * Ingérer dans une [nouvelle table](one-click-ingestion-new-table.md)
     * Ingérer des données depuis un :
       * Stockage d'objets blob
-      * Fichier local
-      * Conteneur
-    * Entrez la taille de l’échantillon, comprise entre 1 et 10 000 lignes (à partir du conteneur uniquement)
-       
-1. Une fois la source de données correctement sélectionnée, un aperçu des données s’affiche. 
-    Si vous ingérez des données à partir d’un conteneur, vous pouvez filtrer ces données afin que seuls les fichiers avec des préfixes ou des extensions de fichier spécifiques soient ingérés. Par exemple, vous pouvez souhaiter ingérer uniquement les fichiers dont les noms de fichier commencent par le mot *Europe*, ou uniquement les fichiers avec l’extension *.json*. 
+      * [Fichier local](one-click-ingestion-existing-table.md)
+      * [Conteneur](one-click-ingestion-new-table.md)
 
-1. Cliquez sur **Modifier le schéma**. Passer en revue et ajuster les propriétés de schéma et d’ingestion générées automatiquement (format de données, nom du mappage, etc.)
+### <a name="schema-mapping"></a>Mappage de schéma
 
-1. Démarrez le processus d’ingestion des données.
+* Le service génère automatiquement les propriétés de schéma et d’ingestion, que vous pouvez changer. Vous pouvez utiliser une structure de mappage existante ou en créer une, selon que l’ingestion est destinée à une table existante ou nouvelle.
 
-> [!Note]
-> Si votre source de données est un conteneur, notez que la stratégie d’agrégation de données (traitement par lot) d’Azure Data Explorer est conçue pour optimiser le processus d’ingestion des données. Par défaut, la stratégie est configurée sur 5 minutes ou 500 Mo de données, ce qui peut entraîner une latence. Consultez la [stratégie de traitement par lot](kusto/management/batchingpolicy.md) pour les options d’agrégation. Lors de l’ingestion de données provenant d’autres sources, l’ingestion prend effet immédiatement.
+* Sous l’onglet **Schéma**, vous pouvez effectuer les actions suivantes :
+    * Vérifier le type de compression généré automatiquement
+    * Choisir le [format de vos données](#file-formats) Les formats différents vous permettront d’apporter des modifications supplémentaires.
+      
+### <a name="editor-window"></a>Fenêtre Éditeur
+
+Dans la fenêtre **Éditeur**, vous pouvez ajuster les colonnes de la table de données, si nécessaire. 
+
+|Type de la table  |Ajustements de colonne disponibles  |
+|---------|---------|
+|Nouveau     | Nouvelle colonne, Supprimer la colonne, Tri croissant, Tri décroissant  |
+|Existing     | Nouvelle colonne, Tri croissant, Tri décroissant  |
+
+>[!NOTE]
+> À tout moment, vous pouvez ouvrir l’[éditeur de commande](one-click-ingestion-new-table.md#command-editor) au-dessus du volet **Éditeur**. Dans l’éditeur de commande, vous pouvez afficher et copier les commandes automatiques générées à partir de vos entrées.
+
+### <a name="data-ingestion"></a>Ingestion de données
+
+Une fois que vous avez terminé le mappage de schéma et les manipulations de colonnes, l’Assistant Ingestion démarre le processus d’ingestion de données. 
+
+* Lors de l’ingestion de données à partir de sources **autres qu’un conteneur** :
+    * L’ingestion prend effet immédiatement.
+
+* Si la source de données est un **conteneur** :
+    * La [stratégie de traitement par lot](kusto/management/batchingpolicy.md) d’Azure Data Explorer agrège vos données. 
+    * Après l’ingestion, vous pouvez télécharger le rapport d’ingestion et passer en revue les performances de chaque objet blob qui a été traité. 
+    * Vous pouvez choisir de **créer une ingestion continue** et de configurer l’[ingestion continue à l’aide d’Event Grid](one-click-ingestion-new-table.md#continuous-ingestion---container-only).
+ 
+### <a name="initial-data-exploration"></a>Exploration initiale des données
+   
+Une fois l’ingestion terminée, vous pouvez effectuer une exploration initiale de vos données à l’aide des **[commandes rapides](one-click-ingestion-existing-table.md#quick-queries-and-tools)** que l’Assistant met à votre disposition.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* Décider si vous allez utiliser l’ingestion en un clic pour ingérer des données dans [une table existante](one-click-ingestion-existing-table.md) ou [une nouvelle table](one-click-ingestion-new-table.md)
+* [Utiliser l’ingestion en un clic pour ingérer des données JSON à partir d’un fichier local dans une table existante d’Azure Data Explorer](one-click-ingestion-existing-table.md)
+* [Utiliser l’ingestion en un clic pour ingérer des données CSV à partir d’un conteneur dans une nouvelle table d’Azure Data Explorer](one-click-ingestion-new-table.md)
 * [Interroger des données dans l’interface utilisateur web Azure Data Explorer](web-query-data.md)
 * [Écrire des requêtes pour Azure Data Explorer à l’aide du langage de requête Kusto](write-queries.md)
