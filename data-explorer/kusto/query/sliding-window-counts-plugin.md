@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 2fbc870eafc45c8c63bea98a64f492d161af4c9b
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 4d90bc3b6222896d45374d771ce5f87f4bdf6786
+ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226344"
+ms.lasthandoff: 07/02/2020
+ms.locfileid: "85902019"
 ---
 # <a name="sliding_window_counts-plugin"></a>plug-in sliding_window_counts
 
-Calcule les nombres et le nombre de valeurs distinctes dans une fenêtre glissante sur une période lookback, à l’aide de la technique décrite [ici](samples.md#performing-aggregations-over-a-sliding-window).
+Calcule les nombres et le nombre de valeurs distinctes dans une fenêtre glissante sur une période lookback, à l’aide de la technique décrite [ici](samples.md#perform-aggregations-over-a-sliding-window).
 
 Par exemple, pour chaque *jour*, calculer le nombre et le nombre de comptes des utilisateurs de la *semaine*précédente. 
 

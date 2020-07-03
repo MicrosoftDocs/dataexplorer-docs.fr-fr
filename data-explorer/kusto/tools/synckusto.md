@@ -1,23 +1,23 @@
 ---
-title: Sync Kusto - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit Sync Kusto dans Azure Data Explorer.
+title: Synchroniser Kusto-Azure Explorateur de données
+description: Cet article décrit la synchronisation Kusto dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: zivc
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/12/2019
-ms.openlocfilehash: 5f56b47d684441111aae397491336b5d819dedc8
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: d132fd2bbb9f0a5a674955d586a208443a76d197
+ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81503279"
+ms.lasthandoff: 07/02/2020
+ms.locfileid: "85902087"
 ---
 # <a name="sync-kusto"></a>Synchroniser Kusto
 
-Sync Kusto est un outil qui permet aux utilisateurs de synchroniser diverses entités de schémas Kusto (tels que les schémas de table et les fonctions stockées) entre le système de fichiers local, une base de données Kusto et Azure Dev Ops repos.
+La synchronisation Kusto est un outil qui permet aux utilisateurs de synchroniser diverses entités de schéma Kusto, telles que des schémas de table et des fonctions stockées. Cette synchronisation est effectuée entre le système de fichiers local, une base de données Kusto et les dépôts d’opérations de développement Azure.
 
-Sync Kusto est disponible sur [https://github.com/microsoft/synckusto](https://github.com/microsoft/synckusto)GitHub: .
+La synchronisation Kusto est disponible [sur GitHub](https://github.com/microsoft/synckusto).
 

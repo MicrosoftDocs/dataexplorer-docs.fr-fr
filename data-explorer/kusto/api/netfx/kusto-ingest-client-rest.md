@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 02/19/2020
-ms.openlocfilehash: 83af540389087f0e1d9fdbd04266ab7ecaca0c5a
-ms.sourcegitcommit: b12e03206c79726d5b4055853ec3fdaa8870c451
+ms.openlocfilehash: eb13b53ba5f6785c79aaa586de50478074901c8d
+ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/18/2020
-ms.locfileid: "85069166"
+ms.lasthandoff: 07/02/2020
+ms.locfileid: "85901920"
 ---
 # <a name="ingestion-without-kustoingest-library"></a>Ingestion sans la bibliothèque Kusto. deréception
 
@@ -283,7 +283,7 @@ internal static string PrepareIngestionMessage(string db, string table, string d
 Enfin, publiez le message que vous avez créé dans la file d’attente d’ingestion sélectionnée que vous avez obtenue à partir d’Azure Explorateur de données.
 
 > [!NOTE]
-> Le client de stockage .net, lorsqu’il est utilisé, encode le message au format Base64 par défaut. Pour plus d’informations, consultez la documentation relative au [stockage](https://docs.microsoft.com/dotnet/api/microsoft.windowsazure.storage.queue.cloudqueue.encodemessage?view=azure-dotnet#Microsoft_WindowsAzure_Storage_Queue_CloudQueue_EncodeMessage). Si vous n’utilisez pas ce client, assurez-vous de coder correctement le contenu du message.
+> Le client de stockage .net, lorsqu’il est utilisé, encode le message au format Base64 par défaut. Pour plus d’informations, consultez la documentation relative au [stockage](https://docs.microsoft.com/dotnet/api/microsoft.azure.storage.queue.cloudqueue.encodemessage?view=azure-dotnet-legacy#Microsoft_WindowsAzure_Storage_Queue_CloudQueue_EncodeMessage). Si vous n’utilisez pas ce client, assurez-vous de coder correctement le contenu du message.
 
 ```csharp
 internal static void PostMessageToQueue(string queueUriWithSas, string message)
@@ -329,7 +329,6 @@ Le message que le service Gestion des données Kusto attend à lire à partir de
     "DatabaseName": "<DatabaseName>",
     "TableName" : "<TableName>",
     "RetainBlobOnSuccess" : "<RetainBlobOnSuccess>",
-    "Format" : "<csv|tsv|...>",
     "FlushImmediately": "<true|false>",
     "ReportLevel" : <0-Failures, 1-None, 2-All>,
     "ReportMethod" : <0-Queue, 1-Table>,
@@ -345,11 +344,10 @@ Le message que le service Gestion des données Kusto attend à lire à partir de
 |nom_base_de_données |Nom de la base de données cible |
 |TableName |Nom de la table cible |
 |RetainBlobOnSuccess |Si la valeur `true` est, l’objet BLOB n’est pas supprimé une fois que l’ingestion s’est terminée avec succès. La valeur par défaut est `false` |
-|Format |Format de données non compressées |
 |FlushImmediately |Si la valeur est `true` , toute agrégation sera ignorée. La valeur par défaut est `false` |
 |ReportLevel |Niveau de rapport de réussite/erreur : 0-échecs, 1-aucun, 2-tout |
 |ReportMethod |Mécanisme de création de rapports : 0-file d’attente, 1-table |
-|AdditionalProperties |Propriétés supplémentaires telles que les balises |
+|AdditionalProperties |Propriétés supplémentaires telles que `format` , `tags` et `creationTime` . Pour plus d’informations, consultez Propriétés d’ingestion de [données](../../../ingestion-properties.md).|
 
 ### <a name="ingestion-failure-message-structure"></a>Structure du message d’échec d’ingestion
 

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: ffb14b110904bcf94a69d3abeed2fc0b542b0448
-ms.sourcegitcommit: 31af2dfa75b5a2f59113611cf6faba0b45d29eb5
+ms.openlocfilehash: 1408bfa0af8c07166bde94c2738b53cd0065ec97
+ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84454131"
+ms.lasthandoff: 07/02/2020
+ms.locfileid: "85902168"
 ---
 # <a name="samples"></a>Exemples
 
@@ -21,7 +21,7 @@ Voici quelques-uns des besoins les plus courants en matière de requête et comm
 
 ## <a name="display-a-column-chart"></a>Afficher un histogramme
 
-Projetez au moins deux colonnes et utilisez-les comme axe des x et y d’un graphique :
+Projetez au moins deux colonnes et utilisez-les comme axe des x et y d’un graphique.
 
 <!-- csl: https://help.kusto.windows.net/Samples  -->
 ```kusto 
@@ -33,16 +33,16 @@ StormEvents
 ```
 
 * La première colonne forme l’axe des x. Il peut s’agir d’une valeur numérique, DateTime ou String. 
-* Utilisez `where` `summarize` et `top` pour limiter le volume de données que vous affichez.
-* Triez les résultats afin de définir l’ordre de l’axe x.
+* Utilisez `where` , `summarize` et `top` pour limiter le volume de données que vous affichez.
+* Triez les résultats pour définir l’ordre de l’axe x.
 
 :::image type="content" source="images/samples/060.png" alt-text="060":::
 
 ## <a name="get-sessions-from-start-and-stop-events"></a>Obtenir des sessions à partir d’événements de démarrage et d’arrêt
 
-Imaginons un journal d’événements, dans lequel certains événements marquent le début ou la fin d’une session ou d’une activité étendue. 
+Supposons que vous avez un journal d’événements. Certains événements marquent le début ou la fin d’une activité ou d’une session étendue. 
 
-|Name|City|SessionId|Timestamp|
+|Nom|City|SessionId|Timestamp|
 |---|---|---|---|
 |Démarrer|London|2817330|2015-12-09T10:12:02.32|
 |Game|London|2817330|2015-12-09T10:12:52.45|
@@ -51,7 +51,7 @@ Imaginons un journal d’événements, dans lequel certains événements marquen
 |Annuler|Manchester|4267667|2015-12-09T10:27:26.29|
 |Arrêter|Manchester|4267667|2015-12-09T10:28:31.72|
 
-Chaque événement ayant un ID de session, le problème est de faire correspondre les événements de début et d’arrêt portant le même identifiant.
+Chaque événement a un SessionId. Le problème consiste à mettre en correspondance les événements de démarrage et d’arrêt ayant le même ID.
 
 ```kusto
 let Events = MyLogTable | where ... ;
@@ -66,8 +66,11 @@ Events
 | project City, SessionId, StartTime, StopTime, Duration = StopTime - StartTime
 ```
 
-Utilisez [`let`](./letstatement.md) pour nommer une projection de la table qui est réduite le plus possible avant de passer à la jointure.
-[`Project`](./projectoperator.md)est utilisé pour modifier les noms des horodateurs afin que les heures de début et de fin puissent apparaître dans le résultat. En outre, il sélectionne les autres colonnes que nous souhaitons voir dans le résultat. [`join`](./joinoperator.md)met en correspondance les entrées Start et STOP pour la même activité, en créant une ligne pour chaque activité. Enfin, `project` ajoute de nouveau une colonne pour afficher la durée de l’activité.
+1. Utilisez [`let`](./letstatement.md) pour nommer une projection de la table qui est réduite le plus possible avant de passer à la jointure.
+1. Utilisez [`Project`](./projectoperator.md) pour modifier les noms des horodateurs afin que les heures de début et de fin puissent apparaître dans le résultat. 
+   Il sélectionne également les autres colonnes à afficher dans le résultat. 
+1. Utilisez [`join`](./joinoperator.md) pour mettre en correspondance les entrées de démarrage et d’arrêt de la même activité, en créant une ligne pour chaque activité. 
+1. Enfin, `project` ajoute de nouveau une colonne pour afficher la durée de l’activité.
 
 
 |City|SessionId|StartTime|StopTime|Duration|
@@ -75,9 +78,9 @@ Utilisez [`let`](./letstatement.md) pour nommer une projection de la table qui e
 |London|2817330|2015-12-09T10:12:02.32|2015-12-09T10:23:43.18|00:11:40.46|
 |Manchester|4267667|2015-12-09T10:14:02.23|2015-12-09T10:28:31.72|00:14:29.49|
 
-### <a name="get-sessions-without-session-id"></a>Obtenir des sessions, sans ID de session
+### <a name="get-sessions-without-session-id"></a>Recevoir des sessions, sans ID de session
 
-Supposons maintenant que les événements de démarrage et d’arrêt n’ont pas un ID de session facilitant une mise en correspondance. Toutefois, nous avons une adresse IP du client où la session a eu lieu. En supposant que chaque adresse client effectue une seule session à la fois, nous pouvons établir une correspondance entre chaque événement de démarrage et l’événement d’arrêt suivant à partir de la même adresse IP.
+Supposons que les événements de démarrage et d’arrêt ne disposent pas d’un ID de session avec lequel nous pouvons faire correspondre. Toutefois, nous avons une adresse IP du client où la session a eu lieu. En supposant que chaque adresse client effectue une seule session à la fois, nous pouvons établir une correspondance entre chaque événement de démarrage et l’événement d’arrêt suivant à partir de la même adresse IP.
 
 ```kusto
 Events 
@@ -95,23 +98,25 @@ Events
 | summarize arg_min(duration, *) by bin(StartTime,1s), ClientIp
 ```
 
-La jointure fait correspondre chaque heure de démarrage à toutes les heures d’arrêt à partir de la même adresse IP du client. Ainsi, nous commençons par supprimer les correspondances comportant des heures d’arrêt antérieures.
+La jointure fait correspondre chaque heure de démarrage à toutes les heures d’arrêt à partir de la même adresse IP du client. 
+1. Supprimer les correspondances avec des temps d’arrêt antérieurs.
+1. Regroupez par heure de début et adresse IP pour obtenir un groupe pour chaque session. 
+1. Fournissez une `bin` fonction pour le paramètre startTime. Si vous ne le faites pas, Kusto utilisera automatiquement des emplacements de 1 heure qui correspondront à des heures de démarrage avec des heures d’arrêt incorrectes.
 
-Ensuite, nous effectuons des regroupements par heure de démarrage et adresse IP pour obtenir un groupe par session. Nous devons fournir une `bin` fonction pour le paramètre startTime : si ce n’est pas le cas, Kusto utilise automatiquement des emplacements de 1 heure, qui correspondent à des heures de démarrage avec des heures d’arrêt incorrectes.
-
-`arg_min`sélectionne la ligne avec la plus petite durée dans chaque groupe, et le `*` paramètre passe par toutes les autres colonnes, bien qu’il préfixe « min_ » à chaque nom de colonne. 
+`arg_min`sélectionne la ligne avec la plus petite durée dans chaque groupe, et le `*` paramètre passe par toutes les autres colonnes. L’argument préfixe « min_ » à chaque nom de colonne. 
 
 :::image type="content" source="images/samples/040.png" alt-text="040"::: 
 
-Ensuite, nous pouvons ajouter du code pour compter les durées dans des emplacements facilement dimensionnés. Nous avons une petite préférence pour un graphique à barres, donc nous divisez par `1s` pour convertir les intervalles en nombres. 
+Ajoutez du code pour compter les durées dans des emplacements facilement dimensionnés. Dans cet exemple, en raison d’une préférence pour un graphique à barres, divisez par `1s` pour convertir les intervalles en nombres. 
 
-
-      // Count the frequency of each duration:
+```
+    // Count the frequency of each duration:
     | summarize count() by duration=bin(min_duration/1s, 10) 
       // Cut off the long tail:
     | where duration < 300
       // Display in a bar chart:
     | sort by duration asc | render barchart 
+```
 
 :::image type="content" source="images/samples/050.png" alt-text="050":::
 
@@ -186,9 +191,9 @@ on UnitOfWorkId
 
 ## <a name="chart-concurrent-sessions-over-time"></a>Sessions simultanées du graphique au fil du temps
 
-Supposons que nous disposons d’une table d’activités avec des heures de début et de fin pour chacune d’elles.  Nous souhaitons afficher un graphique temporel qui montre le nombre d’activités en cours d’exécution simultanément à un moment donné.
+Supposons que vous avez une table d’activités avec les heures de début et de fin. Affichez un graphique dans le temps qui indique combien d’activités sont exécutées simultanément à tout moment.
 
-Voici un exemple d’entrée, que nous appellerons `X`:
+Voici un exemple d’entrée, appelé `X` .
 
 |SessionId | StartTime | StopTime |
 |---|---|---|
@@ -196,15 +201,15 @@ Voici un exemple d’entrée, que nous appellerons `X`:
 | b | 10:01:29 | 10:03:10 |
 | c | 10:03:02 | 10:05:20 |
 
-Comme nous voulons un graphique avec emplacements de 1 minute, nous voulons créer quelque chose qui, à chaque intervalle de 1m, peut faire l’objet d’un comptage pour chaque activité en cours d’exécution.
+Pour un graphique dans des emplacements de 1 minute, créez un texte qui, à chaque million de dollars, contient un nombre pour chaque activité en cours d’exécution.
 
-Voici un résultat intermédiaire :
+Voici un résultat intermédiaire.
 
 ```kusto
 X | extend samples = range(bin(StartTime, 1m), StopTime, 1m)
 ```
 
-`range` génère un tableau de valeurs à des intervalles spécifiés :
+`range`génère un tableau de valeurs aux intervalles spécifiés.
 
 |SessionId | StartTime | StopTime  | exemples|
 |---|---|---|---|
@@ -212,7 +217,7 @@ X | extend samples = range(bin(StartTime, 1m), StopTime, 1m)
 | b | 10:02:29 | 10:03:45 | [10:02:00,10:03:00]|
 | c | 10:03:12 | 10:04:30 | [10:03:00,10:04:00]|
 
-Mais au lieu de conserver ces tableaux, nous allons les développer à l’aide de [MV-Expand](./mvexpandoperator.md):
+Au lieu de conserver ces tableaux, développez-les à l’aide de [MV-Expand](./mvexpandoperator.md).
 
 ```kusto
 X | mv-expand samples = range(bin(StartTime, 1m), StopTime , 1m)
@@ -231,7 +236,7 @@ X | mv-expand samples = range(bin(StartTime, 1m), StopTime , 1m)
 | c | 10:03:12 | 10:04:30 | 10:03:00|
 | c | 10:03:12 | 10:04:30 | 10:04:00|
 
-Nous pouvons maintenant les regrouper par heure d’échantillon, en comptant les occurrences de chaque activité :
+À présent, regroupez-les par durée d’échantillonnage, en comptant les occurrences de chaque activité.
 
 ```kusto
 X
@@ -239,8 +244,8 @@ X
 | summarize count(SessionId) by bin(todatetime(samples),1m)
 ```
 
-* Nous avons besoin de ToDateTime (), car [MV-Expand](./mvexpandoperator.md) produit une colonne de type dynamique.
-* En outre, nous devons recourir à bin() car, pour les valeurs numériques et les dates, summarize applique systématiquement une fonction bin avec un intervalle par défaut si vous n’en indiquez aucun. 
+* Utilisez ToDateTime (), car [MV-Expand](./mvexpandoperator.md) produit une colonne de type dynamique.
+* Utilisez bin () car, pour les valeurs numériques et les dates, la synthèse applique toujours une fonction bin avec un intervalle par défaut si vous n’en fournissez pas une. 
 
 
 | count_SessionId | exemples|
@@ -252,11 +257,11 @@ X
 | 1 | 10:05:00|
 | 1 | 10:06:00|
 
-Ce résultat peut être restitué sous forme de graphique à barres ou de graphique temporel.
+Les résultats peuvent être rendus sous la forme d’un graphique à barres ou d’un graphique temporel.
 
 ## <a name="introduce-null-bins-into-summarize"></a>Introduire des emplacements null dans le résumé
 
-Lorsque l' `summarize` opérateur est appliqué sur une clé de groupe qui se compose d’une `datetime` colonne, l’une d’entre elles « emplacements » normalement ces valeurs dans les emplacements à largeur fixe. Par exemple :
+Lorsque l' `summarize` opérateur est appliqué sur une clé de groupe qui se compose d’une `datetime` colonne, « bin » ces valeurs en emplacements à largeur fixe.
 
 ```kusto
 let StartTime=ago(12h);
@@ -267,9 +272,9 @@ T
 | summarize Count=count() by bin(Timestamp, 5m)
 ```
 
-Cette opération produit une table avec une seule ligne par groupe de lignes dans `T` chaque emplacement de cinq minutes. Ce qu’il ne fait pas est d’ajouter des « emplacements null »--lignes pour les valeurs de l’intervalle de temps entre `StartTime` et `StopTime` pour lesquelles il n’y a aucune ligne correspondante dans `T` . 
+L’exemple ci-dessus produit une table avec une seule ligne par groupe de lignes dans `T` chaque emplacement de cinq minutes. Ce qu’il ne fait pas est d’ajouter des « emplacements null »--lignes pour les valeurs de l’intervalle de temps entre `StartTime` et `StopTime` pour lesquelles il n’y a aucune ligne correspondante dans `T` . 
 
-Souvent, il est souhaitable de « remplir » la table avec ces emplacements. Voici une façon de procéder :
+Il est souhaitable de « remplir » la table avec ces emplacements. Voici une façon d’y parvenir.
 
 ```kusto
 let StartTime=ago(12h);
@@ -288,18 +293,18 @@ T
 
 Voici une explication pas à pas de la requête ci-dessus : 
 
-1. L’utilisation de l' `union` opérateur nous permet d’ajouter des lignes à une table. Ces lignes sont produites par l’expression à `union` .
-2. Utilisation de l' `range` opérateur pour produire une table avec une seule ligne ou colonne.
+1. L' `union` opérateur vous permet d’ajouter des lignes à une table. Ces lignes sont produites par l' `union` expression.
+1. L' `range` opérateur produit une table avec une seule ligne ou colonne.
    La table n’est pas utilisée pour les opérations autres que pour `mv-expand` .
-3. Utilisation de l' `mv-expand` opérateur sur la `range` fonction pour créer autant de lignes qu’il y a de casiers de 5 minutes entre `StartTime` et `EndTime` .
-4. Tout avec un `Count` de `0` .
-5. Enfin, nous utilisons l' `summarize` opérateur pour regrouper des emplacements de l’argument d’origine (gauche ou externe) à `union` et des emplacements de l’argument interne vers celui-ci (c’est-à-dire, les lignes bin null). Cela permet de s’assurer que la sortie comporte une ligne par emplacement, dont la valeur est égale à zéro ou au nombre d’origine.  
+1. L' `mv-expand` opérateur sur la `range` fonction crée autant de lignes qu’il y a de casiers de 5 minutes entre `StartTime` et `EndTime` .
+1. Utilisez un `Count` de `0` .
+1. L' `summarize` opérateur groupe les emplacements de l’argument d’origine (gauche ou externe) à `union` . L’opérateur est également un emplacement de l’argument interne (lignes bin null). Ce processus garantit que la sortie comporte une ligne par emplacement, dont la valeur est égale à zéro ou au nombre d’origine.  
 
-## <a name="get-more-out-of-your-data-in-kusto-using-machine-learning"></a>Tirez le meilleur parti de vos données dans Kusto à l’aide de Machine Learning 
+## <a name="get-more-out-of-your-data-in-kusto-with-machine-learning"></a>Tirez le meilleur parti de vos données dans Kusto avec Machine Learning 
 
-Il existe de nombreux cas d’usage intéressants pour tirer parti des algorithmes Machine Learning et tirer des Insights intéressants des données de télémétrie. Bien que ces algorithmes requièrent souvent un DataSet très structuré comme entrée, les données de journal brutes ne correspondent généralement pas à la structure et à la taille requises. 
+Il existe de nombreux cas d’usage intéressants qui tirent parti des algorithmes de Machine Learning et dérivent des Insights intéressants des données de télémétrie. Souvent, ces algorithmes nécessitent un jeu de données très structuré comme entrée. En règle générale, les données brutes du journal ne correspondent pas à la structure et à la taille requises. 
 
-Notre parcours commence par la recherche d’anomalies dans le taux d’erreur d’un service d’inférences Bing spécifique. La table logs contient des enregistrements 65B, et la requête simple ci-dessous filtre des erreurs 250 000, et crée un nombre d’erreurs de série chronologique qui utilise la fonction de détection des anomalies [series_decompose_anomalies](series-decompose-anomaliesfunction.md). Les anomalies sont détectées par le service Kusto et sont mises en surbrillance en tant que points rouges sur le graphique de série chronologique.
+Commencez par Rechercher les anomalies dans le taux d’erreur d’un service d’inférences Bing spécifique. La table logs contient des enregistrements 65B. La requête simple ci-dessous filtre les erreurs 250 000 et crée un nombre d’erreurs de série chronologique qui utilise la fonction de détection d’anomalie [series_decompose_anomalies](series-decompose-anomaliesfunction.md). Les anomalies sont détectées par le service Kusto et sont mises en surbrillance en tant que points rouges sur le graphique de série chronologique.
 
 ```kusto
 Logs
@@ -309,7 +314,11 @@ Logs
 | render anomalychart 
 ```
 
-Le service a identifié des intervalles de temps avec un taux d’erreur suspect. J’utilise Kusto pour effectuer un zoom avant sur ce laps de temps, en exécutant une requête qui agrège la colonne « message » en tentant de rechercher les erreurs principales. J’ai réduit les parties pertinentes de l’ensemble de la trace de la pile du message pour mieux les adapter à la page. Vous pouvez constater que j’avais un bon succès avec les huit premières erreurs, mais que j’ai atteint un long délai d’erreurs depuis que le message d’erreur a été créé par une chaîne de format qui contenait des données modifiées. 
+Le service a identifié des intervalles de temps avec un taux d’erreur suspect. Utilisez Kusto pour effectuer un zoom avant sur ce laps de temps, puis exécutez une requête qui effectue un agrégat sur la colonne « message ». Essayez de trouver les erreurs principales. 
+
+Les parties pertinentes de l’intégralité de la trace de la pile du message sont découpées pour mieux tenir sur la page. 
+
+Vous pouvez voir la réussite de l’identification des huit principales erreurs. Toutefois, il suit une longue série d’erreurs, puisque le message d’erreur a été créé par une chaîne de format qui contenait des données modifiées. 
 
 ```kusto
 Logs
@@ -323,17 +332,17 @@ Logs
 |count_|Message
 |---|---
 |7125|Échec de ExecuteAlgorithmMethod pour la méthode « RunCycleFromInterimData »...
-|7125|Échec de l’appel de InferenceHostService.. System. NullReferenceException : la référence d’objet n’est pas définie sur une instance d’un objet...
-|7124|Erreur système inattendue. System. NullReferenceException : la référence d’objet n’est pas définie sur une instance d’un objet... 
-|5112|Erreur système inattendue. System. NullReferenceException : la référence d’objet n’est pas définie sur une instance d’un objet.
-|174|Échec de l’appel InferenceHostService.. System. ServiceModel. CommunicationException : une erreur s’est produite lors de l’écriture dans le canal :...
+|7125|Appel InferenceHostService failed..SysTEM. NullReferenceException : la référence d’objet n’est pas définie sur une instance d’un objet...
+|7124|Système inférence inattendue error..SysTEM. NullReferenceException : la référence d’objet n’est pas définie sur une instance d’un objet... 
+|5112|Système inférence inattendue error..SysTEM. NullReferenceException : la référence d’objet n’est pas définie sur une instance d’un objet.
+|174|InferenceHostService appelez failed..SysTEM. ServiceModel. CommunicationException : une erreur s’est produite lors de l’écriture dans le canal :...
 |10|Échec de ExecuteAlgorithmMethod pour la méthode « RunCycleFromInterimData »...
 |10|Erreur système d’inférence.. Microsoft. Bing. Platform. inférences. service. managers. UserInterimDataManagerException :...
-|3|Échec de l’appel de InferenceHostService.. System. ServiceModel. CommunicationObjectFaultedException :...
+|3|Appel InferenceHostService failed..SysTEM. ServiceModel. CommunicationObjectFaultedException :...
 |1|Erreur système d’inférence... SocialGraph. patron. OperationResponse... AIS TraceId : 8292FC561AC64BED8FA243808FE74EFD...
 |1|Erreur système d’inférence... SocialGraph. patron. OperationResponse... AIS TraceId : 5F79F7587FF943EC9B641E02E701AFBF...
 
-C’est là que l’opérateur est là `reduce` pour vous aider. L' `reduce` opérateur a identifié 63 Erreurs différentes par le même point d’instrumentation de trace dans le code et m’a aidé à se concentrer sur un suivi d’erreurs plus explicite dans cette fenêtre de temps.
+C’est là que l' `reduce` opérateur vous aide. L’opérateur a identifié 63 Erreurs différentes qui proviennent du même point d’instrumentation de trace dans le code et permet de se concentrer sur des traces d’erreurs plus explicites dans cette fenêtre de temps.
 
 ```kusto
 Logs
@@ -346,16 +355,21 @@ Logs
 |Count|Modèle
 |---|---
 |7125|Échec de ExecuteAlgorithmMethod pour la méthode « RunCycleFromInterimData »...
-|  7125|Échec de l’appel de InferenceHostService.. System. NullReferenceException : la référence d’objet n’est pas définie sur une instance d’un objet...
-|  7124|Erreur système inattendue. System. NullReferenceException : la référence d’objet n’est pas définie sur une instance d’un objet...
-|  5112|Erreur système inattendue. System. NullReferenceException : la référence d’objet n’est pas définie sur une instance d’un objet.
-|  174|Échec de l’appel InferenceHostService.. System. ServiceModel. CommunicationException : une erreur s’est produite lors de l’écriture dans le canal :...
+|  7125|Appel InferenceHostService failed..SysTEM. NullReferenceException : la référence d’objet n’est pas définie sur une instance d’un objet...
+|  7124|Système inférence inattendue error..SysTEM. NullReferenceException : la référence d’objet n’est pas définie sur une instance d’un objet...
+|  5112|Système inférence inattendue error..SysTEM. NullReferenceException : la référence d’objet n’est pas définie sur une instance d’un objet.
+|  174|InferenceHostService appelez failed..SysTEM. ServiceModel. CommunicationException : une erreur s’est produite lors de l’écriture dans le canal :...
 |  63|Erreur système d’inférence.. Microsoft. Bing. Platform. inférences. \* : écrire \* pour écrire dans le patron de l’objet. \* : SocialGraph. patron. Request...
 |  10|Échec de ExecuteAlgorithmMethod pour la méthode « RunCycleFromInterimData »...
 |  10|Erreur système d’inférence.. Microsoft. Bing. Platform. inférences. service. managers. UserInterimDataManagerException :...
-|  3|Échec de l’appel de InferenceHostService.. System. ServiceModel. \* : l’objet, System. ServiceModel. Channels. \* + \* , pour \* \* est le \* ...   à edémarrage...
+|  3|Appel InferenceHostService failed..SysTEM. ServiceModel. \* : l’objet, System. ServiceModel. Channels. \* + \* , pour \* \* est le \* ...   à edémarrage...
 
-Maintenant que j’ai une bonne vue des erreurs principales qui ont contribué aux anomalies détectées, je souhaite comprendre l’impact de ces erreurs sur mon système. La table « logs » contient des données dimensionnelles supplémentaires telles que « Component », « cluster », etc. Le nouveau plug-in « autocluster » peut m’aider à tirer parti de cette vision avec une simple requête. Dans cet exemple ci-dessous, je peux voir clairement que chacune des quatre erreurs principales est spécifique à un composant et que les trois erreurs principales sont spécifiques au cluster est renommé db4, la quatrième se produit sur tous les clusters.
+Vous avez maintenant une bonne vue des erreurs principales qui ont contribué aux anomalies détectées.
+
+Pour comprendre l’impact de ces erreurs sur l’exemple de système : 
+* La table « logs » contient des données dimensionnelles supplémentaires telles que « Component », « cluster », etc.
+* Le nouveau plug-in « autocluster » peut aider à dériver cette vision d’une simple requête. 
+* Dans l’exemple ci-dessous, vous pouvez voir clairement que chacune des quatre erreurs principales est spécifique à un composant. En outre, alors que les trois erreurs principales sont spécifiques au cluster est renommé db4, la quatrième se produit sur tous les clusters.
 
 ```kusto
 Logs
@@ -371,10 +385,11 @@ Logs
 |7124|26,64|InferenceAlgorithmExecutor|EST renommé db4|Erreur système inattendue...
 |5112|19,11|InferenceAlgorithmExecutor|*|Erreur système inattendue... 
 
-## <a name="mapping-values-from-one-set-to-another"></a>Mappage des valeurs d’un jeu à un autre
+## <a name="map-values-from-one-set-to-another"></a>Mapper des valeurs d’un jeu à un autre
 
-Un cas d’usage courant consiste à utiliser un mappage statique de valeurs qui peut aider à adopter des résultats de manière plus actuelle.  
-Par exemple, envisagez d’avoir la table suivante. DeviceModel au spécifie un modèle de l’appareil, qui n’est pas une forme très pratique de référencement au nom de l’appareil.  
+Un cas d’usage courant est le mappage statique de valeurs, qui peut aider à rendre les résultats plus présents.
+Par exemple, considérons le tableau suivant. 
+`DeviceModel`spécifie un modèle de l’appareil, qui n’est pas une forme très pratique de référencer le nom de l’appareil.  
 
 
 |DeviceModel |Count 
@@ -385,7 +400,7 @@ Par exemple, envisagez d’avoir la table suivante. DeviceModel au spécifie un 
 |iPhone5, 2 |66 
 
   
-Une meilleure représentation peut être :  
+Vous trouverez ci-dessous une meilleure représentation.  
 
 |FriendlyName |Count 
 |---|---
@@ -394,11 +409,11 @@ Une meilleure représentation peut être :
 |iPhone 6 |55 
 |iPhone5 |66 
 
-Les deux approches ci-dessous illustrent la façon dont cela peut être obtenu.  
+Les deux approches ci-dessous montrent comment la représentation peut être obtenue.  
 
 ### <a name="mapping-using-dynamic-dictionary"></a>Mapper à l’aide d’un dictionnaire dynamique
 
-L’approche ci-dessous montre comment le mappage peut être obtenu à l’aide d’un dictionnaire dynamique et d’accesseurs dynamiques.
+L’approche montre le mappage avec un dictionnaire dynamique et des accesseurs dynamiques.
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -429,13 +444,11 @@ Source
 |iPhone 6|55|
 |iPhone5|66|
 
+### <a name="map-using-static-table"></a>Mapper à l’aide d’une table statique
 
-
-### <a name="mapping-using-static-table"></a>Mappage à l’aide d’une table statique
-
-L’approche ci-dessous montre comment le mappage peut être obtenu à l’aide d’une table persistante et d’un opérateur de jointure.
+L’approche montre le mappage avec une table persistante et un opérateur de jointure.
  
-Créez la table de mappage (une seule fois) :
+Créez la table de mappage une seule fois.
 
 ```kusto
 .create table Devices (DeviceModel: string, FriendlyName: string) 
@@ -444,7 +457,7 @@ Créez la table de mappage (une seule fois) :
     ["iPhone5,1","iPhone 5"]["iPhone3,2","iPhone 4"]["iPhone7,2","iPhone 6"]["iPhone5,2","iPhone5"]
 ```
 
-Contenu des appareils maintenant :
+Contenu des appareils maintenant.
 
 |DeviceModel |FriendlyName 
 |---|---
@@ -453,8 +466,7 @@ Contenu des appareils maintenant :
 |iPhone7, 2 |iPhone 6 
 |iPhone5, 2 |iPhone5 
 
-
-Même astuce pour la création de la source de la table de test :
+Utilisez la même astuce pour créer une source de table de test.
 
 ```kusto
 .create table Source (DeviceModel: string, Count: int)
@@ -462,8 +474,7 @@ Même astuce pour la création de la source de la table de test :
 .ingest inline into table Source ["iPhone5,1",32]["iPhone3,2",432]["iPhone7,2",55]["iPhone5,2",66]
 ```
 
-
-Joindre et projet :
+Join et Project.
 
 ```kusto
 Devices  
@@ -481,9 +492,9 @@ Résultat :
 |iPhone5 |66 
 
 
-## <a name="creating-and-using-query-time-dimension-tables"></a>Création et utilisation de tables de dimension de temps de requête
+## <a name="create-and-use-query-time-dimension-tables"></a>Créer et utiliser des tables de dimension de temps de requête
 
-Dans de nombreux cas, il est recommandé de joindre les résultats d’une requête à une table de dimension ad hoc qui n’est pas stockée dans la base de données. Il est possible de définir une expression dont le résultat est une table étendue à une requête unique en procédant de la façon suivante :
+Vous souhaiterez souvent joindre les résultats d’une requête avec une table de dimension ad hoc qui n’est pas stockée dans la base de données. Il est possible de définir une expression dont le résultat est une table dont l’étendue est limitée à une seule requête. Par exemple :
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -499,7 +510,7 @@ DimTable
 | summarize count() by Code
 ```
 
-Voici un exemple légèrement plus complexe :
+Voici un exemple légèrement plus complexe.
 
 ```kusto
 // Create a query-time dimension table using datatable
@@ -520,15 +531,19 @@ JobHistory
   | project JobName, StartTime, ExecutionTimeSpan, ResultString, ResultMessage
 ```
 
-## <a name="retrieving-the-latest-by-timestamp-records-per-identity"></a>Récupération des enregistrements (par horodateur) les plus récents par identité
+## <a name="retrieve-the-latest-records-by-timestamp-per-identity"></a>Récupérer les enregistrements les plus récents (par horodateur) par identité
 
-Supposons que vous disposiez d’une table qui comprend une `id` colonne (identifiant l’entité à laquelle chaque ligne est associée, telle qu’un ID d’utilisateur ou un ID de nœud) et une `timestamp` colonne (fournissant la référence temporelle de la ligne), ainsi que d’autres colonnes. Votre objectif est d’écrire une requête qui retourne les 2 derniers enregistrements pour chaque valeur de la `id` colonne, où « latest » est défini comme « ayant la valeur la plus élevée `timestamp` ».
+Supposons que vous disposiez d’une table qui comprend les éléments suivants :
+* `ID`colonne qui identifie l’entité à laquelle chaque ligne est associée, telle qu’un ID d’utilisateur ou un ID de nœud.
+* `timestamp`colonne qui fournit la référence d’heure pour la ligne
+* autres colonnes
 
-Cela peut être fait à l’aide de l' [opérateur Top imbriqué](topnestedoperator.md).
-Nous fournissons d’abord la requête, puis nous l’expliquons :
+Une requête qui retourne les deux derniers enregistrements pour chaque valeur de la `ID` colonne, où « latest » est défini comme « ayant la valeur la plus élevée `timestamp` », peut être créé avec l' [opérateur de niveau supérieur](topnestedoperator.md).
+
+Par exemple :
 
 ```kusto
-datatable(id:string, timestamp:datetime, bla:string)           // (1)
+datatable(id:string, timestamp:datetime, bla:string)           // #1
   [
   "Barak",  datetime(2015-01-01), "1",
   "Barak",  datetime(2016-01-01), "2",
@@ -537,36 +552,40 @@ datatable(id:string, timestamp:datetime, bla:string)           // (1)
   "Donald", datetime(2017-01-18), "5",
   "Donald", datetime(2017-01-19), "6"
   ]
-| top-nested   of id        by dummy0=max(1),                  // (2)
-  top-nested 2 of timestamp by dummy1=max(timestamp),          // (3)
-  top-nested   of bla       by dummy2=max(1)                   // (4)
-| project-away dummy0, dummy1, dummy2                          // (5)
+| top-nested   of id        by dummy0=max(1),                  // #2
+  top-nested 2 of timestamp by dummy1=max(timestamp),          // #3
+  top-nested   of bla       by dummy2=max(1)                   // #4
+| project-away dummy0, dummy1, dummy2                          // #5
 ```
 
-Notes
-1. Le `datatable` est un moyen de générer des données de test à des fins de démonstration. En réalité, bien sûr, vous auriez les données ici.
-2. Cette ligne signifie essentiellement « retourner toutes les valeurs distinctes de `id` ».
-3. Cette ligne retourne ensuite, pour les 2 premiers enregistrements qui maximisent la `timestamp` colonne, les colonnes du niveau précédent (ici, juste `id` ) et la colonne spécifiée à ce niveau (ici, `timestamp` ).
-4. Cette ligne ajoute les valeurs de la `bla` colonne pour chacun des enregistrements retournés par le niveau précédent. Si la table a d’autres colonnes intéressantes, vous devez répéter cette ligne pour chaque colonne de ce type.
-5. Enfin, nous utilisons l' [opérateur Project-Away](projectawayoperator.md) pour supprimer les colonnes « supplémentaires » introduites par `top-nested` .
+La numérotation des notes ci-dessous fait référence aux nombres de l’exemple de code, à l’extrême droite.
 
-## <a name="extending-a-table-with-some-percent-of-total-calculation"></a>Extension d’une table avec un calcul en pourcentage du total
+1. Le `datatable` est un moyen de générer des données de test à des fins de démonstration. Normalement, vous utilisez des données réelles ici.
+1. Cette ligne signifie essentiellement « retourner toutes les valeurs distinctes de `id` ».
+1. Cette ligne retourne ensuite, pour les deux premiers enregistrements qui maximisent :
+     * la `timestamp` colonne
+     * les colonnes du niveau précédent (ici, juste `id` )
+     * colonne spécifiée à ce niveau (ici, `timestamp` )
+1. Cette ligne ajoute les valeurs de la `bla` colonne pour chacun des enregistrements retournés par le niveau précédent. Si la table contient d’autres colonnes intéressantes, vous pouvez répéter cette ligne pour chaque colonne de ce type.
+1. Cette dernière ligne utilise l' [opérateur Project-Away](projectawayoperator.md) pour supprimer les colonnes « supplémentaires » introduites par `top-nested` .
 
-Souvent, lorsque l’une d’elles contient une expression tabulaire qui inclut une colonne numérique, il est souhaitable de présenter cette colonne à l’utilisateur avec sa valeur en pourcentage du total. Par exemple, supposons qu’il existe une requête dont la valeur est le tableau suivant :
+## <a name="extend-a-table-with-some-percent-of-total-calculation"></a>Étendre une table avec un calcul en pourcentage du total
+
+Une expression tabulaire qui comprend une colonne numérique est plus utile pour l’utilisateur lorsqu’il est accompagné, avec sa valeur en pourcentage du total. Par exemple, supposons qu’il existe une requête qui produit le tableau suivant :
 
 |SomeSeries|SomeInt|
 |----------|-------|
 |Foo       |    100|
 |Barres       |    200|
 
-Et que vous souhaitez afficher cette table comme suit :
+Si vous souhaitez afficher cette table comme suit :
 
 |SomeSeries|SomeInt|Remise |
 |----------|-------|----|
 |Foo       |    100|33,3|
 |Barres       |    200|66,6|
 
-Pour ce faire, il faut calculer le total (somme) de la `SomeInt` colonne, puis diviser chaque valeur de cette colonne par le total. Pour obtenir des résultats arbitraires, il est possible d’attribuer un nom à ces résultats à l’aide de l' [opérateur as](asoperator.md):
+Vous devez ensuite calculer le total (Sum) de la `SomeInt` colonne, puis diviser chaque valeur de cette colonne par le total. Pour les résultats arbitraires [, utilisez l’opérateur as](asoperator.md).
 
 ```kusto
 // The following table literal represents a long calculation
@@ -582,10 +601,12 @@ datatable (SomeInt:int, SomeSeries:string) [
 | extend Pct = 100 * bin(todouble(SomeInt) / toscalar(X | summarize sum(SomeInt)), 0.001)
 ```
 
-## <a name="performing-aggregations-over-a-sliding-window"></a>Exécution d’agrégations sur une fenêtre glissante
-L’exemple suivant montre comment synthétiser des colonnes à l’aide d’une fenêtre glissante. Prenons, par exemple, le tableau ci-dessous, qui contient les prix des fruits par horodateurs. Supposons que nous souhaitons calculer le coût min, Max et Sum de chaque fruit par jour, à l’aide d’une fenêtre glissante de 7 jours. En d’autres termes, chaque enregistrement dans le jeu de résultats regroupe les 7 derniers jours et le résultat contient un enregistrement par jour dans la période d’analyse.  
+## <a name="perform-aggregations-over-a-sliding-window"></a>Effectuer des agrégations sur une fenêtre glissante
 
-Table fruits : 
+L’exemple suivant montre comment synthétiser des colonnes à l’aide d’une fenêtre glissante.
+Utilisez le tableau ci-dessous, qui contient les prix des fruits par horodateurs. Calculez les coûts min, Max et Sum de chaque fruit par jour, à l’aide d’une fenêtre glissante de sept jours. Chaque enregistrement dans le jeu de résultats regroupe les sept jours précédents et le résultat contient un enregistrement par jour dans la période d’analyse.  
+
+Table fruits :
 
 |Timestamp|Fruit|Price|
 |---|---|---|
@@ -604,7 +625,8 @@ Table fruits :
 |2018-10-06 08:00:00.0000000|Bouclé|8|
 |2018-10-07 12:00:00.0000000|Bananes|0|
 
-Requête d’agrégation de fenêtre glissante (une explication est fournie sous les résultats de la requête) : 
+Requête d’agrégation de fenêtre glissante.
+Une explication suit les résultats de la requête :
 
 ```kusto
 let _start = datetime(2018-09-24);
@@ -643,25 +665,26 @@ Fruits
 |2018-10-07 00:00:00.0000000|Bouclé|4|8|12|
 |2018-10-07 00:00:00.0000000|Pommes|8|8|8|
 
-Détails de la requête : 
+Détails de la requête :
 
-La requête « s’étire » (duplique) chaque enregistrement dans la table d’entrée tout au long de 7 jours après son apparition réelle, de telle sorte que chaque enregistrement apparaît en réalité 7 fois. Par conséquent, lorsque vous effectuez l’agrégation par jour, l’agrégation comprend tous les enregistrements des 7 derniers jours.
+La requête « s’étire » (duplique) chaque enregistrement dans la table d’entrée pendant les sept jours suivant son apparence réelle. Chaque enregistrement apparaît en réalité sept fois.
+Par conséquent, l’agrégation quotidienne comprend tous les enregistrements des sept jours précédents.
 
-Explication pas à pas (les chiffres font référence aux chiffres dans les commentaires inclus dans la requête) :
-1. Compartimenter chaque enregistrement à 1J (par rapport à _start). 
+La numérotation détaillée ci-dessous fait référence aux nombres de l’exemple de code, à l’extrême droite :
+1. Compartimenter chaque enregistrement à un jour (par rapport à _start). 
 2. Déterminez la fin de la plage par enregistrement-_bin + 7D, sauf si elle est en dehors de la plage _(début, fin)_ , auquel cas elle est ajustée. 
-3. Pour chaque enregistrement, créez un tableau de 7 jours (horodateurs), en commençant au jour de l’enregistrement actuel. 
-4. MV-développez le tableau, en dupliquant donc chaque enregistrement à 7 enregistrements, 1 jour de plus. 
-5. Exécutez la fonction d’agrégation pour chaque jour. En raison de #4, cela résume en fait _les 7 derniers jours_ . 
-6. Enfin, étant donné que les données de la première 7D sont incomplètes (il n’y a pas de période de lookback 7D pour les 7 premiers jours), nous excluons les 7 premiers jours du résultat final (ils participent uniquement à l’agrégation pour 2018-10-01). 
+3. Pour chaque enregistrement, créez un tableau de sept jours (horodateurs), en commençant au jour de l’enregistrement actuel. 
+4. MV-développez le tableau, en dupliquant donc chaque enregistrement sur sept enregistrements, 1 jour de plus. 
+5. Exécutez la fonction d’agrégation pour chaque jour. En raison de #4, cela _résume les sept derniers jours_ . 
+6. Les données des sept premiers jours sont incomplètes. Il n’existe aucune période de lookback 7D pour les sept premiers jours. Les sept premiers jours sont exclus du résultat final. Dans l’exemple, ils participent uniquement à l’agrégation pour 2018-10-01.
 
 ## <a name="find-preceding-event"></a>Rechercher l’événement précédent
 L’exemple suivant montre comment rechercher un événement précédent entre deux jeux de données.  
 
-*Objectif :* : 2 jeux de données, A et b, pour chaque enregistrement dans B trouver l’événement précédent dans un (en d’autres termes, le ARG_MAX enregistrement dans un qui est toujours « plus ancien » que B). Par exemple, voici la sortie attendue pour les exemples de jeux de données suivants : 
+*Objectif :*: il existe deux jeux de données, a et B. Pour chaque enregistrement dans B, recherchez son événement précédent dans un (autrement dit, l’enregistrement arg_max dans un qui est toujours « plus ancien » que B). Voici la sortie attendue pour les exemples de jeux de données suivants. 
 
 ```kusto
-let A = datatable(Timestamp:datetime, Id:string, EventA:string)
+let A = datatable(Timestamp:datetime, ID:string, EventA:string)
 [
     datetime(2019-01-01 00:00:00), "x", "Ax1",
     datetime(2019-01-01 00:00:01), "x", "Ax2",
@@ -669,7 +692,7 @@ let A = datatable(Timestamp:datetime, Id:string, EventA:string)
     datetime(2019-01-01 00:00:05), "y", "Ay2",
     datetime(2019-01-01 00:00:00), "z", "Az1"
 ];
-let B = datatable(Timestamp:datetime, Id:string, EventB:string)
+let B = datatable(Timestamp:datetime, ID:string, EventB:string)
 [
     datetime(2019-01-01 00:00:03), "x", "B",
     datetime(2019-01-01 00:00:04), "x", "B",
@@ -679,7 +702,7 @@ let B = datatable(Timestamp:datetime, Id:string, EventB:string)
 A; B
 ```
 
-|Timestamp|Id|EventB|
+|Timestamp|id|EventB|
 |---|---|---|
 |2019-01-01 00:00:00.0000000|x|Ax1|
 |2019-01-01 00:00:00.0000000|z|Az1|
@@ -689,7 +712,7 @@ A; B
 
 </br>
 
-|Timestamp|Id|Événement|
+|Timestamp|id|Événement|
 |---|---|---|
 |2019-01-01 00:00:03.0000000|x|B|
 |2019-01-01 00:00:04.0000000|x|B|
@@ -698,37 +721,42 @@ A; B
 
 Sortie attendue : 
 
-|Id|Timestamp|EventB|A_Timestamp|Événement|
+|id|Timestamp|EventB|A_Timestamp|Événement|
 |---|---|---|---|---|
 |x|2019-01-01 00:00:03.0000000|B|2019-01-01 00:00:01.0000000|Ax2|
 |x|2019-01-01 00:00:04.0000000|B|2019-01-01 00:00:01.0000000|Ax2|
 |y|2019-01-01 00:00:04.0000000|B|2019-01-01 00:00:02.0000000|Ay1|
 |z|2019-01-01 00:02:00.0000000|B|2019-01-01 00:00:00.0000000|Az1|
 
-Il existe deux approches différentes suggérées pour résoudre ce problème. Vous devez tester à la fois sur votre jeu de données spécifique pour trouver celui qui convient le mieux à vos besoins (ils peuvent s’exécuter différemment sur des jeux de données différents). 
+Il existe deux approches différentes suggérées pour résoudre ce problème. Vous devez tester les deux sur votre jeu de données spécifique, afin de trouver celui qui convient le mieux à vos besoins.
 
-### <a name="suggestion-1"></a>#1 de suggestions :
-Cette suggestion sérialise les deux jeux de données par ID et horodateur, puis regroupe tous les événements B avec tous les événements précédents et sélectionne le `arg_max` tout dans le groupe. 
+> [!NOTE] 
+> Chaque méthode peut s’exécuter différemment sur des jeux de données différents.
+
+### <a name="suggestion-1"></a>Suggestion #1
+
+Cette suggestion sérialise les jeux de données par ID et horodateur, puis regroupe tous les événements B avec tous les événements précédents et sélectionne le `arg_max` en dehors de tous les dans le groupe.
 
 ```kusto
 A
 | extend A_Timestamp = Timestamp, Kind="A"
 | union (B | extend B_Timestamp = Timestamp, Kind="B")
-| order by Id, Timestamp asc 
-| extend t = iff(Kind == "A" and (prev(Kind) != "A" or prev(Id) != Id), 1, 0)
+| order by ID, Timestamp asc 
+| extend t = iff(Kind == "A" and (prev(Kind) != "A" or prev(Id) != ID), 1, 0)
 | extend t = row_cumsum(t)
-| summarize Timestamp=make_list(Timestamp), EventB=make_list(EventB), arg_max(A_Timestamp, EventA) by t, Id
+| summarize Timestamp=make_list(Timestamp), EventB=make_list(EventB), arg_max(A_Timestamp, EventA) by t, ID
 | mv-expand Timestamp to typeof(datetime), EventB to typeof(string)
 | where isnotempty(EventB)
 | project-away t
 ```
 
-### <a name="suggestion-2"></a>#2 de suggestions :
-Cette suggestion requiert la définition d’une valeur Max-lookback-period (dans quelle mesure « plus ancien » autorise-t-il l’enregistrement dans un à être comparé à B ?), puis joint les 2 jeux de données sur l’ID et cette période de lookback. La jointure produit tous les candidats possibles (tous les enregistrements A antérieurs à B et au cours de la période lookback), puis filtre le plus proche de B en arg_min (TimestampB – Timestampa). Plus la période lookback est petite, plus l’exécution de la requête est attendue. 
+### <a name="suggestion-2"></a>Suggestion #2
 
-Dans l’exemple ci-dessous, la période lookback est définie sur 1M et, par conséquent, l’enregistrement avec l’ID « z » n’a pas d’événement « A » correspondant (puisqu’il s’agit de « A » est plus ancien par 2m).
+Cette suggestion requiert un nombre maximal de lookback-point (le volume de l’enregistrement le plus ancien dans un peut être, par rapport à B). La méthode joint ensuite les deux jeux de données sur l’ID et cette période lookback. La jointure produit tous les candidats possibles, tous les enregistrements A antérieurs à B et au cours de la période lookback, puis le plus proche de B est filtré par arg_min (TimestampB – Timestampa). Plus la période lookback est petite, plus les résultats de la requête sont performants.
 
-```kusto
+Dans l’exemple ci-dessous, la période lookback est définie sur 1m, et l’enregistrement avec l’ID’z’n’a pas d’événement’A’correspondant, car son « A » est plus ancien par 2m.
+
+```kusto 
 let _maxLookbackPeriod = 1m;  
 let _internalWindowBin = _maxLookbackPeriod / 2;
 let B_events = B 
@@ -745,11 +773,11 @@ let A_events = A
 B_events
     | join kind=leftouter (
         A_events
-) on Id, _range
+) on ID, _range
 | where isnull(A_Timestamp) or (A_Timestamp <= B_Timestamp and B_Timestamp <= A_Timestamp + _maxLookbackPeriod)
 | extend diff = coalesce(B_Timestamp - A_Timestamp, _maxLookbackPeriod*2)
 | summarize arg_min(diff, *) by ID
-| project Id, B_Timestamp, A_Timestamp, EventB, EventA
+| project ID, B_Timestamp, A_Timestamp, EventB, EventA
 ```
 
 |Id|B_Timestamp|A_Timestamp|EventB|Événement|

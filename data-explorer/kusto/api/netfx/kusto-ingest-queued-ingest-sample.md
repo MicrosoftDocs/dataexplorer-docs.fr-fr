@@ -8,21 +8,22 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/05/2020
-ms.openlocfilehash: 0e6564e6c27c62621678ae350514bf1df39c73ae
-ms.sourcegitcommit: ee90472a4f9d751d4049744d30e5082029c1b8fa
+ms.openlocfilehash: 6963c118742593d2402d5ae81d8ff4373a2ff600
+ms.sourcegitcommit: d40fe44e7581d87f63cc0cb939f3aa9c3996fc08
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/21/2020
-ms.locfileid: "83722080"
+ms.lasthandoff: 07/02/2020
+ms.locfileid: "85839424"
 ---
 # <a name="data-ingestion-with-the-kustoingest-library"></a>Ingestion de données avec la bibliothèque Kusto. deréception
 
-Cet article présente un exemple de code qui utilise la bibliothèque cliente Kusto. Desent pour l’ingestion de données. Le code détaille le mode recommandé d’ingestion pour les pipelines de niveau production, appelé ingestion en attente. Pour la bibliothèque Kusto. deréception, l’entité correspondante est l’interface [IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient) . Le code client interagit avec le service Azure Explorateur de données en publiant des notifications d’ingestion dans une file d’attente Azure. La référence à la file d’attente est obtenue à partir de l’entité Gestion des données responsable de l’ingestion. 
+Cet article présente un exemple de code qui utilise la bibliothèque cliente Kusto. Desent pour l’ingestion de données. Le code détaille le mode recommandé d’ingestion pour les pipelines de niveau production, appelé ingestion en attente. Pour la bibliothèque Kusto. deréception, l’entité correspondante est l' [interface IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient).
+Le code client interagit avec le service Azure Explorateur de données en publiant des notifications d’ingestion dans une file d’attente Azure. La référence à la file d’attente est obtenue à partir de l’entité Gestion des données responsable de l’ingestion. 
 
 > [!NOTE]
 > L’interaction avec le service de Gestion des données doit être authentifiée à l’aide de Azure Active Directory (Azure AD).
 
-L’exemple utilise Azure AD l’authentification de l’utilisateur et s’exécute sous l’identité de l’utilisateur interactif.
+L’exemple de code utilise Azure AD l’authentification de l’utilisateur et s’exécute sous l’identité de l’utilisateur interactif.
 
 ## <a name="dependencies"></a>Les dépendances
 

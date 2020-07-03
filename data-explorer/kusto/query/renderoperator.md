@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 03/29/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 20e512d55568f39ea21d3ddcb383adaf0fa7dab3
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 90b2a08d4fdde6ab6a74b12632c9310029f8fc1b
+ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373032"
+ms.lasthandoff: 07/02/2020
+ms.locfileid: "85902098"
 ---
 # <a name="render-operator"></a>render, opérateur
 
@@ -34,7 +34,7 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 
 *T* `|` `render` *Visualization* [ `with` `(` *PropertyName* `=` *PropertyValue* [ `,` ...] `)` ]
 
-Où :
+Où :
 
 * La *visualisation* indique le type de visualisation à utiliser. Les valeurs prises en charge sont les suivantes :
 
@@ -42,7 +42,7 @@ Où :
 
 |*Visualisation*     |Description|
 |--------------------|-|
-| `anomalychart`     | Semblable à graphique temporel, mais [met en évidence les anomalies](./samples.md#get-more-out-of-your-data-in-kusto-using-machine-learning) à l’aide de [series_decompose_anomalies](./series-decompose-anomaliesfunction.md) fonction. |
+| `anomalychart`     | Semblable à graphique temporel, mais [met en évidence les anomalies](./samples.md#get-more-out-of-your-data-in-kusto-with-machine-learning) à l’aide de [series_decompose_anomalies](./series-decompose-anomaliesfunction.md) fonction. |
 | `areachart`        | Graphique en aires. La première colonne est l’axe des abscisses (x) et doit être une colonne numérique. Les autres colonnes numériques sont des axes y. |
 | `barchart`         | La première colonne est l’axe des abscisses (x) et peut être de type text, DateTime ou numeric. Les autres colonnes sont numériques, affichées sous forme de bandes horizontales.|
 | `card`             | Le premier enregistrement de résultat est traité comme un ensemble de valeurs scalaires et s’affiche sous la forme d’une carte. |
@@ -170,6 +170,6 @@ range x from -2 to 2 step 0.1
 
 [Exemples de rendu dans le didacticiel](./tutorial.md#render-display-a-chart-or-table).
 
-[Détection d’anomalie](./samples.md#get-more-out-of-your-data-in-kusto-using-machine-learning)
+[Détection des anomalies](./samples.md#get-more-out-of-your-data-in-kusto-with-machine-learning)
 
 ::: zone-end
