@@ -283,16 +283,18 @@
               href: data-factory-template.md
             - name: Exécuter des commandes de contrôle à l’aide d’Azure Data Factory
               href: data-factory-command-activity.md
-        - name: "Connecteur Microsoft\_Flow"
+        - name: Power Automate
           items:
-            - name: "Connecteur Microsoft\_Flow"
+            - name: Connecteur de flux Power Automate
               href: flow.md
-            - name: "Exemples d’utilisation du connecteur Microsoft\_Flow"
+            - name: Exemples d’utilisation de connecteur Power Automate
               href: flow-usage.md
         - name: Logic Apps
           href: kusto/tools/logicapps.md
         - name: Connecteur Apache Spark
           href: spark-connector.md
+        - name: Cosmos DB
+          href: 'https://github.com/Azure/azure-kusto-labs/tree/master/cosmosdb-adx-integration'
         - name: Se connecter à partir de Databricks à l’aide de Python
           href: connect-from-databricks.md
         - name: Analyser des données dans Jupyter Notebook et Kqlmagic
