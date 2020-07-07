@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: e8d02634ad0c56b2e1e369d4c2cd86c63bdad155
-ms.sourcegitcommit: 56bb7b69654900ed63310ac9537ae08b72bf7209
+ms.openlocfilehash: 6f7efe2916bc5c5344bf4a6c4fa4a60bfaa167b7
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85814192"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967347"
 ---
-# <a name="streaming-ingestion-policy-management"></a>Gestion de la stratégie d’ingestion de streaming
+# <a name="streaming-ingestion-policy-command"></a>Commande de stratégie d’ingestion de streaming
 
 La stratégie d’ingestion de streaming peut être définie sur une table pour permettre l’ingestion de la diffusion en continu dans cette table. La stratégie peut également être définie au niveau de la base de données pour appliquer le même paramètre aux tables actuelles et futures.
 
@@ -37,7 +37,7 @@ Cette commande retourne une table avec les colonnes suivantes :
 |---|---|---
 |PolicyName|`string`|Nom de la stratégie-StreamingIngestionPolicy
 |EntityName|`string`|Nom de la base de données ou de la table
-|Policy    |`string`|[objet de stratégie d’ingestion de streaming](#streaming-ingestion-policy-object)
+|Stratégie    |`string`|[objet de stratégie d’ingestion de streaming](#streaming-ingestion-policy-object)
 
 **Exemples**
 
@@ -47,7 +47,7 @@ Cette commande retourne une table avec les colonnes suivantes :
 .show table T1 policy streamingingestion
 ```
 
-|PolicyName|EntityName|Policy|ChildEntities|EntityType|
+|PolicyName|EntityName|Stratégie|ChildEntities|EntityType|
 |---|---|---|---|---|
 |StreamingIngestionPolicy|DB1|{"IsEnabled" : true, "HintAllocatedRate" : null}
 

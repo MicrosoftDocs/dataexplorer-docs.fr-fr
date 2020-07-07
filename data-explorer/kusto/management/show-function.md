@@ -8,17 +8,19 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: aa81df5ca89c1a7dc523d7799050b8a7ad3adaba
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 6d4f4fcdbe60975b8b1c3369a364f062b223f9c6
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82617326"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967364"
 ---
-# <a name="show-functions"></a>. Show, fonctions
+# <a name="show-functions"></a>. afficher la ou les fonctions
 
 Répertorie toutes les fonctions stockées dans la base de données actuellement sélectionnée.
 Pour retourner une seule fonction spécifique, consultez [. Show, fonction](#show-function).
+
+## <a name="show-functions"></a>. Show, fonctions
 
 ```kusto
 .show functions
@@ -30,13 +32,13 @@ Nécessite l' [autorisation de l’utilisateur de base de données](../managemen
 |---|---|--- 
 |Nom  |String |Nom de la fonction. 
 |Paramètres  |String |Paramètres requis par la fonction.
-|body  |String |(Zéro, un ou plusieurs) `let` instructions suivies d’une expression CSL valide qui est évaluée lors de l’appel de la fonction.
+|Corps  |String |(Zéro, un ou plusieurs) `let` instructions suivies d’une expression CSL valide qui est évaluée lors de l’appel de la fonction.
 |Dossier|String|Dossier utilisé pour la catégorisation des fonctions d’interface utilisateur. Ce paramètre ne modifie pas la façon dont la fonction est appelée.
 |DocString|String|Description de la fonction pour les besoins de l’interface utilisateur.
  
 **Exemple de sortie** 
 
-|Nom |Paramètres|body|Dossier|DocString
+|Nom |Paramètres|Corps|Dossier|DocString
 |---|---|---|---|---
 |MyFunction1 |() | {StormEvents &#124; limite 100}|Mondossier|Fonction de démonstration simple|
 |MyFunction2 |(myLimit : long)| {StormEvents &#124; limite myLimit}|Mondossier|Fonction Demo avec un paramètre|
@@ -60,7 +62,7 @@ Répertorie les détails d’une fonction stockée spécifique. Pour obtenir la 
 |---|---|--- 
 |Nom  |String |Nom de la fonction. 
 |Paramètres  |String |Paramètres requis par la fonction.
-|body  |String |(Zéro, un ou plusieurs) `let` instructions suivies d’une expression CSL valide qui est évaluée lors de l’appel de la fonction.
+|Corps  |String |(Zéro, un ou plusieurs) `let` instructions suivies d’une expression CSL valide qui est évaluée lors de l’appel de la fonction.
 |Dossier|String|Dossier utilisé pour la catégorisation des fonctions d’interface utilisateur. Ce paramètre ne modifie pas la manière dont la fonction est appelée.
 |DocString|String|Description de la fonction pour les besoins de l’interface utilisateur.
  
@@ -74,6 +76,6 @@ Répertorie les détails d’une fonction stockée spécifique. Pour obtenir la 
 .show function MyFunction1 
 ```
     
-|Nom |Paramètres |body|Dossier|DocString
+|Nom |Paramètres |Corps|Dossier|DocString
 |---|---|---|---|---
 |MyFunction1 |() | {StormEvents &#124; limite 100}|Mondossier|Fonction de démonstration simple

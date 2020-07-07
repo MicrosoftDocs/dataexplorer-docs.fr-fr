@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: e03e529e0c802f0d424deb4048c5809bbe845ddd
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: ebbd9aa5544d97ef1e980bcb3a53f74dbde66547
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82617406"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967534"
 ---
-# <a name="retention-policy"></a>Stratégie de rétention
+# <a name="retention-policy-command"></a>Commande sur la stratégie de rétention
 
 Cet article décrit les commandes de contrôle utilisées pour la création et la modification de la [stratégie de rétention](retentionpolicy.md).
 
@@ -32,7 +32,7 @@ Cet article décrit les commandes de contrôle utilisées pour la création et l
 
 **Exemple**
 
-Affichez la stratégie de rétention `MyDatabase`pour la base de données nommée :
+Affichez la stratégie de rétention pour la base de données nommée `MyDatabase` :
 
 ```kusto
 .show database MyDatabase policy retention
@@ -53,7 +53,7 @@ La suppression de la stratégie de rétention des données de la table entraîne
 
 **Exemple**
 
-Supprimez la stratégie de rétention `MyTable1`pour la table nommée :
+Supprimez la stratégie de rétention pour la table nommée `MyTable1` :
 
 ```kusto
 .delete table MyTable policy retention
@@ -74,7 +74,7 @@ Supprimez la stratégie de rétention `MyTable1`pour la table nommée :
 
 * `entity_type`: table ou base de données
 * `database_or_table`: `database_name` ou `database_name.table_name` ou `table_name` (dans le contexte de base de données)
-* `table_name`: nom d’une table dans un contexte de base de données.  Caractère générique (`*` est autorisé ici).
+* `table_name`: nom d’une table dans un contexte de base de données.  Caractère générique ( `*` est autorisé ici).
 * `retention_policy` :
 
 ```kusto
@@ -85,7 +85,7 @@ Supprimez la stratégie de rétention `MyTable1`pour la table nommée :
 
 **Exemples**
 
-Affichez la stratégie de rétention `MyDatabase`pour la base de données nommée :
+Affichez la stratégie de rétention pour la base de données nommée `MyDatabase` :
 
 ```kusto
 .show database MyDatabase policy retention

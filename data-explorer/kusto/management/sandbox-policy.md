@@ -1,6 +1,6 @@
 ---
-title: Politique Sandbox - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la politique sandbox dans Azure Data Explorer.
+title: Stratégie sandbox-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit la stratégie sandbox dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 7ac5a92b2084eaf2b447f296be34b2f4e79e1bb7
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 7d56d602f53db29f5ea558acb0e9e4288e5ac6e3
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81520126"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967483"
 ---
-# <a name="sandbox-policy"></a>Politique Sandbox
+# <a name="sandbox-policy-command"></a>commande de stratégie sandbox
 
-Les commandes suivantes permettent la gestion des [bacs à sable](../concepts/sandboxes.md) et des [politiques de bac](sandboxpolicy.md) à sable dans un service moteur Kusto.
+Les commandes suivantes permettent de gérer les [bacs à sable (sandbox)](../concepts/sandboxes.md) et les [stratégies de bac à sable (sandbox)](sandboxpolicy.md) dans un service de moteur Kusto.
 
-Les commandes nécessitent des [autorisations AllDatabasesAdmin.](access-control/role-based-authorization.md)
+Les commandes requièrent des autorisations [AllDatabasesAdmin](access-control/role-based-authorization.md) .
 
-## <a name="sandbox-policy"></a>Politique Sandbox
+## <a name="sandbox-policy"></a>Stratégie de bac à sable
 
-### <a name="show-cluster-policy-sandbox"></a>.afficher la politique de cluster sandbox
+### <a name="show-cluster-policy-sandbox"></a>. afficher le bac à sable de stratégie de cluster
 
-Affiche toutes les stratégies de bac à sable configurées au niveau du cluster.
+Affiche toutes les stratégies sandbox configurées au niveau du cluster.
 
 ```kusto
 .show cluster policy sandbox
 ```
 
-### <a name="alter-cluster-policy-sandbox"></a>.modifier la politique de cluster sandbox
+### <a name="alter-cluster-policy-sandbox"></a>. modification du bac à sable de la stratégie de cluster
 
-Modifie la collecte des politiques sandbox au niveau du cluster.
+Modifie la collection de stratégies de bac à sable (sandbox) au niveau du cluster.
 
 ```kusto
 .alter cluster policy sandbox @'['
@@ -54,9 +54,9 @@ Modifie la collecte des politiques sandbox au niveau du cluster.
 ']'
 ```
 
-### <a name="drop-cluster-policy-sandbox"></a>.drop cluster politique sandbox
+### <a name="drop-cluster-policy-sandbox"></a>. supprimer le bac à sable de stratégie de cluster
 
-Pour abandonner **toutes les** stratégies sandbox, utilisez la commande suivante :
+Pour supprimer **toutes les** stratégies de bac à sable (sandbox), utilisez la commande suivante :
 
 ```kusto
 .delete cluster policy sandbox

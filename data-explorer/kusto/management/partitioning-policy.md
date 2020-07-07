@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/04/2020
-ms.openlocfilehash: 51068a63adb16626c8b2812fde40782d2ac4a8f1
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: 4f5abfd5c7fffd126033baeb2bbb9243b4400f58
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780573"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967398"
 ---
-# <a name="data-partitioning-policy-management"></a>Gestion des stratégies de partitionnement des données
+# <a name="partitioning-policy-command"></a>Commande de stratégie de partitionnement
 
 La stratégie de partitionnement des données est détaillée [ici](../management/partitioningpolicy.md).
 
@@ -27,11 +27,11 @@ La stratégie de partitionnement des données est détaillée [ici](../managemen
 
 La `.show` commande affiche la stratégie de partitionnement appliquée à la table.
 
-### <a name="output"></a>Output
+### <a name="output"></a>Sortie
 
-|Nom de stratégie | Nom de l’entité | Policy | Entités enfants | Type d'entité
+|Nom de stratégie | Nom de l’entité | Stratégie | Entités enfants | Type d'entité
 |---|---|---|---|---
-|DataPartitioning | Nom de la table | Sérialisation JSON de l’objet de stratégie | null | Table de charge de travail
+|DataPartitioning | Nom du tableau | Sérialisation JSON de l’objet de stratégie | null | Table
 
 ## <a name="alter-and-alter-merge-policy"></a>stratégie ALTER et ALTER-Merge
 

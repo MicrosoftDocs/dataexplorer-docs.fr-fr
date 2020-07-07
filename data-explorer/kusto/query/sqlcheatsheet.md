@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/22/2020
-ms.openlocfilehash: 693c639ab3240ac555916a5f6862e7d57dba65e5
-ms.sourcegitcommit: 085e212fe9d497ee6f9f477dd0d5077f7a3e492e
+ms.openlocfilehash: cc00da54cad69c36041e36fd60524c7e4ef0ba35
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85133428"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967143"
 ---
-# <a name="sql-to-kusto-query-translation"></a>Traduction de requêtes SQL vers Kusto
+# <a name="sql-to-kusto-cheat-sheet"></a>Aide-mémoire SQL vers Kusto
 
 Kusto prend en charge un sous-ensemble du langage SQL. Consultez la liste des [problèmes connus liés à SQL](../api/tds/sqlknownissues.md) pour obtenir la liste complète des fonctionnalités non prises en charge.
 

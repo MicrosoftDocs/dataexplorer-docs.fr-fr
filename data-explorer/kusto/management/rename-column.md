@@ -1,6 +1,6 @@
 ---
-title: renommer la colonne - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la colonne de renommant dans Azure Data Explorer.
+title: renommer la colonne-Azure Explorateur de données | Microsoft Docs
+description: Cet article explique comment renommer une colonne dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/11/2020
-ms.openlocfilehash: 02e692e01bb8eb0abd49c9673b000b722734db90
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 25d0ff106d406c59c24d26542a8dad1e4992e311
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81520500"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967381"
 ---
-# <a name="rename-column"></a>renommer la colonne
+# <a name="rename-column"></a>. renommer la colonne
 
-Change le nom d’une colonne de table existante.
-Pour changer le nom de plusieurs colonnes, voir [ci-dessous](#rename-columns).
+Modifie le nom d’une colonne de table existante.
+Pour modifier le nom de plusieurs colonnes, voir [ci-dessous](#rename-columns).
 
 **Syntaxe**
 
-`.rename``column` [*DatabaseName* `.`] *TableName* `.` *ColumnExistingName* `to` *ColumnNewName*
+`.rename``column`[*DatabaseName* `.` ] *TableName* `.` *ColumnExistingName* `to` *ColumnNewName*
 
-Où *DatabaseName*, *TableName*, *ColumnExistingName*, et *ColumnNewName* sont les noms des entités respectives et suivent les [règles de nommage d’identification](../query/schema-entities/entity-names.md).
+Où *DatabaseName*, *TableName*, *ColumnExistingName*et *ColumnNewName* sont les noms des entités respectives et suivent les [règles d’attribution de noms des identificateurs](../query/schema-entities/entity-names.md).
 
 ## <a name="rename-columns"></a>renommer des colonnes
 
-Modifie les noms de plusieurs colonnes existantes dans le même tableau.
+Modifie les noms de plusieurs colonnes existantes dans la même table.
 
 **Syntaxe**
 
-`.rename``columns` *Col1* `=` [*DatabaseName* `.` [*TableName* `.` *Col2*]] `,` ...
+`.rename``columns` *Col1* `=` [*DatabaseName* `.` [*TableName* `.` *col2*]] `,` ...
 
-La commande peut être utilisée pour échanger les noms de deux colonnes (chacune est rebaptisée comme le nom de l’autre).)
+La commande peut être utilisée pour permuter les noms de deux colonnes (chacune est renommée en son nom).

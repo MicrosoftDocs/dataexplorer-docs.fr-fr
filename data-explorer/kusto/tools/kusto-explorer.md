@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 05/19/2020
-ms.openlocfilehash: 15c9ff61067f25f8a0f63ce4078b158277740db3
-ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
-ms.translationtype: HT
+ms.openlocfilehash: 6c36ace478e9bc026c028bfb6393bcfdf4eebdfa
+ms.sourcegitcommit: 0d15903613ad6466d49888ea4dff7bab32dc5b23
+ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/26/2020
-ms.locfileid: "83863503"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "86013920"
 ---
 # <a name="getting-started-with-kustoexplorer"></a>Prise en main de Kusto. Explorer
 
@@ -26,9 +26,9 @@ Avec Kusto. Explorer, vous pouvez :
 
 ## <a name="installing-kustoexplorer"></a>Installation de Kusto. Explorer
 
-* Installer l' [outil Kusto. Explorer](https://aka.ms/ke)
+* Installez l' [outil Kusto. Explorer](https://aka.ms/ke).
 
-* Au lieu de cela, accédez à votre cluster Kusto avec votre navigateur à l’adresse suivante : [https://<your_cluster>. Kusto.Windows.net](https://your_cluster.kusto.windows.net). Remplacez <your_cluster> par le nom de votre cluster Azure Explorateur de données.
+* Vous pouvez accéder à votre cluster Kusto à l’aide de votre navigateur à l’adresse `https://<your_cluster>.kusto.windows.net` . (Remplacez `<your_cluster>` par le nom de votre cluster Azure Explorateur de données.)
 
 ### <a name="using-chrome-and-kustoexplorer"></a>Utilisation de chrome et Kusto. Explorer
 
@@ -56,7 +56,7 @@ Le panneau de menu Kusto. Explorer comprend les onglets suivants :
 * [Connexions](#connections-tab)
 * [Afficher](#view-tab)
 * [outils](#tools-tab)
-* [Monitoring](#monitoring-tab)
+* [Surveillance](#monitoring-tab)
 * [Gestion](#management-tab)
 * [Aide](#help-tab)
 
@@ -223,7 +223,7 @@ L’onglet dossier de démarrage affiche les fonctions les plus récemment utili
 ||---------*Analyse*---------|
 |Rapports analytiques| Ouvre un tableau de bord avec plusieurs rapports prédéfinis pour l’analyse des données|
 ||---------*Traduire*---------|
-|Requête à Power BI| Convertit une requête en un format adapté à l’utilisation de dans Power BI|
+|Requête vers Power BI| Convertit une requête en un format adapté à l’utilisation de dans Power BI|
 ||---------*Options*---------|
 |Réinitialiser les options| Définit les valeurs par défaut des paramètres d’application|
 |Options| Ouvre un outil permettant de configurer les paramètres de l’application. En savoir plus sur les [options de Kusto. Explorer](kusto-explorer-options.md).|
@@ -319,10 +319,10 @@ Pour modifier le modèle de couleur de sortie, ou désactiver ce comportement, d
 
 En savoir plus sur l’utilisation de Kusto. Explorer :
 
-* [Utilisation de Kusto. Explorer](kusto-explorer-using.md)
+* [Utilisation de Kusto.Explorer](kusto-explorer-using.md)
 * [Raccourcis clavier de Kusto. Explorer](kusto-explorer-shortcuts.md)
-* [Options de Kusto. Explorer](kusto-explorer-options.md)
-* [Résolution des problèmes de Kusto. Explorer](kusto-explorer-troubleshooting.md)
+* [Options de Kusto.Explorer](kusto-explorer-options.md)
+* [Résolution des problèmes de Kusto.Explorer](kusto-explorer-troubleshooting.md)
 
 En savoir plus sur les outils et utilitaires Kusto. Explorer :
 * [Analyseur de code Kusto. Explorer](kusto-explorer-code-analyzer.md)

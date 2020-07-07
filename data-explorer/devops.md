@@ -8,12 +8,12 @@ ms.reviewer: jasonh
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/05/2019
-ms.openlocfilehash: cf6724a0f363eda510b5aa9cde195ec4fd3db65b
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 7d0c45a587a396da934bcb3465d60e101d0150a0
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373864"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967160"
 ---
 # <a name="azure-devops-task-for-azure-data-explorer"></a>Azure DevOps Task pour Azure Data Explorer
 
@@ -42,7 +42,7 @@ Créez les dossiers exemples suivants (*Fonctions*, *Stratégies*, *Tables*) dan
 ![Créez les dossiers.](media/devops/create-folders.png)
 
 > [!TIP]
-> Lorsque vous créez votre propre workflow, nous vous recommandons de rendre votre code idempotent. Par exemple, utilisez [.create-merge table](kusto/management/create-table-command.md#create-merge-table) plutôt que [.create table](kusto/management/create-table-command.md) et la fonction [.create-or-alter](kusto/management/create-alter-function.md) plutôt que [.create](kusto/management/create-function.md).
+> Lorsque vous créez votre propre workflow, nous vous recommandons de rendre votre code idempotent. Par exemple, utilisez [.create-merge table](kusto/management/create-merge-table-command.md) plutôt que [.create table](kusto/management/create-table-command.md) et la fonction [.create-or-alter](kusto/management/create-alter-function.md) plutôt que [.create](kusto/management/create-function.md).
 
 ## <a name="create-a-release-pipeline"></a>Créer un pipeline de mise en production
 

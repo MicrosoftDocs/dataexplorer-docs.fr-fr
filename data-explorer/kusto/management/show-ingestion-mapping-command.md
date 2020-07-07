@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/04/2020
-ms.openlocfilehash: 3c19426410046d7ff2357b4967333db8b039d9e6
-ms.sourcegitcommit: f7101c6b41ec250d05f4cb6092e2939958b37b40
+ms.openlocfilehash: 4a225c7d9cb1c5f99434c4595cbd798d020cfd9f
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/03/2020
-ms.locfileid: "84328991"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967432"
 ---
-# <a name="show-ingestion-mappings"></a>. afficher les mappages d’ingestion
+# <a name="show-ingestion-mapping"></a>.show ingestion mapping
 
 Affichez les mappages d’ingestion (tout ou partie du nom spécifiés).
 
@@ -25,7 +25,7 @@ Affichez les mappages d’ingestion (tout ou partie du nom spécifiés).
 
 Afficher tous les mappages d’ingestion à partir de tous les types de mappages :
 
-* `.show``table` *TableName*`ingestion`  `mapping`
+* `.show` `table` *TableName* `ingestion`  `mapping`
  
 **Exemple** 
  
@@ -39,6 +39,6 @@ Afficher tous les mappages d’ingestion à partir de tous les types de mappages
 
 **Exemple de sortie**
 
-| Nom     | Genre | Mappage     |
+| Nom     | Type | Mappage     |
 |----------|------|-------------|
 | mapping1 | CSV  | `[{"Name":"rownumber","DataType":"int","CsvDataType":null,"Ordinal":0,"ConstValue":null},{"Name":"rowguid","DataType":"string","CsvDataType":null,"Ordinal":1,"ConstValue":null}]` |

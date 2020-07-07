@@ -1,5 +1,5 @@
 ---
-title: Utilisation de Kusto. Explorer
+title: Utilisation de Kusto.Explorer
 description: Découvrez comment utiliser Kusto. Explorer
 author: orspod
 ms.author: orspodek
@@ -7,14 +7,14 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/19/2020
-ms.openlocfilehash: 98a42fd72a28089e6add53aed5346ce2d0e5d993
-ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
+ms.openlocfilehash: fc8e34be3d61c690bc94795e6bd37f2559d247e0
+ms.sourcegitcommit: 0d15903613ad6466d49888ea4dff7bab32dc5b23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/26/2020
-ms.locfileid: "83866133"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "86013899"
 ---
-# <a name="using-kustoexplorer"></a>Utilisation de Kusto. Explorer
+# <a name="using-kustoexplorer"></a>Utilisation de Kusto.Explorer
 
 Kusto. Explorer est une application de bureau qui vous permet d’explorer vos données à l’aide du langage de requête Kusto dans une interface utilisateur facile à utiliser. Cet article explique comment utiliser les modes de recherche et de requête, partager vos requêtes et gérer les clusters, les bases de données et les tables.
 
@@ -164,9 +164,9 @@ https://help.kusto.windows.net/Samples?web=0&query=H4sIAAAAAAAEAAsuyS%2fKdS1LzSs
 Vous pouvez utiliser des requêtes paramétrée avec des liens approfondis.
 
 1. Créer une requête à former en tant que requête paramétrée (par exemple, `KustoLogs | where Timestamp > ago({Period}) | count` ) 
-1. Fournissez un paramètre pour chaque paramètre de requête dans l’URI dans le cas suivant :
+1. Fournissez un paramètre pour chaque paramètre de requête dans l’URI, par exemple :
 
-https://mycluster.kusto.windows.net/MyDatabase?web=0&query=KustoLogs+%7c+where+Timestamp+>+ago({Period})+%7c+count&Period=1h
+   `https://mycluster.kusto.windows.net/MyDatabase?web=0&query=KustoLogs+%7c+where+Timestamp+>+ago({Period})+%7c+count&Period=1h`
 
 ### <a name="getting-shorter-links"></a>Obtenir des liens plus courts
 
@@ -240,8 +240,8 @@ Cliquez avec le bouton droit sur l’entité cible dans le [panneau connexions](
 ## <a name="next-steps"></a>Étapes suivantes
 
 * [Raccourcis clavier de Kusto. Explorer](kusto-explorer-shortcuts.md)
-* [Options de Kusto. Explorer](kusto-explorer-options.md)
-* [Résolution des problèmes de Kusto. Explorer](kusto-explorer-troubleshooting.md)
+* [Options de Kusto.Explorer](kusto-explorer-options.md)
+* [Résolution des problèmes de Kusto.Explorer](kusto-explorer-troubleshooting.md)
 
 En savoir plus sur les outils et utilitaires Kusto. Explorer :
 * [Analyseur de code Kusto. Explorer](kusto-explorer-code-analyzer.md)

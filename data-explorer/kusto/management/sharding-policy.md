@@ -1,6 +1,6 @@
 ---
-title: Gestion des politiques de sharding - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la gestion des politiques Sharding dans Azure Data Explorer.
+title: Gestion de la stratégie de partitionnement-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit la gestion de la stratégie partitionnement dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7770e0834e4b00f42158732e667d41eb636cec5b
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: fb4ff4ade5e3fb0e2f01de0adc74aecd27381a3d
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81520041"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967466"
 ---
-# <a name="sharding-policy-management"></a>Gestion des politiques enhardissante
+# <a name="sharding-policy-command"></a>Commande de stratégie de sharding
 
-## <a name="show-policy"></a>montrer la politique
+## <a name="show-policy"></a>afficher la stratégie
 
 ```kusto
 .show table [table_name] policy sharding
@@ -27,59 +27,59 @@ ms.locfileid: "81520041"
 .show database [database_name] policy sharding
 ```
 
-`Show`affiche la politique d’enhardisage de la base de données ou de la table. Il affiche toutes les stratégies du type d’entité donnée (base de données ou tableau) si le nom donné est ''.
+`Show`la stratégie affiche la stratégie partitionnement pour la base de données ou la table. Elle affiche toutes les stratégies du type d’entité donné (base de données ou table) si le nom donné est' * '.
 
-### <a name="output"></a>Output
+### <a name="output"></a>Sortie
 
 |Nom de stratégie | Nom de l’entité | Stratégie | Entités enfants | Type d'entité
 |---|---|---|---|---
-|ExtentsShardingPolicy (en) | base de données / nom de table | json format chaîne qui représente la politique | liste des tableaux (pour une base de données)|base de données / table
+|ExtentsShardingPolicy | nom de la base de données/table | chaîne de format JSON qui représente la stratégie. | Liste des tables (pour une base de données)|base de données/table
 
-## <a name="alter-policy"></a>modifier la politique
+## <a name="alter-policy"></a>modifier la stratégie
 
 ### <a name="examples"></a>Exemples
 
-Les exemples suivants renvoient la politique d’enhardisement des étendues mises à jour pour l’entité, avec une base de données ou un tableau spécifié comme nom qualifié, comme leur sortie.
+Les exemples suivants retournent la stratégie partitionnement des extensions mises à jour pour l’entité, avec la base de données ou la table spécifiée comme nom qualifié, comme sortie.
 
-#### <a name="setting-all-properties-of-the-policy-explicitly-at-table-level"></a>Définir explicitement toutes les propriétés de la politique au niveau de la table
+#### <a name="setting-all-properties-of-the-policy-explicitly-at-table-level"></a>Définition explicite de toutes les propriétés de la stratégie au niveau de la table
 
 ```kusto
 .alter table [table_name] policy sharding 
 @'{ "MaxRowCount": 750000, "MaxExtentSizeInMb": 1024, "MaxOriginalSizeInMb": 2048}'
 ```
 
-#### <a name="setting-all-properties-of-the-policy-explicitly-at-database-level"></a>Définir explicitement toutes les propriétés de la stratégie au niveau de la base de données
+#### <a name="setting-all-properties-of-the-policy-explicitly-at-database-level"></a>Définition explicite de toutes les propriétés de la stratégie au niveau de la base de données
 
 ```kusto
 .alter database [database_name] policy sharding
 @'{ "MaxRowCount": 750000, "MaxExtentSizeInMb": 1024, "MaxOriginalSizeInMb": 2048}'
 ```
 
-#### <a name="setting-the-default-sharding-policy-at-database-level"></a>Définir la politique d’enhardis par *défaut* au niveau de la base de données
+#### <a name="setting-the-default-sharding-policy-at-database-level"></a>Définition de la stratégie partitionnement *par défaut* au niveau de la base de données
 
 ```kusto
 .alter database [database_name] policy sharding @'{}'
 ```
 
-#### <a name="altering-a-single-property-of-the-policy-at-database-level"></a>Modification d’une propriété unique de la politique au niveau de la base de données 
+#### <a name="altering-a-single-property-of-the-policy-at-database-level"></a>Modification d’une propriété unique de la stratégie au niveau de la base de données 
 
-Gardez toutes les autres propriétés telles qu’elle est.
+Conservez toutes les autres propriétés en l’or.
 
 ```kusto
 .alter-merge database [database_name] policy sharding
 @'{ "MaxExtentSizeInMb": 1024}'
 ```
 
-#### <a name="altering-a-single-property-of-the-policy-at-table-level"></a>Modification d’une propriété unique de la politique au niveau de la table
+#### <a name="altering-a-single-property-of-the-policy-at-table-level"></a>Modification d’une propriété unique de la stratégie au niveau de la table
 
-Conserver toutes les autres propriétés telles qu’est
+Conserver toutes les autres propriétés en l’or
 
 ```kusto
 .alter-merge table [table_name] policy sharding
 @'{ "MaxRowCount": 750000}'
 ```
 
-## <a name="delete-policy"></a>supprimer la politique
+## <a name="delete-policy"></a>supprimer la stratégie
 
 ```kusto
 .delete table [table_name] policy sharding
@@ -87,4 +87,4 @@ Conserver toutes les autres propriétés telles qu’est
 .delete database [database_name] policy sharding
 ```
 
-La commande supprime la stratégie d’enhardisement actuelle pour l’entité donnée.
+La commande supprime la stratégie partitionnement actuelle pour l’entité donnée.

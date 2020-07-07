@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 9ef6f2cd2359e35e90c3903738adf82728e9da40
-ms.sourcegitcommit: a562ce255ac706ca1ca77d272a97b5975235729d
+ms.openlocfilehash: 4fd1e9e1c67e03a09bf817dc977ee833d3de789c
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/26/2020
-ms.locfileid: "83867067"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967415"
 ---
-# <a name="merge-policy-management"></a>Gestion de la stratégie de fusion
+# <a name="merge-policy-command"></a>Commande de stratégie de fusion
 
 ## <a name="show-policy"></a>afficher la stratégie
 
@@ -32,7 +32,7 @@ ms.locfileid: "83867067"
 Affiche la stratégie de fusion actuelle pour la base de données ou la table.
 Affiche toutes les stratégies du type d’entité donné (base de données ou table) si le nom donné est « * ».
 
-### <a name="output"></a>Output
+### <a name="output"></a>Sortie
 
 |Nom de la stratégie | Nom de l’entité | Stratégie | Entités enfants | Type d’entité
 |---|---|---|---|---

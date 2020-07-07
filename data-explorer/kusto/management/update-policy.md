@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 5974909b6f5e40a977f935319972e7477a2a5755
-ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
+ms.openlocfilehash: 6bb4a99b9fe226ce84bd02ee5ba04fc7a82fcd4c
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84294370"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967279"
 ---
-# <a name="update-policy"></a>Mettre à jour la stratégie
+# <a name="update-policy-command"></a>Commande de stratégie de mise à jour
 
 La [stratégie de mise à jour](updatepolicy.md) est un objet de stratégie au niveau de la table qui exécute automatiquement une requête, puis ingère les résultats lorsque les données sont ingérées dans une autre table.
 
@@ -25,7 +25,7 @@ Cette commande renvoie la stratégie de mise à jour de la table spécifiée ou 
 
 **Syntaxe**
 
-* `.show``table` *TableName* TableName `policy``update`
+* `.show` `table` *TableName* `policy` `update`
 * `.show``table` *DatabaseName*, `.` *TableName* table `policy``update`
 * `.show` `table` `*` `policy` `update`
 
@@ -148,7 +148,7 @@ Supprime la stratégie de mise à jour de la table spécifiée.
 
 **Syntaxe**
 
-* `.delete``table` *TableName* TableName `policy``update`
+* `.delete` `table` *TableName* `policy` `update`
 * `.delete``table` *DatabaseName*, `.` *TableName* table `policy``update`
 
 **Retourne**

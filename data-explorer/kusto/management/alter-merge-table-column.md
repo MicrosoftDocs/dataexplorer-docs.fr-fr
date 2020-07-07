@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7dd36181be1140d3960369b1c8a5284ed55e48f5
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 9f71a46e6c747b7f9d9f6a3ba2d2f8a308635128
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82616488"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967211"
 ---
-# <a name="alter-merge-table-column-docstrings"></a>ALTER-Merge, colonne de table-docstrings
+# <a name="alter-merge-table-column-docstrings"></a>.alter-merge table column-docstrings
 
 Définit la `docstring` propriété d’une ou plusieurs colonnes de la table spécifiée. Les colonnes qui ne sont pas définies explicitement **conservent** leur valeur existante pour cette propriété, si elles en ont une.
 
@@ -23,7 +23,7 @@ Pour ALTER TABLE Column-DocString, voir [ci-dessous](#alter-table-column-docstri
 
 **Syntaxe**
 
-`.alter-merge``table` *TableName* `:` *Docstring1* *Col1* `:` *Docstring2*col1 Docstring1 [`,` col2 Docstring2]... *Col2* `column-docstring` `(``)`
+`.alter-merge``table` *TableName* `column-docstring` TableName `(` *Col1* `:` *Docstring1* [ `,` *col2* `:` *Docstring2*]...`)`
 
 **Exemple** 
 
@@ -37,7 +37,7 @@ Définit la `docstring` propriété d’une ou plusieurs colonnes de la table sp
 
 **Syntaxe**
 
-`.alter``table` *TableName* `:` *Docstring1* *Col1* `:` *Docstring2*col1 Docstring1 [`,` col2 Docstring2]... *Col2* `column-docstring` `(``)`
+`.alter``table` *TableName* `column-docstring` TableName `(` *Col1* `:` *Docstring1* [ `,` *col2* `:` *Docstring2*]...`)`
 
 **Exemple** 
 
