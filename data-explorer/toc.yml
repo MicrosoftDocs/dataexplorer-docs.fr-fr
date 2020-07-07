@@ -295,7 +295,7 @@
           href: spark-connector.md
         - name: Cosmos DB
           href: 'https://github.com/Azure/azure-kusto-labs/tree/master/cosmosdb-adx-integration'
-        - name: Se connecter à partir de Databricks à l’aide de Python
+        - name: Se connecter depuis Azure Databricks
           href: connect-from-databricks.md
         - name: Analyser des données dans Jupyter Notebook et Kqlmagic
           href: kqlmagic.md
@@ -1163,25 +1163,25 @@
               href: kusto/query/geo-polygon-to-s2cells-function.md
         - name: Analytique des utilisateurs
           items:
-            - name: Plug-ins d’analytique des utilisateurs
+            - name: Vue d’ensemble des plug-ins d’analytique des utilisateurs
               href: ./kusto/query/useranalytics.md
-            - name: 'Nombre d’utilisateurs actifs, plug-in'
+            - name: active_users_count plugin
               href: ./kusto/query/active-users-count-plugin.md
-            - name: 'Métriques des nombres d’activités, plug-in'
+            - name: plug-in activity_counts_metrics
               href: ./kusto/query/activity-counts-metrics-plugin.md
-            - name: 'Engagement des activités, plug-in'
+            - name: plug-in activity_engagement
               href: ./kusto/query/activity-engagement-plugin.md
-            - name: 'Métriques des activités, plug-in'
+            - name: plug-in activity_metrics
               href: ./kusto/query/activity-metrics-plugin.md
-            - name: 'Métriques des activités, plug-in - Nouveau'
+            - name: plug-in new_activity_metrics
               href: ./kusto/query/new-activity-metrics-plugin.md
-            - name: 'Réalisation de séquence d’entonnoir, plug-in'
+            - name: plug-in funnel_sequence_completion
               href: ./kusto/query/funnel-sequence-completion-plugin.md
-            - name: 'Séquence d’entonnoir, plug-in'
+            - name: plug-in funnel_sequence
               href: ./kusto/query/funnel-sequence-plugin.md
-            - name: 'Nombre de sessions, plug-in'
+            - name: plug-in session_count
               href: ./kusto/query/session-count-plugin.md
-            - name: 'Nombre de fenêtres glissantes, plug-in'
+            - name: sliding_window_counts plugin
               href: ./kusto/query/sliding-window-counts-plugin.md
         - name: Documentation de référence sur le langage de requête Kusto
           items:
@@ -1221,34 +1221,33 @@
     - name: Gestion
       href: ./kusto/management/index.md
       items:
-        - name: Vue d’ensemble
+        - name: Vue d’ensemble de la gestion (commandes de contrôle)
           href: ./kusto/management/index.md
           items:
-            - name: Meilleures pratiques
+            - name: Bonnes pratiques pour la conception de schéma
               href: ./kusto/management/best-practices.md
         - name: schéma
-          href: ./kusto/management/schema.md
           items:
-            - name: Bases de données
+            - name: Gestion des bases de données
               href: ./kusto/management/databases.md
               items:
                 - name: .show databases
                   href: ./kusto/management/show-databases.md
                 - name: .show database
                   href: ./kusto/management/show-database.md
-                - name: .show cluster database
+                - name: .show cluster databases
                   href: ./kusto/management/show-cluster-database.md
-                - name: .alter database
+                - name: .alter database prettyname
                   href: ./kusto/management/alter-database.md
-                - name: .show database schema
+                - name: .show database(s) schema
                   href: ./kusto/management/show-schema-database.md
                 - name: .execute database script
                   href: ./kusto/management/execute-database-script.md
             - name: Tables
               items:
-                - name: Vue d’ensemble des tables
+                - name: Gestion des tables
                   href: ./kusto/management/tables.md
-                - name: .alter merge table
+                - name: .alter-merge table
                   href: ./kusto/management/alter-merge-table-command.md
                 - name: .alter table
                   href: ./kusto/management/alter-table-command.md
@@ -1268,13 +1267,15 @@
                   href: ./kusto/management/create-table-command.md
                 - name: .create tables
                   href: ./kusto/management/create-tables-command.md
+                - name: .create-merge table
+                  href: ./kusto/management/create-merge-table-command.md
                 - name: .create-merge tables
                   href: ./kusto/management/create-merge-tables-command.md
                 - name: .drop table(s)
                   href: ./kusto/management/drop-table-command.md
-                - name: .rename table
+                - name: .rename table(s)
                   href: ./kusto/management/rename-table-command.md
-                - name: .show table
+                - name: .show tables
                   href: ./kusto/management/show-tables-command.md
                 - name: .undo drop table
                   href: ./kusto/management/undo-drop-table-command.md
@@ -1292,7 +1293,7 @@
                   href: ./kusto/management/external-tables-azurestorage-azuredatalake.md
             - name: Colonnes
               items:
-                - name: Vue d’ensemble des colonnes
+                - name: Gestion des colonnes
                   href: ./kusto/management/columns.md
                 - name: .alter column
                   href: ./kusto/management/alter-column.md
@@ -1302,17 +1303,17 @@
                   href: ./kusto/management/drop-column.md
                 - name: .rename column(s)
                   href: ./kusto/management/rename-column.md
-            - name: Mappages
+            - name: Mappages des données
               href: ./kusto/management/mappings.md
             - name: Fonctions
               items:
-                - name: Vue d’ensemble des fonctions
+                - name: Vue d’ensemble de la gestion des fonctions stockées
                   href: ./kusto/management/functions.md
                 - name: .alter function
                   href: ./kusto/management/alter-function.md
-                - name: .alter docstring function
+                - name: .alter function docstring
                   href: ./kusto/management/alter-docstring-function.md
-                - name: .alter folder function
+                - name: .alter function folder
                   href: ./kusto/management/alter-folder-function.md
                 - name: .create function
                   href: ./kusto/management/create-function.md
@@ -1320,98 +1321,96 @@
                   href: ./kusto/management/create-alter-function.md
                 - name: .drop function
                   href: ./kusto/management/drop-function.md
-                - name: .show function
+                - name: .show functions
                   href: ./kusto/management/show-function.md
         - name: Stratégies
           items:
-            - name: Vue d’ensemble des stratégies
-              href: ./kusto/management/policies.md
-            - name: Stratégie de cache
-              items:
-                - name: Stratégie de cache
-                  href: ./kusto/management/cachepolicy.md
-                - name: Commande de stratégie de cache
-                  href: ./kusto/management/cache-policy.md
-            - name: Stratégie sur le moment de l’ingestion
-              items:
-                - name: Stratégie sur le moment de l’ingestion
-                  href: ./kusto/management/ingestiontimepolicy.md
-                - name: Commande sur le moment de l’ingestion
-                  href: ./kusto/management/ingestiontime-policy.md
-            - name: Stratégie de rétention
-              items:
-                - name: Stratégie de rétention
-                  href: ./kusto/management/retentionpolicy.md
-                - name: Commande sur la stratégie de rétention
-                  href: ./kusto/management/retention-policy.md
-            - name: Stratégie RowLevelSecurity
-              items:
-                - name: Stratégie de sécurité au niveau des lignes
-                  href: ./kusto/management/rowlevelsecuritypolicy.md
-                - name: Commande de stratégie row_level_security
-                  href: ./kusto/management/row-level-security-policy.md
-            - name: Stratégie RowOrder
-              items:
-                - name: Stratégie sur l’ordre des lignes
-                  href: ./kusto/management/roworderpolicy.md
-                - name: Commande RowOrder
-                  href: ./kusto/management/roworder-policy.md
-            - name: Mettre à jour la stratégie
-              items:
-                - name: Mettre à jour la stratégie
-                  href: ./kusto/management/updatepolicy.md
-                - name: Commande de stratégie de mise à jour
-                  href: ./kusto/management/update-policy.md
-            - name: Stratégie de traitement par lot
+            - name: Traitement par lot de l’ingestion
               items:
                 - name: Stratégie de traitement par lot de l’ingestion
                   href: ./kusto/management/batchingpolicy.md
                 - name: Commande de stratégie de traitement par lot de l’ingestion
                   href: ./kusto/management/batching-policy.md
-            - name: Stratégie de fusion
+            - name: Cache
+              items:
+                - name: Stratégie de cache (cache chaud et froid)
+                  href: ./kusto/management/cachepolicy.md
+                - name: Commande de stratégie de cache
+                  href: ./kusto/management/cache-policy.md
+            - name: Légende
+              href: ./kusto/management/calloutpolicy.md
+            - name: Capacité
+              items:
+                - name: Stratégie de capacité
+                  href: ./kusto/management/capacitypolicy.md
+                - name: Commandes de stratégie de capacité
+                  href: ./kusto/management/capacity-policy.md
+            - name: Moment de l’ingestion
+              items:
+                - name: Stratégie sur le moment de l’ingestion
+                  href: ./kusto/management/ingestiontimepolicy.md
+                - name: Commande sur le moment de l’ingestion
+                  href: ./kusto/management/ingestiontime-policy.md
+            - name: Fusionner
               items:
                 - name: Stratégie de fusion
                   href: ./kusto/management/mergepolicy.md
                 - name: Commande de stratégie de fusion
                   href: ./kusto/management/merge-policy.md
-            - name: Stratégie de partitionnement
+            - name: Partitionnement
               items:
                 - name: Stratégie de partitionnement
                   href: ./kusto/management/partitioningpolicy.md
                 - name: Commande de stratégie de partitionnement
                   href: ./kusto/management/partitioning-policy.md
-            - name: Stratégie RestrictedViewAccess
+            - name: Rétention
               items:
-                - name: Stratégie RestrictedViewAccess
+                - name: Stratégie de rétention
+                  href: ./kusto/management/retentionpolicy.md
+                - name: Commande sur la stratégie de rétention
+                  href: ./kusto/management/retention-policy.md
+            - name: Accès avec vue limitée
+              items:
+                - name: Stratégie d’accès avec vue limitée
                   href: ./kusto/management/restrictedviewaccesspolicy.md
                 - name: Commande de stratégie restricted_view_access
                   href: ./kusto/management/restrictedviewaccess-policy.md
-            - name: Stratégie de bac à sable
+            - name: Sécurité au niveau des lignes
+              items:
+                - name: Stratégie de sécurité au niveau des lignes
+                  href: ./kusto/management/rowlevelsecuritypolicy.md
+                - name: Commande de stratégie row_level_security
+                  href: ./kusto/management/row-level-security-policy.md
+            - name: Roworder
+              items:
+                - name: Stratégie Roworder
+                  href: ./kusto/management/roworderpolicy.md
+                - name: Commande de stratégie roworder
+                  href: ./kusto/management/roworder-policy.md
+            - name: Bac à sable
               items:
                 - name: Stratégie de bac à sable
                   href: ./kusto/management/sandboxpolicy.md
                 - name: Commande de stratégie de bac à sable
                   href: ./kusto/management/sandbox-policy.md
-            - name: Stratégie de partitionnement
+            - name: Partitionnement
               items:
                 - name: Stratégie de partitionnement
                   href: ./kusto/management/shardingpolicy.md
                 - name: Commande de stratégie de sharding
                   href: ./kusto/management/sharding-policy.md
-            - name: Stratégie d’ingestion en streaming
+            - name: Ingestion de streaming
               items:
-                - name: Stratégie d’ingestion en streaming
+                - name: Stratégie d’ingestion de streaming
                   href: ./kusto/management/streamingingestionpolicy.md
                 - name: Commande de stratégie streamingingestion
                   href: ./kusto/management/streamingingestion-policy.md
-            - name: Stratégie de légende
-              href: ./kusto/management/calloutpolicy.md
-            - name: Stratégie de capacité
+            - name: Update
               items:
-                - name: Stratégie de capacité
-                  href: ./kusto/management/capacitypolicy.md
-                - name: Commande de stratégie de capacité
-                  href: ./kusto/management/capacity-policy.md
+                - name: Mettre à jour la stratégie
+                  href: ./kusto/management/updatepolicy.md
+                - name: Commande de stratégie de mise à jour
+                  href: ./kusto/management/update-policy.md
         - name: Rôles de sécurité
           href: ./kusto/management/security-roles.md
         - name: Ingestion de données
@@ -1561,7 +1560,7 @@
                   href: ./kusto/api/netfx/kusto-ingest-client-errors.md
                 - name: État de l’opération
                   href: ./kusto/api/netfx/kusto-ingest-client-status.md
-                - name: Bonnes pratiques
+                - name: Meilleures pratiques
                   href: ./kusto/api/netfx/kusto-ingest-best-practices.md
                 - name: Exemples de code
                   href: ./kusto/api/netfx/kusto-ingest-client-examples.md

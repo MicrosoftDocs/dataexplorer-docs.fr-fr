@@ -8,12 +8,11 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1277de1be577de7f9f6d4adf1b74460eac4a8c42
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
-ms.translationtype: HT
+ms.openlocfilehash: b42cf002382cf4f7b79f7f734b6c7137f42fcbc8
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81490342"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967024"
 ---
 # <a name="management-control-commands-overview"></a>Vue d’ensemble de la gestion (commandes de contrôle)
 
@@ -41,6 +40,13 @@ Il existe plusieurs scénarios pris en charge :
 Notez que dans tous les cas, la combinaison complète forme techniquement une commande de contrôle, et non une requête, donc le texte de la demande doit commencer par un point (`.`), et la demande doit être envoyée au point de terminaison de gestion du service.
 
 Notez également que des [instructions de requête](../query/statements.md) apparaissent dans la partie requête du texte (elles ne peuvent pas précéder la commande elle-même).
+
+>[!NOTE]
+> N’exécutez pas les opérations [command-then-query] trop fréquemment.
+> *command-then-query* envoie le jeu de résultats de la commande de contrôle et applique des filtres/agrégations à celui-ci.
+>  * Par exemple : `.show ... | where ... | summarize ...`
+>   * Lors de l’exécution de quelque chose comme : `.show cluster extents | count` (emphase sur `| count`), Kusto prépare d’abord une table de données qui contient tous les détails de toutes les étendues du cluster. Le système envoie ensuite cette table uniquement en mémoire au moteur Kusto pour effectuer le compte. Le système fonctionne en réalité dans un chemin non optimisé pour vous donner une réponse très simple.
+
 
 **AdminThenQuery** est indiqué de l’une des deux manières suivantes :
 
@@ -72,3 +78,5 @@ $command_results | extend LastColumn=useless(TableName)
 let text="Hello, World!";
 print str=Text
 ```
+
+
