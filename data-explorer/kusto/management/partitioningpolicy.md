@@ -8,12 +8,11 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/10/2020
-ms.openlocfilehash: 433d8786ad3664d02387efacd7dcd3865b4deb13
-ms.sourcegitcommit: ddafa58deb79417bd6f36e8bb3ad106d375b63e1
-ms.translationtype: MT
+ms.openlocfilehash: ca9d455bb1ca5a8736c279388d848ab1347c11e6
+ms.sourcegitcommit: d6f35df833d5b4f2829a8924fffac1d0b49ce1c2
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85448500"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86058828"
 ---
 # <a name="data-partitioning-policy"></a>Stratégie de partitionnement des données
 
@@ -173,7 +172,7 @@ Les propriétés suivantes peuvent être définies dans le cadre de la stratégi
 * **MaxRowCountPerOperation**:
   * Cible maximale pour la somme du nombre de lignes des étendues sources d’une opération de partitionnement de données unique.
   * Cette propriété est facultative. Sa valeur par défaut est `0` , avec une cible par défaut de 5 millions enregistrements.
-    * Vous pouvez envisager de définir une valeur inférieure à 5 millions. vous constatez que les opérations de partitionnement consomment une très grande quantité de mémoire/processeur, par opération (voir #monitoring).
+    * Vous pouvez définir une valeur inférieure à 5 millions si vous constatez que les opérations de partitionnement consomment une grande quantité de mémoire ou de processeur, par opération. Pour plus d’informations, consultez [Monitoring](#monitoring).
 
 ## <a name="notes"></a>Notes
 
@@ -196,7 +195,7 @@ Utilisez la commande [. afficher les diagnostics](../management/diagnostics.md#s
 La sortie comprend les éléments suivants :
 
   * `MinPartitioningPercentageInSingleTable`: Pourcentage minimal de données partitionnées dans toutes les tables qui ont une stratégie de partitionnement de données dans le cluster.
-    * Si ce pourcentage reste constamment inférieur à 90%, évaluez la capacité de partitionnement du cluster (voir [capacité](partitioningpolicy.md#capacity)).
+    * Si ce pourcentage reste constamment inférieur à 90%, évaluez la [capacité](partitioningpolicy.md#capacity)de partitionnement du cluster.
   * `TableWithMinPartitioningPercentage`: Nom qualifié complet de la table dont le pourcentage de partitionnement est indiqué ci-dessus.
 
 Utilisez les [commandes. Show](commands.md) pour surveiller les commandes de partitionnement et leur utilisation des ressources. Par exemple :
@@ -222,7 +221,7 @@ Utilisez les [commandes. Show](commands.md) pour surveiller les commandes de par
 * Si une clé de partition de hachage comprend des valeurs qui sont bien plus fréquentes que d’autres, par exemple une chaîne vide ou une valeur générique (telle que `null` ou `N/A` ), ou qu’elles représentent une entité (telle que `tenant_id` ) qui est plus répandue dans le jeu de données, cela peut contribuer à la distribution déséquilibrée des données sur les nœuds du cluster et nuire aux performances des requêtes
 * Si une clé de partition DateTime de plage uniforme a un pourcentage suffisamment élevé de valeurs qui sont « éloignées » de la majorité des valeurs de la colonne, par exemple, les valeurs DateTime du passé ou futur distant, cela peut augmenter la surcharge du processus de partitionnement des données et mener à de nombreuses petites extensions dont le cluster devra effectuer le suivi.
 
-Dans ces deux cas, vous devez soit « corriger » les données, soit filtrer les enregistrements non pertinents dans les données avant ou au moment de l’ingestion, afin de réduire la charge du partitionnement des données sur le cluster. Par exemple, utilisez une [stratégie de mise à jour](updatepolicy.md)).
+Dans ces deux cas, vous devez soit « corriger » les données, soit filtrer les enregistrements non pertinents dans les données avant ou au moment de l’ingestion, afin de réduire la charge du partitionnement des données sur le cluster. Par exemple, utilisez une [stratégie de mise à jour](updatepolicy.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
 
