@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: 53c3caecc373a646162016fc1717ce1b0b0b85d1
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 9cea718db64c3da998df8b832d886ebd87d0f241
+ms.sourcegitcommit: d6f35df833d5b4f2829a8924fffac1d0b49ce1c2
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81490070"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86058760"
 ---
 # <a name="connection-strings"></a>Chaînes de connexion
 
@@ -27,3 +27,6 @@ Il existe plusieurs formats de chaîne de connexion :
 * Les [chaînes de connexion de stockage](./storage.md) expliquent comment faire pointer Kusto vers un service de stockage externe, comme Stockage Blob Azure ou Azure Data Lake Storage.
 * Chaînes de connexion SQL : utilisées par le [plug-in sql_request](../../query/sqlrequestplugin.md) Kusto pour envoyer des requêtes au service Azure DB, et par la commande [Exporter dans SQL](../../management/data-export/export-data-to-sql.md).  
   Ces chaînes de connexion adhèrent à la spécification des [chaînes de connexion SqlClient](https://docs.microsoft.com/dotnet/framework/data/adonet/connection-string-syntax#sqlclient-connection-strings).
+
+> [!NOTE]
+> Certaines chaînes de connexion peuvent référencer des principaux de sécurité. Consultez [Principaux et fournisseurs d’identité](../../management/access-control/principals-and-identity-providers.md) pour savoir comment spécifier des principaux de sécurité dans des chaînes de connexion.
