@@ -10,11 +10,12 @@ ms.topic: reference
 ms.date: 07/02/2020
 ms.openlocfilehash: 6b633358713b0ff48d14fc9c5ca2a907bad0afab
 ms.sourcegitcommit: d6f35df833d5b4f2829a8924fffac1d0b49ce1c2
+ms.translationtype: MT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 07/07/2020
 ms.locfileid: "86060659"
 ---
-# <a name="merge-extents"></a>. étendues de fusion
+# <a name="merge-extents"></a>.merge extents
 
 Cette commande fusionne les étendues indiquées par leurs ID dans la table spécifiée. 
 
@@ -22,7 +23,7 @@ Cette commande fusionne les étendues indiquées par leurs ID dans la table spé
 > Les partitions de données sont des **Extensions** appelées dans Kusto, et toutes les commandes utilisent « extent » ou « extents » comme synonyme.
 > Pour plus d’informations sur les extensions, consultez [extents (Data partitions) Overview](extents-overview.md).
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>Syntaxe
 
 `.merge``[async | dryrun]` *TableName* `(` *guid1* [ `,` *GUID2* ...] `)``[with(rebuild=true)]`
 

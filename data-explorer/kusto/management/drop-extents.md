@@ -10,11 +10,12 @@ ms.topic: reference
 ms.date: 07/02/2020
 ms.openlocfilehash: dfa462ca82cd5e94adff77b3893b3b02d60c6cdc
 ms.sourcegitcommit: d6f35df833d5b4f2829a8924fffac1d0b49ce1c2
+ms.translationtype: MT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 07/07/2020
 ms.locfileid: "86060638"
 ---
-# <a name="drop-extents"></a>. extensions Drop
+# <a name="drop-extents"></a>.drop extents
 
 Supprime les étendues d’une base de données ou d’une table spécifiée.
 
@@ -33,7 +34,7 @@ Un jeu d’enregistrements avec une colonne appelée « ExtentId » est retour
 
 Si `whatif` est utilisé, les signale uniquement, sans suppression.
 
-### <a name="syntax"></a>Syntax
+### <a name="syntax"></a>Syntaxe
 
 `.drop``extents`[ `whatif` ] <| *requête*
 
@@ -43,7 +44,7 @@ Nécessite une [autorisation d’administrateur de table](../management/access-c
 
 Nécessite une [autorisation d’administrateur de base de données](../management/access-control/role-based-authorization.md) si le nom de table n’est pas spécifié.
 
-### <a name="syntax"></a>Syntax
+### <a name="syntax"></a>Syntaxe
 
 `.drop``extent` *ExtentId* [ `from` *TableName*]
 
@@ -53,7 +54,7 @@ Nécessite une [autorisation d’administrateur de table](../management/access-c
 
 Nécessite une [autorisation d’administrateur de base de données](../management/access-control/role-based-authorization.md) si le nom de table n’est pas spécifié.
 
-### <a name="syntax"></a>Syntax
+### <a name="syntax"></a>Syntaxe
 
 `.drop``extents` `(` *ExtentId1* `,` ... *ExtentIdN* `)` [ `from` *TableName*]
 
@@ -65,7 +66,7 @@ Nécessite une [autorisation d’administrateur de table](../management/access-c
 
 Nécessite une [autorisation d’administrateur de base de données](../management/access-control/role-based-authorization.md) si le nom de table n’est pas spécifié.
 
-### <a name="syntax"></a>Syntax
+### <a name="syntax"></a>Syntaxe
 
 `.drop``extents`[ `older` *N* ( `days`  |  `hours` )] `from` (*TableName*  |  `all` `tables` ) [ `trim` `by` ( `extentsize`  |  `datasize` ) *n* () `MB`  |  `GB`  |  `bytes` ] [ `limit` *LimitCount*]
 

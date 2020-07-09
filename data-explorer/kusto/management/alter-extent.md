@@ -10,6 +10,7 @@ ms.topic: reference
 ms.date: 07/02/2020
 ms.openlocfilehash: 00c4cfbb4b6415afcd68e8e41864ca4a68cc097e
 ms.sourcegitcommit: d6f35df833d5b4f2829a8924fffac1d0b49ce1c2
+ms.translationtype: MT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 07/07/2020
 ms.locfileid: "86060615"
@@ -26,7 +27,7 @@ Nécessite une [autorisation d’administrateur de table](../management/access-c
 > Les partitions de données sont des **Extensions** appelées dans Kusto, et toutes les commandes utilisent « extent » ou « extents » comme synonyme.
 > Pour plus d’informations sur les extensions, consultez [extents (Data partitions) Overview](extents-overview.md).
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>Syntaxe
 
 `.alter`[ `async` ] `extent` `tags` `(` '*: Étiquette1*' [ `,` '*tag2*' `,` ... `,` ' *TagN*'] `)`  <|  *requête*
 

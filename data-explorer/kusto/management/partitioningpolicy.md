@@ -8,11 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/10/2020
-ms.openlocfilehash: ca9d455bb1ca5a8736c279388d848ab1347c11e6
-ms.sourcegitcommit: d6f35df833d5b4f2829a8924fffac1d0b49ce1c2
+ms.openlocfilehash: 7f299a730b451f608e0d2c81fc78565d515fc029
+ms.sourcegitcommit: bcb87ed043aca7c322792c3a03ba0508026136b4
+ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86058828"
+ms.lasthandoff: 07/08/2020
+ms.locfileid: "86127302"
 ---
 # <a name="data-partitioning-policy"></a>Stratégie de partitionnement des données
 
@@ -21,7 +22,7 @@ La stratégie de partitionnement définit si et comment les [étendues (données
 L’objectif principal de la stratégie est d’améliorer les performances des requêtes qui sont connues pour limiter le jeu de données des valeurs dans les colonnes partitionnées, ou agréger/joindre sur une colonne de chaîne de cardinalité élevée. La stratégie peut également entraîner une meilleure compression des données.
 
 > [!CAUTION]
-> Aucune limite codée en dur n’est définie sur le nombre de tables sur lesquelles la stratégie peut être définie. Toutefois, chaque table supplémentaire ajoute une surcharge au processus de partitionnement des données en arrière-plan qui s’exécute sur les nœuds du cluster. Cela peut entraîner l’utilisation de plus de ressources de clusters. Pour plus d’informations, consultez [surveillance](#monitoring) et [capacité](#capacity).
+> Aucune limite codée en dur n’est définie sur le nombre de tables sur lesquelles la stratégie peut être définie. Toutefois, chaque table supplémentaire ajoute une surcharge au processus de partitionnement des données en arrière-plan qui s’exécute sur les nœuds du cluster. Cela peut entraîner l’utilisation de plus de ressources de cluster. Pour plus d’informations, consultez [surveillance](#monitoring) et [capacité](#capacity).
 
 ## <a name="partition-keys"></a>Clés de partition
 
@@ -34,7 +35,8 @@ Les types de clés de partition suivants sont pris en charge.
 
 ### <a name="hash-partition-key"></a>Clé de partition de hachage
 
-L’application d’une clé de partition de hachage sur une `string` colonne de type-dans une table est appropriée lorsque la majorité des requêtes utilisent des filtres d’égalité ( `==` , `in()` ) ou lorsqu’ils agrègent/regroupent sur une `string` colonne de *grande dimension* (cardinalité de 10 millions ou supérieure), telle qu’un `application_ID` , un `tenant_ID` ou un `user_ID` .
+> [!NOTE]
+> L’application d’une clé de partition de hachage sur une `string` colonne de type-dans une table est appropriée **uniquement** lorsque la majorité des requêtes utilisent des filtres d’égalité ( `==` , `in()` ) ou lorsqu’ils agrègent/joignent une jointure sur une `string` colonne de *grande dimension* (cardinalité de 10 millions ou supérieure), telle qu’un `application_ID` , un `tenant_ID` ou un `user_ID` .
 
 * Une fonction de hachage-modulo est utilisée pour partitionner les données.
 * Toutes les étendues homogènes (partitionnées) appartenant à la même partition sont affectées au même nœud de données.
@@ -77,7 +79,10 @@ Elle utilise la `XxHash64` fonction de hachage, avec un `MaxPartitionCount` de `
 
 ### <a name="uniform-range-datetime-partition-key"></a>Clé de partition DateTime de plage uniforme
 
-L’application d’une clé de partition DateTime de plage uniforme sur une `datetime` colonne typée dans une table est appropriée lorsque les données ingérées dans la table sont peu susceptibles d’être classées en fonction de cette colonne. Il peut être utile de remanier les données entre des étendues afin que chaque extension se termine par des enregistrements d’une plage de temps limitée. La remélange des résultats dans les filtres sur la `datetime` colonne est plus efficace au moment de la requête.
+> [!NOTE] 
+> L’application d’une clé de partition DateTime de plage uniforme sur une `datetime` colonne de type dans une table est appropriée **uniquement** lorsque les données ingérées dans la table sont peu susceptibles d’être classées en fonction de cette colonne.
+
+Dans ce cas, il peut être utile de remanier les données entre des étendues afin que chaque extension se termine par des enregistrements d’une plage de temps limitée. Cela entraînera l’efficacité des filtres sur cette `datetime` colonne au moment de la requête.
 
 * La fonction de partition utilisée est [bin_at ()](../query/binatfunction.md) et n’est pas personnalisable.
 
