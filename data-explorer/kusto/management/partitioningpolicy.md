@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/10/2020
-ms.openlocfilehash: 7f299a730b451f608e0d2c81fc78565d515fc029
-ms.sourcegitcommit: bcb87ed043aca7c322792c3a03ba0508026136b4
+ms.openlocfilehash: 0bf2960d1bf585efc6b356a1b7075a27ca6616da
+ms.sourcegitcommit: b286703209f1b657ac3d81b01686940f58e5e145
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "86127302"
+ms.lasthandoff: 07/09/2020
+ms.locfileid: "86188368"
 ---
 # <a name="data-partitioning-policy"></a>Stratégie de partitionnement des données
 
@@ -30,13 +30,15 @@ Les types de clés de partition suivants sont pris en charge.
 
 |Type                                                   |Type de colonne |Propriétés de la partition                    |Valeur de partition                                        |
 |-------------------------------------------------------|------------|----------------------------------------|----------------------|
-|[Code de hachage](#hash-partition-key)                            |`string`    |`Function`, `MaxPartitionCount`, `Seed` | `Function`(`ColumnName`, `MaxPartitionCount`, `Seed`) |
+|[Hachage](#hash-partition-key)                            |`string`    |`Function`, `MaxPartitionCount`, `Seed` | `Function`(`ColumnName`, `MaxPartitionCount`, `Seed`) |
 |[Plage uniforme](#uniform-range-datetime-partition-key) |`datetime`  |`RangeSize`, `Reference`                | `bin_at`(`ColumnName`, `RangeSize`, `Reference`)      |
 
 ### <a name="hash-partition-key"></a>Clé de partition de hachage
 
 > [!NOTE]
-> L’application d’une clé de partition de hachage sur une `string` colonne de type-dans une table est appropriée **uniquement** lorsque la majorité des requêtes utilisent des filtres d’égalité ( `==` , `in()` ) ou lorsqu’ils agrègent/joignent une jointure sur une `string` colonne de *grande dimension* (cardinalité de 10 millions ou supérieure), telle qu’un `application_ID` , un `tenant_ID` ou un `user_ID` .
+> Appliquez une clé de partition de hachage à une `string` colonne de type dans une table uniquement dans les cas suivants :
+> * Si la majorité des requêtes utilisent des filtres d’égalité ( `==` , `in()` ).
+> * La plupart des requêtes sont agrégées/jointes sur une `string` colonne de *grande dimension* (cardinalité de 10 millions ou supérieure), telle qu’un `application_ID` , un `tenant_ID` ou un `user_ID` .
 
 * Une fonction de hachage-modulo est utilisée pour partitionner les données.
 * Toutes les étendues homogènes (partitionnées) appartenant à la même partition sont affectées au même nœud de données.
@@ -80,11 +82,11 @@ Elle utilise la `XxHash64` fonction de hachage, avec un `MaxPartitionCount` de `
 ### <a name="uniform-range-datetime-partition-key"></a>Clé de partition DateTime de plage uniforme
 
 > [!NOTE] 
-> L’application d’une clé de partition DateTime de plage uniforme sur une `datetime` colonne de type dans une table est appropriée **uniquement** lorsque les données ingérées dans la table sont peu susceptibles d’être classées en fonction de cette colonne.
+> Appliquez uniquement une clé de partition DateTime de plage uniforme sur une `datetime` colonne de type dans une table lorsque les données ingérées dans la table sont peu susceptibles d’être classées en fonction de cette colonne.
 
 Dans ce cas, il peut être utile de remanier les données entre des étendues afin que chaque extension se termine par des enregistrements d’une plage de temps limitée. Cela entraînera l’efficacité des filtres sur cette `datetime` colonne au moment de la requête.
 
-* La fonction de partition utilisée est [bin_at ()](../query/binatfunction.md) et n’est pas personnalisable.
+La fonction de partition utilisée est [bin_at ()](../query/binatfunction.md) et n’est pas personnalisable.
 
 #### <a name="partition-properties"></a>Propriétés de la partition
 
@@ -179,7 +181,7 @@ Les propriétés suivantes peuvent être définies dans le cadre de la stratégi
   * Cette propriété est facultative. Sa valeur par défaut est `0` , avec une cible par défaut de 5 millions enregistrements.
     * Vous pouvez définir une valeur inférieure à 5 millions si vous constatez que les opérations de partitionnement consomment une grande quantité de mémoire ou de processeur, par opération. Pour plus d’informations, consultez [Monitoring](#monitoring).
 
-## <a name="notes"></a>Notes
+## <a name="notes"></a>Remarques
 
 ### <a name="the-data-partitioning-process"></a>Processus de partitionnement des données
 

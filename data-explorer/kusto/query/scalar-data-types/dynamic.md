@@ -4,16 +4,16 @@ description: Cet article décrit le type de données dynamiques dans Azure Explo
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 03/12/2020
-ms.openlocfilehash: 8a979d91b008be7a93626aa7f58865cb5466076b
-ms.sourcegitcommit: c3bbb9a6bfd7c5506f05afb4968fdc2043a9fbbf
+ms.date: 07/09/2020
+ms.openlocfilehash: 1ac715f06945e3db99de1a00b09237ae6f6e241d
+ms.sourcegitcommit: b286703209f1b657ac3d81b01686940f58e5e145
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/24/2020
-ms.locfileid: "85332571"
+ms.lasthandoff: 07/09/2020
+ms.locfileid: "86188555"
 ---
 # <a name="the-dynamic-data-type"></a>Le type de données Dynamic
 
@@ -51,13 +51,14 @@ print o=dynamic({"a":123, "b":"hello", "c":[1,2,3], "d":{}})
 | extend a=o.a, b=o.b, c=o.c, d=o.d
 ```
 
-Pour des raisons pratiques, `dynamic` les littéraux qui apparaissent dans le texte de la requête peuvent également inclure d’autres littéraux Kusto (tels que des `datetime` littéraux, des `timespan` littéraux, etc.) Cette extension sur JSON n’est pas disponible lors de l’analyse de chaînes (par exemple, lors de l’utilisation de la `parse_json` fonction ou de la réception de données), mais elle vous permet d’effectuer cette opération :
+Pour des raisons pratiques, `dynamic` les littéraux qui apparaissent dans le texte de la requête peuvent également inclure d’autres littéraux Kusto avec les types : `datetime` , `timespan` ,, `real` `long` , `guid` , `bool` et `dynamic` .
+Cette extension sur JSON n’est pas disponible lors de l’analyse de chaînes (par exemple, lors de l’utilisation de la `parse_json` fonction ou de la réception de données), mais elle vous permet d’effectuer cette opération :
 
 ```kusto
 print d=dynamic({"a": datetime(1970-05-11)})
 ```
 
-Pour analyser une `string` valeur qui suit les règles d’encodage JSON dans une `dynamic` valeur, utilisez la `parse_json` fonction. Par exemple :
+Pour analyser une `string` valeur qui suit les règles d’encodage JSON dans une `dynamic` valeur, utilisez la `parse_json` fonction. Par exemple :
 
 * `parse_json('[43, 21, 65]')` : tableau de nombres
 * `parse_json('{"name":"Alan", "age":21, "address":{"street":432,"postcode":"JLK32P"}}')`-dictionnaire
@@ -166,7 +167,7 @@ En outre, il existe plusieurs fonctions d’agrégation qui créent des `dynamic
 |---|---|
 | *value* `in` *array*| True s’il existe un élément de *array* qui est égal à *value*<br/>`where City in ('London', 'Paris', 'Rome')`
 | *value* `!in` *array*| True s’il n’existe aucun élément de *array* qui est égal à *value*
-|[`array_length(`ensemble`)`](../arraylengthfunction.md)| Null si ce n’est pas un tableau
+|[`array_length(`tableau`)`](../arraylengthfunction.md)| Null si ce n’est pas un tableau
 |[`bag_keys(`conteneur propriétés`)`](../bagkeysfunction.md)| Énumère toutes les clés racines dans un objet de jeu de propriétés dynamique.
 |[`bag_merge(`BAG1,..., bagN`)`](../bag-merge-function.md)| Fusionne des conteneurs de propriétés dynamiques dans un conteneur de propriétés dynamique avec toutes les propriétés fusionnées.
 |[`extractjson(`chemin d’accès, objet`)`](../extractjsonfunction.md)|Utilise le chemin pour accéder à l’objet.

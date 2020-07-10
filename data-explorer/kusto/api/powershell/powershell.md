@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/29/2019
-ms.openlocfilehash: b454b9453c7afd0835041ac78d13318de73432e2
-ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
+ms.openlocfilehash: 6804b71ff3985de17460dddfa60f081f3bb910c0
+ms.sourcegitcommit: b286703209f1b657ac3d81b01686940f58e5e145
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83382063"
+ms.lasthandoff: 07/09/2020
+ms.locfileid: "86188419"
 ---
 # <a name="using-the-net-client-libraries-from-powershell"></a>Utilisation des bibliothèques clientes .NET à partir de PowerShell
 
@@ -24,9 +24,10 @@ Les scripts PowerShell peuvent utiliser des bibliothèques clientes Azure Explor
 Pour commencer à utiliser les bibliothèques clientes Azure Explorateur de données .NET à l’aide de PowerShell.
 
 1. Téléchargez le [ `Microsoft.Azure.Kusto.Tools` package NuGet](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Tools/).
+    * Si vous utilisez PowerShell 7 (ou version ultérieure), téléchargez le [ `Microsoft.Azure.Kusto.Tools.NETCore` package NuGet](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Tools.NETCore/).
 1. Extrayez le contenu du répertoire « tools » dans le package (à l’aide d’un outil d’archivage comme `7-zip` ).
 1. Appelez `[System.Reflection.Assembly]::LoadFrom("path")` à partir de PowerShell pour charger la bibliothèque requise. 
-    - Le `path` paramètre de la commande doit indiquer l’emplacement des fichiers extraits.
+    * Le `path` paramètre de la commande doit indiquer l’emplacement des fichiers extraits.
 1. Une fois tous les assemblys .NET dépendants chargés :
    1. Créez une chaîne de connexion Kusto.
    1. Instanciez un *fournisseur de requêtes* ou un fournisseur d' *administration*.
@@ -65,6 +66,10 @@ $kcsb = New-Object Kusto.Data.KustoConnectionStringBuilder ($clusterUrl, $databa
 #     $applicationKey = "application key goes here"
 #     $authority = "authority goes here"
 #     $kcsb = $kcsb.WithAadApplicationKeyAuthentication($applicationId, $applicationKey, $authority)
+#
+#   NOTE: if you're running with Powershell 7 (or above) and the .NET Core library,
+#         AAD user authentication with prompt will not work, and you should choose
+#         a different authentication method.
 ```
 
 ### <a name="example-running-an-admin-command"></a>Exemple : exécution d’une commande d’administration

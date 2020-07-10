@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 03/23/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 8898f772af37e86ec33bff66e43779dfbaf4c053
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 2060d2996338cf1eee33b5905e9929c46040afa9
+ms.sourcegitcommit: b286703209f1b657ac3d81b01686940f58e5e145
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83370686"
+ms.lasthandoff: 07/09/2020
+ms.locfileid: "86188589"
 ---
 # <a name="tutorial"></a>Didacticiel
 
@@ -138,7 +138,7 @@ StormEvents
 | project StartTime, EndTime, Duration, EventType, State
 ```
 
-|StartTime|EndTime|Duration|Type d’événement|État|
+|StartTime|EndTime|Durée|Type d’événement|État|
 |---|---|---|---|---|
 |2007-09-18 20:00:00.0000000|2007-09-19 18:00:00.0000000|22:00:00|Pluie lourde|Floride|
 |2007-09-20 21:57:00.0000000|2007-09-20 22:05:00.0000000|00:08:00|Tornade|Floride|
@@ -450,7 +450,8 @@ LightningStorms
 | distinct State
 ```
 
-> Conseil : dans le client Kusto, ne placez pas de lignes vides entre les parties de ce. Exécutez-la en totalité.
+> [!TIP]
+> Dans le client Kusto Explorer, ne placez pas de lignes vides entre les parties de ce. Exécutez-la en totalité.
 
 ## <a name="combining-data-from-several-databases-in-a-query"></a>Combinaison de données de plusieurs bases de données dans une requête
 
@@ -486,7 +487,8 @@ Tous les éléments ci-dessus supposent que les deux bases de données se trouve
 Logs | join cluster("TelemetryCluster").database("Telemetry").Metrics on Request MachineId | ...
 ```
 
-> Remarque : lorsque le cluster est spécifié, la base de données est obligatoire
+> [!NOTE]
+> Lorsque le cluster est spécifié, la base de données est obligatoire
 
 ::: zone-end
 
