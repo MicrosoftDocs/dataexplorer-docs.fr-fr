@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/30/2019
-ms.openlocfilehash: 66118ad7b91d1bcfdd52679d4bfa3dc5ebc4c281
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: bda9afdda9d922df6188a3b9170aa4d4926f8ca3
+ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780233"
+ms.lasthandoff: 07/13/2020
+ms.locfileid: "86280420"
 ---
 # <a name="streaming-ingestion-preview"></a>Ingestion de streaming (préversion)
 
@@ -71,7 +71,7 @@ Il existe deux types d’ingestion de streaming pris en charge :
 
 ## <a name="limitations"></a>Limites
 
-* Les [curseurs de base de données](kusto/management/databasecursor.md) ne sont pas pris en charge pour la base de données si une [stratégie d’ingestion en streaming](kusto/management/streamingingestionpolicy.md) est définie et activée pour la base de données elle-même ou l’une de ses tables.
+* Les [curseurs de base de données](kusto/management/databasecursor.md) ne sont pas pris en charge pour une base de données si une [stratégie d’ingestion en streaming](kusto/management/streamingingestionpolicy.md) est définie et activée pour la base de données elle-même ou l’une de ses tables. Dans ce cas, l’exportation continue n’est pas prise en charge et la stratégie de mise à jour est limitée à une requête de la table source uniquement.
 * Le [mappage de données](kusto/management/mappings.md) doit être [précréé](kusto/management/create-ingestion-mapping-command.md) pour être utilisée dans une ingestion en streaming. Les demandes d’ingestion en streaming individuelles ne prennent pas en charge les mappages de données inline.
 * La capacité et les performances d’ingestion de streaming évoluent avec l’augmentation des tailles de cluster et de machine virtuelle. Le nombre de demandes d’ingestion simultanées est limité à six par cœur. Par exemple, pour les références SKU 16 cœurs telles que D14 et L16, la charge maximale prise en charge est de 96 demandes d’ingestion simultanées. Pour les références SKU 2 cœurs telles que D11, la charge maximale prise en charge est de 12 demandes d’ingestion simultanées.
 * La taille limite des données par demande d’ingestion en streaming est de 4 Mo.

@@ -7,12 +7,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/20/2019
-ms.openlocfilehash: 3daf9f5af46338a450a1f1a4e9c80a6c83841343
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: aa5aa5c2c370cc56487a242b9c13ef4692295cdc
+ms.sourcegitcommit: 67cb5aabd8100bf3f41e70fc23c338b998b5227e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83374021"
+ms.lasthandoff: 07/09/2020
+ms.locfileid: "86208431"
 ---
 # <a name="secure-your-cluster-in-azure-data-explorer---azure-portal"></a>Sécuriser votre cluster dans Azure Data Explorer – Portail Azure
 
@@ -32,6 +32,10 @@ Les paramètres de sécurité de votre cluster vous permettent d’activer le ch
  
 > [!NOTE]
 > Sélectionnez **Désactivé** pour désactiver le chiffrement une fois qu’il a été activé.
+
+## <a name="azure-data-explorer-stores-data-within-a-region"></a>Azure Data Explorer stocke les données dans une région
+
+Chaque cluster Azure Data Explorer s’exécute sur des ressources dédiées dans une seule région. Toutes les données sont stockées dans la région. 
 
 ## <a name="next-steps"></a>Étapes suivantes
 

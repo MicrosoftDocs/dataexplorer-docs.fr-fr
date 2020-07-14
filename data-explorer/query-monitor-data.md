@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/28/2020
-ms.openlocfilehash: 983a9af42772209df2f48c1b1480e8ff0f34b5d6
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 1edca77125f46c59402edfde251262cebe5c1b70
+ms.sourcegitcommit: 284152eba9ee52e06d710cc13200a80e9cbd0a8b
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494193"
+ms.lasthandoff: 07/13/2020
+ms.locfileid: "86291591"
 ---
 # <a name="query-data-in-azure-monitor-using-azure-data-explorer-preview"></a>Interroger des données dans Azure Monitor avec Azure Data Explorer (préversion)
 
@@ -88,6 +88,20 @@ union <ADX table>, cluster(CL1).database(<workspace-name>).<table name>
    [ ![Requête croisée à partir du proxy Azure Data Explorer](media/adx-proxy/cross-query-adx-proxy.png)](media/adx-proxy/cross-query-adx-proxy.png#lightbox)
 
 L’utilisation de l’[`join`opérateur](kusto/query/joinoperator.md), au lieu de l’union, peut nécessiter un [`hint`](kusto/query/joinoperator.md#join-hints) pour l’exécuter sur un cluster natif Azure Data Explorer (et non sur le proxy). 
+
+## <a name="function-supportability"></a>Prise en charge des fonctions
+Le cluster de proxy Azure Data Explorer prend en charge les fonctions d’Application Insights et de Log Analytics.
+Cela permet aux requêtes interclusters de référencer directement une fonction tabulaire Azure Monitor.
+Les commandes suivantes sont prises en charge par le proxy :
+
+```kusto
+.show functions
+.show function {FunctionName}
+.show database {DataBaseName} schema as json
+```
+
+> [!NOTE]
+> Azure Monitor prend en charge uniquement les fonctions tabulaires. Les fonctions tabulaires ne prennent pas en charge les paramètres.
 
 ## <a name="additional-syntax-examples"></a>Exemples de syntaxe supplémentaire
 

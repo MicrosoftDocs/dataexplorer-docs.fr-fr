@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 03/29/2020
-ms.openlocfilehash: 26b1633a13aa6ffbd98109e94113679620845160
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: 98cfbf8b196d0496b4c7e86b03d6d2787ba6919f
+ms.sourcegitcommit: b286703209f1b657ac3d81b01686940f58e5e145
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264507"
+ms.lasthandoff: 07/09/2020
+ms.locfileid: "86188453"
 ---
 # <a name="what-is-one-click-ingestion"></a>Présentation de l’ingestion en un clic
 
@@ -35,17 +35,6 @@ L’ingestion en un clic est particulièrement utile lorsque vous procédez à l
 * Si vous n’avez pas d’abonnement Azure, créez un [compte Azure gratuit](https://azure.microsoft.com/free/) avant de commencer.
 * Créez [un cluster et une base de données Azure Data Explorer](create-cluster-database-portal.md).
 * Connectez-vous à [l’interface utilisateur web Azure Data Explorer](https://dataexplorer.azure.com/) et [ajoutez une connexion à votre cluster](web-query-data.md#add-clusters).
-
-## <a name="file-formats"></a>Formats de fichiers
-
-L’ingestion en un clic prend en charge l’ingestion d’une nouvelle table à partir de données sources, dans un des formats suivants :
-* JSON
-* CSV
-* TSV
-* SCSV
-* SOHSV
-* TSVE
-* PSV
 
 ## <a name="ingest-new-data"></a>Ingérer de nouvelles données
 
@@ -70,22 +59,34 @@ L’Assistant Ingestion en un clic vous guide tout au long du processus d’inge
 > * Ingestion dans [une nouvelle table à partir d’un conteneur au format CSV](one-click-ingestion-new-table.md)
 > * Ingestion dans une [table existante à partir d’un fichier local au format JSON](one-click-ingestion-existing-table.md) 
 
-* L’Assistant vous guide dans les options suivantes :
-    * Ingérer dans une [table existante](one-click-ingestion-existing-table.md)
-    * Ingérer dans une [nouvelle table](one-click-ingestion-new-table.md)
-    * Ingérer des données depuis un :
+L’Assistant vous guide dans les options suivantes :
+   * Ingérer dans une [table existante](one-click-ingestion-existing-table.md)
+   * Ingérer dans une [nouvelle table](one-click-ingestion-new-table.md)
+   * Ingérer des données depuis un :
       * Stockage d'objets blob
       * [Fichier local](one-click-ingestion-existing-table.md)
       * [Conteneur](one-click-ingestion-new-table.md)
 
+
 ### <a name="schema-mapping"></a>Mappage de schéma
 
-* Le service génère automatiquement les propriétés de schéma et d’ingestion, que vous pouvez changer. Vous pouvez utiliser une structure de mappage existante ou en créer une, selon que l’ingestion est destinée à une table existante ou nouvelle.
+Le service génère automatiquement les propriétés de schéma et d’ingestion, que vous pouvez changer. Vous pouvez utiliser une structure de mappage existante ou en créer une, selon que l’ingestion est destinée à une table existante ou nouvelle.
 
-* Sous l’onglet **Schéma**, vous pouvez effectuer les actions suivantes :
-    * Vérifier le type de compression généré automatiquement
-    * Choisir le [format de vos données](#file-formats) Les formats différents vous permettront d’apporter des modifications supplémentaires.
-      
+Sous l’onglet **Schéma**, effectuez les actions suivantes :
+   * Vérifier le type de compression généré automatiquement
+   * Choisir le [format de vos données](#file-formats) Les formats différents vous permettront d’apporter des modifications supplémentaires.
+
+#### <a name="file-formats"></a>Formats de fichiers
+
+L’ingestion en un clic prend en charge l’ingestion d’une nouvelle table à partir de données sources, dans un des formats suivants :
+* JSON
+* CSV
+* TSV
+* SCSV
+* SOHSV
+* TSVE
+* PSV
+
 ### <a name="editor-window"></a>Fenêtre Éditeur
 
 Dans la fenêtre **Éditeur**, vous pouvez ajuster les colonnes de la table de données, si nécessaire. 
@@ -102,13 +103,12 @@ Dans la fenêtre **Éditeur**, vous pouvez ajuster les colonnes de la table de d
 
 Une fois que vous avez terminé le mappage de schéma et les manipulations de colonnes, l’Assistant Ingestion démarre le processus d’ingestion de données. 
 
-* Lors de l’ingestion de données à partir de sources **autres qu’un conteneur** :
-    * L’ingestion prend effet immédiatement.
+* Quand l’ingestion de données provient de sources **autres que des conteneurs**, l’ingestion prend effet immédiatement.
 
 * Si la source de données est un **conteneur** :
     * La [stratégie de traitement par lot](kusto/management/batchingpolicy.md) d’Azure Data Explorer agrège vos données. 
     * Après l’ingestion, vous pouvez télécharger le rapport d’ingestion et passer en revue les performances de chaque objet blob qui a été traité. 
-    * Vous pouvez choisir de **créer une ingestion continue** et de configurer l’[ingestion continue à l’aide d’Event Grid](one-click-ingestion-new-table.md#continuous-ingestion---container-only).
+    * Vous pouvez sélectionner **Créer une ingestion continue** et configurer l’[ingestion continue à l’aide d’Event Grid](one-click-ingestion-new-table.md#create-continuous-ingestion-for-container).
  
 ### <a name="initial-data-exploration"></a>Exploration initiale des données
    

@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 03/29/2020
-ms.openlocfilehash: 4a390e0501d12b6d70d924e9a5c5576e77cec435
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: 2c7cd53053582c02f610f364eb36e87ecdf5b03a
+ms.sourcegitcommit: d6f35df833d5b4f2829a8924fffac1d0b49ce1c2
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85265306"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86058856"
 ---
 # <a name="use-one-click-ingestion-to-ingest-csv-data-from-a-container-to-a-new-table-in-azure-data-explorer"></a>Utiliser l’ingestion en un clic pour ingérer des données CSV à partir d’un conteneur dans une nouvelle table d’Azure Data Explorer
 
@@ -36,25 +36,25 @@ Pour plus d’informations sur l’ingestion de données dans une table existant
     > [!NOTE]
     > Les noms de table doivent comprendre entre 1 et 1024 caractères.
 
-:::image type="content" source="media/one-click-ingestion-new-table/create-new-table.png" alt-text="Créer une table à l’aide de l’ingestion en un clic":::
+    :::image type="content" source="media/one-click-ingestion-new-table/create-new-table.png" alt-text="Créer une table à l’aide de l’ingestion en un clic":::
 
 ## <a name="select-an-ingestion-type"></a>Sélectionner un type d’ingestion
 
-* Sous **Type d’ingestion**, effectuez les étapes suivantes :
+Sous **Type d’ingestion**, effectuez les étapes suivantes :
    
   1. Sélectionnez **à partir d’un conteneur**. 
   1. Dans le champ **Lien vers le stockage**, ajoutez l’[URL SAS](/azure/vs-azure-tools-storage-explorer-blobs#get-the-sas-for-a-blob-container) du conteneur, puis entrez éventuellement la taille de l’échantillon.
 
       :::image type="content" source="media/one-click-ingestion-new-table/from-container.png" alt-text="Ingestion en un clic à partir d’un conteneur":::
 
- > [!TIP] 
- > Pour effectuer une ingestion **à partir d’un fichier**, consultez [Utiliser l’ingestion en un clic pour ingérer des données JSON à partir d’un fichier local dans une table existante d’Azure Data Explorer](one-click-ingestion-existing-table.md#select-an-ingestion-type).
+     > [!TIP] 
+     > Pour effectuer une ingestion **à partir d’un fichier**, consultez [Utiliser l’ingestion en un clic pour ingérer des données JSON à partir d’un fichier local dans une table existante d’Azure Data Explorer](one-click-ingestion-existing-table.md#select-an-ingestion-type).
 
-* Un échantillon des données s’affiche. Si vous le souhaitez, vous pouvez les filtrer pour ingérer uniquement les fichiers qui commencent ou qui se terminent par des caractères spécifiques. Quand vous ajustez les filtres, l’aperçu est mis à jour automatiquement.
+Un échantillon des données s’affiche. Si vous le souhaitez, vous pouvez les filtrer pour ingérer uniquement les fichiers qui commencent ou qui se terminent par des caractères spécifiques. Quand vous ajustez les filtres, l’aperçu est mis à jour automatiquement.
   
-  Par exemple, vous pouvez filtrer tous les fichiers qui commencent par le mot *data* (données) et qui se terminent par l’extension  *.csv.gz*.
+ * Par exemple, vous pouvez filtrer tous les fichiers qui commencent par le mot *data* (données) et qui se terminent par l’extension  *.csv.gz*.
 
-  :::image type="content" source="media/one-click-ingestion-new-table/from-container-with-filter.png" alt-text="Filtre de l’ingestion en un clic":::
+    :::image type="content" source="media/one-click-ingestion-new-table/from-container-with-filter.png" alt-text="Filtre de l’ingestion en un clic":::
   
 ## <a name="edit-the-schema"></a>Modifier le schéma
 
@@ -68,8 +68,8 @@ Sélectionnez **Modifier le schéma** pour afficher et modifier la configuration
 
         Dans ce cas, le format de données est **CSV**.
 
-    > [!TIP]
-    > Si vous souhaitez utiliser des fichiers **JSON**, consultez [Utiliser l’ingestion en un clic pour ingérer des données JSON à partir d’un fichier local dans une table existante d’Azure Data Explorer](one-click-ingestion-existing-table.md#edit-the-schema).
+        > [!TIP]
+        > Si vous souhaitez utiliser des fichiers **JSON**, consultez [Utiliser l’ingestion en un clic pour ingérer des données JSON à partir d’un fichier local dans une table existante d’Azure Data Explorer](one-click-ingestion-existing-table.md#edit-the-schema).
 
     * Vous pouvez cocher la case **Inclure les noms des colonnes** pour ignorer la ligne d’en-tête du fichier.
 
@@ -81,14 +81,14 @@ Sélectionnez **Modifier le schéma** pour afficher et modifier la configuration
 
 ### <a name="table"></a>Table de charge de travail
 
-1. Dans le tableau : 
-    * Double-cliquez sur le nom de la nouvelle colonne à modifier.
-    * Sélectionnez de nouveaux en-têtes de colonnes et effectuez une des actions suivantes :
+Dans le tableau : 
+ * Double-cliquez sur le nom de la nouvelle colonne à modifier.
+ * Sélectionnez de nouveaux en-têtes de colonnes et effectuez une des actions suivantes :
 
-[!INCLUDE [data-explorer-one-click-column-table](includes/data-explorer-one-click-column-table.md)]
+    [!INCLUDE [data-explorer-one-click-column-table](includes/data-explorer-one-click-column-table.md)]
 
-> [!NOTE]
-> Pour les formats tabulaires, chaque colonne peut être ingérée dans une colonne dans Azure Data Explorer.
+    > [!NOTE]
+    > Pour les formats tabulaires, chaque colonne peut être ingérée dans une colonne dans Azure Data Explorer.
 
 [!INCLUDE [data-explorer-one-click-command-editor](includes/data-explorer-one-click-command-editor.md)]
 
@@ -106,7 +106,7 @@ Dans la fenêtre **Ingestion de données terminée**, les trois étapes sont sig
 
 [!INCLUDE [data-explorer-one-click-ingestion-query-data](includes/data-explorer-one-click-ingestion-query-data.md)]
 
-## <a name="continuous-ingestion---container-only"></a>Ingestion continue - Conteneur uniquement
+## <a name="create-continuous-ingestion-for-container"></a>Créer une ingestion continue pour un conteneur
 
 L’ingestion continue vous permet de créer une grille d’événement qui recherche les nouveaux fichiers dans le conteneur source. Tout nouveau fichier qui répond aux critères des paramètres prédéfinis (préfixe, suffixe, etc.) est automatiquement ingéré dans la table de destination. 
 
