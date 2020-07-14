@@ -8,16 +8,16 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/10/2020
-ms.openlocfilehash: 39d5b35a80ff9354a5fb6987866ff024471d7305
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: c4396087018e25c57f064e8d2f99a83cc0840c3a
+ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83232437"
+ms.lasthandoff: 07/13/2020
+ms.locfileid: "86280585"
 ---
-# <a name="geo_polygon_to_s2cells"></a>geo_polygon_to_s2cells ()
+# <a name="geo_polygon_to_s2cells"></a>geo_polygon_to_s2cells()
 
-Calcule les jetons de cellule S2 qui couvrent un polygone ou un multipolygone sur la terre.
+Calcule les jetons de cellule S2 qui couvrent un polygone ou un multipolygone sur la terre. Cette fonction est un outil de jointure géographique utile.
 
 En savoir plus sur la [hiérarchie des cellules S2](https://s2geometry.io/devguide/s2cell_hierarchy).
 
@@ -36,10 +36,11 @@ Tableau de chaînes de jetons de cellule S2 qui couvre un polygone ou un multipo
 
 > [!NOTE]
 >
-> * La couverture du polygone avec des jetons de cellule S2 peut être utile pour faire correspondre les coordonnées aux polygones qui peuvent inclure ces coordonnées.
+> * La couverture du polygone avec des jetons de cellule S2 peut être utile pour faire correspondre les coordonnées aux polygones qui peuvent inclure ces coordonnées et les polygones correspondants aux polygones.
 > * Le polygone couvrant les jetons est du même niveau de cellule S2.
 > * Le nombre maximal de jetons par polygone est de 65536.
-> * La [référence géodésique](https://en.wikipedia.org/wiki/Geodetic_datum) utilisée pour les mesures sur la terre est une sphère. Les bords de polygones sont des géodésique sur la sphère.
+> * La [référence géodésique](https://en.wikipedia.org/wiki/Geodetic_datum) utilisée pour les mesures sur la terre est une sphère. Les bords de polygones sont des [géodésique](https://en.wikipedia.org/wiki/Geodesic) sur la sphère.
+> * Si les bords de polygones d’entrée sont des lignes cartésienles directes, envisagez d’utiliser [geo_polygon_densify ()](geo-polygon-densify-function.md) afin de convertir les bords planaires en géodésique.
 
 **Motivation pour la couverture de polygones avec des jetons de cellule S2**
 
@@ -91,7 +92,7 @@ Cette correspondance peut être obtenue par le processus suivant :
    - La cellule S2 de niveau 5 peut s’avérer intéressante pour les pays de couverture.
    - Le niveau de cellule S2 peut couvrir des cercles de New York et de petite taille.
    - Le niveau de cellule 11 S2 peut être utilisé pour couvrir les banlieues d’Australie.
-* La durée d’exécution de la requête et la consommation de mémoire peuvent différer en raison des différentes valeurs de niveau cellule S2.
+* La durée d’exécution de la requête et la consommation de mémoire peuvent varier en raison des différentes valeurs de niveau cellule S2.
 
 > [!WARNING]
 > La couverture d’un polygone de grande zone avec des cellules de petite taille peut entraîner un énorme volume de cellules. Par conséquent, la requête peut retourner la valeur null.

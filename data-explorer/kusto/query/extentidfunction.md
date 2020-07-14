@@ -10,18 +10,18 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 300f7961fd11b433ef4e420d5a20b9ad9150b269
-ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
+ms.openlocfilehash: 1f5584233a24c834e0ca6c28ed60aa5d7496b411
+ms.sourcegitcommit: 284152eba9ee52e06d710cc13200a80e9cbd0a8b
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82737621"
+ms.lasthandoff: 07/13/2020
+ms.locfileid: "86291523"
 ---
 # <a name="extent_id"></a>extent_id()
 
 ::: zone pivot="azuredataexplorer"
 
-Retourne un identificateur unique qui identifie le partition de données (« Extent ») dans lequel réside l’enregistrement en cours. 
+Retourne un identificateur unique qui identifie le partition de données (« Extent ») dans lequel réside l’enregistrement en cours.
 
 L’application de cette fonction aux données calculées qui ne sont pas attachées à un partition de données retourne un GUID vide (tous les zéros).
 
@@ -35,7 +35,7 @@ Valeur de type `guid` qui identifie le partition de données de l’enregistreme
 
 **Exemple**
 
-L’exemple suivant montre comment obtenir la liste de tous les partitions de données qui ont des enregistrements à partir d’une heure avec une valeur spécifique pour `ActivityId`la colonne. Il montre que certains opérateurs de requête (ici, `where` l’opérateur, mais cela est également vrai `extend` pour `project`et) conservent les informations sur le partition de données qui héberge l’enregistrement.
+L’exemple suivant montre comment obtenir la liste de tous les partitions de données qui ont des enregistrements à partir d’une heure avec une valeur spécifique pour la colonne `ActivityId` . Il montre que certains opérateurs de requête (ici, l' `where` opérateur, ainsi `extend` que et `project` ) conservent les informations sur le partition de données qui héberge l’enregistrement.
 
 ```kusto
 T

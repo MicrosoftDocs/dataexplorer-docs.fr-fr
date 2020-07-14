@@ -10,45 +10,43 @@ ms.topic: reference
 ms.date: 02/19/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 2474b8751be5cba2270bcbd2936c76b91f5f3ba0
-ms.sourcegitcommit: fbe298e88542c0dcea0f491bb53ac427f850f729
+ms.openlocfilehash: fea923b0d917beb505bd6a1cb9ee1339739d08c6
+ms.sourcegitcommit: 284152eba9ee52e06d710cc13200a80e9cbd0a8b
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82030036"
+ms.lasthandoff: 07/13/2020
+ms.locfileid: "86291557"
 ---
 # <a name="ingestion_time"></a>ingestion_time()
 
-Récupère la colonne masquée `$IngestionTime` `datetime` de l’enregistrement, ou null.
-La `$IngestionTime` colonne est définie automatiquement lorsque la table
-
 ::: zone pivot="azuredataexplorer"
 
-La [stratégie IngestionTime](../management/ingestiontimepolicy.md) est définie (activée).
+Retourne l’heure approximative à laquelle l’enregistrement actif a été reçu.
+
+Cette fonction doit être utilisée dans le contexte d’une table de données ingérées pour laquelle la [stratégie IngestionTime](../management/ingestiontimepolicy.md) a été activée lorsque les données ont été ingérées. Dans le cas contraire, cette fonction produit des valeurs NULL.
 
 ::: zone-end
 
 ::: zone pivot="azuremonitor"
 
-La stratégie IngestionTime est définie (activée).
+Récupère le `datetime` lorsque l’enregistrement a été ingéré et prêt pour la requête.
 
 ::: zone-end
 
-Si cette stratégie n’est pas définie pour la table, une valeur null est retournée.
-
-Cette fonction doit être utilisée dans le contexte d’une table réelle pour retourner les données pertinentes. Par exemple, elle retourne la valeur null pour tous les enregistrements si elle est appelée à `summarize` la suite d’un opérateur.
+> [!NOTE]
+> La valeur retournée par cette fonction est uniquement approximative, car le processus d’ingestion peut prendre plusieurs minutes pour s’exécuter et plusieurs activités d’ingestion peuvent avoir lieu simultanément. Pour traiter tous les enregistrements d’une table avec des garanties exactement une fois, utilisez des [curseurs de base de données](../management/databasecursor.md).
 
 **Syntaxe**
 
- `ingestion_time()`
+`ingestion_time()`
 
 **Retourne**
 
-`datetime` Valeur qui spécifie le temps approximatif d’ingestion d’une table.
+`datetime`Valeur qui spécifie le temps approximatif d’ingestion d’une table.
 
 **Exemple**
 
 ```kusto
-T 
+T
 | extend ingestionTime = ingestion_time() | top 10 by ingestionTime
 ```

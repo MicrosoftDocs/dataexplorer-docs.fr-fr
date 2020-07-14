@@ -8,12 +8,12 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/11/2020
-ms.openlocfilehash: 304b40a00fd471b7735ff11c01bdaa8b6ca3a8ec
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: b4a30aa4285b8f6e22e5d4057fe7d408d548a27b
+ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227447"
+ms.lasthandoff: 07/13/2020
+ms.locfileid: "86280559"
 ---
 # <a name="geo_distance_point_to_line"></a>geo_distance_point_to_line()
 
@@ -35,7 +35,8 @@ Distance la plus petite, en mètres, entre une coordonnée et une ligne sur terr
 
 > [!NOTE]
 > * Les coordonnées géospatiales sont interprétées comme étant représentées par le système de référence de coordonnées [WGS-84](https://earth-info.nga.mil/GandG/update/index.php?action=home) .
-> * La [référence géodésique](https://en.wikipedia.org/wiki/Geodetic_datum) utilisée pour mesurer la distance sur la terre est une sphère. Les arêtes de ligne sont des géodésique sur la sphère.
+> * La [référence géodésique](https://en.wikipedia.org/wiki/Geodetic_datum) utilisée pour mesurer la distance sur la terre est une sphère. Les arêtes de ligne sont des [géodésique](https://en.wikipedia.org/wiki/Geodesic) sur la sphère.
+> * Si les bords des lignes d’entrée sont des lignes cartésienles directes, envisagez d’utiliser [geo_line_densify ()](geo-line-densify-function.md) afin de convertir des arêtes planaires en géodésiques.
 
 **Définition et contraintes de LineString**
 

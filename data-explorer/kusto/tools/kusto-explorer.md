@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 05/19/2020
-ms.openlocfilehash: 6c36ace478e9bc026c028bfb6393bcfdf4eebdfa
-ms.sourcegitcommit: 0d15903613ad6466d49888ea4dff7bab32dc5b23
+ms.openlocfilehash: 1f3b273260451dc0ce36730d20f1bc357a453397
+ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "86013920"
+ms.lasthandoff: 07/13/2020
+ms.locfileid: "86280535"
 ---
 # <a name="getting-started-with-kustoexplorer"></a>Prise en main de Kusto. Explorer
 
@@ -28,7 +28,8 @@ Avec Kusto. Explorer, vous pouvez :
 
 * Installez l' [outil Kusto. Explorer](https://aka.ms/ke).
 
-* Vous pouvez accéder à votre cluster Kusto à l’aide de votre navigateur à l’adresse `https://<your_cluster>.kusto.windows.net` . (Remplacez `<your_cluster>` par le nom de votre cluster Azure Explorateur de données.)
+* Au lieu de cela, accédez à votre cluster Kusto avec votre navigateur à l’adresse suivante :`https://<your_cluster>.kusto.windows.net.`
+   Remplacez &lt; your_cluster &gt; par le nom de votre cluster Azure Explorateur de données.
 
 ### <a name="using-chrome-and-kustoexplorer"></a>Utilisation de chrome et Kusto. Explorer
 
@@ -52,9 +53,9 @@ L’interface utilisateur de Kusto. Explorer est conçue à l’aide d’onglets
 Le panneau de menu Kusto. Explorer comprend les onglets suivants :
 
 * [Page d'accueil](#home-tab)
-* [File](#file-tab)
+* [Fichier](#file-tab)
 * [Connexions](#connections-tab)
-* [Afficher](#view-tab)
+* [Visualiser](#view-tab)
 * [outils](#tools-tab)
 * [Surveillance](#monitoring-tab)
 * [Gestion](#management-tab)
@@ -69,7 +70,7 @@ L’onglet dossier de démarrage affiche les fonctions les plus récemment utili
 * [Requête](#query-section)
 * [Partager](#share-section)
 * [Visualisations](#visualizations-section)
-* [Afficher](#view-section)
+* [Visualiser](#view-section)
 * [Aide](#help-tab) 
 
 ### <a name="query-section"></a>Section de requête
@@ -103,16 +104,17 @@ L’onglet dossier de démarrage affiche les fonctions les plus récemment utili
 |graphique à aires empilées      | Affiche un graphique en aires empilées dans lequel l’axe des X est la première colonne (doit être numérique). Toutes les colonnes numériques sont mappées à différentes séries (axe Y) |
 |Graphique chronologique   | Affiche un graphique temporel dans lequel l’axe des X est la première colonne (doit être DateTime). Toutes les colonnes numériques sont mappées à différentes séries (axe Y).|
 |Graphique en courbes   | Affiche un graphique en courbes dans lequel l’axe des X est la première colonne (doit être numérique). Toutes les colonnes numériques sont mappées à différentes séries (axe Y).|
-|Graphique d’anomalies|    Semblable à graphique temporel, mais détecte les anomalies dans les données de séries chronologiques, à l’aide de l’algorithme Machine Learning anomalies. Pour la détection d’anomalies, Kusto. Explorer utilise la fonction [series_decompose_anomalies](../query/series-decompose-anomaliesfunction.md) . (*) 
+|[Graphique d’anomalies](#anomaly-chart)|    Semblable à graphique temporel, mais détecte les anomalies dans les données de séries chronologiques, à l’aide de l’algorithme Machine Learning anomalies. Pour la détection d’anomalies, Kusto. Explorer utilise la fonction [series_decompose_anomalies](../query/series-decompose-anomaliesfunction.md) .
 |Graphique à secteurs    |    Affiche un graphique à secteurs dans lequel l’axe des couleurs est la première colonne. L’axe thêta (doit être une mesure, convertie en pourcentage) est la deuxième colonne.|
 |Échelle de temps |    Affiche un graphique en échelle dans lequel l’axe des X correspond aux deux dernières colonnes (doit être DateTime). L’axe des Y est un composite des autres colonnes.|
 |Nuage de points| Affiche un graphique à points dans lequel l’axe des X est la première colonne (doit être numérique). Toutes les colonnes numériques sont mappées à différentes séries (axe Y).|
 |Graphique croisé dynamique  | Affiche un tableau croisé dynamique et un graphique croisé dynamique qui donne la flexibilité totale de la sélection de données, de colonnes, de lignes et de différents types de graphiques.| 
 |Tableau croisé dynamique Time   | Navigation interactive sur la ligne de temps des événements (pivotement sur l’axe du temps)|
 
-(*) Graphique d’anomalies : l’algorithme attend des données TimeSeries, qui se composent de deux colonnes :
-1. Durée dans les compartiments d’intervalles fixes
-2. Valeur numérique pour la détection d’anomalies afin de produire des données TimeSeries dans Kusto. Explorer, résumez par le champ d’heure et spécifiez l’emplacement de la plage de temps.
+> [!NOTE]
+> <a id="anomaly-chart">Graphique d’anomalies</a>: l’algorithme attend des données TimeSeries, qui se composent de deux colonnes :
+>* Durée dans les compartiments d’intervalles fixes
+>* Valeur numérique pour la détection d’anomalies afin de produire des données TimeSeries dans Kusto. Explorer, résumez par le champ d’heure et spécifiez l’emplacement de la plage de temps.
 
 ### <a name="view-section"></a>Section de vue
 
@@ -127,7 +129,10 @@ L’onglet dossier de démarrage affiche les fonctions les plus récemment utili
 |Augmenter la police  | Augmente la taille de police de l’onglet de requête et de la grille de données des résultats|  
 |Réduire la police  | Diminue la taille de police de l’onglet de requête et de la grille de données des résultats|
 
-(*) Paramètres d’affichage de données : Kusto. Explorer effectue le suivi des paramètres utilisés par ensemble de colonnes. Ainsi, lorsque les colonnes sont réorganisées ou supprimées, la vue de données est enregistrée et est réutilisée chaque fois que les données contenant les mêmes colonnes sont récupérées. Pour rétablir les valeurs par défaut de la vue, sélectionnez **Réinitialiser la vue**dans l’onglet **affichage** . 
+>[!NOTE]
+> Paramètres de la vue de données :
+>
+> Kusto. Explorer effectue le suivi des paramètres utilisés par ensemble de colonnes unique. Lorsque les colonnes sont réorganisées ou supprimées, la vue de données est enregistrée et est réutilisée chaque fois que les données contenant les mêmes colonnes sont récupérées. Pour rétablir les valeurs par défaut de la vue, sélectionnez **Réinitialiser la vue**dans l’onglet **affichage** . 
 
 ## <a name="file-tab"></a>Onglet Fichier
 
@@ -195,7 +200,7 @@ L’onglet dossier de démarrage affiche les fonctions les plus récemment utili
 |Réinitialiser la disposition|Réinitialise la disposition des contrôles et fenêtres d’ancrage de l’outil.|
 |Renommer l’onglet de document |Renommer l’onglet sélectionné |
 ||---------*Vue de données*---------|
-|Réinitialiser l’affichage| Rétablit les valeurs par défaut des paramètres de la vue de données (*)|
+|Réinitialiser l’affichage| Rétablit les valeurs par défaut des paramètres de la [vue de données](#dvs) |
 |Explorer les valeurs de colonne|Affiche la distribution des valeurs de colonne|
 |Focus sur les statistiques sur les requêtes|Change le focus en statistiques sur les requêtes au lieu des résultats de la requête lors de la fin de la requête|
 |Masquer les doublons|Active/désactive la suppression des lignes en double dans les résultats de la requête|
@@ -206,7 +211,10 @@ L’onglet dossier de démarrage affiche les fonctions les plus récemment utili
 ||---------*Visualisations*---------|
 |Visualisations|Consultez [visualisations](#visualizations-section), ci-dessus. |
 
-(*) Paramètres d’affichage de données : Kusto. Explorer effectue le suivi des paramètres utilisés par ensemble de colonnes unique. Lorsque les colonnes sont réorganisées ou supprimées, la vue de données est enregistrée et est réutilisée chaque fois que les données contenant les mêmes colonnes sont récupérées. Pour rétablir les valeurs par défaut de la vue, sélectionnez **Réinitialiser la vue**dans l’onglet **affichage** . 
+> [!NOTE]
+> <a id="dvs">Paramètres de la vue de données :</a> 
+>
+> Kusto. Explorer effectue le suivi des paramètres utilisés par ensemble de colonnes unique. Lorsque les colonnes sont réorganisées ou supprimées, la vue de données est enregistrée et est réutilisée chaque fois que les données contenant les mêmes colonnes sont récupérées. Pour rétablir les valeurs par défaut de la vue, sélectionnez **Réinitialiser la vue**dans l’onglet **affichage** . 
 
 ## <a name="tools-tab"></a>Onglet Outils
 
@@ -258,7 +266,7 @@ L’onglet dossier de démarrage affiche les fonctions les plus récemment utili
 |Menu             | Comportement|
 |-----------------|---------|
 ||---------*Correspondante*---------|
-|Aide             | Ouvre un lien vers la documentation en ligne de Kusto  | 
+|Aide-moi             | Ouvre un lien vers la documentation en ligne de Kusto  | 
 |Nouveautés       | Ouvre un document qui répertorie toutes les modifications apportées à Kusto. Explorer|
 |Signaler un problème      |Ouvre une boîte de dialogue avec deux options : <ul><li>Signaler des problèmes liés au service</li><li>Signaler des problèmes dans l’application cliente</li></ul> | 
 |Suggérer une fonctionnalité  | Ouvre un lien vers le Forum de commentaires Kusto | 

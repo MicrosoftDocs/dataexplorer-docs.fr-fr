@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/27/2020
-ms.openlocfilehash: c8733a9aaa1dbdfa504961cfc3676cd813d69952
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: 3b3f72bc2ea6b3b17cbdb6d4fb707b9837a2ed56
+ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763735"
+ms.lasthandoff: 07/13/2020
+ms.locfileid: "86280604"
 ---
 # <a name="scalar-function-types"></a>Types de fonction scalaire
 
@@ -113,7 +113,7 @@ ms.locfileid: "85763735"
 
 |Nom de fonction     |Description                                          |
 |-------------------------|--------------------------------------------------------|
-|[ABS ()](abs-function.md)|Calcule la valeur absolue de l’entrée.|
+|[abs()](abs-function.md)|Calcule la valeur absolue de l’entrée.|
 |[acos()](acosfunction.md)|Retourne l’angle dont le cosinus est le nombre spécifié (l’opération inverse de COS ()).|
 |[asin()](asinfunction.md)|Retourne l’angle dont le sinus est le nombre spécifié (l’opération inverse de Sin ()).|
 |[atan()](atanfunction.md)|Retourne l’angle dont la tangente est le nombre spécifié (l’opération inverse de Tan ()).|
@@ -124,14 +124,14 @@ ms.locfileid: "85763735"
 |[cos()](cosfunction.md)|Retourne la fonction cosinus.|
 |[cot()](cotfunction.md)|Calcule la cotangente trigonométrique de l’angle spécifié, en radians.|
 |[degrees()](degreesfunction.md)|Convertit la valeur d’angle en radians en valeur en degrés, à l’aide de la formule degrés = (180/PI) * angle-in-radians.|
-|[exp ()](exp-function.md)|Fonction exponentielle base-e de x, qui est e élevée à la puissance x : e ^ x.|
+|[exp()](exp-function.md)|Fonction exponentielle base-e de x, qui est e élevée à la puissance x : e ^ x.|
 |[exp10()](exp10-function.md)|Fonction exponentielle en base 10 de x, qui est 10 élevée à la puissance x : 10 ^ x.|
 |[exp2()](exp2-function.md)|Fonction exponentielle en base 2 de x, qui est 2 élevée à la puissance x : 2 ^ x.|
 |[gamma()](gammafunction.md)|Calcule la fonction gamma.|
 |[isfinite()](isfinitefunction.md)|Retourne une valeur indiquant si l’entrée est une valeur finie (n’est pas infinie ou NaN).|
 |[isinf()](isinffunction.md)|Retourne une valeur indiquant si l’entrée est une valeur infinie (positive ou négative).|
 |[isnan()](isnanfunction.md)|Retourne une valeur indiquant si l’entrée n’est pas un nombre (NaN).|
-|[log()](log-function.md)|Retourne la fonction de logarithme népérien.|
+|[log ()](log-function.md)|Retourne la fonction de logarithme népérien.|
 |[log10()](log10-function.md)|Retourne la fonction de logarithme (base 10) courant.|
 |[log2()](log2-function.md)|Retourne la fonction de logarithme en base 2.|
 |[loggamma()](loggammafunction.md)|Calcule le journal de la valeur absolue de la fonction gamma.|
@@ -141,10 +141,10 @@ ms.locfileid: "85763735"
 |[radians()](radiansfunction.md)|Convertit la valeur d’angle en degrés en radians, à l’aide de la formule radians = (PI/180) * angle-in-degrees.|
 |[rand()](randfunction.md)|Retourne un nombre aléatoire.|
 |[Plage ()](rangefunction.md)|Génère un tableau dynamique contenant une série de valeurs uniformément espacées.|
-|[Round ()](roundfunction.md)|Retourne la source arrondie à la précision spécifiée.|
-|[Sign ()](signfunction.md)|Signe d’une expression numérique.|
+|[round()](roundfunction.md)|Retourne la source arrondie à la précision spécifiée.|
+|[sign()](signfunction.md)|Signe d’une expression numérique.|
 |[sin()](sinfunction.md)|Retourne la fonction sinus.|
-|[sqrt ()](sqrtfunction.md)|Retourne la fonction racine carrée.|
+|[sqrt()](sqrtfunction.md)|Retourne la fonction racine carrée.|
 |[tan()](tanfunction.md)|Retourne la fonction tangente.|
 |[welch_test()](welch-testfunction.md)|Calcule la valeur p de la [fonction Welch-test](https://en.wikipedia.org/wiki/Welch%27s_t-test).|
 
@@ -162,7 +162,7 @@ ms.locfileid: "85763735"
 |[estimate_data_size()](estimate-data-sizefunction.md)|Retourne une estimation de la taille des données des colonnes sélectionnées de l’expression tabulaire.|
 |[extent_id()](extentidfunction.md)|Retourne un identificateur unique qui identifie le partition de données (« Extent ») dans lequel réside l’enregistrement en cours.|
 |[extent_tags()](extenttagsfunction.md)|Retourne un tableau dynamique avec les balises du partition de données (« Extent ») dans lequel réside l’enregistrement en cours.|
-|[ingestion_time()](ingestiontimefunction.md)|Récupère les $IngestionTime colonne DateTime masquée de l’enregistrement, ou null.|
+|[ingestion_time ()](ingestiontimefunction.md)|Récupère les $IngestionTime colonne DateTime masquée de l’enregistrement, ou null.|
 
 ## <a name="rounding-functions"></a>Arrondir les fonctions
 
@@ -170,15 +170,15 @@ ms.locfileid: "85763735"
 |-------------------------|--------------------------------------------------------|
 |[bin()](binfunction.md)|Arrondit les valeurs à l’entier inférieur multiple d’une taille bin donnée.|
 |[bin_at()](binatfunction.md)|Arrondit les valeurs à un « chutier » de taille fixe, avec un contrôle sur le point de départ de l’emplacement. (Voir aussi fonction bin.)|
-|[plafond ()](ceilingfunction.md)|Calcule le plus petit entier supérieur ou égal à l’expression numérique spécifiée.|
-|[Floor ()](floorfunction.md)|Arrondit les valeurs à l’entier inférieur multiple d’une taille bin donnée.|
+|[ceiling()](ceilingfunction.md)|Calcule le plus petit entier supérieur ou égal à l’expression numérique spécifiée.|
+|[floor()](floorfunction.md)|Arrondit les valeurs à l’entier inférieur multiple d’une taille bin donnée.|
 
 ## <a name="conditional-functions"></a>Fonctions conditionnelles
 
 |Nom de fonction     |Description                                          |
 |-------------------------|--------------------------------------------------------|
 |[case()](casefunction.md)|Évalue une liste de prédicats et retourne la première expression de résultat dont le prédicat est respecté.|
-|[COALESCE ()](coalescefunction.md)|Évalue une liste d’expressions et retourne la première expression non null (ou non vide pour String).|
+|[coalesce()](coalescefunction.md)|Évalue une liste d’expressions et retourne la première expression non null (ou non vide pour String).|
 |[IIF ()/IFF ()](iiffunction.md)|Évalue le premier argument (le prédicat) et retourne la valeur du deuxième ou du troisième argument, selon que le prédicat est évalué à true (deuxième) ou false (troisième).|
 |[max_of()](max-offunction.md)|Retourne la valeur maximale de plusieurs expressions numériques évaluées.|
 |[min_of()](min-offunction.md)|Retourne la valeur minimale de plusieurs expressions numériques évaluées.|
@@ -231,7 +231,7 @@ ms.locfileid: "85763735"
 |[base64_decode_tostring()](base64_decode_tostringfunction.md)|Décode une chaîne base64 en une chaîne UTF-8.|
 |[base64_decode_toarray()](base64_decode_toarrayfunction.md)|Décode une chaîne base64 en un tableau de valeurs longues.|
 |[countof ()](cotfunction.md)|Compte les occurrences d’une sous-chaîne dans une chaîne. Les correspondances de chaînes brutes peuvent se chevaucher ; les correspondances Regex ne sont pas.|
-|[Extract ()](extractfunction.md)|Obtient une correspondance pour une expression régulière à partir d’une chaîne de texte.|
+|[extract()](extractfunction.md)|Obtient une correspondance pour une expression régulière à partir d’une chaîne de texte.|
 |[extract_all()](extractallfunction.md)|Obtenir toutes les correspondances pour une expression régulière à partir d’une chaîne de texte.|
 |[extractjson()](extractjsonfunction.md)|Obtient un élément spécifié à partir d’un texte JSON à l’aide d’une expression de chemin.|
 |[indexof()](indexoffunction.md)|La fonction signale l’index de base zéro de la première occurrence d’une chaîne spécifiée dans la chaîne d’entrée.|
@@ -249,7 +249,7 @@ ms.locfileid: "85763735"
 |[parse_url()](parseurlfunction.md)|Analyse une chaîne d’URL absolue et retourne un objet dynamique qui contient toutes les parties de l’URL.|
 |[parse_urlquery()](parseurlqueryfunction.md)|Analyse une chaîne de requête d’URL et retourne un objet dynamique contenant les paramètres de requête.|
 |[parse_version()](parse-versionfunction.md)|Convertit la représentation sous forme de chaîne d’entrée d’une version en nombre décimal comparable.|
-|[remplacer ()](replacefunction.md)|Remplace toutes les correspondances d’expression régulière par une autre chaîne.|
+|[replace()](replacefunction.md)|Remplace toutes les correspondances d’expression régulière par une autre chaîne.|
 |[reverse()](reversefunction.md)|La fonction effectue l’inversion de la chaîne d’entrée.|
 |[split()](splitfunction.md)|Fractionne une chaîne donnée en fonction d’un délimiteur donné et retourne un tableau de chaînes avec les sous-chaînes contenues.|
 |[strcat()](strcatfunction.md)|Concatène entre 1 et 64 arguments.|
@@ -257,7 +257,7 @@ ms.locfileid: "85763735"
 |[strcmp()](strcmpfunction.md)|Compare deux chaînes.|
 |[strlen()](strlenfunction.md)|Retourne la longueur, en caractères, de la chaîne d’entrée.|
 |[strrep()](strrepfunction.md)|Répète le nombre de fois spécifié pour la chaîne (valeur par défaut : 1).|
-|[Substring ()](substringfunction.md)|Extrait une sous-chaîne d’une chaîne source à partir d’un index jusqu’à la fin de la chaîne.|
+|[substring()](substringfunction.md)|Extrait une sous-chaîne d’une chaîne source à partir d’un index jusqu’à la fin de la chaîne.|
 |[toupper()](toupperfunction.md)|Convertit une chaîne en majuscules.|
 |[translate()](translatefunction.md)|Remplace un jeu de caractères (« searchList ») par un autre jeu de caractères (« replacementList ») dans une chaîne donnée.|
 |[trim()](trimfunction.md)|Supprime toutes les correspondances de début et de fin de l’expression régulière spécifiée.|
@@ -283,7 +283,7 @@ ms.locfileid: "85763735"
 
 |Nom de fonction     |Description                                          |
 |-------------------------|--------------------------------------------------------|
-|[GetType ()](gettypefunction.md)|Retourne le type au moment de l’exécution de son argument unique.|
+|[gettype()](gettypefunction.md)|Retourne le type au moment de l’exécution de son argument unique.|
 
 ## <a name="scalar-aggregation-functions"></a>Fonctions d’agrégation scalaires
 
@@ -301,9 +301,16 @@ ms.locfileid: "85763735"
 |Nom de fonction|Description|
 |--------------------------------------------------------------------------|--------------------------------------------------------|
 |[geo_distance_2points()](geo-distance-2points-function.md)|Calcule la distance la plus petite entre deux coordonnées géospatiales sur la terre.|
-|[geo_geohash_to_central_point()](geo-geohash-to-central-point-function.md)|Calcule les coordonnées géospatiales qui représentent le centre d’une zone rectangulaire géohash.|
+|[geo_distance_point_to_line()](geo-distance-point-to-line-function.md)|Calcule la distance la plus petite entre une coordonnée et une ligne sur la terre.|
 |[geo_point_in_circle()](geo-point-in-circle-function.md)|Calcule si les coordonnées géospatiales se trouvent à l’intérieur d’un cercle sur la terre.|
+|[geo_point_in_polygon()](geo-point-in-polygon-function.md)|Calcule si les coordonnées géospatiales se trouvent à l’intérieur d’un polygone ou d’un multipolygone sur la terre.|
 |[geo_point_to_geohash()](geo-point-to-geohash-function.md)|Calcule la valeur de la chaîne de hachage pour un emplacement géographique.|
+|[geo_geohash_to_central_point()](geo-geohash-to-central-point-function.md)|Calcule les coordonnées géospatiales qui représentent le centre d’une zone rectangulaire géohash.|
+|[geo_point_to_s2cell()](geo-point-to-s2cell-function.md)|Calcule la valeur de chaîne du jeton de cellule S2 pour un emplacement géographique.|
+|[geo_s2cell_to_central_point()](geo-s2cell-to-central-point-function.md)|Calcule les coordonnées géospatiales qui représentent le centre d’une cellule S2.|
+|[geo_polygon_to_s2cells()](geo-polygon-to-s2cells-function.md)|Calcule les jetons de cellule S2 qui couvrent un polygone ou un multipolygone sur la terre. Outil de jointure géographique utile.|
+|[geo_line_densify ()](geo-line-densify-function.md)|Convertit les bords de trait planaires en géodésique en ajoutant des points intermédiaires.|
+|[geo_polygon_densify ()](geo-polygon-densify-function.md)|Convertit les bords planaires Polygon ou multipolygone en géodésique en ajoutant des points intermédiaires.|
 
 ## <a name="hash-functions"></a>Fonctions de hachage
 
@@ -312,5 +319,5 @@ ms.locfileid: "85763735"
 |[hash ()](hashfunction.md)|Retourne une valeur de hachage pour la valeur d’entrée.|
 |[hash_combine()](hash_combinefunction.md)|Combine deux valeurs de hachage ou plus.|
 |[hash_many()](hash_manyfunction.md)|Retourne une valeur de hachage combinée de plusieurs valeurs.|
-|[hash_md5 ()](md5hashfunction.md)|Retourne une valeur de hachage MD5 pour la valeur d’entrée.|
+|[hash_md5()](md5hashfunction.md)|Retourne une valeur de hachage MD5 pour la valeur d’entrée.|
 |[hash_sha256()](sha256hashfunction.md)|Retourne une valeur de hachage SHA256 pour la valeur d’entrée.|

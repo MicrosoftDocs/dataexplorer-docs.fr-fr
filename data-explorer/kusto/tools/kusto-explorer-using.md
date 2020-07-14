@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/19/2020
-ms.openlocfilehash: fc8e34be3d61c690bc94795e6bd37f2559d247e0
-ms.sourcegitcommit: 0d15903613ad6466d49888ea4dff7bab32dc5b23
+ms.openlocfilehash: 0b2daf955515e4c023cdb7312fbd82039ca598bc
+ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "86013899"
+ms.lasthandoff: 07/13/2020
+ms.locfileid: "86280633"
 ---
 # <a name="using-kustoexplorer"></a>Utilisation de Kusto.Explorer
 
@@ -28,11 +28,11 @@ Le mode de recherche + + vous permet de rechercher un terme à l’aide de la sy
 1. Dans la zone d’édition, entrez votre expression de recherche, puis sélectionnez **OK**.
 1. Une carte thermique de la grille de l’emplacement de table/heure affiche les termes qui apparaissent et leur emplacement.
 
-:::image type="content" source="images/kusto-explorer-using/search-plus-plus.png" alt-text="Rechercher + + Kusto Explorer":::
+    :::image type="content" source="images/kusto-explorer-using/search-plus-plus.png" alt-text="Rechercher + + Kusto Explorer":::
 
 1. Sélectionnez une cellule dans la grille et sélectionnez **afficher les détails** pour afficher les entrées correspondantes dans le volet des résultats.
 
-:::image type="content" source="images/kusto-explorer-using/search-plus-plus-results.png" alt-text="Résultats de la recherche et de l’Explorateur Kusto":::
+    :::image type="content" source="images/kusto-explorer-using/search-plus-plus-results.png" alt-text="Résultats de la recherche et de l’Explorateur Kusto":::
 
 ## <a name="query-mode"></a>mode Requête
 
@@ -83,7 +83,7 @@ En savoir plus sur le [langage de requête Kusto](https://docs.microsoft.com/azu
 >
 > * La requête côté client parametrization, décrite ci-dessous, est une fonctionnalité de l’application Kusto. Explorer uniquement. Cela équivaut à utiliser des opérations de remplacement de chaîne sur les requêtes avant de les envoyer à exécuter par le service. La syntaxe décrite ci-dessous ne fait pas partie du langage de requête lui-même et ne peut pas être utilisée lors de l’envoi de requêtes au service par d’autres moyens que Kusto. Explorer.
 
-Si vous utilisez la même valeur dans plusieurs requêtes ou dans plusieurs onglets, il est très difficile de modifier cette valeur à chaque fois qu’elle est utilisée. C’est pourquoi Kusto. Explorer prend en charge les paramètres de requête. Les paramètres de requête sont partagés entre les onglets afin qu’ils puissent être facilement réutilisés. Les paramètres sont dénotés par des {} crochets. Par exemple : `{parameter1}`
+Si vous utilisez la même valeur dans plusieurs requêtes ou dans plusieurs onglets, il est très difficile de modifier cette valeur à chaque fois qu’elle est utilisée. C’est pourquoi Kusto. Explorer prend en charge les paramètres de requête. Les paramètres de requête sont partagés entre les onglets afin qu’ils puissent être facilement réutilisés. Les paramètres sont dénotés par des {} crochets. Par exemple : `{parameter1}`
 
 L’éditeur de script met en surbrillance les paramètres de requête :
 
@@ -117,17 +117,17 @@ Kusto. Explorer offre un moyen pratique de partager des requêtes et des résult
 1. [Exécutez votre requête](#basic-queries) dans Kusto. Explorer.
 1. Dans l’onglet dossier de démarrage, dans la section partager, sélectionnez **Exporter vers le presse-papiers** (ou appuyez sur Ctrl + Maj + C).
 
-:::image type="content" source="images/kusto-explorer-using/menu-export.png" alt-text="Exporter dans le presse-papiers":::
+    :::image type="content" source="images/kusto-explorer-using/menu-export.png" alt-text="Exporter dans le presse-papiers":::
 
-    Kusto.Explorer pastes the following to the clipboard:
-    * Your query
-    * The query results (table or chart)
-    * The connection details for the Kusto cluster and database
-    * A link that will rerun the query automatically
+    Kusto. Explorer colle les éléments suivants dans le presse-papiers :
+     * Votre requête
+     * Résultats de la requête (tableau ou graphique)
+     * Détails de connexion pour le cluster et la base de données Kusto
+     * Un lien qui réexécute automatiquement la requête
 
 1. Collez le contenu du presse-papiers dans un nouveau message électronique.
 
-:::image type="content" source="images/kusto-explorer-using/share-results-2.png" alt-text="Partager les résultats par courrier électronique":::
+    :::image type="content" source="images/kusto-explorer-using/share-results-2.png" alt-text="Partager les résultats par courrier électronique":::
 
 ### <a name="deep-linking-queries"></a>Requêtes de liaison profonde
 
@@ -164,9 +164,13 @@ https://help.kusto.windows.net/Samples?web=0&query=H4sIAAAAAAAEAAsuyS%2fKdS1LzSs
 Vous pouvez utiliser des requêtes paramétrée avec des liens approfondis.
 
 1. Créer une requête à former en tant que requête paramétrée (par exemple, `KustoLogs | where Timestamp > ago({Period}) | count` ) 
-1. Fournissez un paramètre pour chaque paramètre de requête dans l’URI, par exemple :
+1. Fournissez un paramètre pour chaque paramètre de requête dans l’URI, par exemple : 
+    
+    `https://<your_cluster>.kusto.windows.net/MyDatabase?
+web=0&query=KustoLogs+%7c+where+Timestamp+>+ago({Period})+%7c+count&Period=1h`
 
-   `https://mycluster.kusto.windows.net/MyDatabase?web=0&query=KustoLogs+%7c+where+Timestamp+>+ago({Period})+%7c+count&Period=1h`
+    Remplacez &lt; your_cluster &gt; par le nom de votre cluster Azure Explorateur de données.
+
 
 ### <a name="getting-shorter-links"></a>Obtenir des liens plus courts
 

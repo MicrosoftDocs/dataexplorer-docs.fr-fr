@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/09/2020
-ms.openlocfilehash: 1ac715f06945e3db99de1a00b09237ae6f6e241d
-ms.sourcegitcommit: b286703209f1b657ac3d81b01686940f58e5e145
+ms.openlocfilehash: e909754a040308d752b19155e1e69a10097ab219
+ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86188555"
+ms.lasthandoff: 07/13/2020
+ms.locfileid: "86280509"
 ---
 # <a name="the-dynamic-data-type"></a>Le type de données Dynamic
 
@@ -52,7 +52,7 @@ print o=dynamic({"a":123, "b":"hello", "c":[1,2,3], "d":{}})
 ```
 
 Pour des raisons pratiques, `dynamic` les littéraux qui apparaissent dans le texte de la requête peuvent également inclure d’autres littéraux Kusto avec les types : `datetime` , `timespan` ,, `real` `long` , `guid` , `bool` et `dynamic` .
-Cette extension sur JSON n’est pas disponible lors de l’analyse de chaînes (par exemple, lors de l’utilisation de la `parse_json` fonction ou de la réception de données), mais elle vous permet d’effectuer cette opération :
+Cette extension sur JSON n’est pas disponible lors de l’analyse de chaînes (par exemple, lors de l’utilisation de la `parse_json` fonction ou de la réception de données), mais elle vous permet d’effectuer les opérations suivantes :
 
 ```kusto
 print d=dynamic({"a": datetime(1970-05-11)})
@@ -125,7 +125,7 @@ L’accès à un sous-objet d’une `dynamic` valeur produit une autre `dynamic`
 | X | parse_json (' [100101102] ')| tableau|
 |X [0]|parse_json (' 100 ')|dynamique|
 |ToInt ((X [1])|101| int|
-| Y | parse_json (' {"a1" : 100, "a b c" : "2015-01-01"} ')| dictionnaire|
+| O | parse_json (' {"a1" : 100, "a b c" : "2015-01-01"} ')| dictionnaire|
 |Y. a1|parse_json (' 100 ')|dynamique|
 |Y ["a b c"]| parse_json (« 2015-01-01 »)|dynamique|
 |ToDate (Y ["a b c"])|DateTime (2015-01-01)| DATETIME|
@@ -163,21 +163,21 @@ En outre, il existe plusieurs fonctions d’agrégation qui créent des `dynamic
 
 ## <a name="operators-and-functions-over-dynamic-types"></a>Opérateurs et fonctions sur des types dynamiques
 
-|||
+|Opérateur ou fonction|Utilisation avec des types de données dynamiques|
 |---|---|
 | *value* `in` *array*| True s’il existe un élément de *array* qui est égal à *value*<br/>`where City in ('London', 'Paris', 'Rome')`
 | *value* `!in` *array*| True s’il n’existe aucun élément de *array* qui est égal à *value*
-|[`array_length(`tableau`)`](../arraylengthfunction.md)| Null si ce n’est pas un tableau
+|[`array_length(`ensemble`)`](../arraylengthfunction.md)| Null si ce n’est pas un tableau
 |[`bag_keys(`conteneur propriétés`)`](../bagkeysfunction.md)| Énumère toutes les clés racines dans un objet de jeu de propriétés dynamique.
 |[`bag_merge(`BAG1,..., bagN`)`](../bag-merge-function.md)| Fusionne des conteneurs de propriétés dynamiques dans un conteneur de propriétés dynamique avec toutes les propriétés fusionnées.
 |[`extractjson(`chemin d’accès, objet`)`](../extractjsonfunction.md)|Utilise le chemin pour accéder à l’objet.
 |[`parse_json(`code`)`](../parsejsonfunction.md)| Convertit une chaîne JSON en un objet dynamique.
 |[`range(`de, à, étape`)`](../rangefunction.md)| Tableau de valeurs
 |[`mv-expand`listColumn](../mvexpandoperator.md) | Réplique une ligne pour chaque valeur d’une liste dans une cellule spécifiée.
-|[`summarize buildschema(`chronique`)`](../buildschema-aggfunction.md) |Déduit le schéma du type à partir du contenu de la colonne
-|[`summarize make_bag(`chronique`)`](../make-bag-aggfunction.md) | Fusionne les valeurs du conteneur de propriétés (dictionnaire) de la colonne dans un jeu de propriétés, sans duplication de clé.
+|[`summarize buildschema(`column`)`](../buildschema-aggfunction.md) |Déduit le schéma du type à partir du contenu de la colonne
+|[`summarize make_bag(`column`)`](../make-bag-aggfunction.md) | Fusionne les valeurs du conteneur de propriétés (dictionnaire) de la colonne dans un jeu de propriétés, sans duplication de clé.
 |[`summarize make_bag_if(`colonne, prédicat`)`](../make-bag-if-aggfunction.md) | Fusionne les valeurs du conteneur de propriétés (dictionnaire) de la colonne en un seul conteneur de propriétés, sans duplication de clé (avec prédicat).
 |[`summarize make_list(`colonne `)`](../makelist-aggfunction.md)| Aplatit des groupes de lignes et place les valeurs de la colonne dans un tableau.
 |[`summarize make_list_if(`colonne, prédicat `)`](../makelistif-aggfunction.md)| Aplatit des groupes de lignes et place les valeurs de la colonne dans un tableau (avec un prédicat).
 |[`summarize make_list_with_nulls(`colonne `)`](../make-list-with-nulls-aggfunction.md)| Aplatit des groupes de lignes et place les valeurs de la colonne dans un tableau, y compris les valeurs NULL.
-|[`summarize make_set(`chronique`)`](../makeset-aggfunction.md) | Aplatit des groupes de lignes et place les valeurs de la colonne dans un tableau, sans duplication.
+|[`summarize make_set(`column`)`](../makeset-aggfunction.md) | Aplatit des groupes de lignes et place les valeurs de la colonne dans un tableau, sans duplication.

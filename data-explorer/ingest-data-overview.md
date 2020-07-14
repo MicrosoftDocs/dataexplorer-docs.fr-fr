@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/18/2020
-ms.openlocfilehash: 6fa60c3c82a889d1161b30529586b225cee3efbd
-ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
+ms.openlocfilehash: e6b329380d507e93161415f51515656628564500
+ms.sourcegitcommit: bf2c9da0c23ebcaec19b229d2079032d54a2cc82
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/26/2020
-ms.locfileid: "83863271"
+ms.lasthandoff: 07/08/2020
+ms.locfileid: "86140544"
 ---
 # <a name="azure-data-explorer-data-ingestion-overview"></a>Vue d’ensemble de l’ingestion des données dans Azure Data Explorer 
 
@@ -34,7 +34,6 @@ Azure Data Explorer extrait des données d’une source externe et lit les deman
 
 * **Autorisations** : pour ingérer des données, le processus nécessite des [autorisations de niveau Ingéreur de base de données](kusto/management/access-control/role-based-authorization.md). D’autres actions, comme l’exécution d’une requête, peuvent nécessiter des autorisations d’administrateur de base de données, d’utilisateur de base de données ou d’administrateur de table.
 
-
 ## <a name="batching-vs-streaming-ingestion"></a>Ingestion par lot/en streaming
 
 * L’ingestion par lot, qui traite les données par lot, est optimisée pour un débit d’ingestion élevé. Cette méthode d’ingestion est la plus performante et donc recommandée. Les données sont traitées par lot en fonction des propriétés d’ingestion. Les petits lots de données sont ensuite fusionnés et optimisés pour des résultats de requête rapides. La stratégie d’[ingestion par lot](kusto/management/batchingpolicy.md) peut être définie sur des bases de données ou des tables. Par défaut, les valeurs maximales de traitement par lot sont les suivantes : 5 minutes, 1 000 éléments ou une taille totale de 500 Mo.
@@ -54,6 +53,12 @@ Pour les organisations qui souhaitent confier la gestion (limitation, nouvelles 
 * **[Event Hub](https://azure.microsoft.com/services/event-hubs/)**  : pipeline qui transfère des événements de services vers Azure Data Explorer. Pour plus d'informations, consultez [Ingérer des données Event Hub dans Azure Data Explorer](ingest-data-event-hub.md).
 
 * **[IoT Hub](https://azure.microsoft.com/services/iot-hub/)** : pipeline utilisé pour le transfert de données d’appareils IoT pris en charge vers Azure Data Explorer. Pour plus d’informations, consultez [Ingérer à partir d’IoT Hub](ingest-data-iot-hub.md).
+
+* **Azure Data Factory (ADF)**  : service d’intégration de données complètement managé pour les charges de travail analytiques dans Azure. Azure Data Factory se connecte à plus de 90 sources prises en charge pour assurer un transfert de données efficace et résilient. ADF prépare, transforme et enrichit les données pour fournir des insights qui peuvent être supervisés de différentes façons. Ce service peut apporter une solution ponctuelle, s’inscrire dans une chronologie périodique ou être déclenché par des événements spécifiques. 
+  * [Intégrer Azure Data Explorer à Azure Data Factory](data-factory-integration.md).
+  * [Utiliser Azure Data Factory pour copier des données de sources prises en charge vers Azure Data Explorer](/azure/data-explorer/data-factory-load-data).
+  * [Copier en bloc à partir d’une base de données vers Azure Data Explorer à l’aide du modèle Azure Data Factory](data-factory-template.md).
+  * [Utiliser l’activité de commande Azure Data Factory pour exécuter des commandes de contrôle Azure Data Explorer](data-factory-command-activity.md).
 
 ### <a name="ingestion-using-connectors-and-plugins"></a>Ingestion à l’aide de connecteurs et de plug-ins
 
@@ -84,12 +89,6 @@ L’Explorateur de données Azure fournit des SDK qui peuvent être utilisées p
 * [API GO](kusto/api/golang/kusto-golang-client-library.md)
 
 ### <a name="tools"></a>Outils
-
-* **Azure Data Factory (ADF)**  : service d’intégration de données complètement managé pour les charges de travail analytiques dans Azure. Azure Data Factory se connecte à plus de 90 sources prises en charge pour assurer un transfert de données efficace et résilient. ADF prépare, transforme et enrichit les données pour fournir des insights qui peuvent être supervisés de différentes façons. Ce service peut apporter une solution ponctuelle, s’inscrire dans une chronologie périodique ou être déclenché par des événements spécifiques. 
-  * [Intégrer Azure Data Explorer à Azure Data Factory](data-factory-integration.md).
-  * [Utiliser Azure Data Factory pour copier des données de sources prises en charge vers Azure Data Explorer](/azure/data-explorer/data-factory-load-data).
-  * [Copier en bloc à partir d’une base de données vers Azure Data Explorer à l’aide du modèle Azure Data Factory](data-factory-template.md).
-  * [Utiliser l’activité de commande Azure Data Factory pour exécuter des commandes de contrôle Azure Data Explorer](data-factory-command-activity.md).
 
 * **[Ingestion en un clic](ingest-data-one-click.md)**  : vous permet d’ingérer rapidement des données en créant et en ajustant des tables à partir d’un large éventail de types sources. L’ingestion en un clic suggère automatiquement des tables et des structures de mappage en fonction de la source de données dans Azure Data Explorer. L’ingestion en un clic peut constituer une méthode d’ingestion ponctuelle. Elle peut aussi servir à définir l’ingestion continue, par le biais d’Event Grid, sur le conteneur dans lequel les données ont été ingérées.
 

@@ -8,12 +8,12 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/10/2020
-ms.openlocfilehash: 25eb68a942eb0ff84ea34e47c94ea1a21cd09c90
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 96e3cfeba0002aa48a4300a994e9e12610deb9a3
+ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227226"
+ms.lasthandoff: 07/13/2020
+ms.locfileid: "86280568"
 ---
 # <a name="geo_point_in_polygon"></a>geo_point_in_polygon()
 
@@ -35,7 +35,8 @@ Indique si les coordonnées géospatiales sont à l’intérieur d’un polygone
 
 > [!NOTE]
 > * Les coordonnées géospatiales sont interprétées comme étant représentées par le système de référence de coordonnées [WGS-84](https://earth-info.nga.mil/GandG/update/index.php?action=home) .
-> * La [référence géodésique](https://en.wikipedia.org/wiki/Geodetic_datum) utilisée pour les mesures sur la terre est une sphère. Les bords de polygones sont des géodésique sur la sphère.
+> * La [référence géodésique](https://en.wikipedia.org/wiki/Geodetic_datum) utilisée pour les mesures sur la terre est une sphère. Les bords de polygones sont des [géodésique](https://en.wikipedia.org/wiki/Geodesic) sur la sphère.
+> * Si les bords de polygones d’entrée sont des lignes cartésienles directes, envisagez d’utiliser [geo_polygon_densify ()](geo-polygon-densify-function.md) pour convertir des arêtes planaires en géodésiques.
 
 **Définition de polygone et contraintes**
 
