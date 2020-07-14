@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 6c09bea9cfe25ea7ebe86170f71593db4db7d9a2
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: a1382703c4c70263ff0d8a066860071fd07ef179
+ms.sourcegitcommit: bf2c9da0c23ebcaec19b229d2079032d54a2cc82
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264349"
+ms.lasthandoff: 07/08/2020
+ms.locfileid: "86140494"
 ---
 # <a name="getting-started-with-kusto"></a>Bien démarrer avec Kusto
 
@@ -33,7 +33,7 @@ Le service offre d’excellentes performances pour l’ingestion des données et
 ## <a name="interacting-with-azure-data-explorer"></a>Interaction avec Azure Data Explorer
 
 Le principal moyen pour les utilisateurs d’interagir avec Azure Data Explorer (Kusto) :
-* Utilisez un des nombreux [outils clients](../tools/index.md) disponibles. 
+* Utilisez l’un des [outils de requête](../../tools-integrations-overview.md#azure-data-explorer-query-tools). 
 * [Requêtes SQL](../api/tds/t-sql.md).
 *  Le [langage de requête Kusto](../query/index.md) (KQL, Kusto Query Language) est le principal moyen d’interaction. KQL vous permet d’envoyer des requêtes de données et d’utiliser des [commandes de contrôle](../management/index.md) pour gérer les entités, découvrir les métadonnées, etc.
 Les requêtes et les commandes de contrôle sont de petits « programmes » textuels.
