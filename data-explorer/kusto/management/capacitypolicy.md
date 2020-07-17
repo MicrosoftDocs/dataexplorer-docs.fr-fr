@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: a7f34f51ee38b10c51c469c0145081f5bb702d8f
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: 98841c57c8e7c405eb113e3242df75bedf1ea3b7
+ms.sourcegitcommit: 8611ac88cc42178f2dead5385432d71fa7216c82
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780216"
+ms.lasthandoff: 07/17/2020
+ms.locfileid: "86437568"
 ---
 # <a name="capacity-policy"></a>Stratégie de capacité
 
@@ -48,7 +48,7 @@ Minimum ( `ClusterMaximumConcurrentOperations` , `Number of nodes in cluster` * 
 |Propriété                           |Type    |Description                                                                                                |
 |-----------------------------------|--------|-----------------------------------------------------------------------------------------------------------|
 |MinimumConcurrentOperationsPerNode |long    |Valeur minimale pour le nombre d’opérations de fusion/régénération d’étendues simultanées sur un nœud unique. La valeur par défaut est 1 |
-|MaximumConcurrentOperationsPerNode |long    |Valeur maximale pour le nombre d’opérations de fusion/régénération d’étendues simultanées sur un nœud unique. La valeur par défaut est 5 |
+|MaximumConcurrentOperationsPerNode |long    |Valeur maximale pour le nombre d’opérations de fusion/régénération d’étendues simultanées sur un nœud unique. La valeur par défaut est 3 |
 
 La capacité de fusion totale des étendues du cluster, comme indiqué par la fonction [. afficher la capacité](../management/diagnostics.md#show-capacity), est calculée par :
 
@@ -90,7 +90,7 @@ Minimum ( `ClusterMaximumConcurrentOperations` , `Number of nodes in cluster` * 
 
 |Propriété                           |Type    |Description                                                                                         |
 |-----------------------------------|--------|----------------------------------------------------------------------------------------------------|
-|ClusterMinimumConcurrentOperations |long    |Valeur minimale pour le nombre d’opérations de partition d’étendues simultanées dans un cluster. Valeur par défaut : 1.  |
+|ClusterMinimumConcurrentOperations |long    |Valeur minimale pour le nombre d’opérations de partition d’étendues simultanées dans un cluster. Valeur par défaut : 1  |
 |ClusterMaximumConcurrentOperations |long    |Valeur maximale pour le nombre d’opérations de partition d’étendues simultanées dans un cluster. Valeur par défaut : 16 |
 
 Les étendues totales de la partition du cluster (comme indiqué par [. Affichez la capacité](../management/diagnostics.md#show-capacity)).
@@ -101,14 +101,15 @@ La valeur effective de `Concurrent operations` est automatiquement ajustée par 
 
 La stratégie de capacité par défaut a la représentation JSON suivante :
 
-```kusto 
+```json
 {
   "IngestionCapacity": {
     "ClusterMaximumConcurrentOperations": 512,
     "CoreUtilizationCoefficient": 0.75
   },
   "ExtentsMergeCapacity": {
-    "MaximumConcurrentOperationsPerNode": 1
+    "MinimumConcurrentOperationsPerNode": 1,
+    "MaximumConcurrentOperationsPerNode": 3
   },
   "ExtentsPurgeRebuildCapacity": {
     "MaximumConcurrentOperationsPerNode": 1
@@ -116,6 +117,10 @@ La stratégie de capacité par défaut a la représentation JSON suivante :
   "ExportCapacity": {
     "ClusterMaximumConcurrentOperations": 100,
     "CoreUtilizationCoefficient": 0.25
+  },
+  "ExtentsPartitionCapacity": {
+    "ClusterMinimumConcurrentOperations": 1,
+    "ClusterMaximumConcurrentOperations": 16
   }
 }
 ```

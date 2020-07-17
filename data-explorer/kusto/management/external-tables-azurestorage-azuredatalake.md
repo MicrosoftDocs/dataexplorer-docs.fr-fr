@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 828f2450db7f6afabf33f72d813af6f0007ada6b
-ms.sourcegitcommit: c3bbb9a6bfd7c5506f05afb4968fdc2043a9fbbf
+ms.openlocfilehash: 1b857ee464b0fff973293cd03afadecc8c893af2
+ms.sourcegitcommit: 537a7eaf8c8e06a5bde57503fedd1c3706dd2b45
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/24/2020
-ms.locfileid: "85332602"
+ms.lasthandoff: 07/16/2020
+ms.locfileid: "86422994"
 ---
 # <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Créer et modifier des tables externes dans Stockage Azure ou Azure Data Lake
 
@@ -142,6 +142,8 @@ Pour plus d’informations, consultez [chaînes de connexion de stockage](../api
 | `namePrefix`     | `string` | Si cette valeur est définie, indique le préfixe des fichiers. Lors des opérations d’écriture, tous les fichiers sont écrits avec ce préfixe. Sur les opérations de lecture, seuls les fichiers avec ce préfixe sont lus. |
 | `fileExtension`  | `string` | S’il est défini, indique les extensions de fichier des fichiers. Lors de l’écriture, les noms de fichiers se terminent par ce suffixe. Lors de la lecture, seuls les fichiers avec cette extension de fichier seront lus.           |
 | `encoding`       | `string` | Indique comment le texte est encodé : `UTF8NoBOM` (valeur par défaut) ou `UTF8BOM` .             |
+| `sampleUris`     | `bool`   | Si cette option est définie, le résultat de la commande fournit plusieurs exemples d’URI de fichiers de données externes, car ils sont attendus par la définition de la table externe. |
+| `validateNotEmpty` | `bool`   | Si cette valeur est définie, les chaînes de connexion sont validées pour qu’elles contiennent du contenu. La commande échoue si l’emplacement d’URI spécifié n’existe pas ou s’il n’y a pas d’autorisations suffisantes pour y accéder. |
 
 > [!TIP]
 > Pour en savoir plus sur le rôle `namePrefix` et les `fileExtension` Propriétés lus dans le filtrage des fichiers de données pendant la requête, consultez la section [logique de filtrage de fichiers](#file-filtering) .
