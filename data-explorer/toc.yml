@@ -78,8 +78,10 @@
               href: one-click-ingestion-existing-table.md
         - name: Ingestion de streaming
           items:
-            - name: Ingestion de streaming
+            - name: Portail Azure
               href: ingest-data-streaming.md
+            - name: C#
+              href: ingest-data-streaming-csharp.md
         - name: Utilisation de LightIngest
           href: lightingest.md
         - name: Event Hub
@@ -112,8 +114,8 @@
               href: data-connection-iot-hub-python.md
             - name: "Modèle Azure\_Resource\_Manager"
               href: data-connection-iot-hub-resource-manager.md
-            - name: Azure Data Factory
-              items: null
+        - name: Azure Data Factory
+          items:
             - name: Intégration à Data Factory
               href: data-factory-integration.md
             - name: Copier des données à l’aide d’Azure Data Factory
@@ -317,7 +319,7 @@
           href: troubleshoot-database-table.md
 - name: Informations de référence
   items:
-    - name: Requête Kusto
+    - name: Langage de requête Kusto
       items:
         - name: Vue d’ensemble
           href: ./kusto/query/index.md
@@ -1219,45 +1221,14 @@
                   href: ./kusto/tools/kusto-explorer-troubleshooting.md
             - name: Kusto.Cli
               href: ./kusto/tools/kusto-cli.md
-    - name: Concepts
-      href: ./kusto/concepts/index.md
-      items:
-        - name: Prise en main
-          href: ./kusto/concepts/index.md
-          items:
-            - name: Bacs à sable
-              href: ./kusto/concepts/sandboxes.md
-        - name: Erreurs et divers
-          items:
-            - name: Limites de requête
-              href: ./kusto/concepts/querylimits.md
-            - name: Échecs des requêtes partielles
-              href: ./kusto/concepts/partialqueryfailures.md
-              items:
-                - name: Troncation des résultats
-                  href: ./kusto/concepts/resulttruncation.md
-                - name: Perte de contrôle des requêtes
-                  href: ./kusto/concepts/runawayqueries.md
-                - name: Dépassement de capacité
-                  href: ./kusto/concepts/overflow.md
-            - name: Requêtes interclusters et changements du schéma
-              href: ./kusto/concepts/crossclusterandschemachanges.md
-            - name: Cohérence des requêtes
-              href: ./kusto/concepts/queryconsistency.md
-            - name: Erreurs dans le code natif
-              href: ./kusto/concepts/errorsinnativecode.md
-            - name: Tables de faits et de dimension
-              href: ./kusto/concepts/fact-and-dimension-tables.md
     - name: Gestion
-      href: ./kusto/management/index.md
       items:
         - name: Vue d’ensemble de la gestion (commandes de contrôle)
           href: ./kusto/management/index.md
+        - name: schéma
           items:
             - name: Bonnes pratiques pour la conception de schéma
               href: ./kusto/management/best-practices.md
-        - name: schéma
-          items:
             - name: Gestion des bases de données
               href: ./kusto/management/databases.md
               items:
@@ -1535,10 +1506,36 @@
               href: ./kusto/management/cluster-follower.md
             - name: Vidage des données
               href: ./kusto/concepts/data-purge.md
-    - name: API
-      href: ./kusto/api/index.md
+    - name: Concepts
       items:
-        - name: Vue d’ensemble
+        - name: Prise en main
+          href: ./kusto/concepts/index.md
+        - name: Erreurs et divers
+          items:
+            - name: Bacs à sable
+              href: ./kusto/concepts/sandboxes.md
+            - name: Limites de requête
+              href: ./kusto/concepts/querylimits.md
+            - name: Échecs des requêtes partielles
+              href: ./kusto/concepts/partialqueryfailures.md
+              items:
+                - name: Troncation des résultats
+                  href: ./kusto/concepts/resulttruncation.md
+                - name: Perte de contrôle des requêtes
+                  href: ./kusto/concepts/runawayqueries.md
+                - name: Dépassement de capacité
+                  href: ./kusto/concepts/overflow.md
+            - name: Requêtes interclusters et changements du schéma
+              href: ./kusto/concepts/crossclusterandschemachanges.md
+            - name: Cohérence des requêtes
+              href: ./kusto/concepts/queryconsistency.md
+            - name: Erreurs dans le code natif
+              href: ./kusto/concepts/errorsinnativecode.md
+            - name: Tables de faits et de dimension
+              href: ./kusto/concepts/fact-and-dimension-tables.md
+    - name: API
+      items:
+        - name: Présentation de l’API
           href: ./kusto/api/index.md
           items:
             - name: Bibliothèques clientes

@@ -1,6 +1,6 @@
 ---
-title: Gestion de la stratégie Kusto IngestionBatching-Azure Explorateur de données
-description: Cet article décrit la stratégie IngestionBatching dans Azure Explorateur de données.
+title: Commande de gestion de la stratégie Kusto IngestionBatching-Azure Explorateur de données
+description: Cet article décrit la commande de stratégie IngestionBatching dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: e9823fd0cd44dd2e5bd0731cc59086961ce86d8c
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 04c59b33d780db1c9731ac71d1f905315afbc302
+ms.sourcegitcommit: 4405ae34e119948778e0de5021077638d24da812
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82617763"
+ms.lasthandoff: 07/17/2020
+ms.locfileid: "86448042"
 ---
-# <a name="ingestionbatching-policy"></a>Stratégie IngestionBatching
+# <a name="ingestionbatching-policy-command"></a>Commande de stratégie IngestionBatching
 
 La [stratégie ingestionBatching](batchingpolicy.md) est un objet de stratégie qui détermine à quel moment l’agrégation de données doit s’arrêter pendant l’ingestion des données en fonction des paramètres spécifiés.
 
-La stratégie peut avoir la valeur `null`, auquel cas les valeurs par défaut sont utilisées, en affectant à la durée maximale de traitement par lot la valeur : 5 minutes, 1000 éléments et une taille de lot totale de 1g ou la valeur de cluster par défaut définie par Kusto.
+La stratégie peut avoir la valeur `null` , auquel cas les valeurs par défaut sont utilisées, en affectant à la durée maximale de traitement par lot la valeur : 5 minutes, 1000 éléments et une taille de lot totale de 1g ou la valeur de cluster par défaut définie par Kusto.
 
 Si la stratégie n’est pas définie pour une certaine entité, elle recherche une stratégie supérieure au niveau de la hiérarchie, si toutes sont définies sur null, la valeur par défaut est utilisée. 
 
@@ -29,8 +29,8 @@ La stratégie a une limite inférieure de 10 secondes et il n’est pas recomman
 
 La stratégie peut être définie sur une base de données ou une table, et est affichée à l’aide de l’une des commandes suivantes :
 
-* `.show``database` *DatabaseName* DatabaseName `policy``ingestionbatching`
-* `.show``table` *DatabaseName*DatabaseName`.`*TableName* , table `policy``ingestionbatching`
+* `.show` `database` *DatabaseName* `policy` `ingestionbatching`
+* `.show``table` *DatabaseName*, `.` *TableName* table `policy``ingestionbatching`
 
 ## <a name="altering-the-ingestionbatching-policy"></a>Modification de la stratégie IngestionBatching
 
