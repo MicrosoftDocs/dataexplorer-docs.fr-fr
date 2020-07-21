@@ -8,12 +8,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/16/2020
-ms.openlocfilehash: 9ddb94e005e88855bbeddd7d3cf8ab537a42d413
-ms.sourcegitcommit: a8575e80c65eab2a2118842e59f62aee0ff0e416
+ms.openlocfilehash: 68d6493176696f0241467303f166b8c7160859b7
+ms.sourcegitcommit: cf1da667be12656a8c4727c23144421b5a4b1099
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/17/2020
-ms.locfileid: "84943081"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86565446"
 ---
 # <a name="clear-query-results-cache"></a>Effacer le cache des résultats de requête
 
@@ -21,7 +21,7 @@ Efface tous les [résultats de requête mis en cache](../query/query-results-cac
 
 **Syntaxe**
 
-`.clear` `database` `cache` `queryresults`
+`.clear` `database` `cache` `query_results`
 
 **Retourne**
 
@@ -30,7 +30,7 @@ Cette commande retourne une table avec les colonnes suivantes :
 |Colonne    |Type    |Description
 |---|---|---
 |NodeId|`string`|Identificateur du nœud de cluster.
-|Écritures|`long`|Nombre d’entrées effacées par le nœud.
+|Count|`long`|Nombre d’entrées supprimées par le nœud.
 
 **Exemple**
 

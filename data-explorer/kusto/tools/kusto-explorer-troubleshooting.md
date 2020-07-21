@@ -7,14 +7,14 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/13/2020
-ms.openlocfilehash: 19ffbe2f5e14a2c003c24d145b713970e6bb31b8
-ms.sourcegitcommit: 4eb64e72861d07cedb879e7b61a59eced74517ec
+ms.openlocfilehash: dd312c4a36bb095dbe4b5e475e758c141bbab6e0
+ms.sourcegitcommit: aacea5c4c397479e8254c1fe6ed0b2f333307b14
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/29/2020
-ms.locfileid: "85517764"
+ms.lasthandoff: 07/20/2020
+ms.locfileid: "86470092"
 ---
-# <a name="troubleshooting"></a>Résolution des problèmes
+# <a name="troubleshooting"></a>Dépannage
 
 Ce document présente les difficultés courantes liées à l’exécution et à l’utilisation de Kusto. Explorer, et propose des solutions. Ce document décrit également [Comment réinitialiser Kusto. Explorer](#reset-kustoexplorer).
 
@@ -152,7 +152,7 @@ Ce symptôme peut être dû au fait qu’une autre application remplace le compo
 
 Parfois, lorsque les étapes de dépannage précédentes n’ont pas permis d’obtenir Kusto. Explorer pour démarrer, le nettoyage des données stockées localement peut être utile.
 
-Les données stockées par l’application Kusto. Explorer se trouvent ici : `C:\Users\\[your alias]\AppData\Local\Kusto.Explorer` .
+Les données stockées par l’application Kusto. Explorer se trouvent ici : `C:\Users\[your username]\AppData\Local\Kusto.Explorer` .
 
 > [!NOTE]
 > Le nettoyage des données entraîne une perte des onglets ouverts (dossier de récupération), des connexions enregistrées (dossier des connexions) et des paramètres d’application (dossier UserSettings).

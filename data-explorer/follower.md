@@ -7,12 +7,12 @@ ms.reviewer: gabilehner
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 11/07/2019
-ms.openlocfilehash: 942c0577b8fb784af74cf09aec4c8a68a7be8dda
-ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
+ms.openlocfilehash: b1855d12872c291e1ae45f62da1ad1fe0e792617
+ms.sourcegitcommit: aacea5c4c397479e8254c1fe6ed0b2f333307b14
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84294557"
+ms.lasthandoff: 07/20/2020
+ms.locfileid: "86470109"
 ---
 # <a name="use-follower-database-to-attach-databases-in-azure-data-explorer"></a>Utiliser une base de données d’abonné pour joindre des bases de données dans Azure Data Explorer
 
@@ -182,7 +182,7 @@ Dans cette section, vous allez apprendre à attacher une base de données à un 
         {
             "name": "[concat(parameters('followerClusterName'), '/', parameters('attachedDatabaseConfigurationsName'))]",
             "type": "Microsoft.Kusto/clusters/attachedDatabaseConfigurations",
-            "apiVersion": "2019-09-07",
+            "apiVersion": "2020-02-15",
             "location": "[parameters('location')]",
             "properties": {
                 "databaseName": "[parameters('databaseName')]",
@@ -393,7 +393,6 @@ L’administrateur de base de données d’abonné peut modifier la [stratégie 
 * Le chiffrement des données à l’aide de [clés gérées par le client](security.md#customer-managed-keys-with-azure-key-vault) n’est pas pris en charge sur les clusters principaux et les clusters suivants. 
 * Vous ne pouvez pas supprimer une base de données attachée à un autre cluster avant de la détacher.
 * Vous ne pouvez pas supprimer un cluster qui dispose d’une base de données attachée à un autre cluster avant de la détacher.
-* Vous ne pouvez pas arrêter un cluster qui dispose d’une ou plusieurs bases de données de responsable ou d’abonné. 
 
 ## <a name="next-steps"></a>Étapes suivantes
 

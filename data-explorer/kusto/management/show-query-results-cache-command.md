@@ -8,32 +8,28 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/16/2020
-ms.openlocfilehash: bcbdb59355ce0461d735cbea902551c219479fd2
-ms.sourcegitcommit: a8575e80c65eab2a2118842e59f62aee0ff0e416
+ms.openlocfilehash: 84805cae07049af4ffa8a2fdb82e637261140f8f
+ms.sourcegitcommit: cf1da667be12656a8c4727c23144421b5a4b1099
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/17/2020
-ms.locfileid: "84943073"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86565435"
 ---
-# <a name="show-query-results-cache"></a>. afficher le cache des résultats de la requête
+# <a name="show-database-cache-query_results"></a>. afficher le cache de base de données query_results
 
-Retourne une table qui affiche les statistiques relatives au [cache des résultats](../query/query-results-cache.md)de la requête.
+Retourne une table qui affiche des statistiques relatives au [cache des résultats](../query/query-results-cache.md) de la requête effectuée sur la base de données de contexte.
 
 **Syntaxe**
 
-`.show` `query` `results` `cache`
+`.show database query results cache`
 
 **Sortie**
  
 |Paramètre de sortie |Type |Description 
 |---|---|---
-|Correspondances  |long |Nombre d’accès au cache.
-|Absences  |long |Nombre d’absences dans le cache.
-|CacheCapacityInBytes |long |Capacité du cache en octets.
-|UsedBytes  |long |Espace utilisé par le cache.
-|Count  |long | Nombre de résultats de requête uniques stockés dans le cache.
-
-**Limitations**
-
-* Actuellement, la sortie de la commande reflète uniquement les statistiques de cache collectées par le nœud sur lequel la demande a été débarquée.
-* La commande affiche uniquement l’historique « récent ».
+|NodeId|`string`|Identificateur du nœud de cluster.
+|Correspondances  |`long`|Nombre d’accès au cache.
+|Absences  |`long`|Nombre d’absences dans le cache.
+|CacheCapacityInBytes |`long` |Capacité du cache en octets.
+|UsedBytes  |`long` |Espace utilisé par le cache.
+|Count  |`long`| Nombre de résultats de requête uniques stockés dans le cache.

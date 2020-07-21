@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: 98841c57c8e7c405eb113e3242df75bedf1ea3b7
-ms.sourcegitcommit: 8611ac88cc42178f2dead5385432d71fa7216c82
+ms.openlocfilehash: 3835cc3e50cc589e13f7d038a7c1f8f83def9d15
+ms.sourcegitcommit: aacea5c4c397479e8254c1fe6ed0b2f333307b14
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86437568"
+ms.lasthandoff: 07/20/2020
+ms.locfileid: "86470075"
 ---
 # <a name="capacity-policy"></a>Stratégie de capacité
 
@@ -54,7 +54,7 @@ La capacité de fusion totale des étendues du cluster, comme indiqué par la fo
 
 `Number of nodes in cluster`x`Concurrent operations per node`
 
-La valeur effective de `Concurrent operations per node` est automatiquement ajustée par le système dans la plage [ `MinimumConcurrentOperationsPerNode` , `MaximumConcurrentOperationsPerNode` ].
+La valeur effective de `Concurrent operations per node` est automatiquement ajustée par le système dans la plage [ `MinimumConcurrentOperationsPerNode` , `MaximumConcurrentOperationsPerNode` ], tant que le taux de réussite des opérations de fusion est supérieur à 90%.
 
 > [!Note]
 > * Dans les clusters comportant trois nœuds ou plus, le nœud d’administration ne participe pas aux opérations de fusion. Le `Number of nodes in cluster` est réduit d’une unité.
@@ -95,7 +95,7 @@ Minimum ( `ClusterMaximumConcurrentOperations` , `Number of nodes in cluster` * 
 
 Les étendues totales de la partition du cluster (comme indiqué par [. Affichez la capacité](../management/diagnostics.md#show-capacity)).
 
-La valeur effective de `Concurrent operations` est automatiquement ajustée par le système dans la plage [ `ClusterMinimumConcurrentOperations` , `ClusterMaximumConcurrentOperations` ].
+La valeur effective de `Concurrent operations` est automatiquement ajustée par le système dans la plage [ `ClusterMinimumConcurrentOperations` , `ClusterMaximumConcurrentOperations` ], tant que le taux de réussite des opérations de partitionnement est supérieur à 90%.
 
 ## <a name="defaults"></a>Valeurs par défaut
 
@@ -134,7 +134,7 @@ La stratégie de capacité par défaut a la représentation JSON suivante :
 
 * Utilisez la capacité de la [stratégie de cluster ALTER](capacity-policy.md#alter-cluster-policy-capacity) pour modifier la stratégie de capacité du cluster.
 
-## <a name="throttling"></a>Limitation
+## <a name="throttling"></a>Throttling
 
 Kusto limite le nombre de demandes simultanées pour les commandes initiées par l’utilisateur suivantes :
 

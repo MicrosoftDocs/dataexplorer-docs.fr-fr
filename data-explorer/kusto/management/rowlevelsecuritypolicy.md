@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/25/2020
-ms.openlocfilehash: b5bc65b94c45e27087345cfbaf7252ccc4bcaf40
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: c07a2e624d8f2657889431df51958017228774a8
+ms.sourcegitcommit: d79d3aa9aaa70cd23e3107ef12296159322e1eb5
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264418"
+ms.lasthandoff: 07/20/2020
+ms.locfileid: "86475590"
 ---
 # <a name="row-level-security-preview"></a>Sécurité au niveau des lignes (version préliminaire)
 
@@ -33,6 +33,12 @@ Pour plus d’informations, consultez [commandes de contrôle pour la gestion de
 
 > [!NOTE]
 > La stratégie RLS que vous configurez sur la base de données de production prendra également effet dans les bases de données suivantes. Vous ne pouvez pas configurer différentes stratégies RLS sur les bases de données de production et de suivi.
+
+> [!TIP]
+> Ces fonctions sont souvent utiles pour les requêtes de row_level_security :
+> * [current_principal()](../query/current-principalfunction.md)
+> * [current_principal_details()](../query/current-principal-detailsfunction.md)
+> * [current_principal_is_member_of()](../query/current-principal-ismemberoffunction.md)
 
 ## <a name="limitations"></a>Limites
 

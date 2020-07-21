@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 130526b41030ac3936236f8fd8bba81f20b4bb0e
-ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
+ms.openlocfilehash: af224c630cb835d190b8fd6655a6d42f7fd7fee9
+ms.sourcegitcommit: d79d3aa9aaa70cd23e3107ef12296159322e1eb5
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84512518"
+ms.lasthandoff: 07/20/2020
+ms.locfileid: "86475607"
 ---
-# <a name="cache-policy-hot-and-cold-cache"></a>Stratégie de cache (Hot et Cold cache) 
+# <a name="cache-policy-hot-and-cold-cache"></a>Stratégie de cache (cache chaud et froid) 
 
 Azure Explorateur de données stocke ses données ingérées dans un stockage fiable (le plus souvent, le stockage d’objets BLOB Azure), en dehors de son traitement réel (par exemple, les nœuds Azure Compute). Pour accélérer les requêtes sur ces données, Azure Explorateur de données les met en cache, ou en partie, sur ses nœuds de traitement, SSD ou même en RAM. Azure Explorateur de données comprend un mécanisme de cache sophistiqué conçu pour déterminer intelligemment les objets de données à mettre en cache. Le cache permet à Azure Explorateur de données de décrire les artefacts de données qu’il utilise, afin que les données plus importantes puissent être prioritaires. Par exemple, les index de colonne et les données de colonne partitions,
 
@@ -39,7 +39,7 @@ Utilisez la [commande de stratégie de cache](cache-policy.md) pour gérer la st
 
 Lorsque les données sont ingérées dans Azure Explorateur de données, le système effectue le suivi de la date et de l’heure de l’ingestion et de l’étendue qui a été créée. La valeur de date et d’heure d’ingestion de l’étendue (ou valeur maximale, si une extension a été créée à partir de plusieurs extensions préexistantes), est utilisée pour évaluer la stratégie de cache.
 
-> [!Note]
+> [!NOTE]
 > Vous pouvez spécifier une valeur pour la date et l’heure d’ingestion à l’aide de la propriété ingestion `creationTime` .
 
 Par défaut, la stratégie effective est `null` , ce qui signifie que toutes les données sont considérées comme étant **chaudes**.
@@ -48,13 +48,16 @@ Une stratégie non `null` au niveau de la table remplace une stratégie au nivea
 ## <a name="scoping-queries-to-hot-cache"></a>Étendue des requêtes au cache à chaud
 
 Kusto prend en charge les requêtes dont la portée est limitée aux données de cache à chaud uniquement.
-Il existe plusieurs possibilités de requête.
 
-- Ajoutez une propriété de demande cliente appelée `query_datascope` à la requête.
+> [!NOTE]
+> La portée des données s’applique uniquement aux entités qui prennent en charge les stratégies de mise en cache, telles que les tables. Elle est ignorée pour les autres entités, telles que les tables externes.
+
+Il existe plusieurs possibilités de requête :
+* Ajoutez une propriété de demande cliente appelée `query_datascope` à la requête.
    Valeurs possibles : `default` , `all` et `hotcache` .
-- Utilisez une `set` instruction dans le texte de la requête : `set query_datascope='...'` .
+* Utilisez une `set` instruction dans le texte de la requête : `set query_datascope='...'` .
    Les valeurs possibles sont les mêmes que pour la propriété demande du client.
-- Ajoutez un `datascope=...` texte immédiatement après une référence de table dans le corps de la requête. 
+* Ajoutez un `datascope=...` texte immédiatement après une référence de table dans le corps de la requête. 
    Les valeurs possibles sont `all` et `hotcache`.
 
 La `default` valeur indique l’utilisation des paramètres par défaut du cluster, qui déterminent que la requête doit couvrir toutes les données.
