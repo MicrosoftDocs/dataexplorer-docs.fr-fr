@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/13/2020
-ms.openlocfilehash: dd312c4a36bb095dbe4b5e475e758c141bbab6e0
-ms.sourcegitcommit: aacea5c4c397479e8254c1fe6ed0b2f333307b14
+ms.openlocfilehash: 6dd52dbe9b69000b109f613957d1405190194b13
+ms.sourcegitcommit: 6db94135b9902ad0ea84f9cef00ded8ec0a90fc3
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86470092"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86870088"
 ---
 # <a name="troubleshooting"></a>Dépannage
 
@@ -42,7 +42,7 @@ Chaque fois que vous ouvrez Kusto. Explorer, vous êtes invité à installer une
 
 Ce symptôme peut être dû à un endommagement dans votre magasin ClickOnce local. Vous pouvez effacer le magasin ClickOnce local en exécutant la commande suivante, dans une invite de commandes avec élévation de privilèges.
 
-> [!Important]
+> [!IMPORTANT]
 > 1. S’il existe d’autres instances d’applications ClickOnce ou de `dfsvc.exe` , terminez-les avant d’exécuter cette commande.
 > 1. Toutes les applications ClickOnce se réinstallent automatiquement la prochaine fois que vous les exécutez, à condition que vous ayez accès à l’emplacement d’installation d’origine stocké dans le raccourci de l’application. Les raccourcis de l’application ne seront pas supprimés.
 
@@ -159,7 +159,7 @@ Les données stockées par l’application Kusto. Explorer se trouvent ici : `C
 
 ## <a name="reset-kustoexplorer"></a>Réinitialiser Kusto. Explorer
 
-Si nécessaire, vous pouvez réinitialiser complètement Kusto. Explorer. La procédure suivante décrit comment réinitialiser Kusto. Explorer de manière progressive, jusqu’à ce qu’il soit complètement supprimé de votre ordinateur et qu’il soit nécessaire de l’installer à partir de zéro.
+Si nécessaire, vous pouvez réinitialiser complètement Kusto. Explorer. La procédure suivante décrit comment réinitialiser Kusto. Explorer de manière progressive, jusqu’à ce qu’il soit supprimé de votre ordinateur et qu’il soit nécessaire de l’installer à partir de zéro.
 
 1. Dans Windows, ouvrez **modifier ou supprimer un programme** (également appelé **programmes et fonctionnalités**).
 1. Sélectionnez chaque élément qui commence par `Kusto.Explorer` .

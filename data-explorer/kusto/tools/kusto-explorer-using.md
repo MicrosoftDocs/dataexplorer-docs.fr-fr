@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/19/2020
-ms.openlocfilehash: 0b2daf955515e4c023cdb7312fbd82039ca598bc
-ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
+ms.openlocfilehash: c95ac178e82e414df41dd5a6d4456f344bb39c2f
+ms.sourcegitcommit: 6db94135b9902ad0ea84f9cef00ded8ec0a90fc3
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86280633"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86870122"
 ---
 # <a name="using-kustoexplorer"></a>Utilisation de Kusto.Explorer
 
@@ -75,9 +75,15 @@ StormEvents
 
 En savoir plus sur le [langage de requête Kusto](https://docs.microsoft.com/azure/kusto/query/).
 
+> [!NOTE]
+> Les lignes vides dans l’expression de requête peuvent avoir une incidence sur la partie de la requête qui est exécutée.
+>
+> Si aucun texte n’est sélectionné, la requête ou la commande est supposée être séparée par des lignes vides.
+> Si du texte est sélectionné, le texte sélectionné est exécuté.
+
 ## <a name="client-side-query-parameterization"></a>Paramétrage des requêtes côté client
 
-> [!Note]
+> [!NOTE]
 > Il existe deux types de techniques de requête parametrization dans Kusto :
 > * La [parametrization de requête intégrée au langage](../query/queryparametersstatement.md) est implémentée dans le cadre du moteur de requête et est destinée à être utilisée par les applications qui interrogent le service par programme. Cette méthode n’est pas décrite dans ce document.
 >
@@ -139,11 +145,11 @@ Les requêtes sont limitées à environ 2000 caractères en raison des limitatio
 
 Le format de l’URI est le suivant :`https://<ClusterCname>.kusto.windows.net/<DatabaseName>web=0?query=<QueryToExecute>`
 
-Par exemple :  [https://help.kusto.windows.net/Samples?web=0query=StormEvents+%7c+limit+10](https://help.kusto.windows.net/Samples?web=0query=StormEvents+%7c+limit+10)
+Par exemple : [https://help.kusto.windows.net/Samples?web=0query=StormEvents+%7c+limit+10](https://help.kusto.windows.net/Samples?web=0query=StormEvents+%7c+limit+10)
  
 Cet URI ouvre Kusto. Explorer, se connecte au `Help` cluster Kusto et exécute la requête spécifiée sur la `Samples` base de données. Si une instance de Kusto. Explorer est déjà en cours d’exécution, l’instance en cours d’exécution ouvrira un nouvel onglet et exécutera la requête dans celle-ci.
 
-> [!Note] 
+> [!NOTE] 
 > Pour des raisons de sécurité, la liaison profonde est désactivée pour les commandes de contrôle.
 
 ### <a name="creating-a-deep-link"></a>Création d’un lien profond
@@ -221,7 +227,7 @@ Kusto.Explorer.exe c:\temp\script.kql uri=https://help.kusto.windows.net/Samples
 
 ## <a name="manage-clusters-databases-tables-or-function-authorized-principals"></a>Gérer des clusters, des bases de données, des tables ou des principaux autorisés de fonction
 
-> [!Note]
+> [!NOTE]
 > Seuls les [administrateurs](../management/access-control/role-based-authorization.md) peuvent ajouter ou supprimer des principaux autorisés dans leur propre étendue.
 
 Cliquez avec le bouton droit sur l’entité cible dans le [panneau connexions](kusto-explorer.md#connections-tab), puis sélectionnez **gérer les principaux autorisés du cluster**. (Vous pouvez également sélectionner cette option dans le menu gestion.)

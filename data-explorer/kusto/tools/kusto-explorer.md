@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 05/19/2020
-ms.openlocfilehash: 1f3b273260451dc0ce36730d20f1bc357a453397
-ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
+ms.openlocfilehash: d5cb54ab0171a7f7a7e6b7353f723abe2caf69ff
+ms.sourcegitcommit: 6db94135b9902ad0ea84f9cef00ded8ec0a90fc3
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86280535"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86870139"
 ---
 # <a name="getting-started-with-kustoexplorer"></a>Prise en main de Kusto. Explorer
 
@@ -53,7 +53,7 @@ L’interface utilisateur de Kusto. Explorer est conçue à l’aide d’onglets
 Le panneau de menu Kusto. Explorer comprend les onglets suivants :
 
 * [Page d'accueil](#home-tab)
-* [Fichier](#file-tab)
+* [File](#file-tab)
 * [Connexions](#connections-tab)
 * [Visualiser](#view-tab)
 * [outils](#tools-tab)
@@ -266,7 +266,7 @@ L’onglet dossier de démarrage affiche les fonctions les plus récemment utili
 |Menu             | Comportement|
 |-----------------|---------|
 ||---------*Correspondante*---------|
-|Aide-moi             | Ouvre un lien vers la documentation en ligne de Kusto  | 
+|Aide             | Ouvre un lien vers la documentation en ligne de Kusto  | 
 |Nouveautés       | Ouvre un document qui répertorie toutes les modifications apportées à Kusto. Explorer|
 |Signaler un problème      |Ouvre une boîte de dialogue avec deux options : <ul><li>Signaler des problèmes liés au service</li><li>Signaler des problèmes dans l’application cliente</li></ul> | 
 |Suggérer une fonctionnalité  | Ouvre un lien vers le Forum de commentaires Kusto | 
@@ -306,7 +306,7 @@ Data Source=https://CLUSTER_NAME.kusto.windows.net;Initial Catalog=DATABASE_NAME
 * `AAD_TENANT_OF_CLUSTER`nom de domaine ou ID de locataire AAD (GUID) du locataire AAD dans lequel le cluster est hébergé. Il s’agit généralement du nom de domaine de l’organisation qui possède le cluster, par exemple `contoso.com` . 
 * USER_DOMAIN est l’identité de l’utilisateur invité dans ce locataire (par exemple, `user@example.com` ). 
 
->[!Note]
+>[!NOTE]
 > Le nom de domaine de l’utilisateur n’est pas nécessairement le même que celui du locataire qui héberge le cluster.
 
 :::image type="content" source="images/kusto-explorer/advanced-connection-string.png" alt-text="Chaîne de connexion avancée Kusto Explorer":::
