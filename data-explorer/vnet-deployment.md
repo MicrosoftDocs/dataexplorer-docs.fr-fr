@@ -7,12 +7,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/31/2019
-ms.openlocfilehash: dcc196675b29ac1989fb0753e87ef5f1bf0477aa
-ms.sourcegitcommit: 284152eba9ee52e06d710cc13200a80e9cbd0a8b
+ms.openlocfilehash: 0b831b236c2604ef7d87c77f6955e6b5eaf2aae1
+ms.sourcegitcommit: 4ae1508bbaa8fe9642dcfc8618d77f009bc8ec9f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86291574"
+ms.lasthandoff: 07/15/2020
+ms.locfileid: "86405485"
 ---
 # <a name="deploy-azure-data-explorer-cluster-into-your-virtual-network"></a>Déployer un cluster Azure Data Explorer dans votre réseau virtuel
 
@@ -223,6 +223,11 @@ Les [groupes de sécurité réseau (NSG)](/azure/virtual-network/security-overvi
 | Asie Sud-Est | 52.148.86.165 |
 | Royaume-Uni Sud | 52.174.4.112 |
 | Royaume-Uni Ouest | 52.169.237.246 |
+| US DoD - Centre | 13.72.37.111 |
+| USDoD Est | 13.72.37.111 |
+| Gouvernement des États-Unis - Arizona | 13.72.37.111 |
+| Gouvernement des États-Unis - Texas | 13.72.37.111 |
+| USGov Virginia | 13.72.37.111 |
 | Centre-USA Ouest | 52.161.31.69 |
 | Europe Ouest | 52.174.4.112 |
 | Inde Ouest | 13.71.25.187 |

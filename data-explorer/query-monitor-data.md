@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/28/2020
-ms.openlocfilehash: 1edca77125f46c59402edfde251262cebe5c1b70
-ms.sourcegitcommit: 284152eba9ee52e06d710cc13200a80e9cbd0a8b
+ms.openlocfilehash: b3f4ed8e0bb37b62c7f31c9444b373529cf24df9
+ms.sourcegitcommit: 537a7eaf8c8e06a5bde57503fedd1c3706dd2b45
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86291591"
+ms.lasthandoff: 07/16/2020
+ms.locfileid: "86423022"
 ---
 # <a name="query-data-in-azure-monitor-using-azure-data-explorer-preview"></a>Interroger des données dans Azure Monitor avec Azure Data Explorer (préversion)
 
@@ -36,7 +36,7 @@ Le flux de proxy Azure Data Explorer :
 
 1. Dans l’interface utilisateur d’Azure Data Explorer https://dataexplorer.azure.com/clusters), sélectionnez **Ajouter un cluster**.
 
-1. Dans la fenêtre **Ajouter un cluster**, ajoutez l’URL au cluster LA ou AI. 
+1. Dans la fenêtre **Ajouter un cluster**, ajoutez l’URL au cluster LA ou AI. 
     
     * Pour LA : `https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.operationalinsights/workspaces/<workspace-name>`
     * Pour AI : `https://ade.applicationinsights.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.insights/components/<ai-app-name>`
@@ -51,6 +51,9 @@ Le flux de proxy Azure Data Explorer :
 
     ![Clusters Log Analytics et Azure Data Explorer](media/adx-proxy/la-adx-clusters.png)
 
+> [!NOTE]
+> Le nombre d’espaces de travail Azure Monitor pouvant être mappés est limité à 100.
+
 ## <a name="run-queries"></a>Exécuter des requêtes
 
 Vous pouvez exécuter les requêtes à l’aide des outils clients qui prennent en charge les requêtes Kusto, par exemple : Kusto Explorer, interface utilisateur ADX Web, Jupyter Kqlmagic, Flow, PowerQuery, PowerShell, Jarvis, Lens, API REST.
@@ -64,7 +67,7 @@ Vous pouvez exécuter les requêtes à l’aide des outils clients qui prennent 
 ### <a name="direct-query-from-your-la-or-ai-adx-proxy-cluster"></a>Requête directe à partir de votre cluster proxy ADX LA ou AI
 
 Exécutez des requêtes sur votre cluster LA ou AI. Vérifiez que votre cluster est sélectionné dans le volet gauche. 
-
+ 
 ```kusto
 Perf | take 10 // Demonstrate query through the proxy on the LA workspace
 ```
@@ -90,15 +93,18 @@ union <ADX table>, cluster(CL1).database(<workspace-name>).<table name>
 L’utilisation de l’[`join`opérateur](kusto/query/joinoperator.md), au lieu de l’union, peut nécessiter un [`hint`](kusto/query/joinoperator.md#join-hints) pour l’exécuter sur un cluster natif Azure Data Explorer (et non sur le proxy). 
 
 ## <a name="function-supportability"></a>Prise en charge des fonctions
+
 Le cluster de proxy Azure Data Explorer prend en charge les fonctions d’Application Insights et de Log Analytics.
 Cela permet aux requêtes interclusters de référencer directement une fonction tabulaire Azure Monitor.
 Les commandes suivantes sont prises en charge par le proxy :
 
-```kusto
-.show functions
-.show function {FunctionName}
-.show database {DataBaseName} schema as json
-```
+* `.show functions`
+* `.show function {FunctionName}`
+* `.show database {DatabaseName} schema as json`
+
+L’image suivante illustre un exemple d’interrogation d’une fonction tabulaire à partir de l’interface utilisateur web d’Azure Data Explorer. Pour utiliser la fonction, exécutez son nom dans la fenêtre de requête.
+
+  [ ![Interroger une fonction tabulaire à partir de l’interface utilisateur web Azure Data Explorer](media/adx-proxy/function-query-adx-proxy.png)](media/adx-proxy/function-query-adx-proxy.png#lightbox)
 
 > [!NOTE]
 > Azure Monitor prend en charge uniquement les fonctions tabulaires. Les fonctions tabulaires ne prennent pas en charge les paramètres.

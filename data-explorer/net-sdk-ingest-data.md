@@ -7,12 +7,12 @@ ms.reviewer: vladikb
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 07/07/2020
-ms.openlocfilehash: 7b26d0585e4d6bc2ff8edfb9a906dd305278f967
-ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
+ms.openlocfilehash: 8a31c4a482f047f9f92edd75fe1119c1729deaf9
+ms.sourcegitcommit: 537a7eaf8c8e06a5bde57503fedd1c3706dd2b45
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86280624"
+ms.lasthandoff: 07/16/2020
+ms.locfileid: "86422996"
 ---
 # <a name="ingest-data-using-the-azure-data-explorer-net-sdk"></a>Ingérer des données à l’aide du SDK .NET Azure Data Explorer 
 
@@ -165,7 +165,7 @@ using (var kustoClient = KustoClientFactory.CreateCslAdminProvider(kustoConnecti
 
 ## <a name="define-batching-policy-for-your-table"></a>Définir la stratégie de traitement par lots pour votre table
 
-L’ingestion Azure Data Explorer effectue le traitement par lot des données entrantes pour optimiser la taille des partitions de données. Ce processus est contrôlé par la [stratégie de traitement par lot de l’ingestion](/kusto/management/batchingpolicy) et peut être modifié par une [commande de contrôle](/kusto/management/batching-policy). Utilisez cette stratégie pour réduire la latence des données dont l’arrivée est lente.
+L’ingestion Azure Data Explorer effectue le traitement par lot des données entrantes pour optimiser la taille des partitions de données. Ce processus est contrôlé par la [stratégie de traitement par lot de l’ingestion](kusto/management/batchingpolicy.md) et peut être modifié par la [commande de contrôle de la stratégie de traitement par lot de l’ingestion](kusto/management/batching-policy.md). Utilisez cette stratégie pour réduire la latence des données dont l’arrivée est lente.
 
 ```kusto
 using (var kustoClient = KustoClientFactory.CreateCslAdminProvider(kustoConnectionStringBuilder))

@@ -8,12 +8,12 @@ ms.reviewer: olgolden
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 07/08/2020
-ms.openlocfilehash: 3a2b5cfb9ca02ec255e8cca7d40c103be18a0450
-ms.sourcegitcommit: b286703209f1b657ac3d81b01686940f58e5e145
+ms.openlocfilehash: 166f109f96695380c979dd4060e324187c5b5efc
+ms.sourcegitcommit: 4ae1508bbaa8fe9642dcfc8618d77f009bc8ec9f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86188538"
+ms.lasthandoff: 07/15/2020
+ms.locfileid: "86405468"
 ---
 # <a name="azure-data-explorer-tools-and-integrations-overview"></a>Vue d’ensemble des outils et des intégrations Azure Data Explorer
 
@@ -38,7 +38,7 @@ L’ingestion des données est le processus utilisé pour charger des enregistre
 ### <a name="ingestion-integrations"></a>Intégrations d’ingestion
 
 * Event Hub
-    * [Ingérer des données d’Event Hub]([Ingérer des données d’Event Hub](kusto/management/data-ingestion/eventhub.md)
+    * [Ingérer des données à partir d’Event Hub](kusto/management/data-ingestion/eventhub.md)
     * Ingérez des données d’Event Hub à l’aide du [portail Azure](ingest-data-event-hub.md), de [C#](data-connection-event-hub-csharp.md), de [Python](data-connection-event-hub-python.md) ou d’un [modèle Azure Resource Manager](data-connection-event-hub-resource-manager.md)
 * Event Grid
     * [Ingérer des données d’Event Grid](kusto/management/data-ingestion/eventgrid.md)
@@ -78,7 +78,7 @@ Plusieurs outils sont disponibles pour exécuter des requêtes dans Azure Data E
 * [Azure Data Lake](data-lake-query-data.md)
 * [Apache Spark](spark-connector.md)
 * Microsoft Power Apps
-* Azure Data Studio
+* [Azure Data Studio](https://docs.microsoft.com/sql/azure-data-studio/notebooks-kqlmagic)
 
 ## <a name="visualizations-dashboards-and-reporting"></a>Visualisations, tableaux de bord et création de rapports
 
@@ -88,7 +88,7 @@ La [vue d’ensemble de la visualisation](viz-overview.md) détaille la visualis
 
 * [Azure Notebooks](azure-notebooks.md)
 * [Blocs-notes Jupyter](kqlmagic.md)
-* Azure Data Studio
+* [Azure Data Studio](https://docs.microsoft.com/sql/azure-data-studio/notebooks-kqlmagic)
 
 ## <a name="orchestration"></a>Orchestration
 
