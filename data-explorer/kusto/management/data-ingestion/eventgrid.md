@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/01/2020
-ms.openlocfilehash: 3a69add7e395bbb5b18c390c4089a2e8ad80f674
-ms.sourcegitcommit: 0d15903613ad6466d49888ea4dff7bab32dc5b23
+ms.openlocfilehash: 88a95ea2fc8e1f417114cfcfd89c4e5003d9bef2
+ms.sourcegitcommit: fb54d71660391a63b0c107a9703adea09bfc7cb9
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "86013787"
+ms.lasthandoff: 07/22/2020
+ms.locfileid: "86946102"
 ---
 # <a name="ingest-from-storage-using-event-grid-subscription"></a>Ingérer à partir du stockage avec un abonnement Event Grid
 
@@ -43,7 +43,7 @@ Vous pouvez définir les propriétés suivantes :
 | kustoIngestionMappingReference |  Nom du mappage d’ingestion existant à utiliser. Remplace le mappage de **colonnes** défini dans le panneau de **connexion de données** .|
 | kustoIgnoreFirstRecord | Si la valeur est `true` , Azure Explorateur de données ignore la première ligne de l’objet BLOB. Utilisez dans les données au format tabulaire (CSV, TSV ou similaire) pour ignorer les en-têtes. |
 | kustoExtentTags | Chaîne représentant les [balises](../extents-overview.md#extent-tagging) qui seront attachées à l’étendue résultante. |
-| kustoCreationTime |  Remplace [$IngestionTime](../../query/ingestiontimefunction.md?pivots=azuredataexplorer) pour l’objet BLOB, au format de chaîne ISO 8601. À utiliser pour le renvoi. |
+| kustoCreationTime |  Remplace [$IngestionTime](../../query/ingestiontimefunction.md?pivots=azuredataexplorer) pour l’objet blob, au format d’une chaîne ISO 8601. À utiliser pour le renvoi. |
 
 ## <a name="events-routing"></a>Routage des événements
 
@@ -107,12 +107,15 @@ blob.UploadFromFile(jsonCompressedLocalFileName);
    * Sélectionnez **Activer le filtrage d’objet**.
    * Le champ **Subject Begin with** est le préfixe *littéral* de l’objet. Étant donné que le modèle appliqué est *StartsWith*, il peut s’étendre sur plusieurs conteneurs, dossiers ou objets BLOB. Les caractères génériques ne sont pas autorisés.
        * Pour définir un filtre sur le conteneur d’objets blob, le champ *doit* être défini comme suit : *`/blobServices/default/containers/[container prefix]`* .
-       * Pour définir un filtre sur un préfixe d’objet BLOB (ou un dossier dans Azure Data Lake Gen), le champ *doit* être défini comme suit : *`/blobServices/default/containers/[container name]/blobs/[folder/blob prefix]`* .
+       * Pour définir un filtre sur un préfixe d’objet blob (ou un dossier dans Azure Data Lake Gen2), le champ *doit* être défini comme suit : *`/blobServices/default/containers/[container name]/blobs/[folder/blob prefix]`* .
    * Le champ **Le sujet se termine par** est le suffixe *littéral* de l’objet blob. Les caractères génériques ne sont pas autorisés.
    * Le champ **de correspondance d’objet qui respecte la casse** indique si les filtres de préfixe et de suffixe respectent la casse.
    * Pour plus d’informations sur le filtrage des événements, consultez [Événements du stockage Blob](/azure/storage/blobs/storage-blob-event-overview#filtering-events).
     
         :::image type="content" source="../images/eventgrid/filters-tab.png" alt-text="Onglet Filtres-grille d’événements":::
+
+> [!NOTE]
+> Lorsque le point de terminaison n’accuse pas réception d’un événement, Azure Event Grid active un mécanisme de nouvelle tentative. Si la remise de nouvelles tentatives échoue, Event Grid remet les événements non remis à un compte de stockage à l’aide d’un processus de *lettres mortes*. Pour plus d’informations, consultez la page [Distribution et nouvelle tentative de distribution de messages avec Event Grid](/azure/event-grid/delivery-and-retry#retry-schedule-and-duration).
 
 ### <a name="data-ingestion-connection-to-azure-data-explorer"></a>Connexion d’ingestion de données à Azure Explorateur de données
 

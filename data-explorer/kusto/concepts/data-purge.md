@@ -8,12 +8,12 @@ ms.reviewer: kedamari
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/12/2020
-ms.openlocfilehash: 144e56ee89cb35900b8e55cdbcdce597b26f8a68
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: ad659f9208bd057719a1adc31f8370c0cb11ffd3
+ms.sourcegitcommit: fb54d71660391a63b0c107a9703adea09bfc7cb9
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83225993"
+ms.lasthandoff: 07/22/2020
+ms.locfileid: "86946136"
 ---
 # <a name="data-purge"></a>Vidage des données
 
@@ -36,10 +36,10 @@ Concevez soigneusement votre schéma de données et examinez les stratégies per
 
 Le processus de purge sélective des données à partir d’Azure Explorateur de données se déroule comme suit :
 
-1. Phase 1 : fournir une entrée avec un nom de table Explorateur de données Azure et un prédicat par enregistrement, indiquant les enregistrements à supprimer. Kusto analyse la table pour identifier les partitions de données qui participeraient à la purge des données. Les partitions identifiés sont ceux qui ont un ou plusieurs enregistrements pour lesquels le prédicat retourne la valeur true.
-1. Phase 2 : (suppression réversible) remplacez chaque partition de données de la table (identifiée à l’étape (1)) par une version régérée. La version régérée ne doit pas avoir les enregistrements pour lesquels le prédicat retourne la valeur true. Si de nouvelles données ne sont pas ingérées dans la table, à la fin de cette phase, les requêtes ne retournent plus de données pour lesquelles le prédicat retourne la valeur true. La durée de la phase de suppression réversible de vidage dépend des paramètres suivants : 
+1. Phase 1 : fournir une entrée avec un nom de table Explorateur de données Azure et un prédicat par enregistrement, indiquant les enregistrements à supprimer. Kusto analyse la table pour identifier les étendues de données qui participent à la purge des données. Les étendues identifiées sont celles qui ont un ou plusieurs enregistrements pour lesquels le prédicat retourne la valeur true.
+1. Phase 2 : (suppression réversible) remplacez chaque étendue de données de la table (identifiée à l’étape (1)) par une version régérée. La version régérée ne doit pas avoir les enregistrements pour lesquels le prédicat retourne la valeur true. Si de nouvelles données ne sont pas ingérées dans la table, à la fin de cette phase, les requêtes ne retournent plus de données pour lesquelles le prédicat retourne la valeur true. La durée de la phase de suppression réversible de vidage dépend des paramètres suivants : 
      * Nombre d’enregistrements qui doivent être purgés 
-     * Enregistrement de la distribution sur les données partitions dans le cluster 
+     * Enregistrer la distribution dans les étendues de données du cluster 
      * Nombre de nœuds dans le cluster  
      * Capacité de rechange pour les opérations de vidage
      * Plusieurs autres facteurs la durée de la phase 2 peuvent varier de quelques secondes à plusieurs heures.
@@ -49,15 +49,15 @@ L’émission d’une `.purge` commande déclenche ce processus, qui prend quelq
 
 ## <a name="purge-limitations-and-considerations"></a>Limitations et considérations relatives à la purge
 
-* Le processus de vidage est final et irréversible. Il n’est pas possible d’annuler ce processus ou de récupérer des données purgées. Les commandes telles que [annuler la suppression de table](../management/undo-drop-table-command.md) ne peuvent pas récupérer les données purgées. La restauration des données vers une version antérieure ne peut pas aller à avant la dernière commande de vidage.
+* Le processus de vidage est définitif et irréversible. Il n’est pas possible d’annuler ce processus ou de récupérer des données purgées. Les commandes telles que [annuler la suppression de table](../management/undo-drop-table-command.md) ne peuvent pas récupérer les données purgées. La restauration des données vers une version antérieure ne peut pas aller à avant la dernière commande de vidage.
 
 * Avant d’exécuter la purge, vérifiez le prédicat en exécutant une requête et en vérifiant que les résultats correspondent au résultat attendu. Vous pouvez également utiliser le processus en deux étapes qui retourne le nombre attendu d’enregistrements qui seront purgés. 
 
 * La `.purge` commande est exécutée sur le point de terminaison gestion des données : `https://ingest-[YourClusterName].[region].kusto.windows.net` .
-   La commande requiert des autorisations d' [administrateur de base](../management/access-control/role-based-authorization.md) de données sur les bases de données appropriées. 
+   La commande nécessite des autorisations d’[administrateur de base de données](../management/access-control/role-based-authorization.md) pour les bases de données appropriées. 
 * En raison de l’impact sur les performances du processus de purge, et pour garantir que les [instructions de purge](#purge-guidelines) ont été suivies, l’appelant doit modifier le schéma de données afin que les tables minimales incluent les données pertinentes et les commandes batch par table pour réduire l’impact CMV significatif du processus de purge.
 * Le `predicate` paramètre de la commande [. purge](#purge-table-tablename-records-command) est utilisé pour spécifier les enregistrements à purger.
-`Predicate`la taille est limitée à 63 Ko. Lors de la construction de `predicate` :
+La taille de `Predicate` est limitée à 63 Ko. Lors de la construction de `predicate` :
     * Utilisez l' [opérateur « in »](../query/inoperator.md), par exemple, `where [ColumnName] in ('Id1', 'Id2', .. , 'Id1000')` . 
     * Notez les limites de l' [opérateur « in »](../query/inoperator.md) (la liste peut contenir jusqu’à `1,000,000` valeurs).
     * Si la taille de la requête est importante, utilisez l' [ `externaldata` opérateur](../query/externaldata-operator.md), par exemple `where UserId in (externaldata(UserId:string) ["https://...blob.core.windows.net/path/to/file?..."])` . Le fichier stocke la liste des ID à purger.
@@ -83,7 +83,7 @@ Pour réduire la durée d’exécution de vidage :
 
 La commande de vidage peut être appelée de deux manières pour différents scénarios d’utilisation :
 
-* Appel par programme : une seule étape destinée à être appelée par des applications. L’appel de cette commande déclenche directement la séquence d’exécution de vidage.
+* Appel programmatique : étape unique destinée à être appelée par des applications. L’appel de cette commande déclenche directement la séquence d’exécution de vidage.
 
     **Syntaxe**
 
@@ -97,7 +97,7 @@ La commande de vidage peut être appelée de deux manières pour différents sc�
     > [!NOTE]
     > Générez cette commande à l’aide de l’API CslCommandGenerator, disponible dans le cadre du package NuGet de la [bibliothèque cliente Kusto](../api/netfx/about-kusto-data.md) .
 
-* Appel humain : processus en deux étapes qui requiert une confirmation explicite comme étape distincte. Le premier appel de la commande retourne un jeton de vérification, qui doit être fourni pour exécuter le vidage réel. Cette séquence réduit le risque de supprimer par inadvertance des données incorrectes. L’utilisation de cette option peut prendre beaucoup de temps sur les tables volumineuses avec des données de cache à froid significatives.
+* Appel humain : processus en deux étapes qui nécessite une confirmation explicite, effectuée dans le cadre d’une étape distincte. Le premier appel de la commande retourne un jeton de vérification, qui doit être fourni pour exécuter le vidage réel. Cette séquence réduit le risque de supprimer par inadvertance des données incorrectes. Cette option peut mettre beaucoup de temps à s’exécuter sur les tables volumineuses contenant une grande quantité de données de cache brutes.
     <!-- If query times-out on DM endpoint (default timeout is 10 minutes), it is recommended to use the [engine `whatif` command](#purge-whatif-command) directly againt the engine endpoint while increasing the [server timeout limit](../concepts/querylimits.md#limit-on-request-execution-time-timeout). Only after you have verified the expected results using the engine whatif command, issue the purge command via the DM endpoint using the 'noregrets' option. -->
 
      **Syntaxe**
@@ -159,7 +159,7 @@ Pour effectuer une purge dans un scénario d’activation en deux étapes, utili
 
     | `OperationId` | `DatabaseName` | `TableName`|`ScheduledTime` | `Duration` | `LastUpdatedOn` |`EngineOperationId` | `State` | `StateDetails` |`EngineStartTime` | `EngineDuration` | `Retries` |`ClientRequestId` | `Principal`|
     |--|--|--|--|--|--|--|--|--|--|--|--|--|--|
-    | c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:00.1406211 |2019-01-20 11:41:05.4391686 | |Planifiée | | | |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...|
+    | c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:00.1406211 |2019-01-20 11:41:05.4391686 | |Planifié | | | |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...|
 
 #### <a name="example-single-step-purge"></a>Exemple : vidage en une seule étape
 
@@ -176,7 +176,7 @@ Pour déclencher une purge dans un scénario d’activation en une seule étape,
 
 | `OperationId` |`DatabaseName` |`TableName` |`ScheduledTime` |`Duration` |`LastUpdatedOn` |`EngineOperationId` |`State` |`StateDetails` |`EngineStartTime` |`EngineDuration` |`Retries` |`ClientRequestId` |`Principal`|
 |--|--|--|--|--|--|--|--|--|--|--|--|--|--|
-| c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:00.1406211 |2019-01-20 11:41:05.4391686 | |Planifiée | | | |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...|
+| c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:00.1406211 |2019-01-20 11:41:05.4391686 | |Planifié | | | |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...|
 
 ### <a name="cancel-purge-operation-command"></a>Commande Cancel purge Operation
 
