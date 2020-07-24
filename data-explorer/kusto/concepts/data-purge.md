@@ -8,12 +8,12 @@ ms.reviewer: kedamari
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/12/2020
-ms.openlocfilehash: ad659f9208bd057719a1adc31f8370c0cb11ffd3
-ms.sourcegitcommit: fb54d71660391a63b0c107a9703adea09bfc7cb9
+ms.openlocfilehash: 86712a2e85f2785666b0b6245962aca39cd82729
+ms.sourcegitcommit: 4507466bdcc7dd07e6e2a68c0707b6226adc25af
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/22/2020
-ms.locfileid: "86946136"
+ms.lasthandoff: 07/23/2020
+ms.locfileid: "87106489"
 ---
 # <a name="data-purge"></a>Vidage des données
 
@@ -76,7 +76,7 @@ Pour réduire la durée d’exécution de vidage :
 
 ## <a name="trigger-the-purge-process"></a>Déclencher le processus de vidage
 
-> [!Note]
+> [!NOTE]
 > L’exécution de vidage est appelée en exécutant la commande [purger les enregistrements *TableName* de table](#purge-table-tablename-records-command) sur le point de terminaison gestion des données https://ingest- [YourClusterName]. [ Region]. Kusto. Windows. net.
 
 ### <a name="purge-table-tablename-records-command"></a>Commande purger les enregistrements TableName de table
@@ -85,24 +85,24 @@ La commande de vidage peut être appelée de deux manières pour différents sc�
 
 * Appel programmatique : étape unique destinée à être appelée par des applications. L’appel de cette commande déclenche directement la séquence d’exécution de vidage.
 
-    **Syntaxe**
+  **Syntaxe**
 
-     ```kusto
-     // Connect to the Data Management service
-     #connect "https://ingest-[YourClusterName].[region].kusto.windows.net" 
-     
-     .purge table [TableName] records in database [DatabaseName] with (noregrets='true') <| [Predicate]
-     ```
+  ```kusto
+  // Connect to the Data Management service
+  #connect "https://ingest-[YourClusterName].[region].kusto.windows.net" 
+ 
+  .purge table [TableName] records in database [DatabaseName] with (noregrets='true') <| [Predicate]
+   ```
 
-    > [!NOTE]
-    > Générez cette commande à l’aide de l’API CslCommandGenerator, disponible dans le cadre du package NuGet de la [bibliothèque cliente Kusto](../api/netfx/about-kusto-data.md) .
+  > [!NOTE]
+  > Générez cette commande à l’aide de l’API CslCommandGenerator, disponible dans le cadre du package NuGet de la [bibliothèque cliente Kusto](../api/netfx/about-kusto-data.md) .
 
 * Appel humain : processus en deux étapes qui nécessite une confirmation explicite, effectuée dans le cadre d’une étape distincte. Le premier appel de la commande retourne un jeton de vérification, qui doit être fourni pour exécuter le vidage réel. Cette séquence réduit le risque de supprimer par inadvertance des données incorrectes. Cette option peut mettre beaucoup de temps à s’exécuter sur les tables volumineuses contenant une grande quantité de données de cache brutes.
     <!-- If query times-out on DM endpoint (default timeout is 10 minutes), it is recommended to use the [engine `whatif` command](#purge-whatif-command) directly againt the engine endpoint while increasing the [server timeout limit](../concepts/querylimits.md#limit-on-request-execution-time-timeout). Only after you have verified the expected results using the engine whatif command, issue the purge command via the DM endpoint using the 'noregrets' option. -->
 
-     **Syntaxe**
+  **Syntaxe**
 
-     ```kusto
+  ```kusto
      // Connect to the Data Management service
      #connect "https://ingest-[YourClusterName].[region].kusto.windows.net" 
      
@@ -111,7 +111,7 @@ La commande de vidage peut être appelée de deux manières pour différents sc�
 
      // Step #2 - input the verification token to execute purge
      .purge table [TableName] records in database [DatabaseName] with (verificationtoken='<verification token from step #1>') <| [Predicate]
-     ```
+  ```
     
     | Paramètres  | Description  |
     |---------|---------|
@@ -132,50 +132,50 @@ La commande de vidage peut être appelée de deux manières pour différents sc�
 
 Pour démarrer la purge dans un scénario d’activation en deux étapes, exécutez l’étape #1 de la commande :
 
-    ```kusto
+ ```kusto
     // Connect to the Data Management service
      #connect "https://ingest-[YourClusterName].[region].kusto.windows.net" 
      
     .purge table MyTable records in database MyDatabase <| where CustomerId in ('X', 'Y')
-    ```
+ ```
 
-    **Output**
+**Sortie**
 
-    | NumRecordsToPurge | EstimatedPurgeExecutionTime| VerificationToken
-    |--|--|--
-    | 1 596 | 00:00:02 | e43c7184ed22f4f23c7a9d7b124d196be2e570096987e5baadf65057fa65736b
+ | NumRecordsToPurge | EstimatedPurgeExecutionTime| VerificationToken
+ |---|---|---
+ | 1 596 | 00:00:02 | e43c7184ed22f4f23c7a9d7b124d196be2e570096987e5baadf65057fa65736b
 
-    Then, validate the NumRecordsToPurge before running step #2. 
+Ensuite, validez le NumRecordsToPurge avant d’exécuter l’étape #2. 
 
 Pour effectuer une purge dans un scénario d’activation en deux étapes, utilisez le jeton de vérification retourné à partir de l’étape #1 pour exécuter l’étape #2 :
 
-    ```kusto
-    .purge table MyTable records in database MyDatabase
-    with (verificationtoken='e43c7184ed22f4f23c7a9d7b124d196be2e570096987e5baadf65057fa65736b')
-    <| where CustomerId in ('X', 'Y')
-    ```
+```kusto
+.purge table MyTable records in database MyDatabase
+ with(verificationtoken='e43c7184ed22f4f23c7a9d7b124d196be2e570096987e5baadf65057fa65736b')
+<| where CustomerId in ('X', 'Y')
+```
 
-    **Output**
+**Sortie**
 
-    | `OperationId` | `DatabaseName` | `TableName`|`ScheduledTime` | `Duration` | `LastUpdatedOn` |`EngineOperationId` | `State` | `StateDetails` |`EngineStartTime` | `EngineDuration` | `Retries` |`ClientRequestId` | `Principal`|
-    |--|--|--|--|--|--|--|--|--|--|--|--|--|--|
-    | c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:00.1406211 |2019-01-20 11:41:05.4391686 | |Planifié | | | |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...|
+| `OperationId` | `DatabaseName` | `TableName`|`ScheduledTime` | `Duration` | `LastUpdatedOn` |`EngineOperationId` | `State` | `StateDetails` |`EngineStartTime` | `EngineDuration` | `Retries` |`ClientRequestId` | `Principal`|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:00.1406211 |2019-01-20 11:41:05.4391686 | |Planifié | | | |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...|
 
 #### <a name="example-single-step-purge"></a>Exemple : vidage en une seule étape
 
 Pour déclencher une purge dans un scénario d’activation en une seule étape, exécutez la commande suivante :
 
-    ```kusto
-    // Connect to the Data Management service
-     #connect "https://ingest-[YourClusterName].[region].kusto.windows.net" 
-     
-    .purge table MyTable records in database MyDatabase with (noregrets='true') <| where CustomerId in ('X', 'Y')
-    ```
+```kusto
+// Connect to the Data Management service
+ #connect "https://ingest-[YourClusterName].[region].kusto.windows.net" 
+ 
+.purge table MyTable records in database MyDatabase with (noregrets='true') <| where CustomerId in ('X', 'Y')
+```
 
 **Sortie**
 
 | `OperationId` |`DatabaseName` |`TableName` |`ScheduledTime` |`Duration` |`LastUpdatedOn` |`EngineOperationId` |`State` |`StateDetails` |`EngineStartTime` |`EngineDuration` |`Retries` |`ClientRequestId` |`Principal`|
-|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:00.1406211 |2019-01-20 11:41:05.4391686 | |Planifié | | | |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...|
 
 ### <a name="cancel-purge-operation-command"></a>Commande Cancel purge Operation
@@ -189,28 +189,28 @@ Si nécessaire, vous pouvez annuler les demandes de vidage en attente.
 
 ```kusto
  .cancel purge <OperationId>
- ```
+```
 
 **Exemple**
 
 ```kusto
  .cancel purge aa894210-1c60-4657-9d21-adb2887993e1
- ```
+```
 
 **Sortie**
 
 La sortie de cette commande est identique à la sortie de la commande’Show purges *OperationId*', indiquant l’État mis à jour de l’annulation de l’opération de vidage. Si la tentative réussit, l’état de l’opération est mis à jour avec la valeur `Abandoned` . Dans le cas contraire, l’état de l’opération n’est pas modifié. 
 
 |`OperationId` |`DatabaseName` |`TableName` |`ScheduledTime` |`Duration` |`LastUpdatedOn` |`EngineOperationId` |`State` |`StateDetails` |`EngineStartTime` |`EngineDuration` |`Retries` |`ClientRequestId` |`Principal`
-|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 |c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:00.1406211 |2019-01-20 11:41:05.4391686 | |Abandonné | | | |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...
 
 ## <a name="track-purge-operation-status"></a>État de l’opération de purge des suivis 
 
-> [!Note]
+> [!NOTE]
 > Les opérations de purge peuvent être suivies à l’aide de la commande [Show purges](#show-purges-command) , exécutée sur le point de terminaison gestion des données https://ingest- [YourClusterName]. [ Region]. Kusto. Windows. net.
 
-Status = 'Completed’indique la réussite de la première phase de l’opération de vidage, c’est-à-dire que les enregistrements sont supprimés de manière réversible et ne sont plus disponibles pour l’interrogation. Les clients **ne sont pas** censés suivre et vérifier la fin de la deuxième phase (suppression définitive). Cette phase est surveillée en interne par Azure Explorateur de données.
+Status = 'Completed’indique la réussite de la première phase de l’opération de vidage, c’est-à-dire que les enregistrements sont supprimés de manière réversible et ne sont plus disponibles pour l’interrogation. Les clients ne sont pas censés suivre et vérifier la fin de la deuxième phase (suppression définitive). Cette phase est surveillée en interne par Azure Explorateur de données.
 
 ### <a name="show-purges-command"></a>Afficher les purges, commande
 
@@ -246,7 +246,7 @@ Status = 'Completed’indique la réussite de la première phase de l’opérati
 **Sortie** 
 
 |`OperationId` |`DatabaseName` |`TableName` |`ScheduledTime` |`Duration` |`LastUpdatedOn` |`EngineOperationId` |`State` |`StateDetails` |`EngineStartTime` |`EngineDuration` |`Retries` |`ClientRequestId` |`Principal`
-|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 |c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:33.6782130 |2019-01-20 11:42:34.6169153 |a0825d4d-6b0f-47f3-a499-54ac5681ab78 |Completed |Purge terminée avec succès (artefacts de stockage en attente de suppression) |2019-01-20 11:41:34.6486506 |00:00:04.4687310 |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...
 
 * `OperationId`: ID d’opération DM renvoyé lors de l’exécution de la purge. 
@@ -272,7 +272,7 @@ Status = 'Completed’indique la réussite de la première phase de l’opérati
 
 La purge d’une table consiste à supprimer la table et à la marquer comme purgée afin que le processus de suppression matérielle décrit dans le [processus de vidage](#purge-process) s’exécute sur celle-ci. La suppression d’une table sans la vider n’entraîne pas la suppression de tous ses artefacts de stockage. Ces artefacts sont supprimés en fonction de la stratégie de rétention matérielle initialement définie sur la table. La `purge table allrecords` commande est rapide et efficace et est préférable au processus de vidage des enregistrements, s’il est applicable à votre scénario. 
 
-> [!Note]
+> [!NOTE]
 > La commande est appelée en exécutant la commande [purger la table *TableName* allrecords](#purge-table-tablename-allrecords-command) sur le point de terminaison gestion des données https://ingest- [YourClusterName]. [ Region]. Kusto. Windows. net.
 
 ### <a name="purge-table-tablename-allrecords-command"></a>Purger la table *TableName* allrecords, commande
@@ -328,7 +328,7 @@ Similaire à la commande'[. purger les enregistrements de table ](#purge-table-t
     **Sortie**
 
     | `VerificationToken`|
-    |--|
+    |---|
     | e43c7184ed22f4f23c7a9d7b124d196be2e570096987e5baadf65057fa65736b|
 
 1.  Pour effectuer une purge dans un scénario d’activation en deux étapes, utilisez le jeton de vérification retourné à partir de l’étape #1 pour exécuter l’étape #2 :

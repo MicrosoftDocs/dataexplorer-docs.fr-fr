@@ -8,12 +8,12 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/27/2020
-ms.openlocfilehash: 4ea4532d8547011b2b281988ff1534cd1d49da86
-ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
+ms.openlocfilehash: c5f0d7e9a3fc8daedf55daf4630098af3fb4c07b
+ms.sourcegitcommit: 4507466bdcc7dd07e6e2a68c0707b6226adc25af
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/01/2020
-ms.locfileid: "84258077"
+ms.lasthandoff: 07/23/2020
+ms.locfileid: "87106472"
 ---
 # <a name="continuous-data-export"></a>Exportation de données continue
 
@@ -28,7 +28,7 @@ L’exportation de données continue vous oblige à [créer une table externe](.
 > * L’exportation continue n’est pas prise en charge pour les tables externes avec `impersonate` dans leurs [chaînes de connexion](../../api/connection-strings/storage.md).
 > * Si les artefacts utilisés par l’exportation continue sont destinés à déclencher des notifications Event Grid, reportez-vous à la [section problèmes connus dans la documentation de Event Grid](../data-ingestion/eventgrid.md#known-issues).
 
-## <a name="notes"></a>Notes
+## <a name="notes"></a>Remarques
 
 * La garantie d’exportation « exactement une fois » concerne uniquement les fichiers signalés dans la [commande Afficher les artefacts exportés](#show-continuous-export-artifacts). 
 L’exportation continue ne garantit pas que chaque enregistrement sera écrit une seule fois dans la table externe. Si une défaillance se produit après le début de l’exportation et que certains des artefacts ont déjà été écrits dans la table externe, la table externe _peut_ contenir des doublons (ou même des fichiers endommagés, au cas où une opération d’écriture a été abandonnée avant la fin). Dans ce cas, les artefacts ne sont pas supprimés de la table externe, mais ils ne sont *pas* signalés dans la [commande Afficher les artefacts exportés](#show-continuous-export-artifacts). Consommation des fichiers exportés à l’aide de `show exported artifacts command` . 
@@ -37,17 +37,23 @@ L’exportation continue ne garantit pas que chaque enregistrement sera écrit u
 La [stratégie IngestionTime](../ingestiontime-policy.md) doit être activée sur toutes les tables référencées dans la requête qui doivent être traitées « exactement une fois » dans l’exportation. La stratégie est activée par défaut sur toutes les tables nouvellement créées.
 * Le schéma de sortie de la requête d’exportation *doit* correspondre au schéma de la table externe vers laquelle vous exportez. 
 * L’exportation continue ne prend pas en charge les appels entre bases de données et clusters.
-* L’exportation continue s’exécute en fonction de la période configurée pour celle-ci. La valeur recommandée pour cet intervalle est d’au moins plusieurs minutes, selon les latences que vous êtes prêt à accepter. L’exportation continue *n’est pas* conçue pour diffuser en continu des données à partir de Kusto. Il s’exécute en mode distribué, où tous les nœuds sont exportés simultanément. Si la plage de données interrogée par chaque exécution est faible, la sortie de l’exportation continue serait un grand nombre de petits artefacts (le nombre dépend du nombre de nœuds dans le cluster). 
-* Le nombre d’opérations d’exportation qui peuvent s’exécuter simultanément est limité par la capacité d’exportation des données du cluster (voir [limitation](../../management/capacitypolicy.md#throttling)). Si le cluster ne dispose pas d’une capacité suffisante pour gérer toutes les exportations continues, d’autres démarreront en retard. 
- 
+* L’exportation continue s’exécute en fonction de la période configurée pour celle-ci. La valeur recommandée pour cet intervalle est d’au moins plusieurs minutes, selon les latences que vous êtes prêt à accepter. L’exportation continue *n’est pas* conçue pour diffuser en continu des données à partir de Kusto. Il s’exécute en mode distribué, où tous les nœuds sont exportés simultanément.
+Si la plage de données interrogée par chaque exécution est faible, la sortie de l’exportation continue serait un grand nombre de petits artefacts (le nombre dépend du nombre de nœuds dans le cluster). 
+* Le nombre d’opérations d’exportation qui peuvent s’exécuter simultanément est limité par la capacité d’exportation des données du cluster (voir [limitation](../../management/capacitypolicy.md#throttling)). Si le cluster ne dispose pas d’une capacité suffisante pour gérer toutes les exportations continues, d’autres démarreront en retard.
 * Par défaut, toutes les tables référencées dans la requête d’exportation sont supposées être des [tables de faits](../../concepts/fact-and-dimension-tables.md). 
 Par conséquent, elles sont *étendues* au curseur de base de données. La requête d’exportation comprend uniquement les enregistrements joints depuis l’exécution de l’exportation précédente. 
 La requête d’exportation peut contenir des [tables de dimension](../../concepts/fact-and-dimension-tables.md) dans lesquelles *tous les* enregistrements de la table de dimension sont inclus dans *toutes les* requêtes d’exportation. 
     * Lors de l’utilisation de jointures entre les tables de faits et de dimension en mode d’exportation continu, vous devez garder à l’esprit que les enregistrements de la table de faits ne sont traités qu’une seule fois : si l’exportation s’exécute alors que des enregistrements dans les tables de dimension sont absents pour certaines clés, les enregistrements des clés respectives seront ignorés ou incluront des valeurs NULL pour les colonnes de dimension des fichiers exportés (selon que la requête utilise une jointure interne La propriété forcedLatency dans la définition d’exportation continue peut être utile dans de tels cas, où les tables de faits et de dimensions sont ingérées en même temps (pour les enregistrements correspondants).
     * L’exportation continue d’une seule table de dimension n’est pas prise en charge. La requête d’exportation doit inclure au moins une table de faits unique.
     * La syntaxe déclare explicitement quelles tables sont étendues (fait) et qui ne sont pas étendues (dimension). `over`Pour plus d’informations, consultez le paramètre dans la [commande CREATE](#create-or-alter-continuous-export) .
+* Si le volume de données exporté est important, il est fortement recommandé de configurer plusieurs comptes de stockage pour la table externe, afin d’éviter la limitation du stockage (consultez la section problèmes connus dans le document [exporter des données vers un stockage](export-data-to-storage.md#known-issues) ).
+* Pour de meilleures performances, le cluster ADX et le ou les comptes de stockage doivent se trouver dans la même région Azure.
+* La distribution par défaut dans l’exportation continue est `per_node` (tous les nœuds sont exportés simultanément). 
+  Ce paramètre peut être substitué dans les propriétés de la commande Continuous Export Create. Utilisez la `per_shard` distribution pour augmenter la concurrence (Notez que cela augmentera la charge sur le (s) compte (s) de stockage et risque de toucher les limites de limitation). Utilisez `single` (ou `distributed` = `false` ) pour désactiver complètement la distribution (cela peut considérablement ralentir le processus d’exportation continue). Ce paramètre a également un impact sur le nombre de fichiers créés lors de chaque itération d’exportation continue (pour plus d’informations, consultez la section Remarques de la [commande exporter vers une table externe](export-data-to-an-external-table.md) ).
+* Le nombre de fichiers exportés dans chaque itération d’exportation continue dépend de la façon dont la table externe est partitionnée. Pour plus d’informations, consultez la section Remarques dans la [commande exporter vers une table externe](export-data-to-an-external-table.md).
+Chaque itération d’exportation continue écrit toujours dans de nouveaux fichiers et n’est jamais ajoutée à *des* fichiers existants. Par conséquent, le nombre de fichiers exportés dépend également de la fréquence d’exécution de l’exportation continue ( `intervalBetweenRuns` paramètre).
+* L’impact de l’exportation continue sur le cluster dépend de la requête exécutée par l’exportation continue, car la plupart des ressources (UC, mémoire) sont consommées par l’exécution de la requête. La [commande show Commands-and-Queries](../commands-and-queries.md) peut être utilisée pour estimer la consommation des ressources. Filtrez sur `| where ClientActivityId startswith "RunContinuousExports"` pour afficher les commandes et les requêtes associées à l’exportation continue.
 
-* Le nombre de fichiers exportés dans chaque itération d’exportation continue dépend de la façon dont la table externe est partitionnée. Pour plus d’informations, consultez la section Remarques dans la [commande exporter vers une table externe](export-data-to-an-external-table.md). Chaque itération d’exportation continue écrit toujours dans de nouveaux fichiers et n’est jamais ajoutée à *des* fichiers existants. Par conséquent, le nombre de fichiers exportés dépend également de la fréquence d’exécution de l’exportation continue ( `intervalBetweenRuns` paramètre).
 
 Toutes les commandes d’exportation continue requièrent des [autorisations d’administrateur de base de données](../access-control/role-based-authorization.md).
 
@@ -147,7 +153,7 @@ Retourne tous les artefacts exportés par l’exportation continue dans toutes l
 |-------------------|----------|----------------------------------------|
 | Timestamp         | Datetime | Horodateur de l’exécution de l’exportation continue |
 | ExternalTableName | String   | Nom de la table externe             |
-| Chemin d’accès              | String   | Chemin de sortie                            |
+| Chemin              | String   | Chemin de sortie                            |
 | NumRecords        | long     | Nombre d’enregistrements exportés dans le chemin     |
 
 **Exemple :** 
@@ -156,7 +162,7 @@ Retourne tous les artefacts exportés par l’exportation continue dans toutes l
 .show continuous-export MyExport exported-artifacts | where Timestamp > ago(1h)
 ```
 
-| Timestamp                   | ExternalTableName | Chemin d’accès             | NumRecords | SizeInBytes |
+| Timestamp                   | ExternalTableName | Chemin             | NumRecords | SizeInBytes |
 |-----------------------------|-------------------|------------------|------------|-------------|
 | 2018-12-20 07:31:30.2634216 | ExternalBlob      | `http://storageaccount.blob.core.windows.net/container1/1_6ca073fd4c8740ec9a2f574eaa98f579.csv` | 10                          | 1 024              |
 

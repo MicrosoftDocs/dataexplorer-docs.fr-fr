@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/25/2020
-ms.openlocfilehash: c07a2e624d8f2657889431df51958017228774a8
-ms.sourcegitcommit: d79d3aa9aaa70cd23e3107ef12296159322e1eb5
+ms.openlocfilehash: 9952a7a7d95f03ee431b699a1833aa23b21d341b
+ms.sourcegitcommit: 4507466bdcc7dd07e6e2a68c0707b6226adc25af
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86475590"
+ms.lasthandoff: 07/23/2020
+ms.locfileid: "87106358"
 ---
 # <a name="row-level-security-preview"></a>Sécurité au niveau des lignes (version préliminaire)
 
@@ -122,6 +122,19 @@ Configurez ensuite la sécurité au niveau des lignes sur plusieurs tables de ce
 .alter table Customers2 policy row_level_security enable "RLSForCustomersTables('Customers2')"
 .alter table Customers3 policy row_level_security enable "RLSForCustomersTables('Customers3')"
 ```
+
+### <a name="produce-an-error-upon-unauthorized-access"></a>Générer une erreur en cas d’accès non autorisé
+
+Si vous souhaitez que les utilisateurs d’une table non autorisée reçoivent une erreur au lieu de retourner une table vide, utilisez la `[assert()](../query/assert-function.md)` fonction. L’exemple suivant montre comment générer cette erreur dans une fonction RLS :
+
+```
+.create-or-alter function RLSForCustomersTables() {
+    MyTable
+    | where assert(current_principal_is_member_of('aadgroup=mygroup@mycompany.com') == true, "You don't have access")
+}
+```
+
+Vous pouvez combiner cette approche avec d’autres exemples. Par exemple, vous pouvez afficher des résultats différents pour les utilisateurs dans différents groupes AAD et générer une erreur pour tous les autres utilisateurs.
 
 ## <a name="more-use-cases"></a>Autres cas d’utilisation
 

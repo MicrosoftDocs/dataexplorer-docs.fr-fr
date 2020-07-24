@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/01/2020
-ms.openlocfilehash: 88a95ea2fc8e1f417114cfcfd89c4e5003d9bef2
-ms.sourcegitcommit: fb54d71660391a63b0c107a9703adea09bfc7cb9
+ms.openlocfilehash: b8b72c2bc3b34f6d42ea71903272893ffde773fc
+ms.sourcegitcommit: 4507466bdcc7dd07e6e2a68c0707b6226adc25af
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/22/2020
-ms.locfileid: "86946102"
+ms.lasthandoff: 07/23/2020
+ms.locfileid: "87106459"
 ---
 # <a name="ingest-from-storage-using-event-grid-subscription"></a>Ingérer à partir du stockage avec un abonnement Event Grid
 
@@ -115,7 +115,7 @@ blob.UploadFromFile(jsonCompressedLocalFileName);
         :::image type="content" source="../images/eventgrid/filters-tab.png" alt-text="Onglet Filtres-grille d’événements":::
 
 > [!NOTE]
-> Lorsque le point de terminaison n’accuse pas réception d’un événement, Azure Event Grid active un mécanisme de nouvelle tentative. Si la remise de nouvelles tentatives échoue, Event Grid remet les événements non remis à un compte de stockage à l’aide d’un processus de *lettres mortes*. Pour plus d’informations, consultez la page [Distribution et nouvelle tentative de distribution de messages avec Event Grid](/azure/event-grid/delivery-and-retry#retry-schedule-and-duration).
+> Lorsque le point de terminaison n’accuse pas réception d’un événement, Azure Event Grid active un mécanisme de nouvelle tentative. Si la remise de nouvelles tentatives échoue, Event Grid pouvez remettre les événements non remis à un compte de stockage à l’aide d’un processus de *lettres mortes*. Pour plus d’informations, consultez la page [Distribution et nouvelle tentative de distribution de messages avec Event Grid](/azure/event-grid/delivery-and-retry#retry-schedule-and-duration).
 
 ### <a name="data-ingestion-connection-to-azure-data-explorer"></a>Connexion d’ingestion de données à Azure Explorateur de données
 
