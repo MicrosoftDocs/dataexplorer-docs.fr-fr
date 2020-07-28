@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/28/2020
-ms.openlocfilehash: b3f4ed8e0bb37b62c7f31c9444b373529cf24df9
-ms.sourcegitcommit: 537a7eaf8c8e06a5bde57503fedd1c3706dd2b45
+ms.openlocfilehash: d4f9fe945281eb61c1d1e685d0c2689585951926
+ms.sourcegitcommit: 6db94135b9902ad0ea84f9cef00ded8ec0a90fc3
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86423022"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86870105"
 ---
 # <a name="query-data-in-azure-monitor-using-azure-data-explorer-preview"></a>Interroger des données dans Azure Monitor avec Azure Data Explorer (préversion)
 
@@ -45,7 +45,8 @@ Le flux de proxy Azure Data Explorer :
 
     ![Ajouter un cluster](media/adx-proxy/add-cluster.png)
 
-    Si vous ajoutez une connexion à plusieurs clusters proxy, attribuez un nom différent à chacun d’eux. Sinon ils auront tous le même nom dans le volet gauche.
+    >[!NOTE]
+    >Si vous ajoutez une connexion à plusieurs clusters proxy, attribuez un nom différent à chacun d’eux. Sinon ils auront tous le même nom dans le volet gauche.
 
 1. Une fois la connexion établie, votre cluster LA ou AI apparaît dans le volet gauche avec votre cluster natif ADX. 
 
@@ -61,8 +62,8 @@ Vous pouvez exécuter les requêtes à l’aide des outils clients qui prennent 
 > [!TIP]
 > * Le nom de la base de données doit avoir le même nom que la ressource spécifiée dans le cluster proxy. Les noms respectent la casse.
 > * Dans les requêtes entre clusters, assurez-vous que les noms des applications Application Insights et des espaces de travail Log Analytics sont corrects.
->     * Si les noms contiennent des caractères spéciaux, ils sont remplacés par l’encodage d’URL dans le nom du cluster proxy. 
->     * Si les noms contiennent des caractères qui ne respectent pas les [règles de nom d’identificateur KQL](kusto/query/schema-entities/entity-names.md), ils sont remplacés par le caractère tiret **-** .
+> * Si les noms contiennent des caractères spéciaux, ils sont remplacés par l’encodage d’URL dans le nom du cluster proxy. 
+> * Si les noms contiennent des caractères qui ne respectent pas les [règles de nom d’identificateur KQL](kusto/query/schema-entities/entity-names.md), ils sont remplacés par le caractère tiret **-** .
 
 ### <a name="direct-query-from-your-la-or-ai-adx-proxy-cluster"></a>Requête directe à partir de votre cluster proxy ADX LA ou AI
 
