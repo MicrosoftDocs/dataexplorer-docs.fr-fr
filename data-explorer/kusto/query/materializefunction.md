@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/06/2020
-ms.openlocfilehash: 0580088bf04bffafd36990a3f42c32aa5c4ede53
-ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
+ms.openlocfilehash: 8858b261cb366842b475a76a1b2c3246b8a3e7b5
+ms.sourcegitcommit: de81b57b6c09b6b7442665e5c2932710231f0773
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86280477"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87264696"
 ---
 # <a name="materialize"></a>materialize()
 
@@ -27,24 +27,19 @@ Permet de mettre en cache le résultat d’une sous-requête pendant l’exécut
 
 * *expression*: expression tabulaire à évaluer et à mettre en cache lors de l’exécution de la requête.
 
-**Conseils**
+> [!NOTE]
+> La matérialisation a une limite de taille de cache de **5 Go**. Cette limite est définie par nœud de cluster et est mutuelle pour toutes les requêtes qui s’exécutent simultanément. Si une requête utilise `materialize()` et que le cache ne peut pas contenir plus de données, la requête s’interrompt avec une erreur.
 
-* Utilisez matérialisation avec JOIN ou Union lorsque leurs opérandes ont des sous-requêtes réciproques qui peuvent être exécutées une seule fois. Consultez les exemples ci-dessous.
-
-* Utile également dans des scénarios lorsque nous avons besoin de branchements join/union.
-
-* Matérialiser ne peut être utilisé que dans les instructions Let si vous attribuez un nom au résultat mis en cache.
-
-**Remarque**
-
-* La matérialisation a une limite de taille de cache de **5 Go**. 
-  Cette limite est définie par nœud de cluster et est mutuelle pour toutes les requêtes qui s’exécutent simultanément.
-  Si une requête utilise `materialize()` et que le cache ne peut pas contenir plus de données, la requête s’interrompt avec une erreur.
+>[!TIP]
+>
+>* Transmettent tous les opérateurs possibles qui réduisent le jeu de données matérialisées et gardent la sémantique de la requête. Par exemple, utilisez des filtres, ou projetez uniquement les colonnes requises.
+>* Utilisez matérialisation avec JOIN ou Union lorsque leurs opérandes ont des sous-requêtes réciproques qui peuvent être exécutées une seule fois. Par exemple, jointures/branches d’Union. Consultez [exemple d’utilisation de l’opérateur de jointure](#examples-of-query-performance-improvement).
+>* Matérialiser ne peut être utilisé que dans les instructions Let si vous attribuez un nom au résultat mis en cache. Voir un [exemple d’utilisation des instructions Let](#examples-of-using-materialize)).
 
 ## <a name="examples-of-query-performance-improvement"></a>Exemples d’amélioration des performances des requêtes
 
 L’exemple suivant montre comment `materialize()` peut être utilisé pour améliorer les performances de la requête.
-L’expression `_detailed_data` est définie à l’aide `materialize()` de la fonction et, par conséquent, elle n’est calculée qu’une seule fois.
+L’expression `_detailed_data` est définie à l’aide `materialize()` de la fonction et, par conséquent, est calculée une seule fois.
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -97,7 +92,7 @@ Jeu de résultats 1 :
 
 Jeu de résultats 2 : 
 
-|value|
+|valeur|
 |---|
 |9999998|
 |9999998|
@@ -105,7 +100,7 @@ Jeu de résultats 2 :
 
 Jeu de résultats 3 : 
 
-|Somme|
+|SUM|
 |---|
 |15002960543563|
 
@@ -113,11 +108,8 @@ Jeu de résultats 3 :
 
 > [!TIP]
 > Matérialisez votre colonne au moment de l’ingestion si la plupart de vos requêtes extraient des champs d’objets dynamiques entre des millions de lignes.
-> 
-> Pour utiliser l' `let` instruction avec une valeur que vous utilisez plusieurs fois, utilisez la [fonction matérialiser ()](./materializefunction.md).
-> Pour plus d’informations, consultez [meilleures pratiques](best-practices.md) .
 
-Essayez d’envoyer tous les opérateurs possibles qui réduiront le jeu de données matérialisées tout en gardant la sémantique de la requête. Par exemple, les filtres, ou projetent uniquement les colonnes requises.
+Pour utiliser l' `let` instruction avec une valeur que vous utilisez plusieurs fois, utilisez la [fonction matérialiser ()](./materializefunction.md). Essayez d’envoyer tous les opérateurs possibles qui réduiront le jeu de données matérialisées tout en gardant la sémantique de la requête. Par exemple, utilisez des filtres, ou projetez uniquement les colonnes requises.
 
 ```kusto
     let materializedData = materialize(Table
@@ -142,7 +134,7 @@ La requête a uniquement besoin des colonnes,, `Timestamp` `Text` `Resource1` et
     | summarize dcount(Resource2))
 ```
     
-Si les filtres ne sont pas identiques comme dans cette requête :  
+Si les filtres ne sont pas identiques, comme dans la requête suivante :  
 
 ```kusto
     let materializedData = materialize(Table

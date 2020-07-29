@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/03/2020
-ms.openlocfilehash: 301917f363176fb8e3bbf2fe4286a86b7a5674ea
-ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
+ms.openlocfilehash: e37d3733909b84a2991c54a9242d7f44b18d64cb
+ms.sourcegitcommit: de81b57b6c09b6b7442665e5c2932710231f0773
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86280519"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87264679"
 ---
 # <a name="query-best-practices"></a>Meilleures pratiques relatives aux requêtes
 
@@ -43,3 +43,4 @@ Voici plusieurs bonnes pratiques à suivre pour accélérer l’exécution de vo
 |**Extraire des valeurs sur une colonne avec des chaînes partageant le même format ou le même modèle**|  Utiliser l' [opérateur d’analyse](./parseoperator.md) | N’utilisez pas plusieurs `extract()` instructions.  | Par exemple, des valeurs telles que`"Time = <time>, ResourceId = <resourceId>, Duration = <duration>, ...."`
 |**[fonction Extract ()](./extractfunction.md)**| À utiliser lorsque les chaînes analysées ne suivent pas toutes le même format ou modèle.| |Extrayez les valeurs requises à l’aide d’une expression régulière.|
 | **[matérialise () (fonction)](./materializefunction.md)** | Transmettent tous les opérateurs possibles qui réduiront le jeu de données matérialisées tout en gardant la sémantique de la requête. | |Par exemple, les filtres, ou projetent uniquement les colonnes requises.
+
