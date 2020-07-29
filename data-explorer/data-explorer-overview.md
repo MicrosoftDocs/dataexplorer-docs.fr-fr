@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 09/24/2018
-ms.openlocfilehash: 02b239922f481240341225ea68d8d0ee7492c48b
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: aae60156ec6035f354378e4f56f993efa33e0a7c
+ms.sourcegitcommit: fb54d71660391a63b0c107a9703adea09bfc7cb9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81491744"
+ms.lasthandoff: 07/22/2020
+ms.locfileid: "86946153"
 ---
 # <a name="what-is-azure-data-explorer"></a>Qu’est-ce que l’Explorateur de données Azure ?
 
@@ -20,13 +20,13 @@ L’Explorateur de données Azure est un service d’exploration de données rap
 
 ## <a name="what-makes-azure-data-explorer-unique"></a>En quoi l’Explorateur de données Azure est unique ?
 
-- Il gère plusieurs téraoctets de données en quelques minutes, ce qui permet des itérations rapides d’exploration de données qui révéleront des insights utiles.
+* Il gère plusieurs téraoctets de données en quelques minutes, ce qui permet des itérations rapides d’exploration de données qui révéleront des insights utiles.
 
-- Il propose un langage de requête innovant, optimisé pour l’analytique de données haute performance.
+* Il propose un langage de requête innovant, optimisé pour l’analytique de données haute performance.
 
-- Il prend en charge l’analyse de grands volumes de données hétérogènes (structurées et non structurées).
+* Il prend en charge l’analyse de grands volumes de données hétérogènes (structurées et non structurées).
 
-- Il offre la possibilité de créer et de déployer exactement ce dont vous avez besoin en alliant d’autres services pour fournir une solution d’analytique de données globale, puissante et interactive.
+* Il offre la possibilité de créer et de déployer exactement ce dont vous avez besoin en alliant d’autres services pour fournir une solution d’analytique de données globale, puissante et interactive.
 
 ## <a name="data-warehousing-workflow"></a>Workflow d’entreposage des données
 
@@ -48,11 +48,11 @@ L’utilisation de l’Explorateur de données Azure suit généralement ce sch�
 
 1. **Ingérer des données :** Chargez des données dans des tables de base de données pour pouvoir exécuter des requêtes dessus. [Démarrage rapide : Ingérer des données Event Hub dans l’Explorateur de données Azure](ingest-data-event-hub.md)
 
-1. **Interroger la base de données :** Utilisez notre application web pour exécuter, consulter et partager des requêtes et des résultats. Il est disponible dans le portail Azure en tant qu’application autonome. Vous pouvez aussi envoyer des requêtes par programmation (à l’aide d’un kit SDK) ou à un point de terminaison de l’API REST. [Démarrage rapide : Interroger des données dans l’Explorateur de données Azure](web-query-data.md)
+1. **Interroger la base de données :** Utilisez notre application web pour exécuter, consulter et partager des requêtes et des résultats. Il est disponible dans le portail Azure en tant qu’application autonome. Vous pouvez également envoyer des requêtes par programmation (à l’aide d’un kit SDK) ou à un point de terminaison de l’API REST. [Démarrage rapide : Interroger des données dans l’Explorateur de données Azure](web-query-data.md)
 
 ## <a name="query-experience"></a>Expérience des requêtes
 
-Une requête dans l’Explorateur de données Azure est une demande en lecture seule qui permet de traiter des données et de retourner les résultats de ce traitement, sans modifier les données ou les métadonnées. Vous continuez à affiner vos requêtes tant que vous n’avez pas terminé votre analyse. Azure Data Explorer simplifie ce processus grâce à son expérience de requête ad hoc très rapide.
+Une requête dans l’Explorateur de données Azure est une demande en lecture seule qui permet de traiter des données et de retourner les résultats de ce traitement, sans modifier les données ou les métadonnées. Vous continuez à affiner vos requêtes tant que vous n’avez pas terminé votre analyse. Azure Data Explorer simplifie ce processus grâce à son expérience de requête ad hoc rapide.
 
 L’Explorateur de données Azure gère de grandes quantités de données structurées, semi-structurées (types imbriqués similaires à JSON) et non structurées (texte libre). Il vous permet de rechercher des termes spécifiques, de localiser des événements particuliers et d’effectuer des calculs de style métriques sur des données structurées. L’Explorateur de données Azure fait le lien entre les journaux d’activité texte non structurés et les nombres et dimensions structurés en extrayant les valeurs d’exécution des champs de texte de forme libre. L’exploration des données est simplifiée en combinant l’indexation rapide de texte, le stockage des colonnes et les opérations chronologiques.
 
@@ -60,13 +60,13 @@ Les fonctionnalités Azure Data Explorer sont étendues par d’autres services 
 
 ## <a name="feedback"></a>Commentaires
 
-Nous aimerions beaucoup avoir votre avis sur l’Explorateur de données Azure et son langage de requête via :
+Nous aimerions beaucoup avoir votre avis sur Azure Data Explorer et son langage de requête :
 
-- Poser des questions
-  - [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-data-explorer)
-  - [Microsoft Tech Community](https://techcommunity.microsoft.com/t5/Azure-Data-Explorer/bd-p/Kusto)
-  - [MSDN](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureKusto)
-- [Partager des suggestions produit dans User Voice](https://aka.ms/AzureDataExplorer.UserVoice)
+* Poser des questions
+  * [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-data-explorer)
+  * [Microsoft Q&A](https://docs.microsoft.com/answers/topics/azure-data-explorer.html)
+  * [Microsoft Tech Community](https://techcommunity.microsoft.com/t5/Azure-Data-Explorer/bd-p/Kusto)
+* [Partager des suggestions produit dans User Voice](https://aka.ms/AzureDataExplorer.UserVoice)
 
 ## <a name="next-steps"></a>Étapes suivantes
 

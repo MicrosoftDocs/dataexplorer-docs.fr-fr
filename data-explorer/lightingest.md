@@ -1,35 +1,35 @@
 ---
-title: L’option LightIngest est un utilitaire de ligne de commande pour l’ingestion dans Azure Data Explorer.
+title: Utilisez LightIngest pour ingérer des données dans Azure Data Explorer.
 description: Apprenez-en davantage sur LightIngest, un utilitaire de ligne de commande pour l’ingestion des données ad hoc dans Azure Data Explorer.
 author: orspod
 ms.author: orspodek
 ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
-ms.date: 04/01/2020
-ms.openlocfilehash: 8d4eeb47abb8eac2b042b64e65b55dac7e91d6c9
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.date: 06/28/2020
+ms.openlocfilehash: a56f5ea3ad17e8ef7c428d927861af9eaa0e9935
+ms.sourcegitcommit: de81b57b6c09b6b7442665e5c2932710231f0773
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83374056"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87264742"
 ---
-# <a name="install-and-use-lightingest"></a>Installer et utiliser LightIngest
-
-LightIngest est un utilitaire de ligne de commande pour l’ingestion de données ad hoc dans Azure Data Explorer.
-L’utilitaire peut extraire les données sources à partir d’un dossier local ou d’un conteneur Stockage Blob Azure.
+# <a name="use-lightingest-to-ingest-data-to-azure-data-explorer"></a>Utiliser LightIngest pour ingérer des données dans Azure Data Explorer
+ 
+LightIngest est un utilitaire de ligne de commande pour l’ingestion de données ad hoc dans Azure Data Explorer. L’utilitaire peut extraire les données sources à partir d’un dossier local ou d’un conteneur Stockage Blob Azure.
+LightIngest est particulièrement utile quand vous souhaitez ingérer une grande quantité de données, car la durée d’ingestion n’est soumise à aucune contrainte de temps. Il permet également d’interroger les enregistrements en fonction de l’heure à laquelle ils ont été créés, et non de l’heure à laquelle ils ont été ingérés.
 
 ## <a name="prerequisites"></a>Prérequis
 
 * LightIngest : téléchargez-le dans le cadre du [package NuGet Microsoft.Azure.Kusto.Tools](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Tools/)
 
-    ![Téléchargement LightIngest](media/lightingest/lightingest-download-area.png)
+    :::image type="content" source="media/lightingest/lightingest-download-area.png" alt-text="Téléchargement de LightIngest":::
 
 * WinRAR : téléchargez-le à partir de [www.win-rar.com/download.html](http://www.win-rar.com/download.html)
 
 ## <a name="install-lightingest"></a>Installer LightIngest
 
-1. Accédez à l’emplacement sur votre ordinateur où vous avez téléchargé LightIngest. 
+1. Accédez à l’emplacement sur votre ordinateur où vous avez téléchargé LightIngest.
 1. À l’aide de WinRAR, extrayez le répertoire *tools* sur votre ordinateur.
 
 ## <a name="run-lightingest"></a>Exécuter LightIngest
@@ -37,7 +37,7 @@ L’utilitaire peut extraire les données sources à partir d’un dossier local
 1. Accédez au répertoire *tools* extrait sur votre ordinateur.
 1. Supprimez les informations d’emplacement existantes de la barre d’emplacement.
     
-      ![Supprimer les informations d'emplacement](media/lightingest/lightingest-location-bar.png)
+    :::image type="content" source="kusto/tools/images/KustoTools-Lightingest/lightingest-locationbar.png" alt-text="Supprimer les informations d’emplacement existantes pour LightIngest":::
 
 1. Entrez `cmd`, puis appuyez sur **Entrée**.
 1. À l’invite de commandes, saisissez `LightIngest.exe` suivi de l’argument de ligne de commande approprié.
@@ -45,70 +45,55 @@ L’utilitaire peut extraire les données sources à partir d’un dossier local
     > [!Tip]
     > Pour obtenir la liste des arguments de ligne de commande pris en charge, saisissez `LightIngest.exe /help`.
     >
-    >![Aide de ligne de commande](media/lightingest/lightingest-cmd-line-help.png)
+    > :::image type="content" source="media/lightingest/lightingest-cmd-line-help.png" alt-text="Aide relative à la ligne de commande pour LightIngest":::
 
 1. Saisissez `ingest-` suivi de la chaîne de connexion au cluster Azure Data Explorer qui gérera l’ingestion.
     Mettez la chaîne de connexion entre guillemets doubles et suivez la [Spécification des chaînes de connexion Kusto](kusto/api/connection-strings/kusto.md).
 
     Par exemple :
+
     ```
     ingest-{Cluster name and region}.kusto.windows.net;AAD Federated Security=True -db:{Database} -table:Trips -source:"https://{Account}.blob.core.windows.net/{ROOT_CONTAINER};{StorageAccountKey}" -pattern:"*.csv.gz" -format:csv -limit:2 -ignoreFirst:true -cr:10.0 -dontWait:true
     ```
 
+### <a name="recommendations"></a>Recommandations
+
 * La méthode recommandée consiste à faire fonctionner LightIngest avec le point de terminaison d’ingestion sur `https://ingest-{yourClusterNameAndRegion}.kusto.windows.net`. De cette façon, le service Azure Data Explorer peut gérer la charge d’ingestion et vous pouvez facilement récupérer en cas d’erreurs temporaires. Toutefois, vous pouvez également configurer LightIngest pour fonctionner directement avec le point de terminaison du moteur (`https://{yourClusterNameAndRegion}.kusto.windows.net`).
 
-> [!Note]
-> Si vous ingérez directement avec le point de terminaison du moteur, vous n’avez pas besoin d’inclure `ingest-`, mais il n’existe pas de fonctionnalité DM pour protéger le moteur et améliorer le taux de réussite de l’ingestion.
+   > [!NOTE]
+   > Si vous ingérez des données directement avec le point de terminaison du moteur, il est inutile d’inclure `ingest-`. Toutefois, il n’existe pas de fonctionnalité DM pour protéger le moteur et améliorer le taux de réussite de l’ingestion.
 
-* Pour des performances d’ingestion optimales, il est important pour LightIngest de connaître la taille des données brutes et, par conséquent, LightIngest estime la taille non compressée des fichiers locaux. Toutefois, LightIngest peut ne pas être en mesure d’estimer correctement la taille brute des blobs compressés sans les télécharger au préalable. Par conséquent, lors de la réception d’objets BLOB compressés, définissez la propriété `rawSizeBytes` sur les métadonnées de l’objet BLOB sur la taille des données non compressées en octets.
+* Pour optimiser les performances d’ingestion, la taille des données brutes est nécessaire pour que LightIngest puisse estimer la taille non compressée des fichiers locaux. Toutefois, LightIngest peut ne pas être en mesure d’estimer correctement la taille brute des blobs compressés sans les télécharger au préalable. Par conséquent, lors de la réception d’objets BLOB compressés, définissez la propriété `rawSizeBytes` sur les métadonnées de l’objet BLOB sur la taille des données non compressées en octets.
 
-## <a name="general-command-line-arguments"></a>Arguments généraux de ligne de commande
+## <a name="command-line-arguments"></a>Arguments de ligne de commande
 
-|Nom de l’argument         |Nom court   |Type    |Obligatoire |Description                                |
-|----------------------|-------------|--------|----------|-------------------------------------------|
-|                      |             |string  |Obligatoire |[Chaîne de connexion à Azure Data Explorer](kusto/api/connection-strings/kusto.md) spécifiant le point de terminaison Kusto qui gérera l’ingestion. La valeur doit être entourée de guillemets doubles |
-|-database             |-db          |string  |Facultatif  |Nom de la base de données Azure Data Explorer cible |
-|-table                |             |string  |Obligatoire |Nom de la table Azure Data Explorer cible |
-|-sourcePath           |-source      |string  |Obligatoire |Chemin d’accès aux fichiers sources ou URI racine du conteneur d’objets BLOB. Si les données se trouvent dans des objets BLOB, une clé de compte de stockage ou une signature d’accès partagé doit être incluse. Il est recommandé d’entourer la valeur de guillemets doubles |
-|-prefix               |             |string  |Facultatif  |Lorsque les données sources à ingérer résident dans le stockage d’objets BLOB, ce préfixe d’URL est partagé par tous les objets BLOB, à l’exclusion du nom du conteneur. <br>Par exemple, si les données sont dans `MyContainer/Dir1/Dir2`, le préfixe doit être `Dir1/Dir2`. La délimitation entre guillemets doubles est recommandée |
-|-pattern              |             |string  |Facultatif  |Modèle suivant lequel les fichiers sources/objets BLOB sont choisis. Prend en charge les caractères génériques. Par exemple : `"*.csv"`. Il est recommandé d’entourer la valeur de guillemets doubles |
-|-zipPattern           |             |string  |Facultatif  |Expression régulière à utiliser lors de la sélection des fichiers d’une archive ZIP à ingérer.<br>Tous les autres fichiers de l’archive sont ignorés. Par exemple, `"*.csv"`. Il est recommandé de l’entourer de guillemets doubles |
-|-format               |-f           |string  |Facultatif  |Format des données sources. Doit être dans l'un des [formats pris en charge](ingestion-supported-formats.md) |
-|-ingestionMappingPath |-mappingPath |string  |Facultatif  |Chemin d’accès au fichier de mappage des colonnes d’ingestion (obligatoire pour les formats JSON et Avro). Consultez [mappages de données](kusto/management/mappings.md) |
-|-ingestionMappingRef  |-mappingRef  |string  |Facultatif  |Nom d’un mappage de colonnes d’ingestion créé au préalable (obligatoire pour les formats JSON et Avro). Consultez [mappages de données](kusto/management/mappings.md) |
-|-creationTimePattern  |             |string  |Facultatif  |Lorsque cette option est définie, elle est utilisée pour extraire la propriété CreationTime du chemin d’accès du fichier ou de l’objet BLOB. Consultez [Utilisation de l’argument CreationTimePattern](#using-creationtimepattern-argument) |
-|-ignoreFirstRow       |-ignoreFirst |bool    |Facultatif  |Si cette valeur est définie, le premier enregistrement de chaque fichier/objet BLOB est ignoré (par exemple, si les données sources ont des en-têtes) |
-|-tag                  |             |string  |Facultatif  |[Balises](kusto/management/extents-overview.md#extent-tagging) à associer aux données ingérées. Plusieurs occurrences sont autorisées |
-|-dontWait             |             |bool    |Facultatif  |Si la valeur est « true », n’attend pas la fin de l’ingestion. Utile lors de la réception de grandes quantités de fichiers/objets BLOB |
+|Nom de l’argument            |Type     |Description       |Obligatoire/facultatif
+|------------------------------|--------|----------|-----------------------------|
+|                               |string   |[Chaîne de connexion à Azure Data Explorer](kusto/api/connection-strings/kusto.md) spécifiant le point de terminaison Kusto qui gérera l’ingestion. La valeur doit être entourée de guillemets doubles | Obligatoire
+|-database, -db          |string  |Nom de la base de données Azure Data Explorer cible | Facultatif  |
+|-table                  |string  |Nom de la table Azure Data Explorer cible | Obligatoire |
+|-sourcePath, -source      |string  |Chemin d’accès aux fichiers sources ou URI racine du conteneur d’objets BLOB. Si les données se trouvent dans des objets BLOB, une clé de compte de stockage ou une signature d’accès partagé doit être incluse. Il est recommandé d’entourer la valeur de guillemets doubles |Obligatoire |
+|-prefix                  |string  |Lorsque les données sources à ingérer résident dans le stockage d’objets BLOB, ce préfixe d’URL est partagé par tous les objets BLOB, à l’exclusion du nom du conteneur. <br>Par exemple, si les données sont dans `MyContainer/Dir1/Dir2`, le préfixe doit être `Dir1/Dir2`. La délimitation entre guillemets doubles est recommandée | Facultatif  |
+|-pattern        |string  |Modèle suivant lequel les fichiers sources/objets BLOB sont choisis. Prend en charge les caractères génériques. Par exemple : `"*.csv"`. Il est recommandé d’entourer la valeur de guillemets doubles | Facultatif  |
+|-zipPattern     |string  |Expression régulière à utiliser lors de la sélection des fichiers d’une archive ZIP à ingérer.<br>Tous les autres fichiers de l’archive sont ignorés. Par exemple : `"*.csv"`. Il est recommandé de l’entourer de guillemets doubles | Facultatif  |
+|-format, -f           |string  | Format des données sources. Doit être dans l'un des [formats pris en charge](ingestion-supported-formats.md) | Facultatif  |
+|-ingestionMappingPath, -mappingPath |string  |Chemin au fichier local pour le mappage de colonnes d’ingestion. Obligatoire pour les formats JSON et AVRO. Consultez [mappages de données](kusto/management/mappings.md) | Facultatif  |
+|-ingestionMappingRef, -mappingRef  |string  |Nom d’un mappage de colonnes d’ingestion précédemment créé sur la table. Obligatoire pour les formats JSON et AVRO. Consultez [mappages de données](kusto/management/mappings.md) | Facultatif  |
+|-creationTimePattern      |string  |Lorsque cette option est définie, elle est utilisée pour extraire la propriété CreationTime du chemin d’accès du fichier ou de l’objet BLOB. Consultez [Comment ingérer des données à l’aide de `CreationTime`](#how-to-ingest-data-using-creationtime) |Facultatif  |
+|-ignoreFirstRow, -ignoreFirst |bool    |Si cette valeur est définie, le premier enregistrement de chaque fichier/objet BLOB est ignoré (par exemple, si les données sources ont des en-têtes) | Facultatif  |
+|-tag            |string   |[Balises](kusto/management/extents-overview.md#extent-tagging) à associer aux données ingérées. Plusieurs occurrences sont autorisées | Facultatif  |
+|-dontWait           |bool     |Si la valeur est « true », n’attend pas la fin de l’ingestion. Utile lors de la réception de grandes quantités de fichiers/objets BLOB |Facultatif  |
+|-compression, -cr          |double |Indicateur de taux de compression. Utile lors de la réception de fichiers ou d’objets BLOB compressés pour aider Azure Data Explorer à évaluer la taille des données brutes. Calculé comme taille d’origine divisée par la taille compressée |Facultatif  |
+|-limit , -l           |entier   |Si cette valeur est définie, limite l’ingestion aux N premiers fichiers |Facultatif  |
+|-listOnly, -list        |bool    |Si cette option est définie, affiche uniquement les éléments qui auraient été sélectionnés pour l’ingestion| Facultatif  |
+|-ingestTimeout   |entier  |Délai d’expiration en minutes pour l’exécution de toutes les opérations de réception. La valeur par défaut est `60`| Facultatif  |
+|-forceSync        |bool  |Si cette option est définie, force l’ingestion synchrone. La valeur par défaut est `false` |Facultatif  |
+|-dataBatchSize        |entier  |Définit la limite de taille totale (Mo, sans compression) de chaque opération de réception |Facultatif  |
+|-filesInBatch            |entier |Définit la limite du nombre de fichiers/objets BLOB pour chaque opération d’ingestion |Facultatif  |
+|-devTracing, -trace       |string    |Si cette option est définie, les journaux de diagnostic sont écrits dans un répertoire local (par défaut, `RollingLogs` dans le répertoire actif, modifiable en définissant la valeur du commutateur) | Facultatif  |
 
-### <a name="using-creationtimepattern-argument"></a>Utilisation de l’argument CreationTimePattern
+## <a name="azure-blob-specific-capabilities"></a>Fonctionnalités spécifiques aux objets blob Azure
 
-L’argument `-creationTimePattern` sert à extraire la propriété CreationTime du chemin d’accès du fichier ou de l’objet BLOB. Le modèle n’a pas besoin de refléter le chemin d’accès complet de l’élément, mais uniquement la section entourant le timestamp que vous souhaitez utiliser.
-
-Les valeurs d’argument doivent inclure :
-* Texte fixe précédant immédiatement l’horodatage, placé entre guillemets simples
-* Format d’horodatage, en notation [.NET DateTime standard](https://docs.microsoft.com/dotnet/standard/base-types/custom-date-and-time-format-strings)
-* Texte fixe qui suit immédiatement le timestamp. Par exemple, si les noms de blob se terminent par `historicalvalues19840101.parquet` (le timestamp est composé de quatre chiffres pour l’année, deux chiffres pour le mois et deux chiffres pour le jour du mois), la valeur correspondante pour l’argument `-creationTimePattern` est :
-
-```
-ingest-{Cluster name and region}.kusto.windows.net;AAD Federated Security=True -db:{Database} -table:Trips -source:"https://{Account}.blob.core.windows.net/{ROOT_CONTAINER};{StorageAccountKey}" -creationTimePattern:"'historicalvalues'yyyyMMdd'.parquet'"
- -pattern:"*.csv.gz" -format:csv -limit:2 -ignoreFirst:true -cr:10.0 -dontWait:true
-```
-
-### <a name="command-line-arguments-for-advanced-scenarios"></a>Arguments de ligne de commande pour les scénarios avancés
-
-|Nom de l’argument         |Nom court   |Type    |Obligatoire |Description                                |
-|----------------------|-------------|--------|----------|-------------------------------------------|
-|-compression          |-cr          |double  |Facultatif  |Indicateur de taux de compression. Utile lors de la réception de fichiers ou d’objets BLOB compressés pour aider Azure Data Explorer à évaluer la taille des données brutes. Calculé comme taille d’origine divisée par la taille compressée |
-|-limit                |-l           |entier |Facultatif  |Si cette valeur est définie, limite l’ingestion aux N premiers fichiers |
-|-listOnly             |-list        |bool    |Facultatif  |Si cette option est définie, affiche uniquement les éléments qui auraient été sélectionnés pour l’ingestion| 
-|-ingestTimeout        |             |entier |Facultatif  |Délai d’expiration en minutes pour l’exécution de toutes les opérations de réception. La valeur par défaut est `60`|
-|-forceSync            |             |bool    |Facultatif  |Si cette option est définie, force l’ingestion synchrone. La valeur par défaut est `false` |
-|-dataBatchSize        |             |entier |Facultatif  |Définit la limite de taille totale (Mo, sans compression) de chaque opération de réception |
-|-filesInBatch         |             |entier |Facultatif  |Définit la limite du nombre de fichiers/objets BLOB pour chaque opération d’ingestion |
-|-devTracing           |-trace       |string  |Facultatif  |Si cette option est définie, les journaux de diagnostic sont écrits dans un répertoire local (par défaut, `RollingLogs` dans le répertoire actif, modifiable en définissant la valeur du commutateur) |
-
-## <a name="blob-metadata-properties"></a>Propriétés des métadonnées des objets blob
 Lorsqu’il est utilisé avec des blobs Azure, LightIngest utilise certaines propriétés de métadonnées blob pour améliorer le processus d’ingestion.
 
 |Propriété de métadonnées                            | Usage                                                                           |
@@ -149,8 +134,37 @@ To use the LightIngest command below:
      
 1. In Azure Data Explorer, open query count.
 
-    ![Injestion result in Azure Data Explorer](media/lightingest/lightingest-show-failure-count.png)
+    ![Ingestion result in Azure Data Explorer](media/lightingest/lightingest-show-failure-count.png)
 -->
+
+### <a name="how-to-ingest-data-using-creationtime"></a>Comment ingérer des données à l’aide de CreationTime
+
+Quand vous chargez des données d’historique à partir d’un système existant dans Azure Data Explorer, tous les enregistrements reçoivent la même date d’ingestion. Pour permettre le partitionnement de vos données par heure création, et non par heure d’ingestion, vous pouvez utiliser l’argument `-creationTimePattern`. L’argument `-creationTimePattern` extrait la propriété `CreationTime` du chemin du fichier ou de l’objet blob. Le modèle n’a pas besoin de refléter le chemin d’accès complet de l’élément, mais uniquement la section entourant le timestamp que vous souhaitez utiliser.
+
+Les valeurs d’argument doivent inclure :
+* Texte fixe précédant immédiatement le format de l’horodatage, placé entre guillemets simples (préfixe).
+* Format d’horodatage, en notation [.NET DateTime standard](https://docs.microsoft.com/dotnet/standard/base-types/custom-date-and-time-format-strings)
+* Texte fixe qui suit immédiatement l’horodatage (suffixe).
+
+**Exemples** 
+
+* Nom de l’objet blob qui contient le DateHeure, comme suit : `historicalvalues19840101.parquet` (l’horodatage comprend quatre chiffres pour l’année, deux chiffres pour le mois et deux chiffres pour le jour du mois). 
+    
+    La valeur de l’argument `-creationTimePattern` fait partie du nom de fichier : *"'historicalvalues'yyyyMMdd'.parquet'"*
+
+    ```kusto
+    ingest-{Cluster name and region}.kusto.windows.net;AAD Federated Security=True -db:{Database} -table:Trips -source:"https://{Account}.blob.core.windows.net/{ROOT_CONTAINER};{StorageAccountKey}" -creationTimePattern:"'historicalvalues'yyyyMMdd'.parquet'"
+     -pattern:"*.csv.gz" -format:csv -limit:2 -ignoreFirst:true -cr:10.0 -dontWait:true
+    ```
+
+* URI d’objet blob qui fait référence à une structure hiérarchique de dossiers, comme `https://storageaccount/container/folder/2002/12/01/blobname.extension`. 
+
+    La valeur de l’argument `-creationTimePattern` fait partie de la structure de dossiers : *"'folder/'yyyy/MM/dd'/blob'"*
+
+   ```kusto
+    ingest-{Cluster name and region}.kusto.windows.net;AAD Federated Security=True -db:{Database} -table:Trips -source:"https://{Account}.blob.core.windows.net/{ROOT_CONTAINER};{StorageAccountKey}" -creationTimePattern:"'folder/'yyyy/MM/dd'/blob'"
+     -pattern:"*.csv.gz" -format:csv -limit:2 -ignoreFirst:true -cr:10.0 -dontWait:true
+    ```
 
 ### <a name="ingesting-blobs-using-a-storage-account-key-or-a-sas-token"></a>Réception d’objets BLOB à l’aide d’une clé de compte de stockage ou d’un jeton SAS
 
@@ -232,7 +246,3 @@ LightIngest.exe "https://ingest-{ClusterAndRegion}.kusto.windows.net;Fed=True"
   -mappingPath:"MAPPING_FILE_PATH"
   -trace:"LOGS_PATH"
 ```
-## <a name="changelog"></a>Journal des modifications
-|Version        |Modifications                                                                             |
-|---------------|------------------------------------------------------------------------------------|
-|4.0.9.0        |<ul><li>Ajout de l’argument `-zipPattern`</li><li>Ajout de l’argument `-listOnly`</li><li>Le résumé des arguments s’affiche avant le début de l’exécution</li><li>CreationTime est lu à partir des propriétés des métadonnées BLOB ou du nom de fichier ou d’objet BLOB, en fonction de l’argument `-creationTimePattern`</li></ul>|

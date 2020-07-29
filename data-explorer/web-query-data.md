@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: quickstart
 ms.date: 06/15/2020
-ms.openlocfilehash: 05c9a805e1391a34fe2d751c33178fcac16d15a9
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: c1202e4578f9d1d3d4520984e6dc3b6de0ef33b0
+ms.sourcegitcommit: 6db94135b9902ad0ea84f9cef00ded8ec0a90fc3
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780131"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86870156"
 ---
 # <a name="quickstart-query-data-in-azure-data-explorer-web-ui"></a>Démarrage rapide : Interroger des données dans l’interface utilisateur web Azure Data Explorer
 
@@ -114,6 +114,12 @@ Vous pouvez maintenant exécuter des requêtes sur un cluster auquel vous êtes 
     Le résultat doit ressembler au graphique suivant.
 
     ![Histogramme](media/web-query-data/column-chart.png)
+
+> [!NOTE]
+> Des lignes vides dans l’expression de requête peuvent avoir une incidence sur la partie de la requête qui est exécutée.
+>
+> Si aucun texte n’est sélectionné, l’hypothèse est que la requête ou la commande est séparée par des lignes vides.
+> Si du texte est sélectionné, le texte sélectionné est exécuté.
 
 ## <a name="work-with-the-table-grid"></a>Utiliser la grille de table
 
