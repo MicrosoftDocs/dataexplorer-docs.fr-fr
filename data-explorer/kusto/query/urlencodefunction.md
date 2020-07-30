@@ -1,6 +1,6 @@
 ---
-title: url_encode() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit url_encode () dans Azure Data Explorer.
+title: url_encode ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit url_encode () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,42 +8,42 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/17/2020
-ms.openlocfilehash: 913be2d20af413f8ba89192f4db57e60fc6d7b27
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 8ccc93286073003bdaf8324611888d32f60910fb
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81505047"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350568"
 ---
 # <a name="url_encode"></a>url_encode()
 
-La fonction convertit les caractères de l’URL d’entrée en un format qui peut être transmis sur Internet. 
+La fonction convertit les caractères de l’URL d’entrée dans un format qui peut être transmis sur Internet. 
 
-Des informations détaillées sur le codage et le décodage des URL peuvent être trouvées [ici](https://en.wikipedia.org/wiki/Percent-encoding).
-Diffère de [url_encode_component](./urlencodecomponentfunction.md) en codant les espaces comme «20%» et non pas comme «20%» (voir application/x-www-form-urlencoded [ici](https://en.wikipedia.org/wiki/Percent-encoding)).
+Vous trouverez des informations détaillées sur l’encodage et le décodage d’URL [ici](https://en.wikipedia.org/wiki/Percent-encoding).
+Diffère de [url_encode_component](./urlencodecomponentfunction.md) en encodant les espaces en tant que « + » et non pas en tant que « 20% » (voir application/x-www-form-urlencoded [ici](https://en.wikipedia.org/wiki/Percent-encoding)).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`url_encode(`*Url*`)`
+`url_encode(`*URL*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *URL*: URL d’entrée (corde).  
+* *URL*: URL d’entrée (String).  
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-URL (corde) convertie en format qui peut être transmis sur Internet.
+URL (String) convertie dans un format qui peut être transmis sur Internet.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ```kusto
 let url = @'https://www.bing.com/hello word';
 print original = url, encoded = url_encode(url)
 ```
 
-|ressource d’origine|Encodé|
+|ressource d’origine|encodé|
 |---|---|
-|https://www.bing.com/hellomot/|https%3a%2f%2fwww.bing.com%2fhello-mot|
+|https://www.bing.com/helloautomatique|https %3 a %2 f %2 f www. Bing. com% 2fhello + Word|
 
 
  

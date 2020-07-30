@@ -1,6 +1,6 @@
 ---
-title: strrep() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit strrep() dans Azure Data Explorer.
+title: strrep ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit strrep () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,36 +8,36 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 39b398e8fadb400c25cfeb97487c2ecf0669ad83
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 797684aa70cb8205463cc41558afec82449c433d
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81506713"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350874"
 ---
 # <a name="strrep"></a>strrep()
 
-Répétitions données [chaîne](./scalar-data-types/string.md) fourni quantité de fois.
+Répète la [chaîne](./scalar-data-types/string.md) fournie, le nombre de fois spécifié.
 
-* Dans le cas où le premier ou le troisième argument n’est pas d’un type de chaîne, il sera converti de force en chaîne.
+* Si le premier ou le troisième argument n’est pas de type chaîne, il est converti en chaîne.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`strrep(`*valeur*,*multiplicateur*,[*delimiter*]`)`
+`strrep(`*valeur*,*multiplicateur*, [*délimiteur*]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *valeur*: expression d’entrée
-* *multiplicateur*: valeur positive de l’intégrateur (de 1 à 1024)
-* *delimiter*: une expression de chaîne facultative (par défaut : chaîne vide)
+* *multiplicateur*: valeur entière positive (de 1 à 1024)
+* *délimiteur*: expression de chaîne facultative (valeur par défaut : chaîne vide).
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Valeur répétée pour un nombre spécifié de fois, concatenated avec *delimiter*.
+Valeur répétée pour un nombre de fois spécifié, concaténée avec le *délimiteur*.
 
-Dans le cas où le *multiplicateur* est plus que la valeur maximale autorisée (1024), la chaîne d’entrée sera répétée 1024 fois.
+Si le *multiplicateur* est supérieur à la valeur maximale autorisée (1024), la chaîne d’entrée est répétée 1024 fois.
  
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
 print from_str = strrep('ABC', 2), from_int = strrep(123,3,'.'), from_time = strrep(3s,2,' ')
@@ -45,4 +45,4 @@ print from_str = strrep('ABC', 2), from_int = strrep(123,3,'.'), from_time = str
 
 |from_str|from_int|from_time|
 |---|---|---|
-|ABCABC (ABCABC)|123.123.123|00:00:03 00:00:03|
+|ABCABC|123.123.123|00:00:03 00:00:03|

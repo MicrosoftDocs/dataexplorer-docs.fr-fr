@@ -1,6 +1,6 @@
 ---
-title: todecimal() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit todecimal() dans Azure Data Explorer.
+title: ToDecimal (()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit ToDecimal (() dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 2d5ac70dfe71f80c3963292516e1b8516a297875
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: f699508436c9e2533661a440be2ac8f5f8d94688
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81506305"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350772"
 ---
 # <a name="todecimal"></a>todecimal()
 
-Convertit l’entrée en représentation décimale des nombres.
+Convertit l’entrée en représentation sous forme de nombre décimal.
 
 ```kusto
 todecimal("123.45678") == decimal(123.45678)
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `todecimal(`*Expr*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *Expr*: Expression qui sera convertie en décimale. 
+* *Expr*: expression qui sera convertie en valeur décimale. 
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Si la conversion est réussie, le résultat sera un nombre décimal.
-Si la conversion n’est `null`pas réussie, le résultat sera .
+Si la conversion réussit, le résultat sera un nombre décimal.
+Si la conversion échoue, le résultat sera `null` .
  
-*Remarque*: Préférez utiliser [réel()](./scalar-data-types/real.md) lorsque c’est possible.
+*Remarque*: préférez utiliser [Real ()](./scalar-data-types/real.md) dans la mesure du possible.

@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/02/2019
-ms.openlocfilehash: 7e13a9b652e1bdadb325cd866bddd78761b25b85
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: bd442f70b3411b61f213098fefec918622f8d916
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372392"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351180"
 ---
 # <a name="set_difference"></a>set_difference()
 
 Retourne un `dynamic` tableau (JSON) de l’ensemble de toutes les valeurs distinctes qui se trouvent dans le premier tableau, mais qui ne sont pas dans d’autres tableaux-(((Arr1 \ Arr2) \ arr3) \...).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `set_difference(`*Arr1* `, ` *Arr2* `[` ,` *arr3*, ...])`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Arr1... arrN*: tableaux d’entrée pour créer un ensemble de différences (au moins deux tableaux). Tous les arguments doivent être des tableaux dynamiques (voir [pack_array](packarrayfunction.md)). 
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Retourne un tableau dynamique de l’ensemble de toutes les valeurs distinctes qui se trouvent dans Arr1, mais qui ne sont pas dans d’autres tableaux. Consultez [`set_union()`](setunionfunction.md) et [`set_intersect()`](setintersectfunction.md) .
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -47,7 +47,7 @@ range x from 1 to 3 step 1
 |---|
 |[4]|
 |version8|
-|douze|
+| [12]|
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

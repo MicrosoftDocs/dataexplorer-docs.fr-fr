@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1e173dcba48e8748562bad61e0f16786e957ca83
-ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
+ms.openlocfilehash: c46430fe7acc75685b90d2322d709392c91ed6dc
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/18/2020
-ms.locfileid: "83550552"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351214"
 ---
 # <a name="session_count-plugin"></a>plug-in session_count
 
@@ -23,11 +23,11 @@ Calcule le nombre de sessions en fonction de la colonne ID sur une chronologie.
 T | evaluate session_count(id, datetime_column, startofday(ago(30d)), startofday(now()), 1min, 30min, dim1, dim2, dim3)
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `| evaluate` `session_count(` *IdColumn* `,` *TimelineColumn* `,` *Start* `,` *end* `,` *bin* `,` *LookBackWindow* [ `,` *dim1* `,` *dim2* `,` ...]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *T*: expression tabulaire d’entrée.
 * *IdColumn*: nom de la colonne avec des valeurs d’ID qui représentent l’activité de l’utilisateur. 
@@ -38,7 +38,7 @@ T | evaluate session_count(id, datetime_column, startofday(ago(30d)), startofday
 * *LookBackWindow*: valeur constante scalaire représentant la période de lookback de session. Si l’ID de `IdColumn` s’affiche dans une fenêtre de temps dans `LookBackWindow` , la session est considérée comme étant existante. Si l’ID ne s’affiche pas, la session est considérée comme nouvelle.
 * *dim1*, *dim2*,... : (facultatif) liste des colonnes de dimensions qui découpent le calcul du nombre de sessions.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Retourne une table qui contient les valeurs du nombre de sessions pour chaque période de chronologie et pour chaque combinaison de dimensions existante.
 
@@ -49,7 +49,7 @@ Le schéma de la table de sortie est le suivant :
 |type : à partir de *TimelineColumn*|..|..|..|long|
 
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 Pour cet exemple, les données sont déterministes et nous utilisons une table avec deux colonnes :
 - Chronologie : nombre en cours de 1 à 10 000

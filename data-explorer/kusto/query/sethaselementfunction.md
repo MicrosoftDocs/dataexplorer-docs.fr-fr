@@ -8,31 +8,31 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/23/2020
-ms.openlocfilehash: 8e96b97754600d308526a4cb059907521fda0521
-ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
+ms.openlocfilehash: 314244c58eca6082b9042b263e6b3e6faeb69840
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/26/2020
-ms.locfileid: "83862926"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351197"
 ---
 # <a name="set_has_element"></a>set_has_element()
 
 Détermine si le jeu spécifié contient l’élément spécifié.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `set_has_element(`*tableau*,*valeur*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *tableau*: tableau d’entrée à rechercher.
 * *valeur*: valeur à rechercher. La valeur doit être de type `long` ,,, `integer` `double` `datetime` , `timespan` , `decimal` , `string` ou `guid` .
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 True ou false selon que la valeur existe dans le tableau.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

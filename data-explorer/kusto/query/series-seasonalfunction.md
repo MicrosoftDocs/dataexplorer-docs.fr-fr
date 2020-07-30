@@ -8,22 +8,22 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 054d4be758001609fbc3100a4a6c8698ef8f69f6
-ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
+ms.openlocfilehash: fb1f07c4b964615342adcf4d5ae51e7c99c05d13
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84717306"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351282"
 ---
 # <a name="series_seasonal"></a>series_seasonal()
 
 Calcule le composant saisonnier d’une série, en fonction de la période saisonnière détectée ou donnée.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `series_seasonal(`*série* `[,` *période*`])`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *série*: tableau dynamique numérique d’entrée
 * *period* (facultatif) : nombre entier d’emplacements dans chaque période saisonnière, valeurs possibles :
@@ -31,7 +31,7 @@ Calcule le composant saisonnier d’une série, en fonction de la période saiso
     * Entier positif : utilisé comme période pour le composant saisonnier
     * Toute autre valeur : ignore le caractère saisonnier et retourne une série de zéros
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Tableau dynamique de même longueur que l’entrée de *série* qui contient le composant saisonnier calculé de la série. Le composant saisonnier est calculé comme la valeur *médiane* de toutes les valeurs qui correspondent à l’emplacement de l’emplacement, sur les périodes.
 

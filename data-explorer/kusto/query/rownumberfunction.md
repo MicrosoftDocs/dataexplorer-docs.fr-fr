@@ -1,6 +1,6 @@
 ---
-title: row_number() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit row_number() dans Azure Data Explorer.
+title: row_number ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit row_number () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,34 +8,34 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: c8cb01ed098d24632154215ddf06dc2ab1d72695
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: ea51e6171b8a7683a0454d177dc729ed754b8896
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81510164"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351588"
 ---
 # <a name="row_number"></a>row_number()
 
-Retourne l’indice de la ligne actuelle dans un [ensemble de lignes sérialisées](./windowsfunctions.md#serialized-row-set).
-L’indice de ligne `1` commence par défaut à la première `1` rangée, et est incrémenté par pour chaque rangée supplémentaire.
-Optionnellement, l’indice de ligne `1`peut commencer à une valeur différente de .
-En outre, l’indice de ligne peut être réinitialisé en fonction de certains prédicat fournis.
+Retourne l’index de la ligne actuelle dans un [jeu de lignes sérialisé](./windowsfunctions.md#serialized-row-set).
+L’index de ligne commence par défaut à `1` pour la première ligne et est incrémenté par `1` pour chaque ligne supplémentaire.
+Si vous le souhaitez, l’index de ligne peut commencer à une valeur différente de celle de `1` .
+En outre, l’index de ligne peut être réinitialisé selon un prédicat fourni.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`row_number``(` [*StartingIndex* [`,` *Redémarrer*]]`)`
+`row_number``(`[*StartingIndex* [ `,` *restart*]]`)`
 
-* *StartingIndex* est une expression `long` constante de type indiquant la valeur de l’indice de ligne pour commencer (ou pour redémarrer à). La valeur par défaut est `1`.
-* *Le redémarrage* est un `bool` argument facultatif de type qui indique quand la numérotation doit être redémarrée à la valeur *StartingIndex.* Si elle n’est `false` pas fournie, la valeur par défaut est utilisée.
+* *StartingIndex* est une expression constante de type `long` indiquant la valeur de l’index de ligne à partir duquel commencer (ou à redémarrer). La valeur par défaut est `1`.
+* *Restart* est un argument facultatif de type `bool` qui indique quand la numérotation doit être redémarrée à la valeur *StartingIndex* . S’il n’est pas fourni, la valeur par défaut de `false` est utilisée.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-La fonction renvoie l’indice de ligne `long`de la ligne actuelle comme une valeur de type .
+La fonction retourne l’index de ligne de la ligne actuelle en tant que valeur de type `long` .
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
-L’exemple suivant renvoie un tableau avec`a`deux colonnes, `1`la première colonne`rn`( ) `1` avec des nombres de `10` vers le bas à , et la deuxième colonne ( ) avec des nombres allant jusqu’à `10`:
+L’exemple suivant retourne une table avec deux colonnes, la première colonne ( `a` ) avec des nombres compris entre `10` `1` et la deuxième colonne ( `rn` ) avec des nombres allant `1` jusqu’à `10` :
 
 ```kusto
 range a from 1 to 10 step 1
@@ -43,7 +43,7 @@ range a from 1 to 10 step 1
 | extend rn=row_number()
 ```
 
-L’exemple suivant est similaire à ce`rn`qui précède, seule la deuxième colonne ( ) commence à `7`:
+L’exemple suivant est similaire à l’exemple ci-dessus, seule la deuxième colonne ( `rn` ) commence à `7` :
 
 ```kusto
 range a from 1 to 10 step 1
@@ -51,7 +51,7 @@ range a from 1 to 10 step 1
 | extend rn=row_number(7)
 ```
 
-Le dernier exemple montre comment on peut diviser les données et numéroer les lignes par chaque partition. Ici, nous partitions `Airport`les données par :
+Le dernier exemple montre comment partitionner les données et numéroter les lignes pour chaque partition. Ici, nous allons partitionner les données de la façon `Airport` suivante :
 
 ```kusto
 datatable (Airport:string, Airline:string, Departures:long)
@@ -66,12 +66,12 @@ datatable (Airport:string, Airline:string, Departures:long)
 | extend Rank=row_number(1, prev(Airport) != Airport)
 ```
 
-Exécution de cette requête produit le résultat suivant:
+L’exécution de cette requête produit le résultat suivant :
 
-Aéroport  | Compagnie aérienne  | Départs  | Rank
+Aeroport  | Compagnie aérienne  | Départs  | Rank
 ---------|----------|-------------|------
 SEA      | BA       | 2           | 1
-SEA      | Lh       | 1           | 2
+SEA      | LH       | 1           | 2
 SEA      | LY       | 0           | 3
-Tlv      | LY       | 100         | 1
-Tlv      | Lh       | 1           | 2
+REÇU      | LY       | 100         | 1
+REÇU      | LH       | 1           | 2

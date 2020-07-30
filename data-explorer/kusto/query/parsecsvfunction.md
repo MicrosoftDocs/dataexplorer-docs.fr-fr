@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b61934ec2efbfb22c17fe93a4f3969a1592cefab
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: eddf893d3c0d8096f57a3f624ddedf753fe35f91
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780658"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346352"
 ---
 # <a name="parse_csv"></a>parse_csv()
 
@@ -23,23 +23,23 @@ Fractionne une chaîne donnée représentant un seul enregistrement de valeurs s
 parse_csv("aaa,bbb,ccc") == ["aaa","bbb","ccc"]
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `parse_csv(`*code*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *source*: chaîne source représentant un enregistrement unique de valeurs séparées par des virgules.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Tableau de chaînes qui contient les valeurs de fractionnement.
 
-**Notes**
+**Remarques**
 
 Les sauts de ligne incorporés, les virgules et les guillemets peuvent être placés dans une séquence d’échappement à l’aide du guillemet double (' "'). Cette fonction ne prend pas en charge plusieurs enregistrements par ligne (seul le premier enregistrement est pris).
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

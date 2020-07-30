@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: dd70b2135a485303cbf52d984e0b406052c4023a
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: f9dc6e49e9e3d04aadb5aecf8507b7132d8a366a
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264944"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346318"
 ---
 # <a name="parse-operator"></a>opérateur parse
 
@@ -24,11 +24,11 @@ Pour plus d’informations, consultez l' [opérateur parse-WHERE](parsewhereoper
 T | parse Text with "ActivityName=" name ", ActivityType=" type
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `| parse` [ `kind=regex` [ `flags=regex_flags` ] | `simple` | `relaxed` ] *expression* `with` `*` (*StringConstant* *ColumnName* [ `:` *ColumnType*]) `*` ...
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *T*: table d’entrée.
 * espèces
@@ -47,7 +47,7 @@ T | parse Text with "ActivityName=" name ", ActivityType=" type
   
 * *ColumnType :* Facultatif. Valeur scalaire qui indique le type vers lequel convertir la valeur. La valeur par défaut est le `string` type.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 La table d’entrée, étendue selon la liste des colonnes fournies à l’opérateur.
 
@@ -81,7 +81,7 @@ La table d’entrée, étendue selon la liste des colonnes fournies à l’opér
         
     * `long`a été traduit `\-\d+` .
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 L' `parse` opérateur fournit une méthode rationalisée à `extend` une table en utilisant plusieurs `extract` applications sur la même `string` expression. Ce résultat est utile lorsque la table comporte une `string` colonne qui contient plusieurs valeurs que vous souhaitez décomposer en colonnes individuelles. Par exemple, une colonne qui a été produite par une instruction de trace de développement (« `printf` »/«» `Console.WriteLine` ).
 

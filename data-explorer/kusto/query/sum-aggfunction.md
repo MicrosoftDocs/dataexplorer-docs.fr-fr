@@ -1,6 +1,6 @@
 ---
-title: sum() (fonction d’agrégation) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la somme () (fonction d’agrégation) dans Azure Data Explorer.
+title: Sum () (fonction d’agrégation)-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit Sum () (fonction d’agrégation) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,28 +8,28 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: b729d9be8aba9683a053ef80acb3936c0c64d6a8
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 3053a2c3bd423a2e1b8a2690bcdf54de9f1a1e36
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81506679"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350823"
 ---
-# <a name="sum-aggregation-function"></a>sum() (fonction d’agrégation)
+# <a name="sum-aggregation-function"></a>Sum () (fonction d’agrégation)
 
-Calcule la somme *d’Expr* dans l’ensemble du groupe. 
+Calcule la somme de *expr* dans le groupe. 
 
-* Ne peut être utilisé que dans le contexte de l’agrégation à l’intérieur [résumer](summarizeoperator.md)
+* Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-résumer `sum(` *Expr*`)`
+résumer `sum(` *expr*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *Expr*: Expression qui sera utilisée pour le calcul de l’agrégation. 
+* *Expr*: expression qui sera utilisée pour le calcul de l’agrégation. 
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-La valeur somme *d’Expr* dans l’ensemble du groupe.
+Valeur SUM de *expr* dans le groupe.
  

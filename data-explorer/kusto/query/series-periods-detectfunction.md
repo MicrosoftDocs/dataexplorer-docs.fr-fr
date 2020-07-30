@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2019
-ms.openlocfilehash: 876966391e67ad2f8f25a900dfc4c92bf0bfd11e
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: 2ee587bfa7d01ae0602cc870e6c0b776593d53c0
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763261"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351333"
 ---
 # <a name="series_periods_detect"></a>series_periods_detect()
 
@@ -29,11 +29,11 @@ La fonction génère deux colonnes :
 * *périodes*: tableau dynamique contenant les périodes qui ont été trouvées, en unités de taille de compartiment, classées par leurs scores.
 * *scores*: tableau dynamique contenant des valeurs comprises entre 0 et 1. Chaque tableau mesure l’importance d’une période à sa position respective dans le tableau des *périodes* .
  
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `series_periods_detect(`*x* `,` *min_period* `,` *max_period* `,` *num_periods*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *x*: expression scalaire de tableau dynamique qui est un tableau de valeurs numériques, généralement le résultat des opérateurs [Make-Series](make-seriesoperator.md) ou [make_list](makelist-aggfunction.md) .
 * *min_period*: `real` nombre spécifiant la période minimale à rechercher.
@@ -47,7 +47,7 @@ La fonction génère deux colonnes :
 >
 > * La série chronologique d’entrée doit être normale. Autrement dit, agrégé dans des emplacements constants, ce qui est toujours le cas s’il a été créé à l’aide de la [série make](make-seriesoperator.md). Dans le cas contraire, le résultat n’est pas significatif.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 La requête suivante incorpore une capture instantanée d’un mois du trafic d’une application, regroupée deux fois par jour. La taille de l’emplacement est de 12 heures.
 

@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: 7181e703ff6085d463f80bd169ae064066031d66
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: bd75a6aec420c6c7536e1e99217c819f701a15c0
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372651"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351452"
 ---
 # <a name="series_greater"></a>series_greater()
 
 Calcule l’opération logique supérieure () au niveau `>` des éléments de deux entrées de série numérique.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `series_greater (`*Series1* `,` *Series2*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Series1, Series2*: les tableaux numériques d’entrée doivent être comparés par élément. Tous les arguments doivent être des tableaux dynamiques. 
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Tableau dynamique de valeurs booléennes contenant l’opération logique par élément calculé la plus importante entre les deux entrées. Tout élément non numérique ou élément non existant (tableaux de tailles différentes) produit une `null` valeur d’élément.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

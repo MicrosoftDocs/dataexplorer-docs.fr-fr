@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/20/2019
-ms.openlocfilehash: 80e20e70bc51045f68fd3ef2068f099d750b2b3f
-ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
+ms.openlocfilehash: c5ada33d74f5ed3e1c7b357321b23bd7a76be64e
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84512433"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351350"
 ---
 # <a name="series_outliers"></a>series_outliers()
 
@@ -21,11 +21,11 @@ Notation des points d’anomalies dans une série.
 
 La fonction prend une expression avec un tableau numérique dynamique comme entrée et génère un tableau numérique dynamique de même longueur. Chaque valeur du tableau indique le score d’une anomalie possible, à l’aide de [« test de Tukey »](https://en.wikipedia.org/wiki/Outlier#Tukey.27s_test). Une valeur supérieure à 1,5 dans le même élément de l’entrée indique une anomalie de hausse ou de refus. Une valeur inférieure à-1,5 indique une anomalie de refus.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `series_outliers(`*x* `, ` *genre* `, ` *ignore_val* `, ` *min_percentile* `, ` *max_percentile*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *x*: cellule de tableau dynamique qui est un tableau de valeurs numériques
 * *genre*: algorithme de détection des valeurs hors norme. Prend actuellement en charge `"tukey"` (« Tukey » traditionnel) et `"ctukey"` (personnalisé « Tukey »). La valeur par défaut est `"ctukey"`
@@ -43,7 +43,7 @@ Le tableau suivant décrit les différences entre `"tukey"` et `"ctukey"` :
 > [!TIP]
 > La meilleure façon d’utiliser cette fonction consiste à l’appliquer aux résultats de l’opérateur [Make-Series](make-seriesoperator.md) .
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 Une série chronologique avec un bruit crée des valeurs hors norme. Si vous souhaitez remplacer ces valeurs hors norme (bruit) par la valeur moyenne, utilisez series_outliers () pour détecter les valeurs hors norme, puis remplacez-les.
 

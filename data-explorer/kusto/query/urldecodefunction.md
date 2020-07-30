@@ -1,6 +1,6 @@
 ---
-title: url_decode() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit url_decode() dans Azure Data Explorer.
+title: url_decode ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit url_decode () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,41 +8,41 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 3ffa5052a2fc30387be118683ec1df6f34f7346f
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 0019e318b90f9626d9e55a593f19526cdc7cc9c7
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81505149"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350585"
 ---
 # <a name="url_decode"></a>url_decode()
 
-La fonction convertit l’URL codée en une représentation URL régulière. 
+La fonction convertit l’URL encodée en représentation en URL régulière. 
 
-Des informations détaillées sur le décodage et l’encodage des URL peuvent être trouvées [ici](https://en.wikipedia.org/wiki/Percent-encoding).
+Vous trouverez des informations détaillées sur le décodage et l’encodage d’URL [ici](https://en.wikipedia.org/wiki/Percent-encoding).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`url_decode(`*URL codée*`)`
+`url_decode(`*URL encodée*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *URL codée*: URL codée (corde).  
+* *URL encodée*: URL encodée (String).  
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-URL (corde) dans une représentation régulière.
+URL (String) dans une représentation normale.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ```kusto
 let url = @'https%3a%2f%2fwww.bing.com%2f';
 print original = url, decoded = url_decode(url)
 ```
 
-|ressource d’origine|Décodé|
+|ressource d’origine|décodé|
 |---|---|
-|https%3a%2f%2fwww.bing.com%2f|https://www.bing.com/|
+|https %3 a %2 f %2 f www. Bing. com% 2F|https://www.bing.com/|
 
 
 

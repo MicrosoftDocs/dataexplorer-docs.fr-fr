@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: f0401a5b10d2feb74c629e6b04b127e6d36057ad
-ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
+ms.openlocfilehash: 0158753d3d2496e425247202d906633837aa023a
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84717170"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351486"
 ---
 # <a name="series_fit_line"></a>series_fit_line()
 
@@ -27,18 +27,18 @@ Accepte une expression contenant un tableau numérique dynamique comme entrée e
 * `interception`: Interception de la ligne approximative ("b" à partir de y = ax + b).
 * `line_fit`: Tableau numérique contenant une série de valeurs de la ligne la mieux adaptée. La longueur de la série est égale à la longueur du tableau d’entrée. Valeur utilisée pour la représentation graphique.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `series_fit_line(`*x*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *x*: tableau dynamique de valeurs numériques.
 
 > [!TIP]
 > La méthode la plus pratique pour utiliser cette fonction consiste à l’appliquer aux résultats de l’opérateur [Make-Series](make-seriesoperator.md) .
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -49,6 +49,6 @@ print id=' ', x=range(bin(now(), 1h)-11h, bin(now(), 1h), 1h), y=dynamic([2,5,6,
 
 :::image type="content" source="images/series-fit-line/series-fit-line.png" alt-text="Ligne ajustée des séries":::
 
-| RSquare | Slope | Variance | RVariance | Interception | LineFit                                                                                     |
+| RSquare | Pente | Variance | RVariance | Interception | LineFit                                                                                     |
 |---------|-------|----------|-----------|--------------|---------------------------------------------------------------------------------------------|
 | 0.982   | 2.730 | 98.628   | 1.686     | -1.666       | 1,064, 3,7945, 6,526, 9,256, 11,987, 14,718, 17,449, 20,180, 22,910, 25,641, 28,371, 31,102 |

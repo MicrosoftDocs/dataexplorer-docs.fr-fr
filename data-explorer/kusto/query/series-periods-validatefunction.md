@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2019
-ms.openlocfilehash: 0e93383cf1c9ff11fdf4a14ebad5d83c0dfa7a74
-ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
+ms.openlocfilehash: 24b47981e90c15e8a0f295d845ca28a03f324a88
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84717408"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351299"
 ---
 # <a name="series_periods_validate"></a>series_periods_validate()
 
@@ -27,11 +27,11 @@ La fonction génère deux colonnes :
 * *periods*: tableau dynamique qui contient les périodes à valider (fournies dans l’entrée).
 * *scores*: tableau dynamique qui contient un score compris entre 0 et 1. Le score indique l’importance d’une période à sa position respective dans le tableau des *périodes* .
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `series_periods_validate(`*x* `,` *period1* [ `,` *PERIOD2* `,` . . . ] `)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *x*: expression scalaire de tableau dynamique qui est un tableau de valeurs numériques, généralement le résultat des opérateurs [Make-Series](make-seriesoperator.md) ou [make_list](makelist-aggfunction.md) .
 * *period1*, *PERIOD2*, etc `real` . : nombres spécifiant les périodes à valider, en unités de la taille de l’emplacement. Par exemple, si la série est dans des emplacements 1H, une période hebdomadaire est de 168 emplacements.
@@ -43,7 +43,7 @@ La fonction génère deux colonnes :
 > 
 > * La fonction accepte jusqu’à 16 périodes à valider.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 La requête suivante incorpore une capture instantanée d’un mois du trafic d’une application, regroupée deux fois par jour (la taille de l’emplacement est de 12 heures).
 

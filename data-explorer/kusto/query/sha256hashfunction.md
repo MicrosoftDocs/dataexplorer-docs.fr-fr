@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: cf47fd98027859ebb5f0cf22208b790a5396dc61
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: b813ce4c0901ef66177e8e7bdaa42a1744bd5912
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763746"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351112"
 ---
 # <a name="hash_sha256"></a>hash_sha256()
 
 Retourne une valeur de hachage SHA256 pour la valeur d’entrée.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `hash_sha256(`*code*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *source*: valeur à hacher.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Valeur de hachage SHA256 du scalaire donné, encodée sous la forme d’une chaîne hexadécimale (une chaîne de caractères, chacun deux représentant un nombre hexadécimal unique compris entre 0 et 255).
 
 > [!WARNING]
 > L’algorithme utilisé par cette fonction (SHA256) est garanti ne pas être modifié à l’avenir, mais il est très complexe à calculer. Les utilisateurs qui ont besoin d’une fonction de hachage « légère » pour la durée d’une seule requête sont invités à utiliser la fonction [hash ()](./hashfunction.md) à la place.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -56,7 +56,7 @@ StormEvents
 | top 5 by StormCount desc
 ```
 
-|State (État)|StateHash|StormCount|
+|State|StateHash|StormCount|
 |---|---|---|
 |TEXAS|9087f20f23f91b5a77e8406846117049029e6798ebbd0d38aea68da73a00ca37|4701|
 |KANSAS|c80e328393541a3181b258cdb4da4d00587c5045e8cf3bb6c8fdb7016b69cc2e|3166|

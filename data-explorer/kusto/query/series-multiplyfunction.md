@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 1f88cdfc1490f8b00d8104286441e366aaf46f3f
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 112fe4135b6ed996c798e5f03a34120e4078c623
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372573"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351384"
 ---
 # <a name="series_multiply"></a>series_multiply()
 
 Calcule la multiplication par élément de deux entrées de série numérique.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `series_multiply(`*Series1* `,` *Series2*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Series1, Series2*: entrez des tableaux numériques, qui doivent être multipliés par un élément dans un résultat de tableau dynamique. Tous les arguments doivent être des tableaux dynamiques. 
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Tableau dynamique d’opérations de multiplication par élément calculé entre les deux entrées. Tout élément non numérique ou élément non existant (tableaux de tailles différentes) produit une `null` valeur d’élément.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

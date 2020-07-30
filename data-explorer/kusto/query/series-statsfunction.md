@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/10/2020
-ms.openlocfilehash: 3fe88a5d53faaca4512d614d3e62204ac26e6fc5
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 69e09ec9528e99e250986657bf5d7cc0756b14f8
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372447"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351248"
 ---
 # <a name="series_stats"></a>series_stats()
 
@@ -31,18 +31,18 @@ La `series_stats()` fonction prend une colonne contenant un tableau numérique d
 > [!NOTE] 
 > Cette fonction retourne plusieurs colonnes et ne peut donc pas être utilisée comme argument pour une autre fonction.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 Project `series_stats(` *x* `[,` *ignore_nonfinite* `])` ou Extend `series_stats(` *x* `)` retourne toutes les colonnes mentionnées ci-dessus avec les noms suivants : series_stats_x_min, series_stats_x_min_idx, etc.
  
 Project (m, mi) = `series_stats(` *x* `)` ou extend (m, mi) = `series_stats(` *x* `)` retourne les colonnes suivantes : m (min) et mi (min_idx).
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *x*: cellule de tableau dynamique, qui est un tableau de valeurs numériques. 
 * *ignore_nonfinite*: indicateur booléen (facultatif, par défaut : `false` ) qui spécifie s’il faut calculer les statistiques tout en ignorant les valeurs non finies (*null*, *Nan*, *INF*, etc.). Si la valeur est `false` , les valeurs retournées seraient `null` si des valeurs non finies sont présentes dans le tableau.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

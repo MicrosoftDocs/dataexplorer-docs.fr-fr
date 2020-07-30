@@ -1,6 +1,6 @@
 ---
-title: strlen() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit strlen() dans Azure Data Explorer.
+title: strlen ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit strlen () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,36 +8,36 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 33bb1ea56ebc03dc7357264bcdf987c191478cbb
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 2d28eae6852faedf2c6071164d8f80f9c3567602
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81506866"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350891"
 ---
 # <a name="strlen"></a>strlen()
 
 Retourne la longueur, en caractères, de la chaîne d’entrée.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`strlen(`*Source*`)`
+`strlen(`*code*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *source*: La chaîne source qui sera mesurée pour la longueur des cordes.
+* *source*: chaîne source qui sera mesurée pour la longueur de chaîne.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Retourne la longueur, en caractères, de la chaîne d’entrée.
 
 **Remarques**
 
-Chaque personnage Unicode dans la `1`chaîne est égal à , y compris les substituts.
-(par exemple : les caractères chinois seront comptés une fois malgré le fait qu’il nécessite plus d’une valeur dans l’encodage UTF-8).
+Chaque caractère Unicode de la chaîne est égal à `1` , y compris les substituts.
+(par exemple, les caractères chinois seront comptés une fois en dépit du fait qu’il requiert plus d’une valeur dans l’encodage UTF-8).
 
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ```kusto
 print length = strlen("hello")

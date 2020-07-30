@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: ac6bf9a8dbd54c3afca1c00f487e6ba564e65ce9
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: abe49795b7b997abf677fd0fafff10ae38787f44
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264978"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346335"
 ---
 # <a name="parse_json"></a>parse_json()
 
@@ -21,7 +21,7 @@ Interprète un `string` comme une valeur JSON et retourne la valeur sous la form
 
 Cette fonction est préférable à la [fonction extractjson ()](./extractjsonfunction.md) lorsque vous devez extraire plus d’un élément d’un objet composé JSON.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `parse_json(`*json*`)`
 
@@ -29,18 +29,18 @@ Alias :
 - [todynamic()](./todynamicfunction.md)
 - [toobject()](./todynamicfunction.md)
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *JSON*: expression de type `string` . Il représente une [valeur au format JSON](https://json.org/), ou une expression de type [Dynamic](./scalar-data-types/dynamic.md), représentant la `dynamic` valeur réelle.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Objet de type `dynamic` qui est déterminé par la valeur de *JSON*:
 * Si *JSON* est de type `dynamic` , sa valeur est utilisée telle quelle.
 * Si *JSON* est de type `string` et qu’il s’agit d’une [chaîne JSON correctement mise en forme](https://json.org/), la chaîne est analysée et la valeur produite est retournée.
 * Si *JSON* est de type `string` , mais qu’il ne s’agit pas d’une [chaîne JSON correctement mise en forme](https://json.org/), la valeur retournée est un objet de type `dynamic` qui contient la valeur d’origine `string` .
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 Dans l’exemple suivant, quand `context_custom_metrics` est un élément `string`, le résultat ressemble à ceci :
 
@@ -56,7 +56,7 @@ T
 | extend duration_value=d.duration.value, duration_min=d["duration"]["min"]
 ```
 
-**Notes**
+**Remarques**
 
 Il est courant d’avoir une chaîne JSON qui décrit un conteneur de propriétés dans lequel l’un des « emplacements » est une autre chaîne JSON. 
 

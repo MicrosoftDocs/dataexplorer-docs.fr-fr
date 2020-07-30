@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/02/2019
-ms.openlocfilehash: 6739b01f996c04829a1fdb78eab96f6e51b011bb
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: 709da983599b4e8b0c8b06cf7bff4276ba03b5cf
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763665"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351163"
 ---
 # <a name="set_intersect"></a>set_intersect()
 
 Retourne un `dynamic` tableau de l’ensemble de toutes les valeurs distinctes qui se trouvent dans tous les tableaux (Arr1 ∩ Arr2 ∩...).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `set_intersect(`*Arr1* `, ` *Arr2* `[` ,` *arr3*, ...])`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Arr1... arrN*: tableaux d’entrée pour créer un ensemble d’intersection (au moins deux tableaux). Tous les arguments doivent être des tableaux dynamiques. Pour plus d’informations, consultez [pack_array](packarrayfunction.md). 
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Retourne un tableau dynamique du jeu de toutes les valeurs distinctes qui se trouvent dans tous les tableaux. Consultez [`set_union()`](setunionfunction.md) et [`set_difference()`](setdifferencefunction.md) .
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

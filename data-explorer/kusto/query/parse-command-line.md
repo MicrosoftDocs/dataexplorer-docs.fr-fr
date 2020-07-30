@@ -8,37 +8,37 @@ ms.reviewer: slneimer
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/28/2020
-ms.openlocfilehash: 0296b41dc10092f0b274491c3fab3355fc82a2d9
-ms.sourcegitcommit: 4eb64e72861d07cedb879e7b61a59eced74517ec
+ms.openlocfilehash: f330c10e95cdc36eae497811ef895ef827918b43
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/29/2020
-ms.locfileid: "85518134"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346488"
 ---
 # <a name="parse_command_line"></a>parse_command_line()
 
 Analyse une chaîne de ligne de commande Unicode et retourne un tableau dynamique des arguments de ligne de commande.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `parse_command_line(`*COMMAND_LINE*,*parser_type*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *COMMAND_LINE*: ligne de commande à analyser.
 * *parser_type*: la seule valeur actuellement prise en charge est `"Windows"` , qui analyse la ligne de commande de la même façon que [CommandLineToArgvW](https://docs.microsoft.com/windows/win32/api/shellapi/nf-shellapi-commandlinetoargvw).
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Tableau dynamique des arguments de ligne de commande.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 print parse_command_line("echo \"hello world!\"", "windows")
 ```
 
-|Résultats|
+|Résultat|
 |---|
 |[« ECHO », « Hello World ! »]|

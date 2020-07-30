@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/10/2020
-ms.openlocfilehash: 87cee5244fb1276733d4cf44d0477cc3351b947c
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: d74ba88062f49e9f3274b7f38704aa7760dc7250
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372448"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351265"
 ---
 # <a name="series_stats_dynamic"></a>series_stats_dynamic()
 
@@ -28,16 +28,16 @@ La `series_stats_dynamic()` fonction prend une colonne contenant un tableau num�
 * `variance`: exemple de variance du tableau d’entrée
 * `stdev`: exemple d’écart type du tableau d’entrée
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `series_stats_dynamic(`*x* `[,` *ignore_nonfinite* x`])`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *x*: cellule de tableau dynamique qui est un tableau de valeurs numériques. 
 * *ignore_nonfinite*: indicateur booléen (facultatif, par défaut : `false` ) qui spécifie s’il faut calculer les statistiques tout en ignorant les valeurs non finies (*null*, *Nan*, *INF*, etc.). Si la valeur `false` est, le résultat retourné est `null` si des valeurs non finies sont présentes dans le tableau.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
