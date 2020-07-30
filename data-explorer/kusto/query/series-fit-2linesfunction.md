@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: a364361ee5e5e260436486db24f1b61e2c21cbc9
-ms.sourcegitcommit: 9fc3d8b396dddd2e1d9912845ba7bcc8e31c0267
+ms.openlocfilehash: 89e93a3c4365e0f215a797ee0b01669e6bcbdcfa
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84720908"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87343887"
 ---
 # <a name="series_fit_2lines"></a>series_fit_2lines()
 
@@ -44,7 +44,7 @@ Prend une expression contenant un tableau numérique dynamique comme entrée et 
 > [!Note]
 > Cette fonction retourne plusieurs colonnes et ne peut donc pas être utilisée en tant qu’argument pour une autre fonction.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 projet `series_fit_2lines(` *x*`)`
 * Renvoie toutes les colonnes mentionnées ci-dessus avec les noms suivants : series_fit_2lines_x_rsquare, series_fit_2lines_x_split_idx etc.
@@ -55,14 +55,14 @@ projet (RS, si, v) = `series_fit_2lines(` *x*`)`
 Extend (RS, si, v) = `series_fit_2lines(` *x*`)`
 * Renvoie uniquement : rs (r-square), si (split index) et v (variance).
   
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *x*: tableau dynamique de valeurs numériques.  
 
 > [!TIP]
 > La méthode la plus pratique pour utiliser cette fonction consiste à l’appliquer aux résultats de l’opérateur [Make-Series](make-seriesoperator.md) .
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

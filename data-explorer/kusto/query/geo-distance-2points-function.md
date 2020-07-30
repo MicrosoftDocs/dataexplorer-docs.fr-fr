@@ -8,29 +8,29 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/11/2020
-ms.openlocfilehash: 64c61bcde7bfe02d55bb0f4a6719e9d7b1c1a681
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 0e8d57e76b0dfa45003f541b54360cb4ac414646
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227415"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347882"
 ---
 # <a name="geo_distance_2points"></a>geo_distance_2points()
 
 Calcule la distance la plus petite entre deux coordonnées géospatiales sur la terre.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `geo_distance_2points(`*p1_longitude* `, ` *p1_latitude* `, ` *p2_longitude* `, ` *p2_latitude*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *p1_longitude*: première coordonnée géographique, valeur de longitude en degrés. La valeur valide est un nombre réel et dans la plage [-180, + 180].
 * *p1_latitude*: première coordonnée géographique, valeur de latitude en degrés. La valeur valide est un nombre réel et dans la plage [-90, + 90].
 * *p2_longitude*: deuxième coordonnée géographique, valeur de longitude en degrés. La valeur valide est un nombre réel et dans la plage [-180, + 180].
 * *p2_latitude*: deuxième coordonnée géographique, valeur de latitude en degrés. La valeur valide est un nombre réel et dans la plage [-90, + 90].
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Distance la plus petite, en mètres, entre deux emplacements géographiques sur la terre. Si les coordonnées ne sont pas valides, la requête produira un résultat NULL.
 
@@ -38,7 +38,7 @@ Distance la plus petite, en mètres, entre deux emplacements géographiques sur 
 > * Les coordonnées géospatiales sont interprétées comme étant représentées par le système de référence de coordonnées [WGS-84](https://earth-info.nga.mil/GandG/update/index.php?action=home) .
 > * La [référence géodésique](https://en.wikipedia.org/wiki/Geodetic_datum) utilisée pour mesurer la distance sur la terre est une sphère.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 L’exemple suivant recherche la distance la plus petite entre Seattle et Los Angeles.
 

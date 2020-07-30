@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/06/2020
-ms.openlocfilehash: bc4b0bc8a02dd3a8d2a39ffdd27db5817eb8ffdb
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: c2fab7abbcebdc97f6f1c394f840bf6e232db03a
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83225239"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349106"
 ---
 # <a name="binary_all_xor-aggregation-function"></a>binary_all_xor () (fonction d’agrégation)
 
@@ -21,19 +21,19 @@ Accumule les valeurs à l’aide de l' `XOR` opération binaire par groupe de sy
 
 * Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 résumer `binary_all_xor(` *expr*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Expr*: nombre long.
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Retourne une valeur agrégée à l’aide de l' `XOR` opération binaire sur les enregistrements par groupe de synthèse (ou au total, si le résumé est effectué sans regroupement).
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 Production de « café-Food » à l’aide d’opérations binaires `XOR` :
 

@@ -8,26 +8,26 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/11/2020
-ms.openlocfilehash: bee6471ef2cf2a2cd484af8ce84d70cce749d5e0
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: ede35223b9cc57fddc5318659e6902130a80c011
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83225324"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349276"
 ---
 # <a name="base64_encode_fromarray"></a>base64_encode_fromarray()
 
 Encode une chaîne base64 à partir d’un tableau d’octets.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `base64_encode_fromarray(`*BytesArray*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *BytesArray*: tableau d’octets d’entrée à encoder en chaîne base64.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Retourne la chaîne base64 encodée à partir du tableau d’octets.
 
@@ -35,7 +35,7 @@ Retourne la chaîne base64 encodée à partir du tableau d’octets.
 * Pour encoder des chaînes en chaîne base64 [, consultez base64_encode_tostring ()](base64_encode_tostringfunction.md)
 * Cette fonction est l’inverse de [base64_decode_toarray ()](base64_decode_toarrayfunction.md)
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

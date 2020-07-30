@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/06/2020
-ms.openlocfilehash: 66ca1e5ff330a4b39ab769b0e3e8d6359eed9c00
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 3d0f389264d078d2b55ac06214bb3b820fcf7f13
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226667"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347593"
 ---
 # <a name="hash_many"></a>hash_many()
 
 Retourne une valeur de hachage combinée de plusieurs valeurs.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `hash_many(`*S1* `,` *S2* [ `,` *S3* ...]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *S1*, *S2*,..., *sn*: valeurs d’entrée qui seront hachées ensemble.
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Valeur de hachage combinée des scalaires données.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

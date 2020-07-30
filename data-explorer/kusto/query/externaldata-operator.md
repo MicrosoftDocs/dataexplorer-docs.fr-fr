@@ -8,22 +8,22 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 4534705156669447a89cb5d85c360071dfcb2b2a
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: 698acc481a6313160602c939774a6029978df483
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264995"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348103"
 ---
 # <a name="externaldata-operator"></a>externaldata, opérateur
 
 L' `externaldata` opérateur retourne une table dont le schéma est défini dans la requête elle-même, et dont les données sont lues à partir d’un artefact de stockage externe, tel qu’un objet BLOB dans le stockage d’objets BLOB Azure.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `externaldata``(` *ColumnName* `:` *ColumnType* [ `,` ...] `)` `[` *StorageConnectionString* `]` [ `with` `(` *Prop1* `=` *value1* [ `,` ...] `)` ]
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *ColumnName*, *ColumnType*: les arguments définissent le schéma de la table.
   La syntaxe est la même que celle utilisée lors de la définition d’une table dans [. Create table](../management/create-table-command.md).
@@ -37,11 +37,11 @@ L' `externaldata` opérateur retourne une table dont le schéma est défini dans
 > [!NOTE]
 > Cet opérateur n’a pas d’entrée de pipeline.
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 L' `externaldata` opérateur retourne une table de données du schéma donné dont les données ont été analysées à partir de l’artefact de stockage spécifié, indiqué par la chaîne de connexion de stockage.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 L’exemple suivant montre comment rechercher tous les enregistrements d’une table dont `UserID` la colonne appartient à un ensemble connu d’ID, détenu (un par ligne) dans un objet BLOB externe.
 Étant donné que l’ensemble est référencé indirectement par la requête, il peut être volumineux.

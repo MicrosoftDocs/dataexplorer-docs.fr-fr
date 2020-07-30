@@ -1,6 +1,6 @@
 ---
-title: array_iif() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit array_iif() dans Azure Data Explorer.
+title: array_iif ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit array_iif () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,41 +8,41 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/28/2019
-ms.openlocfilehash: f99b9aa8a9d081a7f28cd2e5bb8750b15f2fcdac
-ms.sourcegitcommit: 436cd515ea0d83d46e3ac6328670ee78b64ccb05
+ms.openlocfilehash: 1844d87dffb5ac0046c3f62600b8c4914dc93a89
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81663916"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349582"
 ---
 # <a name="array_iif"></a>array_iif()
 
-Fonction iif élément-sage sur les tableaux dynamiques.
+Fonction IIF au niveau des éléments sur les tableaux dynamiques.
 
-Un autre pseudonyme: array_iff().
+Autre alias : array_iff ().
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `array_iif(`*ConditionArray*, *IfTrue*, *IfFalse*]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *conditionArray*: La gamme d’entrées de valeurs *boolean* ou numériques, doit être un tableau dynamique.
-* *ifTrue*: Tableau d’entrée de valeurs ou valeur primitive - la valeur de résultat (s) lorsque la valeur correspondante de *ConditionArray* est *vraie.*
-* *ifFalse*: Tableau d’entrée de valeurs ou valeur primitive - la valeur de résultat (s) lorsque la valeur correspondante de *ConditionArray* est *fausse*.
+* *conditionArray*: tableau d’entrée de valeurs *booléennes* ou numériques, qui doit être un tableau dynamique.
+* *IfTrue*: tableau d’entrée de valeurs ou valeur primitive-la ou les valeurs de résultat lorsque la valeur correspondante de *ConditionArray* est *true*.
+* *IfFalse*: tableau d’entrée de valeurs ou valeur primitive-valeur (s) de résultat lorsque la valeur correspondante de *ConditionArray* est *false*.
 
-**Remarques**
+**Notes**
 
-* La longueur de résultat est la longueur de *conditionArray*.
-* La valeur de l’état numérique est traitée comme *condition* ! *0*.
-* La valeur de condition non numérique/nulle sera nulle dans l’indice correspondant du résultat.
-* Les valeurs manquantes (dans des tableaux de longueur plus courtes) sont traitées comme nulles.
+* La longueur du résultat est la longueur de *conditionArray*.
+* La valeur de condition numérique est traitée comme *condition* ! = *0*.
+* La valeur de condition non numérique/null aura null dans l’index correspondant du résultat.
+* Les valeurs manquantes (dans des tableaux de longueur plus courts) sont traitées comme null.
 
-**Retourne**
+## <a name="returns"></a>Retours
 
-Gamme dynamique des valeurs prises soit à partir des valeurs *IfTrue* ou *IfFalse* [array], selon la valeur correspondante du tableau de condition.
+Tableau dynamique des valeurs prises à partir des valeurs *IfTrue* ou *IfFalse* [array], en fonction de la valeur correspondante du tableau de conditions.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
 print condition=dynamic([true,false,true]), l=dynamic([1,2,3]), r=dynamic([4,5,6]) 
@@ -51,4 +51,4 @@ print condition=dynamic([true,false,true]), l=dynamic([1,2,3]), r=dynamic([4,5,6
 
 |condition|l|r|res|
 |---|---|---|---|
-|[vrai, faux, vrai]|[1, 2, 3]|[4, 5, 6]|[1, 5, 3]|
+|[true, false, true]|[1, 2, 3]|[4, 5, 6]|[1, 5, 3]|

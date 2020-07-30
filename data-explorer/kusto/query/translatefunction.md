@@ -1,6 +1,6 @@
 ---
-title: traduire() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit traduire () dans Azure Data Explorer.
+title: translate ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit translate () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/11/2019
-ms.openlocfilehash: f128ce31af7fc720ee81b7471d3d74616197b8d4
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: d0e99048f3f1b0e3ce5c6c59a65ea645b22d15fe
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81505710"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87340052"
 ---
 # <a name="translate"></a>translate()
 
-Remplace un ensemble de caractères ('searchList') par un autre ensemble de caractères ('replacementList') dans une chaîne donnée.
-La fonction recherche les caractères dans la 'searchList' et les remplace par les caractères correspondants dans 'replacementList'
+Remplace un jeu de caractères (« searchList ») par un autre jeu de caractères (« replacementList ») dans une chaîne donnée.
+La fonction recherche les caractères dans le « searchList » et les remplace par les caractères correspondants dans « replacementList »
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `translate(`*searchList* `,` *replacementList* `,` *texte*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *searchList*: La liste des caractères qui devraient être remplacés
-* *replacementList*: La liste des caractères qui doivent remplacer les caractères dans 'searchList'
-* *texte*: Une chaîne à rechercher
+* *searchList*: liste des caractères à remplacer.
+* *replacementList*: liste des caractères qui doivent remplacer les caractères de’searchList'
+* *Text*: chaîne à rechercher
 
-**Retourne**
+## <a name="returns"></a>Retours
 
-*texte* après avoir remplacé toutes les ocurrences de caractères dans 'replacementList' par les caractères correspondants dans 'searchList'
+*texte* après remplacement de tous les ocurrences de caractères dans’replacementList’par les caractères correspondants dans’searchList'
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 |Entrée                                 |Output   |
 |--------------------------------------|---------|

@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/21/2020
-ms.openlocfilehash: 6a06be43773a356e903b25b2697e75b8342ed7f8
-ms.sourcegitcommit: 085e212fe9d497ee6f9f477dd0d5077f7a3e492e
+ms.openlocfilehash: a5f5f554373331d66a08e7166249e8e24c4fbd7c
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85133470"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348783"
 ---
 # <a name="count-aggregation-function"></a>Count () (fonction d’agrégation)
 
@@ -22,15 +22,15 @@ Retourne le nombre d’enregistrements par groupe de synthèse (ou au total, si 
 * Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 * Utilisez la fonction d’agrégation [NB.si](countif-aggfunction.md) pour compter uniquement les enregistrements pour lesquels un prédicat est retourné `true` .
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 résumer`count()`
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Retourne le nombre d’enregistrements par groupe de synthèse (ou au total, si le résumé est effectué sans regroupement).
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 Comptage des événements dans les États commençant par letter `W` :
 

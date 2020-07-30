@@ -8,12 +8,12 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/04/2020
-ms.openlocfilehash: c37789ac490814288c7331f0b1ae86b8b2178d67
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 7998726637a7d19413954a509dd0ad9b34202f03
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226922"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347763"
 ---
 # <a name="geo_point_to_geohash"></a>geo_point_to_geohash()
 
@@ -21,17 +21,17 @@ Calcule la valeur de la chaîne de hachage pour un emplacement géographique.
 
 En savoir plus sur le [géohachage](https://en.wikipedia.org/wiki/Geohash).  
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `geo_point_to_geohash(`*longitude* `, ` *Latitude* `, ` [*précision*]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *longitude*: valeur de longitude d’un emplacement géographique. La longitude x sera considérée comme valide si x est un nombre réel et se trouve dans la plage [-180, + 180]. 
 * *Latitude*: valeur de latitude d’un emplacement géographique. La latitude y sera considérée comme valide si y est un nombre réel et y dans la plage [-90, + 90]. 
 * *précision*: option facultative `int` qui définit la précision demandée. Les valeurs prises en charge sont comprises dans la plage [1, 18]. S’il n’est pas spécifié, la valeur par défaut `5` est utilisée.
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Valeur de la chaîne de hachage d’un emplacement géographique donné avec la longueur de précision demandée. Si la coordonnée ou la précision n’est pas valide, la requête produira un résultat vide.
 
@@ -69,7 +69,7 @@ Valeur de la chaîne de hachage d’un emplacement géographique donné avec la 
 
 Voir aussi [geo_point_to_s2cell ()](geo-point-to-s2cell-function.md).
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 Événements Storm US regroupés par géohachage.
 

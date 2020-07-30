@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: b5847fec10eb76a6fe5a139809766d2a3ca4f089
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 7b6de7d141f02703c5f369dd831d1fbac82cb45e
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372922"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345519"
 ---
 # <a name="series_add"></a>series_add()
 
 Calcule l’ajout au niveau des éléments de deux entrées de série numérique.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `series_add(`*Series1* `,` *Series2*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Series1, Series2*: entrez des tableaux numériques à ajouter au niveau des éléments dans un résultat de tableau dynamique. Tous les arguments doivent être des tableaux dynamiques. 
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Tableau dynamique des opérations d’ajout d’éléments calculés entre les deux entrées. Tout élément non numérique ou élément non existant (tableaux de tailles différentes) produit une `null` valeur d’élément.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

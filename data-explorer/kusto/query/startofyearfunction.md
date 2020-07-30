@@ -1,6 +1,6 @@
 ---
-title: startofyear() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit startofyear() dans Azure Data Explorer.
+title: STARTOFYEAR ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit STARTOFYEAR () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,38 +8,38 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f91c749cc3833954d902eb4ebd7e230e32e3a991
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: c4ff0509f0ed7de98daf9bcec6c40ed5b8d76fd3
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81507206"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87343360"
 ---
 # <a name="startofyear"></a>startofyear()
 
-Retourne le début de l’année contenant la date, décalé par un décalage, s’il est fourni.
+Retourne le début de l’année contenant la date, décalée d’un décalage, si elle est fournie.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`startofyear(`*date* `,`[*offset*]`)`
+`startofyear(`*Date* [ `,` *décalage*]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* `date`: La date d’entrée.
-* `offset`: Un nombre facultatif d’années de compensation à partir de la date d’entrée (integer, défaut - 0). 
+* `date`: Date d’entrée.
+* `offset`: Nombre facultatif d’années de décalage à partir de la date d’entrée (entier, par défaut-0). 
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Une date qui représente le début de l’année pour la valeur *de la date* donnée, avec la compensation, si spécifié.
+Valeur DateTime représentant le début de l’année pour la valeur de *Date* donnée, avec le décalage, s’il est spécifié.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
   range offset from -1 to 1 step 1
  | project yearStart = startofyear(datetime(2017-01-01 10:10:17), offset) 
 ```
 
-|annéeStart|
+|yearStart|
 |---|
 |2016-01-01 00:00:00.0000000|
 |2017-01-01 00:00:00.0000000|

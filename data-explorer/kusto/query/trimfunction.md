@@ -1,6 +1,6 @@
 ---
-title: trim() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la garniture () dans Azure Data Explorer.
+title: Trim ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit Trim () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: aef2a61e5ac13fe9af9d8bc0dd130f3d085a3604
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: a28ca267612bef68c676118331b3010a8c947e36
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81505591"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350636"
 ---
 # <a name="trim"></a>trim()
 
-Supprime tous les matchs de tête et de fuite de l’expression régulière spécifiée.
+Supprime toutes les correspondances de début et de fin de l’expression régulière spécifiée.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`trim(`*texte regex* `,` *text*`)`
+`trim(`*expression régulière* `,` *texte*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *regex*: Chaîne ou [expression régulière](re2.md) à couper dès le début et/ou la fin du *texte*.  
-* *texte*: Une chaîne.
+* *Regex*: chaîne ou [expression régulière](re2.md) à tronquer à partir du début et/ou de la fin du *texte*.  
+* *Text*: chaîne.
 
-**Retourne**
+## <a name="returns"></a>Retours
 
-*texte* après la coupe des allumettes de *regex* trouvé au début et / ou la fin du *texte*.
+*texte* après le rognage des correspondances de *Regex* trouvées au début et/ou à la fin du *texte*.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
-Déclaration soufflet garnitures *sous-cordes* depuis le début et la fin de la *string_to_trim*:
+L’instruction découpe la *sous-chaîne* à partir du début et de la fin de l' *string_to_trim*:
 
 ```kusto
 let string_to_trim = @"--https://bing.com--";
@@ -46,7 +46,7 @@ print string_to_trim = string_to_trim, trimmed_string = trim(substring,string_to
 |---|---|
 |--https://bing.com--|https://bing.com|
 
-La déclaration suivante coupe tous les caractères non-mots du début et de la fin de la chaîne :
+L’instruction suivante supprime tous les caractères non alphabétiques du début et de la fin de la chaîne :
 
 ```kusto
 range x from 1 to 5 step 1
@@ -56,11 +56,11 @@ range x from 1 to 5 step 1
 
 |str|trimmed_str|
 |---|---|
-|- Te st1// $|Te st1|
-|- Te st2// $|Te st2|
-|- Te st3// $|Te st3|
-|- Te st4// $|Te st4|
-|- Te st5// $|Te st5|
+|-Te ST1//$|Te-ST1|
+|-Te ST2//$|Te ST2|
+|-Te ST3//$|Te ST3|
+|-Te ST4//$|Te ST4|
+|-Te ST5//$|Te ST5|
 
 
  

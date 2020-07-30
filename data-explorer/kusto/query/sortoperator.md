@@ -1,6 +1,6 @@
 ---
-title: opérateur de tri - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit l’opérateur de tri dans Azure Data Explorer.
+title: opérateur de tri-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit l’opérateur de tri dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 638783b28cddc51d64a80096d7d4d6e0f669d354
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 4f9878b77ad2288395a54d5315864e460ca37875
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81507478"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351027"
 ---
 # <a name="sort-operator"></a>opérateur sort 
 
@@ -27,18 +27,18 @@ T | sort by strlen(country) asc, price desc
 
 `order`
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-*T* `| sort by` *expression* expression`asc` | `desc`[`nulls first` | `nulls last`]`,` [ ] [ ...]
+*T* `| sort by` *expression* [ `asc`  |  `desc` ] [ `nulls first`  |  `nulls last` ] [ `,` ...]
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *T*: L’entrée de table à trier.
-* *expression*: Une expression scalaire par laquelle trier. Les valeurs doivent être de type numérique, date, heure ou chaîne.
+* *T*: entrée de table à trier.
+* *expression*: expression scalaire selon laquelle effectuer le tri. Les valeurs doivent être de type numérique, date, heure ou chaîne.
 * `asc` Tri par ordre croissant, de faible à élevé. La valeur par défaut est `desc`, par ordre décroissant allant d’élevé à faible.
-* `nulls first`(le défaut `asc` de commande) placera les `nulls last` valeurs nulles `desc` au début et (le défaut de commande) placera les valeurs nulles à la fin.
+* `nulls first`(la valeur par défaut pour `asc` Order) place les valeurs NULL au début et `nulls last` (la valeur par défaut pour `desc` Order) place les valeurs NULL à la fin.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
 Traces
@@ -46,9 +46,9 @@ Traces
 | sort by Timestamp asc nulls first
 ```
 
-Toutes les lignes de la table Traces ayant un `ActivityId`spécifique, triées d’après leur horodatage. Si `Timestamp` la colonne contient des valeurs nulles, celles-ci apparaîtront aux premières lignes du résultat.
+Toutes les lignes de la table Traces ayant un `ActivityId`spécifique, triées d’après leur horodatage. Si la `Timestamp` colonne contient des valeurs NULL, celles-ci apparaissent sur les premières lignes du résultat.
 
-Afin d’exclure les valeurs nulles du résultat ajouter un filtre avant l’appel à trier:
+Pour exclure les valeurs NULL du résultat, ajoutez un filtre avant l’appel à sort :
 
 ```kusto
 Traces

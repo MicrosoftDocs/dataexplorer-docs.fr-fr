@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 0373525d0f1e369af31b17595900128e0d4e0bf4
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: 54c09908096f9df4ac8b568cd5e897c6e4ecc8c2
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763346"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345961"
 ---
 # <a name="query-parameters-declaration-statement"></a>Instruction de déclaration des paramètres de requête
 
@@ -34,7 +34,7 @@ En particulier, les applications clientes qui combinent les entrées fournies pa
 
 Pour référencer des paramètres de requête, le texte de requête ou les fonctions qu’il utilise, vous devez d’abord déclarer le paramètre de requête qu’il utilise. Pour chaque paramètre, la déclaration fournit le nom et le type scalaire. Éventuellement, le paramètre peut également avoir une valeur par défaut. La valeur par défaut est utilisée si la requête ne fournit pas de valeur concrète pour le paramètre. Kusto analyse ensuite la valeur du paramètre de requête, en fonction de ses règles d’analyse normales pour ce type.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `declare``query_parameters` `(` *Nom1* `:` *type1* [ `=` *DefaultValue1*] [ `,` ...]`);`
 
@@ -46,7 +46,7 @@ Pour référencer des paramètres de requête, le texte de requête ou les fonct
 > [!NOTE]
 > À l’instar des [fonctions définies](functions/user-defined-functions.md)par l’utilisateur, les paramètres de requête de type `dynamic` ne peuvent pas avoir de valeurs par défaut.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ```kusto
 declare query_parameters(UserName:string, Password:string);

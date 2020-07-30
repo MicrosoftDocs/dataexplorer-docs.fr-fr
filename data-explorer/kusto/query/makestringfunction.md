@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 035be5910d173c75e585baa0b093dc6276bd4d63
-ms.sourcegitcommit: 3848b8db4c3a16bda91c4a5b7b8b2e1088458a3a
+ms.openlocfilehash: 36d31e88a89f23006dac73b92777b13db4933d06
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/16/2020
-ms.locfileid: "84818583"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346879"
 ---
 # <a name="make_string"></a>make_string()
 
 Retourne la chaîne générée par les caractères Unicode.
     
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `make_string (`*Arg1*[, *ArgN*]...`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Arg1* ... *ArgN*: expressions qui sont des entiers (int ou long) ou une valeur dynamique contenant un tableau de nombres entiers.
 
 * Cette fonction reçoit jusqu’à 64 arguments.
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Retourne la chaîne composée des caractères Unicode dont la valeur de point de point est fournie par les arguments à cette fonction. L’entrée doit être composée de points de dépassements Unicode valides.
 Si un argument n’est pas mappé à un caractère Unicode, la fonction retourne `null` .
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ```kusto
 print str = make_string(75, 117, 115, 116, 111)

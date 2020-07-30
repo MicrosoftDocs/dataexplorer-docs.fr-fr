@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b785f346dd95a9c6a8cb9d6148e889c42ac4b02c
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: 1edc5e3ef8c3c2dea65d332e6ceace653cc5c812
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85129037"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87340137"
 ---
 # <a name="totimespan"></a>totimespan()
 
@@ -23,15 +23,15 @@ Convertit l’entrée en scalaire [TimeSpan](./scalar-data-types/timespan.md) .
 totimespan("0.00:01:00") == time(1min)
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `totimespan(Expr)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *`Expr`*: Expression qui sera convertie en [TimeSpan](./scalar-data-types/timespan.md).
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Si la conversion réussit, le résultat sera une valeur [TimeSpan](./scalar-data-types/timespan.md) .
 Sinon, le résultat sera null.

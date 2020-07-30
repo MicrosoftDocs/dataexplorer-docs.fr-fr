@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/22/2020
-ms.openlocfilehash: 99044d8762a1c7c7e86fb2633a8226ef48d66b55
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: a366120428d14c713b18aee6652460817c75433a
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83225630"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349565"
 ---
 # <a name="array_index_of"></a>array_index_of()
 
 Recherche l’élément spécifié dans le tableau et retourne sa position.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `array_index_of(`*tableau*,*valeur*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *tableau*: tableau d’entrée à rechercher.
 * *valeur*: valeur à rechercher. La valeur doit être de type long, Integer, double, DateTime, TimeSpan, Decimal, String ou GUID.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Position d’index de base zéro de la recherche.
 Retourne-1 si la valeur est introuvable dans le tableau.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

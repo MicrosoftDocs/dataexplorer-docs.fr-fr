@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1aca8cda34e1ee8506d5be6633cfd46fd912c6c3
-ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
+ms.openlocfilehash: debd0a83f4c27fa05415805404ad450bab1d3ca1
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83271517"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347372"
 ---
 # <a name="invoke-operator"></a>invoke, opérateur
 
@@ -23,25 +23,25 @@ Appelle une expression lambda qui reçoit la source de `invoke` comme argument d
 T | invoke foo(param1, param2)
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `T | invoke`*fonction* `(` [*param1* `,` *param2*]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *T*: source tabulaire.
 * *Function*: nom de l’expression lambda ou du nom de fonction à évaluer.
 * *param1*, *param2* ... : arguments lambda supplémentaires.
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Retourne le résultat de l’expression évaluée.
 
-**Remarques**
+**Notes**
 
 Consultez [instructions Let](./letstatement.md) pour plus d’informations sur la façon de déclarer des expressions lambda qui peuvent accepter des arguments tabulaires.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 L’exemple suivant montre comment utiliser l' `invoke` opérateur pour appeler une expression lambda :
 

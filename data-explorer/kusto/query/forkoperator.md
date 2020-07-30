@@ -1,6 +1,6 @@
 ---
-title: opérateur de fourchette - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit l’opérateur de fourche dans Azure Data Explorer.
+title: opérateur de fourche-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit l’opérateur Fork dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,46 +8,46 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 13cd837b3874a55ec758991f5609e089daba7c75
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: b234a95b4a541099f3fc050501ca6b0fd9f67ccf
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81515196"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348001"
 ---
 # <a name="fork-operator"></a>fork, opérateur
 
-Exécute plusieurs opérateurs de consommation en parallèle.
+Exécute plusieurs opérateurs de consommateur en parallèle.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-*T* `|` `=``(``=``(``)` `)` *name**name**subquery* *subquery* [ nom ] sous-payse [ nom ] sous-pays ... `fork`
+*T* `|` `fork` [*nom* `=` ] `(` *sous* -requête `)` [*Name* `=` ] `(` *sous-requête* `)` ...
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *sous-laquery* est un pipeline en aval des opérateurs de requête
-* *nom* est un nom temporaire pour le tableau des résultats de sous-pays
+* la *sous-requête* est un pipeline en aval d’opérateurs de requête
+* le *nom* est un nom temporaire pour la table de résultats de la sous-requête
 
-**Retourne**
+## <a name="returns"></a>Retours
 
-Tableaux de résultats multiples, un pour chacune des sous-ques.
+Plusieurs tables de résultats, une pour chacune des sous-requêtes.
 
 **Opérateurs pris en charge**
 
 [`as`](asoperator.md), [`count`](countoperator.md), [`extend`](extendoperator.md), [`parse`](parseoperator.md), [`where`](whereoperator.md), [`take`](takeoperator.md), [`project`](projectoperator.md), [`project-away`](projectawayoperator.md), [`summarize`](summarizeoperator.md), [`top`](topoperator.md), [`top-nested`](topnestedoperator.md), [`sort`](sortoperator.md), [`mv-expand`](mvexpandoperator.md), [`reduce`](reduceoperator.md)
 
-**Remarques**
+**Notes**
 
-* [`materialize`](materializefunction.md)fonction peut être utilisée comme [`join`](joinoperator.md) [`union`](unionoperator.md) un remplacement pour l’utilisation ou sur les pattes de fourchette.
-Le flux d’entrée sera mis en cache par matérialisation, puis l’expression mise en cache peut être utilisée dans les jambes de jointure/union.
+* [`materialize`](materializefunction.md)la fonction peut être utilisée comme remplacement pour l’utilisation de [`join`](joinoperator.md) ou [`union`](unionoperator.md) sur des jambes de fourche.
+Le flux d’entrée sera mis en cache par matérialisation, puis l’expression mise en cache peut être utilisée dans les jambes de jointure/Union.
 
-* Un nom, donné `name` par l’argument ou par l’utilisation de l’opérateur [`as`](asoperator.md) sera utilisé comme l’onglet de résultat dans [`Kusto.Explorer`](../tools/kusto-explorer.md) l’outil.
+* Un nom, fourni par l' `name` argument ou à l’aide de l’opérateur, est [`as`](asoperator.md) utilisé comme pour nommer l’onglet résultat dans l' [`Kusto.Explorer`](../tools/kusto-explorer.md) outil.
 
-* Évitez `fork` d’utiliser avec une seule sous-query.
+* Évitez `fork` d’utiliser avec une seule sous-requête.
 
-* Préférez utiliser [le lot](batches.md) avec [`materialize`](materializefunction.md) `fork` des déclarations d’expression tabulaires à l’opérateur.
+* Préférer l’utilisation de [batch](batches.md) à [`materialize`](materializefunction.md) des instructions d’expression tabulaires à l' `fork` opérateur.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ```kusto
 KustoLogs

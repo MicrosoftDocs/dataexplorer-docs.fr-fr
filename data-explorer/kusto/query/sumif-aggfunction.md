@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7d97d31b2fb97d5541400bc0605ee40e83807b62
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: cd9900b5087ed0d6ae7e97d2f2dad809bb909331
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83371895"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350806"
 ---
 # <a name="sumif-aggregation-function"></a>somme.si () (fonction d’agrégation)
 
@@ -23,20 +23,20 @@ Retourne la somme de *expr* pour laquelle le *prédicat* a la valeur `true` .
 
 Vous pouvez également utiliser la fonction [Sum ()](sum-aggfunction.md) , qui additionne des lignes sans expression de prédicat.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 synthétiser le `sumif(` *Expr* `,` *prédicat* expr`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Expr*: expression pour le calcul de l’agrégation. 
 * *Predicate*: prédicat qui, si la valeur est true, la valeur calculée de l' *expression expr*sera ajoutée à la somme. 
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Valeur SUM de *expr* pour laquelle le *prédicat* prend la valeur `true` .
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
 let T = datatable(name:string, day_of_birth:long)

@@ -8,26 +8,26 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 11/08/2019
-ms.openlocfilehash: f71770d2cc9d44987731a247fa8eb945ed323391
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: cf10fcfd66b7a9240746a904e4979c8091c3518b
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227506"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348681"
 ---
 # <a name="current_principal_details"></a>current_principal_details()
 
 Retourne les détails du principal qui exécute la requête.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `current_principal_details()`
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Détails du principal actuel sous la forme d’un `dynamic` .
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

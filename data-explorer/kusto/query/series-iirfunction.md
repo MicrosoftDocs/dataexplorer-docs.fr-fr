@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/20/2019
-ms.openlocfilehash: fbdf7b1a9a9f5b65e6c6ee7a78fe64afba2893af
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: e1b863b83e08fae680e1a387ca2fdd2a93d111a8
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264791"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351435"
 ---
 # <a name="series_iir"></a>series_iir()
 
@@ -26,11 +26,11 @@ La fonction prend une expression contenant un tableau numérique dynamique comme
 
 La fonction prend comme entrée la colonne qui contient le tableau dynamique et deux tableaux dynamiques statiques des coefficients *a* et *b* du filtre, et applique le filtre sur la colonne. Elle génère une nouvelle colonne de tableau dynamique, qui contient la sortie filtrée.  
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `series_iir(`*x* `,` *b* `,` *a*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *x*: cellule de tableau dynamique qui est un tableau de valeurs numériques, généralement le résultat des opérateurs [Make-Series](make-seriesoperator.md) ou [make_list](makelist-aggfunction.md) .
 * *b*: expression constante contenant les coefficients numérateur du filtre (stocké en tant que tableau dynamique de valeurs numériques).

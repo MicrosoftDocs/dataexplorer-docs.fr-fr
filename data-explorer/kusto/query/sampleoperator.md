@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/18/2020
-ms.openlocfilehash: 4915371127acd229845cc9eac1ea1400484c313f
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: b5d0624504744bb28dfdb68ee27c48b2119242b8
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372986"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351503"
 ---
 # <a name="sample-operator"></a>opérateur d’échantillon
 
@@ -23,15 +23,15 @@ Retourne jusqu’au nombre spécifié de lignes aléatoires de la table d’entr
 T | sample 5
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 _T_ `| sample` _numberOfRows_
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 - _NumberOfRows_: nombre de lignes de _T_ à retourner. Vous pouvez spécifier n’importe quelle expression numérique.
 
-**Remarques**
+**Notes**
 
 - `sample`est adapté à la vitesse plutôt qu’à la distribution des valeurs. Plus précisément, cela signifie qu’il ne produira pas de résultats « justes » s’ils sont utilisés après les opérateurs qui Union 2 ont des jeux de données de différentes tailles (tels que les `union` `join` opérateurs ou). Il est recommandé d’utiliser `sample` juste après la référence de table et les filtres.
 
@@ -72,7 +72,7 @@ StormEvents | where rand() < 0.1
 
 - Si vous souhaitez échantillonner des clés plutôt que des lignes (par exemple, des exemples de 10 ID et obtenir toutes les lignes de ces ID), vous pouvez utiliser [`sample-distinct`](./sampledistinctoperator.md) en association avec l' `in` opérateur.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

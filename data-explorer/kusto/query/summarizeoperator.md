@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/20/2020
-ms.openlocfilehash: a06bd3719fba4f9f61cf7b1c9501f96b17a48d58
-ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
+ms.openlocfilehash: a200d0619b25fe7410a82a941a3b1bf6e35d60ac
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84717221"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87342612"
 ---
 # <a name="summarize-operator"></a>opérateur summarize
 
@@ -31,11 +31,11 @@ T | summarize count() by price_range=bin(price, 10.0)
 
 Une table indiquant le nombre d’éléments ayant un prix dans chaque intervalle [0,10.0], [10.0,20.0] et ainsi de suite. Cet exemple comprend une colonne pour le nombre et une autre pour la gamme de prix. Toutes les autres colonnes d’entrée sont supprimées.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `| summarize` [[*Column* `=` ] *Aggregation* [ `,` ...]] [ `by` [*colonne* `=` ] *GroupExpression* [ `,` ...]]
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Column :* nom facultatif d’une colonne de résultats. Prend par défaut un nom dérivé de l’expression.
 * *Agrégation :* Appel à une [fonction d’agrégation](summarizeoperator.md#list-of-aggregation-functions) telle que `count()` ou `avg()` , avec les noms de colonnes comme arguments. Voir la [liste des fonctions d’agrégation](summarizeoperator.md#list-of-aggregation-functions).
@@ -47,7 +47,7 @@ Une table indiquant le nombre d’éléments ayant un prix dans chaque intervall
 > * Si *GroupExpression* n’est pas fourni, la sortie est une ligne unique (vide).
 > * Si *GroupExpression* est fourni, la sortie n’a pas de ligne.
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Les lignes d’entrée sont organisées en groupes ayant les mêmes valeurs que les expressions `by` . Ensuite, les fonctions d’agrégation spécifiées sont calculées sur chaque groupe, générant une ligne pour chaque groupe. Le résultat contient les colonnes `by` et au moins une colonne pour chaque agrégation calculée. (Certaines fonctions d’agrégation retournent plusieurs colonnes.)
 
@@ -67,7 +67,7 @@ Pour résumer des plages de valeurs numériques, utilisez `bin()` pour réduire 
 |[anyif()](anyif-aggfunction.md)|Retourne une valeur non vide aléatoire pour le groupe (prédicat with)|
 |[arg_max()](arg-max-aggfunction.md)|Retourne une ou plusieurs expressions lorsque l’argument est agrandi|
 |[arg_min()](arg-min-aggfunction.md)|Retourne une ou plusieurs expressions lorsque l’argument est réduit|
-|[avg()](avg-aggfunction.md)|Retourne une valeur moyenne dans le groupe|
+|[Moy ()](avg-aggfunction.md)|Retourne une valeur moyenne dans le groupe|
 |[avgif()](avgif-aggfunction.md)|Retourne une valeur moyenne dans le groupe (avec le prédicat)|
 |[binary_all_and](binary-all-and-aggfunction.md)|Retourne une valeur agrégée à l’aide du binaire `AND` du groupe.|
 |[binary_all_or](binary-all-or-aggfunction.md)|Retourne une valeur agrégée à l’aide du binaire `OR` du groupe.|
@@ -88,11 +88,11 @@ Pour résumer des plages de valeurs numériques, utilisez `bin()` pour réduire 
 |[maxif()](maxif-aggfunction.md)|Retourne la valeur maximale dans le groupe (avec le prédicat)|
 |[min()](min-aggfunction.md)|Retourne la valeur minimale dans l'ensemble du groupe|
 |[minif()](minif-aggfunction.md)|Retourne la valeur minimale dans le groupe (avec le prédicat)|
-|[percentiles()](percentiles-aggfunction.md)|Retourne le centile approximatif du groupe|
+|[centile ()](percentiles-aggfunction.md)|Retourne le centile approximatif du groupe|
 |[percentiles_array ()](percentiles-aggfunction.md)|Retourne les centiles approximatifs du groupe|
 |[percentilesw()](percentiles-aggfunction.md)|Retourne le centile pondéré approximatif du groupe|
 |[percentilesw_array ()](percentiles-aggfunction.md)|Retourne les centile pondérés approximatifs du groupe|
-|[stdev()](stdev-aggfunction.md)|Retourne l’écart type de l’ensemble du groupe|
+|[ECARTYPE ()](stdev-aggfunction.md)|Retourne l’écart type de l’ensemble du groupe|
 |[stdevif()](stdevif-aggfunction.md)|Retourne l’écart type de l’ensemble du groupe (avec le prédicat)|
 |[Sum ()](sum-aggfunction.md)|Retourne la somme des éléments avec le groupe|
 |[sumif()](sumif-aggfunction.md)|Retourne la somme des éléments avec le groupe (prédicat with)|
@@ -115,7 +115,7 @@ Opérateur       |Valeur par défaut
 
 :::image type="content" source="images/summarizeoperator/summarize-price-by-supplier.png" alt-text="Résumer le prix par fruit et fournisseur":::
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 Déterminez les combinaisons uniques de `ActivityType` et de `CompletionStatus` dans une table. Il n’existe aucune fonction d’agrégation, mais uniquement des clés de regroupement. La sortie affiche simplement les colonnes de ces résultats :
 
@@ -130,7 +130,7 @@ Activities | summarize by ActivityType, completionStatus
 |`dancing`|`abandoned`
 |`singing`|`completed`
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 Recherche l’horodateur minimal et maximal de tous les enregistrements dans la table des activités. Comme il n’y a pas de clause group by, la sortie contient une seule ligne :
 
@@ -142,7 +142,7 @@ Activities | summarize Min = min(Timestamp), Max = max(Timestamp)
 |---|---
 |`1975-06-09 09:21:45` | `2015-12-24 23:45:00`
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 Créez une ligne pour chaque continent, en indiquant le nombre de villes dans lesquelles les activités se produisent. Comme il y a peu de valeurs pour « continent », aucune fonction de regroupement n’est nécessaire dans la clause « by » :
 
@@ -155,7 +155,7 @@ Créez une ligne pour chaque continent, en indiquant le nombre de villes dans le
 |`2673`|`North America`|
 
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 L’exemple suivant calcule un histogramme pour chaque type d’activité. Étant donné que `Duration` a de nombreuses valeurs, utilisez `bin` pour regrouper ses valeurs en intervalles de 10 minutes :
 

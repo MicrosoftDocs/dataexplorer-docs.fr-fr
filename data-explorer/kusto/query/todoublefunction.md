@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: e62432773d99d74a46022cad3199f3bab0cae50b
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: 34734f3975b1720c1d009f190d4fae2ebc54283f
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85128453"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350755"
 ---
-# <a name="todouble-toreal"></a>ToDouble (), TOREAL ()
+# <a name="todouble-toreal"></a>todouble(), toreal()
 
 Convertit l’entrée en une valeur de type `real` . ( `todouble()` et `toreal()` sont des synonymes).
 
@@ -23,16 +23,16 @@ Convertit l’entrée en une valeur de type `real` . ( `todouble()` et `toreal()
 toreal("123.4") == 123.4
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `toreal(`*Expr* `)` 
  Expr `todouble(` *Expr*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Expr*: expression dont la valeur sera convertie en une valeur de type `real` .
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Si la conversion réussit, le résultat est une valeur de type `real` .
 Si la conversion échoue, le résultat est la valeur `real(null)` .

@@ -1,6 +1,6 @@
 ---
-title: countif() (fonction d’agrégation) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit countif() (fonction d’agrégation) dans Azure Data Explorer.
+title: NB.si () (fonction d’agrégation)-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit NB.si () (fonction d’agrégation) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 03b6f1cb959706463a73d8aa18a11144e2123492
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: a5b69b50c0cf4c07934d7900937675bf6338eab9
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81516981"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348766"
 ---
-# <a name="countif-aggregation-function"></a>countif() (fonction d’agrégation)
+# <a name="countif-aggregation-function"></a>NB.si () (fonction d’agrégation)
 
 Retourne le nombre de lignes pour lesquelles *Predicate* a la valeur `true`.
 
-* Ne peut être utilisé que dans le contexte de l’agrégation à l’intérieur [résumer](summarizeoperator.md)
+* Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 
-Voir aussi - [compter()](count-aggfunction.md) fonction, qui compte les lignes sans expression prédicat.
+Voir également la fonction [Count ()](count-aggfunction.md) , qui compte les lignes sans expression de prédicat.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-résumer `countif(` *Predicate*`)`
+synthétiser le `countif(` *prédicat*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *Prédication*: Expression qui sera utilisée pour le calcul de l’agrégation. 
+* *Predicate*: expression qui sera utilisée pour le calcul de l’agrégation. 
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Retourne le nombre de lignes pour lesquelles *Predicate* a la valeur `true`.
 

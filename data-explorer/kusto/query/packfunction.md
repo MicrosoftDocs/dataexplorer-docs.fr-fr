@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a94629ae8f4795e28cbfb0c41f06596731cdd8d9
-ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
+ms.openlocfilehash: 560f7ca9f423eb57fd9be0478e0e51dc2ce26755
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84717323"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346505"
 ---
 # <a name="pack"></a>pack()
 
@@ -21,16 +21,16 @@ Crée un `dynamic` objet (conteneur de propriétés) à partir d’une liste de 
 
 Alias pour `pack_dictionary()` fonctionner.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `pack(`*key1* `,` *valeur1* `,` *Key2* `,` *valeur2*`,... )`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * Une liste alternative de clés et de valeurs (la longueur totale de la liste doit être paire)
 * Toutes les clés doivent être des chaînes constantes non vides
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 L’exemple suivant retourne `{"Level":"Information","ProcessID":1234,"Data":{"url":"www.bing.com"}}`:
 

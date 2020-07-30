@@ -8,26 +8,26 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 11/25/2019
-ms.openlocfilehash: 87a2db1109fecfd7e27f29d4305449b596f7cd68
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 0dca68d410bc7444feca8df41a360bb4ac2a1ec3
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83370421"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87338641"
 ---
 # <a name="unixtime_seconds_todatetime"></a>unixtime_seconds_todatetime()
 
 Convertit les secondes UNIX-époques en heure UTC.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `unixtime_seconds_todatetime(*seconds*)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *secondes*: un nombre réel représente l’horodatage de l’époque, en secondes. `Datetime`Cela se produit avant l’heure de l’époque (1970-01-01 00:00:00) a une valeur d’horodatage négative.
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Si la conversion réussit, le résultat sera une valeur [DateTime](./scalar-data-types/datetime.md) . Si la conversion échoue, le résultat sera null.
 
@@ -37,7 +37,7 @@ Si la conversion réussit, le résultat sera une valeur [DateTime](./scalar-data
 * Convertit les microsecondes UNIX-époques en date et heure UTC à l’aide de [unixtime_microseconds_todatetime ()](unixtime-microseconds-todatetimefunction.md).
 * Convertir les nanosecondes UNIX-époques en heure UTC à l’aide de [unixtime_nanoseconds_todatetime ()](unixtime-nanoseconds-todatetimefunction.md).
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net/Samples  -->
 ```kusto

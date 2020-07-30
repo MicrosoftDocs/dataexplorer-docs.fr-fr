@@ -1,6 +1,6 @@
 ---
-title: endofmonth() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit endofmonth() dans Azure Data Explorer.
+title: ENDOFMONTH ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit ENDOFMONTH () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,31 +8,31 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: ebab067c730e3cd61c84ae33eba4e49d7f0b0c0c
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 772cf42bfb4bd96a9cff94b7723b234139da462a
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81515859"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348290"
 ---
 # <a name="endofmonth"></a>endofmonth()
 
-Retourne la fin du mois contenant la date, décalée par un décalage, si elle est fournie.
+Retourne la fin du mois contenant la date, décalée d’un décalage, si elle est fournie.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`endofmonth(`*date* `,`[*offset*]`)`
+`endofmonth(`*Date* [ `,` *décalage*]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* `date`: La date d’entrée.
-* `offset`: Nombre facultatif de mois de compensation à partir de la date d’entrée (integer, défaut - 0).
+* `date`: Date d’entrée.
+* `offset`: Nombre facultatif de mois de décalage à partir de la date d’entrée (entier, par défaut-0).
 
-**Retourne**
+## <a name="returns"></a>Retours
 
-Une date qui représente la fin du mois pour la valeur *de la date* donnée, avec la compensation, si spécifié.
+Date/heure représentant la fin du mois pour la valeur de *Date* donnée, avec le décalage, s’il est spécifié.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
   range offset from -1 to 1 step 1

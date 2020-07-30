@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/18/2019
-ms.openlocfilehash: 3f45f579ad47dbdc9bf1fca707826948a598f63d
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: ab2132908dad26f5f21cf945a1af4af1b8a049cd
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780165"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347389"
 ---
 # <a name="in-and-in-operators"></a>in et !in, opérateurs
 
@@ -23,7 +23,7 @@ Filtre un jeu d’enregistrements en fonction de l’ensemble de valeurs fourni.
 Table1 | where col in ('value1', 'value2')
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *Syntaxe respectant la casse :*
 
@@ -41,14 +41,14 @@ Table1 | where col in ('value1', 'value2')
 *T* `|` `where` *col* `!in~` `(` *Liste de colonnes T d’expressions scalaires*`)`  
 *T* `|` `where` *col* `!in~` `(` *Expression tabulaire* T col`)`   
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *T* -entrée tabulaire dont les enregistrements doivent être filtrés.
 * *col* : colonne à filtrer.
 * *liste d’expressions* : liste séparée par des virgules d’expressions tabulaires, scalaires ou littérales.
 * *expression tabulaire* : expression tabulaire qui possède un ensemble de valeurs. Si l’expression contient plusieurs colonnes, la première colonne est utilisée.
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Lignes dans *T* pour lesquelles le prédicat est `true` .
 
@@ -160,7 +160,7 @@ Lightning_By_State
 | summarize sum(lightning_events) by State 
 ```
 
-| État     | sum_lightning_events |
+| State     | sum_lightning_events |
 |-----------|----------------------|
 | ALABAMA   | 29                   |
 | WISCONSIN | 31                   |
@@ -188,6 +188,6 @@ Définition de la fonction.
 .show function InterestingStates
 ```
 
-|Nom|Paramètres|body|Dossier|DocString|
+|Nom|Paramètres|Corps|Dossier|DocString|
 |---|---|---|---|---|
 |InterestingStates|()|{Dynamic (["WASHINGTON", "Floride", "GEORGIA", "NEW YORK"])}

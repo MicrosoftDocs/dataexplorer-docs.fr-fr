@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 0ff4ad4adbae580e34c946eb9d18ca3337d3c49c
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: 8d60ad8a5e2c9a94164fb816db9e9913dcff56ea
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85128884"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345757"
 ---
 # <a name="rolling_percentile-plugin"></a>plug-in rolling_percentile ()
 
@@ -23,11 +23,11 @@ Retourne une estimation pour le centile spécifié de la population *ValueColumn
 T | evaluate rolling_percentile(ValueColumn, Percentile, IndexColumn, BinSize, BinsPerWindow)
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `| evaluate` `rolling_percentile(` *ValueColumn* `,` *centile* `,` *IndexColumn* `,` *Corbeille* `,` *BinsPerWindow* [ `,` *dim1* `,` *dim2* `,` ...]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *T*: expression tabulaire d’entrée.
 * *ValueColumn*: nom de la colonne dont les valeurs calculent le centile. 
@@ -37,7 +37,7 @@ T | evaluate rolling_percentile(ValueColumn, Percentile, IndexColumn, BinSize, B
 * *BinsPerWindow*: scalaire avec nombre d’emplacements inclus dans chaque fenêtre.
 * *dim1*, *dim2*,... : (facultatif) liste des colonnes de dimensions à découper.
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Retourne une table avec une ligne pour chaque emplacement (et une combinaison de dimensions, si elle est spécifiée) qui a le centile enchaîné de valeurs dans la fenêtre se terminant par le chuton (inclus). valeurs de comptage de valeurs, nombre distinct de nouvelles valeurs, compte distinct agrégé pour chaque fenêtre de temps.
 
@@ -48,7 +48,7 @@ Le schéma de la table de sortie est le suivant :
 |---|---|---|---|---|
 
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ### <a name="rolling-3-day-median-value-per-day"></a>Répercussion de la valeur moyenne de 3 jours par jour 
 

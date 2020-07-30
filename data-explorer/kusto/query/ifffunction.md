@@ -1,6 +1,6 @@
 ---
-title: iff() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit iff() dans Azure Data Explorer.
+title: IFF ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit IFF () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,34 +8,34 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: d5eb8af5fd98fb24c677390c314d112e5634cacf
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 7eeab87f3c3ef42d1e00bf0d6b8853fe3a2f3125
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81514057"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347491"
 ---
 # <a name="iff"></a>iff()
 
-Évalue le premier argument (le prédicat) et renvoie la valeur du deuxième ou du `true` troisième argument, `false` selon que le prédicat évalué à (deuxième) ou (troisième).
+Évalue le premier argument (le prédicat) et retourne la valeur du deuxième ou du troisième argument, selon que le prédicat est évalué à `true` (deuxième) ou `false` (troisième).
 
 Les deuxième et troisième arguments doivent être de même type.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`iff(`*predicate* `,` *ifTrue* `,` *ifFalse*`)`
+`iff(`*prédicat* `,` *IfTrue* `,` *IfFalse*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *prédicat*: Une expression qui `boolean` évalue à une valeur.
-* *ifTrue*: Une expression qui est évaluée et sa valeur restituée de la fonction si *le prédicat* évalue à `true`.
-* *ifFalse*: Une expression qui est évaluée et sa valeur restituée de la fonction si *le prédicat s’évalue* à `false`.
+* *predicate*: expression qui prend une `boolean` valeur.
+* *IfTrue*: expression qui est évaluée et sa valeur retournée par la fonction si le *prédicat* prend la valeur `true` .
+* *IfFalse*: expression qui est évaluée et sa valeur retournée par la fonction si le *prédicat* prend la valeur `false` .
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Cette fonction retourne la valeur de *ifTrue* si *predicate* a la valeur `true`,ou la valeur de *ifFalse* dans le cas contraire.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
 T 

@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 90055f644dbf653eb65546202832f7cab834a0ac
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 8a480ad0af2d3f71dd3ae9279bb59b32d9654acb
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227590"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348987"
 ---
 # <a name="bin_at"></a>bin_at()
 
 Arrondit les valeurs à un « chutier » de taille fixe, avec un contrôle sur le point de départ de l’emplacement.
 (Voir aussi [`bin function`](./binfunction.md) .)
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `bin_at``(` *Expression* `,` *BinSize* `, ` *FixedPoint* chutiers d’expression`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Expression*: expression scalaire d’un type numérique (y compris `datetime` et `timespan` ) indiquant la valeur à arrondir.
 * *Corbeille*: constante scalaire du même type que l' *expression* indiquant la taille de chaque emplacement. 
 * *FixedPoint*: constante scalaire du même type que l' *expression* indiquant une valeur d' *expression* qui est un « point fixe » (autrement dit, une valeur `fixed_point` pour laquelle `bin_at(fixed_point, bin_size, fixed_point) == fixed_point` .)
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Le multiple le plus proche de l' *expression*de *casier* ci-dessous, décalé pour que *FixedPoint* soit traduit en lui-même.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 |Expression                                                                    |Résultats                           |Commentaires                   |
 |------------------------------------------------------------------------------|---------------------------------|---------------------------|

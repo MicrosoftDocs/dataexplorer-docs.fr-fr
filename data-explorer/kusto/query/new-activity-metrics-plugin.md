@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 5e02c7ca2874a779cc5a626fd65522392439b491
-ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
+ms.openlocfilehash: b376afda0874fdb70934ffc6861192ef9028e9aa
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83271585"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347083"
 ---
 # <a name="new_activity_metrics-plugin"></a>plug-in new_activity_metrics
 
@@ -22,11 +22,11 @@ Calcule les métriques d’activité utiles (valeurs de comptage de valeurs, nom
 T | evaluate new_activity_metrics(id, datetime_column, startofday(ago(30d)), startofday(now()), 1d, dim1, dim2, dim3)
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `| evaluate` `new_activity_metrics(` *IdColumn* `,` *TimelineColumn* `,` *Start* `,` *end* `,` *Window* [ `,` *cohorte*] [ `,` *dim1* `,` *dim2* `,` ...] [ `,` *lookback*]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *T*: expression tabulaire d’entrée.
 * *IdColumn*: nom de la colonne avec des valeurs d’ID qui représentent l’activité de l’utilisateur. 
@@ -38,7 +38,7 @@ T | evaluate new_activity_metrics(id, datetime_column, startofday(ago(30d)), sta
 * *dim1*, *dim2*,... : (facultatif) liste des colonnes de dimensions qui découpent le calcul des métriques d’activité.
 * *Lookback*: (facultatif) une expression tabulaire avec un ensemble d’ID qui appartiennent à la période « Look Back »
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Retourne une table qui contient les valeurs de nombres distincts, le nombre de nouvelles valeurs, le taux de rétention et le taux d’évolution pour chaque combinaison de périodes de chronologie « de » et « à » et pour chaque combinaison de dimensions existante.
 
@@ -56,12 +56,12 @@ Le schéma de la table de sortie est le suivant :
 * `retention_rate`-pourcentage de `dcount_retained_values` la cohorte (utilisateurs affichés en premier dans `from_TimelineColumn` ).
 * `churn_rate`-pourcentage de `dcount_churn_values` la cohorte (utilisateurs affichés en premier dans `from_TimelineColumn` ).
 
-**Remarques**
+**Notes**
 
 Pour obtenir les définitions de `Retention Rate` et `Churn Rate` , consultez la section **Notes** dans activity_metrics documentation du [plug-in](./activity-metrics-plugin.md) .
 
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 L’exemple de jeu de données suivant montre quels utilisateurs ont vu quels jours. La table a été générée à partir d’une `Users` table source, comme suit : 
 
@@ -96,9 +96,9 @@ Users
 |5|2019-11-01 00:00:00.0000000|2019-11-05 00:00:00.0000000|1|4|0|1|0|
 |6|2019-11-01 00:00:00.0000000|2019-11-06 00:00:00.0000000|0|0|4|0|1|
 |7|2019-11-02 00:00:00.0000000|2019-11-02 00:00:00.0000000|2|2|0|1|0|
-|8|2019-11-02 00:00:00.0000000|2019-11-03 00:00:00.0000000|0|1|1|0.5|0.5|
-|9|2019-11-02 00:00:00.0000000|2019-11-04 00:00:00.0000000|0|1|1|0.5|0.5|
-|10|2019-11-02 00:00:00.0000000|2019-11-05 00:00:00.0000000|0|1|1|0.5|0.5|
+|8|2019-11-02 00:00:00.0000000|2019-11-03 00:00:00.0000000|0|1|1|0,5|0.5|
+|9|2019-11-02 00:00:00.0000000|2019-11-04 00:00:00.0000000|0|1|1|0,5|0.5|
+|10|2019-11-02 00:00:00.0000000|2019-11-05 00:00:00.0000000|0|1|1|0,5|0.5|
 |11|2019-11-02 00:00:00.0000000|2019-11-06 00:00:00.0000000|0|0|2|0|1|
 
 Voici une analyse de quelques enregistrements de la sortie : 

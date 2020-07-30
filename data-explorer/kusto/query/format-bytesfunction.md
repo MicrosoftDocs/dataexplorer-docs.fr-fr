@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 4da07433be5a052d71740931d4dedd9df0399f56
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: f19883335149603fe7fc7429dabb62f565a0b402
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227318"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347984"
 ---
 # <a name="format_bytes"></a>format_bytes()
 
@@ -23,21 +23,21 @@ Met en forme un nombre en tant que chaîne représentant la taille des données 
 format_bytes(1024) == '1 KB'"
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `format_bytes(`*valeur* [ `,` *précision* [ `,` *unités*]]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * `value`: nombre à mettre en forme en tant que taille des données en octets.
 * `precision`: (facultatif) nombre de chiffres auxquels la valeur sera arrondie. (la valeur par défaut est 0).
 * `units`: (facultatif) unités de la taille des données cible que la mise en forme de la chaîne utilisera ( `Bytes` , `KB` , `MB` , `GB` , `TB` , `PB` ). Si le paramètre est vide, les unités sont sélectionnées automatiquement en fonction de la valeur d’entrée.
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Chaîne avec le résultat de format.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/16/2019
-ms.openlocfilehash: d5788ee937fe110b63a8f137fdab0790eb7cb37e
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 9a5a780a6f7bdf277566d1c0421c5ca2a3a93602
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373204"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346063"
 ---
 # <a name="print-operator"></a>print, opérateur
 
@@ -24,20 +24,20 @@ Génère une seule ligne avec une ou plusieurs expressions scalaires.
 print x=1, s=strcat("Hello", ", ", "World!")
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `print`[*ColumnName* `=` ] *ScalarExpression* [', '...]
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *ColumnName*: nom d’option à assigner à la colonne singulière de la sortie.
 * *ScalarExpression*: expression scalaire à évaluer.
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Une table à une seule colonne et une seule ligne, dont la cellule unique a la valeur du *ScalarExpression*évalué.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 L' `print` opérateur est utile pour évaluer rapidement une ou plusieurs expressions scalaires et rendre une table à une seule ligne parmi les valeurs résultantes.
 Par exemple :

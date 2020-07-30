@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/22/2019
-ms.openlocfilehash: ffef2fd609075b0d5e5af5c4064e079c27cd8c94
-ms.sourcegitcommit: 3848b8db4c3a16bda91c4a5b7b8b2e1088458a3a
+ms.openlocfilehash: 17d88c8be518b6d31b67a327a7a5d42818132cb9
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/16/2020
-ms.locfileid: "84818502"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349293"
 ---
 # <a name="base64_decode_tostring"></a>base64_decode_tostring()
 
 Décode une chaîne base64 en une chaîne UTF-8.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `base64_decode_tostring(`*Chaîne*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Chaîne*: chaîne d’entrée à décoder de la chaîne base64 à la chaîne UTF8-8.
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Retourne une chaîne UTF-8 décodée à partir d’une chaîne base64.
 
 * Pour décoder des chaînes base64 en un tableau de valeurs longues, consultez [base64_decode_toarray ()](base64_decode_toarrayfunction.md)
 * Pour décoder des chaînes en chaîne base64, consultez [base64_encode_tostring ()](base64_encode_tostringfunction.md)
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

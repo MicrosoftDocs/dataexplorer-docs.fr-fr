@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 116f585fe8a09b4befddd7d1429229ad1bac886f
-ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
+ms.openlocfilehash: ed207a9db0b6440bae8f8fb4ae1c250d274565d7
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84512468"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87338216"
 ---
 # <a name="where-operator"></a>opérateur where
 
@@ -23,18 +23,18 @@ Filtre une table d’après le sous-ensemble de lignes correspondant à un préd
 T | where fruit=="apple"
 ```
 
-**Alias** `filter`
+**Alias**`filter`
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `| where` *Prédicat* T
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *T*: entrée tabulaire dont les enregistrements doivent être filtrés.
 * *Predicate*: `boolean` [expression](./scalar-data-types/bool.md) sur les colonnes de *T*. Elle est évaluée pour chaque ligne dans *T*.
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Les lignes de *T* dont *Predicate* est `true`.
 
@@ -54,7 +54,7 @@ Pour obtenir des performances optimales :
 
 Pour plus d’informations, consultez le résumé des [opérateurs de chaîne disponibles](./datatypes-string-operators.md) et le résumé des [opérateurs numériques disponibles](./numoperators.md).
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
 Traces
@@ -67,7 +67,7 @@ Cet exemple récupère les enregistrements qui ne sont pas antérieurs à 1 heur
 
 Notez que nous avons placé la comparaison entre deux colonnes en dernier, car elle ne peut pas utiliser l’index et force une analyse.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
 Traces | where * has "Kusto"

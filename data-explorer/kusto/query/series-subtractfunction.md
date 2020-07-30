@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 388f24f12993bcdc91d86bfc3f3f20967e0b1cc5
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 9276b3d920259b4a73d3fb45c056837439b43fba
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372418"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351231"
 ---
 # <a name="series_subtract"></a>series_subtract()
 
 Calcule la soustraction au niveau des éléments de deux entrées de série numérique.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `series_subtract(`*Series1* `,` *Series2*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Series1, Series2*: valeurs numériques d’entrée, le deuxième élément est soustrait de la première à un résultat de tableau dynamique. Tous les arguments doivent être des tableaux dynamiques. 
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Tableau dynamique d’opérations de soustraction d’éléments calculées entre les deux entrées. Tout élément non numérique ou élément non existant (tableaux de tailles différentes) produit une `null` valeur d’élément.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

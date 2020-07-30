@@ -8,27 +8,27 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b0a8f1b2a72ceb154b7252b3218718a9c23968cb
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: 16b570d996148f1dad9e285b3c2da24d136b20c4
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763858"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347576"
 ---
 # <a name="hash"></a>hash()
 
 Retourne une valeur de hachage pour la valeur d’entrée.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `hash(`*source* [ `,` *Mod*]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *source*: valeur à hacher.
 * *Mod*: valeur de module facultative à appliquer au résultat de hachage, afin que la valeur de sortie soit comprise entre `0` et *Mod* -1
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Valeur de hachage du scalaire donné, modulo la valeur de mod donnée (si spécifiée).
 
@@ -37,7 +37,7 @@ Valeur de hachage du scalaire donné, modulo la valeur de mod donnée (si spéci
 > Cet algorithme peut changer à l’avenir, et la seule garantie est qu’au sein d’une même requête, tous les appels de cette méthode utilisent le même algorithme.
 > Par conséquent, il est recommandé de ne pas stocker les résultats de `hash()` dans une table. Si les valeurs de hachage persistantes sont requises, utilisez [hash_sha256 ()](./sha256hashfunction.md) ou [hash_md5 ()](./md5hashfunction.md) à la place. Notez que ces fonctions sont plus complexes à calculer que `hash()` ).
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ```kusto
 hash("World")                   // 1846988464401551951

@@ -1,6 +1,6 @@
 ---
-title: toguid() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit toguid () dans Azure Data Explorer.
+title: ToGuid ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit ToGuid () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: fb1df5fe91b75e5d3b7d1a9f40b8b3079cac9944
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: a2eec6a582c4c8fc6cda6b3cf9a304f41ab48143
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81506135"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350726"
 ---
 # <a name="toguid"></a>toguid()
 
@@ -23,17 +23,17 @@ Convertit l’entrée en [`guid`](./scalar-data-types/guid.md) représentation.
 toguid("70fc66f7-8279-44fc-9092-d364d70fce44") == guid("70fc66f7-8279-44fc-9092-d364d70fce44")
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `toguid(`*Expr*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *Expr*: Expression qui sera [`guid`](./scalar-data-types/guid.md) convertie en scalar. 
+* *Expr*: expression qui sera convertie en [`guid`](./scalar-data-types/guid.md) scalaire. 
 
-**Retourne**
+## <a name="returns"></a>Retours
 
-Si la conversion est réussie, le résultat sera un [`guid`](./scalar-data-types/guid.md) scalar.
-Si la conversion n’est `null`pas réussie, le résultat sera .
+Si la conversion réussit, le résultat sera un [`guid`](./scalar-data-types/guid.md) scalaire.
+Si la conversion échoue, le résultat sera `null` .
 
-*Remarque*: Préférez utiliser [le guid()](./scalar-data-types/guid.md) lorsque c’est possible.
+*Remarque*: préférez l’utilisation [de GUID ()](./scalar-data-types/guid.md) dans la mesure du possible.

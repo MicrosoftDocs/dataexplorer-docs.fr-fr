@@ -1,6 +1,6 @@
 ---
-title: opérateur de haut niveau - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit l’opérateur de haut niveau dans Azure Data Explorer.
+title: opérateur Top-Hitters-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit l’opérateur Top-Hitters dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,42 +8,42 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7105bd4f9818deab1f0fa5dbe25dbb2d5b1b4afc
-ms.sourcegitcommit: 436cd515ea0d83d46e3ac6328670ee78b64ccb05
+ms.openlocfilehash: babb4e023d29c7894661e3acf2c0a09e753011c2
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81663122"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87340817"
 ---
 # <a name="top-hitters-operator"></a>top-hitters, opérateur
 
-Retourne une approximation des premiers résultats *N* (en supposant une distribution biaisée de l’entrée).
+Retourne une approximation des *N* premiers résultats (en supposant une distribution asymétrique de l’entrée).
 
 ```kusto
 T | top-hitters 25 of Page by Views 
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-*T* `| top-hitters` *NumberOfRows* `of` *sort_key* `[` `by` *expression*`]`
+*Expression T* `| top-hitters` *numberOfRows* `of` *sort_key* `[` `by` *expression*`]`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *NumberOfRows*: Le nombre de rangées de *T* à revenir. Vous pouvez spécifier n’importe quelle expression numérique.
-* *sort_key*: Le nom de la colonne par laquelle trier les lignes.
-* *expression*: (facultatif) Une expression qui sera utilisée pour l’estimation des meilleurs frappeurs. 
-    * *expression*: les meilleurs frappeurs retourneront *les rangées NumberOfRows* qui ont un maximum approximatif de somme *(expression).* L’expression peut être une colonne, ou toute autre expression qui évalue à un nombre. 
-    *  Si *l’expression* n’est pas mentionnée, l’algorithme top-hitters comptera les occurrences de la *clé de tri.*  
+* *NumberOfRows*: nombre de lignes de *T* à retourner. Vous pouvez spécifier n’importe quelle expression numérique.
+* *sort_key*: nom de la colonne selon laquelle trier les lignes.
+* *expression*: (facultatif) expression qui sera utilisée pour l’estimation Hitters. 
+    * *expression*: Top-Hitters retourne les lignes *numberOfRows* qui ont une valeur maximale de Sum (*expression*). L’expression peut être une colonne, ou toute autre expression qui prend la valeur d’un nombre. 
+    *  Si l' *expression* n’est pas mentionnée, l’algorithme Top-Hitters compte les occurrences de la *clé de tri*.  
 
-**Remarques**
+**Notes**
 
-`top-hitters`est un algorithme d’approximation et doit être utilisé lors de l’exécution avec de grandes données. L’approximation des meilleurs frappeurs est basée sur l’algorithme [Count-Min-Sketch.](https://en.wikipedia.org/wiki/Count%E2%80%93min_sketch)  
+`top-hitters`est un algorithme d’approximation et doit être utilisé lors de l’exécution avec des données volumineuses. La approximation du Hitters supérieur est basée sur l’algorithme [Count-min-Sketch](https://en.wikipedia.org/wiki/Count%E2%80%93min_sketch) .  
 
-**Exemple**
+## <a name="example"></a>Exemple
 
-## <a name="getting-top-hitters-most-frequent-items"></a>Obtenir les meilleurs frappeurs (articles les plus fréquents) 
+## <a name="getting-top-hitters-most-frequent-items"></a>Obtention des Hitters principaux (éléments les plus fréquents) 
 
-L’exemple suivant montre comment trouver les 5 langues les plus performantes avec la plupart des pages de Wikipédia (accessible après avril 2016). 
+L’exemple suivant montre comment rechercher les 5 langues les plus importantes avec la plupart des pages de Wikipédia (accessible après le 2016 avril). 
 
 ```kusto
 PageViews
@@ -59,9 +59,9 @@ PageViews
 |ru|227003107|
 |fr|207943448|
 
-## <a name="getting-top-hitters-based-on-column-value-"></a>Obtenir les meilleurs frappeurs (basé sur la valeur de la colonne)
+## <a name="getting-top-hitters-based-on-column-value-"></a>Obtention des Hitters supérieurs (en fonction de la valeur de colonne) * * *
 
-L’exemple suivant montre comment trouver les pages anglaises les plus regardées de Wikipédia de l’année 2016. La requête utilise 'Views' (numéro d’intégrage) pour calculer la popularité de la page (nombre de vues). 
+L’exemple suivant montre comment rechercher les pages en anglais les plus consultées de l’année 2016. La requête utilise « views » (nombre entier) pour calculer la popularité des pages (nombre de vues). 
 
 ```kusto
 PageViews
@@ -77,9 +77,9 @@ PageViews
 |Web_scraping|43979153|
 |Java_ (programming_language)|16489491|
 |United_States|13928841|
-|Wikipedia|13584915|
+|Wikipédia|13584915|
 |Donald_Trump|12376448|
 |YouTube|11917252|
 |The_Revenant_ (2015_film)|10714263|
-|Star_Wars:_The_Force_Awakens|9770653|
-|Portail:Current_events|9578000|
+|Star_Wars : _The_Force_Awakens|9770653|
+|Portail : Current_events|9578000|
