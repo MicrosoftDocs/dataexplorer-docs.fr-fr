@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 35fa0c29bf00a8696d4e9d08d73c30bba6171ea1
-ms.sourcegitcommit: de81b57b6c09b6b7442665e5c2932710231f0773
+ms.openlocfilehash: 510e2de8a30a422955c0cbfcbdf3a0f50e46dbc5
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 07/28/2020
-ms.locfileid: "87264713"
+ms.locfileid: "87346556"
 ---
 # <a name="order-operator"></a>order, opérateur 
 
@@ -26,11 +26,11 @@ T | order by country asc, price desc
 > [!NOTE]
 > L’opérateur Order est un alias de l’opérateur sort. Pour plus d’informations, consultez [opérateur de tri](sortoperator.md)
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `| order by` *colonne* [ `asc`  |  `desc` ] [] [ `nulls first`  |  `nulls last` `,` ...]
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *T*: entrée de table à trier.
 * *Column*: colonne de *T* selon laquelle effectuer le tri. Les valeurs doivent être de type numérique, date, heure ou chaîne.

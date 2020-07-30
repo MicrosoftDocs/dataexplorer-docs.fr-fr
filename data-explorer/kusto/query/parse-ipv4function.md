@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: b0377cd8af302d2680c0ee451d05f4b4b083ccec
-ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
+ms.openlocfilehash: 1f4213af91cfee667fdfc87b2d352fe42df3f915
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84512603"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346454"
 ---
 # <a name="parse_ipv4"></a>parse_ipv4()
 
@@ -24,11 +24,11 @@ parse_ipv4("127.0.0.1") == 2130706433
 parse_ipv4('192.1.168.1') < parse_ipv4('192.1.168.2') == true
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `parse_ipv4(`*`Expr`*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *`Expr`*: Expression de chaîne représentant IPv4 qui sera convertie en long. La chaîne peut inclure le masque net à l’aide [de la notation du préfixe IP](#ip-prefix-notation).
 
@@ -37,16 +37,16 @@ parse_ipv4('192.1.168.1') < parse_ipv4('192.1.168.2') == true
 Les adresses IP peuvent être définies à `IP-prefix notation` l’aide d’une barre oblique ( `/` ).
 L’adresse IP à gauche de la barre oblique ( `/` ) est l’adresse IP de base. Le nombre (1 à 32) à droite de la barre oblique (/) est le nombre de 1 bit contigu dans le masque réseau.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 192.168.2.0/24 aura un net/Masque_Sous_réseau associé contenant 24 bits contigus ou 255.255.255.0 au format décimal avec points.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Si la conversion réussit, le résultat sera un nombre long.
 Si la conversion échoue, le résultat sera `null` .
  
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

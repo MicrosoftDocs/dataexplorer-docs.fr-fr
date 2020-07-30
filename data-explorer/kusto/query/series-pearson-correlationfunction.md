@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/31/2019
-ms.openlocfilehash: 9187c10ad62b4d925bf6211e64657fba5ae17b63
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 3b65dff40e644852555465fe6ce07ed94c4920ea
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372504"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351316"
 ---
 # <a name="series_pearson_correlation"></a>series_pearson_correlation()
 
@@ -21,19 +21,19 @@ Calcule le coefficient de corrélation de Pearson de deux entrées de série num
 
 Consultez : [coefficient de corrélation de Pearson](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `series_pearson_correlation(`*Series1* `,` *Series2*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Series1, Series2*: entrez des tableaux numériques pour le calcul du coefficient de corrélation. Tous les arguments doivent être des tableaux dynamiques de même longueur. 
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Coefficient de corrélation de Pearson calculé entre les deux entrées. Tout élément non numérique ou élément non existant (tableaux de tailles différentes) produit un `null` résultat.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 7b076f9878828ca8503c808b6ab94daf3375e2d4
-ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
+ms.openlocfilehash: 90d65f80ed8b5defe1fd2fe1e19ca4ff385cc408
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84294625"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347338"
 ---
-# <a name="ipv4_is_match"></a>ipv4_is_match ()
+# <a name="ipv4_is_match"></a>ipv4_is_match()
 
 Correspond à deux chaînes IPv4. Les deux chaînes IPv4 sont analysées et comparées en tenant compte du masque de préfixe IP combiné calculé à partir des préfixes d’arguments et de l' `PrefixMask` argument facultatif.
 
@@ -26,11 +26,11 @@ ipv4_is_match('192.168.1.1/24', '192.168.1.255/24') == true
 ipv4_is_match('192.168.1.1', '192.168.1.255', 24) == true
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `ipv4_is_match(`*Expr1* `, ` *Expr2* `[ ,` *PrefixMask*`])`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Expr1*, *expr2*: expression de chaîne représentant une adresse IPv4. Les chaînes IPv4 peuvent être masquées à l’aide [de la notation de préfixe IP](#ip-prefix-notation).
 * *PrefixMask*: entier compris entre 0 et 32 représentant le nombre de bits les plus significatifs pris en compte.
@@ -40,7 +40,7 @@ ipv4_is_match('192.168.1.1', '192.168.1.255', 24) == true
 Les adresses IP peuvent être définies à `IP-prefix notation` l’aide d’une barre oblique ( `/` ). L’adresse IP à gauche de la barre oblique ( `/` ) est l’adresse IP de base. Le nombre (1 à 32) à droite de la barre oblique ( `/` ) est le nombre de 1 bit contigu dans le masque réseau. 
 **Exemple :** 192.168.2.0/24 aura un net/Masque_Sous_réseau associé contenant 24 bits contigus ou 255.255.255.0 au format décimal avec points.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 * `true`: Si la représentation longue du premier argument de chaîne IPv4 est égale au deuxième argument de chaîne IPv4.
 *  `false`Dispose.

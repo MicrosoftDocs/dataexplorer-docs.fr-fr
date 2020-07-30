@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 028bfb5a2d0ddf25f65cd16bca2c498d9dcb7059
-ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
+ms.openlocfilehash: fbb5d3765b4be20b55cd7e3fa155a26e429c61e8
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82737859"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351146"
 ---
 # <a name="set-statement"></a>Set, instruction
 
@@ -28,11 +28,11 @@ Les options de requête contrôlent la manière dont une requête s’exécute e
   
 * Les options de requête ne font pas partie intégrante du langage Kusto et peuvent être modifiées sans être considérées comme un changement de langue.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`set`*NomOption* [`=` *OptionValue*]
+`set`*NomOption* [ `=` *OptionValue*]
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
 set querytrace;

@@ -1,6 +1,6 @@
 ---
-title: max() (fonction d’agrégation) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit max () (fonction d’agrégation) dans Azure Data Explorer.
+title: Max () (fonction d’agrégation)-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit Max () (fonction d’agrégation) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,31 +8,31 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: bbfc9591fb20903d18486f9f249d3b1240f705e3
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 4d31f2137fcd64deab713522b1596f4c572606cc
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81512561"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346845"
 ---
-# <a name="max-aggregation-function"></a>max() (fonction d’agrégation)
+# <a name="max-aggregation-function"></a>Max () (fonction d’agrégation)
 
-Retourne la valeur maximale dans l’ensemble du groupe. 
+Retourne la valeur maximale dans le groupe. 
 
-* Ne peut être utilisé que dans le contexte de l’agrégation à l’intérieur [résumer](summarizeoperator.md)
+* Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`summarize``max(` *Expr Expr*`)`
+`summarize``max(` *Expr*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *Expr*: Expression qui sera utilisée pour le calcul de l’agrégation. 
+* *Expr*: expression qui sera utilisée pour le calcul de l’agrégation. 
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-La valeur maximale *d’Expr* dans l’ensemble du groupe.
+Valeur maximale de *expr* dans le groupe.
  
 > [!TIP]
-> Cela vous donne le min ou le max sur son propre - par exemple, le prix le plus élevé ou le plus bas.
-> Mais si vous voulez d’autres colonnes dans la rangée - par exemple, le nom du fournisseur avec le prix le plus bas - utiliser [arg_max](arg-max-aggfunction.md) ou [arg_min](arg-min-aggfunction.md).
+> Cela vous donne la valeur minimale ou maximale, par exemple, le prix le plus élevé ou le plus bas.
+> Toutefois, si vous souhaitez d’autres colonnes dans la ligne, par exemple, le nom du fournisseur ayant le prix le plus bas, utilisez [ARG_MAX](arg-max-aggfunction.md) ou [arg_min](arg-min-aggfunction.md).

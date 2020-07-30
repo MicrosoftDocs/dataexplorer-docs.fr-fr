@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/24/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: c43f816cdf1ed2ef9504f93d2bb56edd52ea18bc
-ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
+ms.openlocfilehash: e412c1ec4f08af9820018f4c8dc172bd8c748a7f
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85901968"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350976"
 ---
 # <a name="sql_request-plugin"></a>sql_request, plug-in
 
@@ -25,7 +25,7 @@ ms.locfileid: "85901968"
 
 Le `sql_request` plug-in envoie une requête SQL à un point de terminaison de réseau SQL Server et retourne le premier ensemble de lignes dans les résultats.
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *ConnectionString*: `string` littéral indiquant la chaîne de connexion qui pointe vers le point de terminaison du réseau SQL Server. Consultez [méthodes d’authentification valides](#authentication) et comment spécifier le [point de terminaison réseau](#specify-the-network-endpoint).
 
@@ -121,7 +121,7 @@ La syntaxe appropriée est :
 
 `Server``=` `tcp:` *Nom de domaine complet* [ `,` *port*]
 
-Où :
+Où :
 
 * *FQDN* est le nom de domaine complet du point de terminaison.
 * *Port* est le port TCP du point de terminaison. Par défaut, `1433` est supposé.

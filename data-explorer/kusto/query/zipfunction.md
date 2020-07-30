@@ -1,6 +1,6 @@
 ---
-title: zip() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit zip () dans Azure Data Explorer.
+title: zip ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit zip () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,26 +8,26 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: bd407ce652d41471be5b30a15c2c09b9f608edb1
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 28fc477d4dfc5432434261e493f36985514ea28b
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81504231"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350551"
 ---
 # <a name="zip"></a>zip()
 
-La `zip` fonction accepte n’importe quel nombre de `dynamic` tableaux, et renvoie un tableau dont les éléments sont chacun un tableau contenant les éléments des tableaux d’entrée du même index.
+La `zip` fonction accepte un nombre quelconque de `dynamic` tableaux et retourne un tableau dont les éléments sont chacun un tableau contenant les éléments des tableaux d’entrée du même index.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`zip(`*tableau1* `,` *array2*`, ... )`
+`zip(`*matrice1* `,` *matrice2*`, ... )`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 Entre 2 et 16 tableaux dynamiques.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 L’exemple suivant retourne `[[1,2],[3,4],[5,6]]`:
 

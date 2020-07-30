@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 4d90bc3b6222896d45374d771ce5f87f4bdf6786
-ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
+ms.openlocfilehash: af223d31f008b972bc1b61a6a9ace7e19c988ff7
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85902019"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351044"
 ---
-# <a name="sliding_window_counts-plugin"></a>plug-in sliding_window_counts
+# <a name="sliding_window_counts-plugin"></a>sliding_window_counts plugin
 
 Calcule les nombres et le nombre de valeurs distinctes dans une fenêtre glissante sur une période lookback, à l’aide de la technique décrite [ici](samples.md#perform-aggregations-over-a-sliding-window).
 
@@ -25,11 +25,11 @@ Par exemple, pour chaque *jour*, calculer le nombre et le nombre de comptes des 
 T | evaluate sliding_window_counts(id, datetime_column, startofday(ago(30d)), startofday(now()), 7d, 1d, dim1, dim2, dim3)
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `| evaluate` `sliding_window_counts(` *IdColumn* `,` *TimelineColumn* `,` *Start* `,` *end* `,` *LookbackWindow* `,` *bin* `,` [*dim1* `,` *dim2* `,` ...]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *T*: expression tabulaire d’entrée.
 * *IdColumn*: nom de la colonne avec des valeurs d’ID qui représentent l’activité de l’utilisateur. 
@@ -40,7 +40,7 @@ T | evaluate sliding_window_counts(id, datetime_column, startofday(ago(30d)), st
 * *Bin*: valeur constante scalaire de la période de l’étape d’analyse. Cette valeur peut être une valeur numérique/DateTime/timestamp. Si la valeur est une chaîne au format `week` / `month` / `year` , tous les points seront [startOfWeek](startofweekfunction.md) / [StartOfMonth](startofmonthfunction.md) / [STARTOFYEAR](startofyearfunction.md). 
 * *dim1*, *dim2*,... : (facultatif) liste des colonnes de dimensions qui découpent le calcul des métriques d’activité.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Retourne une table qui contient les valeurs Count et distinct Count des ID dans la période lookback, pour chaque période de chronologie (par emplacement) et pour chaque combinaison de dimensions existante.
 
@@ -51,7 +51,7 @@ Le schéma de la table de sortie est le suivant :
 |type : à partir de *TimelineColumn*|..|..|..|long|long|
 
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 Calculer les nombres et `dcounts` pour les utilisateurs de la semaine dernière, pour chaque jour de la période d’analyse. 
 

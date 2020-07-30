@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/27/2020
-ms.openlocfilehash: 7d63ce48ba54377fa79ccd13484b2b9b08794bc6
-ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
+ms.openlocfilehash: 92c2c512fc81176cfa849ecdd66c0cdcfad9d8d3
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84512365"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347321"
 ---
 # <a name="ipv6_compare"></a>ipv6_compare()
 
@@ -27,11 +27,11 @@ ipv6_compare('fe80::85d:e82c:9446:7994/127', 'fe80::85d:e82c:9446:7995/127') == 
 ipv6_compare('fe80::85d:e82c:9446:7994', 'fe80::85d:e82c:9446:7995', 127) == 0
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `ipv6_compare(`*Expr1* `, ` *Expr2* `[ ,` *PrefixMask*`])`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Expr1*, *expr2*: expression de chaîne représentant une adresse IPv6 ou IPv4. Les chaînes IPv6 et IPv4 peuvent être masquées à l’aide de la notation de préfixe IP (voir remarque).
 * *PrefixMask*: entier compris entre 0 et 128 représentant le nombre de bits les plus significatifs pris en compte.
@@ -42,9 +42,10 @@ ipv6_compare('fe80::85d:e82c:9446:7994', 'fe80::85d:e82c:9446:7995', 127) == 0
 >Il est courant de définir des adresses IP à `IP-prefix notation` l’aide d’une barre oblique ( `/` ).
 >L’adresse IP à gauche de la barre oblique ( `/` ) est l’adresse IP de base, et le nombre (de 1 à 127) à droite de la barre oblique ( `/` ) est le nombre de 1 bits contigus dans le masque réseau. 
 >
-> **Exemple**: fe80 :: 85D : E82C : 9446:7994/120 aura un net/Masque_Sous_réseau associé contenant 120 bits contigus.
+> ## <a name="example"></a>Exemple :
+> FE80 :: 85D : E82C : 9446:7994/120 aura un net/Masque_Sous_réseau associé contenant 120 bits contigus.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 * `0`: Si la représentation longue du premier argument de chaîne IPv6 est égale au deuxième argument de chaîne IPv6.
 * `1`: Si la représentation longue du premier argument de chaîne IPv6 est supérieure au deuxième argument de chaîne IPv6.

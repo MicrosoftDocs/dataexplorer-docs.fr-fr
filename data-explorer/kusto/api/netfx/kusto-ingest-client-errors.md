@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: 97798fa62d588769636966c7155dc5f398bd001a
-ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
+ms.openlocfilehash: 6b94dfc0fab1150b598fad9d55beec2f3a81ad73
+ms.sourcegitcommit: f34535b0ca63cff22e65c598701cec13856c1742
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83382316"
+ms.lasthandoff: 07/29/2020
+ms.locfileid: "87402336"
 ---
 # <a name="kustoingest-errors-and-exceptions"></a>Erreurs et exceptions Kusto. deréception
 Toute erreur au cours de la gestion de la réception côté client est indiquée par une exception C#.
@@ -52,7 +52,7 @@ Lors de l’utilisation d’une source DataReader, les données à poster dans l
 Dans les `IngestFromDataReader` `IngestFromDataReaderAsync` méthodes et, l' `retainCsvOnFailure` indicateur, dont la valeur par défaut est `false` , détermine si les fichiers doivent être conservés après l’échec de l’ingestion. Si cet indicateur a la valeur `false` , les données qui échouent à l’ingestion ne sont pas conservées, ce qui complique la compréhension de la cause du problème.
 
 ### <a name="common-failures"></a>Échecs courants
-|Error                         |Motif           |Limitation des risques                                   |
+|Error                         |Motif           |Solution                                   |
 |------------------------------|-----------------|---------------------------------------------|
 |Le nom de la base de données <database name> n’existe pas| La base de données n’existe pas|Vérifiez le nom de la base de données dans `kustoIngestionProperties` /Create la base de données |
 |Le nom de table de l’entité qui n’existe pas’table’n’a pas été trouvé.|La table n’existe pas et il n’existe aucun mappage de fichier CSV.| Ajouter le mappage CSV/créer la table requise |
@@ -87,7 +87,10 @@ Pour faciliter le traitement des échecs d’ingestion par programme, les inform
 |UpdatePolicy_IngestionError                    | Échec de l’appel de la stratégie de mise à jour. Une erreur d’ingestion s’est produite|
 |UpdatePolicy_UnknownError                      | Échec de l’appel de la stratégie de mise à jour. Une erreur inconnue s'est produite|
 |BadRequest_MissingJsonMappingtFailure          | Le modèle JSON n’est pas ingéré avec le paramètre jsonMapping|
-|BadRequest_InvalidOrEmptyBlob                  | L’objet BLOB n’est pas valide ou est une archive zip vide|
+|BadRequest_InvalidBlob                         | Le moteur n’a pas pu ouvrir et lire un objet blob non-zip|
+|BadRequest_EmptyBlob                           | Objet BLOB vide|
+|BadRequest_EmptyArchive                        | Le fichier zip ne contient aucun élément archivé|
+|BadRequest_EmptyBlobUri                        | L’URI de l’objet BLOB spécifié est vide|
 |BadRequest_DatabaseNotExist                    | La base de données n’existe pas|
 |BadRequest_TableNotExist                       | La table n’existe pas|
 |BadRequest_InvalidKustoIdentityToken           | Jeton d’identité Kusto non valide|
@@ -109,7 +112,7 @@ Classe de base : [exception](https://msdn.microsoft.com/library/system.exceptio
 
 |Nom du champ |Type     |Signification
 |-----------|---------|------------------------------|
-|Error      | Chaîne  | Erreur qui s’est produite lors de la tentative de récupération des files d’attente à partir du DM
+|Error      | String  | Erreur qui s’est produite lors de la tentative de récupération des files d’attente à partir du DM
                             
 S’applique uniquement lors de l’utilisation du [client de réception en file d’attente Kusto](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient).
 Pendant le processus d’ingestion, plusieurs tentatives sont effectuées pour récupérer les files d’attente Azure liées au DM. Lorsque ces tentatives échouent, l’exception contenant la raison de l’échec est générée dans le champ « erreur ». Éventuellement, une exception interne dans le champ’InnerException’est également déclenchée.
@@ -123,7 +126,7 @@ Classe de base : [exception](https://msdn.microsoft.com/library/system.exceptio
 
 |Nom du champ   |Type     |Signification       
 |-------------|---------|------------------------------|
-|KustoEndpoint| Chaîne  | Point de terminaison du DM pertinent
+|KustoEndpoint| String  | Point de terminaison du DM pertinent
                             
 S’applique uniquement lors de l’utilisation du [client de réception en file d’attente Kusto](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient).  
 Lors de l’ingestion de sources qui ne se trouvent pas déjà dans un conteneur Azure, telles que des fichiers, DataReader ou Stream, les données sont chargées dans un objet BLOB temporaire en vue d’être ingérées. L’exception est levée lorsqu’aucun conteneur n’est trouvé pour le téléchargement des données.
@@ -136,7 +139,7 @@ Classe de base : [exception](https://msdn.microsoft.com/library/system.exceptio
 
 |Nom du champ   |Type     |Signification       
 |-------------|---------|------------------------------------|
-|PropertyName | Chaîne  | Nom de la propriété dupliquée
+|PropertyName | String  | Nom de la propriété dupliquée
                             
 ### <a name="postmessagetoqueuefailedexception"></a>PostMessageToQueueFailedException
 
@@ -146,8 +149,8 @@ Classe de base : [exception](https://msdn.microsoft.com/library/system.exceptio
 
 |Nom du champ   |Type     |Signification       
 |-------------|---------|---------------------------------|
-|QueueUri     | Chaîne  | URI de la file d’attente
-|Error        | Chaîne  | Message d’erreur qui a été généré lors de la tentative de publication dans la file d’attente
+|QueueUri     | String  | URI de la file d’attente
+|Error        | String  | Message d’erreur qui a été généré lors de la tentative de publication dans la file d’attente
                             
 S’applique uniquement lors de l’utilisation du [client de réception en file d’attente Kusto](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient).  
 Le client de réception mis en file d’attente ingère les données en téléchargeant un message dans la file d’attente Azure appropriée. En cas d’échec de publication, l’exception est levée. Elle contient l’URI de la file d’attente, la raison de l’échec dans le champ « erreur » et éventuellement une exception interne dans le champ « InnerException ».
