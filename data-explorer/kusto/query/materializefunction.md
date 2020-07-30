@@ -8,22 +8,22 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/06/2020
-ms.openlocfilehash: 8858b261cb366842b475a76a1b2c3246b8a3e7b5
-ms.sourcegitcommit: de81b57b6c09b6b7442665e5c2932710231f0773
+ms.openlocfilehash: 0e08857e01ffa3da1bcb23d16d1df4908336f76f
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 07/28/2020
-ms.locfileid: "87264696"
+ms.locfileid: "87346862"
 ---
 # <a name="materialize"></a>materialize()
 
 Permet de mettre en cache le résultat d’une sous-requête pendant l’exécution de la requête d’une manière que d’autres sous-requêtes peuvent référencer le résultat partiel.
  
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `materialize(`*expression*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *expression*: expression tabulaire à évaluer et à mettre en cache lors de l’exécution de la requête.
 
@@ -52,7 +52,7 @@ _detailed_data
 | top 10 by EventPercentage
 ```
 
-|State|Type d’événement|EventPercentage|Événements|
+|État|Type d’événement|EventPercentage|Événements|
 |---|---|---|---|
 |EAUX HAWAII|Waterspout|100|2|
 |LAKE ONTARIO|Vent Thunderstorm marin|100|8|
@@ -92,7 +92,7 @@ Jeu de résultats 1 :
 
 Jeu de résultats 2 : 
 
-|valeur|
+|value|
 |---|
 |9999998|
 |9999998|

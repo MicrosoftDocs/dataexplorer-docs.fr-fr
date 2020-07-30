@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 8fd83615de466c238a590273b228c118e2cd1b46
-ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
+ms.openlocfilehash: 1f9cc982c213a9c2143b169dcf8a12103d617257
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/01/2020
-ms.locfileid: "84257838"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346709"
 ---
 # <a name="mv-apply-operator"></a>mv-apply, opérateur
 
@@ -57,7 +57,7 @@ L' `mv-expand` opérateur obtient les entrées suivantes :
 
 L' `mv-apply` opérateur peut être considéré comme une généralisation de l' [`mv-expand`](./mvexpandoperator.md) opérateur (en fait, ce dernier peut être implémenté par le premier, si la sous-requête comprend uniquement des projections).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `|` `mv-apply` [*itemIndex*] *ColumnsToExpand* [*RowLimit*] `on` `(` *sous-requête*`)`
 
@@ -75,7 +75,7 @@ Où *itemIndex* a la syntaxe suivante :
 
 et *sous-requête* a la même syntaxe qu’une instruction de requête.
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *ItemIndex*: si utilisé, indique le nom d’une colonne de type `long` qui est ajoutée à l’entrée dans le cadre de la phase d’extension de tableau et indique l’index de tableau de base 0 de la valeur développée.
 
@@ -98,7 +98,7 @@ et *sous-requête* a la même syntaxe qu’une instruction de requête.
 
 * Contrairement à l' [`mv-expand`](./mvexpandoperator.md) opérateur, l' `mv-apply` opérateur prend en charge l’expansion de tableau uniquement. Le développement des conteneurs de propriétés n’est pas pris en charge.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ## <a name="getting-the-largest-element-from-the-array"></a>Obtention de l’élément le plus grand à partir du tableau
 

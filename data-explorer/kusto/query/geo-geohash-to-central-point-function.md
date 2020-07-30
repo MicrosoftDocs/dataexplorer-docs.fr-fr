@@ -8,12 +8,12 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/27/2020
-ms.openlocfilehash: eb59eae0bc014c6ce9060d65f6c3aced80e4275c
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 40f3daa208c3c7ce18252d8c4f7276346206b250
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227126"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347848"
 ---
 # <a name="geo_geohash_to_central_point"></a>geo_geohash_to_central_point()
 
@@ -21,22 +21,22 @@ Calcule les coordonnées géospatiales qui représentent le centre d’une zone 
 
 En savoir plus sur [`geohash`](https://en.wikipedia.org/wiki/Geohash) .  
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `geo_geohash_to_central_point(`*géohachage*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 *géohash*: valeur de chaîne de géohachage telle qu’elle a été calculée par [geo_point_to_geohash ()](geo-point-to-geohash-function.md). La chaîne de hachage peut comporter entre 1 et 18 caractères.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Valeurs de coordonnées géospatiales au [format géojson](https://tools.ietf.org/html/rfc7946) et d’un type de données [dynamique](./scalar-data-types/dynamic.md) . Si le géohachage n’est pas valide, la requête produira un résultat NULL.
 
 > [!NOTE]
 > Le format géojson spécifie les premières longitude et Latitude second.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

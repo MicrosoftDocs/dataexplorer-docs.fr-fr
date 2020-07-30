@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 3fc4cfa307a283c4eb21ba60e3b83ba89b574757
-ms.sourcegitcommit: aaada224e2f8824b51e167ddb6ff0bab92e5485f
+ms.openlocfilehash: 68b55ec5496f1eb68f979c56412f10191b9f5a68
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84626677"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87340800"
 ---
 # <a name="top-nested-operator"></a>Opérateur top-nested
 
@@ -28,7 +28,7 @@ La première clause Aggregation (la plus à gauche) divise les enregistrements d
 
 Par exemple, l' `top-nested` opérateur peut être utilisé pour répondre à la question suivante : «pour une table contenant les chiffres des ventes, tels que le pays, le vendeur et le montant vendu : Quels sont les cinq premiers pays par vente ? Quels sont les trois principaux représentants de chacun de ces pays ?»
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `|` `top-nested` *TopNestedClause2* [ `,` *TopNestedClause2*...]
 
@@ -36,7 +36,7 @@ Où *TopNestedClause* a la syntaxe suivante :
 
 [*N*] `of` [ *`ExprName`* `=` ] *`Expr`* [ `with` `others` `=` *`ConstExpr`* ] `by` [ *`AggName`* `=` ] *`Aggregation`* `asc`  |  `desc` []
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 Pour chaque *TopNestedClause*:
 
@@ -66,7 +66,7 @@ Pour chaque *TopNestedClause*:
 
 * `asc`ou `desc` (la valeur par défaut) peut sembler pour contrôler si la sélection est en fait du « bas » ou « supérieur » de la plage de valeurs agrégées.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Cet opérateur retourne une table qui comporte deux colonnes pour chaque clause Aggregation :
 
@@ -87,7 +87,7 @@ Le nombre d’enregistrements peut croître de façon exponentielle avec le nomb
 
 Si la distribution de l’agrégation est considérablement non uniforme, limitez le nombre de valeurs distinctes à retourner (à l’aide de *N*) et utilisez l' `with others=` option *ConstExpr* pour obtenir une indication du « poids » de tous les autres cas.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

@@ -8,28 +8,28 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/11/2020
-ms.openlocfilehash: b4a30aa4285b8f6e22e5d4057fe7d408d548a27b
-ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
+ms.openlocfilehash: a7796c14098f773b73bd16735a3d2c9c879c8fd2
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86280559"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347865"
 ---
 # <a name="geo_distance_point_to_line"></a>geo_distance_point_to_line()
 
 Calcule la distance la plus petite entre une coordonnée et une ligne sur la terre.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `geo_distance_point_to_line(`*longitude* `, ` *Latitude* `, ` *lineString*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *longitude*: valeur de longitude de coordonnée géographique en degrés. La valeur valide est un nombre réel et dans la plage [-180, + 180].
 * *Latitude*: valeur de latitude de la coordonnée géographique en degrés. La valeur valide est un nombre réel et dans la plage [-90, + 90].
 * *lineString*: ligne au [format géojson](https://tools.ietf.org/html/rfc7946) et d’un type de données [dynamique](./scalar-data-types/dynamic.md) .
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Distance la plus petite, en mètres, entre une coordonnée et une ligne sur terre. Si la coordonnée ou le lineString ne sont pas valides, la requête produira un résultat NULL.
 
@@ -49,7 +49,7 @@ dynamique ({"type" : "LineString", "coordinates" : [[lng_1, lat_1], [lng_2, la
 > [!TIP]
 > Pour de meilleures performances, utilisez des lignes littérales.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 L’exemple suivant recherche la distance la plus petite entre l’aéroport du Nord de Las Vegas et la route avoisinante.
 

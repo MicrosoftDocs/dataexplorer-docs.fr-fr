@@ -1,6 +1,6 @@
 ---
-title: gamma() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit gamma () dans Azure Data Explorer.
+title: gamma ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit le gamma () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,26 +8,26 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: fc8d48c2e2fc5bd290198f27e90a391eac530965
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 8b152d6155f1d453af25cdae3c81faabc4d4b9fb
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81514686"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347899"
 ---
 # <a name="gamma"></a>gamma()
 
-Fonction [gamma](https://en.wikipedia.org/wiki/Gamma_function) de calcul
+Calcule la [fonction gamma](https://en.wikipedia.org/wiki/Gamma_function)
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`gamma(`*X*`)`
+`gamma(`*x*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *x*: Paramètre pour la fonction gamma
+* *x*: paramètre de la fonction gamma
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 * Fonction gamma de x.
-* Pour la fonction de journal-gamma informatique, voir [loggamma()](loggammafunction.md).
+* Pour le calcul de la fonction gamma du journal, consultez [loggamma ()](loggammafunction.md).

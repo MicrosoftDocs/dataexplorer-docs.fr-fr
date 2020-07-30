@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/11/2019
-ms.openlocfilehash: 19329b8822a1e1d484c5f751f5fbc2f8eb6343ac
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 4485dde5eb77478e5fd75ce388ada7f4232f2ddb
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226735"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347627"
 ---
 # <a name="has_any-operator"></a>has_any, opérateur
 
@@ -23,19 +23,19 @@ ms.locfileid: "83226735"
 Table1 | where col has_any ('value1', 'value2')
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `|` `where` *col* `has_any` `(` *Liste de colonnes T d’expressions scalaires*`)`   
 *T* `|` `where` *col* `has_any` `(` *Expression tabulaire* T col`)`   
  
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * Entrée *T* -tabulaire dont les enregistrements doivent être filtrés.
 * *col* -colonne à filtrer.
 * *liste d’expressions* : liste séparée par des virgules d’expressions tabulaires, scalaires ou littérales  
 * *expression tabulaire* -expression tabulaire avec un ensemble de valeurs (si l’expression comporte plusieurs colonnes, la première colonne est utilisée)
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Lignes dans *T* pour lesquelles le prédicat est`true`
 
@@ -55,7 +55,7 @@ StormEvents
 | summarize count() by State
 ```
 
-|État|count_|
+|State|count_|
 |---|---|
 |NEW YORK|1750|
 |CAROLINE DU NORD|1721|
@@ -77,7 +77,7 @@ StormEvents
 | summarize count() by State
 ```
 
-|État|count_|
+|State|count_|
 |---|---|
 |CAROLINE DU NORD|1721|
 |DAKOTA DU SUD|1567|

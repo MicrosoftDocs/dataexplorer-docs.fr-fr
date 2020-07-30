@@ -1,6 +1,6 @@
 ---
-title: avgif() (fonction d’agrégation) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit avgif () (fonction d’agrégation) dans Azure Data Explorer.
+title: avgif () (fonction d’agrégation)-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit avgif () (fonction d’agrégation) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 61352be628b7c5a05085c092d0c022deaa0d9b6e
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 587af53de774332db70ef9bffcadf74d9e2c069d
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81518256"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349378"
 ---
-# <a name="avgif-aggregation-function"></a>avgif() (fonction d’agrégation)
+# <a name="avgif-aggregation-function"></a>avgif () (fonction d’agrégation)
 
-Calcule la [moyenne](avg-aggfunction.md) d’Expr à travers le `true`groupe pour lequel *Predicate* évalue à . *Expr*
+Calcule la [moyenne](avg-aggfunction.md) de *expr* sur le groupe pour lequel le *prédicat* a la valeur `true` .
 
-* Ne peut être utilisé que dans le contexte de l’agrégation à l’intérieur [résumer](summarizeoperator.md)
+* Peut uniquement être utilisé dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-résumer `avgif(` *Expr*`, `*Predicate*`)`
+synthétiser le `avgif(` *Expr* `, ` *prédicat* expr`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *Expr*: Expression qui sera utilisée pour le calcul de l’agrégation. Les `null` enregistrements avec valeurs sont ignorés et ne sont pas inclus dans le calcul.
-* *Prédicat : prédicez*que si c’est vrai, la valeur calculée *Expr* sera ajoutée à la moyenne.
+* *Expr*: expression qui sera utilisée pour le calcul de l’agrégation. Les enregistrements avec des `null` valeurs sont ignorés et ne sont pas inclus dans le calcul.
+* *Predicate*: prédicat qui, si la valeur est true, la valeur calculée *expr* sera ajoutée à la moyenne.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-La valeur moyenne d’Expr à travers le `true`groupe où *Predicate* évalue à . *Expr*
+Valeur moyenne de *expr* dans le groupe dont le *prédicat* est évalué à `true` .
  
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ```kusto
 range x from 1 to 100 step 1

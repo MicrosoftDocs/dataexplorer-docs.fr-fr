@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1bb995874bf6ac552350c602c6d3742a08b1273b
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: cc0cc7ca77efeae583adeaf7a983d18498e5af96
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763682"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87338267"
 ---
 # <a name="welch_test"></a>welch_test()
 
@@ -31,11 +31,11 @@ print
 // pValue = 0.021
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `welch_test(`*mean1* `, ` *variance1* `, ` *count1* `, ` *mean2* `, ` *variance2* `, ` *count2*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *mean1*: expression qui représente la valeur moyenne (moyenne) de la première série
 * *variance1*: expression qui représente la valeur de variance de la première série
@@ -44,7 +44,7 @@ print
 * *variance2*: expression qui représente la valeur de variance de la deuxième série
 * *count2*: expression qui représente le nombre de valeurs dans la deuxième série
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 À partir de [Wikipédia](https://en.wikipedia.org/wiki/Welch%27s_t-test):
 

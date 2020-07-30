@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 03/29/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 90b2a08d4fdde6ab6a74b12632c9310029f8fc1b
-ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
+ms.openlocfilehash: cf10a18a699e1e93521b4927008858cbebd2baf8
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85902098"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345842"
 ---
 # <a name="render-operator"></a>render, opérateur
 
@@ -30,11 +30,11 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 > * L’opérateur Render ne modifie pas les données. Elle injecte une annotation (« visualisation ») dans les propriétés étendues du résultat. L’annotation contient les informations fournies par l’opérateur dans la requête.
 > * L’interprétation des informations de visualisation est effectuée par l’agent utilisateur. Différents agents (tels que Kusto. Explorer, Kusto. webexplorer) peuvent prendre en charge différentes visualisations.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `|` `render` *Visualization* [ `with` `(` *PropertyName* `=` *PropertyValue* [ `,` ...] `)` ]
 
-Où :
+Où :
 
 * La *visualisation* indique le type de visualisation à utiliser. Les valeurs prises en charge sont les suivantes :
 
@@ -110,7 +110,7 @@ Où :
 ::: zone-end
 
 Certaines visualisations peuvent être élaborées plus en détail en fournissant la `kind` propriété.
-Ces règles sont les suivantes :
+Ces deux types de pools sont les suivants :
 
 |*Visualisation*|`kind`             |Description                        |
 |---------------|-------------------|-----------------------------------|
@@ -155,7 +155,7 @@ Certaines visualisations prennent en charge le fractionnement en plusieurs valeu
 > * Triez les données pour définir l’ordre de l’axe x.
 > * Les agents utilisateurs sont libres de « deviner » la valeur des propriétés qui ne sont pas spécifiées par la requête. En particulier, les colonnes « sans intérêt » dans le schéma du résultat peuvent être traduites par des erreurs. Essayez de projeter ces colonnes lorsque cela se produit. 
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -170,6 +170,6 @@ range x from -2 to 2 step 0.1
 
 [Exemples de rendu dans le didacticiel](./tutorial.md#render-display-a-chart-or-table).
 
-[Détection des anomalies](./samples.md#get-more-out-of-your-data-in-kusto-with-machine-learning)
+[Détection d’anomalie](./samples.md#get-more-out-of-your-data-in-kusto-with-machine-learning)
 
 ::: zone-end

@@ -1,6 +1,6 @@
 ---
-title: tolong() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit tolong() dans Azure Data Explorer.
+title: tolong ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit tolong () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: bd354a39c048631ab98390c74cb7cd78ee5376b2
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: fb209ff3784f6e24f184b576a1e8f94c52834ba4
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81506084"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87340953"
 ---
 # <a name="tolong"></a>tolong()
 
-Convertit l’entrée en représentation longue (signée 64 bits).
+Convertit l’entrée en une représentation de nombre longue (signée 64 bits).
 
 ```kusto
 tolong("123") == 123
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `tolong(`*Expr*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *Expr*: Expression qui sera convertie en long. 
+* *Expr*: expression qui sera convertie en long. 
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Si la conversion est réussie, le résultat sera un nombre long.
-Si la conversion n’est `null`pas réussie, le résultat sera .
+Si la conversion réussit, le résultat est un nombre long.
+Si la conversion échoue, le résultat sera `null` .
  
-*Remarque*: Préférez utiliser [longtemps ()](./scalar-data-types/long.md) lorsque c’est possible.
+*Remarque*: préférez utiliser [long ()](./scalar-data-types/long.md) lorsque cela est possible.

@@ -8,26 +8,26 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f34f2ac316f122034fcf8ee19a8e82e51b6221df
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: 6c157c014ec3b83aa39d4bdfcadda12e97e84f3e
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780471"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346539"
 ---
 # <a name="pack_all"></a>pack_all()
 
 Crée un `dynamic` objet (conteneur de propriétés) à partir de toutes les colonnes de l’expression tabulaire.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `pack_all()`
 
-**Notes**
+**Remarques**
 
 La représentation de l’objet retourné n’est pas garantie d’être compatible au niveau de l’octet entre les exécutions. Par exemple, les propriétés qui apparaissent dans le conteneur peuvent apparaître dans un ordre différent.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 À partir d’une table SmsMessages 
 

@@ -8,14 +8,14 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/27/2020
-ms.openlocfilehash: d5bd270e016f1694c28f663a7fe8bf1d9a8f0903
-ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
+ms.openlocfilehash: b6d76f8ed834ec40c53321644e5cd9b7f5f93168
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84301280"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347304"
 ---
-# <a name="ipv6_is_match"></a>ipv6_is_match ()
+# <a name="ipv6_is_match"></a>ipv6_is_match()
 
 Correspond à deux chaînes d’adresse réseau IPv6 ou IPv4. Les deux chaînes IPv6/IPv4 sont analysées et comparées en tenant compte du masque de préfixe IP combiné calculé à partir des préfixes d’arguments et de l' `PrefixMask` argument facultatif.
 
@@ -27,11 +27,11 @@ ipv6_is_match('fe80::85d:e82c:9446:7994/127', 'fe80::85d:e82c:9446:7995/127') ==
 ipv6_is_match('fe80::85d:e82c:9446:7994', 'fe80::85d:e82c:9446:7995', 127) == true
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `ipv6_is_match(`*Expr1* `, ` *Expr2* `[ ,` *PrefixMask*`])`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Expr1*, *expr2*: expression de chaîne représentant une adresse IPv6 ou IPv4. Les chaînes IPv6 et IPv4 peuvent être masquées à l’aide [de la notation de préfixe IP](#ip-prefix-notation).
 * *PrefixMask*: entier compris entre 0 et 128 représentant le nombre de bits les plus significatifs pris en compte.
@@ -41,9 +41,10 @@ ipv6_is_match('fe80::85d:e82c:9446:7994', 'fe80::85d:e82c:9446:7995', 127) == tr
 Les adresses IP peuvent être définies à `IP-prefix notation` l’aide d’une barre oblique ( `/` ).
 L’adresse IP à gauche de la barre oblique ( `/` ) est l’adresse IP de base. Le nombre (1 à 127) à droite de la barre oblique ( `/` ) est le nombre de 1 bit contigu dans le masque réseau. 
 
-**Exemple**: fe80 :: 85D : E82C : 9446:7994/120 aura un net/Masque_Sous_réseau associé contenant 120 bits contigus.
+## <a name="example"></a>Exemple :
+FE80 :: 85D : E82C : 9446:7994/120 aura un net/Masque_Sous_réseau associé contenant 120 bits contigus.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 * `true`: Si la représentation longue du premier argument de chaîne IPv6/IPv4 est égale au deuxième argument de chaîne IPv6/IPv4.
 * `false`Dispose.

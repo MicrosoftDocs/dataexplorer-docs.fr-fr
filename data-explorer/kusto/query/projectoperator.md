@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 76ead8fabe755d5e3e200a767cb8b7518121b2ac
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: 7a7cbb563a10b1cd1bdd91f12b0ce9d7da1c0e7b
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85128952"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346029"
 ---
 # <a name="project-operator"></a>opérateur project
 
@@ -25,15 +25,15 @@ L’ordre des colonnes dans le résultat est déterminé par l’ordre des argum
 T | project cost=price*quantity, price
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `| project` *ColumnName* [ `=` *expression*] [ `,` ...]
   
-ou
+or
   
 *T* `| project` [*ColumnName*  |  `(` *ColumnName*[ `,` ] `)` `=` ] *expression* [ `,` ...]
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *T*: table d’entrée.
 * *ColumnName :* Nom facultatif d’une colonne à afficher dans la sortie. S’il n’y a aucune *expression*, *ColumnName* est obligatoire et une colonne de ce nom doit apparaître dans l’entrée. En cas d’omission, le nom est généré automatiquement. Si l' *expression* retourne plusieurs colonnes, une liste de noms de colonnes peut être spécifiée entre parenthèses. Dans ce cas, les colonnes de sortie de l' *expression*reçoivent les noms spécifiés, en supprimant toutes les autres colonnes de sortie, le cas échéant. Si la liste des noms de colonnes n’est pas spécifiée, toutes les colonnes de sortie de l' *expression*avec des noms générés sont ajoutées à la sortie.
@@ -41,11 +41,11 @@ ou
 
     Il est possible de retourner une nouvelle colonne calculée portant le même nom qu’une colonne figurant dans l’entrée.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Une table contenant les colonnes nommées en tant qu’arguments, et autant de lignes que la table d’entrée.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 L’exemple suivant présente plusieurs types de manipulations pouvant être effectuées à l’aide de l’opérateur `project` . La table d’entrée `T` comporte trois colonnes de type `int` : `A`, `B` et `C`. 
 

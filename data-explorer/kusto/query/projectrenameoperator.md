@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 68581cfe4b3828823ced7d4704eb08df5d2aefa7
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 9bc000ffa57d906c3e65e54e9daac5431f8dc276
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373171"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346012"
 ---
 # <a name="project-rename-operator"></a>project-rename, opérateur
 
@@ -23,22 +23,22 @@ Renomme les colonnes dans la sortie de résultat.
 T | project-rename new_column_name = column_name
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `| project-rename` *NewColumnName*  =  *ExistingColumnName* [ `,` ...]
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *T*: table d’entrée.
 * *NewColumnName :* Nouveau nom d’une colonne. 
 * *ExistingColumnName :* Nom existant d’une colonne. 
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Table qui contient les colonnes dans le même ordre que dans une table existante, avec les colonnes renommées.
 
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7ef4bf5607979cc02976d00250e8754f3a0c4e69
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 9321f30d2643f6e398d73cf7960490708626f723
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83225171"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348358"
 ---
-# <a name="diffpatterns_text-plugin"></a>plug-in diffpatterns_text
+# <a name="diffpatterns_text-plugin"></a>diffpatterns_text, plug-in
 
 Compare deux jeux de données de valeurs de chaîne et recherche des modèles de texte qui caractérisent les différences entre les deux jeux de données.
 
@@ -25,7 +25,7 @@ T | evaluate diffpatterns_text(TextColumn, BooleanCondition)
 
 `diffpatterns_text`Retourne un jeu de modèles de texte qui capturent différentes parties des données dans les deux jeux (c’est-à-dire un modèle qui capture un grand pourcentage des lignes lorsque la condition est `true` et un pourcentage faible des lignes lorsque la condition est `false` ). Les modèles sont créés à partir de jetons consécutifs (séparés par des espaces blancs), avec un jeton de la colonne de texte ou un `*` qui représente un caractère générique. Chaque modèle est représenté par une ligne dans les résultats.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `T | evaluate diffpatterns_text(`TextColumn, BooleanCondition [, MinTokens, Threshold, MaxTokens]`)` 
 
@@ -55,7 +55,7 @@ Tous les autres arguments sont facultatifs, mais ils doivent alors être ordonn�
 
     Définit le nombre maximal de jetons (à partir du début) par résultat, en spécifiant une limite inférieure pour réduire l’exécution de la requête.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Le résultat de diffpatterns_text retourne les colonnes suivantes :
 
@@ -68,7 +68,7 @@ Le résultat de diffpatterns_text retourne les colonnes suivantes :
 > [!NOTE]
 > Les modèles ne sont pas nécessairement distincts et peuvent ne pas fournir une couverture complète du jeu de données. Les modèles peuvent se chevaucher et certaines lignes peuvent ne pas correspondre à un modèle.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

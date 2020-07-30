@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 8106d419f20dcacdec6386294a5b9ffb8d1bc8e2
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 69ba6a8ce3cd29d7459215184f7488b015d16558
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83225902"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349803"
 ---
 # <a name="activity_metrics-plugin"></a>plug-in activity_metrics
 
@@ -23,11 +23,11 @@ Calcule les métriques d’activité utiles (valeurs de comptage de valeurs, nom
 T | evaluate activity_metrics(id, datetime_column, startofday(ago(30d)), startofday(now()), 1d, dim1, dim2, dim3)
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `| evaluate` `activity_metrics(` *IdColumn* `,` *TimelineColumn* `,` [*Start* `,` *end* `,` ] *fenêtre* [ `,` *dim1* `,` *dim2* `,` ...]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *T*: expression tabulaire d’entrée.
 * *IdColumn*: nom de la colonne avec des valeurs d’ID qui représentent l’activité de l’utilisateur. 
@@ -37,7 +37,7 @@ T | evaluate activity_metrics(id, datetime_column, startofday(ago(30d)), startof
 * *Window*: scalaire avec la valeur de la période de la fenêtre d’analyse. Il peut s’agir d’une valeur numérique/DateTime/timestamp, ou d’une chaîne qui est l’une des `week` / `month` / `year` , auquel cas toutes les périodes sont [startOfWeek](startofweekfunction.md) / [StartOfMonth](startofmonthfunction.md) / [STARTOFYEAR](startofyearfunction.md) en conséquence. 
 * *dim1*, *dim2*,... : (facultatif) liste des colonnes de dimensions qui découpent le calcul des métriques d’activité.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Retourne une table qui contient les valeurs des nombres distincts, le nombre de nouvelles valeurs, le taux de rétention et le taux d’évolution pour chaque période de chronologie et pour chaque combinaison de dimensions existante.
 
@@ -90,7 +90,7 @@ Dérivée de la définition de `Churn Rate` et `Retention Rate` , les conditions
     [Retention rate] = 100.0% - [Churn Rate]
 
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ### <a name="weekly-retention-rate-and-churn-rate"></a>Taux de rétention hebdomadaire et taux d’évolution
 

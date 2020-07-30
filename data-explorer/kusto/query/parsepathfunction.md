@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: ba74b7c1e78d568cc34845d56dc9768f2628192f
-ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
+ms.openlocfilehash: e2914e913402de7442d2533cf5159c2bd30fac60
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84717374"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346301"
 ---
 # <a name="parse_path"></a>parse_path()
 
@@ -32,19 +32,19 @@ Outre les chemins d’accès simples avec les deux types de barres obliques, la 
 * Chemins d’accès longs. Par exemple, « \\ ? \c :... »
 * Autres flux de données. Par exemple, « file1.exe:file2.exe »
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `parse_path(`*path*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *path*: chaîne qui représente un chemin d’accès de fichier.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Objet de type `dynamic` qui incluait les composants de chemin d’accès répertoriés ci-dessus.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

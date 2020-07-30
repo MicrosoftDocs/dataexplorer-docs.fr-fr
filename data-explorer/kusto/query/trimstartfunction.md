@@ -1,6 +1,6 @@
 ---
-title: trim_start() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit trim_start() dans Azure Data Explorer.
+title: trim_start ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit trim_start () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1d4ae71f73e76005f89766d974192c8eb24cd74d
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 4550fb07da37658ecf11a4eb04ecdf199d8ba989
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81505574"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87339542"
 ---
 # <a name="trim_start"></a>trim_start()
 
-Supprime le match de tête de l’expression régulière spécifiée.
+Supprime la correspondance de début de l’expression régulière spécifiée.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`trim_start(`*texte regex* `,` *text*`)`
+`trim_start(`*expression régulière* `,` *texte*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *regex*: Chaîne ou [expression régulière](re2.md) à couper dès le début du *texte*.  
-* *texte*: Une chaîne.
+* *Regex*: chaîne ou [expression régulière](re2.md) à tronquer à partir du début du *texte*.  
+* *Text*: chaîne.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-*texte* après la coupe match de *regex* trouvé au début du *texte*.
+*texte* après troncation de la correspondance d' *expression régulière* trouvée au début du *texte*.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
-Déclaration soufflet garnitures *sous-cordes* dès le début de *string_to_trim*:
+L’instruction « souffle » supprime la *sous-chaîne* à partir du début de *string_to_trim*:
 
 ```kusto
 let string_to_trim = @"https://bing.com";
@@ -46,7 +46,7 @@ print string_to_trim = string_to_trim,trimmed_string = trim_start(substring,stri
 |---|---|
 |https://bing.com|bing.com|
 
-La déclaration suivante coupe tous les caractères non-mots dès le début de la chaîne :
+L’instruction suivante supprime tous les caractères non alphabétiques à partir du début de la chaîne :
 
 ```kusto
 range x from 1 to 5 step 1
@@ -56,10 +56,10 @@ range x from 1 to 5 step 1
 
 |str|trimmed_str|
 |---|---|
-|- Te st1// $|Te st1// $|
-|- Te st2// $|Te st2// $|
-|- Te st3// $|Te st3// $|
-|- Te st4// $|Te st4// $|
-|- Te st5// $|Te st5// $|
+|-Te ST1//$|Te ST1//$|
+|-Te ST2//$|Te ST2//$|
+|-Te ST3//$|Te ST3//$|
+|-Te ST4//$|Te ST4//$|
+|-Te ST5//$|Te ST5//$|
 
  

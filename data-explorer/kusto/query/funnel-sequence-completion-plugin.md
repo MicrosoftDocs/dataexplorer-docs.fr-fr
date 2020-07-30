@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/16/2020
-ms.openlocfilehash: 57cceb2fabb16956090430161b98c1287efdef97
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 3511d15ebf0f5e3708deeeed981a8a6808da2e48
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227319"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347933"
 ---
 # <a name="funnel_sequence_completion-plugin"></a>plug-in funnel_sequence_completion
 
@@ -23,11 +23,11 @@ Calcule l’entonnoir des étapes de séquence terminées dans la comparaison de
 T | evaluate funnel_sequence_completion(id, datetime_column, startofday(ago(30d)), startofday(now()), 1d, state_column, dynamic(['S1', 'S2', 'S3']), dynamic([10m, 30min, 1h]))
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `| evaluate` `funnel_sequence_completion(` *IdColumn* `,` *TimelineColumn* `,` *Start* `,` *End* `,` *Step* `,` *StateColumn* `,` *séquence* `,` *MaxSequenceStepWindows*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *T*: expression tabulaire d’entrée.
 * *IdColum*: référence de colonne, doit être présent dans l’expression source.
@@ -39,7 +39,7 @@ T | evaluate funnel_sequence_completion(id, datetime_column, startofday(ago(30d)
 * *Sequence*: tableau dynamique constant avec les valeurs de séquence (les valeurs sont recherchées dans `StateColumn` ).
 * *MaxSequenceStepWindows*: tableau dynamique constant scalaire avec les valeurs de la période maximale autorisée entre les première et dernière étapes séquentielles de la séquence. Chaque fenêtre (point) du tableau génère un résultat d’analyse en entonnoir.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Retourne une table unique utile pour construire un diagramme en entonnoir pour la séquence analysée :
 
@@ -48,7 +48,7 @@ Retourne une table unique utile pour construire un diagramme en entonnoir pour l
 * `Period`: période maximale (fenêtre) autorisée pour l’exécution des étapes de la séquence de l’entonnoir mesurée à partir de la première étape de la séquence. Chaque valeur de *MaxSequenceStepWindows* génère une analyse en entonnoir avec une période distincte. 
 * `dcount`: nombre distinct de `IdColumn` dans la fenêtre de temps qui est passé du premier État de séquence à la valeur de `StateColumn` .
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ### <a name="exploring-storm-events"></a>Exploration des événements Storm 
 

@@ -3,17 +3,17 @@ title: geo_polygon_to_s2cells ()-Azure Explorateur de données
 description: Cet article décrit geo_polygon_to_s2cells () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
-ms.author: orspod
+ms.author: orspodek
 ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/10/2020
-ms.openlocfilehash: c4396087018e25c57f064e8d2f99a83cc0840c3a
-ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
+ms.openlocfilehash: d282dc6d25947aa20da3d1f05a1f76ab887ca21c
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86280585"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347729"
 ---
 # <a name="geo_polygon_to_s2cells"></a>geo_polygon_to_s2cells()
 
@@ -21,16 +21,16 @@ Calcule les jetons de cellule S2 qui couvrent un polygone ou un multipolygone su
 
 En savoir plus sur la [hiérarchie des cellules S2](https://s2geometry.io/devguide/s2cell_hierarchy).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `geo_polygon_to_s2cells(`*polygone* `, ` de *niveau*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *polygone*: polygone ou multipolygone au [format géojson](https://tools.ietf.org/html/rfc7946) et d’un type de données [dynamique](./scalar-data-types/dynamic.md) . 
 * *Level*: un facultatif `int` qui définit le niveau de cellule demandé. Les valeurs prises en charge sont comprises dans la plage [0, 30]. S’il n’est pas spécifié, la valeur par défaut `11` est utilisée.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Tableau de chaînes de jetons de cellule S2 qui couvre un polygone ou un multipolygone. Si le polygone ou le niveau n’est pas valide ou si le nombre de cellules dépasse la limite, la requête produira un résultat NULL.
 
@@ -97,7 +97,7 @@ Cette correspondance peut être obtenue par le processus suivant :
 > [!WARNING]
 > La couverture d’un polygone de grande zone avec des cellules de petite taille peut entraîner un énorme volume de cellules. Par conséquent, la requête peut retourner la valeur null.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 L’exemple suivant classe les coordonnées en polygones.
 

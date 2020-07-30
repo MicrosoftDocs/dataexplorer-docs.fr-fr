@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 4662b1bd9f68778cab1f799f564499e23add5812
-ms.sourcegitcommit: 6a0bd5b84f9bd739510c6a75277dec3a9e851edd
+ms.openlocfilehash: d2f9db1dbace646c41d8751272cf44cf6d04c2c3
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84788900"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346131"
 ---
-# <a name="pivot-plugin"></a>plug-in pivot
+# <a name="pivot-plugin"></a>pivot, plug-in
 
 Fait pivoter une table en transformant les valeurs uniques d’une colonne de la table d’entrée en plusieurs colonnes dans la table de sortie, et effectue des agrégations lorsqu’elles sont requises sur les valeurs de colonne restantes qui sont souhaitées dans la sortie finale.
 
@@ -23,17 +23,17 @@ Fait pivoter une table en transformant les valeurs uniques d’une colonne de la
 T | evaluate pivot(PivotColumn)
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `T | evaluate pivot(`*pivotColumn* `[, ` *aggregationFunction* `] [,` *Colonne1* `[,` *Column2* ...`]])`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *pivotColumn*: colonne à faire pivoter. chaque valeur unique de cette colonne sera une colonne dans la table de sortie.
 * *fonction d’agrégation*: (facultatif) agrège plusieurs lignes de la table d’entrée en une seule ligne dans la table de sortie. Fonctions actuellement prises en charge : `min()` , `max()` , `any()` , `sum()` , `dcount()` , `avg()` , `stdev()` , `variance()` , `make_list()` , `make_bag()` , `make_set()` , `count()` (la valeur par défaut est `count()` ).
 * noms de colonne *Colonne1*, *Column2*,... : (facultatif). La table de sortie contient une colonne supplémentaire pour chaque colonne spécifiée. valeur par défaut : toutes les colonnes autres que la colonne de tableau croisé dynamique et la colonne d’agrégation.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Pivot renvoie la table pivotée avec les colonnes spécifiées (*Colonne1*, *Column2*,...), ainsi que toutes les valeurs uniques des colonnes de tableau croisé dynamique. Chaque cellule des colonnes croisées dynamiques contient le calcul de la fonction d’agrégation.
 
@@ -41,7 +41,7 @@ Pivot renvoie la table pivotée avec les colonnes spécifiées (*Colonne1*, *Col
 
 Le schéma de sortie du `pivot` plug-in est basé sur les données et, par conséquent, la requête peut produire un schéma différent pour deux exécutions. Cela signifie également que la requête qui fait référence à des colonnes décompressées peut devenir « interrompue » à tout moment. Pour cette raison, il n’est pas recommandé d’utiliser ce plug-in pour les travaux d’automatisation.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ### <a name="pivot-by-a-column"></a>Tableau croisé dynamique par colonne
 

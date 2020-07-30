@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2019
-ms.openlocfilehash: 616fee7b0a1b6852f66d3db22846b2645e03135f
-ms.sourcegitcommit: be1bbd62040ef83c08e800215443ffee21cb4219
+ms.openlocfilehash: ef72ce93dd0cc6d4ab95c46365bfb0351d9d565a
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84665008"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87343972"
 ---
 # <a name="series_fir"></a>series_fir()
 
@@ -21,11 +21,11 @@ Applique un filtre de réponse impulsionnelle finie (FIR) sur une série.
 
 La fonction prend une expression contenant un tableau numérique dynamique comme entrée et applique un filtre à [réponse impulsionnelle finie](https://en.wikipedia.org/wiki/Finite_impulse_response) . En spécifiant les `filter` coefficients, vous pouvez les utiliser pour calculer la moyenne mobile, le lissage, la détection des modifications et bien d’autres cas d’utilisation. La fonction prend la colonne qui contient le tableau dynamique et un tableau dynamique statique des coefficients du filtre comme entrée, et applique le filtre sur la colonne. Elle génère une nouvelle colonne de tableau dynamique, qui contient la sortie filtrée.  
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `series_fir(`*x* `,` *filtre* x [ `,` *normaliser*[ `,` *Centre*]]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *x*: cellule de tableau dynamique de valeurs numériques. En général, le résultat des opérateurs [Make-Series](make-seriesoperator.md) ou [make_list](makelist-aggfunction.md) .
 * *filtre*: expression constante contenant les coefficients du filtre (stocké sous la forme d’un tableau dynamique de valeurs numériques).
@@ -33,7 +33,7 @@ La fonction prend une expression contenant un tableau numérique dynamique comme
 La normalisation est un moyen pratique de s’assurer que la somme des coefficients est 1. Le filtre n’amplifie pas ou n’atténue pas la série. Par exemple, la moyenne mobile de quatre emplacements peut être spécifiée par *Filter*= [1, 1, 1, 1] et *normalized*= true, ce qui est plus facile que de taper [0.25, 0.25.0.25, 0.25].
 * *Center*: valeur booléenne facultative qui indique si le filtre est appliqué symétriquement sur une fenêtre de temps avant et après le point actuel, ou sur une fenêtre de temps à partir du point actuel vers l’arrière. Par défaut, Center a la valeur false, ce qui correspond au scénario de données de streaming, où nous pouvons uniquement appliquer le filtre sur les points actuels et antérieurs. Toutefois, pour un traitement ad hoc, vous pouvez le définir sur `true` , en le conservant à la synchronisation avec la série chronologique. Voir les exemples ci-dessous. Ce paramètre contrôle le délai de [groupe](https://en.wikipedia.org/wiki/Group_delay_and_phase_delay)du filtre.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 * Calculez une moyenne mobile de cinq points en définissant *Filter*= [1, 1, 1, 1, 1] et *Normalize* = `true` (par défaut). Notez l’effet de *Center* = `false` (par défaut) par rapport à `true` :
 

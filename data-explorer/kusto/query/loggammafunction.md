@@ -1,6 +1,6 @@
 ---
-title: loggamma() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit loggamma() dans Azure Data Explorer.
+title: loggamma ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit loggamma () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,26 +8,26 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: c4341b17831280a524d4636cf8786138ca99c286
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: e27c3912243b20dd762af0208f11dfc8ace46d32
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81513105"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347066"
 ---
 # <a name="loggamma"></a>loggamma()
 
-Calcul de la valeur absolue de la [fonction gamma](https://en.wikipedia.org/wiki/Gamma_function)
+Calcule le journal de la valeur absolue de la [fonction gamma](https://en.wikipedia.org/wiki/Gamma_function)
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`loggamma(`*X*`)`
+`loggamma(`*x*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *x*: Paramètre pour la fonction gamma
+* *x*: paramètre de la fonction gamma
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-* Retourne le logarithme naturel de la valeur absolue de la fonction gamma de x.
-* Pour l’informatique fonction gamma, voir [gamma()](gammafunction.md).
+* Retourne le logarithme népérien de la valeur absolue de la fonction gamma de x.
+* Pour calculer la fonction gamma, consultez [gamma ()](gammafunction.md).

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: b493f74472454649a557b7e3677b26af169413de
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 90942906908f58f321e5a81ec9ca8419fe9a2ec5
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227551"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348919"
 ---
 # <a name="case"></a>case()
 
@@ -23,21 +23,21 @@ Si aucun des prédicats `true` n’est retourné, le résultat de la dernière e
 Tous les arguments impairs (le nombre commence à 1) doivent être des expressions qui correspondent à une `boolean` valeur.
 Tous les arguments pairs (les objets `then` ) et le dernier argument ( `else` ) doivent être du même type.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `case(`*predicate_1* `,` *then_1*, *predicate_2* `,` *then_2*, *predicate_3* `,` *then_3*, *sinon*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *predicate_i*: expression qui prend une `boolean` valeur.
 * *then_i*: expression qui est évaluée et sa valeur est retournée à partir de la fonction si *predicate_i* est le premier prédicat qui prend la valeur `true` .
 * *else*: expression qui est évaluée et sa valeur est retournée à partir de la fonction si aucune des *predicate_i* ne correspond à `true` .
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 La valeur du premier *then_i* dont *predicate_i* prend `true` la valeur, ou la valeur de *else* si aucun des prédicats n’est respecté.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

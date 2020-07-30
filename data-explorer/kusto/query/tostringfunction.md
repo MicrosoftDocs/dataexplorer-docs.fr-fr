@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 634f54533e83575139d8399124cc068af56d8574
-ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
+ms.openlocfilehash: 2093ff1117cf7744af550cf93c3fe630fa40a6e6
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82741667"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87340172"
 ---
 # <a name="tostring"></a>tostring()
 
@@ -23,16 +23,16 @@ Convertit l’entrée en une représentation sous forme de chaîne.
 tostring(123) == "123"
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `tostring(`*`Expr`*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *`Expr`*: Expression qui sera convertie en chaîne. 
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Si la *`Expr`* valeur n’est pas null, le résultat est une représentation sous forme de *`Expr`* chaîne de.
+Si la *`Expr`* valeur n’est pas null, le résultat est une représentation sous forme de chaîne de *`Expr`* .
 Si la *`Expr`* valeur est null, le résultat est une chaîne vide.
  

@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 1f5584233a24c834e0ca6c28ed60aa5d7496b411
-ms.sourcegitcommit: 284152eba9ee52e06d710cc13200a80e9cbd0a8b
+ms.openlocfilehash: 22f1b36b851c6e629abd2524feb4c40c74bbb1fa
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86291523"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348137"
 ---
 # <a name="extent_id"></a>extent_id()
 
@@ -25,15 +25,15 @@ Retourne un identificateur unique qui identifie le partition de données (« Ex
 
 L’application de cette fonction aux données calculées qui ne sont pas attachées à un partition de données retourne un GUID vide (tous les zéros).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `extent_id()`
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Valeur de type `guid` qui identifie le partition de données de l’enregistrement actif, ou un GUID vide (tous les zéros).
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 L’exemple suivant montre comment obtenir la liste de tous les partitions de données qui ont des enregistrements à partir d’une heure avec une valeur spécifique pour la colonne `ActivityId` . Il montre que certains opérateurs de requête (ici, l' `where` opérateur, ainsi `extend` que et `project` ) conservent les informations sur le partition de données qui héberge l’enregistrement.
 

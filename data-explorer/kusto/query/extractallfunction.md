@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 55168d381ab69bf0d29e8560714e13cb635fd688
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: e52f90b911331bca6374318869d3f8ebf262d81f
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780522"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348069"
 ---
 # <a name="extract_all"></a>extract_all()
 
@@ -24,11 +24,11 @@ Si vous le souhaitez, récupérez un sous-ensemble de groupes correspondants.
 print extract_all(@"(\d+)", "a set of numbers: 123, 567 and 789") // results with the dynamic array ["123", "567", "789"]
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `extract_all(`*expression régulière* `,` [*captureGroups* `,` ] *texte*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 |Argument        |Description                                  |Obligatoire ou facultatif  |
 |----------------|---------------------------------------------|----------------------|
@@ -36,7 +36,7 @@ print extract_all(@"(\d+)", "a set of numbers: 123, 567 and 789") // results wit
 |captureGroups   |Constante de tableau dynamique qui indique le groupe de capture à extraire. Les valeurs valides sont comprises entre 1 et le nombre de groupes de capture dans l’expression régulière. Les groupes de capture nommés sont également autorisés (voir les [exemples](#examples))|Facultatif         |
 |text            |`string`À rechercher                         |Obligatoire              |
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 * Si *Regex* trouve une correspondance dans le *texte*: retourne le tableau dynamique, y compris toutes les correspondances par rapport aux groupes de capture *captureGroups*spécifiés, ou tous les groupes de capture dans l' *expression régulière*.
 * Si le nombre de *captureGroups* est 1 : le tableau retourné a une seule dimension de valeurs correspondantes.

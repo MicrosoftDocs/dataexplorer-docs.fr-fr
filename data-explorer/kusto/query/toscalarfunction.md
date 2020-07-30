@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 15d9056ec21eb6f25ccbc985d659f310d670f02d
-ms.sourcegitcommit: 085e212fe9d497ee6f9f477dd0d5077f7a3e492e
+ms.openlocfilehash: 649d09fcf6d228714fdf20b40c81b2a2552374e6
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85133411"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87340256"
 ---
 # <a name="toscalar"></a>toscalar()
 
@@ -21,15 +21,15 @@ Retourne une valeur de constante scalaire de l’expression évaluée.
 
 Cette fonction est utile pour les requêtes qui requièrent des calculs intermédiaires. Par exemple, calculez le nombre total d’événements, puis utilisez le résultat pour filtrer les groupes qui dépassent un certain pourcentage de tous les événements.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `toscalar(`*Formule*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Expression*: expression qui sera évaluée pour la conversion scalaire.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Valeur de constante scalaire de l’expression évaluée.
 Si le résultat est un tableau, la première colonne et la première ligne sont prises pour la conversion.
@@ -37,12 +37,12 @@ Si le résultat est un tableau, la première colonne et la première ligne sont 
 > [!TIP]
 > Vous pouvez utiliser une [instruction Let](letstatement.md) pour améliorer la lisibilité de la requête lors de l’utilisation de `toscalar()` .
 
-**Notes**
+**Remarques**
 
 `toscalar()`peut être calculé un nombre constant de fois pendant l’exécution de la requête.
 La `toscalar()` fonction ne peut pas être appliquée au niveau de la ligne (scénario pour chaque ligne).
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 Évaluez `Start` `End` `Step` les constantes, et en tant que constantes scalaires, et utilisez le résultat pour l' `range` évaluation.
 

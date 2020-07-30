@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 76b16098d9340a98fb3a456dfa947c089507da6c
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: a98fe59755e47be8f4f4e53595d25bb260004236
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227687"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349225"
 ---
 # <a name="beta_cdf"></a>beta_cdf()
 
@@ -27,17 +27,17 @@ Si *probabilité*  =  `beta_cdf(` *x*,... `)` , alors `beta_inv(` *probabilité*
 
 La distribution Bêta est couramment utilisée pour étudier la variation du pourcentage d’une valeur dans des échantillons. Il peut s’agir, par exemple, de la fraction d’une journée que des gens passent à regarder la télévision.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `beta_cdf(`*x* `, ` *alpha* `, ` *version bêta*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *x*: valeur à laquelle évaluer la fonction.
 * *alpha*: paramètre de la distribution.
 * *bêta*: paramètre de la distribution.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 * [Fonction de distribution cumulative bêta](https://en.wikipedia.org/wiki/Beta_distribution#Cumulative_distribution_function).
 
@@ -49,7 +49,7 @@ Si x < 0 ou x > 1, beta_cdf () retourne une valeur NaN.
 
 Si alpha ≤ 0 ou beta ≤ 0, beta_cdf () retourne la valeur NaN.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -63,7 +63,7 @@ datatable(x:double, alpha:double, beta:double, comment:string)
 | extend b = beta_cdf(x, alpha, beta)
 ```
 
-|x|alpha|beta|comment|b|
+|x|alpha|bêta|comment|b|
 |---|---|---|---|---|
 |0.9|10|20|Entrée valide|0.999999999999959|
 |1.5|10|20|x > 1, produit NaN|NaN|

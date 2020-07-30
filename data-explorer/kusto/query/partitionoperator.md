@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 417d4afb74e9170301baebde6be73d97df097f0f
-ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
+ms.openlocfilehash: 2b082e516a1118638bc8e61b545471326dd400e5
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83271534"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346233"
 ---
 # <a name="partition-operator"></a>partition, opérateur
 
@@ -25,13 +25,13 @@ T | partition by Col1 ( top 10 by MaxValue )
 T | partition by Col1 { U | where Col2=toscalar(Col1) }
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `|` `partition` [*PartitionParameters*] `by` *colonne* `(` *ContextualSubquery*`)`
 
 *T* `|` `partition` [*PartitionParameters*] `by` *Column* `{` *sous-requête* de colonne`}`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *T*: source tabulaire dont les données doivent être traitées par l’opérateur.
 
@@ -46,10 +46,10 @@ T | partition by Col1 { U | where Col2=toscalar(Col1) }
   |Nom               |Valeurs         |Description|
   |-------------------|---------------|-----------|
   |`hint.materialized`|`true`,`false` |Si la valeur `true` est, la source de l’opérateur est matérialisée `partition` (valeur par défaut : `false` )|
-  |`hint.concurrency`|*Certain*|Indique au système le nombre de sous-requêtes simultanées de l' `partition` opérateur qui doivent être exécutées en parallèle. *Valeur par défaut*: quantité de cœurs de processeur sur le nœud unique du cluster (2 à 16).|
-  |`hint.spread`|*Certain*|Indique au système le nombre de nœuds qui doivent être utilisés par l’exécution simultanée des sous- `partition` requêtes. *Valeur par défaut*: 1.|
+  |`hint.concurrency`|*Nombre*|Indique au système le nombre de sous-requêtes simultanées de l' `partition` opérateur qui doivent être exécutées en parallèle. *Valeur par défaut*: quantité de cœurs de processeur sur le nœud unique du cluster (2 à 16).|
+  |`hint.spread`|*Nombre*|Indique au système le nombre de nœuds qui doivent être utilisés par l’exécution simultanée des sous- `partition` requêtes. *Valeur par défaut*: 1.|
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 L’opérateur retourne une Union des résultats de l’application de la sous-requête à chaque partition des données d’entrée.
 
@@ -76,7 +76,7 @@ StormEvents
 ) 
 
 ```
-|Type d’événement|État|Événements|Blesser|
+|Type d’événement|State|Événements|Blesser|
 |---|---|---|---|
 |Grêle|WYOMING|108|0|
 |Vent élevé|WYOMING|81|5|

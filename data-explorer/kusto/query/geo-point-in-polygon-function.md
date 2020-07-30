@@ -8,28 +8,28 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/10/2020
-ms.openlocfilehash: 96e3cfeba0002aa48a4300a994e9e12610deb9a3
-ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
+ms.openlocfilehash: 49b3e8b92d022ac5d1d8191bef8f00436b9f7211
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86280568"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347797"
 ---
 # <a name="geo_point_in_polygon"></a>geo_point_in_polygon()
 
 Calcule si les coordonnées géospatiales se trouvent à l’intérieur d’un polygone ou d’un multipolygone sur la terre.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `geo_point_in_polygon(`*longitude* `, ` *Latitude* `, ` *polygone*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *longitude*: coordonnée géographique, valeur de longitude en degrés. La valeur valide est un nombre réel et dans la plage [-180, + 180].
 * *Latitude*: coordonnée géographique, valeur de latitude en degrés. La valeur valide est un nombre réel et dans la plage [-90, + 90].
 * *polygone*: polygone ou multipolygone au [format géojson](https://tools.ietf.org/html/rfc7946) et d’un type de données [dynamique](./scalar-data-types/dynamic.md) .
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Indique si les coordonnées géospatiales sont à l’intérieur d’un polygone. Si les coordonnées ou le polygone ne sont pas valides, la requête produira un résultat NULL. 
 
@@ -57,7 +57,7 @@ dynamique ({"type" : "MultiPolygon", "coordinates" : [[LinearRingShell, Linear
 > * L’utilisation de polygones littéraux peut entraîner de meilleures performances.
 > * Si vous souhaitez savoir si l’un des polygones contient un point, procédez comme suit : pliez la collection de polygones en un multipolygone. Interrogez ensuite ce multipolygone. Cela peut améliorer les performances. Reportez-vous à l’exemple ci-dessous. 
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 Manhattan Island sans Park Central.
 

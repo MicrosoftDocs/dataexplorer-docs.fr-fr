@@ -1,6 +1,6 @@
 ---
-title: trim_end() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit trim_end () dans Azure Data Explorer.
+title: trim_end ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit trim_end () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a6f6ffc264cb436fc61d74f08dfded915caa05d4
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: cab78680a3b996234724bc052d75959928520289
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81505642"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87339848"
 ---
 # <a name="trim_end"></a>trim_end()
 
-Supprime la correspondance de fuite de l’expression régulière spécifiée.
+Supprime la correspondance de fin de l’expression régulière spécifiée.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`trim_end(`*texte regex* `,` *text*`)`
+`trim_end(`*expression régulière* `,` *texte*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *regex*: Chaîne ou [expression régulière](re2.md) à couper à partir de la fin du *texte*.  
-* *texte*: Une chaîne.
+* *Regex*: chaîne ou [expression régulière](re2.md) à tronquer à partir de la fin du *texte*.  
+* *Text*: chaîne.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-*texte* après la coupe des allumettes de *regex* trouvé à la fin du *texte*.
+*texte* après le rognage des correspondances de l' *expression régulière* trouvée à la fin du *texte*.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
-Déclaration de soufflet garnitures *sous-cordes* de la fin de *string_to_trim*:
+L’instruction « souffle » supprime la *sous-chaîne* à partir de la fin de *string_to_trim*:
 
 ```kusto
 let string_to_trim = @"bing.com";
@@ -46,7 +46,7 @@ print string_to_trim = string_to_trim,trimmed_string = trim_end(substring,string
 |--------------|--------------|
 |bing.com      |bing          |
 
-La déclaration suivante coupe tous les caractères non-mots de la fin de la chaîne :
+L’instruction Next supprime tous les caractères non alphabétiques à partir de la fin de la chaîne :
 
 ```kusto
 print str = strcat("-  ","Te st",x,@"// $")
@@ -55,8 +55,8 @@ print str = strcat("-  ","Te st",x,@"// $")
 
 |str          |trimmed_str|
 |-------------|-----------|
-|- Te st1// $|- Te st1  |
-|- Te st2// $|- Te st2  |
-|- Te st3// $|- Te st3  |
-|- Te st4// $|- Te st4  |
-|- Te st5// $|- Te st5  |
+|-Te ST1//$|-Te ST1  |
+|-Te ST2//$|-Te ST2  |
+|-Te ST3//$|-Te ST3  |
+|-Te ST4//$|-Te ST4  |
+|-Te ST5//$|-Te ST5  |

@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b40ca669df7671b1451166f6bfc1c7c680713166
-ms.sourcegitcommit: 1f50c6688a2b8d8a3976c0cd0ef40cde2ef76749
+ms.openlocfilehash: 75f1c92dfb76c56894d1f38dec24a31690f3f789
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84202957"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349837"
 ---
-# <a name="active_users_count-plugin"></a>plug-in active_users_count
+# <a name="active_users_count-plugin"></a>active_users_count plugin
 
 Calcule le nombre de valeurs distinctes, où chaque valeur est apparue dans au moins un nombre minimal de périodes dans une période de lookback.
 
@@ -25,11 +25,11 @@ Utile pour le calcul de nombres distincts de « ventilateurs » uniquement, sa
 T | evaluate active_users_count(id, datetime_column, startofday(ago(30d)), startofday(now()), 7d, 1d, 2, 7d, dim1, dim2, dim3)
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `| evaluate` `active_users_count(` *IdColumn* `,` *TimelineColumn* `,` *Start* `,` *end* `,` *LookbackWindow* `,` *period* `,` *ActivePeriodsCount* `,` *bin* `,` [*dim1* `,` *dim2* `,` ...]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *T*: expression tabulaire d’entrée.
 * *IdColumn*: nom de la colonne avec des valeurs d’ID qui représentent l’activité de l’utilisateur. 
@@ -42,7 +42,7 @@ T | evaluate active_users_count(id, datetime_column, startofday(ago(30d)), start
 * *Bin*: valeur constante scalaire de la période de l’étape d’analyse. Peut être une valeur numérique/DateTime/timestamp, ou une chaîne qui est `week` / `month` / `year` . Toutes les périodes seront les fonctions [startOfWeek](startofweekfunction.md) / [StartOfMonth](startofmonthfunction.md) / [STARTOFYEAR](startofyearfunction.md) correspondantes.
 * *dim1*, *dim2*,... : (facultatif) liste des colonnes de dimensions qui découpent le calcul des métriques d’activité.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Retourne une table qui a des valeurs de comptage de valeurs pour les ID qui sont apparues dans ActivePeriodCounts au cours des périodes suivantes : la période lookback, chaque période de chronologie et chaque combinaison de dimensions existante.
 
@@ -53,7 +53,7 @@ Le schéma de la table de sortie est le suivant :
 |type : à partir de *TimelineColumn*|..|..|..|long|
 
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 Calculez le nombre hebdomadaire d’utilisateurs distincts qui apparaissaient dans au moins trois jours différents sur une période de huit jours précédents. Période d’analyse : 2018 juillet.
 

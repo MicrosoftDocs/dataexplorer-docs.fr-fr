@@ -8,31 +8,31 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7f8464ed7dca8d712900bb7a1047875b6292d243
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: 2fc8ee7e8c7ab3ce372d786ec87edf55265e1249
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85265012"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348443"
 ---
 # <a name="dcount-aggregation-function"></a>DCount () (fonction d’agrégation)
 
 Retourne une estimation du nombre de valeurs distinctes prises par une expression scalaire dans le groupe de résumé.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 ... `|` `summarize` `dcount` `(`*`Expr`*[, *`Accuracy`*]`)` ...
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Expr*: expression scalaire dont les valeurs distinctes doivent être comptées.
 * *Précision*: un `int` littéral facultatif qui définit la précision d’estimation demandée. Voir ci-dessous pour connaître les valeurs prises en charge. S’il n’est pas spécifié, la valeur par défaut `1` est utilisée.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Retourne une estimation du nombre de valeurs distinctes de *`Expr`* dans le groupe.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
 PageViewLog | summarize countries=dcount(country) by continent
@@ -40,7 +40,7 @@ PageViewLog | summarize countries=dcount(country) by continent
 
 :::image type="content" source="images/dcount-aggfunction/dcount.png" alt-text="Nombre D":::
 
-**Notes**
+**Remarques**
 
 La `dcount()` fonction d’agrégation est principalement utile pour estimer la cardinalité des jeux énormes. Elle génère des performances plus précises et peut retourner un résultat qui varie entre les exécutions. L’ordre des entrées peut avoir un effet sur sa sortie.
 
@@ -67,7 +67,7 @@ La `dcount()` fonction Aggregate utilise une variante de l' [algorithme HYPERLOG
 |       0|      1.6|2<sup>12</sup>|
 |       1|      0,8|2<sup>14</sup>|
 |       2|      0.4|2<sup>16</sup>|
-|       3|     0.28|2<sup>17</sup>|
+|       3|     0,28|2<sup>17</sup>|
 |       4|      0.2|2<sup>18</sup>|
 
 > [!NOTE]

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: b70ee322d4718f78a37144b650a147c5c9965a60
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: 13cc0edad5e0e4673c34e7e5b1b517f097fa4e9a
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85129020"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346182"
 ---
 # <a name="percentile-percentiles-aggregation-function"></a>centile (), centile () (fonction d’agrégation)
 
@@ -24,7 +24,7 @@ La précision dépend de la densité de population dans la région du centile. C
 * `percentilesw()`est similaire `percentilew()` à, mais calcule un nombre de valeurs de centile pondérées, ce qui est plus rapide que le calcul individuel de chaque centile.
 * `percentilew()`et `percentilesw()` vous permettent de calculer des centile pondérés. Les centile pondérés calculent les centile donnés d’une manière « pondérée », en traitant chaque valeur comme si elle était répétée `weight` , dans l’entrée.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 résumer `percentile(` *expr* `,` *centile*`)`
 
@@ -42,18 +42,18 @@ résumer `percentilesw_array(` *expr* `,` *WeightExpr* `,` *Percentile1* [ `,` *
 
 résumer le `percentilesw_array(` *Expr* `,` *WeightExpr* `,` *tableau dynamique* expr WeightExpr`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * `*Expr*`: Expression qui sera utilisée pour le calcul de l’agrégation.
 * `*WeightExpr*`: Expression qui sera utilisée comme pondération des valeurs pour le calcul de l’agrégation.
 * `*Percentile*`: Constante double qui spécifie le centile.
 * `*Dynamic array*`: liste de centiles dans un tableau dynamique de nombres entiers ou à virgule flottante.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Retourne une estimation pour `*Expr*` les centiles spécifiés dans le groupe. 
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 La valeur de `Duration` est supérieure à 95% de l’échantillon défini et inférieure à 5% de l’échantillon.
 
@@ -83,7 +83,7 @@ Supposons que vous mesurez de façon répétée l’heure (durée) à laquelle u
 
 Utilisez `summarize percentilesw(Duration, BucketSize, ...)` pour calculer les centiles donnés d’une manière « pondérée ». Traitez chaque valeur de Duration comme si elle était répétée BucketSize fois dans l’entrée, sans avoir réellement besoin de matérialiser ces enregistrements.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 Un client a un ensemble de valeurs de latence en millisecondes : `{ 1, 1, 2, 2, 2, 5, 7, 7, 12, 12, 15, 15, 15, 18, 21, 22, 26, 35 }` .
 

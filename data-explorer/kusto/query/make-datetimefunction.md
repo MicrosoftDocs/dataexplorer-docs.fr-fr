@@ -1,6 +1,6 @@
 ---
-title: make_datetime() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit make_datetime() dans Azure Data Explorer.
+title: make_datetime ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit make_datetime () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,43 +8,43 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: c51b99e4d668ec4a5f96cdfd72442d7bcab553a5
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 589be4fbbc285309e86647ce8d7392840aedea0e
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81512918"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346998"
 ---
 # <a name="make_datetime"></a>make_datetime()
 
-Crée une valeur scalaire [d’heure](./scalar-data-types/datetime.md) de date à partir de la date et de l’heure spécifiées.
+Crée une valeur scalaire [DateTime](./scalar-data-types/datetime.md) à partir de la date et de l’heure spécifiées.
 
 ```kusto
 make_datetime(2017,10,01,12,10) == datetime(2017-10-01 12:10)
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`make_datetime(`*année,**mois,**jour*`)`
+`make_datetime(`*année*,*mois*,*jour*`)`
 
-`make_datetime(`*année*,*mois,**jour,**heure,**minute*`)`
+`make_datetime(`*année*,*mois*,*jour*,*heure*,*minute*`)`
 
-`make_datetime(`*année*,*mois*,*jour,**heure,**minute*,*deuxième*`)`
+`make_datetime(`*année*,*mois*,*jour*,*heure*,*minute*,*seconde*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *année*: année (valeur integer, de 0 à 9999)
-* *mois*: mois (valeur integer, de 1 à 12)
-* *jour*: jour (valeur integer, de 1 à 28-31)
-* *heure*: heure (valeur integer, de 0 à 23)
-* *minute*: minute (valeur integer, de 0 à 59)
-* *deuxième*: deuxième (valeur réelle, de 0 à 59.99999999)
+* *year*: Year (valeur entière comprise entre 0 et 9999)
+* *Month*: month (valeur entière, comprise entre 1 et 12)
+* *Day*: Day (valeur entière comprise entre 1 et 28-31)
+* *heure*: heure (valeur entière comprise entre 0 et 23)
+* *minute*: minute (valeur entière comprise entre 0 et 59)
+* *seconde*: seconde (valeur réelle, comprise entre 0 et 59,9999999)
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Si la création est réussie, le résultat sera une valeur [datetime,](./scalar-data-types/datetime.md) sinon, le résultat sera nul.
+Si la création réussit, le résultat sera une valeur [DateTime](./scalar-data-types/datetime.md) ; sinon, le résultat sera null.
  
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
 print year_month_day = make_datetime(2017,10,01)

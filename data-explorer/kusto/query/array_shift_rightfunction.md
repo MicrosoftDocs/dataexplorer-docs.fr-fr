@@ -8,28 +8,28 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/11/2019
-ms.openlocfilehash: 28a44365d6d79bf30ec188146d989f2af2ad12c1
-ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
+ms.openlocfilehash: 866f7865abe2debeab22bfbf13bc7641d9bc5078
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/18/2020
-ms.locfileid: "83550654"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349616"
 ---
 # <a name="array_shift_right"></a>array_shift_right()
 
 `array_shift_right()`déplace les valeurs à l’intérieur d’un tableau vers la droite.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `array_shift_right(`*`arr`*, *`shift_count`* [, *`fill_value`* ]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *`arr`*: Tableau d’entrée à fractionner, doit être un tableau dynamique.
 * *`shift_count`*: Entier spécifiant le nombre de positions que les éléments du tableau seront décalés vers la droite. Si la valeur est négative, les éléments sont décalés vers la gauche.
 * *`fill_value`*: valeur scalaire utilisée pour insérer des éléments à la place de ceux qui ont été déplacés et supprimés. Valeur par défaut : valeur null ou chaîne vide (selon le type *arr* ).
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Tableau dynamique contenant la même quantité d’éléments que dans le tableau d’origine. Chaque élément a été déplacé en fonction de *`shift_count`* . Les nouveaux éléments ajoutés à la place des éléments supprimés auront la valeur *`fill_value`* .
 
@@ -39,7 +39,7 @@ Tableau dynamique contenant la même quantité d’éléments que dans le tablea
 * Pour faire pivoter un tableau vers la droite, consultez [array_rotate_right ()](array_rotate_rightfunction.md).
 * Pour faire pivoter le tableau vers la gauche, consultez [array_rotate_left ()](array_rotate_leftfunction.md).
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 * Décalage vers la droite de deux positions :
 

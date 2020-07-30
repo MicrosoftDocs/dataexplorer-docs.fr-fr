@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/09/2019
-ms.openlocfilehash: 1281e2afdf9770975c6f6f74399f9815adaec045
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: f85c2c45ff4e69ba59f2a13313c8c2ac494c56a6
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83371063"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87340987"
 ---
 # <a name="tdigest_merge"></a>tdigest_merge()
 
@@ -21,21 +21,21 @@ Fusionne `tdigest` les résultats (version scalaire de la version de l’agréga
 
 En savoir plus sur l’algorithme sous-jacent (T-Digest) et l’erreur estimée [ici](percentiles-aggfunction.md#estimation-error-in-percentiles).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `merge_tdigests(`*Expr1* `,` *Expr2*`, ...)`
 
 `tdigest_merge(`*Expr1* `,` *Expr2* `, ...)` -Un alias.
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * Colonnes dont les `tdigest` valeurs doivent être fusionnées.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Résultat de la fusion des colonnes `*Expr1*` , `*Expr2*` ,... `*ExprN*` à un `tdigest` .
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

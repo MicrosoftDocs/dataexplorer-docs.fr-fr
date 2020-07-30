@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 74acab0dc4f0fbdaf7c77e609db3e41f875f2cad
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 233f5f7f6e6064b10d1385eaef8a28302368e74b
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373149"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345995"
 ---
 # <a name="project-reorder-operator"></a>project-reorder, opérateur
 
@@ -23,17 +23,17 @@ Réorganise les colonnes dans la sortie de résultat.
 T | project-reorder Col2, Col1, Col* asc
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `| project-reorder` *ColumnNameOrPattern* [ `asc` | `desc` ] [ `,` ...]
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *T*: table d’entrée.
 * *ColumnNameOrPattern :* Nom du modèle de caractère générique de colonne ou de colonne ajouté à la sortie.
 * Pour les modèles de caractères génériques : spécifier `asc` ou `desc` ordonner les colonnes à l’aide de leurs noms dans l’ordre croissant ou décroissant. Si `asc` ou `desc` ne sont pas spécifiés, l’ordre est déterminé par les colonnes correspondantes telles qu’elles apparaissent dans la table source.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Table qui contient des colonnes dans l’ordre spécifié par les arguments de l’opérateur. `project-reorder`ne renomme pas ou ne supprime pas les colonnes de la table. par conséquent, toutes les colonnes qui existaient dans la table source apparaissent dans la table de résultats.
 
@@ -46,7 +46,7 @@ Table qui contient des colonnes dans l’ordre spécifié par les arguments de l
 * Utilisez [`project-rename`](projectrenameoperator.md) pour renommer des colonnes.
 
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 Réorganiser une table avec trois colonnes (a, b, c) pour que la deuxième colonne (b) s’affiche en premier.
 

@@ -8,24 +8,24 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: d01b3b5178801fe1b5e55f51987564674ce4aeae
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: 519ac6b38a73cfc7334094ef503d1d20c7d2ecb9
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85128629"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348222"
 ---
-# <a name="evaluate-operator-plugins"></a>évaluer les plug-ins d’opérateur
+# <a name="evaluate-operator-plugins"></a>Plug-ins de l’opérateur evaluate
 
 Appelle une extension de requête côté service (plug-in).
 
 L' `evaluate` opérateur est un opérateur tabulaire qui donne la possibilité d’appeler des extensions de langage de requête appelées **plug-ins**. Les plug-ins peuvent être activés ou désactivés (contrairement à d’autres constructions de langage, qui sont toujours disponibles) et ne sont pas « liés » par la nature relationnelle de la langue (par exemple, ils peuvent ne pas avoir un schéma de sortie prédéfini, déterminé statiquement).
 
-**Syntaxe** 
+## <a name="syntax"></a>Syntaxe 
 
 [*T* `|` ] `evaluate` [ *evaluateParameters* ] *PluginName* `(` [*PluginArg1* [ `,` *PluginArg2*]...`)`
 
-Où :
+Où :
 
 * *T* est une entrée tabulaire facultative dans le plug-in. (Certains plug-ins n’acceptent aucune entrée et agissent comme une source de données tabulaires.)
 * *PluginName* est le nom obligatoire du plug-in appelé.
@@ -40,7 +40,7 @@ Les paramètres suivants sont pris en charge :
   |`hint.pass_filters` |`true`, `false`| Autorisez `evaluate` l’opérateur à transférer tous les filtres correspondants avant le plug-in. Le filtre est considéré comme « mis en correspondance » s’il fait référence à une colonne existante avant l' `evaluate` opérateur. Valeur par défaut : `false` |
   |`hint.pass_filters_column` |*column_name*| Autorisez l’opérateur de plug-in à transférer des filtres faisant référence à *column_name* avant le plug-in. Le paramètre peut être utilisé plusieurs fois avec des noms de colonnes différents. |
 
-**Notes**
+**Remarques**
 
 * Syntaxiquement, `evaluate` se comporte de la même façon que l' [opérateur d’appel](./invokeoperator.md), qui appelle des fonctions tabulaires.
 * Les plug-ins fournis par le biais de l’opérateur Evaluate ne sont pas liés par les règles régulières d’exécution de la requête ou d’évaluation des arguments.

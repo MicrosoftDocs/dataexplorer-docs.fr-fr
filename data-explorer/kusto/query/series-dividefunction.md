@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 7d5bdba030687c17c355eb72ce2fc9c358c10ebd
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 39252fb8e7233ddc3532003afc7a131505cd4282
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372848"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345077"
 ---
 # <a name="series_divide"></a>series_divide()
 
 Calcule la division au niveau des éléments de deux entrées de série numérique.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `series_divide(`*Series1* `,` *Series2*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Series1, Series2*: entrez des tableaux numériques, le premier étant un élément, divisé par le second en un résultat de tableau dynamique. Tous les arguments doivent être des tableaux dynamiques. 
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Tableau dynamique de l’opération de division par élément calculé entre les deux entrées. Tout élément non numérique ou élément non existant (tableaux de tailles différentes) produit une `null` valeur d’élément.
 
 Remarque : la série de résultats est de type double, même si les entrées sont des entiers. La division par zéro suit la double division par zéro (par exemple, 2/0 donne double (+ INF)).
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

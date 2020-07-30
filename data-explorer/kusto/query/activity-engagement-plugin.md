@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 9aa85bcb12cd5f8d836f58ea9d16a318d8a40506
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: cdee53ad7f46aacb71b8a8277e5b875e60438874
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83225953"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349820"
 ---
 # <a name="activity_engagement-plugin"></a>plug-in activity_engagement
 
@@ -25,11 +25,11 @@ activity_engagement plug-in peut être utilisé pour le calcul de UAQ/WAU/MAU (a
 T | evaluate activity_engagement(id, datetime_column, 1d, 30d)
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `| evaluate` `activity_engagement(` *IdColumn* `,` *TimelineColumn* `,` [*Start* `,` *end* `,` ] *InnerActivityWindow* `,` *OuterActivityWindow* [ `,` *dim1* `,` *dim2* `,` ...]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *T*: expression tabulaire d’entrée.
 * *IdColumn*: nom de la colonne avec des valeurs d’ID qui représentent l’activité de l’utilisateur. 
@@ -40,7 +40,7 @@ T | evaluate activity_engagement(id, datetime_column, 1d, 30d)
 * *OuterActivityWindow*: scalaire avec la valeur de la période de la fenêtre d’analyse de l’étendue externe.
 * *dim1*, *dim2*,... : (facultatif) liste des colonnes de dimensions qui découpent le calcul des métriques d’activité.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Retourne une table qui contient (nombre distinct de valeurs d’ID dans la fenêtre de l’étendue interne, le nombre de valeurs d’ID dans la fenêtre de l’étendue externe et le ratio d’activité) pour chaque période de la fenêtre de l’étendue interne et pour chaque combinaison de dimensions existante.
 
@@ -51,7 +51,7 @@ Le schéma de la table de sortie est le suivant :
 |type : à partir de *TimelineColumn*|long|long|double|..|..|..|
 
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ### <a name="dauwau-calculation"></a>Calcul UAQ/WAU
 

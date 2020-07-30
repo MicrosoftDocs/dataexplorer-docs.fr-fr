@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 8476680ad5b8206dcd7dfe98bf116bb5b6dcefdc
-ms.sourcegitcommit: 085e212fe9d497ee6f9f477dd0d5077f7a3e492e
+ms.openlocfilehash: a81c5faadb51b99cdcd233132f9b6a4843e3ce34
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85133449"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345791"
 ---
 # <a name="restrict-statement"></a>Restrict, instruction
 
@@ -25,7 +25,7 @@ L’instruction Restrict limite l’ensemble des entités de table ou de vue qui
 
 Le scénario principal de l’instruction Restrict est destiné aux applications de couche intermédiaire qui acceptent les requêtes des utilisateurs et souhaitent appliquer un mécanisme de sécurité au niveau des lignes à ces requêtes. L’application de niveau intermédiaire peut préfixer la requête de l’utilisateur avec un **modèle logique**, un ensemble d’instructions Let définissant des vues qui limitent l’accès de l’utilisateur aux données (par exemple, `T | where UserId == "..."` ). Lorsque la dernière instruction est ajoutée, elle limite l’accès de l’utilisateur au modèle logique uniquement.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `restrict``access` `to` `(` [*EntitySpecifier* [ `,` ...]]`)`
 
@@ -36,11 +36,11 @@ Où *EntitySpecifier* est l’un des éléments suivants :
 
 Toutes les tables, vues tabulaires ou modèles qui ne sont pas spécifiés par l’instruction Restrict deviennent « invisibles » pour le reste de la requête. 
 
-**Notes**
+**Remarques**
 
 L’instruction Restrict peut être utilisée pour restreindre l’accès aux entités d’une autre base de données ou d’un autre cluster (les caractères génériques ne sont pas pris en charge dans les noms de cluster).
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 L’instruction Restrict peut obtenir un ou plusieurs paramètres qui définissent la restriction permissive lors de la résolution de noms de l’entité. L’entité peut être :
 - [instruction Let](./letstatement.md) qui apparaît avant l' `restrict` instruction. 
@@ -80,7 +80,7 @@ restricts access to (database('DB2').*);
 ```
 
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 L’exemple suivant montre comment une application de couche intermédiaire peut ajouter une requête d’utilisateur à un modèle logique qui empêche l’utilisateur d’interroger les données d’un autre utilisateur.
 

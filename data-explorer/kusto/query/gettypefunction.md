@@ -1,6 +1,6 @@
 ---
-title: gettype() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit gettype() dans Azure Data Explorer.
+title: GetType ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit GetType () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 3a28032320948f12b2f91febc9f59c7b35ad084e
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 0efa07b7a1b050fe81ce2f369e8df5af4c05e212
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81514380"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347661"
 ---
 # <a name="gettype"></a>gettype()
 
-Retourne le type de temps d’exécution de son seul argument.
+Retourne le type au moment de l’exécution de son argument unique.
 
-Le type de temps d’exécution peut être différent du `dynamic`type nominal (statique) pour les expressions dont le type nominal est ; dans de `gettype()` tels cas peut être utile pour révéler le type de la valeur réelle (comment la valeur est codée dans la mémoire).
+Le type au moment de l’exécution peut être différent du type nominal (statique) pour les expressions dont le type nominal est `dynamic` ; dans ce cas, `gettype()` il peut être utile de révéler le type l’de la valeur réelle (comment la valeur est encodée en mémoire).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `gettype(`*Expr*`)`
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Une chaîne représentant le type de runtime de son seul argument.
+Chaîne représentant le type au moment de l’exécution de son argument unique.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
-|Expression                          |Retours      |
+|Expression                          |Retourne      |
 |------------------------------------|-------------|
 |`gettype("a")`                      |`string`     |
 |`gettype(111)`                      |`long`       |

@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: bfa5286a03d06282682953a23c6b2a2705c58a9c
-ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
+ms.openlocfilehash: 86e3ce4f1cbb957ebd126a8493ebb6b7bc5ac66b
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84717068"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349412"
 ---
-# <a name="autocluster-plugin"></a>plug-in de clusters
+# <a name="autocluster-plugin"></a>autocluster, plug-in
 
 ```kusto
 T | evaluate autocluster()
@@ -23,11 +23,11 @@ T | evaluate autocluster()
 
 `autocluster`recherche des modèles communs d’attributs discrets (dimensions) dans les données. Il réduit ensuite les résultats de la requête d’origine, qu’il s’agisse de 100 ou 100 000 lignes, avec un petit nombre de modèles. Le plug-in a été développé pour faciliter l’analyse des défaillances (telles que les exceptions ou les incidents), mais peut éventuellement fonctionner sur n’importe quel jeu de données filtré.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `T | evaluate autocluster(`*arguments*`)`
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Le `autocluster` plug-in retourne un ensemble de modèles (généralement petit). Les modèles capturent des portions des données avec des valeurs communes partagées sur plusieurs attributs discrets. Chaque modèle dans les résultats est représenté par une ligne.
 

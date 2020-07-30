@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 9f8afae2413d65618cf6b6e2f400df2500b06078
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 4222e0672290a6d934382dd6f922aec082a19af7
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618041"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87338675"
 ---
 # <a name="variance-aggregation-function"></a>variance () (fonction d’agrégation)
 
@@ -25,19 +25,19 @@ Calcule la variance de *expr* dans le groupe, en considérant le groupe comme un
 
 * Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`variance(`résumer *expr*`)`
+résumer `variance(` *expr*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Expr*: expression qui sera utilisée pour le calcul de l’agrégation. 
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Valeur de variance de *expr* dans le groupe.
  
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ```kusto
 range x from 1 to 5 step 1

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/26/2019
-ms.openlocfilehash: 7aafc6ce041395a914787ed2b406d88aa9910238
-ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
+ms.openlocfilehash: 21a57e4c49e982fbb113917abe173f89426c74ed
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84717158"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345145"
 ---
 # <a name="series_decompose_forecast"></a>series_decompose_forecast()
 
@@ -21,11 +21,11 @@ Prévisions basées sur la décomposition des séries.
 
 Prend une expression contenant une série (tableau numérique dynamique) comme entrée, et prédit les valeurs des derniers points de fin. Pour plus d’informations, consultez [series_decompose](series-decomposefunction.md).
  
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `series_decompose_forecast(`*Série* `,` *Points* `[,` Caractère *saisonnier* `,` *Tendance* `,` *Seasonality_threshold*`])`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Série*: cellule de tableau dynamique de valeurs numériques. En général, le résultat des opérateurs [Make-Series](make-seriesoperator.md) ou [make_list](makelist-aggfunction.md) .
 * *Points*: entier spécifiant le nombre de points à la fin de la série à prédire (prévision). Ces points sont exclus du processus d’apprentissage (régression).
@@ -39,7 +39,7 @@ Prend une expression contenant une série (tableau numérique dynamique) comme e
     * `none`: Aucune tendance, ignorer l’extraction de ce composant.
 * *Seasonality_threshold*: seuil du score saisonnier lorsque le caractère *saisonnier* est défini sur détection automatique. Le seuil de score par défaut est `0.6` . Pour plus d’informations, consultez [series_periods_detect](series-periods-detectfunction.md).
 
-**Renvoi**
+**Renvoie**
 
  Tableau dynamique avec la série prévue.
 
@@ -47,7 +47,7 @@ Prend une expression contenant une série (tableau numérique dynamique) comme e
 > * Le tableau dynamique de la série d’entrée d’origine doit inclure un nombre d’emplacements de *points* à prévoir. La prévision est généralement effectuée à l’aide de [Make-Series](make-seriesoperator.md) et en spécifiant l’heure de fin dans la plage qui comprend la période de prévision.
 > * Les fonctions caractère saisonnier ou tendance doivent être activées. dans le cas contraire, la fonction est redondante et retourne simplement une série remplie de zéros.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 Dans l’exemple suivant, nous générons une série de quatre semaines dans un grain horaire, avec un caractère saisonnier hebdomadaire et une petite tendance à la hausse. Nous utilisons ensuite `make-series` et ajoutons une autre semaine vide à la série. `series_decompose_forecast`est appelé avec une semaine (24 * 7 points) et il détecte automatiquement le caractère saisonnier et la tendance, et génère une prévision de la période de cinq semaines entière.
 

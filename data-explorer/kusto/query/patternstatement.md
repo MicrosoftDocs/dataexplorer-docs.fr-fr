@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: c8031cd28a04949515ed50dbe37d3f8171d595d8
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: a4aae88f6ad435469719f8444bae9123975ee618
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85129003"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346216"
 ---
 # <a name="pattern-statement"></a>Pattern (instruction)
 
@@ -46,7 +46,7 @@ app("ApplicationX").StartEvents
 
 Cette requête génère une erreur à partir de Kusto, ce qui indique que les appels de modèle suivants ne peuvent pas être résolus : `app("ApplicationX")["StartEvents"]` et `app("ApplicationX")["StopEvents"]` .
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `declare``pattern` *PatternName*
 
@@ -67,7 +67,7 @@ app("ApplicationX").StartEvents
 
 L’expression fournie pour chaque modèle mis en correspondance est un nom de table ou une référence à une [instruction Let](letstatement.md).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `declare``pattern` *PatternName*  =  PatternName `(` *ArgName* `:` *ArgType* [ `,` ...] `)` [ `[` *Nom de chemin* `:` *PathArgType* `]` ]`{`
 &nbsp;&nbsp;&nbsp;&nbsp;`(` *ArgValue1* [ `,` *ArgValue2* ...] `)` [ `.[` * PathValue `]` ] `=` `{` *expression* `};` &nbsp; &nbsp; &nbsp; &nbsp; [ &nbsp; &nbsp; &nbsp; &nbsp; `(` *ArgValue1_2* [ `,` *ArgValue2_2* ...] `)` [ `.[` *PathValue_2* `]` ] `=` `{` *expression_2* `};` &nbsp; &nbsp; &nbsp; &nbsp; ... &nbsp; &nbsp; &nbsp; &nbsp; ]        `}`

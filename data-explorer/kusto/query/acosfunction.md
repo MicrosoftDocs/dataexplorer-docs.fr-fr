@@ -1,6 +1,6 @@
 ---
-title: acos() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit acos() dans Azure Data Explorer.
+title: ACOS ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit ACOS () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,26 +8,26 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: aa33714d57b319ba5a775385e8ee7d232addfe9d
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: d1daf36e85eec4c8543ba14be153a9d6069e1cd1
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81519327"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349854"
 ---
 # <a name="acos"></a>acos()
 
-Retourne l’angle dont la cosine est [`cos()`](cosfunction.md)le nombre spécifié (le fonctionnement inverse de ) .
+Retourne l’angle dont le cosinus est le nombre spécifié (l’opération inverse de [`cos()`](cosfunction.md) ).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`acos(`*X*`)`
+`acos(`*x*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *x*: Un vrai nombre dans la gamme [-1, 1].
+* *x*: nombre réel dans la plage [-1, 1].
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-* La valeur de l’arc cosine de`x`
-* `null`si `x` < -1 ou `x` > 1
+* Valeur du cosinus d’arc de`x`
+* `null`Si `x` <-1 ou `x` > 1

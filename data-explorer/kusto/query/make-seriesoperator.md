@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/16/2020
-ms.openlocfilehash: 5c1d25c0eaa0a3f52c18cf2f1e5e4200775b7d9d
-ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
+ms.openlocfilehash: 4f303726532da7ead1c2416f3d485979d045b0b2
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/18/2020
-ms.locfileid: "83550569"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346964"
 ---
 # <a name="make-series-operator"></a>opérateur make-series
 
@@ -23,11 +23,11 @@ Crée une série de valeurs agrégées spécifiées le long d’un axe spécifi�
 T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from datetime(2016-01-01) to datetime(2016-01-10) step 1d by fruit, supplier
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `| make-series` [*MakeSeriesParamters*] [*Column* `=` ] *Aggregation* [ `default` `=` *DefaultValue*] [ `,` ...] `on` *AxisColumn* [ `from` *Start*] [ `to` *end*] `step` *étape* [ `by` [*Column* `=` ] *GroupExpression* [ `,` ...]]
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Column :* nom facultatif d’une colonne de résultats. Prend par défaut un nom dérivé de l’expression.
 * *DefaultValue :* Valeur par défaut qui sera utilisée à la place des valeurs absentes. S’il n’y a pas de ligne avec des valeurs spécifiques de *AxisColumn* et *GroupExpression*, alors dans, les résultats de l’élément correspondant du tableau sont affectés à une valeur *DefaultValue*. Si *DefaultValue* est omis, 0 est utilisé par défaut. 
@@ -43,7 +43,7 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
   |---------------|-------------------------------------|------------------------------------------------------------------------------|
   |`kind`          |`nonempty`                               |Produit un résultat par défaut lorsque l’entrée de l’opérateur de série make est vide|                                
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Les lignes d’entrée sont organisées en groupes ayant les mêmes valeurs d' `by` expressions et l' `bin_at(` *AxisColumn* `, ` expression de début d'*étape*AxisColumn `, ` *start* `)` . Ensuite, les fonctions d’agrégation spécifiées sont calculées sur chaque groupe, générant une ligne pour chaque groupe. Le résultat contient les `by` colonnes, la colonne *AxisColumn* et également au moins une colonne pour chaque agrégat calculé. (L’agrégation qui ne prend pas en charge les colonnes multiples ou les résultats non numériques).
 
@@ -75,13 +75,13 @@ Il est recommandé d’utiliser la syntaxe principale de make-Series et non la s
 
 |Fonction|Description|
 |--------|-----------|
-|[any()](any-aggfunction.md)|Retourne une valeur non vide aléatoire pour le groupe|
+|[Any ()](any-aggfunction.md)|Retourne une valeur non vide aléatoire pour le groupe|
 |[Moy ()](avg-aggfunction.md)|Retourne une valeur moyenne dans le groupe|
 |[Count ()](count-aggfunction.md)|Retourne le nombre de groupes|
 |[countif()](countif-aggfunction.md)|Retourne un nombre avec le prédicat du groupe.|
 |[dcount()](dcount-aggfunction.md)|Retourne un nombre approximatif distinct des éléments de groupe|
-|[Max ()](max-aggfunction.md)|Retourne la valeur maximale dans le groupe|
-|[min ()](min-aggfunction.md)|Retourne la valeur minimale dans le groupe|
+|[max()](max-aggfunction.md)|Retourne la valeur maximale dans l'ensemble du groupe|
+|[min()](min-aggfunction.md)|Retourne la valeur minimale dans l'ensemble du groupe|
 |[ECARTYPE ()](stdev-aggfunction.md)|Retourne l’écart type de l’ensemble du groupe|
 |[Sum ()](sum-aggfunction.md)|Retourne la somme des éléments dans le groupe|
 |[variance()](variance-aggfunction.md)|Retourne la variance dans le groupe|

@@ -8,22 +8,22 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/03/2020
-ms.openlocfilehash: 6e6ef40fcdeb4942dc0924c86862ee8f6222ac12
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 1e94e8eca72e6cb679a84e7b91ea376b9ec4b29c
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227158"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347814"
 ---
 # <a name="geo_point_in_circle"></a>geo_point_in_circle()
 
 Calcule si les coordonnées géospatiales se trouvent à l’intérieur d’un cercle sur la terre.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `geo_point_in_circle(`*p_longitude* `, ` *p_latitude* `, ` *pc_longitude* `, ` *pc_latitude* `, ` *c_radius*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *p_longitude*: valeur de longitude de la coordonnée géographique en degrés. La valeur valide est un nombre réel et dans la plage [-180, + 180].
 * *p_latitude*: valeur de latitude de la coordonnée géographique en degrés. La valeur valide est un nombre réel et dans la plage [-90, + 90].
@@ -31,7 +31,7 @@ Calcule si les coordonnées géospatiales se trouvent à l’intérieur d’un c
 * *pc_latitude*: valeur de latitude de la coordonnée géographique du centre du cercle, en degrés. La valeur valide est un nombre réel et dans la plage [-90, + 90].
 * *c_radius*: rayon du cercle en mètres. La valeur valide doit être positive.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Indique si les coordonnées géospatiales sont à l’intérieur d’un cercle. Si les coordonnées ou le cercle ne sont pas valides, la requête produira un résultat NULL.
 
@@ -40,7 +40,7 @@ Indique si les coordonnées géospatiales sont à l’intérieur d’un cercle. 
 >* La [référence géodésique](https://en.wikipedia.org/wiki/Geodetic_datum) utilisée pour mesurer la distance sur la terre est une sphère.
 >* Un cercle est un capuchon sphérique sur la terre. Le rayon de l’extrémité est mesuré le long de la surface de la sphère.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 La requête suivante recherche tous les emplacements dans la zone définie par le cercle suivant : rayon de 18 kilomètres, centre aux coordonnées [-122,317404, 47,609119].
 

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/09/2020
-ms.openlocfilehash: 41f07f16641fd303c9b8e76b4924238378b6ccc9
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: b78bed51da8422dced4d57406c10721639b68ccc
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83224814"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346981"
 ---
 # <a name="make_list_with_nulls-aggregation-function"></a>make_list_with_nulls () (fonction d’agrégation)
 
@@ -21,15 +21,15 @@ Retourne un `dynamic` tableau (JSON) de toutes les valeurs de *expr* dans le gro
 
 * Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `summarize``make_list_with_nulls(` *Expr*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Expr*: expression qui sera utilisée pour le calcul de l’agrégation.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Retourne un `dynamic` tableau (JSON) de toutes les valeurs de *expr* dans le groupe, y compris les valeurs NULL.
 Si l’entrée de l' `summarize` opérateur n’est pas triée, l’ordre des éléments dans le tableau résultant n’est pas défini.

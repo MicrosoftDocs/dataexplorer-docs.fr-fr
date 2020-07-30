@@ -8,27 +8,27 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/01/2020
-ms.openlocfilehash: 6ef78d3078fc396d4ebfb782e54f31096a1e8777
-ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
+ms.openlocfilehash: bdb7bda617085ae1a7b3ead60c46c80c883943f4
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86280704"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347780"
 ---
-# <a name="geo_polygon_densify"></a>geo_polygon_densify ()
+# <a name="geo_polygon_densify"></a>geo_polygon_densify()
 
 Convertit les bords planaires Polygon ou multipolygone en géodésique en ajoutant des points intermédiaires.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `geo_polygon_densify(`*polygone* `, ` *tolérance*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *polygone*: polygone ou multipolygone au [format géojson](https://tools.ietf.org/html/rfc7946) et d’un type de données [dynamique](./scalar-data-types/dynamic.md) .
 * *Tolerance*: valeur numérique facultative qui définit la distance maximale en mètres entre le bord planaire d’origine et la chaîne d’arêtes géodésique convertie. Les valeurs prises en charge sont comprises dans la plage [0,1, 10000]. S’il n’est pas spécifié, la valeur par défaut `10` est utilisée.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Densified Polygon au [format géojson](https://tools.ietf.org/html/rfc7946) et d’un type de données [dynamique](./scalar-data-types/dynamic.md) . Si le polygone ou la tolérance n’est pas valide, la requête produira un résultat NULL.
 
@@ -60,7 +60,7 @@ dynamique ({"type" : "MultiPolygon", "coordinates" : [[LinearRingShell, Linear
 * Le [format géojson](https://tools.ietf.org/html/rfc7946) définit un bord entre deux points comme une ligne cartésienne droite.
 * La décision d’utiliser des arêtes géodésique ou planaires peut dépendre du jeu de données et est particulièrement pertinente dans les bords longs.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 L’exemple suivant densifies Manhattan Central Park Polygon. Les bords sont courts et la distance entre les bords planaires et leurs équivalents géodésique est inférieure à la distance spécifiée par Tolerance. Par conséquent, le résultat reste inchangé.
 

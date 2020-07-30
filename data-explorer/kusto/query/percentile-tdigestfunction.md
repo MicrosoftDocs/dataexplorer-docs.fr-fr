@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/10/2019
-ms.openlocfilehash: 1d93535ff2caff096a18e2324fd3015ca91fc5b4
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 814124dc0ae9fa5f26a198fafc1bf1d7fd2b83e4
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373248"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346199"
 ---
 # <a name="percentile_tdigest"></a>percentile_tdigest()
 
 Calcule le résultat de centile à partir des `tdigest` résultats (générés par [tdigest ()](tdigest-aggfunction.md) ou [tdigest_merge ()](tdigest-merge-aggfunction.md))
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `percentile_tdigest(`*`Expr`*`,`*Percentile1* [ `,` *typeLiteral*]`)`
 
@@ -27,14 +27,14 @@ Calcule le résultat de centile à partir des `tdigest` résultats (générés p
 
 `percentiles_array_tdigest(`*`Expr`*`,`*Tableau dynamique*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Expr*: expression qui a été générée par [`tdigest`](tdigest-aggfunction.md) ou [tdigest_merge ()](tdigest-merge-aggfunction.md).
 * *Centile* est une constante double qui spécifie le centile.
 * *typeLiteral*: littéral de type facultatif (par exemple, `typeof(long)` ). Si elle est fournie, le jeu de résultats sera de ce type. 
 * *Tableau dynamique*: liste de centiles dans un tableau dynamique de nombres entiers ou à virgule flottante.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Valeur centiles/percentilesw de chaque valeur dans *`Expr`* .
 
@@ -46,7 +46,7 @@ Valeur centiles/percentilesw de chaque valeur dans *`Expr`* .
 
 * Si *`Expr`* comprend `tdigest` des fonctions de types différents, ne fournissez pas le type. Le résultat sera de type dynamique. Consultez les exemples ci-dessous.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

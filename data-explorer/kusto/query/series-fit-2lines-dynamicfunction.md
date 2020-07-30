@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 6f1a6e4a80bfbc02f9e6f552ceca2ba1bb54eb08
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 85a034751c6e29b2ca78f1df9de045c1ac07c7fa
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372726"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87343904"
 ---
 # <a name="series_fit_2lines_dynamic"></a>series_fit_2lines_dynamic()
 
@@ -39,18 +39,18 @@ Prend une expression contenant un tableau numérique dynamique comme entrée et 
 
 Cet opérateur est semblable à [series_fit_2lines](series-fit-2linesfunction.md). Contrairement à `series-fit-2lines` , elle retourne un sac dynamique.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `series_fit_2lines_dynamic(`*x*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *x*: tableau dynamique de valeurs numériques.  
 
 > [!TIP]
 > La méthode la plus pratique pour utiliser cette fonction consiste à l’appliquer aux résultats de l’opérateur [Make-Series](make-seriesoperator.md) .
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

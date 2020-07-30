@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/28/2019
-ms.openlocfilehash: b8f9d6d27643855ba81b2c1791dfd939b53cac9a
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: 2191a26a0ee0bccd708c492690e58767d3cf52e9
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264876"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345621"
 ---
 # <a name="series_decompose_anomalies"></a>series_decompose_anomalies()
 
@@ -22,11 +22,11 @@ Pour plus d’informations, consultez [series_decompose ()](series-decomposefunc
 
 La fonction prend une expression contenant une série (tableau numérique dynamique) comme entrée et extrait des points anormaux avec des scores.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `series_decompose_anomalies (`*Série* `[, ` *Seuil* `,` Caractère *saisonnier* `,` *Tendance* `, ` *Test_points* `, ` *AD_method* `,` *Seasonality_threshold*`])`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Série*: cellule de tableau dynamique qui est un tableau de valeurs numériques, généralement le résultat des opérateurs [Make-Series](make-seriesoperator.md) ou [make_list](makelist-aggfunction.md)
 * *Seuil*: seuil d’anomalies, 1,5 par défaut (valeur k) pour la détection des anomalies légères ou plus fortes
@@ -44,7 +44,7 @@ La fonction prend une expression contenant une série (tableau numérique dynami
     * « Tukey » : [test de la limite de Tukey](https://en.wikipedia.org/wiki/Outlier#Tukey's_fences) avec une plage de centile de 25-75e standard pour plus d’informations sur les séries chronologiques résiduelles, consultez [series_outliers](series-outliersfunction.md)
 * *Seasonality_threshold*: seuil du score saisonnier lorsque le caractère *saisonnier* est défini sur détection automatique. Le seuil de score par défaut est `0.6` . Pour plus d’informations, consultez [series_periods_detect](series-periods-detectfunction.md)
 
-**Renvoi**
+**Renvoie**
 
  La fonction retourne les séries correspondantes suivantes :
 

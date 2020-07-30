@@ -1,6 +1,6 @@
 ---
-title: make_set_if() (fonction d’agrégation) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit make_set_if () (fonction d’agrégation) dans Azure Data Explorer.
+title: make_set_if () (fonction d’agrégation)-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit make_set_if () (fonction d’agrégation) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,42 +8,42 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1393e063fb0abb91b38a8b9e1edc0110e78b3638
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 8d6b26a13539d88aae57774cc35cf57d321b67f4
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81512646"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346896"
 ---
-# <a name="make_set_if-aggregation-function"></a>make_set_if)) (fonction d’agrégation)
+# <a name="make_set_if-aggregation-function"></a>make_set_if () (fonction d’agrégation)
 
-Retourne `dynamic` un tableau (JSON) de l’ensemble de valeurs distinctes *qu’Expr* prend `true`dans le groupe, pour lequel *Predicate* évalue à .
+Retourne un `dynamic` tableau (JSON) de l’ensemble de valeurs distinctes que *expr* prend dans le groupe, pour lequel le *prédicat* a la valeur `true` .
 
-* Ne peut être utilisé que dans le contexte de l’agrégation à l’intérieur [résumer](summarizeoperator.md)
+* Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`summarize``make_set_if(` *Expr*, *Predicate* [`,` *MaxSize*]`)`
+`summarize``make_set_if(` *Expr*, *prédicat* [ `,` *MaxSize*]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *Expr*: Expression qui sera utilisée pour le calcul de l’agrégation.
-* *Predicate*: Predicate qui `true` doit évaluer pour *Expr* à ajouter au résultat.
-* *MaxSize* est une limite d’intégrisation facultative sur le nombre maximum d’éléments retournés (par défaut est *1048576*). La valeur MaxSize ne peut excéder 1048576.
+* *Expr*: expression qui sera utilisée pour le calcul de l’agrégation.
+* *Predicate*: prédicat qui doit être évalué à pour que `true` *expr* soit ajouté au résultat.
+* *MaxSize* est une limite d’entier facultative sur le nombre maximal d’éléments retournés (la valeur par défaut est *1048576*). La valeur MaxSize ne peut pas dépasser 1048576.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Retourne `dynamic` un tableau (JSON) de l’ensemble de valeurs distinctes *qu’Expr* prend `true`dans le groupe, pour lequel *Predicate* évalue à .
+Retourne un `dynamic` tableau (JSON) de l’ensemble de valeurs distinctes que *expr* prend dans le groupe, pour lequel le *prédicat* a la valeur `true` .
 L’ordre de tri du tableau n’est pas défini.
 
 > [!TIP]
-> Pour ne compter que les valeurs distinctes, utilisez [dcountif()](dcountif-aggfunction.md)
+> Pour compter uniquement les valeurs distinctes, utilisez [dcountif ()](dcountif-aggfunction.md)
 
 **Voir aussi**
 
-[`make_set`](./makeset-aggfunction.md)fonction, qui fait la même chose, sans expression prédicat.
+[`make_set`](./makeset-aggfunction.md)fonction, qui fait la même chose, sans expression de prédicat.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
 let T = datatable(name:string, day_of_birth:long)

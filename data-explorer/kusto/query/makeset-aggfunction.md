@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/23/2020
-ms.openlocfilehash: e6eb481423e31e4dfa1b4e6c738ffb525e9aaef7
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: c85738928aa65bf2a4476f10afa065c2a8ca1faf
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618397"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346913"
 ---
 # <a name="make_set-aggregation-function"></a>make_set () (fonction d’agrégation)
 
@@ -21,19 +21,19 @@ Retourne un tableau (JSON) `dynamic` du jeu de valeurs distinctes prises par *Ex
 
 * Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`summarize``make_set(` *Expr* [`,` *MaxSize*]`)`
+`summarize``make_set(` *Expr* [ `,` *MaxSize*]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Expr*: expression pour le calcul de l’agrégation.
 * *MaxSize* est une limite d’entier facultative sur le nombre maximal d’éléments retournés (la valeur par défaut est *1048576*). La valeur MaxSize ne peut pas dépasser 1048576.
 
 > [!NOTE]
-> Une variante héritée et obsolète de cette fonction `makeset()` : a une limite par défaut de *MaxSize* = 128.
+> Une variante héritée et obsolète de cette fonction : `makeset()` a une limite par défaut de *MaxSize* = 128.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Retourne un tableau (JSON) `dynamic` du jeu de valeurs distinctes prises par *Expr* dans le groupe.
 L’ordre de tri du tableau n’est pas défini.
@@ -41,7 +41,7 @@ L’ordre de tri du tableau n’est pas défini.
 > [!TIP]
 > Pour compter uniquement des valeurs distinctes, utilisez [DCount ()](dcount-aggfunction.md)
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
 PageViewLog 
@@ -53,4 +53,4 @@ PageViewLog
 **Voir aussi**
 
 * Utilisez [`mv-expand`](./mvexpandoperator.md) l’opérateur pour la fonction opposée.
-* [`make_set_if`](./makesetif-aggfunction.md)est semblable à `make_set`, sauf qu’il accepte également un prédicat.
+* [`make_set_if`](./makesetif-aggfunction.md)est semblable à `make_set` , sauf qu’il accepte également un prédicat.

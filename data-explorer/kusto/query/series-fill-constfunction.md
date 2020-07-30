@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: e078919af16a9d2f7dadba0a309932b3a39b6ced
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: bb3f217b1ec0631f533a10433a7be368945667d7
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763249"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87344533"
 ---
 # <a name="series_fill_const"></a>series_fill_const()
 
@@ -21,18 +21,18 @@ Remplace les valeurs manquantes dans une série par une valeur de constante spé
 
 Accepte une expression contenant un tableau numérique dynamique comme entrée, remplace toutes les instances de missing_value_placeholder par les constant_value spécifiées et retourne le tableau résultant.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `series_fill_const(`*x* `[, ` *constant_value* `[,` *missing_value_placeholder*`]])`
 * Renverra la série *x* avec toutes les instances de *missing_value_placeholder* remplacées par *constant_value*.
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *x*: expression scalaire de tableau dynamique qui est un tableau de valeurs numériques.
 * *constant_value*: paramètre qui spécifie un espace réservé pour une valeur manquante à remplacer. La valeur par défaut est *0*. 
 * *missing_value_placeholder*: paramètre facultatif qui spécifie un espace réservé pour une valeur manquante à remplacer. La valeur par défaut est `double` (*null*).
 
-**Notes**
+**Remarques**
 * Vous pouvez créer une série qui remplit une valeur constante à l’aide de la `default = ` syntaxe *DefaultValue* (ou simplement en omettant qui suppose 0). Pour plus d’informations, consultez [Make-Series](make-seriesoperator.md).
 
 ```kusto
@@ -48,7 +48,7 @@ make-series num=count() default=long(null) on TimeStamp from ago(1d) to ago(1h) 
 * Le *missing_value_placeholder* peut être de n’importe quel type, qui sera converti en types d’éléments réels. Par conséquent, `double` (*null*), `long` (*null*) ou `int` (*null*) ont la même signification.
 * La fonction conserve le type d’origine des éléments du tableau. 
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

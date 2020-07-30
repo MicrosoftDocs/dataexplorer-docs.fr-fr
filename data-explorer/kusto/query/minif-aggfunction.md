@@ -1,6 +1,6 @@
 ---
-title: minif() (fonction d’agrégation) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit minif() (fonction d’agrégation) dans Azure Data Explorer.
+title: miniF () (fonction d’agrégation)-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit miniF () (fonction d’agrégation) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,35 +8,35 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 0aad254ec01e83bdb07734e5b309c1450512b446
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 91764aeb8c825a272c414df7a0572d3b8310e79f
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81512357"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346743"
 ---
-# <a name="minif-aggregation-function"></a>minif() (fonction d’agrégation)
+# <a name="minif-aggregation-function"></a>miniF () (fonction d’agrégation)
 
-Retourne la valeur minimale dans l’ensemble du `true`groupe pour lequel *Predicate* évalue à .
+Retourne la valeur minimale sur le groupe pour lequel le *prédicat* prend la valeur `true` .
 
-* Ne peut être utilisé que dans le contexte de l’agrégation à l’intérieur [résumer](summarizeoperator.md)
+* Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 
-Voir aussi - [min()](min-aggfunction.md) fonction, qui retourne la valeur minimale à travers le groupe sans expression prédicative.
+Voir également la fonction- [min ()](min-aggfunction.md) , qui retourne la valeur minimale dans le groupe sans expression de prédicat.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`summarize``minif(` *Expr*`,`Predicate Expr Predicate Expr*Predicate* Expr`)`
+`summarize``minif(` *Expr*, `,` *prédicat*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *Expr*: Expression qui sera utilisée pour le calcul de l’agrégation.
-* *Prédicat : prédicez*que si c’est vrai, la valeur calculée *Expr* sera vérifiée au minimum.
+* *Expr*: expression qui sera utilisée pour le calcul de l’agrégation.
+* *Predicate*: prédicat qui, si la valeur est true, la valeur calculée *expr* est vérifiée au minimum.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-La valeur minimale d’Expr à travers le `true`groupe pour lequel *Predicate* évalue à . *Expr*
+Valeur minimale de *expr* au sein du groupe pour lequel le *prédicat* prend la valeur `true` .
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ```kusto
 range x from 1 to 100 step 1

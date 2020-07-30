@@ -1,6 +1,6 @@
 ---
-title: opérateur distinct - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit l’opérateur distinct dans Azure Data Explorer.
+title: distinct, opérateur-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit l’opérateur distinct dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,38 +8,38 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 4287ca48d3fb5006e67a9266ea05287a7d8a06f6
-ms.sourcegitcommit: 29018b3db4ea7d015b1afa65d49ecf918cdff3d6
+ms.openlocfilehash: 233d3fdb0e25720b860a0c11515daec7c597dadd
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "82030364"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348341"
 ---
 # <a name="distinct-operator"></a>opérateur distinct
 
-Produit une table avec la combinaison distincte des colonnes fournies de la table d’entrée. 
+Produit une table avec la combinaison distincte des colonnes fournies dans la table d’entrée. 
 
 ```kusto
 T | distinct Column1, Column2
 ```
 
-Produit une table avec la combinaison distincte de toutes les colonnes dans la table d’entrée.
+Produit une table avec la combinaison distincte de toutes les colonnes de la table d’entrée.
 
 ```kusto
 T | distinct *
 ```
 
-**Exemple**
+## <a name="example"></a>Exemple
 
-Montre la combinaison distincte de fruits et de prix.
+Affiche la combinaison distincte des fruits et des prix.
 
 ```kusto
 Table | distinct fruit, price
 ```
 
-:::image type="content" source="images/distinctoperator/distinct.PNG" alt-text="Distinctes":::
+:::image type="content" source="images/distinctoperator/distinct.PNG" alt-text="Distinct":::
 
 **Remarques**
 
-* Contrairement `summarize by ...`à `distinct` , l’opérateur prend`*`en charge la fourniture d’un astérisque ( ) comme la clé du groupe, ce qui le rend plus facile à utiliser pour les tables larges.
-* Si le groupe par les clés `summarize by ...` sont de hautes cardinalités, l’utilisation avec la [stratégie de mélange](shufflequery.md) pourrait être utile.
+* Contrairement `summarize by ...` à, l' `distinct` opérateur prend en charge l’utilisation d’un astérisque ( `*` ) comme clé de groupe, ce qui facilite son utilisation pour les tables larges.
+* Si les clés Group by sont de hautes cardinales, l’utilisation `summarize by ...` de avec la [stratégie de lecture aléatoire](shufflequery.md) peut être utile.

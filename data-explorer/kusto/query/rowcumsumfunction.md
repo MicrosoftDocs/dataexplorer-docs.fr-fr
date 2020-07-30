@@ -1,6 +1,6 @@
 ---
-title: row_cumsum() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit row_cumsum() dans Azure Data Explorer.
+title: row_cumsum ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit row_cumsum () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 92ebec75dcd7e44d59f964dc735e857f22f1ad00
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 83dc48589fce7332c8e24d1e5a47c75a6cfca608
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81510215"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345723"
 ---
 # <a name="row_cumsum"></a>row_cumsum()
 
-Calcule la somme cumulative d’une colonne dans un [ensemble de rangées sérialisées](./windowsfunctions.md#serialized-row-set).
+Calcule la somme cumulée d’une colonne dans un [ensemble de lignes sérialisé](./windowsfunctions.md#serialized-row-set).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`row_cumsum``(` *Terme* `,` [ *Redémarrer*]`)`
+`row_cumsum``(` *Terme* [ `,` *redémarrer*]`)`
 
-* *Le terme* est une expression indiquant la valeur à résumer.
-  L’expression doit être un scalaire de `decimal` `int`l’un des types suivants: , , `long`, ou `real`. Les valeurs *à durée* nulle n’affectent pas la somme.
-* *Le redémarrage* est un `bool` argument facultatif de type qui indique quand l’opération d’accumulation doit être redémarrée (recul à 0). Il peut être utilisé pour indiquer les partitions des données; voir le deuxième exemple ci-dessous.
+* *Terme* est une expression indiquant la valeur à additionner.
+  L’expression doit être une scalaire de l’un des types suivants : `decimal` , `int` , `long` ou `real` . Les valeurs de *terme* NULL n’affectent pas la somme.
+* *Restart* est un argument facultatif de type `bool` qui indique à quel moment l’opération d’accumulation doit être redémarrée (rétablit la valeur 0). Il peut être utilisé pour indiquer des partitions de données ; consultez le deuxième exemple ci-dessous.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-La fonction renvoie la somme cumulative de son argument.
+La fonction retourne la somme cumulée de son argument.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
-L’exemple suivant montre comment calculer la somme cumulative des premiers même integers.
+L’exemple suivant montre comment calculer la somme cumulée des nombres entiers pairs.
 
 ```kusto
 datatable (a:long) [
@@ -51,7 +51,7 @@ a    | cs
 8    | 20
 10   | 30
 
-Cet exemple montre comment calculer la somme `salary`cumulative (ici, de ) `name`lorsque les données sont partitionnées (ici, par ):
+Cet exemple montre comment calculer la somme cumulée (ici, de `salary` ) lorsque les données sont partitionnées (ici, par `name` ) :
 
 ```kusto
 datatable (name:string, month:int, salary:long)
@@ -67,7 +67,7 @@ datatable (name:string, month:int, salary:long)
 | extend total=row_cumsum(salary, name != prev(name))
 ```
 
-name   | month  | Salaire  | total
+name   | month  | traitements  | total
 -------|--------|---------|------
 Alice  | 1      | 1 000    | 1 000
 Alice  | 2      | 2000    | 3000

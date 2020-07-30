@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 2603aab066a7f77ff36553d8898bb713ace990b7
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: 67e408653a4873dce3b5e8f21a91775573affbe2
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763801"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347015"
 ---
 # <a name="make_bag_if-aggregation-function"></a>make_bag_if () (fonction d’agrégation)
 
@@ -22,17 +22,17 @@ Retourne un `dynamic` conteneur de propriétés (JSON) (dictionnaire) de toutes 
 > [!NOTE]
 > Peut uniquement être utilisé dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `summarize``make_bag_if(` *Expr*, *prédicat* [ `,` *MaxSize*]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Expr*: expression de type `dynamic` qui sera utilisée pour le calcul de l’agrégation.
 * *Predicate*: prédicat qui doit être évalué à, afin que `true` *'expr'* soit ajouté au résultat.
 * *MaxSize*: limite d’entier facultative sur le nombre maximal d’éléments retournés (la valeur par défaut est *1048576*). La valeur MaxSize ne peut pas dépasser 1048576.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Retourne un `dynamic` conteneur de propriétés (JSON) (dictionnaire) de toutes les valeurs de *'expr'* dans le groupe qui sont des conteneurs de propriétés (dictionnaires) pour lesquels le *prédicat* a la valeur `true` .
 Les valeurs autres que les dictionnaires seront ignorées.
@@ -41,7 +41,7 @@ Si une clé apparaît dans plusieurs lignes, une valeur arbitraire, en dehors de
 > [!NOTE]
 > La [`make_bag`](./make-bag-aggfunction.md) fonction est semblable à make_bag_if () sans expression de prédicat.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ```kusto
 let T = datatable(prop:string, value:string, predicate:bool)

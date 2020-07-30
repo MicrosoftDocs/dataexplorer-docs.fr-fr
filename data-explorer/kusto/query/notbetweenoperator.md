@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 213b69d1458d234e987c8a378ade82441e578d5e
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: 3ae821e76c78f8beba465651ffc759bfefdfa001
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85128612"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346607"
 ---
 # <a name="not-between-operator-between"></a>not-between, opérateur (!between)
 
@@ -26,7 +26,7 @@ Table1 | where Time !between (datetime(2017-01-01) .. datetime(2017-01-01))
 
 `!between`peut fonctionner sur n’importe quelle expression numérique, DateTime ou TimeSpan.
  
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `|` `where` *expr* `!between` `(` *leftRange* ` .. ` *rightRange*`)`   
  
@@ -34,18 +34,18 @@ Si l’expression *expr* est DateTime, une autre syntaxe de sucre syntaxique est
 
 *T* `|` `where` *expr* `!between` `(` *leftRangeDateTime* ` .. ` *rightRangeTimespan*`)`   
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *T* -l’entrée tabulaire dont les enregistrements doivent être mis en correspondance.
 * *expr* -l’expression à filtrer.
 * *leftRange* -expression de la plage gauche (inclusive).
 * *rightRange* -expression de la plage droite (inclusive).
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Les lignes dans *T* pour lesquelles le prédicat de (*expr*  <  *leftRange* ou *expr*  >  *rightRange*) prend la valeur `true` .
 
-**Exemples**  
+## <a name="examples"></a>Exemples  
 
 **Filtrage des valeurs numériques à l’aide de l’opérateur' ! between'**  
 

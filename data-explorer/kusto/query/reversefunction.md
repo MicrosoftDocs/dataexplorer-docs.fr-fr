@@ -8,31 +8,31 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 22fe505eb8fd391e7a61120dbf42c214cb61c120
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: fa87dae85b158e162cea90c276057abb210ea23b
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264825"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345774"
 ---
 # <a name="reverse"></a>reverse()
 
 La fonction inverse l’ordre de la chaîne d’entrée.
 Si la valeur d’entrée n’est pas de type `string` , la fonction effectue un cast forcé de la valeur en type `string` .
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `reverse(`*code*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *source*: valeur d’entrée.  
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Ordre inverse d’une valeur de chaîne.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ```kusto
 print str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"

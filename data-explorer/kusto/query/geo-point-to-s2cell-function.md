@@ -8,12 +8,12 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/04/2020
-ms.openlocfilehash: fe3af4218fcc8b714cd4d62e45e78d6f8c9c0270
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: a094644e6f8a96631e5e1bcf1d2d15cf1ba7caad
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226905"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347746"
 ---
 # <a name="geo_point_to_s2cell"></a>geo_point_to_s2cell()
 
@@ -21,17 +21,17 @@ Calcule la valeur de chaîne du jeton de cellule S2 pour un emplacement géograp
 
 En savoir plus sur la [hiérarchie des cellules S2](https://s2geometry.io/devguide/s2cell_hierarchy).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `geo_point_to_s2cell(`*longitude* `, ` *Latitude* `, ` de *niveau*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *longitude*: valeur de longitude d’un emplacement géographique. La longitude *x* sera considérée comme valide si *x* est un nombre réel et que *x* est dans la plage [-180, + 180]. 
 * *Latitude*: valeur de latitude d’un emplacement géographique. La latitude y sera considérée comme valide si y est un nombre réel et y dans la plage [-90, + 90]. 
 * *Level*: un facultatif `int` qui définit le niveau de cellule demandé. Les valeurs prises en charge sont comprises dans la plage [0, 30]. S’il n’est pas spécifié, la valeur par défaut `11` est utilisée.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Valeur de chaîne du jeton de cellule S2 d’un emplacement géographique donné. Si les coordonnées ou les niveaux ne sont pas valides, la requête produira un résultat vide.
 
@@ -86,7 +86,7 @@ La source de table se trouve [dans cette ressource statistique de cellule S2](ht
 
 Voir aussi [geo_point_to_geohash ()](geo-point-to-geohash-function.md).
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 Événements Storm US regroupés par s2cell.
 

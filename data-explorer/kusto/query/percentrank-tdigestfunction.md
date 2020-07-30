@@ -8,28 +8,28 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/10/2019
-ms.openlocfilehash: cafb52b7254041a18a9cae956ed338f45bc67a54
-ms.sourcegitcommit: 3848b8db4c3a16bda91c4a5b7b8b2e1088458a3a
+ms.openlocfilehash: 33eb35e51f403a3c0b7a2f030604b12c705221ea
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/16/2020
-ms.locfileid: "84818570"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346165"
 ---
 # <a name="percentrank_tdigest"></a>percentrank_tdigest()
 
 Calcule le rang approximatif de la valeur dans un jeu, où le rang est exprimé sous la forme d’un pourcentage de la taille de l’ensemble.
 Cette fonction peut être affichée comme inverse du centile.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `percentrank_tdigest(`*TDigest* `,` *Expr*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *TDigest*: expression générée par [TDigest ()](tdigest-aggfunction.md) ou [tdigest_merge ()](tdigest-merge-aggfunction.md).
 * *Expr*: expression représentant une valeur à utiliser pour le calcul du rang en pourcentage.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Rang en pourcentage de la valeur dans un DataSet.
 
@@ -39,7 +39,7 @@ Rang en pourcentage de la valeur dans un DataSet.
 
 2) Le premier paramètre doit être TDigest qui a été généré par [TDigest ()](tdigest-aggfunction.md) ou [tdigest_merge ()](tdigest-merge-aggfunction.md)
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 L’obtention de la percentrank_tdigest () de la propriété dommages ayant la valeur $4490 est ~ 85% :
 

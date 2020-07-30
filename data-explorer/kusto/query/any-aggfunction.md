@@ -1,6 +1,6 @@
 ---
-title: n’importe() (fonction d’agrégation) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit n’importe quel () (fonction d’agrégation) dans Azure Data Explorer.
+title: Any () (fonction d’agrégation)-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit any () (fonction d’agrégation) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,62 +8,62 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 2a0b2aed48c9c5aa9d5b99bdb6cab68375827d2c
-ms.sourcegitcommit: 29018b3db4ea7d015b1afa65d49ecf918cdff3d6
+ms.openlocfilehash: 73c3a660dc7a34f1f9fef840b13f47c13b4d1b2f
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "82030199"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349735"
 ---
-# <a name="any-aggregation-function"></a>n’importe() (fonction d’agrégation)
+# <a name="any-aggregation-function"></a>Any () (fonction d’agrégation)
 
-Choisit arbitrairement un enregistrement pour chaque groupe dans un [opérateur de résumé,](summarizeoperator.md)et retourne la valeur d’une ou plusieurs expressions sur chacun de ces dossiers.
+Choisit arbitrairement un enregistrement pour chaque groupe dans un [opérateur de synthèse](summarizeoperator.md)et retourne la valeur d’une ou plusieurs expressions sur chaque enregistrement de ce type.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`summarize``any` *Expr* `,` *Expr2* ( Expr [ Expr2 ...]) `(` `*``)`
+`summarize``any` `(` (*Expr* [ `,` *expr2* ...]) | `*``)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *Expr*: Une expression sur chaque enregistrement sélectionné à partir de l’entrée pour revenir.
-* *Expr2* .. *ExprN*: Expressions supplémentaires.
+* *Expr*: expression sur chaque enregistrement sélectionné à partir de l’entrée à retourner.
+* *Expr2* .. *ExprN*: expressions supplémentaires.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-La `any` fonction d’agrégation renvoie les valeurs des expressions calculées pour chacun des enregistrements, sélectionnées au hasard par chaque groupe de l’opérateur de résumé.
+La `any` fonction d’agrégation retourne les valeurs des expressions calculées pour chacun des enregistrements, sélectionnées de façon aléatoire dans chaque groupe de l’opérateur de synthèse.
 
-Si `*` l’argument est fourni, la fonction se comporte comme si les expressions sont toutes des colonnes de l’entrée à l’opérateur de résumé sauf les colonnes de groupe, le cas échéant.
+Si l' `*` argument est fourni, la fonction se comporte comme si les expressions étaient toutes des colonnes de l’entrée de l’opérateur de synthèse sous la forme des colonnes Group-by, le cas échéant.
 
 **Remarques**
 
-Cette fonction est utile lorsque vous souhaitez obtenir un échantillon de valeur d’une ou plusieurs colonnes par valeur de la clé du groupe composé.
+Cette fonction est utile lorsque vous souhaitez obtenir un exemple de valeur d’une ou de plusieurs colonnes par valeur de la clé de groupe composée.
 
-Lorsque la fonction est fournie avec une référence de colonne unique, elle tentera de retourner une valeur non nulle/non vide, si cette valeur est présente.
+Quand la fonction est fournie avec une référence de colonne unique, elle tente de retourner une valeur non NULL/non vide, si une telle valeur est présente.
 
-En raison de la nature aléatoire de cette fonction, l’utiliser plusieurs fois dans une seule application de l’opérateur n’est pas équivalent à l’utiliser `summarize` une seule fois avec plusieurs expressions. Le premier peut faire sélectionner chaque application d’un enregistrement différent, tandis que la seconde garantit que toutes les valeurs sont calculées sur un seul enregistrement (par groupe distinct).
+En raison de la nature aléatoire de cette fonction, son utilisation multiple dans une application unique de l' `summarize` opérateur n’est pas équivalente à son utilisation une seule fois avec plusieurs expressions. La première peut avoir chaque application sélectionner un autre enregistrement, tandis que cette dernière garantit que toutes les valeurs sont calculées sur un enregistrement unique (par groupe distinct).
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
-Afficher Le continent aléatoire :
+Afficher le continent aléatoire :
 
 ```kusto
 Continents | summarize any(Continent)
 ```
 
-:::image type="content" source="images/aggfunction/any1.png" alt-text="N’importe quel 1":::
+:::image type="content" source="images/aggfunction/any1.png" alt-text="N’importe lequel 1":::
 
-Afficher tous les détails d’un enregistrement aléatoire :
+Afficher tous les détails d’un enregistrement aléatoire :
 
 ```kusto
 Continents | summarize any(*)
 ```
 
-:::image type="content" source="images/aggfunction/any2.png" alt-text="Tous les 2":::
+:::image type="content" source="images/aggfunction/any2.png" alt-text="N’importe laquelle 2":::
 
-Afficher tous les détails pour chaque continent aléatoire :
+Affichez tous les détails pour chaque continent aléatoire :
 
 ```kusto
 Continents | summarize any(*) by Continent
 ```
 
-:::image type="content" source="images/aggfunction/any3.png" alt-text="Tous les 3":::
+:::image type="content" source="images/aggfunction/any3.png" alt-text="N’importe laquelle 3":::

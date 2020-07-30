@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: ba4dffa50c605e9346807f28222809af7637ff09
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 923008d05ebc8c51a39955e29450e55af4100941
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227279"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347950"
 ---
 # <a name="format_timespan"></a>format_timespan()
 
@@ -23,16 +23,16 @@ Met en forme une valeur TimeSpan selon le format fourni.
 format_timespan(time(14.02:03:04.12345), 'h:m:s.fffffff') == "2:3:4.1234500"
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `format_timespan(`*intervalle* `,` de *format*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * `timespan`: valeur d’un type `timespan` .
 * `format`: chaîne de spécificateur de format, composée d’un ou de plusieurs [éléments de format](#supported-formats).
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Chaîne avec le résultat de format.
 
@@ -80,7 +80,7 @@ Le spécificateur de format peut inclure les caractères séparateurs suivants 
 |`'['`||
 |`']'`||
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7c0d6ae10c21b1df55aaa3584f4f40e830b58d2c
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: 18d0bf2eaa0f5215e38b8b787178ea5934fb3737
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763444"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347032"
 ---
 # <a name="make_bag-aggregation-function"></a>make_bag () (fonction d’agrégation)
 
@@ -21,11 +21,11 @@ Retourne un `dynamic` conteneur de propriétés (JSON) (dictionnaire) de toutes 
 
 * Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `summarize``make_bag(` *`Expr`* [ `,` *MaxSize*]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Expr*: expression de type `dynamic` utilisée pour les calculs d’agrégation.
 * *MaxSize* est une limite d’entier facultative sur le nombre maximal d’éléments retournés. La valeur par défaut est *1048576*. La valeur MaxSize ne peut pas dépasser *1048576*.
@@ -34,7 +34,7 @@ Retourne un `dynamic` conteneur de propriétés (JSON) (dictionnaire) de toutes 
 
 Une variante héritée et obsolète de la fonction `make_dictionary()` a une limite par défaut de *MaxSize* = 128.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Retourne un `dynamic` conteneur de propriétés (JSON) (dictionnaire) de toutes les valeurs de *`Expr`* dans le groupe, qui sont des conteneurs de propriétés.
 Les valeurs autres que les dictionnaires seront ignorées.
@@ -44,7 +44,7 @@ Si une clé apparaît dans plusieurs lignes, une valeur arbitraire, en dehors de
 
 Utilisez le plug-in [bag_unpack ()](bag-unpackplugin.md) pour développer des objets JSON dynamiques dans des colonnes qui utilisent des clés de conteneur de propriétés. 
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ```kusto
 let T = datatable(prop:string, value:string)

@@ -8,27 +8,27 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/01/2020
-ms.openlocfilehash: 4aa11fd379bceb800a8d18a995a91ca188326faa
-ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
+ms.openlocfilehash: c5a66255f719d3bd0da962a8eb9d3cae23a8c254
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86280699"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347831"
 ---
-# <a name="geo_line_densify"></a>geo_line_densify ()
+# <a name="geo_line_densify"></a>geo_line_densify()
 
 Convertit les bords de trait planaires en géodésique en ajoutant des points intermédiaires.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `geo_line_densify(`*lineString* `, ` *tolérance*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *lineString*: ligne au [format géojson](https://tools.ietf.org/html/rfc7946) et d’un type de données [dynamique](./scalar-data-types/dynamic.md) .
 * *Tolerance*: valeur numérique facultative qui définit la distance maximale en mètres entre le bord planaire d’origine et la chaîne d’arêtes géodésique convertie. Les valeurs prises en charge sont comprises dans la plage [0,1, 10000]. S’il n’est pas spécifié, la valeur par défaut `10` est utilisée.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Densified ligne au [format géojson](https://tools.ietf.org/html/rfc7946) et d’un type de données [dynamique](./scalar-data-types/dynamic.md) . Si la ligne ou la tolérance n’est pas valide, la requête produira un résultat NULL.
 
@@ -53,7 +53,7 @@ dynamique ({"type" : "LineString", "coordinates" : [[lng_1, lat_1], [lng_2, la
 * Le [format géojson](https://tools.ietf.org/html/rfc7946) définit un bord entre deux points comme une ligne cartésienne droite.
 * La décision d’utiliser des arêtes géodésique ou planaires peut dépendre du jeu de données et est particulièrement pertinente dans les bords longs.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 L’exemple suivant densifies une route dans l’île de Manhattan. Le bord est petit et la distance entre l’arête planaire et son équivalent géodésique est inférieure à la distance spécifiée par Tolerance. Par conséquent, le résultat reste inchangé.
 

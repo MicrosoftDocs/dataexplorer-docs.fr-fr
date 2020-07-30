@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: e8da8a61b285b31f63f346ec82e5ba8a4ac00d27
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 7b4b3d2b43bea2eeb96c9bbca94131cb7887db8c
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372929"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345689"
 ---
-# <a name="sequence_detect-plugin"></a>plug-in sequence_detect
+# <a name="sequence_detect-plugin"></a>sequence_detect, plug-in
 
 Détecte les occurrences de séquence en fonction des prédicats fournis.
 
@@ -23,11 +23,11 @@ Détecte les occurrences de séquence en fonction des prédicats fournis.
 T | evaluate sequence_detect(datetime_column, 10m, 1h, e1 = (Col1 == 'Val'), e2 = (Col2 == 'Val2'), Dim1, Dim2)
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `| evaluate` `sequence_detect` `(` *TimelineColumn* `,` *MaxSequenceStepWindow* `,` *MaxSequenceSpan* `,` *expr1* `,` *expr2* `,` ..., *dim1* `,` *dim2* `,` ...`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *T*: expression tabulaire d’entrée.
 * *TimelineColumn*: référence de colonne représentant la chronologie, doit être présente dans l’expression source
@@ -36,7 +36,7 @@ T | evaluate sequence_detect(datetime_column, 10m, 1h, e1 = (Col1 == 'Val'), e2 
 * *Expr1*, *expr2*,... : expressions de prédicat booléennes définissant des étapes de séquence
 * *Dim1*, *dim2*,... : expressions de dimension utilisées pour corréler des séquences
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Retourne une table unique où chaque ligne de la table représente une occurrence de séquence unique :
 
@@ -44,7 +44,7 @@ Retourne une table unique où chaque ligne de la table représente une occurrenc
 * *Expr1*_*TimelineColumn*, *expr2*_*TimelineColumn*,... : Columns avec des valeurs de temps, représentant la chronologie de chaque étape de séquence.
 * *Durée*: fenêtre de temps de séquence globale
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ### <a name="exploring-storm-events"></a>Exploration des événements Storm 
 
@@ -62,7 +62,7 @@ StormEvents
         State)
 ```
 
-|État|heat_StartTime|wildfire_StartTime|Duration|
+|State|heat_StartTime|wildfire_StartTime|Duration|
 |---|---|---|---|
 |France|2007-05-08 00:00:00.0000000|2007-05-08 16:02:00.0000000|16:02:00|
 |France|2007-05-08 00:00:00.0000000|2007-05-10 11:30:00.0000000|2.11:30:00|

@@ -8,22 +8,22 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/03/2018
-ms.openlocfilehash: 612829f2cbcd8b3f495d516b254faf7a9cf6919a
-ms.sourcegitcommit: 02236d1f23f48f9dd41cc7433f46991356a869fc
+ms.openlocfilehash: e2216361022f055078be66f37f3d2b084afaa4c6
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84306569"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349531"
 ---
 # <a name="array_slice"></a>array_slice()
 
 Extrait un segment d’un tableau dynamique.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `array_slice`(*`arr`*, *`start`*, *`end`*)
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *`arr`*: Le tableau d’entrée pour extraire la tranche de doit être un tableau dynamique.
 * *`start`*: index de début de base zéro (inclusive) de la tranche, les valeurs négatives sont converties en array_length + Start.
@@ -31,11 +31,11 @@ Extrait un segment d’un tableau dynamique.
 
 Remarque : les index en dehors des limites sont ignorés.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Tableau dynamique des valeurs de la plage [ `start..end` ] à partir de `arr` .
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

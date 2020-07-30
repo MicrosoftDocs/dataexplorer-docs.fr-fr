@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 4bf68800cc10bf301f6a5738d47e670905c2c46d
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: 0831251bd38df4475c271cc6bcec9c15668860ea
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763641"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87344167"
 ---
 # <a name="series_fill_linear"></a>series_fill_linear()
 
@@ -21,20 +21,20 @@ Interpole de manière linéaire les valeurs manquantes dans une série.
 
 Prend une expression contenant un tableau numérique dynamique comme entrée, effectue une interpolation linéaire pour toutes les instances de missing_value_placeholder et retourne le tableau résultant. Si le début et la fin du tableau contiennent missing_value_placeholder, il sera remplacé par la valeur la plus proche de missing_value_placeholder. Cette fonctionnalité peut être désactivée. Si le tableau entier se compose du missing_value_placeholder, le tableau est rempli avec constant_value ou 0 s’il n’est pas spécifié.  
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `series_fill_linear(`*x* `[,` *missing_value_placeholder* ` [,` *fill_edges* ` [,` *constant_value*`]]]))`
 * Retourne une interpolation linéaire de série de *x* à l’aide des paramètres spécifiés.
  
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *x*: expression scalaire de tableau dynamique, qui est un tableau de valeurs numériques.
 * *missing_value_placeholder*: paramètre facultatif, qui spécifie un espace réservé pour les « valeurs manquantes » à remplacer. La valeur par défaut est `double` (*null*).
 * *fill_edges*: valeur booléenne qui indique si *missing_value_placeholder* au début et à la fin du tableau doit être remplacé par la valeur la plus proche. *True* par défaut. Si la valeur est *false*, *missing_value_placeholder* au début et à la fin du tableau sera préservé.
 * *constant_value*: le paramètre facultatif pertinent uniquement pour les tableaux est constitué entièrement de valeurs *null* . Ce paramètre spécifie une valeur de constante avec laquelle remplir la série. La valeur par défaut est *0*. L’affectation de la valeur `double` (*null*) à ce paramètre permet de conserver les valeurs *null* là où elles se trouvent.
 
-**Notes**
+**Remarques**
 
 * Pour appliquer des fonctions d’interpolation après [Make-Series](make-seriesoperator.md), spécifiez *null* comme valeur par défaut : 
 
@@ -47,7 +47,7 @@ make-series num=count() default=long(null) on TimeStamp from ago(1d) to ago(1h) 
 * Si *missing_value_placeholder* est `double` (*null*) (ou omis, qui ont la même signification), un résultat peut contenir des valeurs *null* . Utilisez d’autres fonctions d’interpolation pour remplir ces valeurs *null* . Actuellement [, seul series_outliers ()](series-outliersfunction.md) prend en charge les valeurs *null* dans les tableaux d’entrée.
 * La fonction conserve le type d’origine d’éléments de tableau. Si x contient uniquement des éléments int ou long, l’interpolation linéaire retourne des valeurs interpolées arrondies plutôt que des valeurs exactes.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

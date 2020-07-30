@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/19/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 8da464bca228df5a813f50e68fab5ddb2aa926cf
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: bd3e7a77a4de46b6dcebb2f58c98009a9edddb43
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85128663"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87338607"
 ---
 # <a name="using-hll-and-tdigest"></a>Utilisation de hll() et de tdigest()
 
@@ -81,7 +81,7 @@ MyTable
 |0|
 
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 Il existe une table, `PageViewsHllTDigest` , contenant `hll` les valeurs des pages affichées dans chaque heure. Vous souhaitez que ces valeurs Binned (ent à `12h` . Fusionnez les `hll` valeurs à l’aide de la `hll_merge()` fonction d’agrégation, avec l’horodateur Binned (à `12h` . Utilisez la fonction `dcount_hll` pour retourner la `dcount` valeur finale :
 
@@ -127,7 +127,7 @@ PageViewsHllTDigest
 |2016-05-02 12:00:00.0000000|181315|
 |2016-05-03 00:00:00.0000000|146817|
  
-**Exemple**
+## <a name="example"></a>Exemple
 
 Les limites de Kusto sont atteintes avec les jeux de données trop volumineux, où vous devez exécuter des requêtes périodiques sur le jeu de données, mais exécuter les requêtes régulières pour calculer [`percentile()`](percentiles-aggfunction.md) ou [`dcount()`](dcount-aggfunction.md) sur des jeux de données volumineux.
 
@@ -178,7 +178,7 @@ PageViewsHllTDigest
 
 Cette requête doit être plus performante, car elle s’exécute sur une table plus petite. Dans cet exemple, la première requête s’exécute sur environ 215M enregistrements, tandis que la deuxième s’exécute sur seulement 32 enregistrements :
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 Requête de rétention.
 Supposons que vous disposiez d’une table qui résume le moment où chaque page Wikipédia a été affichée (la taille de l’échantillon est de 10 m) et que vous souhaitez rechercher pour chaque date1 date2 le pourcentage de pages consultées dans date1 et date2 par rapport aux pages affichées à partir de date1 (date1 < date2).

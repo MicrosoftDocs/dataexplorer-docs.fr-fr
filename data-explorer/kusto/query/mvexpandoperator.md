@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2019
-ms.openlocfilehash: ee9c4b236344e21bbbc1da68b76710b15b519baa
-ms.sourcegitcommit: 56bb7b69654900ed63310ac9537ae08b72bf7209
+ms.openlocfilehash: 8358bf9a8eb0dab38b8f5847521e069f21fe4a2c
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85814209"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346692"
 ---
 # <a name="mv-expand-operator"></a>mv-expand, opérateur
 
@@ -21,13 +21,13 @@ Développe un tableau à valeurs multiples ou un conteneur de propriétés.
 
 `mv-expand`est appliqué sur un tableau de type [dynamique](./scalar-data-types/dynamic.md)ou une colonne de jeu de propriétés afin que chaque valeur de la collection obtient une ligne distincte. Toutes les autres colonnes d’une ligne développée sont dupliquées. 
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `| mv-expand ` [ `bagexpansion=` ( `bag`  |  `array` )] [ `with_itemindex=` *IndexColumnName*] *ColumnName* [ `,` *ColumnName* ...] [ `limit` *RowLimit*]
 
 *T* `| mv-expand ` [ `bagexpansion=` ( `bag`  |  `array` )] [*Name* `=` ] *ArrayExpression* [ `to typeof(` *TypeName* `)` ] [, [*Name* `=` ] *ArrayExpression* [ `to typeof(` *TypeName* `)` ]...] [ `limit` *RowLimit*]
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *ColumnName :* dans le résultat, les tableaux dans la colonne nommée sont développés en plusieurs lignes. 
 * *ArrayExpression :* expression produisant un tableau. Si ce formulaire est utilisé, une nouvelle colonne est ajoutée et la colonne existante est conservée.
@@ -40,7 +40,7 @@ Développe un tableau à valeurs multiples ou un conteneur de propriétés.
 
 * *IndexColumnName :* Si `with_itemindex` est spécifié, la sortie inclut une colonne supplémentaire (nommée *IndexColumnName*), qui contient l’index (à partir de 0) de l’élément dans la collection développée d’origine. 
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Plusieurs lignes pour chacune des valeurs d’un tableau qui se trouvent dans la colonne nommée ou dans l’expression de tableau.
 Si plusieurs colonnes ou expressions sont spécifiées, elles sont développées en parallèle. Pour chaque ligne d’entrée, il y aura autant de lignes de sortie qu’il y a d’éléments dans l’expression développée la plus longue (les listes plus courtes sont complétées par des valeurs null). Si la valeur d’une ligne est un tableau vide, la ligne se développe en Nothing (ne s’affiche pas dans le jeu de résultats). Toutefois, si la valeur d’une ligne n’est pas un tableau, la ligne est conservée telle quelle dans le jeu de résultats. 

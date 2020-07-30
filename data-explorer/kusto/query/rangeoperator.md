@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 9dc64e6d91d6832dd57345bf58200848ad5a5db4
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 5c736492745d47428b5919d9791aa6115aaf8566
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373098"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345893"
 ---
 # <a name="range-operator"></a>opérateur range
 
@@ -21,11 +21,11 @@ Génère une table de valeurs à une seule colonne.
 
 Notez qu’elle ne comporte pas d’entrée de pipeline. 
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `range`*ColumnName* `from` *Démarrer* `to` *arrêter* `step` *étape*
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *ColumnName*: nom de la colonne unique dans la table de sortie.
 * *Start*: valeur la plus petite dans la sortie.
@@ -34,11 +34,11 @@ Notez qu’elle ne comporte pas d’entrée de pipeline.
 
 Les arguments doivent être des valeurs de type numérique, date ou durée. Ils ne peuvent pas faire référence aux colonnes d’une table. (Si vous souhaitez calculer la plage basée sur une table d’entrée, utilisez la fonction Range, peut-être avec l’opérateur MV-Expand.) 
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Une table avec une seule colonne nommée *ColumnName*, dont les valeurs sont *Start*, *Start* `+` *Step*,... jusqu’à et jusqu’à l' *arrêt*.
 
-**Exemple**  
+## <a name="example"></a>Exemple  
 
 Table des occurrences de minuit au cours des sept derniers jours. La fonction d’emplacement (floor) diminue à chaque fois au début de la journée.
 

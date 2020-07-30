@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 04/01/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: e6439912d323b7677f6febc8b23068c880a735c2
-ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
+ms.openlocfilehash: 984e5c37f3d29a6c56f88c6eb9b6750635e48920
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85902131"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345978"
 ---
 # <a name="python-plugin"></a>Plug-in Python
 
@@ -24,7 +24,7 @@ ms.locfileid: "85902131"
 Le plug-in Python exécute une fonction définie par l’utilisateur (UDF) à l’aide d’un script Python. Le script Python obtient les données tabulaires en tant qu’entrée et est censé produire une sortie tabulaire.
 Le runtime du plug-in est hébergé dans les [bacs à sable (sandbox](../concepts/sandboxes.md)), en cours d’exécution sur les nœuds du cluster.
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>Syntaxe
 
 *T* `|` `evaluate` [ `hint.distribution` `=` ( `single`  |  `per_node` )] `python(` *output_schema* `,` *script* [ `,` *script_parameters*] [ `,` *external_artifacts*]`)`
 
@@ -134,7 +134,7 @@ print "This is an example for using 'external_artifacts'"
     * Vous pouvez également utiliser l' [opérateur de partition](partitionoperator.md) pour partitionner le jeu de données d’entrée.
 * Utilisez le langage de requête de Kusto dans la mesure du possible pour implémenter la logique de votre script Python.
 
-    **Exemple**
+    ## <a name="example"></a>Exemple
 
     ```kusto    
     .show operations
@@ -159,7 +159,7 @@ print "This is an example for using 'external_artifacts'"
      * Guillemets doubles ( `"` ) pour les littéraux de chaîne python dans les scripts Python
 * Utilisez l' [ `externaldata` opérateur](externaldata-operator.md) pour obtenir le contenu d’un script que vous avez stocké dans un emplacement externe, tel que le stockage d’objets BLOB Azure.
   
-    **Exemple**
+    ## <a name="example"></a>Exemple
 
     ```kusto
     let script = 

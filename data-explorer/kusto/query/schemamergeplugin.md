@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/16/2020
-ms.openlocfilehash: b1f3ef10ac5cee3eb9bc1c1dca4c0de26bd85477
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: 2873f3d010464b82ef8cb6a9a3e09f7b0a56b8d9
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780199"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345706"
 ---
-# <a name="schema_merge-plugin"></a>plug-in schema_merge
+# <a name="schema_merge-plugin"></a>schema_merge, plug-in
 
 Fusionne les définitions de schéma tabulaire dans le schéma unifié. 
 
@@ -29,19 +29,19 @@ let Schema2=Table2 | getschema;
 union Schema1, Schema2 | evaluate schema_merge()
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `T``|` `evaluate` `schema_merge(` *PreserveOrder*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *PreserveOrder*: (facultatif) lorsque la valeur est `true` , indique au plug-in de valider l’ordre des colonnes comme défini par le premier schéma tabulaire conservé. Si la même colonne se trouve dans plusieurs schémas, le numéro de colonne doit être identique à l’ordinal de colonne du premier schéma dans lequel elle apparaît. La valeur par défaut est `true`.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Le `schema_merge` plug-in retourne une sortie semblable à celle qui est [`getschema`](./getschemaoperator.md) retournée par l’opérateur.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 Fusionnez avec un schéma auquel une nouvelle colonne est ajoutée.
 

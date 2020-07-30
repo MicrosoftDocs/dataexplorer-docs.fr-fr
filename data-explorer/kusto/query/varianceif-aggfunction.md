@@ -1,6 +1,6 @@
 ---
-title: varianceif() (fonction d’agrégation) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit le varianceif () (fonction d’agrégation) dans Azure Data Explorer.
+title: varianceif () (fonction d’agrégation)-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit varianceif () (fonction d’agrégation) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 9dfebb3796f07dec6c91d36d788a018f84f70961
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: bf1009d2d269bf21ea5ae14a9c828724d8bf8c70
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81504673"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87338471"
 ---
-# <a name="varianceif-aggregation-function"></a>varianceif() (fonction d’agrégation)
+# <a name="varianceif-aggregation-function"></a>varianceif () (fonction d’agrégation)
 
-Calcule la [variance](variance-aggfunction.md) d’Expr à travers le `true`groupe pour lequel *Predicate* évalue à . *Expr*
+Calcule la [variance](variance-aggfunction.md) de *expr* sur le groupe pour lequel le *prédicat* a la valeur `true` .
 
-* Ne peut être utilisé que dans le contexte de l’agrégation à l’intérieur [résumer](summarizeoperator.md)
+* Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-résumer `varianceif(` *Expr*`, `*Predicate*`)`
+synthétiser le `varianceif(` *Expr* `, ` *prédicat* expr`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *Expr*: Expression qui sera utilisée pour le calcul de l’agrégation. 
-* *Prédicat : prédicez*que si c’est vrai, la valeur calculée *Expr* sera ajoutée à l’écart.
+* *Expr*: expression qui sera utilisée pour le calcul de l’agrégation. 
+* *Predicate*: prédicat qui, si la valeur est true, la valeur calculée *expr* sera ajoutée à la variance.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-La valeur de variance d’Expr à travers `true`le groupe où *Predicate* évalue à . *Expr*
+Valeur de variance de *expr* dans le groupe où le *prédicat* a la valeur `true` .
  
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ```kusto
 range x from 1 to 100 step 1

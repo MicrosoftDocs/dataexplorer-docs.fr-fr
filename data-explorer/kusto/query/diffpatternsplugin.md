@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b3dece66f3bafae989643afd418557aeaaa7d746
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: a02f275dc47e88c7b14b85d19040e907613d1b80
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83225035"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348324"
 ---
 # <a name="diff-patterns-plugin"></a>plug-in de modèles diff
 
@@ -25,7 +25,7 @@ T | evaluate diffpatterns(splitColumn)
 ```
 
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `T | evaluate diffpatterns(SplitColumn, SplitValueA, SplitValueB [, WeightColumn, Threshold, MaxDimensions, CustomWildcard, ...])` 
 
@@ -76,7 +76,7 @@ Tous les autres arguments sont facultatifs, mais ils doivent alors être ordonn�
 
     Exemple : `T | extend splitColumn = iff(request-responseCode == 200, "Success" , "Failure") | evaluate diffpatterns(splitColumn, "Success","Failure", "~", "~", "~", int(-1), double(-1), long(0), datetime(1900-1-1))`
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 `Diffpatterns`retourne un petit ensemble de modèles qui capturent différentes parties des données dans les deux jeux (autrement dit, un modèle capturant un grand pourcentage de lignes dans le premier jeu de données et un pourcentage faible des lignes du deuxième jeu). Chaque modèle est représenté par une ligne dans les résultats.
 
@@ -109,7 +109,7 @@ Lorsque vous trouvez une ligne intéressante, vous pouvez l’explorer plus en d
 
 * Remarque : `diffpatterns` vise à trouver des modèles significatifs (qui capturent des parties de la différence de données entre les jeux) et n’est pas destiné aux différences ligne par ligne.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -120,7 +120,7 @@ StormEvents
 | evaluate diffpatterns(Damage, "0", "1" )
 ```
 
-|ID de segment|CountA|CountB|PercentA|PercentB|PercentDiffAB|État|Type d’événement|Source|Récoltes|
+|ID de segment|CountA|CountB|PercentA|PercentB|PercentDiffAB|State|Type d’événement|Source|Récoltes|
 |---|---|---|---|---|---|---|---|---|---|
 |0|2278|93|49,8|7.1|42,7||Grêle||0|
 |1|779|512|17,03|39,08|22,05||Vent d’orage|||

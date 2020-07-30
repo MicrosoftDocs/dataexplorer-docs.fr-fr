@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/15/2020
-ms.openlocfilehash: cbe1b0639a0379fe84bc9c100a629bbadd9c3a63
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: e602a920dd07089f688f39115805a2f99d505c9c
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226565"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347559"
 ---
 # <a name="hll-aggregation-function"></a>HLL () (fonction d’agrégation)
 
@@ -21,11 +21,11 @@ Calcule les résultats intermédiaires de dans [`dcount`](dcount-aggfunction.md)
 
 En savoir plus sur l' [algorithme sous-jacent (*H*yper*l*og*l*og) et la précision de l’estimation](dcount-aggfunction.md#estimation-accuracy).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `summarize hll(`*`Expr`* `[,` *`Accuracy`*`])`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *`Expr`*: Expression qui sera utilisée pour le calcul de l’agrégation. 
 * *`Accuracy`*, s’il est spécifié, contrôle l’équilibre entre la vitesse et la précision.
@@ -38,7 +38,7 @@ En savoir plus sur l' [algorithme sous-jacent (*H*yper*l*og*l*og) et la précisi
   |`3` | high | slow | 0,28% |
   |`4` | très élevé | les plus lents | 0,2% |
     
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Résultats intermédiaires du décompte distinct de *`Expr`* l’ensemble du groupe.
  
@@ -48,7 +48,7 @@ Résultats intermédiaires du décompte distinct de *`Expr`* l’ensemble du gro
 
 1. Vous pouvez utiliser la fonction [`dcount_hll`](dcount-hllfunction.md) , qui calcule les `dcount` `hll`  /  `hll_merge` fonctions d’agrégation.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

@@ -1,6 +1,6 @@
 ---
-title: parse_url() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit parse_url () dans Azure Data Explorer.
+title: parse_url ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit parse_url () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,37 +8,37 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: dfc093964ce5b91acc01f798f8f62651266ab153
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 94a35dbf742b6df31012e68b5f2b2f09bec9b7e5
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81511490"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346284"
 ---
 # <a name="parse_url"></a>parse_url()
 
-Parse une `string` URL absolue `dynamic` et renvoie un objet contient des pièces URL.
+Analyse une URL absolue `string` et retourne un `dynamic` objet contient des parties d’URL.
 
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`parse_url(`*Url*`)`
+`parse_url(`*URL*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *URL*: Une chaîne représente une URL ou la partie requête de l’URL.
+* *URL*: une chaîne représente une URL ou la partie requête de l’URL.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Un objet de [la dynamique](./scalar-data-types/dynamic.md) de type qui comprenait les composants d’URL : Schéma, Hôte, Port, Chemin, Nom d’utilisateur, Mot de Passe, Paramètres de requête, Fragment.
+Objet de type [dynamique](./scalar-data-types/dynamic.md) qui inclut les composants d’URL : schéma, hôte, port, chemin d’accès, nom d’utilisateur, mot de passe, paramètres de requête, fragment.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
 T | extend Result = parse_url("scheme://username:password@host:1234/this/is/a/path?k1=v1&k2=v2#fragment")
 ```
 
-résultatra
+se traduira par
 
 ```
  {

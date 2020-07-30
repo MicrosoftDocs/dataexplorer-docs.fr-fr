@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 073bf45977648bd654f72fff47b62f92ac1b3d27
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: d0a60a61e5319d9a190f6172b9c0bd8fb7fe1300
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227381"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347967"
 ---
 # <a name="format_datetime"></a>format_datetime()
 
@@ -23,16 +23,16 @@ Met en forme une valeur DateTime selon le format fourni.
 format_datetime(datetime(2015-12-14 02:03:04.12345), 'y-M-d h:m:s.fffffff') == "15-12-14 2:3:4.1234500"
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `format_datetime(`*date/heure* `,` *format*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * `datetime`: valeur d’un type `datetime` .
 * `format`: chaîne de spécificateur de format, composée d’un ou de plusieurs [éléments de format](#supported-formats).
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Chaîne avec le résultat de format.
 
@@ -87,7 +87,7 @@ Le spécificateur de format peut inclure les caractères séparateurs suivants 
 |`'['`||
 |`']'`||
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

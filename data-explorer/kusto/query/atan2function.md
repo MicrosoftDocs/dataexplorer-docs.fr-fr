@@ -1,6 +1,6 @@
 ---
-title: atan2() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit atan2() dans Azure Data Explorer.
+title: atan2 ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit atan2 () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,31 +8,31 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: c8b49191c9d955cf5a91bde2032798f4703f7910
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 60b500109f140290427a6d1ad3baba8e25849b57
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81518392"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349446"
 ---
 # <a name="atan2"></a>atan2()
 
-Calcule l’angle, en radians, entre l’axe X positif et le rayon de l’origine jusqu’au point (y, x).
+Calcule l’angle, en radians, entre l’axe des abscisses positif et le rayon depuis l’origine jusqu’au point (y, x).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`atan2(`*y*`,`*x*`)`
+`atan2(`*y* `,` *x*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *x*: X coordonnées (un vrai nombre).
-* *y*: Y coordonnées (un nombre réel).
+* *x*: coordonnée x (un nombre réel).
+* *y*: coordonnée y (nombre réel).
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-* L’angle, en radians, entre l’axe X positif et le rayon de l’origine au point (y, x).
+* Angle, en radians, entre l’axe des abscisses positif et le rayon de l’origine jusqu’au point (y, x).
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ```kusto
 print atan2_0 = atan2(1,1) // Pi / 4 radians (45 degrees)
@@ -42,4 +42,4 @@ print atan2_0 = atan2(1,1) // Pi / 4 radians (45 degrees)
 
 |atan2_0|atan2_1|atan2_2|
 |---|---|---|
-|0.785398163397448|3.14159265358979|-1.5707963267949|
+|0.785398163397448|3,14159265358979|-1,5707963267949|

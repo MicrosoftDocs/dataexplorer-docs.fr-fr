@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/26/2019
-ms.openlocfilehash: 4500ec5b58c93901e011ea6dd270563d3405ee01
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: fa17d27506c4930fa9b9f7fb0a24f5ff31e1c974
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372866"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345162"
 ---
 # <a name="series_decompose"></a>series_decompose()
 
@@ -21,11 +21,11 @@ Applique une transformation de décomposition sur une série.
 
 Prend une expression contenant une série (tableau numérique dynamique) comme entrée et la décompose en composants saisonniers, de tendance et résiduels.
  
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `series_decompose(`*Série* `[,` Caractère *saisonnier* `,` *Tendance* `,` *Test_points* `,` *Seasonality_threshold*`])`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Série*: cellule de tableau dynamique, qui est un tableau de valeurs numériques, généralement le résultat des opérateurs de [série make](make-seriesoperator.md) ou [make_list](makelist-aggfunction.md)
 * Caractère *saisonnier*: un entier contrôlant l’analyse saisonnière, contenant soit
@@ -39,7 +39,7 @@ Prend une expression contenant une série (tableau numérique dynamique) comme e
 * *Test_points*: 0 (valeur par défaut) ou un entier positif, qui spécifie le nombre de points à la fin de la série à exclure du processus d’apprentissage (régression). Ce paramètre doit être défini à des fins de prévision.
 * *Seasonality_threshold*: le seuil du score saisonnier lorsque le caractère *saisonnier* est défini sur détection automatique, le seuil de score par défaut est `0.6` . Pour plus d’informations, consultez [series_periods_detect](series-periods-detectfunction.md).
 
-**Renvoi**
+**Renvoie**
 
  La fonction retourne les séries correspondantes suivantes :
 
@@ -66,7 +66,7 @@ Prend une expression contenant une série (tableau numérique dynamique) comme e
 
 Cette méthode est généralement appliquée à la série chronologique de mesures attendues pour manifester le comportement périodique et/ou de tendance. Vous pouvez utiliser la méthode pour prévoir les valeurs métriques futures et/ou détecter les valeurs anormales. L’hypothèse implicite de ce processus de régression est que, en dehors du comportement saisonnier et de tendance, la série chronologique est stochastique et distribuée de manière aléatoire. Prévoyez les futures valeurs de métriques à partir des composants saisonniers et de tendance tout en ignorant la partie résiduelle. Détecte les valeurs anormales en fonction de la détection des valeurs hors norme uniquement sur la partie résiduelle. Vous trouverez plus d’informations dans le [chapitre décomposition des séries chronologiques](https://www.otexts.org/fpp/6).
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 **Caractère saisonnier hebdomadaire**
 

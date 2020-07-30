@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 167ba8818709f52ccc344452e275405c42b1796e
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: df7b994350297d911a0f3be59c791b6538899d67
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227670"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349786"
 ---
 # <a name="activity_counts_metrics-plugin"></a>plug-in activity_counts_metrics
 
@@ -23,11 +23,11 @@ Calcule les métriques d’activité utiles pour chaque fenêtre de temps compar
 T | evaluate activity_counts_metrics(id, datetime_column, startofday(ago(30d)), startofday(now()), 1d, dim1, dim2, dim3)
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 *T* `| evaluate` `activity_counts_metrics(` *IdColumn* `,` *TimelineColumn* `,` *Start* `,` *end* `,` *Window* [ `,` *cohorte*] [ `,` *dim1* `,` *dim2* `,` ...] [ `,` *lookback*]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *T*: expression tabulaire d’entrée.
 * *IdColumn*: nom de la colonne avec des valeurs d’ID qui représentent l’activité de l’utilisateur. 
@@ -37,7 +37,7 @@ T | evaluate activity_counts_metrics(id, datetime_column, startofday(ago(30d)), 
 * *Window*: scalaire avec la valeur de la période de la fenêtre d’analyse. Peut être une valeur numérique/DateTime/timestamp, ou une chaîne qui est l’une des `week` / `month` / `year` , auquel cas toutes les périodes sont [startOfWeek](startofweekfunction.md) / [StartOfMonth](startofmonthfunction.md) ou [STARTOFYEAR](startofyearfunction.md). 
 * *dim1*, *dim2*,... : (facultatif) liste des colonnes de dimensions qui découpent le calcul des métriques d’activité.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Retourne une table qui contient : nombre total de valeurs, valeurs de comptage de valeurs, nombre distinct de nouvelles valeurs et nombre de valeurs agrégées pour chaque fenêtre de temps.
 
@@ -54,7 +54,7 @@ Le schéma de la table de sortie est le suivant :
 * *`new_dcount`*: Valeurs d’ID distinctes dans la fenêtre de temps et *Dim (s)* comparées à toutes les fenêtres de temps précédentes. 
 * *`aggregated_dcount`*: Valeurs d’ID distinctes agrégées totales de *Dim (s)* de la première fenêtre à la date actuelle (inclusive).
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ### <a name="daily-activity-counts"></a>Nombre d’activités quotidiennes 
 
