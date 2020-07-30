@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 2d5accaa0e6f6c4c6e5d5261a9709ba965de6965
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: 8e237441d28f12ffc6f27f8a591980a701825e39
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264960"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347457"
 ---
 # <a name="indexof"></a>indexof()
 
@@ -23,19 +23,19 @@ Si la recherche ou la chaîne d’entrée n’est pas de type *chaîne* , la fon
 
 Pour plus d’informations, consultez [`indexof_regex()`](indexofregexfunction.md).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `indexof(`*source* `,` *recherche* `[,` *start_index* `[,` *longueur* `[,` *occurrence*`]]])`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *source*: chaîne d’entrée.  
 * *Lookup*: chaîne à rechercher.
 * *start_index*: position de début de la recherche. facultatif.
 * *longueur*: nombre de positions de caractère à examiner. La valeur-1 signifie une longueur illimitée. facultatif.
-* *occurrence*: numéro de l’occurrence. Valeur par défaut  1. facultatif.
+* *occurrence*: numéro de l’occurrence. Valeur par défaut : 1. facultatif.
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Position d’index de base zéro de la *recherche*.
 
@@ -43,7 +43,7 @@ Retourne-1 si la chaîne est introuvable dans l’entrée.
 
 Si *ce paramètre n'* est pas pertinent (inférieur à 0) *start_index*, *occurrence*ou (inférieur à-1), retourne la *valeur null*.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 ```kusto
 print
  idx1 = indexof("abcdefg","cde")    // lookup found in input string

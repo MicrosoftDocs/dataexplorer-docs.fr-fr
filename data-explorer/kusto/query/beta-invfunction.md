@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 60b054bbd234a77f81c47e375b98be0a5df103a5
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: b69fed2b3d7028fdc29d8098e8358c0088fcd8bb
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227653"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349208"
 ---
 # <a name="beta_inv"></a>beta_inv()
 
@@ -27,17 +27,17 @@ Si *probabilité*  =  `beta_cdf(` *x*,... `)` , alors `beta_inv(` *probabilité*
 
 La distribution Bêta peut être utilisée dans la planification de projet pour modéliser les durées d’exécution probables pour une durée d’exécution attendue et une variabilité données.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `beta_inv(`*probabilité* `, ` *alpha* `, ` *version bêta*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *probabilité*: probabilité associée à la distribution bêta.
 * *alpha*: paramètre de la distribution.
 * *bêta*: paramètre de la distribution.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 * Inverse de la fonction de densité de probabilité cumulative bêta [beta_cdf ()](./beta-cdffunction.md)
 
@@ -51,7 +51,7 @@ Si la probabilité ≤ 0 ou la probabilité > 1, beta_inv () retourne la valeur 
 
 Pour une valeur de probabilité, beta_inv () recherche cette valeur x de sorte que beta_cdf (x, alpha, bêta) = probabilité.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -64,7 +64,7 @@ datatable(p:double, alpha:double, beta:double, comment:string)
 | extend b = beta_inv(p, alpha, beta)
 ```
 
-|p|alpha|beta|comment|b|
+|p|alpha|bêta|comment|b|
 |---|---|---|---|---|
 |0.1|10|20|Entrée valide|0.226415022388749|
 |1.5|10|20|p > 1, donne NULL||

@@ -1,6 +1,6 @@
 ---
-title: strcat_array() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit strcat_array () dans Azure Data Explorer.
+title: strcat_array ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit strcat_array () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,31 +8,31 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 2d2412762cf68243e3952a8ad12a5b919d947bd3
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 5b8369d2e994477c9d01880632fac5f8a3ebaf6a
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81506951"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87342595"
 ---
 # <a name="strcat_array"></a>strcat_array()
 
-Crée une chaîne concatenated de valeurs de tableau à l’aide de délimitation spécifiée.
+Crée une chaîne concaténée de valeurs de tableau à l’aide du délimiteur spécifié.
     
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`strcat_array(`*tableau*, *delimiter*`)`
+`strcat_array(`*tableau*, *délimiteur*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *tableau*: `dynamic` Une valeur représentant un éventail de valeurs à concatenated.
-* *délimitant*: `string` Une valeur qui sera utilisée pour concatener les valeurs dans *le tableau*
+* *tableau*: `dynamic` valeur représentant un tableau de valeurs à concaténer.
+* *délimiteur*: `string` valeur qui sera utilisée pour concaténer les valeurs dans le *tableau*
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Valeurs de tableau, concatenated à une seule corde.
+Valeurs de tableau, concaténées en une chaîne unique.
 
-**Exemples**
+## <a name="examples"></a>Exemples
   
 ```kusto
 print str = strcat_array(dynamic([1, 2, 3]), "->")

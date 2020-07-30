@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: baafca4d8d5711d55838bceae817c36ecb0edd6f
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: c5dffc8695df466dfc1ac9f0c5bcc4a40f687b2a
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618567"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87342714"
 ---
 # <a name="stdevp-aggregation-function"></a>STDEVP () (fonction d’agrégation)
 
@@ -25,19 +25,19 @@ Calcule l’écart type de *expr* au sein du groupe, en considérant le groupe c
 
 * Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`stdevp(`résumer *expr*`)`
+résumer `stdevp(` *expr*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *Expr*: expression qui sera utilisée pour le calcul de l’agrégation. 
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Valeur d’écart type de *expr* dans le groupe.
  
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ```kusto
 range x from 1 to 5 step 1

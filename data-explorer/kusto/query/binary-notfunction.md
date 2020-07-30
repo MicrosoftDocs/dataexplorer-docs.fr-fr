@@ -1,6 +1,6 @@
 ---
-title: binary_not() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit binary_not() dans Azure Data Explorer.
+title: binary_not ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit binary_not () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,29 +8,29 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: ae808d3d9964b8e63053ed40d65d08f39adf6668
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: b0672652836edce82be0fc13cd17d6d5d6fe5b62
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81517661"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349072"
 ---
 # <a name="binary_not"></a>binary_not()
 
-Retourne une négation un peu sage de la valeur d’entrée.
+Retourne une négation au niveau du bit de la valeur d’entrée.
 
 ```kusto
 binary_not(x)
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `binary_not(`*num1*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *num1*: numérique 
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Retourne logique PAS de fonctionnement sur un nombre: num1.
+Retourne une opération NOT logique sur un nombre : num1.

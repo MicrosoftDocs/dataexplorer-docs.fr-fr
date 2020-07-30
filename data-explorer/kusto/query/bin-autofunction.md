@@ -1,6 +1,6 @@
 ---
-title: bin_auto() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit bin_auto() dans Azure Data Explorer.
+title: bin_auto ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit bin_auto () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,35 +8,35 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: ebb214ae6a2676bf59a37e1e4e9cc3c085374bb3
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 6df5d9793f2d076eb8f97156e911fb49aba4cc9c
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81517831"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349157"
 ---
 # <a name="bin_auto"></a>bin_auto()
 
-Arrondit les valeurs jusqu’à un « bac » de taille fixe, avec le contrôle de la taille du bac et du point de départ fourni par une propriété de requête.
+Arrondit les valeurs à un « chutier » de taille fixe, avec un contrôle sur la taille de l’emplacement et le point de départ fourni par une propriété de requête.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `bin_auto` `(` *Expression* `)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *Expression*: Expression scalaire d’un type numérique indiquant la valeur à arrondir.
+* *Expression*: expression scalaire d’un type numérique indiquant la valeur à arrondir.
 
-**Propriétés de demande de client**
+**Propriétés de la demande du client**
 
-* `query_bin_auto_size`: Un littéral numérique indiquant la taille de chaque bac.
-* `query_bin_auto_at`: Un littéral numérique indiquant une valeur `bin_auto(fixed_point)` == `fixed_point` *d’expression* qui est `fixed_point` un « point fixe » (c’est-à-dire une valeur pour laquelle .)
+* `query_bin_auto_size`: Un littéral numérique indiquant la taille de chaque emplacement.
+* `query_bin_auto_at`: Un littéral numérique indiquant une valeur d' *expression* qui est un « point fixe » (autrement dit, une valeur `fixed_point` pour laquelle `bin_auto(fixed_point)` == `fixed_point` .)
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Le multiple `query_bin_auto_at` le plus proche `query_bin_auto_at` de ci-dessous *Expression*, décalé de sorte que sera traduit en lui-même.
+Le multiple le plus proche de l' `query_bin_auto_at` *expression*ci-dessous, décalé pour `query_bin_auto_at` être traduit en lui-même.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ```kusto
 set query_bin_auto_size=1h;

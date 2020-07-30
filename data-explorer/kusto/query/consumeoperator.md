@@ -1,6 +1,6 @@
 ---
-title: consommateur opérateur - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit l’opérateur de consommation dans Azure Data Explorer.
+title: utiliser Operator-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit l’utilisation de l’opérateur dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 65c2f2befc074042131b5c0d705fa942a1622035
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 85fd891590e359e31224ed5d707a837b1cc0eb41
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81517117"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348834"
 ---
 # <a name="consume-operator"></a>consume, opérateur
 
-Consomme le flux de données tabulaire remis à l’opérateur. 
+Consomme le tabular data stream transmis à l’opérateur. 
 
-L’opérateur `consume` est principalement utilisé pour déclencher l’effet secondaire de requête sans réellement retourner les résultats à l’appelant.
+L' `consume` opérateur est principalement utilisé pour déclencher l’effet secondaire de la requête sans retourner réellement les résultats à l’appelant.
 
 ```kusto
 T | consume
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`consume`[`decodeblocks` `=` *DécoderBlocks*]
+`consume`[ `decodeblocks` `=` *DecodeBlocks*]
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *Décodage :* Une valeur Boolean constante. S’il `true`est réglé sur `perftrace` , `true`ou `consume` si la propriété de demande est configurée, l’exploitant ne s’insinuira pas seulement les dossiers à son entrée, mais forcera en fait chaque valeur dans ces dossiers à être décomposée et décodée.
+* *DecodeBlocks*: valeur booléenne constante. Si la valeur `true` est, ou si la propriété de la demande `perftrace` a la valeur `true` , l' `consume` opérateur n’énumére pas uniquement les enregistrements à son entrée, mais force en fait la décompression et le décodage de chaque valeur dans ces enregistrements.
 
-L’opérateur `consume` peut être utilisé pour estimer le coût d’une requête sans réellement livrer les résultats au client.
-(L’estimation n’est pas exacte pour `consume` diverses raisons; par `T | consume` exemple, est calculée de façon distributive, donc ne transmettra pas les données de la table entre les nœuds du cluster.)
+L' `consume` opérateur peut être utilisé pour estimer le coût d’une requête sans remettre réellement les résultats au client.
+(L’estimation n’est pas exacte pour diverses raisons. par exemple, `consume` est calculé distributively, donc ne `T | consume` transmet pas les données de la table entre les nœuds du cluster.)
 
 <!--
 * *WithStats*: A constant Boolean value. If set to `true` (or if the global

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 72797b54c3ba431b4a846f9e9661e9693359cceb
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: 85c39128eeb9b6ded38366ccd3bea228820c67a7
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780454"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347440"
 ---
 # <a name="indexof_regex"></a>indexof_regex()
 
@@ -21,11 +21,11 @@ La fonction signale l’index de base zéro de la première occurrence d’une c
 
 Voir [`indexof()`](indexoffunction.md).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `indexof_regex(`*source* `,` *recherche* `[,` *start_index* `[,` *longueur* `[,` *occurrence*`]]])`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 |Arguments     | Description                                     |Obligatoire ou facultatif|
 |--------------|-------------------------------------------------|--------------------|
@@ -36,7 +36,7 @@ Voir [`indexof()`](indexoffunction.md).
 |occurrence    | Recherche l’index de la N-ième apparence du modèle. 
                  La valeur par défaut est 1, l’index de la première occurrence |Facultatif            |
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Position d’index de base zéro de la *recherche*.
 
@@ -47,7 +47,7 @@ Position d’index de base zéro de la *recherche*.
      * le paramètre de longueur est inférieur à-1.
 
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ```kusto
 print

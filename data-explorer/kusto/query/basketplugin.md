@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/26/2019
-ms.openlocfilehash: d95bed91ab07be3feebecffbb97378866cb7c6c9
-ms.sourcegitcommit: a034b6a795ed5e62865fcf9340906f91945b3971
+ms.openlocfilehash: cf83690d61bb84d1b6b877e76a77d5776be35ad4
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85197224"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349242"
 ---
-# <a name="basket-plugin"></a>plug-in panier
+# <a name="basket-plugin"></a>basket, plug-in
 
 ```kusto
 T | evaluate basket()
@@ -23,11 +23,11 @@ T | evaluate basket()
 
 Panier recherche tous les modèles fréquents d’attributs discrets (dimensions) dans les données. Elle retourne ensuite les modèles fréquents qui ont dépassé le seuil de fréquence dans la requête d’origine. Le panier est assuré de trouver tous les modèles fréquents dans les données, mais il n’est pas garanti d’avoir un Runtime polynomial. Le runtime de la requête est linéaire dans le nombre de lignes, mais il peut être exponentiel dans le nombre de colonnes (dimensions). Basket repose sur l’algorithme Apriori, développé à l’origine pour l’exploration de données d’analyse du panier.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `T | evaluate basket(`*arguments*`)`
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Panier retourne tous les modèles fréquents qui apparaissent au-dessus du seuil de ratio des lignes. Le seuil par défaut est 0,05. Chaque modèle est représenté par une ligne dans les résultats.
 
@@ -69,7 +69,7 @@ Arguments disponibles :
 
      `T | evaluate basket('~', '~', '~', '*', int(-1), double(-1), long(0), datetime(1900-1-1))`
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

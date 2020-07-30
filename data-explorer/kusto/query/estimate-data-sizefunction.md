@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f0901bddbfa8854e902ab60197164cf830215948
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 00438528f00c91a95fde9a77a7aa18a75002fce9
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83224950"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348239"
 ---
 # <a name="estimate_data_size"></a>estimate_data_size()
 
@@ -24,21 +24,21 @@ estimate_data_size(*)
 estimate_data_size(Col1, Col2, Col3)
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `estimate_data_size(*)`
 
 `estimate_data_size(`*col1* `, ` *col2* `, ` ...`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *col1*, *col2*: sélection de références de colonnes dans l’expression tabulaire source utilisée pour l’estimation de la taille des données. Pour inclure toutes les colonnes, utilisez la `*` syntaxe (astérisque).
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 * Taille estimée des données, en octets, de la taille de l’enregistrement. L’estimation est basée sur des types de données et des longueurs de valeurs.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 Calcul de la taille totale des données à l’aide de `estimated_data_size()` :
 

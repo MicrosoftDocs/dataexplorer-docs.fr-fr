@@ -1,6 +1,6 @@
 ---
-title: plugin aperçu - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit le plugin de prévisualisation dans Azure Data Explorer.
+title: plug-in aperçu-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit le plug-in version préliminaire dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,36 +8,36 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 18bda0a4348d0c0eb2776bf124c57397f318a989
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 3d54852577281b66ed7754e419acbabbba989e7c
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81510980"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346080"
 ---
-# <a name="preview-plugin"></a>plugin aperçu
+# <a name="preview-plugin"></a>preview, plug-in
 
-Renvoie une table avec jusqu’au nombre spécifié de lignes à partir de l’ensemble d’enregistrements d’entrée, et le nombre total d’enregistrements dans le nombre d’entrées établi.
+Retourne une table avec le nombre spécifié de lignes dans le jeu d’enregistrements d’entrée et le nombre total d’enregistrements dans le jeu d’enregistrements d’entrée.
 
 ```kusto
 T | evaluate preview(50)
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `T` `|` `evaluate` `preview(` *NumberOfRows* `)`
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Le `preview` plugin renvoie deux tableaux de résultats :
-* Un tableau avec jusqu’au nombre spécifié de lignes.
-  Par exemple, la requête de l’échantillon ci-dessus est équivalente à l’exécution `T | take 50`.
-* Un tableau avec une seule rangée/colonne, tenant le nombre d’enregistrements dans l’ensemble d’enregistrements d’entrée.
-  Par exemple, la requête de l’échantillon ci-dessus est équivalente à l’exécution `T | count`.
+Le `preview` plug-in retourne deux tables de résultats :
+* Table avec le nombre spécifié de lignes.
+  Par exemple, l’exemple de requête ci-dessus équivaut à exécuter `T | take 50` .
+* Table avec une seule ligne ou colonne, contenant le nombre d’enregistrements dans le jeu d’enregistrements d’entrée.
+  Par exemple, l’exemple de requête ci-dessus équivaut à exécuter `T | count` .
 
 **Conseils**
 
-Si `evaluate` elle est précédée d’une source tabulaire qui comprend un filtre complexe, ou [`materialize`](materializefunction.md) un filtre qui fait référence à la plupart des colonnes de table source, préférez utiliser la fonction. Par exemple :
+Si `evaluate` est précédé d’une source tabulaire qui comprend un filtre complexe ou d’un filtre qui fait référence à la plupart des colonnes de la table source, préférez utiliser la [`materialize`](materializefunction.md) fonction. Par exemple :
 
 ```kusto
 let MaterializedT = materialize(T);

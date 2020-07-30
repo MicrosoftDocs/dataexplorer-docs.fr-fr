@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 45c4fec6e74bb8b25bfd83141fc2ee4110efa5e0
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: 4ce05f536b8903810739c6aa7780f9eaf72c4f87
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85265035"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349327"
 ---
 # <a name="bag_keys"></a>bag_keys()
 
@@ -21,11 +21,11 @@ ms.locfileid: "85265035"
 
 `bag_keys(`*objet dynamique*`)`
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Un tableau de clés, Order n’est pas déterminé.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```

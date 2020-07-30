@@ -1,6 +1,6 @@
 ---
-title: isinf() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit isinf() dans Azure Data Explorer.
+title: isinf, ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit isinf, () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,36 +8,36 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: d93697890ee05cabf9ca1830ac047d90d8c9e844
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 71a37d7a1bd700b5f929c009197a382315099e08
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81513581"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347236"
 ---
 # <a name="isinf"></a>isinf()
 
-Rendement si l’entrée est une valeur infinie (positive ou négative).  
+Retourne une valeur indiquant si l’entrée est une valeur infinie (positive ou négative).  
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`isinf(`*X*`)`
+`isinf(`*x*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *x*: Un vrai nombre.
+* *x*: nombre réel.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Une valeur non nulle (vraie) si x est un infini positif ou négatif; et zéro (faux) autrement.
+Valeur différente de zéro (true) si x est un entier positif ou négatif ; et zéro (false) dans le cas contraire.
 
 **Voir aussi**
 
-* Pour vérifier si la valeur est nulle, voir [isnull()](isnullfunction.md).
-* Pour vérifier si la valeur est finie, voir [isfinite()](isfinitefunction.md).
-* Pour vérifier si la valeur est NaN (Not-a-Number), voir [isnan()](isnanfunction.md).
+* Pour vérifier si la valeur est null, consultez [IsNull ()](isnullfunction.md).
+* Pour vérifier si la valeur est finie, consultez [isFinite, ()](isfinitefunction.md).
+* Pour vérifier si la valeur est NaN (not-a-Number), consultez [IsNaN ()](isnanfunction.md).
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
 range x from -1 to 1 step 1

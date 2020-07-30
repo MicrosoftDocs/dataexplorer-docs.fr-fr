@@ -1,6 +1,6 @@
 ---
-title: gamme () - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la gamme () dans Azure Data Explorer.
+title: Plage ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit la plage () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,28 +8,28 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 86558591e6312edd218230cda19a4afc17a13b27
-ms.sourcegitcommit: e94be7045d71a0435b4171ca3a7c30455e6dfa57
+ms.openlocfilehash: 2606746e89d645601fa53ed7f81d67ddae203c03
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81744582"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345910"
 ---
 # <a name="range"></a>range()
 
-Génère un tableau dynamique contenant une série de valeurs à espace également.
+Génère un tableau dynamique contenant une série de valeurs espacées de façon égale.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`range(`*arrêt de départ* `,` *stop*[`,` *étape*]`)` 
+`range(`*Démarrer* `,` *arrêter*[ `,` *étape*]`)` 
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *début*: La valeur du premier élément dans le tableau résultant. 
-* *arrêt*: La valeur du dernier élément dans le tableau résultant, ou la moindre valeur qui est supérieure au dernier élément dans le tableau résultant et dans un multiple *d’étape* integer dès le *début.*
-* *étape*: La différence entre deux éléments consécutifs du tableau. La valeur par `1` défaut pour `1h` `timespan` *l’étape* est pour le numérique et pour ou pour`datetime`
+* *Start*: valeur du premier élément dans le tableau résultant. 
+* *Stop*: valeur du dernier élément dans le tableau résultant, ou valeur minimale supérieure au dernier élément du tableau résultant et dans un entier multiple de l' *étape* de *démarrage*.
+* *Step*: différence entre deux éléments consécutifs du tableau. La valeur par défaut de l' *étape* est pour les valeurs `1` numériques et `1h` pour `timespan` ou`datetime`
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 L’exemple suivant retourne `[1, 4, 7]`:
 

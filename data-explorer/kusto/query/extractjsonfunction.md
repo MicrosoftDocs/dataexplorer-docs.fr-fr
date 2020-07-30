@@ -1,6 +1,6 @@
 ---
-title: extractjson() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit extraitjson () dans Azure Data Explorer.
+title: extractjson ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit extractjson () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 6177a1c8a6ed4390093e6f6fd24c5f5e9fd04f8a
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 21f366e8f211acf9c7c542b420006cfb23e683e7
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81515332"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348035"
 ---
 # <a name="extractjson"></a>extractjson()
 
@@ -25,22 +25,22 @@ Convertit éventuellement la chaîne extraite un type spécifique.
 extractjson("$.hosts[1].AvailableMB", EventText, typeof(int))
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`extractjson(`*jsonPath* `,` *dataSource (en)*`)` 
+`extractjson(`*jsonPath* `,` *source de source*`)` 
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *jsonPath*: chaîne JsonPath qui définit un accesseur dans le document JSON.
-* *dataSource*: Un document JSON.
+* *jsonPath*: jsonPath chaîne qui définit un accesseur dans le document JSON.
+* *DataSource*: document JSON.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Cette fonction effectue une requête JsonPath dans dataSource qui contient une chaîne JSON valide, convertissant éventuellement cette valeur en un autre type selon le troisième argument.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
-La `[``]` notatation de`.`parenthèse et la notation de point ( ) sont équivalentes :
+La `[` notation entre crochets `]` notatation et point ( `.` ) est équivalente :
 
 ```kusto
 T 

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 4c57c7aba2bff2dfaecfa72b20ab76cc84ed17d6
-ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
+ms.openlocfilehash: d1bea6260ca86e6ca47be843a6acc4fb43a037b3
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/18/2020
-ms.locfileid: "83550586"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347168"
 ---
 # <a name="isnull"></a>isnull()
 
@@ -23,11 +23,11 @@ ms.locfileid: "83550586"
 isnull(parse_json("")) == true
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `isnull(`*Expr*`)`
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 True ou false, selon que la valeur est ou non null.
 
@@ -43,7 +43,7 @@ True ou false, selon que la valeur est ou non null.
 |`parse_json("[]")`|`false`    |
 |`parse_json("{}")`|`false`    |
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
 T | where isnull(PossiblyNull) | count

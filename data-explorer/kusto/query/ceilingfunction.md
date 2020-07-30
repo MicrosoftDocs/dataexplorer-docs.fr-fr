@@ -1,6 +1,6 @@
 ---
-title: plafond() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit le plafond () dans Azure Data Explorer.
+title: Ceiling ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit Ceiling () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f2ecd043c43bb1af6530364d200d5dc9db640f95
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: e2a29d28b25d26d582aa49717d5ce5576276f450
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81517253"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348902"
 ---
 # <a name="ceiling"></a>ceiling()
 
-Calcule le plus petit integer supérieur ou égal à l’expression numérique spécifiée.
+Calcule le plus petit entier supérieur ou égal à l’expression numérique spécifiée.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`ceiling(`*X*`)`
+`ceiling(`*x*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *x*: Un vrai nombre.
+* *x*: nombre réel.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-* Le plus petit integer plus grand que, ou égal à, l’expression numérique spécifiée. 
+* Plus petit entier supérieur ou égal à l’expression numérique spécifiée. 
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ```kusto
 print c1 = ceiling(-1.1), c2 = ceiling(0), c3 = ceiling(0.9)

@@ -1,6 +1,6 @@
 ---
-title: endofyear() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit endofyear() dans Azure Data Explorer.
+title: endofyear ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit endofyear () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,31 +8,31 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: d4a14d1cc42d5b9116e8a144e2b67fb74c1932ee
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: a76a402725eaefe9f12cbb67228381e3b0c25351
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81515774"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348256"
 ---
 # <a name="endofyear"></a>endofyear()
 
-Rendements de la fin de l’année contenant la date, décalé par compensation, si fourni.
+Retourne la fin de l’année contenant la date, décalée d’un décalage, si elle est fournie.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`endofyear(`*date* `,`[*offset*]`)`
+`endofyear(`*Date* [ `,` *décalage*]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* `date`: La date d’entrée.
-* `offset`: Un nombre facultatif d’années de compensation à partir de la date d’entrée (integer, défaut - 0).
+* `date`: Date d’entrée.
+* `offset`: Nombre facultatif d’années de décalage à partir de la date d’entrée (entier, par défaut-0).
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Une date qui représente la fin de l’année pour la valeur *de la date* donnée, avec la compensation, si spécifié.
+Date/heure représentant la fin de l’année pour la valeur de *Date* donnée, avec le décalage, s’il est spécifié.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
   range offset from -1 to 1 step 1

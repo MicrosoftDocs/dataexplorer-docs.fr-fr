@@ -1,6 +1,6 @@
 ---
-title: pow() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit pow() dans Azure Data Explorer.
+title: Pow ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit Pow () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,26 +8,26 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 99a20feb90e2d0b25ccc50eed2cae4435ed676c5
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: cdb3a08749de3fd35914d3d50c5ed58c5534193e
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81511082"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346114"
 ---
 # <a name="pow"></a>pow()
 
-Retourne le résultat de l’élévation au pouvoir
+Retourne un résultat de l’élévation à Power
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`pow(`*exposant de base* `,` *exponent*`)`
+`pow(`de *base* `,` *exposant*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *base*: Valeur de base.
-* *exposant*: Valeur exposante.
+* *base*: valeur de base.
+* *exposant*: valeur d’exposant.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Base de retours soulevée à l’exposant de puissance : exposant de base.
+Retourne la base élevée à l’exposant Power-base ^.

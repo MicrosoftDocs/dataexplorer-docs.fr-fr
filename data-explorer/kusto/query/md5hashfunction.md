@@ -8,33 +8,33 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/29/2020
-ms.openlocfilehash: c09f30a4f13f16e15cfcc826f6976f1208fdabf1
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: 17b3e0d13f8048ccac90add4eee6f02f3d2e2959
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85793623"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346794"
 ---
-# <a name="hash_md5"></a>hash_md5 ()
+# <a name="hash_md5"></a>hash_md5()
 
 Retourne une valeur de hachage MD5 pour la valeur d’entrée.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `hash_md5(`*code*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *source*: valeur à hacher.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Valeur de hachage MD5 du scalaire donné, encodée sous la forme d’une chaîne hexadécimale (une chaîne de caractères, chacun deux représentant un nombre hexadécimal unique compris entre 0 et 255).
 
 > [!WARNING]
 > L’algorithme utilisé par cette fonction (MD5) est garanti ne pas être modifié à l’avenir, mais il est très complexe à calculer. Les utilisateurs qui ont besoin d’une fonction de hachage « légère » pour la durée d’une seule requête sont invités à utiliser la fonction [hash ()](./hashfunction.md) à la place.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -57,7 +57,7 @@ StormEvents
 | top 5 by StormCount
 ```
 
-|State (État)|StateHash|StormCount|
+|State|StateHash|StormCount|
 |---|---|---|
 |TEXAS|3b00dbe6e07e7485a1c12d36c8e9910a|4701|
 |KANSAS|e1338d0ac8be43846cf9ae967bd02e7f|3166|

@@ -8,27 +8,27 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/10/2019
-ms.openlocfilehash: 29b35e5bd7265d89e65fe0129317a9f1672c7cad
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 143257a586bb951caeb116882551e55f89c8636e
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373079"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345876"
 ---
 # <a name="rank_tdigest"></a>rank_tdigest()
 
 Calcule le rang approximatif de la valeur dans un jeu. Le rang de `v` la valeur dans un jeu `S` est défini en tant que nombre de membres de `S` qui sont plus petits ou égaux à `v` , `S` est représenté par son `tdigest` .
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `rank_tdigest(`*`TDigest`*`,` *`Expr`*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *TDigest*: expression générée par [TDigest ()](tdigest-aggfunction.md) ou [tdigest_merge ()](tdigest-merge-aggfunction.md)
 * *Expr*: expression représentant une valeur à utiliser pour le calcul du classement.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Valeur de classement foreach dans un jeu de données.
 
@@ -36,7 +36,7 @@ Valeur de classement foreach dans un jeu de données.
 
 1) Les valeurs dont vous souhaitez obtenir le rang doivent être du même type que le `tdigest` .
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 Dans une liste triée (1-1000), le rang de 685 est son index :
 

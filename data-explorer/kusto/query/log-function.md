@@ -1,6 +1,6 @@
 ---
-title: journal() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit le journal () dans Azure Data Explorer.
+title: log ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit log () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,31 +8,31 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/11/2019
-ms.openlocfilehash: 7bd3c4f5c6b262587cab2327486945f5d78aaf02
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 283cd1427dedb04b036d7cb23e650d8f0651a58c
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81513275"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347134"
 ---
 # <a name="log"></a>log()
 
-`log()`retourne la fonction de logarithm naturel.  
+`log()`retourne la fonction de logarithme népérien.  
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`log(`*X*`)`
+`log(`*x*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *x*: Un vrai nombre > 0.
+* *x*: nombre réel > 0.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-* Le logarithme naturel est le logarithme de base-e : l’inverse de la fonction exponentielle naturelle (exp).
-* `null`si l’argument est négatif ou nul ou `real` ne peut pas être converti en valeur. 
+* Le logarithme népérien est le logarithme de base e : l’inverse de la fonction exponentielle naturelle (exp).
+* `null`Si l’argument est négatif ou null ou ne peut pas être converti en `real` valeur. 
 
 **Voir aussi**
 
-* Pour les logarithmes communs (base-10), voir [log10()](log10-function.md).
-* Pour les logarithmes de base-2, voir [log2()](log2-function.md)
+* Pour les logarithmes courants (base 10), consultez [log10 ()](log10-function.md).
+* Pour les logarithmes en base 2, consultez [Log2 ()](log2-function.md)

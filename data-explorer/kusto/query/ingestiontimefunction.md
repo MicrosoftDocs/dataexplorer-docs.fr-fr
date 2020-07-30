@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/19/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: fea923b0d917beb505bd6a1cb9ee1339739d08c6
-ms.sourcegitcommit: 284152eba9ee52e06d710cc13200a80e9cbd0a8b
+ms.openlocfilehash: f40a592521082667815fe3ff38843a2376bda0aa
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86291557"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347406"
 ---
 # <a name="ingestion_time"></a>ingestion_time()
 
@@ -36,15 +36,15 @@ Récupère le `datetime` lorsque l’enregistrement a été ingéré et prêt po
 > [!NOTE]
 > La valeur retournée par cette fonction est uniquement approximative, car le processus d’ingestion peut prendre plusieurs minutes pour s’exécuter et plusieurs activités d’ingestion peuvent avoir lieu simultanément. Pour traiter tous les enregistrements d’une table avec des garanties exactement une fois, utilisez des [curseurs de base de données](../management/databasecursor.md).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `ingestion_time()`
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 `datetime`Valeur qui spécifie le temps approximatif d’ingestion d’une table.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
 T

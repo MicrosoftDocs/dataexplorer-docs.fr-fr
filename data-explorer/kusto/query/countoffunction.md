@@ -1,6 +1,6 @@
 ---
-title: countof() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit le compte de () dans Azure Data Explorer.
+title: countof ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit countof () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1d932fbcea9b38849e7d7de09230c9a5aa9fa8e4
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 1d34b0611db134a6fc99daa49d04bfc19575a1c1
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81516896"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348749"
 ---
 # <a name="countof"></a>countof()
 
@@ -24,21 +24,21 @@ countof("The cat sat on the mat", "at") == 3
 countof("The cat sat on the mat", @"\b.at\b", "regex") == 3
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`countof(`*text*`,` *recherche* de`,` texte [ *genre*]`)`
+`countof(`*texte* `,` *Rechercher* [ `,` *genre*]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *texte*: Une chaîne.
-* *recherche*: La chaîne simple ou [l’expression régulière](./re2.md) pour correspondre au *texte*intérieur.
-* *type* `"normal"|"regex"` : `normal`Par défaut . 
+* *Text*: chaîne.
+* *recherche*: chaîne simple ou [expression régulière](./re2.md) à faire correspondre à l’intérieur du *texte*.
+* *genre*: `"normal"|"regex"` valeur par défaut `normal` . 
 
-**Retourne**
+## <a name="returns"></a>Retours
 
 Le nombre de fois où la chaîne de recherche peut être mise en correspondance dans le conteneur. Les correspondances de chaînes simples peuvent se chevaucher, mais pas les correspondances d’expression régulière.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 |||
 |---|---

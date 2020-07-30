@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/27/2020
-ms.openlocfilehash: 6de336566f58f5cb0435ca22250cd7a07e8601cd
-ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
+ms.openlocfilehash: 25ed06f738e6b2e090ff92be9df026a85a27a89f
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84512586"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346420"
 ---
 # <a name="parse_ipv6"></a>parse_ipv6()
 
@@ -24,11 +24,11 @@ parse_ipv6("127.0.0.1") == '0000:0000:0000:0000:0000:ffff:7f00:0001'
 parse_ipv6(":fe80::85d:e82c:9446:7994") == 'fe80:0000:0000:0000:085d:e82c:9446:7994'
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `parse_ipv6(`*`Expr`*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *`Expr`*: Expression de chaîne représentant l’adresse réseau IPv6/IPv4 qui sera convertie en représentation IPv6 canonique. La chaîne peut inclure le masque net à l’aide [de la notation du préfixe IP](#ip-prefix-notation).
 
@@ -37,12 +37,12 @@ parse_ipv6(":fe80::85d:e82c:9446:7994") == 'fe80:0000:0000:0000:085d:e82c:9446:7
 Les adresses IP peuvent être définies à `IP-prefix notation` l’aide d’une barre oblique ( `/` ).
 L’adresse IP à gauche de la barre oblique ( `/` ) est l’adresse IP de base. Le nombre (1 à 127) à droite de la barre oblique ( `/` ) est le nombre de 1 bits contigus dans le masque réseau.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Si la conversion réussit, le résultat sera une chaîne représentant une adresse réseau IPv6 canonique.
 Si la conversion échoue, le résultat sera `null` .
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

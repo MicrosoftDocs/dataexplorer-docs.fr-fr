@@ -1,6 +1,6 @@
 ---
-title: datetime_diff() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit datetime_diff() dans Azure Data Explorer.
+title: datetime_diff ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit datetime_diff () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,45 +8,45 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: fd62e27ac4f9ef0ec813a311ddb2b16f0a6c9a65
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 2e116661610e343c90276a43421d263bf74cd1b5
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81516437"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348528"
 ---
 # <a name="datetime_diff"></a>datetime_diff()
 
-Calcule la différence de calendrier entre deux valeurs [de date.](./scalar-data-types/datetime.md)
+Calcule la différence entre les calendriers entre deux valeurs [DateTime](./scalar-data-types/datetime.md) .
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`datetime_diff(`*période*`,`*datetime_1*`,`*datetime_2*`)`
+`datetime_diff(`*période* `,` *datetime_1* `,` *datetime_2*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * `period`: `string`. 
-* `datetime_1`: valeur [d’heure de la date.](./scalar-data-types/datetime.md)
-* `datetime_2`: valeur [d’heure de la date.](./scalar-data-types/datetime.md)
+* `datetime_1`: valeur [DateTime](./scalar-data-types/datetime.md) .
+* `datetime_2`: valeur [DateTime](./scalar-data-types/datetime.md) .
 
-Valeurs *d’époque*possibles : 
-- Year
-- Quarter
-- Month
+Valeurs possibles de *period*: 
+- Year (Année)
+- Quarter (Trimestre)
+- Month (Mois)
 - Week
 - jour
-- Heure
+- Hour
 - Minute
-- Seconde
+- Second
 - Milliseconde
 - Microseconde
 - Nanoseconde
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Un intégrant, qui `periods` représente une quantité de`datetime_1` - `datetime_2`dans le résultat de la soustraction ( ).
+Entier qui représente la quantité de `periods` dans le résultat de la soustraction ( `datetime_1`  -  `datetime_2` ).
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ```kusto
 print

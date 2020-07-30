@@ -1,6 +1,6 @@
 ---
-title: dayofyear() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit dayofyear() dans Azure Data Explorer.
+title: DayOfYear ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit DayOfYear () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,29 +8,29 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 41e7c5906da001e877dd9124124e126d729e886d
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 925b65846c6ba32163bd325fd2ee3321bc7fc802
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81516216"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348460"
 ---
 # <a name="dayofyear"></a>dayofyear()
 
-Retourne le nombre d’intégraires représente le nombre de jours de l’année donnée.
+Retourne le nombre entier représente le nombre de jours de l’année donnée.
 
 ```kusto
 dayofyear(datetime(2015-12-14))
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `dayofweek(`*a_date*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * `a_date` : une `datetime`.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 `day number`de l’année donnée.

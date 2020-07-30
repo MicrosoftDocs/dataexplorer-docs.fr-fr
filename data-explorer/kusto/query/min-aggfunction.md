@@ -1,6 +1,6 @@
 ---
-title: min() (fonction d’agrégation) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit min() (fonction d’agrégation) dans Azure Data Explorer.
+title: min () (fonction d’agrégation)-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit min () (fonction d’agrégation) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/24/2019
-ms.openlocfilehash: ca50210c84b39f19e6717b27089313d0d116e21a
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: c7b3b189a85f46cb577c37a956c35bc755321d68
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81512408"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346777"
 ---
-# <a name="min-aggregation-function"></a>min() (fonction d’agrégation)
+# <a name="min-aggregation-function"></a>min () (fonction d’agrégation)
 
-Retourne la valeur minimale dans l’ensemble du groupe. 
+Retourne la valeur minimale dans le groupe. 
 
-* Ne peut être utilisé que dans le contexte de l’agrégation à l’intérieur [résumer](summarizeoperator.md)
+* Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`summarize``min(` *Expr Expr*`)`
+`summarize``min(` *Expr*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *Expr*: Expression qui sera utilisée pour le calcul de l’agrégation. 
+* *Expr*: expression qui sera utilisée pour le calcul de l’agrégation. 
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-La valeur minimale *d’Expr* dans l’ensemble du groupe.
+Valeur minimale de *expr* dans le groupe.
  
 > [!TIP]
-> Cela vous donne le min ou le max sur son propre - par exemple, le prix le plus élevé ou le plus bas. Mais si vous voulez d’autres colonnes dans la rangée - par exemple, le nom du fournisseur avec le prix le plus bas - utiliser [arg_max](arg-max-aggfunction.md) ou [arg_min](arg-min-aggfunction.md).
+> Cela vous donne la valeur minimale ou maximale, par exemple, le prix le plus élevé ou le plus bas. Toutefois, si vous souhaitez d’autres colonnes dans la ligne, par exemple, le nom du fournisseur ayant le prix le plus bas, utilisez [ARG_MAX](arg-max-aggfunction.md) ou [arg_min](arg-min-aggfunction.md).

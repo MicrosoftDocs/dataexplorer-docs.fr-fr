@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/19/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 0d5f44d621612e90d83a93f2f5831630520d4ba0
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: ba61537de8925b3eeaaffc8b5337e2ecfa343d88
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83371748"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87342391"
 ---
 # <a name="table-scope-function"></a>table () (fonction Scope)
 
@@ -25,11 +25,11 @@ La fonction table () référence une table en fournissant son nom en tant qu’e
 table('StormEvent')
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `table``(` *TableName* [ `,` *Datascope*]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 ::: zone pivot="azuredataexplorer"
 

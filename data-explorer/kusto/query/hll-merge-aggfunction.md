@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/15/2019
-ms.openlocfilehash: 59c6f6a11b108cf6e74ceb59d3483ea1a95f7002
-ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
+ms.openlocfilehash: 4681f92155181f85cad5c46ed70a79cb173d437f
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84512382"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347542"
 ---
 # <a name="hll_merge-aggregation-function"></a>hll_merge () (fonction d’agrégation)
 
@@ -23,15 +23,15 @@ Fusionne `HLL` les résultats dans le groupe en une seule `HLL` valeur.
 
 Pour plus d’informations, voir [algorithme sous-jacent (*H*yper*l*og*l*) et précision](dcount-aggfunction.md#estimation-accuracy)de l’estimation.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `summarize``hll_merge(` *Expr*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * `*Expr*`: Expression qui sera utilisée pour le calcul de l’agrégation.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 La fonction retourne les valeurs fusionnées `hll` de `*Expr*` dans le groupe.
  

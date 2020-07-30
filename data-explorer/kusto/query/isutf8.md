@@ -1,6 +1,6 @@
 ---
-title: isutf8 () - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit isutf8() dans Azure Data Explorer.
+title: isutf8 ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit isutf8 () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 619fb90b72fed8ec0e10fe05ddc3c6df6ff1386e
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 952ea030d351a9e23fe26bbd7f27a96d182a89e3
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81513394"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347151"
 ---
 # <a name="isutf8"></a>isutf8()
 
-Retourne `true` si l’argument est une chaîne utf8 valide.
+Retourne `true` si l’argument est une chaîne UTF8 valide.
     
 ```kusto
 isutf8("some string") == true
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `isutf8(`[*valeur*]`)`
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Indique si l’argument est une chaîne utf8 valide.
+Indique si l’argument est une chaîne UTF8 valide.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
 T

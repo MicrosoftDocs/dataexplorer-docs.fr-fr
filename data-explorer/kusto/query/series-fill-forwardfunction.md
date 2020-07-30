@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 7ea5210f0370b495c48615d28e763bf6e396d46e
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: 711a8eb851e7df8ba5b78bd03c42a77eb05d8510
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763695"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87344500"
 ---
 # <a name="series_fill_forward"></a>series_fill_forward()
 
@@ -21,17 +21,17 @@ Effectue une interpolation de remplissage vers l’avant des valeurs manquantes 
 
 Une expression contenant un tableau numérique dynamique est l’entrée. La fonction remplace toutes les instances de missing_value_placeholder par la valeur la plus proche de son côté gauche de missing_value_placeholder, et retourne le tableau résultant. Les instances les plus à gauche de missing_value_placeholder sont conservées.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `series_fill_forward(`*x* `[, ` *missing_value_placeholder*`])`
 * Retourne la série *x* avec toutes les instances de *missing_value_placeholder* remplies.
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *x*: expression scalaire de tableau dynamique, qui est un tableau de valeurs numériques. 
 * *missing_value_placeholder*: paramètre facultatif, qui spécifie un espace réservé pour une valeur manquante à remplacer. La valeur par défaut est `double` (*null*).
 
-**Notes**
+**Remarques**
 
 * Spécifiez *null* comme valeur par défaut pour appliquer les fonctions d’interpolation après [Make-Series](make-seriesoperator.md): 
 
@@ -44,7 +44,7 @@ make-series num=count() default=long(null) on TimeStamp from ago(1d) to ago(1h) 
 * Si missing_value_placeholder est (null) (ou omis-qui ont la même signification), un résultat peut contenir des valeurs *null* . Pour remplir ces valeurs *null* , utilisez d’autres fonctions d’interpolation. Actuellement [, seul series_outliers ()](series-outliersfunction.md) prend en charge les valeurs *null* dans les tableaux d’entrée.
 * Les fonctions conservent le type d’origine des éléments de tableau.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: cf21443beffb327e2708b8990017ac37fbbc8d21
-ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
+ms.openlocfilehash: 2520849508c9cef829d7c8c07f22d3f8c64cfcea
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85902047"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348936"
 ---
 # <a name="buildschema-aggregation-function"></a>buildschema () (fonction d’agrégation)
 
@@ -21,22 +21,22 @@ Retourne le schéma minimal qui admet toutes les valeurs de *DynamicExpr*.
 
 * Peut être utilisé uniquement dans le contexte de l’agrégation, à l’intérieur d’une [synthèse](summarizeoperator.md)
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 résumer `buildschema(` *DynamicExpr*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *DynamicExpr*: expression utilisée pour le calcul de l’agrégation. Le type de colonne de paramètre doit être `dynamic` . 
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Valeur maximale de *`Expr`* dans le groupe.
 
 > [!TIP] 
 > Si `buildschema(json_column)` génère une erreur de syntaxe : *votre chaîne est-elle `json_column` une chaîne plutôt qu’un objet dynamique ?* Utilisez ensuite `buildschema(parsejson(json_column))` .
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 Supposons que la colonne d’entrée comporte trois valeurs dynamiques.
 

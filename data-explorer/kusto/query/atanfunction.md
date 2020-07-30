@@ -1,6 +1,6 @@
 ---
-title: atan() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit atan () dans Azure Data Explorer.
+title: ATAN ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit ATAN () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,25 +8,25 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: f76f44abe2667b1d56a2161303570e17ba7da420
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 19118e65f85624c24ce9ab09b3c572491e0ce24f
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81518375"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349429"
 ---
 # <a name="atan"></a>atan()
 
-Retourne l’angle dont la tangente est [`tan()`](tanfunction.md)le nombre spécifié (le fonctionnement inverse de ) .
+Retourne l’angle dont la tangente est le nombre spécifié (l’opération inverse de [`tan()`](tanfunction.md) ).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`atan(`*X*`)`
+`atan(`*x*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *x*: Un vrai nombre.
+* *x*: nombre réel.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-* La valeur de la tangente arc de`x`
+* Valeur de l’arc tangente de`x`

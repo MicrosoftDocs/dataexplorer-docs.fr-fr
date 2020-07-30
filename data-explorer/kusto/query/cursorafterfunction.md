@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/19/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 9fab1ec936e950368667fc3afb133dcd952e44b5
-ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
+ms.openlocfilehash: 0f555cd1ebec8d95a3e7d0e46c986b04154c721e
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82737689"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348630"
 ---
 # <a name="cursor_after"></a>cursor_after()
 
@@ -23,17 +23,17 @@ ms.locfileid: "82737689"
 
 Prédicat sur les enregistrements d’une table pour comparer leur temps d’ingestion à un curseur de base de données.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `cursor_after``(` *RHS*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * *RHS*: un littéral de chaîne vide ou une valeur de curseur de base de données valide.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Valeur scalaire de type `bool` qui indique si l’enregistrement a été reçu après le curseur de base de données`true` *RHS* () ou`false`non ().
+Valeur scalaire de type `bool` qui indique si l’enregistrement a été reçu après le curseur de base de données *RHS* ( `true` ) ou non ( `false` ).
 
 **Remarques**
 

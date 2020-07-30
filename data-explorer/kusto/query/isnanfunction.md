@@ -1,6 +1,6 @@
 ---
-title: isnan() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit isnan () dans Azure Data Explorer.
+title: isNaN ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit IsNaN () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,36 +8,36 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 123d9cd32d645bb1225983138973a17b6bb9ecf3
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 5597f21d5e426329e2793978a6b207efc3868d13
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81513564"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347219"
 ---
 # <a name="isnan"></a>isnan()
 
-Retourne si l’entrée est not-a-Number (NaN) valeur.  
+Retourne une valeur indiquant si l’entrée n’est pas un nombre (NaN).  
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`isnan(`*X*`)`
+`isnan(`*x*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *x*: Un vrai nombre.
+* *x*: nombre réel.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Une valeur non nulle (vraie) si x est NaN; et zéro (faux) autrement.
+Valeur différente de zéro (true) si x est NaN ; et zéro (false) dans le cas contraire.
 
 **Voir aussi**
 
-* Pour vérifier si la valeur est nulle, voir [isnull()](isnullfunction.md).
-* Pour vérifier si la valeur est finie, voir [isfinite()](isfinitefunction.md).
-* Pour vérifier si la valeur est infinie, voir [isinf()](isinffunction.md).
+* Pour vérifier si la valeur est null, consultez [IsNull ()](isnullfunction.md).
+* Pour vérifier si la valeur est finie, consultez [isFinite, ()](isfinitefunction.md).
+* Pour vérifier si la valeur est infinie, consultez [isinf, ()](isinffunction.md).
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
 range x from -1 to 1 step 1
@@ -46,7 +46,7 @@ range x from -1 to 1 step 1
 | extend isnan=isnan(div)
 ```
 
-|x|y|div|isnan (isnan)|
+|x|y|div|isNaN|
 |---|---|---|---|
 |-1|1|-1|0|
 |0|0|NaN|1|

@@ -8,19 +8,19 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 4216f691345c7dffd3bb1974e5f82e877ffb70f2
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: fb781834d77aee678103a14714721ff0d46f7b3a
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85128986"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346097"
 ---
 # <a name="prev"></a>prev()
 
 Retourne la valeur d’une colonne spécifique dans une ligne spécifiée.
 La ligne spécifiée se trouve à un offset spécifié à partir de la ligne actuelle dans un [jeu de lignes sérialisé](./windowsfunctions.md#serialized-row-set).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 Il existe plusieurs possibilités.
 
@@ -30,7 +30,7 @@ Il existe plusieurs possibilités.
 
 * `prev(column, offset, default_value)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
 * `column`: Colonne à partir de laquelle les valeurs sont extraites.
 
@@ -38,7 +38,7 @@ Il existe plusieurs possibilités.
 
 * `default_value`: Valeur par défaut à utiliser lorsqu’il n’existe aucune ligne précédente à partir de laquelle prendre la valeur. Si aucune valeur par défaut n’est spécifiée, la valeur null est utilisée.
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ```kusto
 Table | serialize | extend prevA = prev(A,1)

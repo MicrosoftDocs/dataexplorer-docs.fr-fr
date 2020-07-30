@@ -1,6 +1,6 @@
 ---
-title: isfinite () - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit isfinite () dans Azure Data Explorer.
+title: isFinite, ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit isFinite, () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,36 +8,36 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 5a17a39cce91fe039b2cf55cc5c98dba111cc334
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: f53c74fd2ac56219351c4d194c93e9fa4b627cf4
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81513598"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347253"
 ---
 # <a name="isfinite"></a>isfinite()
 
-Retourne si l’entrée est une valeur finie (n’est ni infinie ni NaN).
+Retourne une valeur indiquant si l’entrée est une valeur finie (n’est ni infinie ni NaN).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`isfinite(`*X*`)`
+`isfinite(`*x*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *x*: Un vrai nombre.
+* *x*: nombre réel.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Une valeur non nulle (vraie) si x est finie; et zéro (faux) autrement.
+Valeur différente de zéro (true) si x est fini ; et zéro (false) dans le cas contraire.
 
 **Voir aussi**
 
-* Pour vérifier si la valeur est nulle, voir [isnull()](isnullfunction.md).
-* Pour vérifier si la valeur est infinie, voir [isinf()](isinffunction.md).
-* Pour vérifier si la valeur est NaN (Not-a-Number), voir [isnan()](isnanfunction.md).
+* Pour vérifier si la valeur est null, consultez [IsNull ()](isnullfunction.md).
+* Pour vérifier si la valeur est infinie, consultez [isinf, ()](isinffunction.md).
+* Pour vérifier si la valeur est NaN (not-a-Number), consultez [IsNaN ()](isnanfunction.md).
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
 range x from -1 to 1 step 1
@@ -46,7 +46,7 @@ range x from -1 to 1 step 1
 | extend isfinite=isfinite(div)
 ```
 
-|x|y|div|isfinite|
+|x|y|div|isFinite,|
 |---|---|---|---|
 |-1|0|-∞|0|
 |0|0|NaN|0|

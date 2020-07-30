@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 12/10/2019
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 5291fa664dc4736179d7f20984eacfd44efd5888
-ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
+ms.openlocfilehash: 879fe4aac2a6714f3d7ab16a63c69cd8215bbb04
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82737655"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348596"
 ---
 # <a name="cursor_current-current_cursor"></a>cursor_current(), current_cursor()
 
@@ -23,11 +23,11 @@ ms.locfileid: "82737655"
 
 Récupère la valeur actuelle du curseur de la base de données dans l’étendue. (Les noms `cursor_current` et `current_cursor` sont des synonymes.)
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `cursor_current()`
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
 Retourne une valeur unique de type `string` qui encode la valeur actuelle du curseur de la base de données dans l’étendue.
 

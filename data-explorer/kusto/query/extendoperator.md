@@ -1,6 +1,6 @@
 ---
-title: opérateur d’extension - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit l’opérateur d’extension dans Azure Data Explorer.
+title: Extend, opérateur-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit l’opérateur Extend dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,42 +8,42 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 4b9b7bdb9488b0e9d1b72b3e0ab4782020c9b841
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 32100f6668c2fb20ae715b985b0bf3612e13e69b
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81515587"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348154"
 ---
 # <a name="extend-operator"></a>opérateur extend
 
-Créez des colonnes calculées et appendicez-les à l’ensemble de résultats.
+Créer des colonnes calculées et les ajouter au jeu de résultats.
 
 ```kusto
 T | extend duration = endTime - startTime
 ```
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-*T* `| extend` [*ColumnName* | `(`*ColumnName*[`,` ...] ] Expression`,` [...] *Expression* `)` `=`
+*T* `| extend` [*ColumnName*  |  `(` *ColumnName*[ `,` ...] `)` `=` ] *expression* [ `,` ...]
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *T*: L’ensemble de résultats tabulaires d’entrée.
-* *Nom de colonne:* Optionnel. Le nom de la colonne à ajouter ou à mettre à jour. S’il est omis, le nom sera généré. Si *Expression* renvoie plus d’une colonne, une liste de noms de colonnes peut être spécifiée entre parenthèses. Dans ce cas, les colonnes de sortie *d’Expression*recevront les noms spécifiés, laissant tomber le reste des colonnes de sortie, s’il y en a. Si une liste des noms de colonnes n’est pas spécifiée, toutes les colonnes de sortie *d’Expression*avec des noms générés seront ajoutées à la sortie.
-* *Expression:* Un calcul sur les colonnes de l’entrée.
+* *T*: jeu de résultats tabulaire d’entrée.
+* *ColumnName :* Facultatif. Nom de la colonne à ajouter ou mettre à jour. En cas d’omission, le nom est généré. Si l' *expression* retourne plusieurs colonnes, une liste de noms de colonnes peut être spécifiée entre parenthèses. Dans ce cas, les colonnes de sortie de l' *expression*reçoivent les noms spécifiés, en supprimant le reste des colonnes de sortie, le cas échéant. Si une liste de noms de colonnes n’est pas spécifiée, toutes les colonnes de sortie de l' *expression*avec des noms générés sont ajoutées à la sortie.
+* *Expression :* Calcul sur les colonnes de l’entrée.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Une copie de l’ensemble de résultats tabulaires d’entrée, de sorte que :
-1. Les noms `extend` de colonnes notés par qui existent déjà dans l’entrée sont supprimés et annexés comme leurs nouvelles valeurs calculées.
-2. Les noms `extend` de colonnes notés par qui n’existent pas dans l’entrée sont annexés comme leurs nouvelles valeurs calculées.
+Une copie du jeu de résultats tabulaire d’entrée, de telle sorte que :
+1. Les noms de colonne notés par `extend` qui existent déjà dans l’entrée sont supprimés et ajoutés en tant que nouvelles valeurs calculées.
+2. Les noms de colonnes marqués par `extend` qui n’existent pas dans l’entrée sont ajoutés en tant que nouvelles valeurs calculées.
 
 **Conseils**
 
-* L’opérateur `extend` ajoute une nouvelle colonne à l’ensemble de résultats d’entrée, qui n’a **pas** d’indice. Dans la plupart des cas, si la nouvelle colonne est définie pour être exactement la même qu’une colonne de table existante qui a un index, Kusto peut automatiquement utiliser l’index existant. Cependant, dans certains scénarios complexes, cette propagation n’est pas faite. Dans de tels cas, si l’objectif est de renommer une colonne, utilisez [ `project-rename` l’opérateur](projectrenameoperator.md) à la place.
+* L' `extend` opérateur ajoute une nouvelle colonne au jeu de résultats d’entrée, qui n’a **pas** d’index. Dans la plupart des cas, si la nouvelle colonne est définie comme étant exactement la même qu’une colonne de table existante avec un index, Kusto peut utiliser automatiquement l’index existant. Toutefois, dans certains scénarios complexes, cette propagation n’est pas effectuée. Dans ce cas, si l’objectif est de renommer une colonne, utilisez plutôt l' [ `project-rename` opérateur](projectrenameoperator.md) .
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
 Logs

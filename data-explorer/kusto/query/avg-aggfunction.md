@@ -1,6 +1,6 @@
 ---
-title: avg() (fonction d’agrégation) - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit avg() (fonction d’agrégation) dans Azure Data Explorer.
+title: AVG () (fonction d’agrégation)-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit AVG () (fonction d’agrégation) dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,28 +8,28 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/26/2019
-ms.openlocfilehash: aadc756bdf4c6cab805f58a8a600815cf29680f7
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: f058af075a856d12a2a6a81419f32b6efbd9ea16
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81518341"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349395"
 ---
-# <a name="avg-aggregation-function"></a>avg() (fonction d’agrégation)
+# <a name="avg-aggregation-function"></a>AVG () (fonction d’agrégation)
 
-Calcule la moyenne *d’Expr* dans l’ensemble du groupe. 
+Calcule la moyenne de *expr* dans le groupe. 
 
-* Ne peut être utilisé que dans le contexte de l’agrégation à l’intérieur [résumer](summarizeoperator.md)
+* Peut uniquement être utilisé dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-résumer `avg(` *Expr*`)`
+résumer `avg(` *expr*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *Expr*: Expression qui sera utilisée pour le calcul de l’agrégation. Les `null` enregistrements avec valeurs sont ignorés et ne sont pas inclus dans le calcul.
+* *Expr*: expression qui sera utilisée pour le calcul de l’agrégation. Les enregistrements avec des `null` valeurs sont ignorés et ne sont pas inclus dans le calcul.
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-La valeur moyenne *d’Expr* dans l’ensemble du groupe.
+Valeur moyenne de *expr* dans le groupe.
  

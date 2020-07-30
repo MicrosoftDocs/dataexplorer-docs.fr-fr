@@ -1,6 +1,6 @@
 ---
-title: current_cluster_endpoint() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit current_cluster_endpoint () dans Azure Data Explorer.
+title: current_cluster_endpoint ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit current_cluster_endpoint () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,26 +8,26 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 65ce130b4dd3e0a3125eefc6c410775647f9b964
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 2c3ddbee55e729ae8afbb6c1fbcc213bd6bfd9ce
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81516845"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348715"
 ---
 # <a name="current_cluster_endpoint"></a>current_cluster_endpoint()
 
-Retourne le critère de terminaison réseau (nom DNS) du cluster actuel interrogé.
+Retourne le point de terminaison réseau (nom DNS) du cluster en cours d’interrogation.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `current_cluster_endpoint()`
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Le critère de terminaison réseau (nom DNS) du cluster `string`actuel étant interrogé, comme une valeur de type .
+Point de terminaison réseau (nom DNS) du cluster en cours d’interrogation, en tant que valeur de type `string` .
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
 print strcat("This query executed on: ", current_cluster_endpoint())

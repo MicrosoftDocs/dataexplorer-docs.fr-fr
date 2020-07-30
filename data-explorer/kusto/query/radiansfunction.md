@@ -1,6 +1,6 @@
 ---
-title: radians() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit les radians () dans Azure Data Explorer.
+title: radians ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit les radians () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 0dc04c5f9593b6bd5fc61f57d20819cf7d2a178c
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 3aaa41a631498e2938acf722b75f409a1bbe5031
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81510657"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345944"
 ---
 # <a name="radians"></a>radians()
 
-Convertit la valeur de l’angle en degrés en valeur chez les radians, en utilisant la formule`radians = (PI / 180 ) * angle_in_degrees`
+Convertit la valeur d’angle en degrés en radians, à l’aide de la formule`radians = (PI / 180 ) * angle_in_degrees`
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`radians(`*Un*`)`
+`radians(`*un*`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* *a*: Angle en degrés (un nombre réel).
+* *a*: angle en degrés (nombre réel).
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-* L’angle correspondant dans les radians pour un angle spécifié en degrés. 
+* Angle correspondant en radians pour un angle spécifié en degrés. 
 
-**Exemples**
+## <a name="examples"></a>Exemples
 
 ```kusto
 print radians0 = radians(90), radians1 = radians(180), radians2 = radians(360) 
@@ -40,4 +40,4 @@ print radians0 = radians(90), radians1 = radians(180), radians2 = radians(360)
 
 |radians0|radians1|radians2|
 |---|---|---|
-|1.5707963267949|3.14159265358979|6.28318530717959|
+|1,5707963267949|3,14159265358979|6.28318530717959|

@@ -1,6 +1,6 @@
 ---
-title: pi() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit pi() dans Azure Data Explorer.
+title: pi ()-Explorateur de données Azure | Microsoft Docs
+description: Cet article décrit pi () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,21 +8,21 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/25/2019
-ms.openlocfilehash: 714da0ca903bd38bb1391b2d92a295499c085783
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 1b2a90a28a0366527af86437e866ab9f3d4dbbb8
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81511133"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346148"
 ---
 # <a name="pi"></a>pi()
 
-Retourne la valeur constante de Pi.
+Retourne la valeur constante de pi.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `pi()`
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-* La double valeur de Pi (3.1415926...)
+* La valeur double de pi (3,1415926...)

@@ -1,6 +1,6 @@
 ---
-title: endofweek() - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit endofweek() dans Azure Data Explorer.
+title: endofweek ()-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit endofweek () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 83c080c60e34dbfdf19f7dde870621e34ded836d
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 57fa1764753e730f9ff0a2b01a70e0c221217d23
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81515825"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348273"
 ---
 # <a name="endofweek"></a>endofweek()
 
-Retourne la fin de la semaine contenant la date, décalée par un décalage, si elle est fournie.
+Retourne la fin de la semaine contenant la date, décalée d’un décalage, si elle est fournie.
 
 Le dernier jour de la semaine est considéré comme un samedi.
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
-`endofweek(`*date* `,`[*offset*]`)`
+`endofweek(`*Date* [ `,` *décalage*]`)`
 
-**Arguments**
+## <a name="arguments"></a>Arguments
 
-* `date`: La date d’entrée.
-* `offset`: Nombre facultatif de semaines offset à partir de la date d’entrée (integer, défaut - 0).
+* `date`: Date d’entrée.
+* `offset`: Nombre facultatif de semaines décalées à partir de la date d’entrée (entier, par défaut-0).
 
-**Retourne**
+## <a name="returns"></a>Retourne
 
-Une date qui représente la fin de la semaine pour la valeur *de la date* donnée, avec la compensation, si spécifié.
+Date/heure représentant la fin de la semaine pour la valeur de *Date* donnée, avec le décalage, s’il est spécifié.
 
-**Exemple**
+## <a name="example"></a>Exemple
 
 ```kusto
   range offset from -1 to 1 step 1
@@ -42,7 +42,7 @@ Une date qui représente la fin de la semaine pour la valeur *de la date* donné
 
 ```
 
-|Week-end|
+|End|
 |---|
 |2016-12-31 23:59:59.9999999|
 |2017-01-07 23:59:59.9999999|
