@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/19/2020
-ms.openlocfilehash: c95ac178e82e414df41dd5a6d4456f344bb39c2f
-ms.sourcegitcommit: 6db94135b9902ad0ea84f9cef00ded8ec0a90fc3
+ms.openlocfilehash: 601a2b90b3a9152df701f001f050ab0c48e8910d
+ms.sourcegitcommit: 6e84f50efc8c5c3fe57080341ed3effe72197886
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86870122"
+ms.lasthandoff: 07/30/2020
+ms.locfileid: "87440029"
 ---
 # <a name="using-kustoexplorer"></a>Utilisation de Kusto.Explorer
 
@@ -38,7 +38,7 @@ Le mode de recherche + + vous permet de rechercher un terme à l’aide de la sy
 
 Kusto. Explorer comprend un puissant mode de script qui vous permet d’écrire, de modifier et d’exécuter des requêtes ad hoc. Le mode de script est fourni avec la mise en surbrillance de la syntaxe et IntelliSense, ce qui vous permet de faire rapidement progresser vos connaissances du langage de requête Kusto.
 
-Ce document explique comment exécuter des requêtes de base dans Kusto. Explorer et comment ajouter des paramètres à vos requêtes.
+Cette section décrit comment exécuter des requêtes de base dans Kusto. Explorer et comment ajouter des paramètres à vos requêtes.
 
 ## <a name="basic-queries"></a>Requêtes de base
 
@@ -76,9 +76,9 @@ StormEvents
 En savoir plus sur le [langage de requête Kusto](https://docs.microsoft.com/azure/kusto/query/).
 
 > [!NOTE]
-> Les lignes vides dans l’expression de requête peuvent avoir une incidence sur la partie de la requête qui est exécutée.
+> Des lignes vides dans l’expression de requête peuvent avoir une incidence sur la partie de la requête qui est exécutée.
 >
-> Si aucun texte n’est sélectionné, la requête ou la commande est supposée être séparée par des lignes vides.
+> Si aucun texte n’est sélectionné, l’hypothèse est que la requête ou la commande est séparée par des lignes vides.
 > Si du texte est sélectionné, le texte sélectionné est exécuté.
 
 ## <a name="client-side-query-parameterization"></a>Paramétrage des requêtes côté client
