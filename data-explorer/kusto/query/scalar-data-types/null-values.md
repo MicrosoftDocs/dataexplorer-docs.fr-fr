@@ -1,6 +1,6 @@
 ---
-title: Valeurs nulles - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit Null Values in Azure Data Explorer.
+title: Valeurs NULL-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit les valeurs NULL dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,42 +10,42 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: c3a48fdfca855a1ff2f848d4ed97d8162e97b931
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: c493431fcfa22ad0419659a5b6e036205f3bf299
+ms.sourcegitcommit: 194453a8eb11c3ccb54c473e887c84cb8e91b939
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81765945"
+ms.lasthandoff: 07/31/2020
+ms.locfileid: "87473970"
 ---
 # <a name="null-values"></a>Valeurs Null
 
-Tous les types de données scalaires à Kusto ont une valeur particulière qui représente une valeur manquante.
-Cette valeur est appelée la **valeur nulle**, ou tout simplement **nulle**.
+Tous les types de données scalaires dans Kusto ont une valeur spéciale qui représente une valeur manquante.
+Cette valeur est appelée **valeur null**ou simplement **null**.
 
-## <a name="null-literals"></a>Null littéralements
+## <a name="null-literals"></a>Littéraux Null
 
-La valeur nulle d’un `T` type scalaire est représentée dans `T(null)`la langue de requête par le littéral nul .
-Ainsi, les retours suivants d’une seule rangée pleine de nuls:
+La valeur null d’un type scalaire `T` est représentée dans le langage de requête par le littéral null `T(null)` .
+Ainsi, le code suivant retourne une seule ligne de valeurs NULL :
 
 ```kusto
 print bool(null), datetime(null), dynamic(null), guid(null), int(null), long(null), real(null), double(null), time(null)
 ```
 
 > [!WARNING]
-> Veuillez noter qu’actuellement le `string` type ne prend pas en charge les valeurs nulles.
+> Notez qu’actuellement, le `string` type ne prend pas en charge les valeurs NULL.
 
-## <a name="comparing-null-to-something"></a>Comparaison nulle à quelque chose
+## <a name="comparing-null-to-something"></a>Comparaison de la valeur null à un événement
 
-La valeur nulle ne se compare pas à toute autre valeur du type de données, y compris elle-même. (C’est-à-dire, `null == null` est faux.) Pour déterminer si une certaine valeur est la valeur nulle, utilisez la fonction [isnull()](../isnullfunction.md) et la fonction [isnotnull().](../isnotnullfunction.md)
+La valeur NULL n’est pas comparée à une autre valeur du type de données, y compris lui-même. (Autrement dit, `null == null` a la valeur false.) Pour déterminer si une valeur est la valeur null, utilisez la fonction [IsNull ()](../isnullfunction.md) et la fonction [IsNotNull ()](../isnotnullfunction.md) .
 
-## <a name="binary-operations-on-null"></a>Opérations binaires sur nul
+## <a name="binary-operations-on-null"></a>Opérations binaires sur null
 
-En général, null se comporte d’une manière "collante" autour des opérateurs binaires; une opération binaire entre une valeur nulle et toute autre valeur (y compris une autre valeur nulle) produit une valeur nulle.
+En général, NULL se comporte de manière « rémanente » autour des opérateurs binaires ; une opération binaire entre une valeur null et toute autre valeur (y compris une autre valeur null) produit une valeur null.
 
-## <a name="data-ingestion-and-null-values"></a>Ingestion de données et valeurs nulles
+## <a name="data-ingestion-and-null-values"></a>Ingestion de données et valeurs null
 
-Pour la plupart des types de données, une valeur manquante dans la source de données produit une valeur nulle dans la cellule de table correspondante. Une exception à cela `string` sont des colonnes de type et cSV-comme l’ingestion, où une valeur manquante produit une chaîne vide.
-Donc, par exemple, si nous avons: 
+Pour la plupart des types de données, une valeur manquante dans la source de données génère une valeur null dans la cellule de table correspondante. Une exception à qui sont des colonnes de type et d’ingestion de type `string` CSV, où une valeur manquante produit une chaîne vide.
+Par exemple, si nous avons : 
 
 ```kusto
 .create table T [a:string, b:int]
@@ -58,7 +58,7 @@ Donc, par exemple, si nous avons:
 
 Ensuite :
 
-|a     |b     |isnull(a)|isempty(a)|strlen(a)|isnull(b)|
+|a     |b     |IsNull (a)|IsEmpty (a)|strlen (a)|IsNull (b)|
 |------|------|---------|----------|---------|---------|
 |&nbsp;|&nbsp;|false    |true      |0        |true     |
 |&nbsp;|&nbsp;|false    |false     |1        |true     |
@@ -66,8 +66,8 @@ Ensuite :
 
 ::: zone pivot="azuredataexplorer"
 
-* Si vous exécutez la requête ci-dessus `true` dans Kusto.Explorer, toutes les valeurs seront démantées comme `1`, et toutes les `false` valeurs seront affichées comme `0`.
+* Si vous exécutez la requête ci-dessus dans Kusto. Explorer, toutes les `true` valeurs s’affichent sous la forme `1` , et toutes les `false` valeurs s’affichent sous la forme `0` .
 
 ::: zone-end
 
-* Kusto n’offre pas un moyen de contraindre la colonne d’une table à avoir `NOT NULL` des valeurs nulles (en d’autres termes, il n’y a pas d’équivalent à la contrainte de SQL).
+* Kusto n’offre aucun moyen de contraindre la colonne d’une table à avoir des valeurs null (en d’autres termes, il n’y a pas d’équivalent à la contrainte de SQL `NOT NULL` ).
