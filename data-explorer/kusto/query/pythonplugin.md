@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 04/01/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 984e5c37f3d29a6c56f88c6eb9b6750635e48920
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 98888ddd5dd6155c9476163337e7c031e0f84a1e
+ms.sourcegitcommit: afc369ab4c4bcc74f2dce22b397a340572db8ecf
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345978"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "87528144"
 ---
 # <a name="python-plugin"></a>Plug-in Python
 
@@ -24,7 +24,7 @@ ms.locfileid: "87345978"
 Le plug-in Python exécute une fonction définie par l’utilisateur (UDF) à l’aide d’un script Python. Le script Python obtient les données tabulaires en tant qu’entrée et est censé produire une sortie tabulaire.
 Le runtime du plug-in est hébergé dans les [bacs à sable (sandbox](../concepts/sandboxes.md)), en cours d’exécution sur les nœuds du cluster.
 
-## <a name="syntax"></a>Syntaxe
+## <a name="syntax"></a>Syntax
 
 *T* `|` `evaluate` [ `hint.distribution` `=` ( `single`  |  `per_node` )] `python(` *output_schema* `,` *script* [ `,` *script_parameters*] [ `,` *external_artifacts*]`)`
 
@@ -58,7 +58,7 @@ Les variables suivantes sont réservées pour l’interaction entre le langage d
 
 * Le plug-in est désactivé par défaut.
 * Pour activer le plug-in, consultez la liste des [composants requis](../concepts/sandboxes.md#prerequisites).
-* Activez ou désactivez le plug-in dans le Portail Azure, dans l'[onglet Configuration](../../language-extensions.md)de votre cluster.
+* Activez ou désactivez le plug-in dans le Portail Azure, dans l' [onglet Configuration](../../language-extensions.md)de votre cluster.
 
 ## <a name="python-sandbox-image"></a>Image Python sandbox
 
