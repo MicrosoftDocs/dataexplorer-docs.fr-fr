@@ -1,18 +1,18 @@
 ---
 title: Gérer la mise à l’échelle verticale (scale-up) d’un cluster pour répondre à la demande dans Azure Data Explorer
 description: Cet article décrit les étapes à suivre pour effectuer un scale-up et un scale-down de la taille d’un cluster Azure Data Explorer en fonction des fluctuations de la demande.
-author: radennis
-ms.author: radennis
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: radennis
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 07/14/2019
-ms.openlocfilehash: 95275598febae2b6b0355a7bc3e512490dae500d
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: fc3b4af91cd24b60f8ace110551daa47ff8cf934
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492593"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351605"
 ---
 # <a name="manage-cluster-vertical-scaling-scale-up-in-azure-data-explorer-to-accommodate-changing-demand"></a>Gérer la mise à l'échelle verticale d'un cluster (montée en puissance) dans Azure Data Explorer pour prendre en compte les fluctuations de la demande
 

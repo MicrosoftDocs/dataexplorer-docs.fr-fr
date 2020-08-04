@@ -1,18 +1,18 @@
 ---
 title: Créer une connexion de données IoT Hub pour Azure Data Explorer à l’aide d’un modèle Azure Resource Manager
 description: Dans cet article, vous allez apprendre à créer une connexion de données IoT Hub pour Azure Data Explorer à l’aide d’un modèle Azure Resource Manager.
-author: lucygoldbergmicrosoft
-ms.author: lugoldbe
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 11/28/2019
-ms.openlocfilehash: 8c91808de3f3f32139c4d46047fa39d952ca953a
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: f38e6ffe4cec263585c3fe6e06bbb92c9127bbba
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493125"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350064"
 ---
 # <a name="create-an-iot-hub-data-connection-for-azure-data-explorer-by-using-azure-resource-manager-template"></a>Créer une connexion de données IoT Hub pour Azure Data Explorer à l’aide d’un modèle Azure Resource Manager
 

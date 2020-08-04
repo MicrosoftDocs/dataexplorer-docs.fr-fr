@@ -1,15 +1,15 @@
 ---
-author: lugoldbemicrosoft
+author: orspod
 ms.service: data-explorer
 ms.topic: include
 ms.date: 02/03/2020
-ms.author: lugoldbe
-ms.openlocfilehash: 22af1f413bef0c69eb732f75fa03049140e4c7e3
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.author: orspodek
+ms.openlocfilehash: 6ae9fb081fd22565635b61a5d445f85680f07be0
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492605"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350438"
 ---
 ## <a name="azure-resource-manager-template"></a>Modèle Azure Resource Manager
 

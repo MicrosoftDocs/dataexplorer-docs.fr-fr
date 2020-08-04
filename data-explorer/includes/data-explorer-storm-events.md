@@ -1,14 +1,14 @@
 ---
-author: mgblythe
+author: orspod
 ms.service: data-explorer
 ms.topic: include
 ms.date: 11/14/2018
-ms.author: mblythe
-ms.openlocfilehash: 3100fed8a4bacae3d75783d3e7574e1988870ad4
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.author: orspodek
+ms.openlocfilehash: 35483dad4943b4bd57d47e1faacd710fa14f3cf9
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81491944"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87375539"
 ---
 L’exemple de jeu de données StormEvents contient des données météorologiques des [National Centers for Environmental Information](https://www.ncdc.noaa.gov/stormevents/).

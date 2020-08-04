@@ -1,18 +1,18 @@
 ---
 title: Créer des stratégies à l’aide du Kit de développement logiciel (SDK) C# d’Azure Data Explorer
 description: Dans cet article, vous apprendrez à créer des stratégies en utilisant le langage C#.
-author: lucygoldbergmicrosoft
-ms.author: lugoldbe
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 09/24/2019
-ms.openlocfilehash: 0d02b5916cabc3645a3d61a9154ed31061c762aa
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 892605953fae65e8cc5404ace215c5699e3971d6
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373896"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349973"
 ---
 # <a name="create-database-and-table-policies-for-azure-data-explorer-by-using-c"></a>Créer des stratégies de base de données et de table pour Azure Data Explorer en utilisant le langage C#
 

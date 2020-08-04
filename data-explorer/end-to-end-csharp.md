@@ -1,18 +1,18 @@
 ---
 title: Ingestion d’objets blob de bout en bout dans Azure Data Explorer par le biais de C#
 description: Dans cet article, vous allez apprendre à ingérer des objets blob dans Azure Data Explorer à l’aide d’un exemple de bout en bout qui utilise C#.
-author: lucygoldbergmicrosoft
-ms.author: lugoldbe
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/19/2020
-ms.openlocfilehash: 53504f51f1a5bd80967c510bd4bff1ba47cd8e58
-ms.sourcegitcommit: ee90472a4f9d751d4049744d30e5082029c1b8fa
+ms.openlocfilehash: 2a7416a2f86963ab30f84ce0a7e2fd098af52108
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/21/2020
-ms.locfileid: "83722165"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350437"
 ---
 # <a name="end-to-end-blob-ingestion-into-azure-data-explorer-through-c"></a>Ingestion d’objets blob de bout en bout dans Azure Data Explorer par le biais de C#
 

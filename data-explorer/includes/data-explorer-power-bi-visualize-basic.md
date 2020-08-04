@@ -1,15 +1,15 @@
 ---
-author: mgblythe
+author: orspod
 ms.service: data-explorer
 ms.topic: include
 ms.date: 11/14/2018
-ms.author: mblythe
-ms.openlocfilehash: 9624856841ec7473543575c31928c6eefd1404c1
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.author: orspodek
+ms.openlocfilehash: 13601823f9bff9b00d285a215a6cef5160203b37
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494333"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87374742"
 ---
 Maintenant que vous avez des données dans Power BI Desktop, vous pouvez créer des rapports basés sur ces données. Vous allez créer un rapport simple avec un histogramme qui montre les dégâts aux cultures par état.
 

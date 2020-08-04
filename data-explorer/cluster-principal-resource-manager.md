@@ -1,18 +1,18 @@
 ---
 title: Ajouter des principaux de cluster pour Azure Data Explorer à l’aide d’un modèle Azure Resource Manager
 description: Dans cet article, vous apprendrez à ajouter des principaux de cluster pour Azure Data Explorer à l’aide d’un modèle Azure Resource Manager.
-author: lucygoldbergmicrosoft
-ms.author: lugoldbe
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 02/03/2020
-ms.openlocfilehash: 22423568ab0b3b55d8d9566df4829eb6070b5f8c
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 9577e6d583f7e2c936116d9802839b24481e5f8e
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492845"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350381"
 ---
 # <a name="add-cluster-principals-for-azure-data-explorer-by-using-an-azure-resource-manager-template"></a>Ajouter des principaux de cluster pour Azure Data Explorer à l’aide d’un modèle Azure Resource Manager
 

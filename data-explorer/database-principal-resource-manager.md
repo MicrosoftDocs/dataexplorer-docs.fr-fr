@@ -1,18 +1,18 @@
 ---
 title: Ajouter des principaux de base de données pour Azure Data Explorer à l’aide d’un modèle Azure Resource Manager
 description: Dans cet article, vous apprendrez à ajouter des principaux de base de données pour Azure Data Explorer à l’aide d’un modèle Azure Resource Manager.
-author: lucygoldbergmicrosoft
-ms.author: lugoldbe
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 02/03/2020
-ms.openlocfilehash: 80fcf4b6c5d64dde7bd1c5475fb6a3dbafd7f907
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 5ed9900a33fe90dbb04be3725ddd8e19bfb63b07
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492669"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349990"
 ---
 # <a name="add-database-principals-for-azure-data-explorer-by-using-an-azure-resource-manager-template"></a>Ajouter des principaux de base de données pour Azure Data Explorer à l’aide d’un modèle Azure Resource Manager
 

@@ -1,19 +1,19 @@
 ---
 title: Fichier include
 description: Fichier include
-author: robinsh
+author: orspod
 ms.service: iot-hub
 services: iot-hub
 ms.topic: include
 ms.date: 02/14/2020
-ms.author: robinsh
+ms.author: orspodek
 ms.custom: include file
-ms.openlocfilehash: c3f1c40fd61d83fdb40bca0bda368d88d4096906
-ms.sourcegitcommit: e1e35431374f2e8b515bbe2a50cd916462741f49
+ms.openlocfilehash: 8009d1317817fe399952879ce5b524d6cea4da6f
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82109807"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87375686"
 ---
 Cette section décrit comment créer un hub IoT à l’aide du [portail Azure](https://portal.azure.com).
 

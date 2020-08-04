@@ -1,18 +1,18 @@
 ---
 title: Ajouter des principaux de base de données pour Azure Data Explorer à l’aide de C#
 description: Dans cet article, vous allez apprendre à ajouter des principaux de base de données pour Azure Data Explorer à l’aide de C#.
-author: lucygoldbergmicrosoft
-ms.author: lugoldbe
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 02/03/2020
-ms.openlocfilehash: 17107c1164b0ff84600776afd32feb4ef40256ff
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 97e7b7430410ce73f3577fdf37a2635169ea191b
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493357"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350024"
 ---
 # <a name="add-database-principals-for-azure-data-explorer-by-using-c"></a>Ajouter des principaux de base de données pour Azure Data Explorer à l’aide de C#
 

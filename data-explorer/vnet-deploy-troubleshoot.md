@@ -1,18 +1,18 @@
 ---
 title: Résoudre les problèmes d’accès, d’ingestion et de fonctionnement de votre cluster Azure Data Explorer dans votre réseau virtuel
 description: Résoudre les problèmes de connectivité, d’ingestion, de création de cluster et de fonctionnement de votre cluster Azure Data Explorer dans votre réseau virtuel
-author: basaba
-ms.author: basaba
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: basaba
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/24/2020
-ms.openlocfilehash: 6eab8ab3097876c74cc6aaa9116c8923ca9fc3db
-ms.sourcegitcommit: b286703209f1b657ac3d81b01686940f58e5e145
+ms.openlocfilehash: b0148267f2245cd00e9bd2891b1a220908c1c16a
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86188402"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351656"
 ---
 # <a name="troubleshoot-access-ingestion-and-operation-of-your-azure-data-explorer-cluster-in-your-virtual-network"></a>Résoudre les problèmes d’accès, d’ingestion et de fonctionnement de votre cluster Azure Data Explorer dans votre réseau virtuel
 

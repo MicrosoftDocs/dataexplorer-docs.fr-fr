@@ -7,12 +7,12 @@ ms.reviewer: orhasban
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/01/2020
-ms.openlocfilehash: 52855651daccfe3c9baf5bb059530bcf7bfb0f19
-ms.sourcegitcommit: 653bfb3edf32553c52ef36b339c8b80713a601b0
+ms.openlocfilehash: 104b3e4db18334f33c54177da7b996bc679db2de
+ms.sourcegitcommit: d9fbcd6c9787f90de62e8e832c92d43b8090cbfc
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81494545"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "87515887"
 ---
 # <a name="manage-language-extensions-in-your-azure-data-explorer-cluster-preview"></a>Gérer les extensions de langage dans votre cluster Azure Data Explorer (préversion)
 
@@ -64,6 +64,6 @@ Procédez comme suit pour désactiver les extensions de langage sur votre cluste
 
 ## <a name="limitations"></a>Limites
 
-* La fonctionnalité Extensions de langage ne prend pas en charge le [chiffrement de disque](manage-cluster-security.md). 
+* La fonctionnalité Extensions de langage ne prend pas en charge le [chiffrement de disque](cluster-disk-encryption.md). 
 * Le bac à sable du runtime des extensions de langage alloue de l’espace disque même si aucune requête n’est exécutée dans l’étendue du langage concerné.
 Pour plus d’informations sur les limitations, consultez les [bacs à sable](kusto/concepts/sandboxes.md).

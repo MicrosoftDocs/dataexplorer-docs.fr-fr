@@ -1,18 +1,18 @@
 ---
 title: Ajouter des principaux de cluster pour Azure Data Explorer à l’aide de C#
 description: Dans cet article, vous apprendrez à ajouter des principaux de cluster pour Azure Data Explorer à l’aide de C#.
-author: lucygoldbergmicrosoft
-ms.author: lugoldbe
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 02/03/2020
-ms.openlocfilehash: b677768b87419833968de48eca2dd32c4fdb17cb
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 92ec0b5fcd5635bc13052bcf4141956fe8d59c55
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492793"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350415"
 ---
 # <a name="add-cluster-principals-for-azure-data-explorer-by-using-c"></a>Ajouter des principaux de cluster pour Azure Data Explorer à l’aide de C#
 

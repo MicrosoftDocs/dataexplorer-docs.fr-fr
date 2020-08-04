@@ -1,18 +1,18 @@
 ---
 title: Ingérer des données depuis Logstash vers Azure Data Explorer
 description: Dans cet article, vous allez apprendre à ingérer (charger) des données dans Azure Data Explorer depuis Logstash.
-author: tamirkamara
-ms.author: takamara
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: takamara
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 06/03/2019
-ms.openlocfilehash: e7b4a8cf3dcd109de59ab12717f8fbc17b600ec9
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 0beb88cbcb2b72a79ad2d6c1ad6aac44bdcb13bc
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493137"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350517"
 ---
 # <a name="ingest-data-from-logstash-to-azure-data-explorer"></a>Ingérer des données depuis Logstash vers Azure Data Explorer
 

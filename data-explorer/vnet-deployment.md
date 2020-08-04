@@ -1,18 +1,18 @@
 ---
 title: Déployer Azure Data Explorer dans votre réseau virtuel
 description: Découvrir comment déployer Azure Data Explorer dans votre réseau virtuel
-author: basaba
-ms.author: basaba
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: basaba
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/31/2019
-ms.openlocfilehash: 0b831b236c2604ef7d87c77f6955e6b5eaf2aae1
-ms.sourcegitcommit: 4ae1508bbaa8fe9642dcfc8618d77f009bc8ec9f
+ms.openlocfilehash: 7025567c9495f3eeefe547dcd88b19962e1be934
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/15/2020
-ms.locfileid: "86405485"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351639"
 ---
 # <a name="deploy-azure-data-explorer-cluster-into-your-virtual-network"></a>Déployer un cluster Azure Data Explorer dans votre réseau virtuel
 

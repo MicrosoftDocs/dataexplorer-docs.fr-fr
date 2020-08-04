@@ -1,18 +1,18 @@
 ---
 title: Créer une connexion de données Event Hub pour Azure Data Explorer à l’aide d’un modèle Azure Resource Manager
 description: Dans cet article, vous allez apprendre à créer une connexion de données Event Hub pour Azure Data Explorer à l’aide d’un modèle Azure Resource Manager.
-author: lucygoldbergmicrosoft
-ms.author: lugoldbe
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 11/28/2019
-ms.openlocfilehash: 03f07ffaa41b99734d85ec9a1e04fd86118d040b
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 63ec87f48697721d4559d57148eebb5219231ef7
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493069"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350126"
 ---
 # <a name="create-an-event-hub-data-connection-for-azure-data-explorer-by-using-azure-resource-manager-template"></a>Créer une connexion de données Event Hub pour Azure Data Explorer à l’aide d’un modèle Azure Resource Manager
 

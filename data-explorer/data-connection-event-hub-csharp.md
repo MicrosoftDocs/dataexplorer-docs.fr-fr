@@ -1,18 +1,18 @@
 ---
 title: Créer une connexion de données au hub d’événements pour Azure Data Explorer à l’aide de C#
 description: Dans cet article, vous allez apprendre à créer une connexion de données au hub d’événements pour Azure Data Explorer à l’aide de C#.
-author: lucygoldbergmicrosoft
-ms.author: lugoldbe
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/07/2019
-ms.openlocfilehash: 54f7541321b50ae4d3cf679d9224f70cb21a46ab
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 8d09782d29377d702b80fa9e049fa578a92ccd47
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493081"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350160"
 ---
 # <a name="create-an-event-hub-data-connection-for-azure-data-explorer-by-using-c"></a>Créer une connexion de données au hub d’événements pour Azure Data Explorer à l’aide de C#
 

@@ -1,15 +1,15 @@
 ---
-author: lucygoldbergmicrosoft
+author: orspod
 ms.service: data-explorer
 ms.topic: include
 ms.date: 11/28/2019
-ms.author: lugoldbe
-ms.openlocfilehash: de8a37b1b27dc1bff377c6212c0bfea0a13c7de2
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.author: orspodek
+ms.openlocfilehash: d55077b5d1938caf6df49d34e68ece7e32c56f85
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492685"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350063"
 ---
 ## <a name="clean-up-resources"></a>Nettoyer les ressources
 
