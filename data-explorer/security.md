@@ -1,18 +1,18 @@
 ---
 title: Sécuriser les clusters Azure Data Explorer dans Azure
 description: En savoir plus sur la sécurisation des clusters dans Azure Data Explorer.
-author: saguiitay
-ms.author: itsagui
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: itsagui
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/06/2020
-ms.openlocfilehash: d8220055549c3bfa2892e7267521b08c0591f817
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 0330d0bf51e3bf8844e6545c9b57543274d56ed0
+ms.sourcegitcommit: d9fbcd6c9787f90de62e8e832c92d43b8090cbfc
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83370265"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "87515734"
 ---
 # <a name="secure-azure-data-explorer-clusters-in-azure"></a>Sécuriser les clusters Azure Data Explorer dans Azure
 
@@ -60,7 +60,7 @@ Grâce au [contrôle d’accès en fonction du rôle (RBAC)](/azure/role-based-a
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Sécuriser votre cluster dans Azure Data Explorer – Portail](manage-cluster-security.md) en activant le chiffrement au repos.
+* [Sécuriser votre cluster en utilisant le chiffrement de disque dans Azure Data Explorer – Portail](cluster-disk-encryption.md) en activant le chiffrement au repos.
 * [Configurer des identités managées pour votre cluster Azure Data Explorer](managed-identities.md)
 * [Configurer des clés gérées par le client à l’aide du modèle Azure Resource Manager](customer-managed-keys-resource-manager.md)
 * [Configurer des clés gérées par le client à l’aide de C#](customer-managed-keys-csharp.md)

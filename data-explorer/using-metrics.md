@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/19/2020
-ms.openlocfilehash: ffe641c6e96db1378be7a8ce845685fb2b66715f
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 2b90f029d881c1f050bce4d458f08e9f1ba20ef9
+ms.sourcegitcommit: afc369ab4c4bcc74f2dce22b397a340572db8ecf
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83374306"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "87528161"
 ---
 # <a name="monitor-azure-data-explorer-performance-health-and-usage-with-metrics"></a>Superviser les performances, l’intégrité et l’utilisation d’Azure Data Explorer avec des métriques
 
@@ -76,6 +76,10 @@ Les métriques d’intégrité d’ingestion et de performances suivent l’int�
 
 **Mesure** | **Unité** | **Agrégation** | **Description de la métrique** | **Dimensions** |
 |---|---|---|---|---|
+| Nombre d’objets blob du lot | Count | Moy, Max, Min | Nombre de sources de données d’un lot effectué pour l’ingestion. | Base de données |
+| Durée du lot | Secondes | Moy, Max, Min | Durée de la phase de traitement par lot du flux d’ingestion  | Base de données |
+| Taille du lot | Octets | Moy, Max, Min | Taille de données attendue non compressée dans un lot agrégé pour l’ingestion. | Base de données |
+| Lots traités | Count | Moy, Max, Min | Nombre de lots effectués pour l’ingestion. `BatchCompletionReason`: si le lot a atteint la limite du temps de traitement par lot, de taille des données ou de nombre de fichiers définie par la [stratégie de traitement par lot](/azure/data-explorer/kusto/management/batchingpolicy). | Database, BatchCompletionReason |
 | Événements traités (pour Event/IoT Hubs) | Count | Max, Min, Somme | Nombre total d’événements lus à partir de hubs d’événements et traités par le cluster. Les événements sont divisés en événements rejetés et en événements acceptés par le moteur de cluster. | EventStatus |
 | Latence d’ingestion | Secondes | Moy, Max, Min | Latence des données ingérées, depuis la réception des données dans le cluster jusqu’à ce qu’elles soient prêtes à être interrogées. La période de latence d’ingestion varie en fonction du scénario d’ingestion. | None |
 | Résultat de l’ingestion | Count | Count | Nombre total d’opérations d’ingestion ayant échoué et réussi. Utilisez **Appliquer la division** pour créer des compartiments de résultats de réussite et d’échec, et analyser les dimensions (**Valeur** > **État**).| IngestionResultDetails |
@@ -112,4 +116,4 @@ Informations supplémentaires concernant les [métriques de cluster Azure Data E
 
 * [Tutoriel : Ingérer et interroger des données de supervision dans Azure Data Explorer](ingest-data-no-code.md)
 * [Superviser les opérations d’ingestion d’Azure Data Explorer à l’aide des journaux de diagnostic](using-diagnostic-logs.md)
-* [Démarrage rapide : Interroger des données dans Azure Data Explorer](web-query-data.md)
+* [Démarrage rapide : Interroger des données dans l’Explorateur de données Azure](web-query-data.md)

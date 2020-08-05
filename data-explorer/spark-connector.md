@@ -3,16 +3,16 @@ title: Déplacez les données entre les clusters Azure Data Explorer et Spark au
 description: Cette rubrique vous montre comment déplacer des données entre des clusters Azure Data Explorer et Apache Spark.
 author: orspod
 ms.author: orspodek
-ms.reviewer: michazag
+ms.reviewer: maraheja
 ms.service: data-explorer
 ms.topic: conceptual
-ms.date: 1/14/2020
-ms.openlocfilehash: 28dee67b6ac412a9c0497d5713a69c9617d3ae55
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.date: 7/29/2020
+ms.openlocfilehash: 31aa478647b902353db9d39a5ad36b5d5830c127
+ms.sourcegitcommit: 6e84f50efc8c5c3fe57080341ed3effe72197886
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83370462"
+ms.lasthandoff: 07/30/2020
+ms.locfileid: "87440002"
 ---
 # <a name="azure-data-explorer-connector-for-apache-spark"></a>Connecteur Azure Data Explorer pour Apache Spark
 
@@ -111,11 +111,14 @@ Le connecteur Azure Data Explorer pour Spark vous permet de vous authentifier au
 
 L’authentification de l’application Azure AD est la méthode d’authentification la plus simple et la plus courante qui est recommandée pour le connecteur Azure Data Explorer pour Spark.
 
-|Propriétés  |Description  |
-|---------|---------|
-|**KUSTO_AAD_CLIENT_ID**     |   ID client d’application (client) Azure AD.      |
-|**KUSTO_AAD_AUTHORITY_ID**     |  Autorité d’authentification Azure AD. ID Azure AD Directory (locataire).        |
-|**KUSTO_AAD_CLIENT_PASSWORD**    |    Clé d’application Azure AD pour le client.     |
+|Propriétés  |Chaîne d’option  |Description  |
+|---------|---------|---------|
+|**KUSTO_AAD_APP_ID**     |kustoAadAppId     |   ID client d’application (client) Azure AD.      |
+|**KUSTO_AAD_AUTHORITY_ID**     |kustoAadAuthorityID     |  Autorité d’authentification Azure AD. ID Azure AD Directory (locataire).        |
+|**KUSTO_AAD_APP_SECRET**    |kustoAadAppSecret     |    Clé d’application Azure AD pour le client.     |
+
+> [!NOTE]
+> Les anciennes versions d’API (inférieures à 2.0.0) ont le nommage suivant : "kustoAADClientID", "kustoClientAADClientPassword", "kustoAADAuthorityID"
 
 ### <a name="azure-data-explorer-privileges"></a>Privilèges Azure Data Explorer
 
@@ -153,8 +156,8 @@ Pour en savoir plus sur les principaux rôles Azure Data Explorer, consultez la 
       .option(KustoSinkOptions.KUSTO_CLUSTER, cluster)
       .option(KustoSinkOptions.KUSTO_DATABASE, database)
       .option(KustoSinkOptions.KUSTO_TABLE, "Demo3_spark")
-      .option(KustoSinkOptions.KUSTO_AAD_CLIENT_ID, appId)
-      .option(KustoSinkOptions.KUSTO_AAD_CLIENT_PASSWORD, appKey)
+      .option(KustoSinkOptions.KUSTO_AAD_APP_ID, appId)
+      .option(KustoSinkOptions.KUSTO_AAD_APP_SECRET, appKey)
       .option(KustoSinkOptions.KUSTO_AAD_AUTHORITY_ID, authorityId)
       .option(KustoSinkOptions.KUSTO_TABLE_CREATE_OPTIONS, "CreateIfNotExist")
       .mode(SaveMode.Append)
@@ -204,8 +207,8 @@ Pour en savoir plus sur les principaux rôles Azure Data Explorer, consultez la 
 
     val query = s"$table | where (ColB % 1000 == 0) | distinct ColA"
     val conf: Map[String, String] = Map(
-          KustoSourceOptions.KUSTO_AAD_CLIENT_ID -> appId,
-          KustoSourceOptions.KUSTO_AAD_CLIENT_PASSWORD -> appKey
+          KustoSourceOptions.KUSTO_AAD_APP_ID -> appId,
+          KustoSourceOptions.KUSTO_AAD_APP_SECRET -> appKey
         )
 
     val df = spark.read.format("com.microsoft.kusto.spark.datasource").
@@ -242,8 +245,8 @@ Pour en savoir plus sur les principaux rôles Azure Data Explorer, consultez la 
 
         ```scala
          val conf3 = Map(
-              KustoSourceOptions.KUSTO_AAD_CLIENT_ID -> appId,
-              KustoSourceOptions.KUSTO_AAD_CLIENT_PASSWORD -> appKey
+              KustoSourceOptions.KUSTO_AAD_APP_ID -> appId,
+              KustoSourceOptions.KUSTO_AAD_APP_SECRET -> appKey
               KustoSourceOptions.KUSTO_BLOB_STORAGE_SAS_URL -> storageSas)
         val df2 = spark.read.kusto(cluster, database, "ReallyBigTable", conf3)
         

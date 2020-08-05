@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/08/2020
-ms.openlocfilehash: 17c3481d741c07e8da6061a455549ff255c898b7
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: ca617629578e9f3830e4fa1edf1a5781b0317a81
+ms.sourcegitcommit: d9fbcd6c9787f90de62e8e832c92d43b8090cbfc
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493409"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "87515853"
 ---
 # <a name="ingest-data-from-event-hub-into-azure-data-explorer"></a>Ingérer des données Event Hub dans Azure Data Explorer
 
@@ -159,7 +159,7 @@ Utilisez l’[exemple d’application](https://github.com/Azure-Samples/event-hu
 
 1. Ouvrez la solution de l’application exemple dans Visual Studio.
 
-1. Dans le fichier *program.cs*, mettez à jour la constante `connectionString` avec la chaîne de connexion que vous avez copiée à partir de l’espace de noms du hub d’événements.
+1. Dans le fichier *program.cs*, mettez à jour la constante `eventHubName` avec le nom de votre hub d’événements et mettez à jour la constante `connectionString` avec la chaîne de connexion que vous avez copiée à partir de l’espace de noms Event Hub.
 
     ```csharp
     const string eventHubName = "test-hub";

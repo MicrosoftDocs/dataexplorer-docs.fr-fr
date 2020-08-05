@@ -7,12 +7,12 @@ ms.reviewer: itsagui
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/26/2020
-ms.openlocfilehash: f5f44f427f21cdea4b0fea382c41df23925b3549
-ms.sourcegitcommit: a7e040fc844098323aa1c00e254bcbcd41fe587f
+ms.openlocfilehash: 4477aba7c661b0bc434d2bb0cc0a635603cc8ad4
+ms.sourcegitcommit: d9fbcd6c9787f90de62e8e832c92d43b8090cbfc
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84426574"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "87515819"
 ---
 # <a name="configure-customer-managed-keys-using-the-azure-portal"></a>Configurer des clés gérées par le client à l’aide du Portail Azure
 
@@ -56,7 +56,7 @@ En activant des clés gérées par le client pour votre cluster Azure Data Explo
 ## <a name="next-steps"></a>Étapes suivantes
 
 * [Sécuriser les clusters Azure Data Explorer dans Azure](security.md)
-* [Sécuriser votre cluster dans Azure Data Explorer – Portail Azure](manage-cluster-security.md) en activant le chiffrement au repos.
+* [Sécuriser votre cluster en utilisant le chiffrement de disque dans Azure Data Explorer – Portail Azure](cluster-disk-encryption.md) en activant le chiffrement au repos.
 * [Configurer des clés gérées par le client à l’aide du modèle Azure Resource Manager](customer-managed-keys-resource-manager.md)
 * [Configurer des clés gérées par le client à l’aide de C#](customer-managed-keys-csharp.md)
 

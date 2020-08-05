@@ -1,18 +1,18 @@
 ---
 title: Comment configurer des identités managées pour le cluster Azure Data Explorer
 description: Découvrez comment configurer des identités managées pour le cluster Azure Data Explorer.
-author: saguiitay
-ms.author: itsagui
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: itsagui
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/12/2020
-ms.openlocfilehash: 523330f5ace4d9f2d652eccbd746b039d66df749
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 59392c8ff555df99ccb7c4a5b7503266cb095552
+ms.sourcegitcommit: d9fbcd6c9787f90de62e8e832c92d43b8090cbfc
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83374294"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "87515835"
 ---
 # <a name="configure-managed-identities-for-your-azure-data-explorer-cluster"></a>Configurer des identités managées pour votre cluster Azure Data Explorer
 
@@ -210,6 +210,6 @@ Exécutez le code suivant pour supprimer l’identité affectée par le système
 ## <a name="next-steps"></a>Étapes suivantes
 
 * [Sécuriser les clusters Azure Data Explorer dans Azure](security.md)
-* [Sécuriser votre cluster dans Azure Data Explorer – Portail Azure](manage-cluster-security.md) en activant le chiffrement au repos.
+* [Sécuriser votre cluster en utilisant le chiffrement de disque dans Azure Data Explorer – Portail Azure](cluster-disk-encryption.md) en activant le chiffrement au repos.
  * [Configurer des clés gérées par le client à l’aide de C#](customer-managed-keys-csharp.md)
  * [Configurer des clés gérées par le client à l’aide du modèle Azure Resource Manager](customer-managed-keys-resource-manager.md)
