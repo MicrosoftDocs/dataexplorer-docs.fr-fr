@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 3d54852577281b66ed7754e419acbabbba989e7c
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 7c4ee69c4f82c25c6f4cf7d4b63ad9a659892a28
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346080"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87802993"
 ---
 # <a name="preview-plugin"></a>preview, plug-in
 
@@ -27,7 +27,7 @@ T | evaluate preview(50)
 
 `T` `|` `evaluate` `preview(` *NumberOfRows* `)`
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Le `preview` plug-in retourne deux tables de résultats :
 * Table avec le nombre spécifié de lignes.
@@ -35,9 +35,8 @@ Le `preview` plug-in retourne deux tables de résultats :
 * Table avec une seule ligne ou colonne, contenant le nombre d’enregistrements dans le jeu d’enregistrements d’entrée.
   Par exemple, l’exemple de requête ci-dessus équivaut à exécuter `T | count` .
 
-**Conseils**
-
-Si `evaluate` est précédé d’une source tabulaire qui comprend un filtre complexe ou d’un filtre qui fait référence à la plupart des colonnes de la table source, préférez utiliser la [`materialize`](materializefunction.md) fonction. Par exemple :
+> [!TIP]
+> Si `evaluate` est précédé d’une source tabulaire qui comprend un filtre complexe ou d’un filtre qui fait référence à la plupart des colonnes de la table source, préférez utiliser la [`materialize`](materializefunction.md) fonction. Par exemple :
 
 ```kusto
 let MaterializedT = materialize(T);

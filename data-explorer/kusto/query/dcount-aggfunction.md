@@ -8,16 +8,19 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 2fc8ee7e8c7ab3ce372d786ec87edf55265e1249
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 45ab913fdc659444ac578ca725e2afb24256a38b
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348443"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803707"
 ---
 # <a name="dcount-aggregation-function"></a>DCount () (fonction d’agrégation)
 
 Retourne une estimation du nombre de valeurs distinctes prises par une expression scalaire dans le groupe de résumé.
+
+> [!NOTE]
+> La `dcount()` fonction d’agrégation est principalement utile pour estimer la cardinalité des jeux énormes. Elle génère des performances plus précises et peut retourner un résultat qui varie entre les exécutions. L’ordre des entrées peut avoir un effet sur sa sortie.
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -28,7 +31,7 @@ Retourne une estimation du nombre de valeurs distinctes prises par une expressio
 * *Expr*: expression scalaire dont les valeurs distinctes doivent être comptées.
 * *Précision*: un `int` littéral facultatif qui définit la précision d’estimation demandée. Voir ci-dessous pour connaître les valeurs prises en charge. S’il n’est pas spécifié, la valeur par défaut `1` est utilisée.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Retourne une estimation du nombre de valeurs distinctes de *`Expr`* dans le groupe.
 
@@ -39,10 +42,6 @@ PageViewLog | summarize countries=dcount(country) by continent
 ```
 
 :::image type="content" source="images/dcount-aggfunction/dcount.png" alt-text="Nombre D":::
-
-**Remarques**
-
-La `dcount()` fonction d’agrégation est principalement utile pour estimer la cardinalité des jeux énormes. Elle génère des performances plus précises et peut retourner un résultat qui varie entre les exécutions. L’ordre des entrées peut avoir un effet sur sa sortie.
 
 Obtient un nombre exact de valeurs distinctes `V` groupées par `G` .
 

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: e8c917d0899ada7d65cacd8e1433027535338e24
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 52e66205b5ba048e4ec2d160d447082b1bf65de1
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87340375"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87802908"
 ---
 # <a name="top-operator"></a>opérateur top
 
@@ -34,8 +34,9 @@ T | top 5 by Name desc nulls last
 * `asc` ou `desc` (valeur par défaut) peut s’afficher pour indiquer si la sélection provient du bas ou du haut de la plage.
 * `nulls first`(valeur par défaut pour `asc` Order) ou `nulls last` (la valeur par défaut pour `desc` Order) peut sembler contrôler si les valeurs NULL seront au début ou à la fin de la plage.
 
+> [!TIP]
+> `top 5 by name`est équivalent à l’expression `sort by name | take 5` à la fois des perspectives sémantiques et des performances.
 
-**Conseils**
+## <a name="see-also"></a>Voir aussi 
 
-* `top 5 by name`est équivalent à l’expression `sort by name | take 5` à la fois des perspectives sémantiques et des performances.
 * Utilisez l’opérateur [Top imbriqué](topnestedoperator.md) pour produire des résultats hiérarchiques (imbriqués) hiérarchiques.

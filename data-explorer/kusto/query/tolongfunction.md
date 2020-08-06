@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: fb209ff3784f6e24f184b576a1e8f94c52834ba4
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 36c0317f046f146d2812b8830d7fe571d5363c59
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87340953"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87804115"
 ---
 # <a name="tolong"></a>tolong()
 
@@ -23,6 +23,9 @@ Convertit l’entrée en une représentation de nombre longue (signée 64 bits).
 tolong("123") == 123
 ```
 
+> [!NOTE]
+> Préférez l’utilisation [de long ()](./scalar-data-types/long.md) dans la mesure du possible.
+
 ## <a name="syntax"></a>Syntaxe
 
 `tolong(`*Expr*`)`
@@ -31,9 +34,8 @@ tolong("123") == 123
 
 * *Expr*: expression qui sera convertie en long. 
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Si la conversion réussit, le résultat est un nombre long.
 Si la conversion échoue, le résultat sera `null` .
  
-*Remarque*: préférez utiliser [long ()](./scalar-data-types/long.md) lorsque cela est possible.

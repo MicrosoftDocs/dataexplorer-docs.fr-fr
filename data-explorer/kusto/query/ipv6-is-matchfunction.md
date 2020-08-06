@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/27/2020
-ms.openlocfilehash: b6d76f8ed834ec40c53321644e5cd9b7f5f93168
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: d03e28c0f7df404d6bee81f7f749aab361cc45b9
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347304"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803877"
 ---
 # <a name="ipv6_is_match"></a>ipv6_is_match()
 
@@ -26,6 +26,9 @@ ipv6_is_match('192.168.1.1/24', '192.168.1.255/24') == true
 ipv6_is_match('fe80::85d:e82c:9446:7994/127', 'fe80::85d:e82c:9446:7995/127') == true
 ipv6_is_match('fe80::85d:e82c:9446:7994', 'fe80::85d:e82c:9446:7995', 127) == true
 ```
+
+> [!NOTE]
+> La fonction peut accepter et comparer des arguments qui représentent à la fois des adresses réseau IPv6 et IPv4. Si l’appelant sait que les arguments sont au format IPv4, utilisez la fonction [ipv4_is_match ()](./ipv4-is-matchfunction.md) . Cette fonction permet d’obtenir de meilleures performances d’exécution.
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -41,17 +44,13 @@ ipv6_is_match('fe80::85d:e82c:9446:7994', 'fe80::85d:e82c:9446:7995', 127) == tr
 Les adresses IP peuvent être définies à `IP-prefix notation` l’aide d’une barre oblique ( `/` ).
 L’adresse IP à gauche de la barre oblique ( `/` ) est l’adresse IP de base. Le nombre (1 à 127) à droite de la barre oblique ( `/` ) est le nombre de 1 bit contigu dans le masque réseau. 
 
-## <a name="example"></a>Exemple :
-FE80 :: 85D : E82C : 9446:7994/120 aura un net/Masque_Sous_réseau associé contenant 120 bits contigus.
+Par exemple, FE80 :: 85D : E82C : 9446:7994/120 aura un net/Masque_Sous_réseau associé contenant 120 bits contigus.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 * `true`: Si la représentation longue du premier argument de chaîne IPv6/IPv4 est égale au deuxième argument de chaîne IPv6/IPv4.
 * `false`Dispose.
 * `null`: Si la conversion de l’une des deux chaînes IPv6/IPv4 a échoué.
-
-> [!Note]
-> La fonction peut accepter et comparer des arguments qui représentent à la fois des adresses réseau IPv6 et IPv4. Si l’appelant sait que les arguments sont au format IPv4, utilisez la fonction [ipv4_is_match ()](./ipv4-is-matchfunction.md) . Cette fonction permet d’obtenir de meilleures performances d’exécution.
 
 ## <a name="examples"></a>Exemples
 

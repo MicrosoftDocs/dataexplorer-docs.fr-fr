@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 4083c304711c4d77b15809221ac4ace4629fb4dd
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: a57dd8cde9ea00b0b68ae95ff557bd3b530357cc
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87342102"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87804149"
 ---
 # <a name="take-operator"></a>opérateur take
 
@@ -25,23 +25,16 @@ T | take 5
 
 Il n’existe aucune garantie quant aux enregistrements qui sont retournés, à moins que les données sources soient triées.
 
+> [!NOTE]
+> `take`est un moyen simple, rapide et efficace d’afficher un petit échantillon d’enregistrements lorsque vous parcourez les données de manière interactive, mais sachez qu’elles ne garantissent pas la cohérence de leurs résultats lors de l’exécution à plusieurs moments, même si le jeu de données n’a pas changé.
+> Même si le nombre de lignes retournées par la requête n’est pas explicitement limité par la requête (aucun `take` opérateur n’est utilisé), Kusto limite ce nombre par défaut. Pour plus d’informations, consultez [limites de requête Kusto](../concepts/querylimits.md).
+
 ## <a name="syntax"></a>Syntaxe
 
 `take`*NumberOfRows* 
  NumberOfRows `limit` *NumberOfRows*
 
 ( `take` et `limit` sont des synonymes).
-
-**Remarques**
-
-`take`est un moyen simple, rapide et efficace d’afficher un petit échantillon d’enregistrements lorsque vous parcourez les données de manière interactive, mais sachez qu’elles ne garantissent pas la cohérence de leurs résultats lors de l’exécution à plusieurs moments, même si le jeu de données n’a pas changé.
-
-Même si le nombre de lignes retournées par la requête n’est pas explicitement limité par la requête (aucun `take` opérateur n’est utilisé), Kusto limite ce nombre par défaut.
-Pour plus d’informations, consultez [limites de requête Kusto](../concepts/querylimits.md) .
-
-Consultez : opérateur de [Tri](sortoperator.md)opérateur 
- [Top](topoperator.md) 
- [-opérateur Top imbriqué](topnestedoperator.md)
 
 ## <a name="does-kusto-support-paging-of-query-results"></a>Kusto prend-il en charge la pagination des résultats de la requête ?
 
@@ -54,3 +47,9 @@ Pour la prise en charge de la pagination, implémentez l’une des fonctionnalit
 * Exportation du résultat d’une requête vers un stockage externe et pagination des données générées.
 
 * Écriture d’une application de niveau intermédiaire qui fournit une API de pagination avec état en mettant en cache les résultats d’une requête Kusto.
+
+## <a name="see-also"></a>Voir aussi
+
+* [opérateur sort](sortoperator.md)
+* [opérateur top](topoperator.md)
+* [Opérateur top-nested](topnestedoperator.md)

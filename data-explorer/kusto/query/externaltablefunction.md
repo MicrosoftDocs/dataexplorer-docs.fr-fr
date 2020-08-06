@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/21/2019
-ms.openlocfilehash: 4a3a1150996000742f5065df0eddc385074eaa48
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 13b244eb151d140e3626412188ac9bc9de242cc6
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348086"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87802976"
 ---
 # <a name="external_table"></a>external_table()
 
@@ -22,6 +22,11 @@ Fait référence à une table externe par son nom.
 ```kusto
 external_table('StormEvent')
 ```
+
+> [!NOTE]
+> * La `external_table` fonction a des restrictions similaires à celles de la fonction [table](tablefunction.md) .
+> * [Tables externes](schema-entities/externaltables.md)
+> * [Commandes pour la gestion des tables externes](../management/externaltables.md)
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -33,11 +38,3 @@ external_table('StormEvent')
   Doit être un littéral de chaîne référençant une table externe de type `blob` ou `adl` . <!-- TODO: Document data formats supported -->
 
 * *MappingName*: nom facultatif de l’objet de mappage qui mappe les champs dans le partitions de données (externe) réel aux colonnes générées par cette fonction.
-
-**Notes**
-
-Pour plus d’informations sur les tables externes, consultez [tables externes](schema-entities/externaltables.md) .
-
-Consultez également [les commandes de gestion des tables externes](../management/externaltables.md).
-
-La `external_table` fonction a des restrictions similaires à celles de la fonction [table](tablefunction.md) .

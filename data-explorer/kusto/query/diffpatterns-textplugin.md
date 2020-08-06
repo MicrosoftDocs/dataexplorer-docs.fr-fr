@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 9321f30d2643f6e398d73cf7960490708626f723
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: b0a71f9db9062d83f55ebf9db1efabb6d86f9786
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348358"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803282"
 ---
 # <a name="diffpatterns_text-plugin"></a>diffpatterns_text, plug-in
 
@@ -29,7 +29,9 @@ T | evaluate diffpatterns_text(TextColumn, BooleanCondition)
 
 `T | evaluate diffpatterns_text(`TextColumn, BooleanCondition [, MinTokens, Threshold, MaxTokens]`)` 
 
-**Arguments obligatoires**
+## <a name="arguments"></a>Arguments
+
+### <a name="required-arguments"></a>Arguments obligatoires
 
 * TextColumn- *column_name*
 
@@ -39,7 +41,7 @@ T | evaluate diffpatterns_text(TextColumn, BooleanCondition)
 
     Définit comment générer les deux sous-ensembles d’enregistrements à comparer à la table d’entrée. L’algorithme divise la requête en deux jeux de données, « true » et « false » en fonction de la condition, puis analyse les différences (texte) entre elles. 
 
-**Arguments facultatifs**
+### <a name="optional-arguments"></a>Arguments facultatifs
 
 Tous les autres arguments sont facultatifs, mais ils doivent alors être ordonnés comme ci-dessous. 
 
@@ -55,7 +57,7 @@ Tous les autres arguments sont facultatifs, mais ils doivent alors être ordonn�
 
     Définit le nombre maximal de jetons (à partir du début) par résultat, en spécifiant une limite inférieure pour réduire l’exécution de la requête.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Le résultat de diffpatterns_text retourne les colonnes suivantes :
 
@@ -86,4 +88,3 @@ StormEvents
 |0|42|0|7,71|* * * * * * a provoqué * * * * * * * * * à travers l’Ouest Colorado. *|
 |0|45|0|8,26|* * en dessous de la normale *|
 |0|110|0|20,18|Inférieure à la normale *|
-

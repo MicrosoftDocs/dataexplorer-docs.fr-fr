@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: a81c5faadb51b99cdcd233132f9b6a4843e3ce34
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 52cec808795024bd58b6a4ef6cf08e5b700c0e33
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345791"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803622"
 ---
 # <a name="restrict-statement"></a>Restrict, instruction
 
@@ -24,6 +24,9 @@ ms.locfileid: "87345791"
 L’instruction Restrict limite l’ensemble des entités de table ou de vue qui sont visibles pour les instructions de requête qui la suivent. Par exemple, dans une base de données qui comprend deux tables ( `A` , `B` ), l’application peut empêcher le reste de la requête d’accéder à `B` et de « voir » une forme limitée de table à `A` l’aide d’une vue.
 
 Le scénario principal de l’instruction Restrict est destiné aux applications de couche intermédiaire qui acceptent les requêtes des utilisateurs et souhaitent appliquer un mécanisme de sécurité au niveau des lignes à ces requêtes. L’application de niveau intermédiaire peut préfixer la requête de l’utilisateur avec un **modèle logique**, un ensemble d’instructions Let définissant des vues qui limitent l’accès de l’utilisateur aux données (par exemple, `T | where UserId == "..."` ). Lorsque la dernière instruction est ajoutée, elle limite l’accès de l’utilisateur au modèle logique uniquement.
+
+> [!NOTE]
+> L’instruction Restrict peut être utilisée pour restreindre l’accès aux entités d’une autre base de données ou d’un autre cluster (les caractères génériques ne sont pas pris en charge dans les noms de cluster).
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -36,49 +39,44 @@ Où *EntitySpecifier* est l’un des éléments suivants :
 
 Toutes les tables, vues tabulaires ou modèles qui ne sont pas spécifiés par l’instruction Restrict deviennent « invisibles » pour le reste de la requête. 
 
-**Remarques**
-
-L’instruction Restrict peut être utilisée pour restreindre l’accès aux entités d’une autre base de données ou d’un autre cluster (les caractères génériques ne sont pas pris en charge dans les noms de cluster).
-
 ## <a name="arguments"></a>Arguments
 
 L’instruction Restrict peut obtenir un ou plusieurs paramètres qui définissent la restriction permissive lors de la résolution de noms de l’entité. L’entité peut être :
-- [instruction Let](./letstatement.md) qui apparaît avant l' `restrict` instruction. 
+* [instruction Let](./letstatement.md) qui apparaît avant l' `restrict` instruction. 
 
-```kusto
-// Limit access to 'Test' let statement only
-let Test = () { print x=1 };
-restrict access to (Test);
-```
+  ```kusto
+  // Limit access to 'Test' let statement only
+  let Test = () { print x=1 };
+  restrict access to (Test);
+  ```
 
-- [Tables](../management/tables.md) ou [fonctions](../management/functions.md) définies dans les métadonnées de la base de données.
+* [Tables](../management/tables.md) ou [fonctions](../management/functions.md) définies dans les métadonnées de la base de données.
 
-```kusto
-// Assuming the database that the query uses has table Table1 and Func1 defined in the metadata, 
-// and other database 'DB2' has Table2 defined in the metadata
- 
-restrict access to (database().Table1, database().Func1, database('DB2').Table2);
-```
+    ```kusto
+    // Assuming the database that the query uses has table Table1 and Func1 defined in the metadata, 
+    // and other database 'DB2' has Table2 defined in the metadata
+    
+    restrict access to (database().Table1, database().Func1, database('DB2').Table2);
+    ```
 
-- Modèles de caractères génériques pouvant correspondre à des multiples d' [instructions Let](./letstatement.md) ou de tables/fonctions  
+* Modèles de caractères génériques pouvant correspondre à des multiples d' [instructions Let](./letstatement.md) ou de tables/fonctions  
 
-```kusto
-let Test1 = () { print x=1 };
-let Test2 = () { print y=1 };
-restrict access to (*);
-// Now access is restricted to Test1, Test2 and no tables/functions are accessible.
+    ```kusto
+    let Test1 = () { print x=1 };
+    let Test2 = () { print y=1 };
+    restrict access to (*);
+    // Now access is restricted to Test1, Test2 and no tables/functions are accessible.
 
-// Assuming the database that the query uses has table Table1 and Func1 defined in the metadata.
-// Assuming that database 'DB2' has table Table2 and Func2 defined in the metadata
-restricts access to (database().*);
-// Now access is restricted to all tables/functions of the current database ('DB2' is not accessible).
+    // Assuming the database that the query uses has table Table1 and Func1 defined in the metadata.
+    // Assuming that database 'DB2' has table Table2 and Func2 defined in the metadata
+    restricts access to (database().*);
+    // Now access is restricted to all tables/functions of the current database ('DB2' is not accessible).
 
-// Assuming the database that the query uses has table Table1 and Func1 defined in the metadata.
-// Assuming that database 'DB2' has table Table2 and Func2 defined in the metadata
-restricts access to (database('DB2').*);
-// Now access is restricted to all tables/functions of the database 'DB2'
-```
-
+    // Assuming the database that the query uses has table Table1 and Func1 defined in the metadata.
+    // Assuming that database 'DB2' has table Table2 and Func2 defined in the metadata
+    restricts access to (database('DB2').*);
+    // Now access is restricted to all tables/functions of the database 'DB2'
+    ```
 
 ## <a name="examples"></a>Exemples
 

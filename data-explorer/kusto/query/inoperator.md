@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/18/2019
-ms.openlocfilehash: ab2132908dad26f5f21cf945a1af4af1b8a049cd
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: a6551ee2d4ac01d6d896cc8daff466f3c4a7852e
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347389"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803962"
 ---
 # <a name="in-and-in-operators"></a>in et !in, opérateurs
 
@@ -23,9 +23,15 @@ Filtre un jeu d’enregistrements en fonction de l’ensemble de valeurs fourni.
 Table1 | where col in ('value1', 'value2')
 ```
 
+> [!NOTE]
+> * L’ajout de' ~ 'à l’opérateur rend les valeurs’recherche non sensible à la casse : `x in~ (expression)` ou `x !in~ (expression)` .
+> * Dans les expressions tabulaires, la première colonne du jeu de résultats est sélectionnée.
+> * La liste d’expressions peut produire jusqu’à `1,000,000` valeurs.
+> * Les tableaux imbriqués sont aplatis en une seule liste de valeurs. Par exemple, `x in (dynamic([1,[2,3]]))` devient `x in (1,2,3)`.
+ 
 ## <a name="syntax"></a>Syntaxe
 
-*Syntaxe respectant la casse :*
+### <a name="case-sensitive-syntax"></a>Syntaxe respectant la casse
 
 *T* `|` `where` *col* `in` `(` *Liste de colonnes T d’expressions scalaires*`)`   
 *T* `|` `where` *col* `in` `(` *Expression tabulaire* T col`)`   
@@ -33,7 +39,7 @@ Table1 | where col in ('value1', 'value2')
 *T* `|` `where` *col* `!in` `(` *Liste de colonnes T d’expressions scalaires*`)`  
 *T* `|` `where` *col* `!in` `(` *Expression tabulaire* T col`)`   
 
-*Syntaxe ne respectant pas la casse :*
+### <a name="case-insensitive-syntax"></a>Syntaxe ne respectant pas la casse
 
 *T* `|` `where` *col* `in~` `(` *Liste de colonnes T d’expressions scalaires*`)`   
 *T* `|` `where` *col* `in~` `(` *Expression tabulaire* T col`)`   
@@ -52,16 +58,9 @@ Table1 | where col in ('value1', 'value2')
 
 Lignes dans *T* pour lesquelles le prédicat est `true` .
 
-**Notes**
+## <a name="examples"></a>Exemples  
 
-* La liste d’expressions peut produire jusqu’à `1,000,000` valeurs.
-* Les tableaux imbriqués sont aplatis en une seule liste de valeurs. Par exemple, `x in (dynamic([1,[2,3]]))` devient `x in (1,2,3)`.
-* Dans les expressions tabulaires, la première colonne du jeu de résultats est sélectionnée.
-* L’ajout de' ~ 'à l’opérateur rend les valeurs’recherche non sensible à la casse : `x in~ (expression)` ou `x !in~ (expression)` .
-
-**Exemples :**  
-
-**Utilisation simple de l’opérateur « in » :**  
+### <a name="use-in-operator"></a>Utiliser l’opérateur « in »
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -74,8 +73,7 @@ StormEvents
 |---|
 |4775|  
 
-
-**Utilisation simple de l’opérateur « in ~ » :**  
+### <a name="use-in-operator"></a>Utiliser l’opérateur « in ~ »  
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -88,7 +86,7 @@ StormEvents
 |---|
 |4775|  
 
-**Utilisation simple de l’opérateur «  ! in » :**  
+### <a name="use-in-operator"></a>Utiliser l’opérateur' ! in'
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -102,7 +100,7 @@ StormEvents
 |54291|  
 
 
-**Utilisation d’un tableau dynamique :**
+### <a name="use-dynamic-array"></a>Utiliser un tableau dynamique
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -116,8 +114,7 @@ StormEvents
 |---|
 |3218|
 
-
-**Exemple de sous-requête :**  
+### <a name="subquery"></a>Sous-requête
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -149,7 +146,7 @@ StormEvents
 |---|
 |14242|  
 
-**Haut avec un autre exemple :**  
+### <a name="top-with-other-example"></a>Top avec un autre exemple
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -167,9 +164,9 @@ Lightning_By_State
 | TEXAS     | 55                   |
 | Floride   | 85 %                   |
 | Géorgie   | 106                  |
-| Autres     | 415                  |
+| Autre     | 415                  |
 
-**Utilisation d’une liste statique retournée par une fonction :**  
+### <a name="use-a-static-list-returned-by-a-function"></a>Utiliser une liste statique retournée par une fonction
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

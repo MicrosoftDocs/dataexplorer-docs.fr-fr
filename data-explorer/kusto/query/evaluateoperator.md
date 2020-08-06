@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: 519ac6b38a73cfc7334094ef503d1d20c7d2ecb9
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: dc7e410b79ad73c1ba9fa807142177f4270b7dfa
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348222"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803112"
 ---
 # <a name="evaluate-operator-plugins"></a>Plug-ins de l’opérateur evaluate
 
@@ -21,32 +21,33 @@ Appelle une extension de requête côté service (plug-in).
 
 L' `evaluate` opérateur est un opérateur tabulaire qui donne la possibilité d’appeler des extensions de langage de requête appelées **plug-ins**. Les plug-ins peuvent être activés ou désactivés (contrairement à d’autres constructions de langage, qui sont toujours disponibles) et ne sont pas « liés » par la nature relationnelle de la langue (par exemple, ils peuvent ne pas avoir un schéma de sortie prédéfini, déterminé statiquement).
 
+> [!NOTE]
+> * Syntaxiquement, `evaluate` se comporte de la même façon que l' [opérateur d’appel](./invokeoperator.md), qui appelle des fonctions tabulaires.
+> * Les plug-ins fournis par le biais de l’opérateur Evaluate ne sont pas liés par les règles régulières d’exécution de la requête ou d’évaluation des arguments.
+> * Des plug-ins spécifiques peuvent avoir des restrictions spécifiques. Par exemple, les plug-ins dont le schéma de sortie dépend des données (par exemple, le plug-in [bag_unpack](./bag-unpackplugin.md) et le [plug-in pivot](./pivotplugin.md)) ne peuvent pas être utilisés lors de requêtes entre clusters.
+
 ## <a name="syntax"></a>Syntaxe 
 
 [*T* `|` ] `evaluate` [ *evaluateParameters* ] *PluginName* `(` [*PluginArg1* [ `,` *PluginArg2*]...`)`
 
-Où :
+## <a name="arguments"></a>Arguments
 
 * *T* est une entrée tabulaire facultative dans le plug-in. (Certains plug-ins n’acceptent aucune entrée et agissent comme une source de données tabulaires.)
 * *PluginName* est le nom obligatoire du plug-in appelé.
 * *PluginArg1*,... arguments facultatifs du plug-in.
 * *evaluateParameters*: zéro ou plusieurs paramètres (séparés par des espaces) sous la forme d’une valeur de *nom* `=` *Value* qui contrôlent le comportement de l’opération d’évaluation et du plan d’exécution. Chaque plug-in peut décider différemment comment gérer chaque paramètre. Reportez-vous à la documentation de chaque plug-in pour obtenir un comportement spécifique.  
 
+## <a name="parameters"></a>Paramètres
+
 Les paramètres suivants sont pris en charge : 
 
   |Nom                |Valeurs                           |Description                                |
   |--------------------|---------------------------------|-------------------------------------------|
-  |`hint.distribution` |`single`, `per_node`, `per_shard`| [Indicateurs de distribution](#distributionhints) |
+  |`hint.distribution` |`single`, `per_node`, `per_shard`| [Indicateurs de distribution](#distribution-hints) |
   |`hint.pass_filters` |`true`, `false`| Autorisez `evaluate` l’opérateur à transférer tous les filtres correspondants avant le plug-in. Le filtre est considéré comme « mis en correspondance » s’il fait référence à une colonne existante avant l' `evaluate` opérateur. Valeur par défaut : `false` |
   |`hint.pass_filters_column` |*column_name*| Autorisez l’opérateur de plug-in à transférer des filtres faisant référence à *column_name* avant le plug-in. Le paramètre peut être utilisé plusieurs fois avec des noms de colonnes différents. |
 
-**Remarques**
-
-* Syntaxiquement, `evaluate` se comporte de la même façon que l' [opérateur d’appel](./invokeoperator.md), qui appelle des fonctions tabulaires.
-* Les plug-ins fournis par le biais de l’opérateur Evaluate ne sont pas liés par les règles régulières d’exécution de la requête ou d’évaluation des arguments.
-* Des plug-ins spécifiques peuvent avoir des restrictions spécifiques. Par exemple, les plug-ins dont le schéma de sortie dépend des données (par exemple, le plug-in [bag_unpack](./bag-unpackplugin.md) et le [plug-in pivot](./pivotplugin.md)) ne peuvent pas être utilisés lors de requêtes entre clusters.
-
-<a id="distributionhints"/>**Indicateurs de distribution**</a>
+## <a name="distribution-hints"></a>Indicateurs de distribution
 
 Les indicateurs de distribution spécifient la façon dont l’exécution du plug-in sera répartie entre plusieurs nœuds de cluster. Chaque plug-in peut implémenter une prise en charge différente pour la distribution. La documentation du plug-in spécifie les options de distribution prises en charge par le plug-in.
 

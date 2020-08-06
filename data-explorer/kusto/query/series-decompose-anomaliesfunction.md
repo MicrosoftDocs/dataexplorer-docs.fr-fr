@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/28/2019
-ms.openlocfilehash: 2191a26a0ee0bccd708c492690e58767d3cf52e9
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 770eded43fff091c8c500fcda59efcc2d4f95d9e
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345621"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803571"
 ---
 # <a name="series_decompose_anomalies"></a>series_decompose_anomalies()
 
@@ -44,7 +44,7 @@ La fonction prend une expression contenant une série (tableau numérique dynami
     * « Tukey » : [test de la limite de Tukey](https://en.wikipedia.org/wiki/Outlier#Tukey's_fences) avec une plage de centile de 25-75e standard pour plus d’informations sur les séries chronologiques résiduelles, consultez [series_outliers](series-outliersfunction.md)
 * *Seasonality_threshold*: seuil du score saisonnier lorsque le caractère *saisonnier* est défini sur détection automatique. Le seuil de score par défaut est `0.6` . Pour plus d’informations, consultez [series_periods_detect](series-periods-detectfunction.md)
 
-**Renvoie**
+## <a name="returns"></a>Retours
 
  La fonction retourne les séries correspondantes suivantes :
 

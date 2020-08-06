@@ -10,20 +10,22 @@ ms.topic: reference
 ms.date: 02/24/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: e412c1ec4f08af9820018f4c8dc172bd8c748a7f
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: e4752828b3e4b145026f7ee47a1ade3f8685262e
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350976"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803469"
 ---
 # <a name="sql_request-plugin"></a>sql_request, plug-in
 
 ::: zone pivot="azuredataexplorer"
 
-  `evaluate``sql_request` `(` *ConnectionString* `,` *SqlQuery* [ `,` *SqlParameters* [ `,` *options*]]`)`
-
 Le `sql_request` plug-in envoie une requête SQL à un point de terminaison de réseau SQL Server et retourne le premier ensemble de lignes dans les résultats.
+
+## <a name="syntax"></a>Syntaxe
+
+  `evaluate``sql_request` `(` *ConnectionString* `,` *SqlQuery* [ `,` *SqlParameters* [ `,` *options*]]`)`
 
 ## <a name="arguments"></a>Arguments
 
@@ -121,7 +123,7 @@ La syntaxe appropriée est :
 
 `Server``=` `tcp:` *Nom de domaine complet* [ `,` *port*]
 
-Où :
+Où :
 
 * *FQDN* est le nom de domaine complet du point de terminaison.
 * *Port* est le port TCP du point de terminaison. Par défaut, `1433` est supposé.

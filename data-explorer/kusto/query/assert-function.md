@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/26/2019
-ms.openlocfilehash: a477a8fd8e05bd6420f06c28f71f72431a343a31
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 050974af47b0f5cd0e041694ee5f680b8c321614
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349463"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803315"
 ---
 # <a name="assert"></a>assert()
 
@@ -28,15 +28,13 @@ Vérifie une condition. Si la condition est false, génère des messages d’err
 * *condition*: expression conditionnelle à évaluer. Si la condition est `false` , le message spécifié est utilisé pour signaler une erreur. Si la condition est `true` , elle retourne `true` en tant que résultat d’évaluation. La condition doit être évaluée à constant au cours de la phase d’analyse de la requête.
 * *message*: message utilisé si l’assertion est évaluée à `false` . Le *message* doit être un littéral de chaîne.
 
+> [!NOTE]
+> `condition`doit être évaluée à constant pendant la phase d’analyse de la requête. En d’autres termes, elle peut être construite à partir d’autres expressions référençant des constantes et ne peut pas être liée à un contexte de ligne.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 * `true`-Si la condition est`true`
 * Génère une erreur sémantique si la condition est évaluée à `false` .
-
-**Remarques**
-
-* `condition`doit être évaluée à constant pendant la phase d’analyse de la requête. En d’autres termes, elle peut être construite à partir d’autres expressions référençant des constantes et ne peut pas être liée à un contexte de ligne.
 
 ## <a name="examples"></a>Exemples
 

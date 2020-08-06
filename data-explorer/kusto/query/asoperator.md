@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f9d7a60b3c39fb0b7357c2bbe68533252f794347
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 857a48ab02ae04e68a8475b7109cebbb2275ca55
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349480"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803299"
 ---
 # <a name="as-operator"></a>opérateur as
 
@@ -29,11 +29,9 @@ Lie un nom à l’expression tabulaire d’entrée de l’opérateur, ce qui per
 * *Nom*: nom temporaire de l’expression tabulaire.
 * `hint.materialized`: Si `true` la valeur est, la valeur de l’expression tabulaire est matérialisée comme si elle était encapsulée par un appel de fonction [matérial ()](./materializefunction.md) .
 
-**Remarques**
-
-* Le nom donné par `as` sera utilisé dans la `withsource=` colonne de [Union](./unionoperator.md), la `source_` colonne de recherche [find](./findoperator.md)et la `$table` colonne de [recherche](./searchoperator.md).
-
-* L’expression tabulaire nommée à l’aide de l’opérateur dans l’entrée tabulaire externe d’une [jointure](./joinoperator.md)( `$left` ) peut également être utilisée dans l’entrée interne tabulaire de la jointure ( `$right` ).
+> [!NOTE]
+> * Le nom donné par `as` sera utilisé dans la `withsource=` colonne de [Union](./unionoperator.md), la `source_` colonne de recherche [find](./findoperator.md)et la `$table` colonne de [recherche](./searchoperator.md).
+> * L’expression tabulaire nommée à l’aide de l’opérateur dans l’entrée tabulaire externe d’une [jointure](./joinoperator.md)( `$left` ) peut également être utilisée dans l’entrée interne tabulaire de la jointure ( `$right` ).
 
 ## <a name="examples"></a>Exemples
 

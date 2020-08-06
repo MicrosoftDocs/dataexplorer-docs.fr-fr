@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: d2f9db1dbace646c41d8751272cf44cf6d04c2c3
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: ed7f6f69669cd580482beb2d3debd0e5c45bf54b
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346131"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803146"
 ---
 # <a name="pivot-plugin"></a>pivot, plug-in
 
@@ -22,6 +22,9 @@ Fait pivoter une table en transformant les valeurs uniques d’une colonne de la
 ```kusto
 T | evaluate pivot(PivotColumn)
 ```
+
+> [!NOTE]
+> Le schéma de sortie du `pivot` plug-in est basé sur les données et, par conséquent, la requête peut produire un schéma différent pour deux exécutions. Cela signifie également que la requête qui fait référence à des colonnes décompressées peut devenir « interrompue » à tout moment. Pour cette raison, il n’est pas recommandé d’utiliser ce plug-in pour les travaux d’automatisation.
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -33,13 +36,9 @@ T | evaluate pivot(PivotColumn)
 * *fonction d’agrégation*: (facultatif) agrège plusieurs lignes de la table d’entrée en une seule ligne dans la table de sortie. Fonctions actuellement prises en charge : `min()` , `max()` , `any()` , `sum()` , `dcount()` , `avg()` , `stdev()` , `variance()` , `make_list()` , `make_bag()` , `make_set()` , `count()` (la valeur par défaut est `count()` ).
 * noms de colonne *Colonne1*, *Column2*,... : (facultatif). La table de sortie contient une colonne supplémentaire pour chaque colonne spécifiée. valeur par défaut : toutes les colonnes autres que la colonne de tableau croisé dynamique et la colonne d’agrégation.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Pivot renvoie la table pivotée avec les colonnes spécifiées (*Colonne1*, *Column2*,...), ainsi que toutes les valeurs uniques des colonnes de tableau croisé dynamique. Chaque cellule des colonnes croisées dynamiques contient le calcul de la fonction d’agrégation.
-
-**Remarque**
-
-Le schéma de sortie du `pivot` plug-in est basé sur les données et, par conséquent, la requête peut produire un schéma différent pour deux exécutions. Cela signifie également que la requête qui fait référence à des colonnes décompressées peut devenir « interrompue » à tout moment. Pour cette raison, il n’est pas recommandé d’utiliser ce plug-in pour les travaux d’automatisation.
 
 ## <a name="examples"></a>Exemples
 
@@ -64,7 +63,7 @@ StormEvents
 |Vent fort|22|0|
 
 
-### <a name="pivot-by-a-column-with-aggregation-function"></a>Pivot par une colonne avec fonction d’agrégation.
+### <a name="pivot-by-a-column-with-aggregation-function"></a>Tableau croisé dynamique par une colonne avec fonction d’agrégation
 
 Pour chaque EventType et chaque État commençant par « AR », affichez le nombre total de décès directs.
 
@@ -87,7 +86,7 @@ StormEvents
 |Chauffage|3|0|
 
 
-### <a name="pivot-by-a-column-with-aggregation-function-and-a-single-additional-column"></a>Pivot par une colonne avec fonction d’agrégation et une colonne supplémentaire unique.
+### <a name="pivot-by-a-column-with-aggregation-function-and-a-single-additional-column"></a>Pivot par une colonne avec fonction d’agrégation et une colonne supplémentaire unique
 
 Le résultat est identique à l’exemple précédent.
 
@@ -110,7 +109,7 @@ StormEvents
 |Chauffage|3|0|
 
 
-### <a name="specify-the-pivoted-column-aggregation-function-and-multiple-additional-columns"></a>Spécifiez la colonne pivotée, la fonction d’agrégation et plusieurs colonnes supplémentaires.
+### <a name="specify-the-pivoted-column-aggregation-function-and-multiple-additional-columns"></a>Spécifier la colonne pivotée, la fonction d’agrégation et plusieurs colonnes supplémentaires
 
 Pour chaque type d’événement, source et état, additionner le nombre de décès directs.
 

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 247a653ead575b0fa04295d23b6b6071bd49edeb
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 68082b68a1c7772135f711248ddfcd4079bc753e
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347355"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803928"
 ---
 # <a name="ipv4_compare"></a>ipv4_compare()
 
@@ -40,9 +40,9 @@ ipv4_compare('192.168.1.1', '192.168.1.255', 24) == 0
 Les adresses IP peuvent être définies à `IP-prefix notation` l’aide d’une barre oblique ( `/` ).
 L’adresse IP à gauche de la barre oblique ( `/` ) est l’adresse IP de base. Le nombre (1 à 32) à droite de la barre oblique ( `/` ) est le nombre de 1 bit contigu dans le masque réseau. 
 
-**Exemple :** 192.168.2.0/24 aura un net/Masque_Sous_réseau associé contenant 24 bits contigus ou 255.255.255.0 au format décimal avec points.
+Par exemple, 192.168.2.0/24 aura un net/Masque_Sous_réseau associé contenant 24 bits contigus ou 255.255.255.0 au format décimal avec points.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 * `0`: Si la représentation longue du premier argument de chaîne IPv4 est égale au deuxième argument de chaîne IPv4
 * `1`: Si la représentation longue du premier argument de chaîne IPv4 est supérieure au deuxième argument de chaîne IPv4

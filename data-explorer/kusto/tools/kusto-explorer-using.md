@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/19/2020
-ms.openlocfilehash: 601a2b90b3a9152df701f001f050ab0c48e8910d
-ms.sourcegitcommit: 6e84f50efc8c5c3fe57080341ed3effe72197886
+ms.openlocfilehash: 8688c7d6f2a5d68e0e1ae4436e099b011fd5faa0
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87440029"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803231"
 ---
 # <a name="using-kustoexplorer"></a>Utilisation de Kusto.Explorer
 
@@ -139,20 +139,10 @@ Kusto. Explorer offre un moyen pratique de partager des requêtes et des résult
 
 Vous pouvez créer un URI qui, lorsqu’il est ouvert dans un navigateur, ouvre Kusto. Explorer localement et exécute une requête spécifique sur une base de données Kusto spécifiée.
 
-### <a name="limitations"></a>Limites
-
-Les requêtes sont limitées à environ 2000 caractères en raison des limitations du navigateur, des proxys HTTP et des outils qui valident les liens, tels que Microsoft Outlook. La limitation est approximative, car elle dépend de la longueur du nom de la base de données et du cluster. Pour plus d’informations, consultez [https://support.microsoft.com/kb/208427](https://support.microsoft.com/kb/208427). Pour réduire le risque d’atteindre la limite de caractères, consultez la rubrique [obtenir des liens plus courts](#getting-shorter-links), ci-dessous.
-
-Le format de l’URI est le suivant :`https://<ClusterCname>.kusto.windows.net/<DatabaseName>web=0?query=<QueryToExecute>`
-
-Par exemple : [https://help.kusto.windows.net/Samples?web=0query=StormEvents+%7c+limit+10](https://help.kusto.windows.net/Samples?web=0query=StormEvents+%7c+limit+10)
- 
-Cet URI ouvre Kusto. Explorer, se connecte au `Help` cluster Kusto et exécute la requête spécifiée sur la `Samples` base de données. Si une instance de Kusto. Explorer est déjà en cours d’exécution, l’instance en cours d’exécution ouvrira un nouvel onglet et exécutera la requête dans celle-ci.
-
 > [!NOTE] 
 > Pour des raisons de sécurité, la liaison profonde est désactivée pour les commandes de contrôle.
 
-### <a name="creating-a-deep-link"></a>Création d’un lien profond
+#### <a name="creating-a-deep-link"></a>Création d’un lien profond
 
 Le moyen le plus simple de créer un lien profond consiste à créer votre requête dans Kusto. Explorer, puis `Export to Clipboard` à utiliser pour copier la requête (y compris le lien profond et les résultats) dans le presse-papiers. Vous pouvez ensuite le partager par courrier électronique.
         
@@ -165,7 +155,7 @@ Le deuxième lien ( `Click to run query` ) est le lien profond. Si vous déplace
 
 https://help.kusto.windows.net/Samples?web=0&query=H4sIAAAAAAAEAAsuyS%2fKdS1LzSspVuDlqlEoLs3NTSzKrEpVSM4vzSvR0FRIqlRIyszTCC5JLCoJycxN1VEwT9EEKS1KzUtJLVIoAYolZwAlFQCB3oo%2bTAAAAA%3d%3d
 
-### <a name="deep-links-and-parametrized-queries"></a>Liens profond et requêtes paramétrée
+#### <a name="deep-links-and-parametrized-queries"></a>Liens profond et requêtes paramétrée
 
 Vous pouvez utiliser des requêtes paramétrée avec des liens approfondis.
 
@@ -177,6 +167,17 @@ web=0&query=KustoLogs+%7c+where+Timestamp+>+ago({Period})+%7c+count&Period=1h`
 
     Remplacez &lt; your_cluster &gt; par le nom de votre cluster Azure Explorateur de données.
 
+#### <a name="limitations"></a>Limites
+
+Les requêtes sont limitées à environ 2000 caractères en raison des limitations du navigateur, des proxys HTTP et des outils qui valident les liens, tels que Microsoft Outlook. La limitation est approximative, car elle dépend de la longueur du nom de la base de données et du cluster. Pour plus d’informations, consultez [https://support.microsoft.com/kb/208427](https://support.microsoft.com/kb/208427). 
+
+Pour réduire les risques d’atteinte à la limite de caractères, consultez [obtenir des liens plus courts](#getting-shorter-links).
+
+Le format de l’URI est le suivant :`https://<ClusterCname>.kusto.windows.net/<DatabaseName>web=0?query=<QueryToExecute>`
+
+Par exemple : [https://help.kusto.windows.net/Samples?web=0query=StormEvents+%7c+limit+10](https://help.kusto.windows.net/Samples?web=0query=StormEvents+%7c+limit+10)
+ 
+Cet URI ouvre Kusto. Explorer, se connecte au `Help` cluster Kusto et exécute la requête spécifiée sur la `Samples` base de données. Si une instance de Kusto. Explorer est déjà en cours d’exécution, l’instance en cours d’exécution ouvrira un nouvel onglet et exécutera la requête dans celle-ci.
 
 ### <a name="getting-shorter-links"></a>Obtenir des liens plus courts
 
@@ -196,7 +197,7 @@ Les arguments de ligne de commande permettent de configurer l’outil pour exéc
 
 Les arguments de ligne de commande sont passés dans le cadre de l’URL utilisée pour ouvrir l’application, de la même façon pour [interroger des liens profond](#creating-a-deep-link).
 
-## <a name="command-line-argument-syntax"></a>Syntaxe des arguments de ligne de commande
+### <a name="command-line-argument-syntax"></a>Syntaxe des arguments de ligne de commande
 
 Kusto. Explorer prend en charge plusieurs arguments de ligne de commande dans la syntaxe suivante (l’ordre est important) :
 

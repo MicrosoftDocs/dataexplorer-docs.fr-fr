@@ -8,24 +8,23 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 6c157c014ec3b83aa39d4bdfcadda12e97e84f3e
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 0c4ce80c00df4c9c6e257fbe1f8a93802f54438e
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346539"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87802942"
 ---
 # <a name="pack_all"></a>pack_all()
 
 Crée un `dynamic` objet (conteneur de propriétés) à partir de toutes les colonnes de l’expression tabulaire.
 
+> [!NOTE]
+> La représentation de l’objet retourné n’est pas garantie d’être compatible au niveau de l’octet entre les exécutions. Par exemple, les propriétés qui apparaissent dans le conteneur peuvent apparaître dans un ordre différent.
+
 ## <a name="syntax"></a>Syntaxe
 
 `pack_all()`
-
-**Remarques**
-
-La représentation de l’objet retourné n’est pas garantie d’être compatible au niveau de l’octet entre les exécutions. Par exemple, les propriétés qui apparaissent dans le conteneur peuvent apparaître dans un ordre différent.
 
 ## <a name="examples"></a>Exemples
 
@@ -49,6 +48,7 @@ datatable(SourceNumber:string,TargetNumber:string,CharsCount:long)
 ]
 | extend Packed=pack_all()
 ```
+
 Retourne les informations suivantes :
 
 |TableName |SourceNumber |TargetNumber | Riche

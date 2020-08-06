@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a02f275dc47e88c7b14b85d19040e907613d1b80
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 0be0dc12f48723bc83376a36db04f764991f7f0d
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348324"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803095"
 ---
 # <a name="diff-patterns-plugin"></a>plug-in de modèles diff
 
@@ -23,13 +23,16 @@ Compare deux jeux de données de la même structure et recherche les modèles d�
 ```kusto
 T | evaluate diffpatterns(splitColumn)
 ```
-
+> [!NOTE]
+> `diffpatterns`vise à trouver des modèles significatifs (qui capturent des parties de la différence de données entre les jeux) et n’est pas destiné aux différences ligne par ligne.
 
 ## <a name="syntax"></a>Syntaxe
 
 `T | evaluate diffpatterns(SplitColumn, SplitValueA, SplitValueB [, WeightColumn, Threshold, MaxDimensions, CustomWildcard, ...])` 
 
-**Arguments obligatoires**
+## <a name="arguments"></a>Arguments 
+
+### <a name="required-arguments"></a>Arguments obligatoires
 
 * SplitColumn - *nom_colonne*
 
@@ -45,7 +48,7 @@ T | evaluate diffpatterns(splitColumn)
 
     Exemple : `T | extend splitColumn=iff(request_responseCode == 200, "Success" , "Failure") | evaluate diffpatterns(splitColumn, "Success","Failure") `
 
-**Arguments facultatifs**
+### <a name="optional-arguments"></a>Arguments facultatifs
 
 Tous les autres arguments sont facultatifs, mais ils doivent alors être ordonnés comme ci-dessous. Pour indiquer que la valeur par défaut doit être utilisée, insérez le signe tilde - ’ ~’ (voir les exemples ci-dessous).
 
@@ -76,7 +79,7 @@ Tous les autres arguments sont facultatifs, mais ils doivent alors être ordonn�
 
     Exemple : `T | extend splitColumn = iff(request-responseCode == 200, "Success" , "Failure") | evaluate diffpatterns(splitColumn, "Success","Failure", "~", "~", "~", int(-1), double(-1), long(0), datetime(1900-1-1))`
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 `Diffpatterns`retourne un petit ensemble de modèles qui capturent différentes parties des données dans les deux jeux (autrement dit, un modèle capturant un grand pourcentage de lignes dans le premier jeu de données et un pourcentage faible des lignes du deuxième jeu). Chaque modèle est représenté par une ligne dans les résultats.
 
@@ -100,14 +103,9 @@ Pour chaque modèle, les colonnes qui ne sont pas définies dans le modèle (aut
 
 * Remarque : les modèles ne sont pas souvent distincts. Ils peuvent se chevaucher et ne couvrent généralement pas toutes les lignes d’origine. Certaines lignes peuvent n’appartenir à aucun modèle.
 
-
-**Conseils**
-
-Utilisez [Where](./whereoperator.md) et [Project](./projectoperator.md) dans le canal d’entrée pour réduire les données uniquement à ce qui vous intéresse.
-
-Lorsque vous trouvez une ligne intéressante, vous pouvez l’explorer plus en détail en ajoutant ses valeurs spécifiques à votre filtre `where` .
-
-* Remarque : `diffpatterns` vise à trouver des modèles significatifs (qui capturent des parties de la différence de données entre les jeux) et n’est pas destiné aux différences ligne par ligne.
+> [!TIP]
+> * Utilisez [Where](./whereoperator.md) et [Project](./projectoperator.md) dans le canal d’entrée pour réduire les données uniquement à ce qui vous intéresse.
+> * Lorsque vous trouvez une ligne intéressante, vous pouvez l’explorer plus en détail en ajoutant ses valeurs spécifiques à votre filtre `where` .
 
 ## <a name="example"></a>Exemple
 

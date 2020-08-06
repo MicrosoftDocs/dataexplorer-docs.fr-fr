@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/27/2020
-ms.openlocfilehash: 92c2c512fc81176cfa849ecdd66c0cdcfad9d8d3
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: ce14c466d927dd2431ae8e057bceec0d5fdd38b8
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347321"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803894"
 ---
 # <a name="ipv6_compare"></a>ipv6_compare()
 
@@ -27,6 +27,9 @@ ipv6_compare('fe80::85d:e82c:9446:7994/127', 'fe80::85d:e82c:9446:7995/127') == 
 ipv6_compare('fe80::85d:e82c:9446:7994', 'fe80::85d:e82c:9446:7995', 127) == 0
 ```
 
+> [!Note]
+> La fonction peut accepter et comparer des arguments qui représentent à la fois des adresses réseau IPv6 et IPv4. Toutefois, si l’appelant sait que les arguments sont au format IPv4, utilisez la fonction [ipv4_is_compare ()](./ipv4-comparefunction.md) . Cette fonction permet d’obtenir de meilleures performances d’exécution.
+
 ## <a name="syntax"></a>Syntaxe
 
 `ipv6_compare(`*Expr1* `, ` *Expr2* `[ ,` *PrefixMask*`])`
@@ -36,24 +39,19 @@ ipv6_compare('fe80::85d:e82c:9446:7994', 'fe80::85d:e82c:9446:7995', 127) == 0
 * *Expr1*, *expr2*: expression de chaîne représentant une adresse IPv6 ou IPv4. Les chaînes IPv6 et IPv4 peuvent être masquées à l’aide de la notation de préfixe IP (voir remarque).
 * *PrefixMask*: entier compris entre 0 et 128 représentant le nombre de bits les plus significatifs pris en compte.
 
-> [!Note] 
->**Notation de préfixe IP**
-> 
->Il est courant de définir des adresses IP à `IP-prefix notation` l’aide d’une barre oblique ( `/` ).
->L’adresse IP à gauche de la barre oblique ( `/` ) est l’adresse IP de base, et le nombre (de 1 à 127) à droite de la barre oblique ( `/` ) est le nombre de 1 bits contigus dans le masque réseau. 
->
-> ## <a name="example"></a>Exemple :
-> FE80 :: 85D : E82C : 9446:7994/120 aura un net/Masque_Sous_réseau associé contenant 120 bits contigus.
+## <a name="ip-prefix-notation"></a>Notation de préfixe IP
 
-## <a name="returns"></a>Retourne
+Il est courant de définir des adresses IP à `IP-prefix notation` l’aide d’une barre oblique ( `/` ).
+L’adresse IP à gauche de la barre oblique ( `/` ) est l’adresse IP de base, et le nombre (de 1 à 127) à droite de la barre oblique ( `/` ) est le nombre de 1 bits contigus dans le masque réseau. 
+
+Par exemple, FE80 :: 85D : E82C : 9446:7994/120 aura un net/Masque_Sous_réseau associé contenant 120 bits contigus.
+
+## <a name="returns"></a>Retours
 
 * `0`: Si la représentation longue du premier argument de chaîne IPv6 est égale au deuxième argument de chaîne IPv6.
 * `1`: Si la représentation longue du premier argument de chaîne IPv6 est supérieure au deuxième argument de chaîne IPv6.
 * `-1`: Si la représentation longue du premier argument de chaîne IPv6 est inférieure au deuxième argument de chaîne IPv6.
 * `null`: Si la conversion de l’une des deux chaînes IPv6 a échoué.
-
-> [!Note]
-> La fonction peut accepter et comparer des arguments qui représentent à la fois des adresses réseau IPv6 et IPv4. Toutefois, si l’appelant sait que les arguments sont au format IPv4, utilisez la fonction [ipv4_is_compare ()](./ipv4-comparefunction.md) . Cette fonction permet d’obtenir de meilleures performances d’exécution.
 
 ## <a name="examples-ipv6ipv4-comparison-equality-cases"></a>Exemples : cas d’égalité de comparaison IPv6/IPv4
 

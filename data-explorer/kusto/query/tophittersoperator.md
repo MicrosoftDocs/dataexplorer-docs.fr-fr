@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: babb4e023d29c7894661e3acf2c0a09e753011c2
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: be05a3a546bb6f1db003be14e4a1417841b54671
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87340817"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87804064"
 ---
 # <a name="top-hitters-operator"></a>top-hitters, opérateur
 
@@ -22,6 +22,9 @@ Retourne une approximation des *N* premiers résultats (en supposant une distrib
 ```kusto
 T | top-hitters 25 of Page by Views 
 ```
+
+> [!NOTE]
+> `top-hitters`est un algorithme d’approximation et doit être utilisé lors de l’exécution avec des données volumineuses. La approximation du Hitters supérieur est basée sur l’algorithme [Count-min-Sketch](https://en.wikipedia.org/wiki/Count%E2%80%93min_sketch) .  
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -35,13 +38,9 @@ T | top-hitters 25 of Page by Views
     * *expression*: Top-Hitters retourne les lignes *numberOfRows* qui ont une valeur maximale de Sum (*expression*). L’expression peut être une colonne, ou toute autre expression qui prend la valeur d’un nombre. 
     *  Si l' *expression* n’est pas mentionnée, l’algorithme Top-Hitters compte les occurrences de la *clé de tri*.  
 
-**Notes**
+## <a name="examples"></a>Exemples
 
-`top-hitters`est un algorithme d’approximation et doit être utilisé lors de l’exécution avec des données volumineuses. La approximation du Hitters supérieur est basée sur l’algorithme [Count-min-Sketch](https://en.wikipedia.org/wiki/Count%E2%80%93min_sketch) .  
-
-## <a name="example"></a>Exemple
-
-## <a name="getting-top-hitters-most-frequent-items"></a>Obtention des Hitters principaux (éléments les plus fréquents) 
+### <a name="get-most-frequent-items"></a>Recevoir les éléments les plus fréquents 
 
 L’exemple suivant montre comment rechercher les 5 langues les plus importantes avec la plupart des pages de Wikipédia (accessible après le 2016 avril). 
 
@@ -59,7 +58,7 @@ PageViews
 |ru|227003107|
 |fr|207943448|
 
-## <a name="getting-top-hitters-based-on-column-value-"></a>Obtention des Hitters supérieurs (en fonction de la valeur de colonne) * * *
+### <a name="get-top-hitters-based-on-column-value"></a>Obtient le Hitters supérieur en fonction de la valeur de colonne
 
 L’exemple suivant montre comment rechercher les pages en anglais les plus consultées de l’année 2016. La requête utilise « views » (nombre entier) pour calculer la popularité des pages (nombre de vues). 
 

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 0831251bd38df4475c271cc6bcec9c15668860ea
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 3fa07fee38ab42c61035f68773b603607d0aa858
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87344167"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803452"
 ---
 # <a name="series_fill_linear"></a>series_fill_linear()
 
@@ -34,14 +34,14 @@ Prend une expression contenant un tableau numérique dynamique comme entrée, ef
 * *fill_edges*: valeur booléenne qui indique si *missing_value_placeholder* au début et à la fin du tableau doit être remplacé par la valeur la plus proche. *True* par défaut. Si la valeur est *false*, *missing_value_placeholder* au début et à la fin du tableau sera préservé.
 * *constant_value*: le paramètre facultatif pertinent uniquement pour les tableaux est constitué entièrement de valeurs *null* . Ce paramètre spécifie une valeur de constante avec laquelle remplir la série. La valeur par défaut est *0*. L’affectation de la valeur `double` (*null*) à ce paramètre permet de conserver les valeurs *null* là où elles se trouvent.
 
-**Remarques**
+## <a name="notes"></a>Notes
 
 * Pour appliquer des fonctions d’interpolation après [Make-Series](make-seriesoperator.md), spécifiez *null* comme valeur par défaut : 
 
-<!-- csl: https://help.kusto.windows.net:443/Samples -->
-```kusto
-make-series num=count() default=long(null) on TimeStamp from ago(1d) to ago(1h) step 1h by Os, Browser
-```
+    <!-- csl: https://help.kusto.windows.net:443/Samples -->
+    ```kusto
+    make-series num=count() default=long(null) on TimeStamp from ago(1d) to ago(1h) step 1h by Os, Browser
+    ```
 
 * Le *missing_value_placeholder* peut être de n’importe quel type qui sera converti en types d’éléments réels. Par conséquent, `double` (*null*), `long` (*null*) ou `int` (*null*) ont la même signification.
 * Si *missing_value_placeholder* est `double` (*null*) (ou omis, qui ont la même signification), un résultat peut contenir des valeurs *null* . Utilisez d’autres fonctions d’interpolation pour remplir ces valeurs *null* . Actuellement [, seul series_outliers ()](series-outliersfunction.md) prend en charge les valeurs *null* dans les tableaux d’entrée.

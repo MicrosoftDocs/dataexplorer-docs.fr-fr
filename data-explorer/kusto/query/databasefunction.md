@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 1bfe42e18cfe0bb424e933b266eb9861c7676cea
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 6511006373cd1f6245a0dcc04537f3994183d63e
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348579"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803758"
 ---
 # <a name="database-scope-function"></a>base de données () (fonction Scope)
 
@@ -28,6 +28,10 @@ database('Sample').StormEvents
 cluster('help').database('Sample').StormEvents
 ```
 
+> [!NOTE]
+> * Pour plus d’informations, consultez [requêtes de bases de données croisées et de clusters croisés](cross-cluster-or-database-queries.md).
+> * Pour accéder au cluster distant et à la base de données distante, consultez fonction de l’étendue [cluster ()](clusterfunction.md) .
+
 ## <a name="syntax"></a>Syntaxe
 
 `database(`*stringConstant*`)`
@@ -36,14 +40,9 @@ cluster('help').database('Sample').StormEvents
 
 * *stringConstant*: nom de la base de données référencée. La base de données identifiée peut être `DatabaseName` ou `PrettyName` . L’argument doit être _constant_ avant l’exécution de la requête, c’est-à-dire qu’il ne peut pas provenir d’une évaluation de sous-requête.
 
-**Notes**
-
-* Pour accéder au cluster distant et à la base de données distante, consultez fonction de l’étendue [cluster ()](clusterfunction.md) .
-* Plus d’informations sur les requêtes entre clusters et les bases de données croisées disponibles [ici](cross-cluster-or-database-queries.md)
-
 ## <a name="examples"></a>Exemples
 
-### <a name="use-database-to-access-table-of-other-database"></a>Utilisez la base de données () pour accéder à la table d’une autre base de données. 
+### <a name="use-database-to-access-table-of-other-database"></a>Utiliser la base de données () pour accéder à la table d’une autre base de données
 
 ```kusto
 database('Samples').StormEvents | count
@@ -80,7 +79,8 @@ La même requête que ci-dessus peut être réécrite pour être utilisée dans 
 };
 ```
 
-**Remarque :** ces fonctions peuvent être utilisées uniquement localement et non dans la requête entre clusters.
+> [!NOTE]
+> Ces fonctions peuvent être utilisées uniquement localement et non dans la requête entre clusters.
 
 ::: zone-end
 

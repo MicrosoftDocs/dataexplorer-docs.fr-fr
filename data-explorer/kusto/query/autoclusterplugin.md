@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 86e3ce4f1cbb957ebd126a8493ebb6b7bc5ac66b
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 959b11eca2dc369a3f737e01175f77ff6626f773
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349412"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803843"
 ---
 # <a name="autocluster-plugin"></a>autocluster, plug-in
 
@@ -23,11 +23,15 @@ T | evaluate autocluster()
 
 `autocluster`recherche des modèles communs d’attributs discrets (dimensions) dans les données. Il réduit ensuite les résultats de la requête d’origine, qu’il s’agisse de 100 ou 100 000 lignes, avec un petit nombre de modèles. Le plug-in a été développé pour faciliter l’analyse des défaillances (telles que les exceptions ou les incidents), mais peut éventuellement fonctionner sur n’importe quel jeu de données filtré.
 
+> [!NOTE]
+> `autocluster`repose en grande partie sur l’algorithme Seed-Expand du document suivant : [algorithmes pour l’exploration de données de télémétrie à l’aide d’attributs discrets](https://www.scitepress.org/DigitalLibrary/PublicationsDetail.aspx?ID=d5kcrO+cpEU=&t=1). 
+
+
 ## <a name="syntax"></a>Syntaxe
 
 `T | evaluate autocluster(`*arguments*`)`
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Le `autocluster` plug-in retourne un ensemble de modèles (généralement petit). Les modèles capturent des portions des données avec des valeurs communes partagées sur plusieurs attributs discrets. Chaque modèle dans les résultats est représenté par une ligne.
 
@@ -40,7 +44,10 @@ Les modèles ne sont pas distincts, peuvent se chevaucher et ne couvrent génér
 >
 > Lorsque vous trouvez une ligne intéressante, vous pouvez l’explorer plus en détail en ajoutant ses valeurs spécifiques à votre filtre `where` .
 
-**Arguments (tous facultatifs)**
+## <a name="arguments"></a>Arguments 
+
+> [!NOTE] 
+> Tous les arguments sont facultatifs.
 
 `T | evaluate autocluster(`[*SizeWeight*, *WeightColumn*, *NumSeeds*, *CustomWildcard*, *CustomWildcard*,...]`)`
 
@@ -55,7 +62,7 @@ Tous les arguments sont facultatifs, mais ils doivent alors être ordonnés comm
 
 ## <a name="examples"></a>Exemples
 
-### <a name="example"></a>Exemple
+### <a name="using-autocluster"></a>Utilisation d’autocluster
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -72,7 +79,7 @@ StormEvents
 |1|512|8,7||Vent d’orage|YES
 |2|898|15,3|TEXAS||
 
-### <a name="example-with-custom-wildcards"></a>Exemple avec des caractères génériques personnalisés
+### <a name="using-custom-wildcards"></a>Utilisation de caractères génériques personnalisés
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -93,5 +100,3 @@ StormEvents
 
 * [basket](./basketplugin.md)
 * [abaisse](./reduceoperator.md)
-
-* `autocluster`repose en grande partie sur l’algorithme Seed-Expand du document suivant : [algorithmes pour l’exploration de données de télémétrie à l’aide d’attributs discrets](https://www.scitepress.org/DigitalLibrary/PublicationsDetail.aspx?ID=d5kcrO+cpEU=&t=1). 

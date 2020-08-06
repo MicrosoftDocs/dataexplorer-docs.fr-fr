@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 34734f3975b1720c1d009f190d4fae2ebc54283f
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 8e93e86814adf2789d01e03173196468f085b7c2
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350755"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87804098"
 ---
 # <a name="todouble-toreal"></a>todouble(), toreal()
 
@@ -22,6 +22,9 @@ Convertit l’entrée en une valeur de type `real` . ( `todouble()` et `toreal()
 ```kusto
 toreal("123.4") == 123.4
 ```
+
+> [!NOTE]
+> Préférez l’utilisation de la [double () ou réelle ()](./scalar-data-types/real.md) si possible.
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -36,5 +39,3 @@ toreal("123.4") == 123.4
 
 Si la conversion réussit, le résultat est une valeur de type `real` .
 Si la conversion échoue, le résultat est la valeur `real(null)` .
-
-*Remarque*: préférez utiliser [double () ou Real ()](./scalar-data-types/real.md) lorsque cela est possible.
