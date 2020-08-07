@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 68b55ec5496f1eb68f979c56412f10191b9f5a68
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 85a59adc355c3d8855c34bcf97d29d3bd6eea4a1
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87340800"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803129"
 ---
 # <a name="top-nested-operator"></a>Opérateur top-nested
 
@@ -66,7 +66,7 @@ Pour chaque *TopNestedClause*:
 
 * `asc`ou `desc` (la valeur par défaut) peut sembler pour contrôler si la sélection est en fait du « bas » ou « supérieur » de la plage de valeurs agrégées.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Cet opérateur retourne une table qui comporte deux colonnes pour chaque clause Aggregation :
 
@@ -74,7 +74,7 @@ Cet opérateur retourne une table qui comporte deux colonnes pour chaque clause 
 
 * Une colonne contient le résultat du calcul de l' *agrégation* (avec le nom de colonne *AggregationName* si elle est spécifiée)
 
-**Commentaires**
+## <a name="notes"></a>Notes
 
 Les colonnes d’entrée qui ne sont pas spécifiées comme *`Expr`* valeurs ne sont pas générées.
 Pour obtenir toutes les valeurs à un certain niveau, ajoutez un nombre d’agrégations qui :
