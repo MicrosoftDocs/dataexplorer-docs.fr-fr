@@ -50,6 +50,12 @@
           href: security.md
         - name: Base de référence de la sécurité
           href: security-baseline.md
+    - name: Continuité de l’activité
+      items:
+        - name: Vue d’ensemble
+          href: business-continuity-overview.md
+        - name: Créer des solutions
+          href: business-continuity-create-solution.md
     - name: Présentation des outils et des intégrations
       href: tools-integrations-overview.md
 - name: Guides pratiques
@@ -1291,7 +1297,7 @@
             - name: Tables externes
               items:
                 - name: Commandes de contrôle générales des tables externes
-                  href: ./kusto/management/externaltables.md
+                  href: ./kusto/management/external-table-commands.md
                 - name: Créer et modifier des tables SQL externes
                   href: ./kusto/management/external-sql-tables.md
                 - name: Créer et modifier des tables externes dans Stockage Azure ou Azure Data Lake
@@ -1414,7 +1420,7 @@
               items:
                 - name: Mettre à jour la stratégie
                   href: ./kusto/management/updatepolicy.md
-                - name: Commande de stratégie de mise à jour
+                - name: commandes de stratégie de mise à jour
                   href: ./kusto/management/update-policy.md
         - name: Rôles de sécurité
           href: ./kusto/management/security-roles.md
