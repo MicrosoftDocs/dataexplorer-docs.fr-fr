@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 1d8766c1fb09ceb64cf4196a92030163eed63694
-ms.sourcegitcommit: d40fe44e7581d87f63cc0cb939f3aa9c3996fc08
+ms.openlocfilehash: 90158c066c724f7d05e9c5e91333874ad572e81b
+ms.sourcegitcommit: 53679e57e0fcb7ec46beaba7cc812bd991da6cc0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85839408"
+ms.lasthandoff: 08/07/2020
+ms.locfileid: "87984468"
 ---
 # <a name="the-ingest-into-command-pull-data-from-storage"></a>Commande. ingestion dans (extraire des données du stockage)
 
-La `.ingest into` commande ingère les données dans une table en « extrayant » les données d’un ou de plusieurs artefacts de stockage cloud.
+La `.ingest into` commande ingère les données dans une table en « extrayant » les données d’un ou de plusieurs fichiers de stockage cloud.
 Par exemple, la commande peut récupérer des objets BLOB au format CSV 1000 à partir du stockage d’objets BLOB Azure, les analyser et les ingérer dans une table cible unique.
 Les données sont ajoutées à la table sans affecter les enregistrements existants, et sans modifier le schéma de la table.
 
@@ -32,7 +32,9 @@ Les données sont ajoutées à la table sans affecter les enregistrements exista
 * *TableName*: nom de la table à laquelle les données doivent être ingérées.
   Le nom de la table est toujours relatif à la base de données en contexte, et son schéma est le schéma qui sera utilisé pour les données si aucun objet de mappage de schéma n’est fourni.
 
-* *SourceDataLocator*: littéral de type `string` , ou liste délimitée par des virgules de ces littéraux entourés `(` de `)` caractères et, indiquant les artefacts de stockage contenant les données à extraire. Consultez [chaînes de connexion de stockage](../../api/connection-strings/storage.md).
+* *SourceDataLocator*: littéral de type `string` , ou liste délimitée par des virgules de tels littéraux, entourés de `(` `)` caractères et représentant des chaînes de connexion de [stockage](../../api/connection-strings/storage.md). Kusto utilise un format d’URI pour décrire les fichiers de stockage contenant les données à extraire. 
+  * Une chaîne de connexion unique doit faire référence à un seul fichier hébergé par un compte de stockage. 
+  * L’ingestion de plusieurs fichiers peut être effectuée en spécifiant plusieurs chaînes de connexion séparées par une virgule, ou en ingestion [à partir d’une requête](ingest-from-query.md) d’une [table externe](../../query/schema-entities/externaltables.md).
 
 > [!NOTE]
 > Il est fortement recommandé d’utiliser des [littéraux de chaîne obscurcis](../../query/scalar-data-types/string.md#obfuscated-string-literals) pour le *SourceDataPointer* qui contient les informations d’identification réelles.
@@ -48,7 +50,7 @@ Si aucun partitions de données n’a été généré, un seul enregistrement es
 |Nom       |Type      |Description                                                                |
 |-----------|----------|---------------------------------------------------------------------------|
 |ExtentId   |`guid`    |Identificateur unique pour le partition de données qui a été généré par la commande.|
-|ItemLoaded |`string`  |Un ou plusieurs artefacts de stockage associés à cet enregistrement.             |
+|ItemLoaded |`string`  |Un ou plusieurs fichiers de stockage associés à cet enregistrement.             |
 |Duration   |`timespan`|Le temps nécessaire pour effectuer l’ingestion.                                     |
 |HasErrors  |`bool`    |Indique si cet enregistrement représente un échec d’ingestion.                |
 |OperationId|`guid`    |ID unique représentant l’opération. Peut être utilisé avec la `.show operation` commande.|
@@ -84,4 +86,3 @@ Il utilise les informations d’identification de l’utilisateur pour accéder 
 .ingest into table T ('adl://contoso.azuredatalakestore.net/Path/To/File/file1.ext;impersonate')
   with (format='csv')
 ```
-
