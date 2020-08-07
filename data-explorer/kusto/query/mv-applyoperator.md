@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1f9cc982c213a9c2143b169dcf8a12103d617257
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 656d1d5d9120baebced624fee476d261214eff57
+ms.sourcegitcommit: 83202ec6fec0ce98fdf993bbb72adc985d6d9c78
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346709"
+ms.lasthandoff: 08/06/2020
+ms.locfileid: "87871848"
 ---
 # <a name="mv-apply-operator"></a>mv-apply, opérateur
 
@@ -35,7 +35,7 @@ L' `mv-apply` opérateur a les étapes de traitement suivantes :
 1. Ajoute zéro colonne ou plus à la sous-table résultante. Ces colonnes contiennent les valeurs des colonnes sources qui ne sont pas développées et sont répétées là où cela est nécessaire.
 1. Retourne l’Union des résultats.
 
-L' `mv-expand` opérateur obtient les entrées suivantes :
+L' `mv-apply` opérateur obtient les entrées suivantes :
 
 1. Une ou plusieurs expressions qui s’évaluent en tableaux dynamiques à développer.
    Le nombre d’enregistrements dans chaque sous-table développée est la longueur maximale de chacun de ces tableaux dynamiques. Des valeurs NULL sont ajoutées lorsque plusieurs expressions sont spécifiées et que les tableaux correspondants ont des longueurs différentes.

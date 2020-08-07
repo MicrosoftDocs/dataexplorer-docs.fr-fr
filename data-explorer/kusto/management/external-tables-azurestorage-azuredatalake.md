@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 1b857ee464b0fff973293cd03afadecc8c893af2
-ms.sourcegitcommit: 537a7eaf8c8e06a5bde57503fedd1c3706dd2b45
+ms.openlocfilehash: 2616605d29f90a283f5a5d8fef367bf77df65a15
+ms.sourcegitcommit: 83202ec6fec0ce98fdf993bbb72adc985d6d9c78
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86422994"
+ms.lasthandoff: 08/06/2020
+ms.locfileid: "87871933"
 ---
 # <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Créer et modifier des tables externes dans Stockage Azure ou Azure Data Lake
 
@@ -23,7 +23,7 @@ La commande suivante décrit comment créer une table externe située dans le st
 
 **Syntaxe**
 
-( `.create`  |  `.alter` ) `external` `table` *[TableName](#table-name)* `(` *[Schéma](#schema)* TableName`)`  
+( `.create`  |  `.alter`  |  `.create-or-alter` ) `external` `table` *[TableName](#table-name)* `(` *[Schéma](#schema)* TableName`)`  
 `kind` `=` (`blob` | `adl`)  
 [ `partition` `by` `(` *[Partitions](#partitions)* `)` [ `pathformat` `=` `(` *[PathFormat](#path-format)* `)` ]]  
 `dataformat``=` * [Format](#format)*  
@@ -33,7 +33,7 @@ La commande suivante décrit comment créer une table externe située dans le st
 Crée ou modifie une nouvelle table externe dans la base de données dans laquelle la commande est exécutée.
 
 > [!NOTE]
-> * Si la table existe, la `.create` commande échoue avec une erreur. Utilisez `.alter` pour modifier des tables existantes. 
+> * Si la table existe, la `.create` commande échoue avec une erreur. Utilisez `.create-or-alter` ou `.alter` pour modifier des tables existantes.
 > * La modification du schéma, du format ou de la définition de partition d’une table d’objets BLOB externe n’est pas prise en charge. 
 > * L’opération requiert l' [autorisation utilisateur de base de données](../management/access-control/role-based-authorization.md) pour `.create` et l’autorisation d’administrateur de [table](../management/access-control/role-based-authorization.md) pour `.alter` . 
 
@@ -218,7 +218,7 @@ with (fileExtension = ".txt")
 
 |TableName|TableType|Dossier|DocString|Propriétés|ConnectionStrings|Partitions|PathFormat|
 |---------|---------|------|---------|----------|-----------------|----------|----------|
-|ExternalTable|Objet blob|ExternalTables|Docs|{"Format" : "CSV", "Compressed" : false, "CompressionType" : null, "FileExtension" : null, "IncludeHeaders" : "none", "Encoding" : null, "NamePrefix" : null}|["https://storageaccount.blob.core.windows.net/container1;\*\*\*\*\*\*\*"]|[{« Mod » : 10, « Name » : « CustomerId », « ColumnName » : « CustomerName », « ordinal » : 0}, {« Function » : « StartOfDay », « Name » : « date », « ColumnName » : « timestamp », « ordinal » : 1}]|«Customer \_ ID = "CustomerID"/DT = "DateTime \_ pattern (" AAAAMMJJ ", date)|
+|ExternalTable|Blob|ExternalTables|Docs|{"Format" : "CSV", "Compressed" : false, "CompressionType" : null, "FileExtension" : null, "IncludeHeaders" : "none", "Encoding" : null, "NamePrefix" : null}|["https://storageaccount.blob.core.windows.net/container1;\*\*\*\*\*\*\*"]|[{« Mod » : 10, « Name » : « CustomerId », « ColumnName » : « CustomerName », « ordinal » : 0}, {« Function » : « StartOfDay », « Name » : « date », « ColumnName » : « timestamp », « ordinal » : 1}]|«Customer \_ ID = "CustomerID"/DT = "DateTime \_ pattern (" AAAAMMJJ ", date)|
 
 <a name="virtual-columns"></a>
 **Colonnes virtuelles**
