@@ -4,16 +4,16 @@ description: Cet article décrit l’instruction Let dans Azure Explorateur de d
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 02/13/2020
-ms.openlocfilehash: 2994a65e8726edaba22c6905290b4b69660e0586
-ms.sourcegitcommit: 284152eba9ee52e06d710cc13200a80e9cbd0a8b
+ms.date: 08/09/2020
+ms.openlocfilehash: 879b858904ac9f024f70dfef6096141a9ff81bd7
+ms.sourcegitcommit: b8415e01464ca2ac9cd9939dc47e4c97b86bd07a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86291540"
+ms.lasthandoff: 08/10/2020
+ms.locfileid: "88028474"
 ---
 # <a name="let-statement"></a>Let, instruction
 
@@ -31,7 +31,7 @@ Les expressions liées par les instructions Let peuvent être :
 * Types tabulaires
 * Fonctions définies par l’utilisateur (lambdas)
 
-## <a name="syntax"></a>Syntaxe
+## <a name="syntax"></a>Syntax
 
 `let`*Nom* `=` *ScalarExpression*  |  *TabularExpression*  |  *FunctionDefinitionExpression*
 
@@ -58,7 +58,7 @@ Les expressions liées par les instructions Let peuvent être :
 
 |Champ  |Définition  |Exemple  |
 |---------|---------|---------|
-| **affichage** | Peut apparaître uniquement dans une expression lambda sans paramètre, qui n’a pas d’arguments. Elle indique que le nom lié sera inclus lorsque « toutes les tables » sont des requêtes. | Par exemple, lors de l’utilisation de `union *` .|
+| **vue** | Peut apparaître uniquement dans une expression lambda sans paramètre, qui n’a pas d’arguments. Elle indique que le nom lié sera inclus lorsque « toutes les tables » sont des requêtes. | Par exemple, lors de l’utilisation de `union *` .|
 | ***TabularArguments*** | Liste des arguments d’expression tabulaires formels. 
 | Chaque argument tabulaire a :||
 |<ul><li> *TabularArgName*</li></ul> | Nom de l’argument tabulaire formel. Le nom peut apparaître dans le *FunctionBody* et être lié à une valeur particulière lorsque l’expression lambda est appelée. ||
@@ -129,16 +129,72 @@ Events
 | take n
 ```
 
+### <a name="use-let-statement-with-arguments-for-scalar-calculation"></a>Utiliser l’instruction Let avec des arguments pour le calcul scalaire
+
+L’exemple suivant utilise l’instruction Let avec des arguments pour le calcul scalaire. La requête définit la fonction `MultiplyByN` pour multiplier deux nombres.
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
+```kusto
+let MultiplyByN = (val:long, n:long) { val * n };
+range x from 1 to 5 step 1 
+| extend result = MultiplyByN(x, 5)
+```
+
+|x|result|
+|---|---|
+|1|5|
+|2|10|
+|3|15|
+|4|20|
+|5|25|
+
+L’exemple suivant supprime les éléments de début et de fin ( `1` ) de l’entrée.
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
+```kusto
+let TrimOnes = (s:string) { trim("1", s) };
+range x from 10 to 15 step 1 
+| extend result = TrimOnes(tostring(x))
+```
+
+|x|result|
+|---|---|
+|10|0|
+|11||
+|12|2|
+|13|3|
+|14|4|
+|15|5|
+
+
 ### <a name="use-multiple-let-statements"></a>Utiliser plusieurs instructions Let
 
 Cet exemple définit deux instructions Let où une instruction ( `foo2` ) utilise une autre ( `foo1` ).
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let foo1 = (_start:long, _end:long, _step:long) { range x from _start to _end step _step};
 let foo2 = (_step:long) { foo1(1, 100, _step)};
 foo2(2) | count
 // Result: 50
 ```
+
+### <a name="use-the-view-keyword-in-a-let-statement"></a>Utiliser le `view` mot clé dans une instruction Let
+
+Cet exemple montre comment utiliser l’instruction Let avec le `view` mot clé.
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
+```kusto
+let Range10 = view () { range MyColumn from 1 to 10 step 1 };
+let Range20 = view () { range MyColumn from 1 to 20 step 1 };
+search MyColumn == 5
+```
+
+|$table|Colonne|
+|---|---|
+|Range10|5|
+|Range20|5|
+
 
 ### <a name="use-materialize-function"></a>Utiliser la fonction matérialiser
 
