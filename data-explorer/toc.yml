@@ -132,12 +132,14 @@
               href: data-factory-command-activity.md
         - name: Utilisation des kits SDK
           items:
+            - name: Kit de développement logiciel (SDK) .NET
+              href: net-sdk-ingest-data.md
             - name: Python
               href: python-ingest-data.md
             - name: SDK Node
               href: node-ingest-data.md
-            - name: Kit de développement logiciel (SDK) .NET
-              href: net-sdk-ingest-data.md
+            - name: Kit de développement logiciel (SDK) Go
+              href: go-ingest-data.md
         - name: Kafka
           href: ingest-data-kafka.md
         - name: Logstash
