@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2019
-ms.openlocfilehash: 8358bf9a8eb0dab38b8f5847521e069f21fe4a2c
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 6ca5b5a4e6af8ece7d6f7a6543782665062b5d80
+ms.sourcegitcommit: ed902a5a781e24e081cd85910ed15cd468a0db1e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346692"
+ms.lasthandoff: 08/11/2020
+ms.locfileid: "88072410"
 ---
 # <a name="mv-expand-operator"></a>mv-expand, opérateur
 
@@ -40,7 +40,7 @@ Développe un tableau à valeurs multiples ou un conteneur de propriétés.
 
 * *IndexColumnName :* Si `with_itemindex` est spécifié, la sortie inclut une colonne supplémentaire (nommée *IndexColumnName*), qui contient l’index (à partir de 0) de l’élément dans la collection développée d’origine. 
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Plusieurs lignes pour chacune des valeurs d’un tableau qui se trouvent dans la colonne nommée ou dans l’expression de tableau.
 Si plusieurs colonnes ou expressions sont spécifiées, elles sont développées en parallèle. Pour chaque ligne d’entrée, il y aura autant de lignes de sortie qu’il y a d’éléments dans l’expression développée la plus longue (les listes plus courtes sont complétées par des valeurs null). Si la valeur d’une ligne est un tableau vide, la ligne se développe en Nothing (ne s’affiche pas dans le jeu de résultats). Toutefois, si la valeur d’une ligne n’est pas un tableau, la ligne est conservée telle quelle dans le jeu de résultats. 
@@ -88,17 +88,24 @@ datatable (a:int, b:dynamic, c:dynamic)[1,dynamic({"prop1":"a", "prop2":"b"}), d
 
 Si vous souhaitez obtenir un produit cartésien de deux colonnes extensibles, développez l’une après l’autre :
 
-<!-- csl: https://help.kusto.windows.net:443/Samples -->
+<!-- csl: https://kuskusdfv3.kusto.windows.net/Kuskus -->
 ```kusto
-datatable (a:int, b:dynamic, c:dynamic)[1,dynamic({"prop1":"a", "prop2":"b"}), dynamic([5])]
-| mv-expand b 
+datatable (a:int, b:dynamic, c:dynamic)
+  [
+  1,
+  dynamic({"prop1":"a", "prop2":"b"}),
+  dynamic([5, 6])
+  ]
+| mv-expand b
 | mv-expand c
 ```
 
 |a|b|c|
 |---|---|---|
 |1|{"Prop1" : "a"}|5|
+|1|{"Prop1" : "a"}|6|
 |1|{"Prop2" : "b"}|5|
+|1|{"Prop2" : "b"}|6|
 
 ### <a name="convert-output"></a>Convertir la sortie
 

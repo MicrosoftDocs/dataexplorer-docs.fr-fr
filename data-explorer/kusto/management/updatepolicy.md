@@ -8,20 +8,22 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/04/2020
-ms.openlocfilehash: 7eb5adc76c963065940365973aadc5281ff5f553
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: 9b2d35c796cfd1f41dc2fd8e9385a4c446000b86
+ms.sourcegitcommit: ed902a5a781e24e081cd85910ed15cd468a0db1e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803406"
+ms.lasthandoff: 08/11/2020
+ms.locfileid: "88072444"
 ---
 # <a name="update-policy-overview"></a>Présentation de la stratégie de mise à jour
 
-La [stratégie de mise à jour](update-policy.md) ordonne à Kusto d’ajouter automatiquement des données à une table cible chaque fois que de nouvelles données sont insérées dans la table source. La requête de la stratégie de mise à jour s’exécute sur les données insérées dans la table source. Par exemple, la stratégie permet à la création d’une table d’être la vue filtrée d’une autre table. La nouvelle table peut avoir un schéma, une stratégie de rétention, etc. différents. 
-
-La stratégie de mise à jour est soumise aux mêmes restrictions et meilleures pratiques que l’ingestion normale. La stratégie s’ajuste à la taille du cluster et fonctionne plus efficacement si les ingestions sont effectuées dans de grands volumes.
+La [stratégie de mise à jour](update-policy.md) ordonne à Kusto d’ajouter automatiquement des données à une table cible chaque fois que de nouvelles données sont insérées dans la table source, en fonction d’une requête de transformation qui s’exécute sur les données insérées dans la table source.
 
 :::image type="content" source="images/updatepolicy/update-policy-overview.png" alt-text="Vue d’ensemble de la stratégie de mise à jour dans Azure Explorateur de données":::
+
+Par exemple, la stratégie permet à la création d’une table d’être la vue filtrée d’une autre table. La nouvelle table peut avoir un schéma, une stratégie de rétention, etc. différents. 
+
+La stratégie de mise à jour est soumise aux mêmes restrictions et meilleures pratiques que l’ingestion normale. La stratégie s’ajuste à la taille du cluster et fonctionne plus efficacement si les ingestions sont effectuées dans de grands volumes.
 
 > [!NOTE]
 > La table source et la table pour laquelle la stratégie de mise à jour est définie doivent figurer dans la même base de données.

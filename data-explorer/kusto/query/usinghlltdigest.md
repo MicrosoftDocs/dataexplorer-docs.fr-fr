@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/19/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: bd3e7a77a4de46b6dcebb2f58c98009a9edddb43
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: f56bd1c9f87833f7c1a9d29580a71557fedb894c
+ms.sourcegitcommit: ed902a5a781e24e081cd85910ed15cd468a0db1e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87338607"
+ms.lasthandoff: 08/11/2020
+ms.locfileid: "88072393"
 ---
 # <a name="using-hll-and-tdigest"></a>Utilisation de hll() et de tdigest()
 
@@ -27,7 +27,8 @@ Les exemples suivants montrent comment utiliser `hll` / `tdigest` et montrent qu
 
 > [!NOTE]
 > Dans certains cas, les objets dynamiques générés par `hll` ou les `tdigest` fonctions d’agrégation peuvent être volumineux et dépasser la valeur par défaut de la propriété MaxValueSize dans la stratégie d’encodage. Dans ce cas, l’objet est ingéré comme null.
-Par exemple, lors de la persistance de la sortie de la `hll` fonction avec un niveau de précision 4, la taille de l' `hll` objet dépasse la valeur par défaut de MaxValueSize, soit 1 Mo.
+> Par exemple, lors de la persistance de la sortie de la `hll` fonction avec un niveau de précision 4, la taille de l' `hll` objet dépasse la valeur par défaut de MaxValueSize, soit 1 Mo.
+> Pour éviter ce problème, modifiez la stratégie d’encodage de la colonne comme indiqué dans les exemples suivants.
 
 ```kusto
 range x from 1 to 1000000 step 1
