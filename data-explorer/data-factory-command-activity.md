@@ -8,12 +8,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 09/15/2019
-ms.openlocfilehash: d59e77af1cebe9edb1c026a6dc557facec958917
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: b2078ee88b6721f414d280e657d1463925f5a31f
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492957"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87804008"
 ---
 # <a name="use-azure-data-factory-command-activity-to-run-azure-data-explorer-control-commands"></a>Utiliser l’activité de commande Azure Data Factory pour exécuter des commandes de contrôle Azure Data Explorer
 
@@ -43,7 +43,7 @@ Une [activité Lookup](/azure/data-factory/control-flow-lookup-activity) peut r�
 
 1. Le canevas contient maintenant l’activité Lookup que vous avez créée. Utilisez les onglets situés sous le canevas pour changer les paramètres appropriés. Dans **General**, renommez l’activité. 
 
-    ![modifier l’activité de recherche](media/data-factory-command-activity/edit-lookup-activity.PNG)
+    ![modifier l’activité de recherche](media/data-factory-command-activity/edit-lookup-activity.png)
 
     > [!TIP]
     > Cliquez sur la zone de canevas vide pour voir les propriétés du pipeline. Utilisez l’onglet **General** pour renommer le pipeline. Notre pipeline est nommé *pipeline-4-docs*.
@@ -113,7 +113,7 @@ L’activité [For-Each](/azure/data-factory/control-flow-for-each-activity) per
 
         ![Activité ForEach](media/data-factory-command-activity/for-each-activity.png)
 
-1.    Sélectionnez l’activité ForEach dans le canevas. Sous l’onglet **Settings** au-dessous :
+1. Sélectionnez l’activité ForEach dans le canevas. Sous l’onglet **Settings** au-dessous :
     * Cochez la case **Sequential** pour un effectuer traitement séquentiel des résultats de la recherche, ou laissez-la décochée pour créer un traitement parallèle.
     * Définissez **Batch count** (Nombre de lots).
     * Dans **Items** (Éléments), fournissez la référence suivante à la valeur de sortie : *@activity('Lookup1').output.value*
@@ -127,7 +127,7 @@ L’activité [For-Each](/azure/data-factory/control-flow-for-each-activity) per
 
     ![Activité de commande Azure Data Explorer](media/data-factory-command-activity/adx-command-activity.png)
 
-1.    Sous l’onglet **Connection**, sélectionnez le même service lié créé précédemment.
+1. Sous l’onglet **Connection**, sélectionnez le même service lié créé précédemment.
 
     ![onglet connection de l’activité azure data explorer command](media/data-factory-command-activity/adx-command-activity-connection-tab.png)
 
@@ -154,7 +154,7 @@ L’activité [For-Each](/azure/data-factory/control-flow-for-each-activity) per
     > * Limite de temps : 20 minutes (par défaut), 1 heure (maximum).
     > * Si nécessaire, vous pouvez ajouter une requête au résultat à l’aide de la commande [AdminThenQuery](kusto/management/index.md#combining-queries-and-control-commands), afin de réduire la taille/le temps résultant.
 
-1.    Le pipeline est maintenant prêt. Vous pouvez revenir à la vue principale du pipeline en cliquant sur le nom de ce dernier.
+1. Le pipeline est maintenant prêt. Vous pouvez revenir à la vue principale du pipeline en cliquant sur le nom de ce dernier.
 
     ![Pipeline de commande Azure Data Explorer](media/data-factory-command-activity/adx-command-pipeline.png)
 
