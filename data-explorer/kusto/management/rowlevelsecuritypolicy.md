@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/25/2020
-ms.openlocfilehash: 9952a7a7d95f03ee431b699a1833aa23b21d341b
-ms.sourcegitcommit: 4507466bdcc7dd07e6e2a68c0707b6226adc25af
+ms.openlocfilehash: a82c4b48358a90460f917f181b73b718f6c5e455
+ms.sourcegitcommit: c7b16409995087a7ad7a92817516455455ccd2c5
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/23/2020
-ms.locfileid: "87106358"
+ms.lasthandoff: 08/12/2020
+ms.locfileid: "88148113"
 ---
 # <a name="row-level-security-preview"></a>Sécurité au niveau des lignes (version préliminaire)
 
@@ -27,7 +27,7 @@ La sécurité au niveau des lignes vous permet de fournir un accès à d’autre
 
 * Accorder l’accès uniquement aux lignes qui répondent à certains critères
 * Anonymiser les données dans certaines colonnes
-* Toutes les options ci-dessus
+* Toutes les propositions ci-dessus
 
 Pour plus d’informations, consultez [commandes de contrôle pour la gestion de la stratégie de sécurité au niveau des lignes](../management/row-level-security-policy.md).
 
@@ -125,7 +125,7 @@ Configurez ensuite la sécurité au niveau des lignes sur plusieurs tables de ce
 
 ### <a name="produce-an-error-upon-unauthorized-access"></a>Générer une erreur en cas d’accès non autorisé
 
-Si vous souhaitez que les utilisateurs d’une table non autorisée reçoivent une erreur au lieu de retourner une table vide, utilisez la `[assert()](../query/assert-function.md)` fonction. L’exemple suivant montre comment générer cette erreur dans une fonction RLS :
+Si vous souhaitez que les utilisateurs d’une table non autorisée reçoivent une erreur au lieu de retourner une table vide, utilisez la [`assert()`](../query/assert-function.md) fonction. L’exemple suivant montre comment générer cette erreur dans une fonction RLS :
 
 ```
 .create-or-alter function RLSForCustomersTables() {

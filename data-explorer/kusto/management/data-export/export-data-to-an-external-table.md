@@ -8,24 +8,24 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: ebead1ee5dbe458fc9c517d6bf20fc99ca27dd66
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: 663d80f470e17a277fffa89569aeb977c8d713df
+ms.sourcegitcommit: c7b16409995087a7ad7a92817516455455ccd2c5
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780675"
+ms.lasthandoff: 08/12/2020
+ms.locfileid: "88148164"
 ---
 # <a name="export-data-to-an-external-table"></a>Exporter des données vers une table externe
 
 Vous pouvez exporter des données en définissant une [table externe](../externaltables.md) et en y exportant des données.
 Les propriétés de la table sont spécifiées lors [de la création de la table externe](../external-tables-azurestorage-azuredatalake.md#create-or-alter-external-table). Vous n’avez pas besoin d’incorporer les propriétés de la table dans la commande d’exportation. La commande Export fait référence à la table externe par son nom. L’exportation de données nécessite une [autorisation d’administrateur de base de données](../access-control/role-based-authorization.md).
 
-**Syntaxe :**
+## <a name="syntax"></a>Syntaxe
 
 `.export`[ `async` ] `to` `table` *ExternalTableName* <br>
 [ `with` `(` *PropertyName* `=` *PropertyValue* `,` ... `)` ] <| *Requête*
 
-**Output:**
+## <a name="output"></a>Output
 
 |Paramètre de sortie |Type |Description
 |---|---|---
@@ -33,7 +33,8 @@ Les propriétés de la table sont spécifiées lors [de la création de la table
 |Path|String|Chemin de sortie.
 |NumRecords|String| Nombre d’enregistrements exportés dans le chemin d’accès.
 
-**Remarques :**
+## <a name="notes"></a>Notes
+
 * Le schéma de sortie de la requête d’exportation doit correspondre au schéma de la table externe, y compris toutes les colonnes définies par les partitions. Par exemple, si la table est partitionnée par *DateTime*, le schéma de sortie de la requête doit avoir une colonne timestamp correspondant à *TimestampColumnName*. Ce nom de colonne est défini dans la définition de partitionnement de table externe.
 
 * Il n’est pas possible de remplacer les propriétés de la table externe à l’aide de la commande exporter.
@@ -45,10 +46,12 @@ Les propriétés de la table sont spécifiées lors [de la création de la table
 * Si la table externe est partitionnée, les artefacts exportés sont écrits dans leurs répertoires respectifs conformément aux définitions de partition, comme indiqué dans l' [exemple de table externe partitionnée](#partitioned-external-table-example). 
   * Si une valeur de partition est null/vide ou qu’il s’agit d’une valeur de répertoire non valide, selon les définitions du stockage cible, la valeur de partition est remplacée par la valeur par défaut `__DEFAULT_PARTITION__` . 
 
-* Le nombre de fichiers écrits par partition dépend des paramètres suivants :
-   * Si la table externe comprend uniquement des partitions DateTime, ou aucune partition, le nombre de fichiers écrits (pour chaque partition, le cas échéant) doit être similaire au nombre de nœuds dans le cluster (ou plus, si `sizeLimit` est atteint). Lorsque l’opération d’exportation est distribuée, tous les nœuds du cluster sont exportés simultanément. Pour désactiver la distribution, afin qu’un seul nœud effectue les écritures, affectez la valeur `distributed` false à. Ce processus va créer moins de fichiers, mais réduira les performances d’exportation.
+### <a name="number-of-files"></a>Nombre de fichiers
 
-   * Si la table externe comprend une partition par une colonne de type chaîne, le nombre de fichiers exportés doit être un fichier unique par partition (ou plus, si `sizeLimit` est atteint). Tous les nœuds participent toujours à l’exportation (l’opération est distribuée), mais chaque partition est assignée à un nœud spécifique. Si `distributed` vous définissez la valeur sur false, un seul nœud peut effectuer l’exportation, mais le comportement reste le même (un fichier unique écrit par partition).
+Le nombre de fichiers écrits par partition dépend des paramètres suivants :
+ * Si la table externe comprend uniquement des partitions DateTime, ou aucune partition, le nombre de fichiers écrits (pour chaque partition, le cas échéant) doit être similaire au nombre de nœuds dans le cluster (ou plus, si `sizeLimit` est atteint). Lorsque l’opération d’exportation est distribuée, tous les nœuds du cluster sont exportés simultanément. Pour désactiver la distribution, afin qu’un seul nœud effectue les écritures, affectez la valeur `distributed` false à. Ce processus va créer moins de fichiers, mais réduira les performances d’exportation.
+
+* Si la table externe comprend une partition par une colonne de type chaîne, le nombre de fichiers exportés doit être un fichier unique par partition (ou plus, si `sizeLimit` est atteint). Tous les nœuds participent toujours à l’exportation (l’opération est distribuée), mais chaque partition est assignée à un nœud spécifique. Si `distributed` vous définissez la valeur sur false, un seul nœud peut effectuer l’exportation, mais le comportement reste le même (un fichier unique écrit par partition).
 
 ## <a name="examples"></a>Exemples
 
