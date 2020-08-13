@@ -8,12 +8,12 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/03/2020
-ms.openlocfilehash: ef8c0505c7bc26139d7a881ac0cc716395d3d497
-ms.sourcegitcommit: c7b16409995087a7ad7a92817516455455ccd2c5
+ms.openlocfilehash: fab1f41fc4b72b497900276d33beb1b89820c02c
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/12/2020
-ms.locfileid: "88148147"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201634"
 ---
 # <a name="continuous-data-export-overview"></a>Vue d’ensemble de l’exportation continue de données
 
@@ -94,4 +94,5 @@ Suivi de :
 * L’exportation continue n’est pas prise en charge pour les tables externes avec `impersonate` dans leurs [chaînes de connexion](../../api/connection-strings/storage.md).
 * L’exportation continue ne prend pas en charge les appels entre plusieurs clusters et bases de données croisées.
 * L’exportation continue n’est pas conçue pour diffuser en continu des données à partir d’Azure Explorateur de données. L’exportation continue s’exécute en mode distribué, où tous les nœuds sont exportés simultanément. Si la plage de données interrogée par chaque exécution est faible, la sortie de l’exportation continue serait un grand nombre de petits artefacts. Le nombre d’artefacts dépend du nombre de nœuds dans le cluster.
-* Si les artefacts utilisés par l’exportation continue sont destinés à déclencher des notifications Event Grid, consultez la [section problèmes connus dans la documentation de Event Grid](../data-ingestion/eventgrid.md#known-issues).
+* Si les artefacts utilisés par l’exportation continue sont destinés à déclencher des notifications Event Grid, consultez la [section problèmes connus dans la documentation de Event Grid](../../../ingest-data-event-grid-overview.md#known-event-grid-issues).
+ 

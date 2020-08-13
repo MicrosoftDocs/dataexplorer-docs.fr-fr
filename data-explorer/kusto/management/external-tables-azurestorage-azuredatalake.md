@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 2616605d29f90a283f5a5d8fef367bf77df65a15
-ms.sourcegitcommit: 83202ec6fec0ce98fdf993bbb72adc985d6d9c78
+ms.openlocfilehash: 866436d74e3e37319ec06b477503c11e3d7d6be7
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87871933"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201326"
 ---
 # <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Créer et modifier des tables externes dans Stockage Azure ou Azure Data Lake
 
@@ -97,7 +97,7 @@ Le préfixe du chemin d’accès au fichier d’origine peut être construit à 
 
 où *DateTimeFormat* adhère à la spécification de format .net, avec une extension qui permet de placer les spécificateurs de format entre accolades. Par exemple, les deux formats suivants sont équivalents :
 
-&nbsp;&nbsp;`'year='yyyy'/month='MM`les`year={yyyy}/month={MM}`
+&nbsp;&nbsp;`'year='yyyy'/month='MM` les `year={yyyy}/month={MM}`
 
 Par défaut, les valeurs DateTime sont rendues à l’aide des formats suivants :
 
@@ -138,11 +138,11 @@ Pour plus d’informations, consultez [chaînes de connexion de stockage](../api
 | `folder`         | `string` | Dossier de la table                                                                     |
 | `docString`      | `string` | Chaîne documentant la table                                                       |
 | `compressed`     | `bool`   | Si cette valeur est définie, indique si les fichiers sont compressés en tant que `.gz` fichiers (utilisés dans le [scénario d’exportation](data-export/export-data-to-an-external-table.md) uniquement). |
-| `includeHeaders` | `string` | Pour les fichiers CSV ou TSV, indique si les fichiers contiennent un en-tête                     |
+| `includeHeaders` | `string` | Pour les formats de texte délimité (CSV, TSV,...), indique si les fichiers contiennent un en-tête. Les valeurs possibles sont : `All` (tous les fichiers contiennent un en-tête), `FirstFile` (le premier fichier d’un dossier contient un en-tête), `None` (aucun fichier ne contient un en-tête). |
 | `namePrefix`     | `string` | Si cette valeur est définie, indique le préfixe des fichiers. Lors des opérations d’écriture, tous les fichiers sont écrits avec ce préfixe. Sur les opérations de lecture, seuls les fichiers avec ce préfixe sont lus. |
 | `fileExtension`  | `string` | S’il est défini, indique les extensions de fichier des fichiers. Lors de l’écriture, les noms de fichiers se terminent par ce suffixe. Lors de la lecture, seuls les fichiers avec cette extension de fichier seront lus.           |
 | `encoding`       | `string` | Indique comment le texte est encodé : `UTF8NoBOM` (valeur par défaut) ou `UTF8BOM` .             |
-| `sampleUris`     | `bool`   | Si cette option est définie, le résultat de la commande fournit plusieurs exemples d’URI de fichiers de données externes, car ils sont attendus par la définition de la table externe. |
+| `sampleUris`     | `bool`   | Si cette option est définie, le résultat de la commande fournit plusieurs exemples d’URI de fichiers de données externes tels qu’ils sont attendus par la définition de la table externe (les exemples sont retournés dans la deuxième table de résultats). Cette option permet de vérifier si les *[partitions](#partitions)* et les paramètres *[PathFormat](#path-format)* sont définis correctement. |
 | `validateNotEmpty` | `bool`   | Si cette valeur est définie, les chaînes de connexion sont validées pour qu’elles contiennent du contenu. La commande échoue si l’emplacement d’URI spécifié n’existe pas ou s’il n’y a pas d’autorisations suffisantes pour y accéder. |
 
 > [!TIP]
@@ -218,7 +218,7 @@ with (fileExtension = ".txt")
 
 |TableName|TableType|Dossier|DocString|Propriétés|ConnectionStrings|Partitions|PathFormat|
 |---------|---------|------|---------|----------|-----------------|----------|----------|
-|ExternalTable|Blob|ExternalTables|Docs|{"Format" : "CSV", "Compressed" : false, "CompressionType" : null, "FileExtension" : null, "IncludeHeaders" : "none", "Encoding" : null, "NamePrefix" : null}|["https://storageaccount.blob.core.windows.net/container1;\*\*\*\*\*\*\*"]|[{« Mod » : 10, « Name » : « CustomerId », « ColumnName » : « CustomerName », « ordinal » : 0}, {« Function » : « StartOfDay », « Name » : « date », « ColumnName » : « timestamp », « ordinal » : 1}]|«Customer \_ ID = "CustomerID"/DT = "DateTime \_ pattern (" AAAAMMJJ ", date)|
+|ExternalTable|Objet blob|ExternalTables|Docs|{"Format" : "CSV", "Compressed" : false, "CompressionType" : null, "FileExtension" : null, "IncludeHeaders" : "none", "Encoding" : null, "NamePrefix" : null}|["https://storageaccount.blob.core.windows.net/container1;\*\*\*\*\*\*\*"]|[{« Mod » : 10, « Name » : « CustomerId », « ColumnName » : « CustomerName », « ordinal » : 0}, {« Function » : « StartOfDay », « Name » : « date », « ColumnName » : « timestamp », « ordinal » : 1}]|«Customer \_ ID = "CustomerID"/DT = "DateTime \_ pattern (" AAAAMMJJ ", date)|
 
 <a name="virtual-columns"></a>
 **Colonnes virtuelles**

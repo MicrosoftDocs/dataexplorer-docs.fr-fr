@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 434d32a3b6597d71ea22c182a468d64d7971e6cb
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: bb6c7c51e295f9af9d6e43a5de5936dfea13f5b6
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348970"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201669"
 ---
 # <a name="bin"></a>bin()
 
@@ -33,9 +33,9 @@ Alias pour `floor()` fonctionner.
 ## <a name="arguments"></a>Arguments
 
 * *valeur*: nombre, date ou intervalle de dates. 
-* *roundTo*: « taille de l’emplacement ». Nombre, date ou intervalle de temps qui divise *value*. 
+* *roundTo*: « taille de l’emplacement ». Nombre ou TimeSpan qui divise la *valeur*. 
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Multiple le plus proche de *roundTo*, inférieur à *value*.  
  
@@ -45,7 +45,7 @@ Multiple le plus proche de *roundTo*, inférieur à *value*.
 
 ## <a name="examples"></a>Exemples
 
-Expression | Résultat
+Expression | Résultats
 ---|---
 `bin(4.5, 1)` | `4.0`
 `bin(time(16d), 7d)` | `14d`
