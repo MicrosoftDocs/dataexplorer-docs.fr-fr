@@ -7,12 +7,12 @@ ms.reviewer: guregini
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/12/2020
-ms.openlocfilehash: 8a4a4e68333255c322708993b1c9429a89ae7a00
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: bf479a7248033d2aa70a8e09b039814361c78031
+ms.sourcegitcommit: bcd0c96b1581e43e33aa35f4d68af6dcb4979d39
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373762"
+ms.lasthandoff: 08/10/2020
+ms.locfileid: "88039231"
 ---
 # <a name="visualize-data-from-azure-data-explorer-in-kibana-with-the-k2bridge-open-source-connector"></a>Visualiser des données à partir d’Azure Data Explorer dans Kibana avec le connecteur open source K2Bridge
 
@@ -102,7 +102,7 @@ Par défaut, le chart Helm de K2Bridge référence une image disponible publique
 
         Dans [Configuration](https://github.com/microsoft/K2Bridge/blob/master/docs/configuration.md), vous trouverez l’ensemble complet des options de configuration.
 
-    1. La sortie de la commande précédente suggère la prochaine commande Helm pour déployer Kibana. Si vous le souhaitez, exécutez la commande suivante :
+    1. <a name="install-kibana-service"></a> La sortie de la commande précédente suggère la prochaine commande Helm pour déployer Kibana. Si vous le souhaitez, exécutez la commande suivante :
 
         ```bash
         helm install kibana elastic/kibana -n k2bridge --set image=docker.elastic.co/kibana/kibana-oss --set imageTag=6.8.5 --set elasticsearchHosts=http://k2bridge:8080
@@ -118,7 +118,7 @@ Par défaut, le chart Helm de K2Bridge référence une image disponible publique
 
     1. Exposez Kibana aux utilisateurs. Pour ce faire, il existe plusieurs méthodes. La méthode que vous utilisez dépend en grande partie de votre cas d’usage.
 
-        Par exemple, vous pouvez exposer le service en tant que service Load Balancer. Pour ce faire, ajoutez le paramètre **--set service.type=LoadBalancer** à la [commande Helm **install** K2Bridge antérieure](#install-k2bridge-chart).
+        Par exemple, vous pouvez exposer le service en tant que service Load Balancer. Pour ce faire, ajoutez le paramètre **--set service.type=LoadBalancer** à la [commande Helm **install** Kibana antérieure](#install-kibana-service).
 
         Ensuite, exécutez cette commande :
 
@@ -133,7 +133,7 @@ Par défaut, le chart Helm de K2Bridge référence une image disponible publique
         kibana-kibana   LoadBalancer   xx.xx.xx.xx    <pending>     5601:30128/TCP   4m24s
         ```
 
-        Vous pouvez ensuite utiliser la valeur EXTERNAL-IP générée qui s’affiche. Utilisez-la pour accéder à Kibana en ouvrant un navigateur et en accédant à \<EXTERNAL-IP\>:5601.
+        Vous pouvez ensuite utiliser la valeur EXTERNAL-IP générée qui s’affiche. Utilisez-la pour accéder à Kibana en ouvrant un navigateur et en accédant à \<EXTERNAL-IP\> :5601.
 
 1. Configurez des modèles d’index pour accéder à vos données.
 

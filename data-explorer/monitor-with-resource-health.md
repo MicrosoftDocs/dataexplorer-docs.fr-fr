@@ -7,12 +7,12 @@ ms.reviewer: prvavill
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/31/2020
-ms.openlocfilehash: 9b8b1b40e972d7719ef2cf495ed12cb4ed3478fd
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 297779b6431c15436e175a3269b2291340c51b79
+ms.sourcegitcommit: b8415e01464ca2ac9cd9939dc47e4c97b86bd07a
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492413"
+ms.lasthandoff: 08/10/2020
+ms.locfileid: "88028525"
 ---
 # <a name="monitor-azure-data-explorer-using-resource-health-preview"></a>Surveiller Azure Data Explorer à l'aide de Resource Health (préversion)
 
@@ -47,6 +47,9 @@ L'état d'intégrité **Disponible** indique que votre ressource Azure Data Expl
 L'état d'intégrité **Non disponible** indique que votre ressource Azure Data Explorer a rencontré un problème qui la rend indisponible pour les requêtes et l'ingestion. Par exemple, les nœuds de votre ressource Azure Data Explorer peuvent avoir redémarré de manière inattendue. Si votre ressource Azure Data Explorer reste dans cet état pendant une période prolongée, contactez le [support]().
 
 ![Non disponible](media/monitor-with-resource-health/unavailable.png)
+
+> [!TIP]
+> Vous pouvez utiliser les commandes [d’informations système](kusto/management/systeminfo.md) pour rechercher la source du problème.
 
 ### <a name="unknown"></a>Unknown
 
