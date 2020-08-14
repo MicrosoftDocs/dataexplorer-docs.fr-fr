@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: e011ffa61b70c79d51941518de0624030d847c4e
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: d3625be5a3a97b456a2d6d84802b11602f959f3e
+ms.sourcegitcommit: bb7c2ba9f9dcae08710be2345ee6e63004629ea1
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351095"
+ms.lasthandoff: 08/14/2020
+ms.locfileid: "88218977"
 ---
 # <a name="shuffle-query"></a>Requête de lecture aléatoire
 
@@ -22,10 +22,6 @@ La lecture aléatoire de requête est une transformation de préservation séman
 Les opérateurs qui prennent en charge la [réassociation](joinoperator.md)dans Kusto sont Join, [Resume](summarizeoperator.md)et [Make-Series](make-seriesoperator.md).
 
 Définissez une stratégie de requête de lecture aléatoire à l’aide du paramètre de requête `hint.strategy = shuffle` ou `hint.shufflekey = <key>` .
-
-Définissez une [stratégie de partitionnement de données](../management/partitioningpolicy.md) sur votre table. 
-
-Définissez `shufflekey` comme clé de partition de hachage de la table pour obtenir de meilleures performances, car la quantité de données requises pour le déplacement entre les nœuds de cluster est réduite.
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -52,7 +48,7 @@ Il est utile d’utiliser la stratégie de requête de lecture aléatoire lorsqu
 
 **Différence entre hint. Strategy = lecture aléatoire et hint. shufflekey = clé**
 
-`hint.strategy=shuffle`signifie que l’opérateur aléatoire est mélangé par toutes les clés.
+`hint.strategy=shuffle` signifie que l’opérateur aléatoire est mélangé par toutes les clés.
 Par exemple, dans cette requête :
 
 ```kusto
@@ -163,7 +159,7 @@ orders
 | count
 ```
 
-|Count|
+|Nombre|
 |---|
 |1086|
 
@@ -176,7 +172,7 @@ orders
 | count
 ```
 
-|Count|
+|Nombre|
 |---|
 |1086|
 
