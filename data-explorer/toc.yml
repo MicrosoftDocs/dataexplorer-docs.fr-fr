@@ -1460,7 +1460,21 @@
             - name: Vers une table externe
               href: ./kusto/management/data-export/export-data-to-an-external-table.md
             - name: Exportation de données continue
-              href: ./kusto/management/data-export/continuous-data-export.md
+              items:
+                - name: Vue d’ensemble
+                  href: ./kusto/management/data-export/continuous-data-export.md
+                - name: Créer ou modifier une exportation continue
+                  href: ./kusto/management/data-export/create-alter-continuous.md
+                - name: Désactiver ou activer une exportation continue
+                  href: ./kusto/management/data-export/disable-enable-continuous.md
+                - name: Supprimer une exportation continue
+                  href: ./kusto/management/data-export/drop-continuous-export.md
+                - name: Afficher une exportation continue
+                  href: ./kusto/management/data-export/show-continuous-export.md
+                - name: Afficher les artefacts d’une exportation continue
+                  href: ./kusto/management/data-export/show-continuous-artifacts.md
+                - name: Afficher les échecs d’une exportation continue
+                  href: ./kusto/management/data-export/show-continuous-failures.md
         - name: Curseurs de base de données
           href: ./kusto/management/databasecursor.md
         - name: Cache des résultats de requête
