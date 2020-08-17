@@ -8,22 +8,23 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/20/2020
-ms.openlocfilehash: a200d0619b25fe7410a82a941a3b1bf6e35d60ac
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 19f86e4973a2822de6f25e38edb07ccd8fbda9d1
+ms.sourcegitcommit: ec191391f5ea6df8c591e6d747c67b2c46f98ac4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87342612"
+ms.lasthandoff: 08/16/2020
+ms.locfileid: "88260120"
 ---
 # <a name="summarize-operator"></a>opérateur summarize
 
 Génère une table qui agrège le contenu de la table d’entrée.
 
 ```kusto
-T | summarize count(), avg(price) by fruit, supplier
+Sales | summarize NumTransactions=count(), Total=sum(UnitPrice * NumUnits) by Fruit, StartOfMonth=startofmonth(SellDateTime)
 ```
 
-Un tableau qui indique le nombre et le prix moyen de chaque fruit de chaque fournisseur. La sortie contient une ligne pour chaque combinaison de fruits et de fournisseurs. Les colonnes de sortie indiquent le nombre, le prix moyen, le fruit et le fournisseur. Toutes les autres colonnes d’entrée sont supprimées.
+Retourne une table avec le nombre de transactions de vente et le montant total par fruit et la vente mensuelle.
+Les colonnes de sortie indiquent le nombre de transactions, la valeur de transaction, le fruit et la valeur DateTime du début du mois au cours duquel la transaction a été enregistrée.
 
 ```kusto
 T | summarize count() by price_range=bin(price, 10.0)
@@ -39,7 +40,8 @@ Une table indiquant le nombre d’éléments ayant un prix dans chaque intervall
 
 * *Column :* nom facultatif d’une colonne de résultats. Prend par défaut un nom dérivé de l’expression.
 * *Agrégation :* Appel à une [fonction d’agrégation](summarizeoperator.md#list-of-aggregation-functions) telle que `count()` ou `avg()` , avec les noms de colonnes comme arguments. Voir la [liste des fonctions d’agrégation](summarizeoperator.md#list-of-aggregation-functions).
-* *GroupExpression* : expression sur les colonnes, qui fournit un ensemble de valeurs distinctes. En général, il s’agit d’un nom de colonne qui fournit déjà un ensemble restreint de valeurs, ou de `bin()` avec une colonne numérique ou horaire en tant qu’argument. 
+* *GroupExpression :* Expression scalaire qui peut faire référence aux données d’entrée.
+  La sortie aura autant d’enregistrements qu’il y a de valeurs distinctes pour toutes les expressions de groupe.
 
 > [!NOTE]
 > Lorsque la table d’entrée est vide, la sortie varie selon que *GroupExpression* est utilisé :
@@ -96,7 +98,7 @@ Pour résumer des plages de valeurs numériques, utilisez `bin()` pour réduire 
 |[stdevif()](stdevif-aggfunction.md)|Retourne l’écart type de l’ensemble du groupe (avec le prédicat)|
 |[Sum ()](sum-aggfunction.md)|Retourne la somme des éléments avec le groupe|
 |[sumif()](sumif-aggfunction.md)|Retourne la somme des éléments avec le groupe (prédicat with)|
-|[variance()](variance-aggfunction.md)|Retourne la variance dans le groupe|
+|[variance ()](variance-aggfunction.md)|Retourne la variance dans le groupe|
 |[varianceif()](varianceif-aggfunction.md)|Retourne la variance dans le groupe (avec le prédicat)|
 
 ## <a name="aggregates-default-values"></a>Agrège les valeurs par défaut

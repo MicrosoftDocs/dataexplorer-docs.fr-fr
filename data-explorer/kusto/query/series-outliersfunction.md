@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/20/2019
-ms.openlocfilehash: c5ada33d74f5ed3e1c7b357321b23bd7a76be64e
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: c3728b4497e09460fbc19ef2da26a72f02c2ee71
+ms.sourcegitcommit: ec191391f5ea6df8c591e6d747c67b2c46f98ac4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351350"
+ms.lasthandoff: 08/16/2020
+ms.locfileid: "88260102"
 ---
 # <a name="series_outliers"></a>series_outliers()
 
 Notation des points d’anomalies dans une série.
 
-La fonction prend une expression avec un tableau numérique dynamique comme entrée et génère un tableau numérique dynamique de même longueur. Chaque valeur du tableau indique le score d’une anomalie possible, à l’aide de [« test de Tukey »](https://en.wikipedia.org/wiki/Outlier#Tukey.27s_test). Une valeur supérieure à 1,5 dans le même élément de l’entrée indique une anomalie de hausse ou de refus. Une valeur inférieure à-1,5 indique une anomalie de refus.
+La fonction prend une expression avec un tableau numérique dynamique comme entrée et génère un tableau numérique dynamique de même longueur. Chaque valeur du tableau indique le score d’une anomalie possible, à l’aide de [« test de Tukey »](https://en.wikipedia.org/wiki/Outlier#Tukey's_fences). Une valeur supérieure à 1,5 dans le même élément de l’entrée indique une anomalie de hausse ou de refus. Une valeur inférieure à-1,5 indique une anomalie de refus.
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -28,8 +28,8 @@ La fonction prend une expression avec un tableau numérique dynamique comme entr
 ## <a name="arguments"></a>Arguments
 
 * *x*: cellule de tableau dynamique qui est un tableau de valeurs numériques
-* *genre*: algorithme de détection des valeurs hors norme. Prend actuellement en charge `"tukey"` (« Tukey » traditionnel) et `"ctukey"` (personnalisé « Tukey »). La valeur par défaut est `"ctukey"`
-* *ignore_val*: valeur numérique indiquant les valeurs manquantes dans la série. La valeur par défaut est double (null). Le score des valeurs NULL et ignore est défini sur`0`
+* *genre*: algorithme de détection des valeurs hors norme. Prend actuellement en charge `"tukey"` (« Tukey » traditionnel) et  `"ctukey"` (personnalisé « Tukey »). La valeur par défaut est `"ctukey"`
+* *ignore_val*: valeur numérique indiquant les valeurs manquantes dans la série. La valeur par défaut est double (null). Le score des valeurs NULL et ignore est défini sur `0`
 * *min_percentile*: pour le calcul de la plage inter-quantile normale. La valeur par défaut est 10, les valeurs personnalisées prises en charge sont comprises dans la plage `[2.0, 98.0]` ( `ctukey` uniquement)
 * *max_percentile*: identique, la valeur par défaut est 90, les valeurs personnalisées prises en charge sont comprises dans la plage `[2.0, 98.0]` (ctukey uniquement)
 
