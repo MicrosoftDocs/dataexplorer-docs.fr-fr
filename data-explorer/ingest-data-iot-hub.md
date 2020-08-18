@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/08/2020
-ms.openlocfilehash: 1e04b3c2796f8d8814e21763d9a62189b4dc06cb
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 36c724a001bb4438757316a456fbf85b55691c09
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493885"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201596"
 ---
 # <a name="ingest-data-from-iot-hub-into-azure-data-explorer"></a>Ingérer les données d’un hub IoT dans Azure Data Explorer 
 
@@ -22,9 +22,11 @@ ms.locfileid: "81493885"
 > * [Python](data-connection-iot-hub-python.md)
 > * [Modèle Azure Resource Manager](data-connection-iot-hub-resource-manager.md)
 
-L’Explorateur de données Azure est un service d’exploration de données rapide et hautement évolutive pour les données des journaux et les données de télémétrie. Azure Data Explorer propose l’ingestion (chargement de données) à partir d’un hub IoT, plateforme de streaming de big data et service d’ingestion IoT.
+[!INCLUDE [data-connector-intro](includes/data-connector-intro.md)]
 
-## <a name="prerequisites"></a>Conditions préalables requises
+Cet article vous montre comment ingérer des données dans Azure Data Explorer depuis IoT Hub, plateforme de streaming de big data et service d’ingestion IoT.
+
+## <a name="prerequisites"></a>Prérequis
 
 * Si vous n’avez pas d’abonnement Azure, créez un [compte Azure gratuit](https://azure.microsoft.com/free/) avant de commencer.
 * Créez [un cluster de test et une base de données](create-cluster-database-portal.md) avec le nom de base de données *testdb*.
@@ -96,7 +98,7 @@ Connectez-vous maintenant au hub IoT depuis Azure Data Explorer. Une fois cette 
      **Paramètre** | **Valeur suggérée** | **Description du champ**
     |---|---|---|
     | Table de charge de travail | *TestTable* | Table que vous avez créée dans **testdb**. |
-    | Format de données | *JSON* | Les formats pris en charge sont Avro, CSV, JSON, MULTILINE JSON, PSV, SOHSV, SCSV, TSV, TSVE et TXT. |
+    | Format de données | *JSON* | Les formats pris en charge sont Avro, CSV, JSON, MULTILINE JSON, ORC, PARQUET, PSV, SCSV, SOHSV, TSV, TXT, TSVE, APACHEAVRO et W3CLOG.|
     | Mappage de colonnes | *TestMapping* | [Mappage](kusto/management/mappings.md) que vous avez créé dans **testdb**, qui mappe les données JSON entrantes aux noms de colonnes et aux types de données de **testdb**. Obligatoire pour les formats JSON, MULTILINE JSON et AVRO, et facultatif pour les autres formats.|
     | | |
 
@@ -165,17 +167,17 @@ L’application générant des données, vous pouvez maintenant voir le flux de 
 
 ## <a name="clean-up-resources"></a>Nettoyer les ressources
 
-Si vous ne prévoyez pas de réutiliser votre hub IoT, nettoyez **test-hub-rg** pour éviter des frais.
+Si vous ne prévoyez pas de réutiliser votre hub IoT, nettoyez votre groupe de ressources pour éviter des frais.
 
 1. Dans le portail Azure, sélectionnez **Groupes de ressources** tout à gauche, puis sélectionnez le groupe de ressources que vous avez créé.  
 
     Si le menu de gauche est réduit, sélectionnez le ![Bouton Développer](media/ingest-data-event-hub/expand.png) pour le développer.
 
-   ![Sélectionner un groupe de ressources à supprimer](media/ingest-data-event-hub/delete-resources-select.png)
+   ![Sélectionner un groupe de ressources à supprimer](media/ingest-data-iot-hub/delete-resources-select.png)
 
 1. Sous **test-resource-group**, sélectionnez **Supprimer le groupe de ressources**.
 
-1. Dans la nouvelle fenêtre, tapez le nom du groupe de ressources à supprimer (*test-hub-rg*), puis sélectionnez **Supprimer**.
+2. Dans la nouvelle fenêtre, tapez le nom du groupe de ressources à supprimer, puis sélectionnez **Supprimer**.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

@@ -6,13 +6,13 @@ ms.author: orspodek
 ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
-ms.date: 01/08/2020
-ms.openlocfilehash: ca617629578e9f3830e4fa1edf1a5781b0317a81
-ms.sourcegitcommit: d9fbcd6c9787f90de62e8e832c92d43b8090cbfc
+ms.date: 08/13/2020
+ms.openlocfilehash: 0738df4b86fe7d602ad41e921d88501c58d8e500
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87515853"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201653"
 ---
 # <a name="ingest-data-from-event-hub-into-azure-data-explorer"></a>Ingérer des données Event Hub dans Azure Data Explorer
 
@@ -22,7 +22,9 @@ ms.locfileid: "87515853"
 > * [Python](data-connection-event-hub-python.md)
 > * [Modèle Azure Resource Manager](data-connection-event-hub-resource-manager.md)
 
-L’Explorateur de données Azure est un service d’exploration de données rapide et hautement évolutive pour les données des journaux et les données de télémétrie. L’Explorateur de données Azure offre une ingestion (chargement de données) à partir d’Event Hubs, plateforme de streaming de big data et service d’ingestion d’événements. [Event Hubs](/azure/event-hubs/event-hubs-about) peut traiter des millions d’événements par seconde en quasi-temps réel. Dans cet article, vous créez un Event Hub, vous vous y connectez à partir d’Azure Data Explorer et vous voyez le flux de données via le système.
+[!INCLUDE [data-connector-intro](includes/data-connector-intro.md)]
+
+L’Explorateur de données Azure offre une ingestion (chargement de données) à partir d’Event Hubs, plateforme de streaming de big data et service d’ingestion d’événements. [Event Hubs](/azure/event-hubs/event-hubs-about) peut traiter des millions d’événements par seconde en quasi-temps réel. Dans cet article, vous créez un Event Hub, vous vous y connectez à partir d’Azure Data Explorer et vous voyez le flux de données via le système.
 
 ## <a name="prerequisites"></a>Prérequis
 
@@ -129,7 +131,7 @@ Vous vous connectez maintenant au hub d’événements depuis l’Explorateur de
      **Paramètre** | **Valeur suggérée** | **Description du champ**
     |---|---|---|
     | Table de charge de travail | *TestTable* | Table que vous avez créée dans **TestDatabase**. |
-    | Format de données | *JSON* | Les formats pris en charge sont Avro, CSV, JSON, MULTILINE JSON, PSV, SOHSV, SCSV, TSV, TSVE, TXT, ORC et PARQUET. |
+    | Format de données | *JSON* | Les formats pris en charge sont Avro, CSV, JSON, MULTILINE JSON, ORC, PARQUET, PSV, SCSV, SOHSV, TSV, TXT, TSVE, APACHEAVRO et W3CLOG. |
     | Mappage de colonnes | *TestMapping* | [Mappage](kusto/management/mappings.md) que vous avez créé dans **TestDatabase**, qui mappe les données JSON entrantes aux noms de colonne et aux types de données de **TestTable**. Obligatoire pour les formats JSON ou MULTILINE JSON, et facultatif pour les autres formats.|
     | | |
 
