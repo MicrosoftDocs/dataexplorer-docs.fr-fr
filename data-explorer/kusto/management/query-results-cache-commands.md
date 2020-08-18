@@ -1,5 +1,5 @@
 ---
-title: Cache des résultats de la requête-Azure Explorateur de données
+title: Commandes de cache des résultats de la requête-Azure Explorateur de données
 description: Cet article décrit le cache des résultats de la requête dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
@@ -8,14 +8,14 @@ ms.reviewer: amitof
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/16/2020
-ms.openlocfilehash: fa2bf2f6d24162c5bdb1c851ef7d74e4eb39489f
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 519560f0b6bb98651dc4a8b6749935ec9843eb9c
+ms.sourcegitcommit: 5e903c61e779f7bf62f745f13a6038ce2a32e934
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349905"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88512568"
 ---
-# <a name="query-results-cache"></a>Cache des résultats de requête
+# <a name="query-results-cache-commands"></a>Commandes de cache des résultats de requête
 
 Le cache des résultats de la requête est un cache dédié au stockage des résultats de la requête. Pour plus d’informations, consultez [cache des résultats](../query/query-results-cache.md)de la requête.
 

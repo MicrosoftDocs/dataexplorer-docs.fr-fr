@@ -1,5 +1,5 @@
 ---
-title: parse_ipv4_mask ()-Azure Explorateur de données | Microsoft Docs
+title: parse_ipv6_mask ()-Azure Explorateur de données
 description: Cet article décrit la fonction parse_ipv6_mask () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: a6c17f0505927c38d26c37a5e9872747541d129a
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: b917d592a00bb2bacd940b4dc943186e10d1bf8c
+ms.sourcegitcommit: 5e903c61e779f7bf62f745f13a6038ce2a32e934
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346437"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88512544"
 ---
 # <a name="parse_ipv6_mask"></a>parse_ipv6_mask()
  
@@ -38,7 +38,7 @@ parse_ipv6_mask(":fe80::85d:e82c:9446:7994", 120) == 'fe80:0000:0000:0000:085d:e
 Les adresses IP peuvent être définies à `IP-prefix notation` l’aide d’une barre oblique ( `/` ).
 L’adresse IP à gauche de la barre oblique ( `/` ) est l’adresse IP de base. Le nombre (1 à 127) à droite de la barre oblique ( `/` ) est le nombre de 1 bit contigu dans le masque réseau.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Si la conversion réussit, le résultat sera une chaîne représentant une adresse réseau IPv6 canonique.
 Si la conversion échoue, le résultat sera `null` .

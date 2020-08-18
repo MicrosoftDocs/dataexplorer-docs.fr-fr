@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: 20b1b87778451245e7a886255ce3e83493b0d9e1
-ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
+ms.openlocfilehash: f0b2dcc8537c7bf959d60283a63f9227b22c168b
+ms.sourcegitcommit: 31ebf208d6bfd901f825d048ea69c9bb3d8b87af
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85901938"
+ms.lasthandoff: 08/17/2020
+ms.locfileid: "88501567"
 ---
 # <a name="query-limits"></a>Limites de requête
 
@@ -77,8 +77,10 @@ MyTable | where User=="Ploni"
 Les bibliothèques clientes Kusto partent actuellement de l’existence de cette limite. Bien que vous puissiez augmenter la limite sans limites, vous pouvez finir par atteindre les limites du client qui ne sont pas configurables actuellement.
 
 Les clients qui ne souhaitent pas extraire toutes les données en un seul bloc peuvent essayer les solutions de contournement suivantes :
-* basculer certains SDK en mode de diffusion en continu (streaming = true)
-* basculer vers l’API .NET v2 laissez l’équipe Kusto savoir si vous rencontrez ce problème. nous pouvons donc augmenter la priorité du client de diffusion en continu.
+* Basculer certains SDK en mode de diffusion en continu (streaming = true)
+* Basculer vers l’API .NET v2
+
+Laissez l’équipe Kusto savoir si vous rencontrez ce problème, afin de pouvoir augmenter la priorité du client de diffusion en continu.
 
 Kusto fournit un certain nombre de bibliothèques clientes qui peuvent gérer des résultats « infiniment volumineux » en les diffusant à l’appelant. Utilisez l’une de ces bibliothèques et configurez-la en mode de diffusion en continu. Par exemple, utilisez le client .NET Framework (Microsoft. Azure. Kusto. Data) et affectez à la propriété streaming de la chaîne de connexion la *valeur true*, ou utilisez l’appel *ExecuteQueryV2Async ()* qui transmet toujours les résultats.
 
@@ -180,7 +182,7 @@ Par défaut, le délai d’attente est défini sur quatre minutes pour les requ�
 Kusto vous permet d’exécuter des requêtes et d’utiliser autant de ressources processeur que le cluster. Elle tente d’effectuer un juste tourniquet (Round Robin) entre les requêtes si plusieurs sont en cours d’exécution. Cette méthode produit les meilleures performances pour les requêtes ad hoc.
 À d’autres moments, vous souhaiterez peut-être limiter les ressources processeur utilisées pour une requête particulière. Par exemple, si vous exécutez une tâche en arrière-plan, le système peut tolérer des latences plus élevées pour fournir une priorité élevée aux requêtes ad hoc simultanées.
 
-Kusto prend en charge la spécification de deux [Propriétés de demande client](../api/netfx/request-properties.md) lors de l’exécution d’une requête. Les propriétés sont *query_fanout_threads_percent* et *query_fanout_nodes_percent*.
+Kusto prend en charge la spécification de deux [Propriétés de demande client](../api/netfx/request-properties.md) lors de l’exécution d’une requête. Les propriétés sont  *query_fanout_threads_percent* et *query_fanout_nodes_percent*.
 Les deux propriétés sont des entiers dont la valeur par défaut est la valeur maximale (100), mais elle peut être réduite pour une requête spécifique à une autre valeur. 
 
 La première, *query_fanout_threads_percent*, contrôle le facteur de Fanout pour l’utilisation des threads. Quand il est de 100%, le cluster affecte tous les processeurs sur chaque nœud. Par exemple, 16 UC sur un cluster déployé sur des nœuds Azure D14. Au 50%, la moitié des UC sera utilisée, et ainsi de suite. Les nombres sont arrondis à un processeur entier, donc il est possible de le définir sur 0. Le deuxième, *query_fanout_nodes_percent*, contrôle le nombre de nœuds de requête du cluster à utiliser par opération de distribution de sous-requête. Elle fonctionne de façon similaire.
