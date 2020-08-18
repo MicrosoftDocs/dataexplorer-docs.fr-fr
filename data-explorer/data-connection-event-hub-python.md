@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/07/2019
-ms.openlocfilehash: 7649a89208881ce323c0cbd970f3f247b0cf67da
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 7a4cc1efef506f046e17af901a87b501e0272d08
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350143"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201292"
 ---
 # <a name="create-an-event-hub-data-connection-for-azure-data-explorer-by-using-python"></a>Créer une connexion de données au hub d’événements pour Azure Data Explorer à l’aide de Python
 
@@ -22,20 +22,16 @@ ms.locfileid: "87350143"
 > * [Python](data-connection-event-hub-python.md)
 > * [Modèle Azure Resource Manager](data-connection-event-hub-resource-manager.md)
 
-Dans cet article, vous créez une connexion de données au hub d’événements pour Azure Data Explorer à l’aide de Python. L’Explorateur de données Azure est un service d’exploration de données rapide et hautement évolutive pour les données des journaux et les données de télémétrie. Azure Data Explorer permet une ingestion (chargement de données) à partir de hubs d’événements, de hubs IoT et d’objets blob écrits dans des conteneurs d’objets blob.
+[!INCLUDE [data-connector-intro](includes/data-connector-intro.md)]
+Dans cet article, vous créez une connexion de données au hub d’événements pour Azure Data Explorer à l’aide de Python. 
 
-## <a name="prerequisites"></a>Conditions préalables requises
+## <a name="prerequisites"></a>Prérequis
 
-* Compte Azure avec un abonnement actif. [Créez gratuitement un compte](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio).
-
+* Compte Azure avec un abonnement actif. [Créez un compte gratuitement](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio).
 * [Python 3.4+](https://www.python.org/downloads/).
-
 * [Un cluster et une base de données](create-cluster-database-python.md).
-
 * [Un mappage des tables et des colonnes](net-standard-ingest-data.md#create-a-table-on-your-test-cluster).
-
 * [Des stratégies de base de données et de table](database-table-policies-python.md) (facultatif).
-
 * [Hub d’événements avec des données pour l’ingestion](ingest-data-event-hub.md#create-an-event-hub).
 
 [!INCLUDE [data-explorer-data-connection-install-package-python](includes/data-explorer-data-connection-install-package-python.md)]

@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/18/2020
-ms.openlocfilehash: e6b329380d507e93161415f51515656628564500
-ms.sourcegitcommit: bf2c9da0c23ebcaec19b229d2079032d54a2cc82
+ms.openlocfilehash: d46455fcce2880c4f347d04125a9f6355cb4cffa
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "86140544"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201546"
 ---
 # <a name="azure-data-explorer-data-ingestion-overview"></a>Vue d’ensemble de l’ingestion des données dans Azure Data Explorer 
 
@@ -115,9 +115,9 @@ Plusieurs méthodes faisant appel à des commandes KQL (Kusto Query Language) pe
 | [**LogStash**](ingest-data-logstash.md) | | | | |
 | [**Azure Data Factory**](kusto/tools/azure-data-factory.md) | [Formats de données pris en charge](/azure/data-factory/copy-activity-overview#supported-data-stores-and-formats) | Illimitée* (selon les restrictions ADF) | Traitement par lot ou par déclencheur ADF | Prend en charge les formats qui ne sont généralement pas pris en charge et les fichiers volumineux, peut copier de plus de 90 sources du stockage local vers le cloud | Heure d’ingestion |
 |[ **Azure Data Flow**](kusto/tools/flow.md) | | | | Commandes d’ingestion dans le cadre du flux| Doit avoir un temps de réponse élevé |
-| [**IoT Hub**](kusto/management/data-ingestion/iothub.md) | [Formats de données pris en charge](kusto/management/data-ingestion/iothub.md#data-format)  | N/A | Traitement par lot, streaming | Messages IoT, événements IoT, propriétés IoT | |
-| [**Event Hub**](kusto/management/data-ingestion/eventhub.md) | [Formats de données pris en charge](kusto/management/data-ingestion/eventhub.md#data-format) | N/A | Traitement par lot, streaming | Messages, événements | |
-| [**Event Grid**](kusto/management/data-ingestion/eventgrid.md) | [Formats de données pris en charge](kusto/management/data-ingestion/eventgrid.md#data-format) | 1 Go non compressé | Traitement par lot | Ingestion continue à partir du stockage Azure, données externes dans le stockage Azure | 100 Ko est la taille de fichier optimale, utilisée pour la création et le renommage d’objets blob |
+| [**IoT Hub**](ingest-data-iot-hub-overview.md) | [Formats de données pris en charge](ingest-data-iot-hub-overview.md#data-format)  | N/A | Traitement par lot, streaming | Messages IoT, événements IoT, propriétés IoT | |
+| [**Event Hub**](ingest-data-event-hub-overview.md) | [Formats de données pris en charge](ingest-data-event-hub-overview.md#data-format) | N/A | Traitement par lot, streaming | Messages, événements | |
+| [**Event Grid**](ingest-data-event-grid-overview.md) | [Formats de données pris en charge](ingest-data-event-grid-overview.md#data-format) | 1 Go non compressé | Traitement par lot | Ingestion continue à partir du stockage Azure, données externes dans le stockage Azure | 100 Ko est la taille de fichier optimale, utilisée pour la création et le renommage d’objets blob |
 | [**Net Std**](net-standard-ingest-data.md) | Tous les formats pris en charge | 1 Go non compressé (voir remarque) | Traitement par lot, streaming, directe | Code personnalisé en fonction des besoins de l’organisation |
 | [**Python**](python-ingest-data.md) | Tous les formats pris en charge | 1 Go non compressé (voir remarque) | Traitement par lot, streaming, directe | Code personnalisé en fonction des besoins de l’organisation |
 | [**Node.js**](node-ingest-data.md) | Tous les formats pris en charge | 1 Go non compressé (voir remarque) | Traitement par lot, streaming, directe | Code personnalisé en fonction des besoins de l’organisation |

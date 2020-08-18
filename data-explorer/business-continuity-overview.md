@@ -7,12 +7,12 @@ ms.reviewer: ankhanol
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/05/2020
-ms.openlocfilehash: 23f25ca0d32cf241f25a9ac09081dd6c77e072f2
-ms.sourcegitcommit: 83202ec6fec0ce98fdf993bbb72adc985d6d9c78
+ms.openlocfilehash: 39bddff724d30e19f240a25fe3a277fd2151d81e
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87877056"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201345"
 ---
 # <a name="business-continuity-and-disaster-recovery-overview"></a>Vue d’ensemble de la continuité d'activité et de la reprise d'activité
 
@@ -121,7 +121,7 @@ La configuration de secours active est similaire à la configuration [active-act
 
 ### <a name="on-demand-data-recovery-configuration"></a>Configuration de la récupération des données à la demande
 
-Cette solution offre le moins de résilience (RPO et RTO les plus élevés), son coût est moindre et l’effort nécessaire plus élevé. Dans cette configuration, il n’existe aucun cluster de récupération de données. Configurez l’exportation continue de données organisées (sauf si des données brutes et intermédiaires sont également requises) sur un compte de stockage configuré pour le stockage géoredondant (GRS). Un cluster de récupération de données est lancé s’il existe un scénario de récupération d’urgence. Dès lors, les DDL, la configuration, les stratégies et les processus sont appliqués. Les données sont ingérées à partir du stockage à l’aide de la propriété d’ingestion [kustoCreationTime](kusto/management/data-ingestion/eventgrid.md) de manière à remplacer le délai d’ingestion par défaut par le délai du système. 
+Cette solution offre le moins de résilience (RPO et RTO les plus élevés), son coût est moindre et l’effort nécessaire plus élevé. Dans cette configuration, il n’existe aucun cluster de récupération de données. Configurez l’exportation continue de données organisées (sauf si des données brutes et intermédiaires sont également requises) sur un compte de stockage configuré pour le stockage géoredondant (GRS). Un cluster de récupération de données est lancé s’il existe un scénario de récupération d’urgence. Dès lors, les DDL, la configuration, les stratégies et les processus sont appliqués. Les données sont ingérées à partir du stockage à l’aide de la propriété d’ingestion [kustoCreationTime](ingest-data-event-grid-overview.md) de manière à remplacer le délai d’ingestion par défaut par le délai du système. 
 
 :::image type="content" source="media/business-continuity-overview/on-demand-data-recovery-cluster.png" alt-text="Configuration de cluster de récupération de données à la demande":::
 

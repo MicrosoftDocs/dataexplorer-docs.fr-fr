@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/28/2020
-ms.openlocfilehash: d4f9fe945281eb61c1d1e685d0c2689585951926
-ms.sourcegitcommit: 6db94135b9902ad0ea84f9cef00ded8ec0a90fc3
+ms.openlocfilehash: 9efbceafa20b1807b5c3cfd89a288bc9b704a086
+ms.sourcegitcommit: ec191391f5ea6df8c591e6d747c67b2c46f98ac4
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86870105"
+ms.lasthandoff: 08/16/2020
+ms.locfileid: "88260087"
 ---
 # <a name="query-data-in-azure-monitor-using-azure-data-explorer-preview"></a>Interroger des données dans Azure Monitor avec Azure Data Explorer (préversion)
 
@@ -107,8 +107,6 @@ L’image suivante illustre un exemple d’interrogation d’une fonction tabula
 
   [ ![Interroger une fonction tabulaire à partir de l’interface utilisateur web Azure Data Explorer](media/adx-proxy/function-query-adx-proxy.png)](media/adx-proxy/function-query-adx-proxy.png#lightbox)
 
-> [!NOTE]
-> Azure Monitor prend en charge uniquement les fonctions tabulaires. Les fonctions tabulaires ne prennent pas en charge les paramètres.
 
 ## <a name="additional-syntax-examples"></a>Exemples de syntaxe supplémentaire
 

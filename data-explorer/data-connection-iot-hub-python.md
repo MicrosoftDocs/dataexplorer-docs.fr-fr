@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/07/2019
-ms.openlocfilehash: b85ec79c962ab4e63c0831f415ee7c3f2074c970
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 89fc499e0e74bcd521c8c2fbc7c2038536c097da
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350092"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201570"
 ---
 # <a name="create-an-iot-hub-data-connection-for-azure-data-explorer-by-using-python-preview"></a>Créer une connexion de données au hub IoT pour Azure Data Explorer à l’aide de Python (préversion)
 
@@ -22,20 +22,16 @@ ms.locfileid: "87350092"
 > * [Python](data-connection-iot-hub-python.md)
 > * [Modèle Azure Resource Manager](data-connection-iot-hub-resource-manager.md)
 
-Dans cet article, vous créez une connexion de données au hub IoT pour Azure Data Explorer à l’aide de Python. L’Explorateur de données Azure est un service d’exploration de données rapide et hautement évolutive pour les données des journaux et les données de télémétrie. Azure Data Explorer permet une ingestion (chargement de données) à partir de hubs d’événements, de hubs IoT et d’objets blob écrits dans des conteneurs d’objets blob.
+[!INCLUDE [data-connector-intro](includes/data-connector-intro.md)]
+Dans cet article, vous créez une connexion de données au hub IoT pour Azure Data Explorer à l’aide de Python. 
 
-## <a name="prerequisites"></a>Conditions préalables requises
+## <a name="prerequisites"></a>Prérequis
 
-* Compte Azure avec un abonnement actif. [Créez gratuitement un compte](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio).
-
+* Compte Azure avec un abonnement actif. [Créez un compte gratuitement](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio).
 * [Python 3.4+](https://www.python.org/downloads/).
-
 * [Un cluster et une base de données](create-cluster-database-python.md).
-
 * [Un mappage des tables et des colonnes](net-standard-ingest-data.md#create-a-table-on-your-test-cluster).
-
 * [Des stratégies de base de données et de table](database-table-policies-python.md) (facultatif).
-
 * [Un hub IoT avec une stratégie d’accès partagé configurée](ingest-data-iot-hub.md#create-an-iot-hub).
 
 [!INCLUDE [data-explorer-data-connection-install-package-python](includes/data-explorer-data-connection-install-package-python.md)]

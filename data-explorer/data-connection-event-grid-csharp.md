@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/07/2019
-ms.openlocfilehash: a93b29d6557afa435cacbbeeb43b685c0dfbf3af
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 597eb522da9e3cb383cb3c0aad5ccc7c78de6ce3
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350211"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201390"
 ---
 # <a name="create-an-event-grid-data-connection-for-azure-data-explorer-by-using-c"></a>Créer une connexion de données à Event Grid pour Azure Data Explorer à l’aide de C#
 
@@ -23,7 +23,8 @@ ms.locfileid: "87350211"
 > * [Modèle Azure Resource Manager](data-connection-event-grid-resource-manager.md)
 
 
-L’Explorateur de données Azure est un service d’exploration de données rapide et hautement évolutive pour les données des journaux et les données de télémétrie. Azure Data Explorer offre une ingestion (chargement de données) à partir de hubs d’événements, de hubs IoT et d’objets blob écrits dans des conteneurs d’objets blob. Dans cet article, vous créez une connexion de données à Event Grid pour Azure Data Explorer à l’aide de C#.
+[!INCLUDE [data-connector-intro](includes/data-connector-intro.md)]
+ Dans cet article, vous créez une connexion de données à Event Grid pour Azure Data Explorer à l’aide de C#.
 
 ## <a name="prerequisites"></a>Prérequis
 
@@ -32,7 +33,7 @@ L’Explorateur de données Azure est un service d’exploration de données rap
 * Créez [un cluster et une base de données](create-cluster-database-csharp.md).
 * Créez [une table et un mappage de colonnes](net-standard-ingest-data.md#create-a-table-on-your-test-cluster).
 * Définissez [des stratégies de base de données et de table](database-table-policies-csharp.md) (facultatif).
-* Créez un [compte de stockage avec un abonnement Event Grid](../data-explorer/kusto/management/data-ingestion/eventgrid.md#create-an-event-grid-subscription-in-your-storage-account).
+* Créez un [compte de stockage avec un abonnement Event Grid](ingest-data-event-grid.md).
 
 [!INCLUDE [data-explorer-data-connection-install-nuget-csharp](includes/data-explorer-data-connection-install-nuget-csharp.md)]
 

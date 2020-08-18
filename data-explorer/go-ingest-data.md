@@ -1,18 +1,18 @@
 ---
 title: Ingérer des données avec le kit de développement logiciel (SDK) Go Azure Data Explorer
 description: Dans cet article, vous apprendrez comment ingérer (charger) des données dans Azure Data Explorer à l’aide kit de développement logiciel (SDK) Go.
-author: abhirockzz
-ms.author: abhishgu
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: abhishgu
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/10/2020
-ms.openlocfilehash: 38063f3e00ebd22da17d48abba1dd9b3510273ec
-ms.sourcegitcommit: bcd0c96b1581e43e33aa35f4d68af6dcb4979d39
+ms.openlocfilehash: 010ee029c4f16248b0f9249d7331da436439cdc0
+ms.sourcegitcommit: ed902a5a781e24e081cd85910ed15cd468a0db1e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88039715"
+ms.lasthandoff: 08/11/2020
+ms.locfileid: "88072359"
 ---
 # <a name="ingest-data-using-the-azure-data-explorer-go-sdk"></a>Ingérer des données à l’aide du kit de développement logiciel (SDK) Go Azure Data Explorer 
 

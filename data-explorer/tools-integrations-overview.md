@@ -8,12 +8,12 @@ ms.reviewer: olgolden
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 07/08/2020
-ms.openlocfilehash: 166f109f96695380c979dd4060e324187c5b5efc
-ms.sourcegitcommit: 4ae1508bbaa8fe9642dcfc8618d77f009bc8ec9f
+ms.openlocfilehash: 9522ee72e639c967f7b735c9c52d67c236498522
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/15/2020
-ms.locfileid: "86405468"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201696"
 ---
 # <a name="azure-data-explorer-tools-and-integrations-overview"></a>Vue d’ensemble des outils et des intégrations Azure Data Explorer
 
@@ -38,13 +38,13 @@ L’ingestion des données est le processus utilisé pour charger des enregistre
 ### <a name="ingestion-integrations"></a>Intégrations d’ingestion
 
 * Event Hub
-    * [Ingérer des données à partir d’Event Hub](kusto/management/data-ingestion/eventhub.md)
+    * [Ingérer des données à partir d’Event Hub](ingest-data-event-hub-overview.md)
     * Ingérez des données d’Event Hub à l’aide du [portail Azure](ingest-data-event-hub.md), de [C#](data-connection-event-hub-csharp.md), de [Python](data-connection-event-hub-python.md) ou d’un [modèle Azure Resource Manager](data-connection-event-hub-resource-manager.md)
 * Event Grid
-    * [Ingérer des données d’Event Grid](kusto/management/data-ingestion/eventgrid.md)
+    * [Ingérer des données d’Event Grid](ingest-data-event-grid-overview.md)
     * Ingérez des données d’Event Grid à l’aide du [portail Azure](ingest-data-event-grid.md), de [C#](data-connection-event-grid-csharp.md), de [Python](data-connection-event-grid-python.md) ou d’un [modèle Azure Resource Manager](data-connection-event-grid-resource-manager.md)
 * IoT Hub
-    * [Ingérer des données d’IoT Hub](kusto/management/data-ingestion/iothub.md)
+    * [Ingérer des données d’IoT Hub](ingest-data-iot-hub-overview.md)
     * Ingérez des données d’IoT Hub à l’aide du [portail Azure](ingest-data-iot-hub.md), de [C#](data-connection-iot-hub-csharp.md), de [Python](data-connection-iot-hub-python.md) ou d’un [modèle Azure Resource Manager](data-connection-iot-hub-resource-manager.md)
 * [Logstash](ingest-data-logstash.md)
 * Azure Data Factory

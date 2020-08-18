@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 11/28/2019
-ms.openlocfilehash: b5196e126ffa36e3d767bfaacb79ce819ff9fa29
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 9b832fb9bc70744c428498220f1acc28053ad0d9
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350177"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201258"
 ---
 # <a name="create-an-event-grid-data-connection-for-azure-data-explorer-by-using-azure-resource-manager-template"></a>Créer une connexion de données Event Grid pour Azure Data Explorer à l’aide d’un modèle Azure Resource Manager
 
@@ -22,16 +22,16 @@ ms.locfileid: "87350177"
 > * [Python](data-connection-event-grid-python.md)
 > * [Modèle Azure Resource Manager](data-connection-event-grid-resource-manager.md)
 
+[!INCLUDE [data-connector-intro](includes/data-connector-intro.md)]
+Dans cet article, vous créez une connexion de données Event Grid pour Azure Data Explorer à l’aide d’un modèle Azure Resource Manager.
 
-L’Explorateur de données Azure est un service d’exploration de données rapide et hautement évolutive pour les données des journaux et les données de télémétrie. Azure Data Explorer offre une ingestion (chargement de données) à partir de hubs d’événements, de hubs IoT et d’objets blob écrits dans des conteneurs d’objets blob. Dans cet article, vous créez une connexion de données Event Grid pour Azure Data Explorer à l’aide d’un modèle Azure Resource Manager.
-
-## <a name="prerequisites"></a>Conditions préalables requises
+## <a name="prerequisites"></a>Prérequis
 
 * Si vous n’avez pas d’abonnement Azure, créez un [compte Azure gratuit](https://azure.microsoft.com/free/) avant de commencer.
 * Créez [un cluster et une base de données](create-cluster-database-portal.md).
 * Créez [une table et un mappage de colonnes](ingest-data-event-grid.md#create-a-target-table-in-azure-data-explorer).
 * Créez un [hub d’événements](/azure/event-hubs/event-hubs-create).
-* Créez un [compte de stockage avec un abonnement Event Grid](../data-explorer/kusto/management/data-ingestion/eventgrid.md#create-an-event-grid-subscription-in-your-storage-account).
+* Créez un [compte de stockage avec un abonnement Event Grid](ingest-data-event-grid.md).
 
 ## <a name="azure-resource-manager-template-for-adding-an-event-grid-data-connection"></a>Modèle Azure Resource Manager pour l’ajout d’une connexion de données Event Grid
 
