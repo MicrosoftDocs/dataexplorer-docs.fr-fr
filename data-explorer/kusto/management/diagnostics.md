@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 505e5443e18007f41ca3fb67046df31fcbae2ba2
-ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
+ms.openlocfilehash: 6c9bfed37ea54e541e55106a505471f04fe94e99
+ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/01/2020
-ms.locfileid: "84257941"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88610557"
 ---
 # <a name="diagnostic-information"></a>Informations de diagnostic
 
@@ -54,10 +54,10 @@ Retourne un jeu qui contient un enregistrement pour chaque nœud actuellement ac
 
 ID|Adresse|Nom|StartTime|IsAdmin|MachineTotalMemory|MachineAvailableMemory|ProcessorCount|EnvironmentDescription
 ---|---|---|---|---|---|---|---|---
-Kusto. Azure. Svc_IN_1|NET. TCP://100.112.150.30:23107/|Kusto. Azure. Svc_IN_4/RD000D3AB1E9BD/WaWorkerHost/3820|2016-01-15 02:00:22.6522152|True|274877435904|247797796864|16|{"UpdateDomain" : 0, "FaultDomain" : 0}
-Kusto. Azure. Svc_IN_3|NET. TCP://100.112.154.34:23107/|Kusto. Azure. Svc_IN_3/RD000D3AB1E062/WaWorkerHost/2760|2016-01-15 05:52:52.1434683|False|274877435904|258740346880|16|{"UpdateDomain" : 1, "FaultDomain" : 1}
-Kusto. Azure. Svc_IN_2|NET. TCP://100.112.128.40:23107/|Kusto. Azure. Svc_IN_2/RD000D3AB1E054/WaWorkerHost/3776|2016-01-15 07:17:18.0699790|False|274877435904|244232339456|16|{"UpdateDomain" : 2, "FaultDomain" : 2}
-Kusto. Azure. Svc_IN_0|NET. TCP://100.112.138.15:23107/|Kusto. Azure. Svc_IN_0/RD000D3AB0D6C6/WaWorkerHost/3208|2016-01-15 09:46:36.9865016|False|274877435904|238414581760|16|{"UpdateDomain" : 3, "FaultDomain" : 3}
+Kusto. Azure. Svc_IN_1|NET. TCP://100.112.150.30:23107/|Kusto. Azure. Svc_IN_4/RD000D3AB1E9BD/WaWorkerHost/3820|2016-01-15 02:00:22.6522152|Vrai|274877435904|247797796864|16|{"UpdateDomain" : 0, "FaultDomain" : 0}
+Kusto. Azure. Svc_IN_3|NET. TCP://100.112.154.34:23107/|Kusto. Azure. Svc_IN_3/RD000D3AB1E062/WaWorkerHost/2760|2016-01-15 05:52:52.1434683|Faux|274877435904|258740346880|16|{"UpdateDomain" : 1, "FaultDomain" : 1}
+Kusto. Azure. Svc_IN_2|NET. TCP://100.112.128.40:23107/|Kusto. Azure. Svc_IN_2/RD000D3AB1E054/WaWorkerHost/3776|2016-01-15 07:17:18.0699790|Faux|274877435904|244232339456|16|{"UpdateDomain" : 2, "FaultDomain" : 2}
+Kusto. Azure. Svc_IN_0|NET. TCP://100.112.138.15:23107/|Kusto. Azure. Svc_IN_0/RD000D3AB0D6C6/WaWorkerHost/3208|2016-01-15 09:46:36.9865016|Faux|274877435904|238414581760|16|{"UpdateDomain" : 3, "FaultDomain" : 3}
 
 
 ## <a name="show-diagnostics"></a>. afficher les Diagnostics
@@ -133,7 +133,7 @@ Retourne les résultats d’un calcul pour une capacité estimée de cluster pou
 
 Cette commande retourne une table qui contient toutes les opérations d’administration depuis l’élection du nouveau nœud d’administration.
 
-|||
+|Option de syntaxe |Description|
 |---|---| 
 |`.show` `operations`              |Retourne toutes les opérations que le cluster est en cours de traitement ou a traitées.
 |`.show``operations` *OperationId*|Retourne l’état de l’opération pour un ID spécifique
@@ -150,14 +150,14 @@ Cette commande retourne une table qui contient toutes les opérations d’admini
 |LastUpdatedOn |DateTime |Date/heure (au format UTC) de la dernière mise à jour de l’opération. L’opération peut être une étape à l’intérieur de l’opération ou une étape d’achèvement
 |Duration |DateTime |Intervalle de temps entre LastUpdateOn et StartedOn
 |État |String |État de la commande, avec les valeurs « en cours », « terminé » ou « échec »
-|État |String |Chaîne d’aide supplémentaire qui contient les erreurs pour les opérations ayant échoué
+|Statut |String |Chaîne d’aide supplémentaire qui contient les erreurs pour les opérations ayant échoué
  
 **Exemple**
  
-|id |Opération |ID du nœud |Démarré le |Dernière mise à jour le |Duration |État |État 
+|id |Opération |ID du nœud |Démarré le |Dernière mise à jour le |Duration |État |Statut 
 |--|--|--|--|--|--|--|--
-|3827def6-0773-4f2a-859e-c02cf395deaf |SchemaShow | |2015-01-06 08:47:01.0000000 |2015-01-06 08:47:01.0000000 |0001-01-01 00:00:00.0000000 |Effectué | 
-|841fafa4-076a-4cba-9300-4836da0d9c75 |DataIngestPull |Kusto. Azure. Svc_IN_1 |2015-01-06 08:47:02.0000000 |2015-01-06 08:48:19.0000000 |0001-01-01 00:01:17.0000000 |Effectué | 
-|e198c519-5263-4629-a158-8d68f7a1022f |OperationsShow | |2015-01-06 08:47:18.0000000 |2015-01-06 08:47:18.0000000 |0001-01-01 00:00:00.0000000 |Effectué |
+|3827def6-0773-4f2a-859e-c02cf395deaf |SchemaShow | |2015-01-06 08:47:01.0000000 |2015-01-06 08:47:01.0000000 |0001-01-01 00:00:00.0000000 |Completed | 
+|841fafa4-076a-4cba-9300-4836da0d9c75 |DataIngestPull |Kusto. Azure. Svc_IN_1 |2015-01-06 08:47:02.0000000 |2015-01-06 08:48:19.0000000 |0001-01-01 00:01:17.0000000 |Completed | 
+|e198c519-5263-4629-a158-8d68f7a1022f |OperationsShow | |2015-01-06 08:47:18.0000000 |2015-01-06 08:47:18.0000000 |0001-01-01 00:00:00.0000000 |Completed |
 |a9f287a1-f3e6-4154-ad18-b86438da0929 |ExtentsDrop | |2015-01-11 08:41:01.0000000 |0001-01-01 00:00:00.0000000 |0001-01-01 00:00:00.0000000 |InProgress |
-|9edb3ecc-f4b4-4738-87e1-648eed2bd998 |DataIngestPull | |2015-01-10 14:57:41.0000000 |2015-01-10 14:57:41.0000000 |0001-01-01 00:00:00.0000000 |Failed |La collection a été modifiée. L’opération d’énumération peut ne pas s’exécuter |
+|9edb3ecc-f4b4-4738-87e1-648eed2bd998 |DataIngestPull | |2015-01-10 14:57:41.0000000 |2015-01-10 14:57:41.0000000 |0001-01-01 00:00:00.0000000 |Échec |La collection a été modifiée. L’opération d’énumération peut ne pas s’exécuter |

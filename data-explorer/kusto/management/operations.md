@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: ac3d44fadf614606bc63e6a9aa3b8318419d0c70
-ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
+ms.openlocfilehash: 9c25900817aadcc450696525be8446d385d2e220
+ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84294387"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88610472"
 ---
 # <a name="operations-management"></a>Gestion des opérations
 
@@ -23,10 +23,10 @@ ms.locfileid: "84294387"
 
 **Syntaxe**
 
-|||
+|Option de syntaxe|Description|
 |---|---| 
 |`.show` `operations`              |Retourne toutes les opérations que le cluster traite ou les opérations que le cluster a traitées
-|`.show` `operations` *OperationId*|Retourne l’état de l’opération pour un ID spécifique 
+|`.show``operations` *OperationId*|Retourne l’état de l’opération pour un ID spécifique 
 |`.show``operations` `(` *OperationId1* `,` *OperationId2* `,` ...)|Retourne l’état des opérations pour des ID spécifiques
 
 **Résultats**
@@ -40,17 +40,17 @@ ms.locfileid: "84294387"
 |LastUpdatedOn |DateTime |Date/heure (au format UTC) de la dernière mise à jour de l’opération (peut être une étape à l’intérieur de l’opération ou une étape d’achèvement)
 |Duration |DateTime |TimeSpan entre LastUpdateOn et StartedOn
 |État |String |État de la commande : peut avoir les valeurs « en cours », « terminé » ou « échec »
-|État |String |Chaîne d’aide supplémentaire qui contient des erreurs d’opérations ayant échoué
+|Statut |String |Chaîne d’aide supplémentaire qui contient des erreurs d’opérations ayant échoué
  
 **Exemple**
  
-|id |Opération |ID du nœud |Démarré le |Dernière mise à jour le |Duration |État |État 
+|id |Opération |ID du nœud |Démarré le |Dernière mise à jour le |Duration |État |Statut 
 |--|--|--|--|--|--|--|--
-|3827def6-0773-4f2a-859e-c02cf395deaf |SchemaShow | |2015-01-06 08:47:01.0000000 |2015-01-06 08:47:01.0000000 |0001-01-01 00:00:00.0000000 |Effectué |
-|841fafa4-076a-4cba-9300-4836da0d9c75 |DataIngestPull |Kusto. Azure. Svc_IN_1 |2015-01-06 08:47:02.0000000 |2015-01-06 08:48:19.0000000 |0001-01-01 00:01:17.0000000 |Effectué |
-|e198c519-5263-4629-a158-8d68f7a1022f |OperationsShow | |2015-01-06 08:47:18.0000000 |2015-01-06 08:47:18.0000000 |0001-01-01 00:00:00.0000000 |Effectué |
+|3827def6-0773-4f2a-859e-c02cf395deaf |SchemaShow | |2015-01-06 08:47:01.0000000 |2015-01-06 08:47:01.0000000 |0001-01-01 00:00:00.0000000 |Completed |
+|841fafa4-076a-4cba-9300-4836da0d9c75 |DataIngestPull |Kusto. Azure. Svc_IN_1 |2015-01-06 08:47:02.0000000 |2015-01-06 08:48:19.0000000 |0001-01-01 00:01:17.0000000 |Completed |
+|e198c519-5263-4629-a158-8d68f7a1022f |OperationsShow | |2015-01-06 08:47:18.0000000 |2015-01-06 08:47:18.0000000 |0001-01-01 00:00:00.0000000 |Completed |
 |a9f287a1-f3e6-4154-ad18-b86438da0929 |ExtentsDrop | |2015-01-11 08:41:01.0000000 |0001-01-01 00:00:00.0000000 |0001-01-01 00:00:00.0000000 |InProgress |
-|9edb3ecc-f4b4-4738-87e1-648eed2bd998 |DataIngestPull | |2015-01-10 14:57:41.0000000 |2015-01-10 14:57:41.0000000 |0001-01-01 00:00:00.0000000 |Failed |La collection a été modifiée. L’opération d’énumération ne peut pas s’exécuter.
+|9edb3ecc-f4b4-4738-87e1-648eed2bd998 |DataIngestPull | |2015-01-10 14:57:41.0000000 |2015-01-10 14:57:41.0000000 |0001-01-01 00:00:00.0000000 |Échec |La collection a été modifiée. L’opération d’énumération ne peut pas s’exécuter.
 
 ## <a name="show-operation-details"></a>. afficher les détails de l’opération
 
@@ -63,7 +63,7 @@ Les opérations peuvent (éventuellement) conserver leurs résultats, et les ré
 
 **Syntaxe**
 
-`.show` `operation` *OperationId* `details`
+`.show``operation` *OperationId*`details`
 
 **Résultats**
 

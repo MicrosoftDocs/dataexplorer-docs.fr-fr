@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 21f366e8f211acf9c7c542b420006cfb23e683e7
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 9668b173c6b3769113972be2c74382464e7d9819
+ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348035"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88610574"
 ---
 # <a name="extractjson"></a>extractjson()
 
@@ -34,7 +34,7 @@ extractjson("$.hosts[1].AvailableMB", EventText, typeof(int))
 * *jsonPath*: jsonPath chaîne qui définit un accesseur dans le document JSON.
 * *DataSource*: document JSON.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Cette fonction effectue une requête JsonPath dans dataSource qui contient une chaîne JSON valide, convertissant éventuellement cette valeur en un autre type selon le troisième argument.
 
@@ -52,7 +52,7 @@ T
 
 ### <a name="json-path-expressions"></a>Expressions de chemin JSON
 
-|||
+|Expression de chemin|Description|
 |---|---|
 |`$`|Objet racine|
 |`@`|Objet en cours|

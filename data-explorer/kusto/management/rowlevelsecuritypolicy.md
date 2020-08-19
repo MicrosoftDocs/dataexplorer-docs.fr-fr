@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/25/2020
-ms.openlocfilehash: a82c4b48358a90460f917f181b73b718f6c5e455
-ms.sourcegitcommit: c7b16409995087a7ad7a92817516455455ccd2c5
+ms.openlocfilehash: f3d42835733ffe9303806687891c69df4dcc2178
+ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/12/2020
-ms.locfileid: "88148113"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88610455"
 ---
 # <a name="row-level-security-preview"></a>Sécurité au niveau des lignes (version préliminaire)
 
@@ -30,9 +30,6 @@ La sécurité au niveau des lignes vous permet de fournir un accès à d’autre
 * Toutes les propositions ci-dessus
 
 Pour plus d’informations, consultez [commandes de contrôle pour la gestion de la stratégie de sécurité au niveau des lignes](../management/row-level-security-policy.md).
-
-> [!NOTE]
-> La stratégie RLS que vous configurez sur la base de données de production prendra également effet dans les bases de données suivantes. Vous ne pouvez pas configurer différentes stratégies RLS sur les bases de données de production et de suivi.
 
 > [!TIP]
 > Ces fonctions sont souvent utiles pour les requêtes de row_level_security :
@@ -107,7 +104,7 @@ Tout d’abord, définissez une fonction qui reçoit le nom de la table en tant 
 
 Par exemple :
 
-```
+```kusto
 .create-or-alter function RLSForCustomersTables(TableName: string) {
     table(TableName)
     | ...
@@ -117,7 +114,7 @@ Par exemple :
 Configurez ensuite la sécurité au niveau des lignes sur plusieurs tables de cette manière :
 
 
-```
+```kusto
 .alter table Customers1 policy row_level_security enable "RLSForCustomersTables('Customers1')"
 .alter table Customers2 policy row_level_security enable "RLSForCustomersTables('Customers2')"
 .alter table Customers3 policy row_level_security enable "RLSForCustomersTables('Customers3')"
@@ -127,7 +124,7 @@ Configurez ensuite la sécurité au niveau des lignes sur plusieurs tables de ce
 
 Si vous souhaitez que les utilisateurs d’une table non autorisée reçoivent une erreur au lieu de retourner une table vide, utilisez la [`assert()`](../query/assert-function.md) fonction. L’exemple suivant montre comment générer cette erreur dans une fonction RLS :
 
-```
+```kusto
 .create-or-alter function RLSForCustomersTables() {
     MyTable
     | where assert(current_principal_is_member_of('aadgroup=mygroup@mycompany.com') == true, "You don't have access")
@@ -135,6 +132,21 @@ Si vous souhaitez que les utilisateurs d’une table non autorisée reçoivent u
 ```
 
 Vous pouvez combiner cette approche avec d’autres exemples. Par exemple, vous pouvez afficher des résultats différents pour les utilisateurs dans différents groupes AAD et générer une erreur pour tous les autres utilisateurs.
+
+### <a name="control-permissions-on-follower-databases"></a>Contrôler les autorisations sur les bases de données de suivi
+
+La stratégie RLS que vous configurez sur la base de données de production prendra également effet dans les bases de données suivantes. Vous ne pouvez pas configurer différentes stratégies RLS sur les bases de données de production et de suivi. Toutefois, vous pouvez utiliser la [`current_cluster_endpoint()`](../query/current-cluster-endpoint-function.md) fonction dans votre requête RLS pour obtenir le même effet, comme avec différentes requêtes RLS dans les tables de suivi.
+
+Par exemple :
+
+```kusto
+.create-or-alter function RLSForCustomersTables() {
+    let IsProductionCluster = current_cluster_endpoint() == "mycluster.eastus.kusto.windows.net";
+    let DataForProductionCluster = TempTable | where IsProductionCluster;
+    let DataForFollowerClusters = TempTable | where not(IsProductionCluster) | extend CreditCardNumber = "****";
+    union DataForProductionCluster, DataForFollowerClusters
+}
+```
 
 ## <a name="more-use-cases"></a>Autres cas d’utilisation
 

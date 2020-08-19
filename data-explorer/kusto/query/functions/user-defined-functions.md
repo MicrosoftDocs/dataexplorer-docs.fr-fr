@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: e9e199631d57f3fd3be8d438e6b0cdbf9bdd4266
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: f1d77e91ba625b3f38c4b1fde31a841377bb88a5
+ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227357"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88610516"
 ---
 # <a name="user-defined-functions"></a>Fonctions définies par l’utilisateur
 
@@ -45,9 +45,6 @@ Les noms de fonctions définies par l’utilisateur valides doivent respecter le
 
 Le nom doit également être unique dans son étendue de définition.
 
-> [!NOTE]
-> La surcharge de fonction n’est pas prise en charge. Vous ne pouvez pas définir plusieurs fonctions en utilisant le même nom.
-
 ## <a name="input-arguments"></a>Arguments d’entrée
 
 Les fonctions définies par l’utilisateur valides suivent les règles suivantes :
@@ -69,7 +66,7 @@ Par exemple :
 |Syntaxe                        |Description de la liste des arguments d’entrée                                 |
 |------------------------------|-----------------------------------------------------------------|
 |`()`                          |Aucun argument|
-|`(s:string)`                  |Argument scalaire unique appelé `s` acceptant une valeur de type`string`|
+|`(s:string)`                  |Argument scalaire unique appelé `s` acceptant une valeur de type `string`|
 |`(a:long, b:bool=true)`       |Deux arguments scalaires, le second ayant une valeur par défaut    |
 |`(T1:(*), T2(r:real), b:bool)`|Trois arguments (deux arguments tabulaires et un argument scalaire)  |
 
@@ -329,3 +326,11 @@ let Table2 = datatable(Column:long)[1235];
 let f = (hours:long) { range x from 1 to hours step 1 | summarize make_list(x) };
 Table2 | where Column != 123 | project d = f(Column)
 ```
+
+## <a name="features-that-are-currently-unsupported-by-user-defined-functions"></a>Fonctionnalités actuellement non prises en charge par les fonctions définies par l’utilisateur
+
+À des fins d’exhaustivité, voici quelques-unes des fonctionnalités couramment demandées pour les fonctions définies par l’utilisateur qui ne sont actuellement pas prises en charge :
+
+1.  Surcharge de fonction : il n’existe actuellement aucun moyen de surcharger une fonction (par exemple, créer plusieurs fonctions avec le même nom et un schéma d’entrée différent).
+
+2.  Valeurs par défaut : la valeur par défaut d’un paramètre scalaire pour une fonction doit être un littéral scalaire (constante). En outre, les fonctions stockées ne peuvent pas avoir une valeur par défaut de type `dynamic` .

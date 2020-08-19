@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/20/2019
-ms.openlocfilehash: 7684ea11b03113051580e3e19aef0d9ac3f13585
-ms.sourcegitcommit: 283cce0e7635a2d8ca77543f297a3345a5201395
+ms.openlocfilehash: a7a2dcaea2ef982edc8286b83a042d2f21460986
+ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/27/2020
-ms.locfileid: "84011480"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88610438"
 ---
 # <a name="ingestion-failures"></a>Échecs d’ingestion
 
@@ -30,7 +30,7 @@ Cette commande retourne un jeu de résultats qui comprend les échecs d’ingest
 
 **Syntaxe**
 
-|||
+|Option de syntaxe|Description|
 |---|---| 
 |`.show` `ingestion` `failures`                                       |Retourne tous les échecs d’ingestion enregistrés  
 |`.show` `ingestion` `failures` <code>&#124;</code> `where` ...       |Retourne un ensemble filtré d’échecs d’ingestion
@@ -40,16 +40,16 @@ Cette commande retourne un jeu de résultats qui comprend les échecs d’ingest
  
 |Paramètre de sortie           |Type     |Description                                                                              |
 |---------------------------|---------|-----------------------------------------------------------------------------------------|
-|OperationId                |Chaîne   |Identificateur de l’opération qui peut être utilisé pour afficher des détails supplémentaires sur l’opération via le <br> [. Show Operations](operations.md) (commande) </br> 
+|OperationId                |String   |Identificateur de l’opération qui peut être utilisé pour afficher des détails supplémentaires sur l’opération via le <br> [. Show Operations](operations.md) (commande) </br> 
 |Base de données                   |String   |Base de données sur laquelle la défaillance s’est produite
-|Table de charge de travail                      |Chaîne   |Table sur laquelle la défaillance s’est produite
+|Table de charge de travail                      |String   |Table sur laquelle la défaillance s’est produite
 |FailedOn                   |DateTime |Date/heure (au format UTC) de l’enregistrement de l’échec 
-|IngestionSourcePath        |Chaîne   |Identifie la source d’ingestion (généralement, un URI d’objet BLOB Azure) 
-|Détails                    |Chaîne   |Détails de l’échec. Fournit des informations sur la cause initiale de l’échec de l’ingestion réelle
-|FailureKind                |Chaîne   |Type de l’échec (permanent/temporaire)
-|RootActivityId             |Chaîne   |ID de l’activité racine.
-|OperationKind              |Chaîne   |Type d’opération d’ingestion (phase) au cours de laquelle la défaillance a été inscrite
-|OriginatesFromUpdatePolicy |Booléen | Indique si l’échec a été enregistré lors de l’exécution d’une [stratégie de mise à jour](update-policy.md)
+|IngestionSourcePath        |String   |Identifie la source d’ingestion (généralement, un URI d’objet BLOB Azure) 
+|Détails                    |String   |Détails de l’échec. Fournit des informations sur la cause initiale de l’échec de l’ingestion réelle
+|FailureKind                |String   |Type de l’échec (permanent/temporaire)
+|RootActivityId             |String   |ID de l’activité racine.
+|OperationKind              |String   |Type d’opération d’ingestion (phase) au cours de laquelle la défaillance a été inscrite
+|OriginatesFromUpdatePolicy |Boolean | Indique si l’échec a été enregistré lors de l’exécution d’une [stratégie de mise à jour](update-policy.md)
  
 **Exemple**
  

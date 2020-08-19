@@ -1,6 +1,6 @@
 ---
-title: Le type de données de timespan - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit le type de données de timespan dans Azure Data Explorer.
+title: Type de données TimeSpan-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit le type de données TimeSpan dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,22 +8,22 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 31a0bfafed817ffaf531cffdcb844da8a357531f
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 204076e8ed079dec69cae7080e7d2c50df52a9a6
+ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81509603"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88610319"
 ---
-# <a name="the-timespan-data-type"></a>Le type de données de timespan
+# <a name="the-timespan-data-type"></a>Type de données TimeSpan
 
-Le `timespan` `time`type de données représente un intervalle de temps.
+Le `timespan` `time` type de données () représente un intervalle de temps.
 
-## <a name="timespan-literals"></a>littérals de timespan
+## <a name="timespan-literals"></a>littéraux TimeSpan
 
-Les littérals `timespan` de `timespan(`type ont la *valeur*`)`syntaxe , où un certain nombre de formats sont pris en charge pour la *valeur*, comme indiqué par le tableau suivant:
+Les littéraux de type `timespan` ont la `timespan(` *valeur*de syntaxe `)` , où un certain nombre de formats sont pris en charge pour la *valeur*, comme indiqué dans le tableau suivant :
 
-|||
+|Value|Durée|
 ---|---
 `2d`|2 jours
 `1.5h`|1,5 heure
@@ -37,16 +37,16 @@ Les littérals `timespan` de `timespan(`type ont la *valeur*`)`syntaxe , où un 
 `time(2)`| 2 jours
 `time(0.12:34:56.7)`|`0d+12h+34m+56.7s`
 
-Le formulaire `time(null)` spécial est la [valeur nulle](null-values.md).
+La forme spéciale `time(null)` est la [valeur null](null-values.md).
 
-## <a name="timespan-operators"></a>opérateurs de timespan
+## <a name="timespan-operators"></a>TimeSpan, opérateurs
 
-Deux valeurs `timespan` de type peuvent être ajoutées, soustraites et divisées.
-La dernière opération renvoie `real` une valeur de type représentant le nombre fractionnel de fois qu’une valeur peut s’adapter à l’autre.
+Deux valeurs de type `timespan` peuvent être ajoutées, soustraites et divisées.
+La dernière opération retourne une valeur de type `real` représentant le nombre fractionnaire de fois où une valeur peut correspondre à l’autre.
 
 ## <a name="examples"></a>Exemples
 
-L’exemple suivant calcule le nombre de secondes en une journée de plusieurs façons :
+L’exemple suivant calcule le nombre de secondes dans un jour de plusieurs façons :
 
 ```kusto
 print

@@ -7,12 +7,12 @@ ms.reviewer: docohe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/14/2020
-ms.openlocfilehash: 8765635e0eea8c1d41640bc0393d39a0afa5f971
-ms.sourcegitcommit: e66c5f4b833b4f6269bb7bfa5695519fcb11d9fa
+ms.openlocfilehash: 9ac8011f8bc126c4fc6ea13fdb174bb7af0ba0af
+ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/19/2020
-ms.locfileid: "83630207"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88610608"
 ---
 # <a name="microsoft-logic-app-and-azure-data-explorer"></a>Application logique Microsoft et Explorateur de données Azure
 
@@ -23,9 +23,9 @@ L’application logique et le Flow sont créés sur le même connecteur. Par con
 ## <a name="how-to-create-a-logic-app-with-azure-data-explorer"></a>Comment créer une application logique avec Azure Explorateur de données
 
 1. Ouvrez le [portail Microsoft Azure](https://ms.portal.azure.com/). 
-1. Recherchez `logic app` et sélectionnez-le.
+1. Recherchez et sélectionnez `logic app`.
 
-    [![](./Images/logicapps/logicapp-search.png "Search for logic app")](./Images/logicapps/logicapp-search.png#lightbox)
+    :::image type="content" source="./images/logicapps/logicapp-search.png" alt-text="Recherche d’une « application logique » dans le Portail Azure, Azure Explorateur de données" lightbox="./images/logicapps/logicapp-search.png#lightbox":::
 
 1. Sélectionnez **+Ajouter**.
 
@@ -33,10 +33,10 @@ L’application logique et le Flow sont créés sur le même connecteur. Par con
 
 1. Entrez les informations requises pour le formulaire :
     * Abonnement
-    * Resource group
+    * Groupe de ressources
     * Nom de l’application logique
     * Région ou environnement de service d’intégration
-    * Emplacement
+    * Location
     * Analyse des journaux activée ou désactivée
 1. Sélectionnez **Revoir + créer**.
 
