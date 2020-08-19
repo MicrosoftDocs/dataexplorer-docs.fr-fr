@@ -8,17 +8,17 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: f0b2dcc8537c7bf959d60283a63f9227b22c168b
-ms.sourcegitcommit: 31ebf208d6bfd901f825d048ea69c9bb3d8b87af
+ms.openlocfilehash: a9818f2efb6b48621c59619e89b3f2c9a4315e42
+ms.sourcegitcommit: 5137a4291d70327b7bb874bbca74a4a386e57d32
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/17/2020
-ms.locfileid: "88501567"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88566413"
 ---
 # <a name="query-limits"></a>Limites de requête
 
 Kusto est un moteur de requête ad hoc qui héberge des jeux de données volumineux et tente de répondre aux requêtes en conservant toutes les données pertinentes en mémoire.
-Il existe un risque inhérent au fait que les requêtes monopolisent les ressources de service sans limites. Kusto fournit un certain nombre de protections intégrées sous la forme de limites de requête par défaut.
+Il existe un risque inhérent au fait que les requêtes monopolisent les ressources de service sans limites. Kusto fournit un certain nombre de protections intégrées sous la forme de limites de requête par défaut. Si vous envisagez de supprimer ces limites, déterminez d’abord si vous obtenez une valeur en procédant ainsi.
 
 ## <a name="limit-on-query-concurrency"></a>Limite de concurrence des requêtes
 
@@ -74,6 +74,12 @@ set truncationmaxrecords=1105;
 MyTable | where User=="Ploni"
 ```
 
+La suppression de la limite de troncation des résultats signifie que vous avez l’intention de déplacer les données en bloc en dehors de Kusto.
+
+Vous pouvez supprimer la limite de troncation des résultats à des fins d’exportation à l’aide de la `.export` commande ou d’une agrégation ultérieure. Si vous choisissez l’agrégation ultérieure, envisagez l’agrégation à l’aide de Kusto.
+
+Laissez l’équipe Kusto savoir si vous avez un scénario d’entreprise qui ne peut pas être respecté par l’une de ces solutions suggérées.  
+
 Les bibliothèques clientes Kusto partent actuellement de l’existence de cette limite. Bien que vous puissiez augmenter la limite sans limites, vous pouvez finir par atteindre les limites du client qui ne sont pas configurables actuellement.
 
 Les clients qui ne souhaitent pas extraire toutes les données en un seul bloc peuvent essayer les solutions de contournement suivantes :
@@ -114,10 +120,6 @@ Par défaut, cette valeur est définie sur 5 Go. Vous pouvez augmenter cette val
 set maxmemoryconsumptionperiterator=68719476736;
 MyTable | ...
 ```
-
-Lorsque vous envisagez de supprimer ces limites, déterminez d’abord si vous obtenez une valeur en procédant ainsi. En particulier, la suppression de la limite de troncation des résultats signifie que vous avez l’intention de déplacer des données en bloc en dehors de Kusto.
-Vous pouvez supprimer la limite de troncation des résultats, à des fins d’exportation, à l’aide de la `.export` commande, ou pour effectuer une agrégation ultérieure, dans ce cas, envisagez l’agrégation à l’aide de Kusto.
-Laissez l’équipe Kusto savoir si vous avez un scénario d’entreprise qui ne peut pas être respecté par l’une de ces solutions suggérées.  
 
 Dans de nombreux cas, le dépassement de cette limite peut être évité en échantillonnant le jeu de données. Les deux requêtes ci-dessous montrent comment effectuer l’échantillonnage. La première est un échantillonnage statistique, qui utilise un générateur de nombres aléatoires. Le second est un échantillonnage déterministe, effectué par le hachage d’une colonne du jeu de données, généralement un ID.
 
