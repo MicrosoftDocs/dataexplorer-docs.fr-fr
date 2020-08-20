@@ -6,13 +6,13 @@ ms.author: orspodek
 ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
-ms.date: 06/03/2019
-ms.openlocfilehash: cad16cf68b5b923c4ffef36370adb6506255dafd
-ms.sourcegitcommit: 0d15903613ad6466d49888ea4dff7bab32dc5b23
+ms.date: 08/13/2020
+ms.openlocfilehash: 2785ec685041c47943ce618b9223eadd46ad9b2a
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "86014019"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201709"
 ---
 # <a name="ingest-blobs-into-azure-data-explorer-by-subscribing-to-event-grid-notifications"></a>Ingérer des objets blob dans Azure Data Explorer en s’abonnant à des notifications Event Grid
 
@@ -22,7 +22,7 @@ ms.locfileid: "86014019"
 > * [Python](data-connection-event-grid-python.md)
 > * [Modèle Azure Resource Manager](data-connection-event-grid-resource-manager.md)
 
-Azure Data Explorer est un service d’exploration de données rapide et évolutif pour les données de journal et de télémétrie. Il assure une ingestion continue (chargement de données) à partir d’objets blob écrits dans des conteneurs d’objets blob.
+[!INCLUDE [data-connector-intro](includes/data-connector-intro.md)]
 
 Cet article vous montre comment ingérer des objets blob de votre compte de stockage vers Azure Data Explorer en utilisant une connexion de données Event Grid. Vous allez créer une connexion de données Event Grid qui définit un abonnement [Azure Event Grid](/azure/event-grid/overview). L’abonnement Event Grid achemine les événements de votre compte de stockage vers Azure Data Explorer via un hub d’événements Azure. Ensuite, vous verrez un exemple de flux de données dans tout le système.
 
@@ -79,7 +79,7 @@ Connectez maintenant le compte de stockage à Azure Data Explorer afin que le fl
     | Nom de la connexion de données | *test-grid-connection* | Nom de la connexion que vous souhaitez créer dans Azure Data Explorer.|
     | Abonnement du compte de stockage | Votre ID d’abonnement | ID d’abonnement où se trouve votre compte de stockage.|
     | Compte de stockage | *gridteststorage1* | Nom du compte de stockage que vous avez créé précédemment.|
-    | Création de ressources | *Automatique* | Indiquez si vous voulez qu’Azure Data Explorer crée un abonnement Event Grid, un espace de noms Event Hub et un hub d’événements. Vous trouverez une explication détaillée sur la création manuelle d’un abonnement Event Grid dans les références sous la section [Créer un abonnement Event Grid dans votre compte de stockage](../data-explorer/kusto/management/data-ingestion/eventgrid.md#create-an-event-grid-subscription-in-your-storage-account).|
+    | Création de ressources | *Automatique* | Indiquez si vous voulez qu’Azure Data Explorer crée un abonnement Event Grid, un espace de noms Event Hub et un hub d’événements. Vous trouverez une explication détaillée sur la création manuelle d’un abonnement Event Grid dans les références sous la section [Créer un abonnement Event Grid dans votre compte de stockage](ingest-data-event-grid.md).|
 
 1. Sélectionnez **Paramètres de filtre** si vous voulez suivre des sujets spécifiques. Définissez les filtres pour les notifications comme suit :
     * Le champ **Préfixe** est le préfixe *littéral* du sujet. Comme le modèle appliqué est *startswith*, il peut englober plusieurs conteneurs, dossiers ou objets blob. Les caractères génériques ne sont pas autorisés.
@@ -102,14 +102,14 @@ Connectez maintenant le compte de stockage à Azure Data Explorer afin que le fl
      **Paramètre** | **Valeur suggérée** | **Description du champ**
     |---|---|---|
     | Table de charge de travail | *TestTable* | Table que vous avez créée dans **TestDatabase**. |
-    | Format de données | *JSON* | Les formats pris en charge sont Avro, CSV, JSON, MULTILINE JSON, ORC, PARQUET, PSV, SCSV, SOHSV, TSV, TXT et TSVE. Options de compression prises en charge : ZIP et GZIP |
+    | Format de données | *JSON* | Les formats pris en charge sont Avro, CSV, JSON, MULTILINE JSON, ORC, PARQUET, PSV, SCSV, SOHSV, TSV, TXT, TSVE, APACHEAVRO, RAW et W3CLOG. Les options de compression prises en charge sont Zip et GZip. |
     | Mappage | *TestMapping* | Le mappage que vous avez créé dans **TestDatabase**, qui mappe les données JSON entrantes dans les colonnes des noms de colonne et les types de données de **TestTable**.|
 
 1. Passez en revue les ressources qui ont été créées automatiquement pour vous et sélectionnez **Créer**.
 
     :::image type="content" source="media/ingest-data-event-grid/create-event-grid-data-connection-review-create.png" alt-text="Vérifier et créer la connexion de données pour Event Grid":::
 
-1. Attendez la fin du déploiement. Si votre déploiement échoue, vous pouvez sélectionner **Détails de l’opération** à côté de la phase qui a échoué pour obtenir plus d’informations sur la raison de l’échec. Vous pouvez aussi sélectionner **Redéployer** pour retenter de déployer les ressources.
+1. Attendez la fin du déploiement. Si votre déploiement a échoué, sélectionnez **Détails de l’opération** à côté de la phase qui a échoué pour obtenir plus d’informations sur la raison de l’échec. Sélectionnez **Redéployer** pour retenter de déployer les ressources.
 
     :::image type="content" source="media/ingest-data-event-grid/deploy-event-grid-resources.png" alt-text="Déployer les ressources Event Grid":::
 
@@ -163,15 +163,7 @@ Vous pouvez spécifier les [propriétés d’ingestion](ingestion-properties.md)
 
 Les propriétés suivantes peuvent être définies :
 
-|**Propriété** | **Description de la propriété**|
-|---|---|
-| `rawSizeBytes` | Taille des données brutes (non compressées). Pour Avro/ORC/Parquet, il s’agit de la taille avant l’application de la compression spécifique au format.|
-| `kustoTable` |  Nom de la table cible existante. Remplace le paramètre `Table` défini dans le panneau `Data Connection`. |
-| `kustoDataFormat` |  Format de données. Remplace le paramètre `Data format` défini dans le panneau `Data Connection`. |
-| `kustoIngestionMappingReference` |  Nom du mappage d’ingestion existant à utiliser. Remplace le paramètre `Column mapping` défini dans le panneau `Data Connection`.|
-| `kustoIgnoreFirstRecord` | Si la valeur définie est `true`, Kusto ignore la première ligne de l’objet blob. Utilisez dans les données au format tabulaire (CSV, TSV ou similaire) pour ignorer les en-têtes. |
-| `kustoExtentTags` | Chaîne représentant les [balises](kusto/management/extents-overview.md#extent-tagging) qui seront attachées à l’étendue résultante. |
-| `kustoCreationTime` |  Remplace [$IngestionTime](kusto/query/ingestiontimefunction.md?pivots=azuredataexplorer) pour l’objet blob, au format d’une chaîne ISO 8601. À utiliser pour le renvoi. |
+[!INCLUDE [ingestion-properties-event-grid](includes/ingestion-properties-event-grid.md)]
 
 > [!NOTE]
 > Azure Data Explorer ne supprimera pas les objets blob après l’ingestion.
