@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 0c8e9b3397026c572d27c250fc4e817bd5f7f265
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: 8ad104b7802bde2355b46bc31e74e63a6708d4f4
+ms.sourcegitcommit: d2edf654f71f8686d1f03d8ec16200f84e671b12
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803673"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88659261"
 ---
 # <a name="string-operators"></a>Opérateurs de chaîne
 
-Kusto offre un large éventail d’opérateurs de requête pour rechercher des types de données de chaîne. L’article suivant décrit la façon dont les termes de chaîne sont indexés, répertorie les opérateurs de requête de chaîne et donne des conseils pour optimiser les performances.
+Kusto offre un large éventail d’opérateurs de requête pour rechercher des types de données de chaîne. L’article suivant décrit comment les termes de chaîne sont indexés, répertorie les opérateurs de requête de chaîne et donne des conseils pour optimiser les performances.
 
 ## <a name="understanding-string-terms"></a>Comprendre les termes de chaîne
 
@@ -86,12 +86,12 @@ Opérateur        |Description                                                  
 Pour de meilleures performances, lorsque deux opérateurs effectuent la même tâche, utilisez la casse.
 Par exemple :
 
-* au lieu de `=~` , utilisez`==`
-* au lieu de `in~` , utilisez`in`
-* au lieu de `contains` , utilisez`contains_cs`
+* au lieu de `=~` , utilisez `==`
+* au lieu de `in~` , utilisez `in`
+* au lieu de `contains` , utilisez `contains_cs`
 
 Pour accélérer les résultats, si vous testez la présence d’un symbole ou d’un mot alphanumérique lié par des caractères non alphanumériques, ou le début ou la fin d’un champ, utilisez `has` ou `in` . 
-`has`fonctionne plus rapidement que `contains` , `startswith` ou `endswith` .
+`has` fonctionne plus rapidement que `contains` , `startswith` ou `endswith` .
 
 Par exemple, la première de ces requêtes s’exécutera plus rapidement :
 
