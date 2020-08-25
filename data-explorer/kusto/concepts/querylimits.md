@@ -4,16 +4,16 @@ description: Cet article décrit les limites de requête dans Azure Explorateur 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: a9818f2efb6b48621c59619e89b3f2c9a4315e42
-ms.sourcegitcommit: 5137a4291d70327b7bb874bbca74a4a386e57d32
+ms.openlocfilehash: 5bb05de1ad5a3a055201f42541927619777cafcd
+ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2020
-ms.locfileid: "88566413"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88793715"
 ---
 # <a name="query-limits"></a>Limites de requête
 
@@ -30,7 +30,7 @@ L' **accès concurrentiel aux requêtes** est une limite qu’un cluster impose 
 
 ## <a name="limit-on-result-set-size-result-truncation"></a>Limite de la taille du jeu de résultats (troncation des résultats)
 
-La **troncation des résultats** est une limite définie par défaut sur le jeu de résultats retourné par la requête. Kusto limite le nombre d’enregistrements renvoyés au client à **500 000**, et la mémoire globale de ces enregistrements à **64 Mo**. Lorsque l’une ou l’autre de ces limites est dépassée, la requête échoue avec un « échec partiel de la requête ». Le dépassement de la mémoire globale génère une exception avec le message :
+La **troncation des résultats** est une limite définie par défaut sur le jeu de résultats retourné par la requête. Kusto limite le nombre d’enregistrements renvoyés au client à **500 000**, et la taille globale des données pour ces enregistrements à **64 Mo**. Lorsque l’une ou l’autre de ces limites est dépassée, la requête échoue avec un « échec partiel de la requête ». Le dépassement de la taille globale des données génère une exception avec le message :
 
 ```
 The Kusto DataEngine has failed to execute a query: 'Query result set has exceeded the internal data size limit 67108864 (E_QUERY_RESULT_SET_TOO_LARGE).'
@@ -47,7 +47,7 @@ Il existe plusieurs stratégies pour traiter cette erreur.
 * Réduisez la taille du jeu de résultats en modifiant la requête pour qu’elle retourne uniquement des données intéressantes. Cette stratégie est utile lorsque la requête initiale ayant échoué est trop « grande ». Par exemple, la requête ne projette pas les colonnes de données qui ne sont pas nécessaires.
 * Réduisez la taille du jeu de résultats en décalant le traitement après requête, tel que les agrégations, dans la requête elle-même. La stratégie est utile dans les scénarios où la sortie de la requête est acheminée vers un autre système de traitement, et qui effectue ensuite des agrégations supplémentaires.
 * Basculez des requêtes vers à l’aide de l' [exportation de données](../management/data-export/index.md) lorsque vous souhaitez exporter de grands ensembles de données à partir du service.
-* Demandez au service de supprimer cette limite de requête.
+* Demandez au service de supprimer cette limite de requête à l’aide `set` des instructions listées ci-dessous ou des indicateurs dans les [Propriétés de demande du client](../api/netfx/request-properties.md).
 
 Les méthodes de réduction de la taille du jeu de résultats produite par la requête sont les suivantes :
 
@@ -71,22 +71,12 @@ Il est également possible de disposer d’un contrôle plus affiné sur la tron
 ```kusto
 set truncationmaxsize=1048576;
 set truncationmaxrecords=1105;
-MyTable | where User=="Ploni"
+MyTable | where User=="UserId1"
 ```
 
 La suppression de la limite de troncation des résultats signifie que vous avez l’intention de déplacer les données en bloc en dehors de Kusto.
 
 Vous pouvez supprimer la limite de troncation des résultats à des fins d’exportation à l’aide de la `.export` commande ou d’une agrégation ultérieure. Si vous choisissez l’agrégation ultérieure, envisagez l’agrégation à l’aide de Kusto.
-
-Laissez l’équipe Kusto savoir si vous avez un scénario d’entreprise qui ne peut pas être respecté par l’une de ces solutions suggérées.  
-
-Les bibliothèques clientes Kusto partent actuellement de l’existence de cette limite. Bien que vous puissiez augmenter la limite sans limites, vous pouvez finir par atteindre les limites du client qui ne sont pas configurables actuellement.
-
-Les clients qui ne souhaitent pas extraire toutes les données en un seul bloc peuvent essayer les solutions de contournement suivantes :
-* Basculer certains SDK en mode de diffusion en continu (streaming = true)
-* Basculer vers l’API .NET v2
-
-Laissez l’équipe Kusto savoir si vous rencontrez ce problème, afin de pouvoir augmenter la priorité du client de diffusion en continu.
 
 Kusto fournit un certain nombre de bibliothèques clientes qui peuvent gérer des résultats « infiniment volumineux » en les diffusant à l’appelant. Utilisez l’une de ces bibliothèques et configurez-la en mode de diffusion en continu. Par exemple, utilisez le client .NET Framework (Microsoft. Azure. Kusto. Data) et affectez à la propriété streaming de la chaîne de connexion la *valeur true*, ou utilisez l’appel *ExecuteQueryV2Async ()* qui transmet toujours les résultats.
 
@@ -146,9 +136,7 @@ Si vous dépassez l’une de ces limites, l’une des erreurs suivantes se produ
 ```
 Runaway query (E_RUNAWAY_QUERY). (message: 'Accumulated string array getting too large and exceeds the limit of ...GB (see https://aka.ms/kustoquerylimits)')
 
-Runaway query (E_RUNAWAY_QUERY). (message: 'Accumulated string array getting too large and exceeds the maximum count of 2G items (see http://aka.ms/kustoquerylimits)')
-
-Runaway query (E_RUNAWAY_QUERY). (message: 'Single string size shouldn't exceed the limit of 2GB (see http://aka.ms/kustoquerylimits)')
+Runaway query (E_RUNAWAY_QUERY). (message: 'Accumulated string array getting too large and exceeds the maximum count of ..GB items (see http://aka.ms/kustoquerylimits)')
 ```
 
 Il n’existe actuellement aucun commutateur pour augmenter la taille maximale du jeu de chaînes.

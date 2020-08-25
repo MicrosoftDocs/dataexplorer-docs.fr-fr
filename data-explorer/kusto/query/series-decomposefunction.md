@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/26/2019
-ms.openlocfilehash: fa17d27506c4930fa9b9f7fb0a24f5ff31e1c974
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 9ff0df578f174bc6964e39e799b91068f89a28e4
+ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345162"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88793936"
 ---
 # <a name="series_decompose"></a>series_decompose()
 
@@ -39,7 +39,7 @@ Prend une expression contenant une série (tableau numérique dynamique) comme e
 * *Test_points*: 0 (valeur par défaut) ou un entier positif, qui spécifie le nombre de points à la fin de la série à exclure du processus d’apprentissage (régression). Ce paramètre doit être défini à des fins de prévision.
 * *Seasonality_threshold*: le seuil du score saisonnier lorsque le caractère *saisonnier* est défini sur détection automatique, le seuil de score par défaut est `0.6` . Pour plus d’informations, consultez [series_periods_detect](series-periods-detectfunction.md).
 
-**Renvoie**
+**Renvoi**
 
  La fonction retourne les séries correspondantes suivantes :
 
@@ -51,7 +51,7 @@ Prend une expression contenant une série (tableau numérique dynamique) comme e
 * `residual`: la série du composant résiduel (autrement dit, x-Baseline).
   
 
-**Remarques**
+**Notes**
 
 * Ordre d’exécution des composants :
     1. Extraire la série saisonnière
@@ -64,13 +64,13 @@ Prend une expression contenant une série (tableau numérique dynamique) comme e
 
 **En savoir plus sur la décomposition des séries**
 
-Cette méthode est généralement appliquée à la série chronologique de mesures attendues pour manifester le comportement périodique et/ou de tendance. Vous pouvez utiliser la méthode pour prévoir les valeurs métriques futures et/ou détecter les valeurs anormales. L’hypothèse implicite de ce processus de régression est que, en dehors du comportement saisonnier et de tendance, la série chronologique est stochastique et distribuée de manière aléatoire. Prévoyez les futures valeurs de métriques à partir des composants saisonniers et de tendance tout en ignorant la partie résiduelle. Détecte les valeurs anormales en fonction de la détection des valeurs hors norme uniquement sur la partie résiduelle. Vous trouverez plus d’informations dans le [chapitre décomposition des séries chronologiques](https://www.otexts.org/fpp/6).
+Cette méthode est généralement appliquée à la série chronologique de mesures attendues pour manifester le comportement périodique et/ou de tendance. Vous pouvez utiliser la méthode pour prévoir les valeurs métriques futures et/ou détecter les valeurs anormales. L’hypothèse implicite de ce processus de régression est que, en dehors du comportement saisonnier et de tendance, la série chronologique est stochastique et distribuée de manière aléatoire. Prévoyez les futures valeurs de métriques à partir des composants saisonniers et de tendance tout en ignorant la partie résiduelle. Détecte les valeurs anormales en fonction de la détection des valeurs hors norme uniquement sur la partie résiduelle. Vous trouverez plus d’informations dans le [chapitre décomposition des séries chronologiques](https://otexts.com/fpp2/decomposition.html).
 
 ## <a name="examples"></a>Exemples
 
 **Caractère saisonnier hebdomadaire**
 
-Dans l’exemple suivant, nous générons une série avec un caractère saisonnier hebdomadaire et sans tendance, nous y ajoutons quelques valeurs hors norme. `series_decompose`recherche et détecte automatiquement le caractère saisonnier et génère une ligne de base quasiment identique au composant saisonnier. Les valeurs hors norme que nous avons ajoutées peuvent être clairement visibles dans le composant residus.
+Dans l’exemple suivant, nous générons une série avec un caractère saisonnier hebdomadaire et sans tendance, nous y ajoutons quelques valeurs hors norme. `series_decompose` recherche et détecte automatiquement le caractère saisonnier et génère une ligne de base quasiment identique au composant saisonnier. Les valeurs hors norme que nous avons ajoutées peuvent être clairement visibles dans le composant residus.
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

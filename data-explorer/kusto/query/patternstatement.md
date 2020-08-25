@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: a4aae88f6ad435469719f8444bae9123975ee618
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 03d183bd042bb75d8bb44f530575bd3b91cb2102
+ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346216"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88793809"
 ---
 # <a name="pattern-statement"></a>Pattern (instruction)
 
@@ -157,7 +157,7 @@ union (App('a1').Text), (App('a2').Text)
 
 **Erreur sémantique**:
 
-     SEM0036: One or more pattern references weren't declared. Detected pattern references: ["App('a1').['Text']","App('a2').['Text']"].
+> SEM0036 : une ou plusieurs références de modèle n’ont pas été déclarées. Références de modèle détectées : ["application ('a1 '). [' Text'] "," app ('a2 '). ['Text'] "].
 
 ```kusto
 declare pattern App;
@@ -173,7 +173,7 @@ union (App('a2').Metrics), (App('a3').Metrics)
 
 **Erreur sémantique retournée**:
 
-    SEM0036: One or more pattern references weren't declared. Detected pattern references: ["App('a2').['Metrics']","App('a3').['Metrics']"].
+> SEM0036 : une ou plusieurs références de modèle n’ont pas été déclarées. Références de modèle détectées : ["app ('a2 '). [' Métriques « ] », « application » (« a3 »). ['Metrics'] "].
 
 ::: zone-end
 

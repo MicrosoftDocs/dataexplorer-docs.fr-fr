@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 69ba6a8ce3cd29d7459215184f7488b015d16558
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 2ab8a9b8a687b695859c52e75ab4e9f88aac408b
+ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349803"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88793704"
 ---
 # <a name="activity_metrics-plugin"></a>plug-in activity_metrics
 
@@ -37,7 +37,7 @@ T | evaluate activity_metrics(id, datetime_column, startofday(ago(30d)), startof
 * *Window*: scalaire avec la valeur de la période de la fenêtre d’analyse. Il peut s’agir d’une valeur numérique/DateTime/timestamp, ou d’une chaîne qui est l’une des `week` / `month` / `year` , auquel cas toutes les périodes sont [startOfWeek](startofweekfunction.md) / [StartOfMonth](startofmonthfunction.md) / [STARTOFYEAR](startofyearfunction.md) en conséquence. 
 * *dim1*, *dim2*,... : (facultatif) liste des colonnes de dimensions qui découpent le calcul des métriques d’activité.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Retourne une table qui contient les valeurs des nombres distincts, le nombre de nouvelles valeurs, le taux de rétention et le taux d’évolution pour chaque période de chronologie et pour chaque combinaison de dimensions existante.
 
@@ -47,47 +47,47 @@ Le schéma de la table de sortie est le suivant :
 |---|---|---|---|---|--|--|--|--|--|--|
 |type : à partir de *TimelineColumn*|long|long|double|double|..|..|..|
 
-**Remarques**
+**Notes**
 
 ***Définition de la vitesse de rétention***
 
-`Retention Rate`sur une période, est calculé comme suit :
+`Retention Rate` sur une période, est calculé comme suit :
 
-    # of customers returned during the period
-    / (divided by)
-    # customers at the beginning of the period
+> *nombre de clients renvoyés au cours de la période*  
+> /(divisé par)  
+> *nombre de clients au début de la période*  
 
 où `# of customers returned during the period` est défini comme suit :
 
-    # of customers at end of period
-    - (minus)
-    # of new customers acquired during the period
+> *nombre de clients à la fin de la période*  
+> \- levant  
+> *nombre de nouveaux clients acquis au cours de la période*  
 
-`Retention Rate`peut varier de 0,0 à 1,0  
+`Retention Rate` peut varier de 0,0 à 1,0  
 Plus le score est élevé, plus le nombre d’utilisateurs renvoyés est important.
 
 
 ***Définition du taux d’évolution***
 
-`Churn Rate`sur une période, est calculé comme suit :
+`Churn Rate` sur une période, est calculé comme suit :
     
-    # of customers lost in the period
-    / (divided by)
-    # of customers at the beginning of the period
+> *nombre de clients perdus au cours de la période*  
+> /(divisé par)  
+> *nombre de clients au début de la période*  
 
 où `# of customer lost in the period` est défini comme suit :
 
-    # of customers at the beginning of the period
-    - (minus)
-    # of customers at the end of the period
+> *nombre de clients au début de la période*  
+> \- levant  
+> *nombre de clients à la fin de la période*  
 
-`Churn Rate`peut varier de 0,0 à 1,0 le score supérieur signifie que la plus grande quantité d’utilisateurs ne retourne pas au service.
+`Churn Rate` peut varier de 0,0 à 1,0 le score supérieur signifie que la plus grande quantité d’utilisateurs ne retourne pas au service.
 
 ***Évolution et taux de rétention***
 
 Dérivée de la définition de `Churn Rate` et `Retention Rate` , les conditions suivantes sont toujours vraies :
 
-    [Retention rate] = 100.0% - [Churn Rate]
+> [ `Retention Rate` ] = 100,0%-[ `Churn Rate` ]
 
 
 ## <a name="examples"></a>Exemples

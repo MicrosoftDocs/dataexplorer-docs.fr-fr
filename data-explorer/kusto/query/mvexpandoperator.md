@@ -4,22 +4,22 @@ description: Cet article décrit l’opérateur MV-Expand dans Azure Explorateur
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2019
-ms.openlocfilehash: 6ca5b5a4e6af8ece7d6f7a6543782665062b5d80
-ms.sourcegitcommit: ed902a5a781e24e081cd85910ed15cd468a0db1e
+ms.openlocfilehash: a9f5517baf0963b4857759fc18158cfa0eee0bb1
+ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/11/2020
-ms.locfileid: "88072410"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88793891"
 ---
 # <a name="mv-expand-operator"></a>mv-expand, opérateur
 
 Développe un tableau à valeurs multiples ou un conteneur de propriétés.
 
-`mv-expand`est appliqué sur un tableau de type [dynamique](./scalar-data-types/dynamic.md)ou une colonne de jeu de propriétés afin que chaque valeur de la collection obtient une ligne distincte. Toutes les autres colonnes d’une ligne développée sont dupliquées. 
+`mv-expand` est appliqué sur un tableau de type [dynamique](./scalar-data-types/dynamic.md)ou une colonne de jeu de propriétés afin que chaque valeur de la collection obtient une ligne distincte. Toutes les autres colonnes d’une ligne développée sont dupliquées. 
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -32,7 +32,7 @@ Développe un tableau à valeurs multiples ou un conteneur de propriétés.
 * *ColumnName :* dans le résultat, les tableaux dans la colonne nommée sont développés en plusieurs lignes. 
 * *ArrayExpression :* expression produisant un tableau. Si ce formulaire est utilisé, une nouvelle colonne est ajoutée et la colonne existante est conservée.
 * *Name :* nom de la nouvelle colonne.
-* Nom de la *:* Indique le type sous-jacent des éléments du tableau, qui devient le type de la colonne produite par l’opérateur. Les valeurs non conformes dans le tableau ne sont pas converties. Au lieu de cela, ces valeurs prendront une `null` valeur.
+* Nom de la *:* Indique le type sous-jacent des éléments du tableau, qui devient le type de la colonne produite par l' `mv-apply` opérateur. L’opération d’application de type est Cast uniquement et n’inclut pas l’analyse ou la conversion de type. Les éléments de tableau qui ne sont pas conformes au type déclaré deviennent des `null` valeurs.
 * *RowLimit :* nombre maximal de lignes générées à partir de chaque ligne d’origine. La valeur par défaut est 2147483647. 
 
   > [!Note]

@@ -8,14 +8,14 @@ ms.reviewer: elgevork
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/05/2020
-ms.openlocfilehash: 010610eb8cf6727c752f04564e8b3d1f71a405ab
-ms.sourcegitcommit: 31ebf208d6bfd901f825d048ea69c9bb3d8b87af
+ms.openlocfilehash: 94901a69b4c4435e983f39f1692cf45cf27756e5
+ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/17/2020
-ms.locfileid: "88502153"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88793785"
 ---
-# <a name="dynamic_to_json"></a>dynamic_to_json ()
+# <a name="dynamic_to_json"></a>dynamic_to_json()
 
 Convertit l' `dynamic` entrée en une représentation sous forme de chaîne.
 Si l’entrée est un conteneur de propriétés, la chaîne de sortie imprime son contenu trié par les clés de manière récursive. Dans le cas contraire, la sortie est similaire à la sortie de la `tostring` fonction.
@@ -36,16 +36,58 @@ Retourne une représentation sous forme de chaîne de l' `dynamic` entrée. Si l
 
 Expression :
 
-  Laissez BAG1 = dynamic_to_json (dynamique ({'Y10 ' :d ynamique ({}), 'x8 ' : Dynamic ({'C3 ' : 1, d 8 ' : 5, 'a4 ' : 6}), 1 ' : 114, 'a1 ' : 12, 'B1 ' : 2, 'C1 ' : 3, 'A14 ' : [15, 13, 18]})); imprimer BAG1
+```kusto
+  let bag1 = dynamic_to_json(dynamic({ 'Y10':dynamic({ }), 'X8': dynamic({ 'c3':1, 'd8':5, 'a4':6 }),'D1':114, 'A1':12, 'B1':2, 'C1':3, 'A14':[15, 13, 18]}));
+  print bag1
+```
   
 Résultat :
 
-"{" "A1" " : 12," "A14" " : [15, 13, 18]," "B1" " : 2," "C1" " : 3," D1 "" : 114, "" x8 "" : {"" C3 "" : 1, "" D8 "" : 5, "" a4 "" : 6}, "" Y10 "" : {} } "
+```
+"{
+  ""A1"": 12,
+  ""A14"": [
+    15,
+    13,
+    18
+  ],
+  ""B1"": 2,
+  ""C1"": 3,
+  ""D1"": 114,
+  ""X8"": {
+    ""c3"": 1,
+    ""d8"": 5,
+    ""a4"": 6
+  },
+  ""Y10"": {}
+}"
+```
 
 Expression :
 
- Laissez BAG2 = dynamic_to_json (dynamique ({'x8 ' : dynamique ({'a4 ' : 6, 'C3 ' : 1, d 8 ' : 5}), 'A14 ' : [15, 13, 18], 'C1 ' : 3, 'B1 ' : 2, 'Y10 ' : dynamique ({}), 'a1 ' : 12, 1 ' : 114}); imprimer BAG2
+```kusto
+ let bag2 = dynamic_to_json(dynamic({ 'X8': dynamic({ 'a4':6, 'c3':1, 'd8':5}), 'A14':[15, 13, 18], 'C1':3, 'B1':2, 'Y10': dynamic({ }), 'A1':12, 'D1':114}));
+ print bag2
+```
  
 Résultat :
 
-{"A1" : 12, "A14" : [15, 13, 18], "B1" : 2, "C1" : 3, "D1" : 114, "x8" : {"a4" : 6, "C3" : 1, "D8" : 5}, "Y10" : {} }
+```
+{
+  "A1": 12,
+  "A14": [
+    15,
+    13,
+    18
+  ],
+  "B1": 2,
+  "C1": 3,
+  "D1": 114,
+  "X8": {
+    "a4": 6,
+    "c3": 1,
+    "d8": 5
+  },
+  "Y10": {}
+}
+```

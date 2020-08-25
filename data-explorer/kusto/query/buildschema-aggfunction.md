@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 2520849508c9cef829d7c8c07f22d3f8c64cfcea
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 3fb6ae643bb4350cea1ffef4493625bc9c7d191d
+ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348936"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88793574"
 ---
 # <a name="buildschema-aggregation-function"></a>buildschema () (fonction d’agrégation)
 
@@ -29,12 +29,16 @@ résumer `buildschema(` *DynamicExpr*`)`
 
 * *DynamicExpr*: expression utilisée pour le calcul de l’agrégation. Le type de colonne de paramètre doit être `dynamic` . 
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Valeur maximale de *`Expr`* dans le groupe.
 
 > [!TIP] 
-> Si `buildschema(json_column)` génère une erreur de syntaxe : *votre chaîne est-elle `json_column` une chaîne plutôt qu’un objet dynamique ?* Utilisez ensuite `buildschema(parsejson(json_column))` .
+> Si `buildschema(json_column)` donne une erreur de syntaxe :
+>
+> > *S’agit-il `json_column` d’une chaîne plutôt que d’un objet dynamique ?*
+>
+> Utilisez ensuite `buildschema(parsejson(json_column))` .
 
 ## <a name="example"></a>Exemple
 
@@ -49,12 +53,14 @@ Supposons que la colonne d’entrée comporte trois valeurs dynamiques.
 
 Le schéma résultant serait :
 
-    { 
-      "x":["int", "string"], 
-      "y":["double", {"w": "string"}], 
-      "z":{"`indexer`": ["int", "string"]}, 
-      "t":{"`indexer`": "string"} 
-    }
+```kusto
+{ 
+    "x":["int", "string"],
+    "y":["double", {"w": "string"}],
+    "z":{"`indexer`": ["int", "string"]},
+    "t":{"`indexer`": "string"}
+}
+```
 
 Le schéma fournit les informations suivantes :
 
@@ -70,19 +76,22 @@ Le schéma fournit les informations suivantes :
 
 La syntaxe du schéma retourné est la suivante :
 
-    Container ::= '{' Named-type* '}';
-    Named-type ::= (name | '"`indexer`"') ':' Type;
-    Type ::= Primitive-type | Union-type | Container;
-    Union-type ::= '[' Type* ']';
-    Primitive-type ::= "int" | "string" | ...;
+```output
+Container ::= '{' Named-type* '}';
+Named-type ::= (name | '"`indexer`"') ':' Type;
+Type ::= Primitive-type | Union-type | Container;
+Union-type ::= '[' Type* ']';
+Primitive-type ::= "int" | "string" | ...;
+```
 
 Les valeurs sont équivalentes à un sous-ensemble des annotations de type dactylographié, encodées sous la forme d’une valeur dynamique Kusto. En Typescript, l’exemple de schéma serait le suivant :
 
-    var someobject: 
-    { 
-      x?: (number | string), 
-      y?: (number | { w?: string}), 
-      z?: { [n:number] : (int | string)},
-      t?: { [n:number]: string } 
-    }
-    
+```typescript
+var someobject: 
+{
+    x?: (number | string),
+    y?: (number | { w?: string}),
+    z?: { [n:number] : (int | string)},
+    t?: { [n:number]: string }
+}
+```

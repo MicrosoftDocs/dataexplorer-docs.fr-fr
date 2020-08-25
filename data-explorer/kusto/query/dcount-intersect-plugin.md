@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: de75014fb408b3d31acab37ad8e16923cabaadfd
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 9c969cafbf2ec38d9d192cf28c7b1e5599f58631
+ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348409"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88793428"
 ---
 # <a name="dcount_intersect-plugin"></a>dcount_intersect, plug-in
 
@@ -25,7 +25,9 @@ S<sub>1</sub> ∩ s<sub>2</sub> ∩ s<sub>3</sub>,
 ... ,  
 S<sub>1</sub> ∩ s<sub>2</sub> ∩... ∩ S<sub>n</sub>
 
-    T | evaluate dcount_intersect(hll_1, hll_2, hll_3)
+```kusto
+T | evaluate dcount_intersect(hll_1, hll_2, hll_3)
+```
 
 ## <a name="syntax"></a>Syntaxe
 

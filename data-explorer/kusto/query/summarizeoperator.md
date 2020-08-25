@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/20/2020
-ms.openlocfilehash: 19f86e4973a2822de6f25e38edb07ccd8fbda9d1
-ms.sourcegitcommit: ec191391f5ea6df8c591e6d747c67b2c46f98ac4
+ms.openlocfilehash: 00d205a710b7b3bf41dc181e79e5e6d0baa95fc6
+ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/16/2020
-ms.locfileid: "88260120"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88793930"
 ---
 # <a name="summarize-operator"></a>opérateur summarize
 
@@ -96,8 +96,8 @@ Pour résumer des plages de valeurs numériques, utilisez `bin()` pour réduire 
 |[percentilesw_array ()](percentiles-aggfunction.md)|Retourne les centile pondérés approximatifs du groupe|
 |[ECARTYPE ()](stdev-aggfunction.md)|Retourne l’écart type de l’ensemble du groupe|
 |[stdevif()](stdevif-aggfunction.md)|Retourne l’écart type de l’ensemble du groupe (avec le prédicat)|
-|[Sum ()](sum-aggfunction.md)|Retourne la somme des éléments avec le groupe|
-|[sumif()](sumif-aggfunction.md)|Retourne la somme des éléments avec le groupe (prédicat with)|
+|[Sum ()](sum-aggfunction.md)|Retourne la somme des éléments dans le groupe|
+|[sumif()](sumif-aggfunction.md)|Retourne la somme des éléments dans le groupe (prédicat with)|
 |[variance ()](variance-aggfunction.md)|Retourne la variance dans le groupe|
 |[varianceif()](varianceif-aggfunction.md)|Retourne la variance dans le groupe (avec le prédicat)|
 
@@ -148,7 +148,9 @@ Activities | summarize Min = min(Timestamp), Max = max(Timestamp)
 
 Créez une ligne pour chaque continent, en indiquant le nombre de villes dans lesquelles les activités se produisent. Comme il y a peu de valeurs pour « continent », aucune fonction de regroupement n’est nécessaire dans la clause « by » :
 
-    Activities | summarize cities=dcount(city) by continent
+```kusto
+Activities | summarize cities=dcount(city) by continent
+```
 
 |`cities`|`continent`
 |---:|---

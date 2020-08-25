@@ -8,18 +8,20 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/15/2020
-ms.openlocfilehash: 6c91275320a5ec404b6cd5fcbe8c84b4123bd2de
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 48670f1c0bb38599451bc73afa58d6f1dba344a2
+ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349344"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88793630"
 ---
 # <a name="bag_unpack-plugin"></a>bag_unpack, plug-in
 
 Le `bag_unpack` plug-in décompresse une seule colonne de type `dynamic` , en traitant chaque emplacement de niveau supérieur du jeu de propriétés en tant que colonne.
 
-    T | evaluate bag_unpack(col1)
+```kusto
+T | evaluate bag_unpack(col1)
+```
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -31,19 +33,19 @@ Le `bag_unpack` plug-in décompresse une seule colonne de type `dynamic` , en tr
 * *Column*: colonne de *T* à décompresser. Doit être de type `dynamic`.
 * *OutputColumnPrefix*: préfixe commun à ajouter à toutes les colonnes produites par le plug-in. Cet argument est facultatif.
 * *columnsConflict*: sens de la résolution des conflits de colonnes. Cet argument est facultatif. Quand un argument est fourni, il est supposé qu’il s’agit d’un littéral de chaîne correspondant à l’une des valeurs suivantes :
-    - `error`-La requête génère une erreur (valeur par défaut)
-    - `replace_source`-La colonne source est remplacée
-    - `keep_source`-La colonne source est conservée
+    - `error` -La requête génère une erreur (valeur par défaut)
+    - `replace_source` -La colonne source est remplacée
+    - `keep_source` -La colonne source est conservée
 * *ignoredProperties*: ensemble facultatif de propriétés de conteneur à ignorer. Quand un argument est fourni, il est supposé être une constante de `dynamic` tableau avec un ou plusieurs littéraux de chaîne.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Le `bag_unpack` plug-in retourne une table avec autant d’enregistrements que son entrée tabulaire (*T*). Le schéma de la table est le même que celui de son entrée tabulaire, avec les modifications suivantes :
 
 * La colonne d’entrée spécifiée (*colonne*) est supprimée.
 * Le schéma est étendu avec autant de colonnes qu’il y a d’emplacements distincts dans les valeurs de jeu de propriétés de niveau supérieur de *T*. Le nom de chaque colonne correspond au nom de chaque emplacement, éventuellement préfixé par *OutputColumnPrefix*. Son type est soit le type de l’emplacement, si toutes les valeurs du même emplacement ont le même type, soit `dynamic` si les valeurs diffèrent dans le type.
 
-**Remarques**
+**Notes**
 
 Le schéma de sortie du plug-in dépend des valeurs de données, ce qui les rend « imprévisibles » en tant que données elles-mêmes. Plusieurs exécutions du plug-in, utilisant des entrées de données différentes, peuvent produire un schéma de sortie différent.
 
@@ -69,7 +71,7 @@ datatable(d:dynamic)
 | evaluate bag_unpack(d)
 ```
 
-|Nom  |Âge|
+|Nom  |Age|
 |------|---|
 |John  |20 |
 |Dave  |40 |
@@ -112,7 +114,7 @@ datatable(Name:string, d:dynamic)
 | evaluate bag_unpack(d, columnsConflict='replace_source') // Use new name
 ```
 
-|Nom|Âge|
+|Nom|Age|
 |---|---|
 |John|20|
 |Dave|40|
@@ -129,7 +131,7 @@ datatable(Name:string, d:dynamic)
 | evaluate bag_unpack(d, columnsConflict='keep_source') // Keep old name
 ```
 
-|Nom|Âge|
+|Nom|Age|
 |---|---|
 |Old_name|20|
 |Old_name|40|
