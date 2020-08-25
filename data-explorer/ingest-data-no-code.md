@@ -7,12 +7,12 @@ ms.reviewer: kerend
 ms.service: data-explorer
 ms.topic: tutorial
 ms.date: 05/19/2020
-ms.openlocfilehash: 0808d0dadd410ae6d220b03ef54191192b925a21
-ms.sourcegitcommit: ee90472a4f9d751d4049744d30e5082029c1b8fa
+ms.openlocfilehash: 43b8e3f4d1adee7cf96cc7933aab8d8ef18d7638
+ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/21/2020
-ms.locfileid: "83722182"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88610591"
 ---
 # <a name="tutorial-ingest-and-query-monitoring-data-in-azure-data-explorer"></a>Tutoriel : Ingérer et interroger des données de supervision dans Azure Data Explorer 
 
@@ -573,11 +573,9 @@ DiagnosticMetrics
 
 Résultats de la requête :
 
-|   |   |
-| --- | --- |
-|   |  avg_Average |
-|   | 00:06.156 |
-| | |
+| avg_Average |
+| --- |
+| 00:06.156 |
 
 # <a name="diagnostic-logs"></a>[Journaux de diagnostic](#tab/diagnostic-logs)
 ### <a name="query-the-diagnostic-logs-table"></a>Interroger la table des journaux de diagnostic
@@ -593,11 +591,9 @@ DiagnosticLogs
 
 Résultats de la requête :
 
-|   |   |
-| --- | --- |
-|   |  count_ | any_Database | any_Table | any_IngestionSourcePath
-|   | 00:06.156 | TestDatabase | DiagnosticRawRecords | `https://rtmkstrldkereneus00.blob.core.windows.net/20190827-readyforaggregation/1133_TestDatabase_DiagnosticRawRecords_6cf02098c0c74410bd8017c2d458b45d.json.zip`
-| | |
+| count_ | any_Database | any_Table | any_IngestionSourcePath |
+| --- | --- | --- | --- |
+| 00:06.156 | TestDatabase | DiagnosticRawRecords | `https://rtmkstrldkereneus00.blob.core.windows.net/20190827-readyforaggregation/1133_TestDatabase_DiagnosticRawRecords_6cf02098c0c74410bd8017c2d458b45d.json.zip` |
 
 # <a name="activity-logs"></a>[Journaux d’activité](#tab/activity-logs)
 ### <a name="query-the-activity-logs-table"></a>Interroger la table des journaux d’activité
@@ -613,11 +609,9 @@ ActivityLogs
 
 Résultats de la requête :
 
-|   |   |
-| --- | --- |
-|   |  avg(DurationMs) |
-|   | 768.333 |
-| | |
+| avg(DurationMs) |
+| --- |
+| 768.333 |
 
 ---
 

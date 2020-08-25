@@ -7,12 +7,12 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/07/2019
-ms.openlocfilehash: 3019cfd85fa2e62a18536fe22353d81b93e64c26
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: c7a54943ba6090a1bccddce90d0be2d2a0778cfe
+ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83374338"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88610625"
 ---
 # <a name="time-series-analysis-in-azure-data-explorer"></a>Analyse des séries chronologiques dans Azure Data Explorer
 
@@ -34,19 +34,18 @@ demo_make_series1 | take 10
 
 La table ainsi obtenue contient une colonne de type timestamp, trois colonnes de dimensions contextuelles et aucune métrique :
 
-|   |   |   |   |   |
-| --- | --- | --- | --- | --- |
-|   | TimeStamp | BrowserVer | OsVer | Pays/région |
-|   | 2016-08-25 09:12:35.4020000 | Chrome 51.0 | Windows 7 | United Kingdom |
-|   | 2016-08-25 09:12:41.1120000 | Chrome 52.0 | Windows 10 |   |
-|   | 2016-08-25 09:12:46.2300000 | Chrome 52.0 | Windows 7 | United Kingdom |
-|   | 2016-08-25 09:12:46.5100000 | Chrome 52.0 | Windows 10 | United Kingdom |
-|   | 2016-08-25 09:12:46.5570000 | Chrome 52.0 | Windows 10 | République de Lituanie |
-|   | 2016-08-25 09:12:47.0470000 | Chrome 52.0 | Windows 8.1 | Inde |
-|   | 2016-08-25 09:12:51.3600000 | Chrome 52.0 | Windows 10 | United Kingdom |
-|   | 2016-08-25 09:12:51.6930000 | Chrome 52.0 | Windows 7 | Pays-bas |
-|   | 2016-08-25 09:12:56.4240000 | Chrome 52.0 | Windows 10 | United Kingdom |
-|   | 2016-08-25 09:13:08.7230000 | Chrome 52.0 | Windows 10 | Inde |
+| TimeStamp | BrowserVer | OsVer | Pays/région |
+| --- | --- | --- | --- |
+| 2016-08-25 09:12:35.4020000 | Chrome 51.0 | Windows 7 | United Kingdom |
+| 2016-08-25 09:12:41.1120000 | Chrome 52.0 | Windows 10 |   |
+| 2016-08-25 09:12:46.2300000 | Chrome 52.0 | Windows 7 | United Kingdom |
+| 2016-08-25 09:12:46.5100000 | Chrome 52.0 | Windows 10 | United Kingdom |
+| 2016-08-25 09:12:46.5570000 | Chrome 52.0 | Windows 10 | République de Lituanie |
+| 2016-08-25 09:12:47.0470000 | Chrome 52.0 | Windows 8.1 | Inde |
+| 2016-08-25 09:12:51.3600000 | Chrome 52.0 | Windows 10 | United Kingdom |
+| 2016-08-25 09:12:51.6930000 | Chrome 52.0 | Windows 7 | Pays-bas |
+| 2016-08-25 09:12:56.4240000 | Chrome 52.0 | Windows 10 | United Kingdom |
+| 2016-08-25 09:13:08.7230000 | Chrome 52.0 | Windows 10 | Inde |
 
 À défaut de métriques, nous pouvons uniquement créer un ensemble de séries temporelles représentant le comptage du trafic proprement dit, partitionné par système d’exploitation à l’aide de la requête suivante :
 
@@ -152,11 +151,10 @@ demo_series3
 | extend days=2h*todouble(periods)/1d
 ```
 
-|   |   |   |   |
-| --- | --- | --- | --- |
-|   | periods | scores | jours |
-|   | 84 | 0,820622786055595 | 7 |
-|   | 12 | 0,764601405803502 | 1 |
+| periods | scores | jours |
+| --- | --- | --- |
+| 84 | 0,820622786055595 | 7 |
+| 12 | 0,764601405803502 | 1 |
 
 La fonction détecte les saisonnalités quotidienne et hebdomadaire. La saisonnalité quotidienne présente un score inférieur à celui de la saisonnalité hebdomadaire, car les jours du week-end diffèrent des jours de la semaine.
 
@@ -194,13 +192,12 @@ demo_many_series1
 | take 4 
 ```
 
-|   |   |   |   |   |   |
-| --- | --- | --- | --- | --- | --- |
-|   | timestamp | Loc | anonOp | DB | DataRead |
-|   | 2016-09-11 21:00:00.0000000 | Loc 9 | 5117853934049630089 | 262 | 0 |
-|   | 2016-09-11 21:00:00.0000000 | Loc 9 | 5117853934049630089 | 241 | 0 |
-|   | 2016-09-11 21:00:00.0000000 | Loc 9 | -865998331941149874 | 262 | 279862 |
-|   | 2016-09-11 21:00:00.0000000 | Loc 9 | 371921734563783410 | 255 | 0 |
+| timestamp | Loc | anonOp | DB | DataRead |
+| --- | --- | --- | --- | --- |
+| 2016-09-11 21:00:00.0000000 | Loc 9 | 5117853934049630089 | 262 | 0 |
+| 2016-09-11 21:00:00.0000000 | Loc 9 | 5117853934049630089 | 241 | 0 |
+| 2016-09-11 21:00:00.0000000 | Loc 9 | -865998331941149874 | 262 | 279862 |
+| 2016-09-11 21:00:00.0000000 | Loc 9 | 371921734563783410 | 255 | 0 |
 
 Et statistiques simples :
 
@@ -211,10 +208,9 @@ demo_many_series1
 | summarize num=count(), min_t=min(TIMESTAMP), max_t=max(TIMESTAMP) 
 ```
 
-|   |   |   |   |
-| --- | --- | --- | --- |
-|   | num | min\_t | max\_t |
-|   | 2177472 | 2016-09-08 00:00:00.0000000 | 2016-09-11 23:00:00.0000000 |
+| num | min\_t | max\_t |
+| --- | --- | --- |
+| 2177472 | 2016-09-08 00:00:00.0000000 | 2016-09-11 23:00:00.0000000 |
 
 La création d’une série chronologique en compartiments de 1 heure de la métrique de lecture (total de quatre jours * 24 heures = 96 points), entraîne une fluctuation du modèle normal :
 
@@ -242,10 +238,9 @@ demo_many_series1
 | count
 ```
 
-|   |   |
-| --- | --- |
-|   | Count |
-|   | 18339 |
+| Count |
+| --- |
+| 18339 |
 
 Nous allons à présent créer un ensemble de 18339 séries chronologiques de la métrique du nombre de lectures. Nous ajoutons la clause `by` à l’instruction make-series, appliquons une régression linéaire, et sélectionnons les deux premières séries chronologiques en termes de tendance décroissante la plus significative :
 
@@ -277,11 +272,10 @@ demo_many_series1
 | project Loc, Op, DB, slope 
 ```
 
-|   |   |   |   |   |
-| --- | --- | --- | --- | --- |
-|   | Loc | Op | DB | slope |
-|   | Loc 15 | 37 | 1151 | -102743.910227889 |
-|   | Loc 13 | 37 | 1249 | -86303.2334644601 |
+| Loc | Op | DB | slope |
+| --- | --- | --- | --- |
+| Loc 15 | 37 | 1151 | -102743.910227889 |
+| Loc 13 | 37 | 1249 | -86303.2334644601 |
 
 En moins de deux minutes, Azure Data Explorer a analysé près de 20 000 séries chronologiques et détecté deux séries chronologiques anormales dans lesquelles le nombre de lectures chutait soudainement.
 
