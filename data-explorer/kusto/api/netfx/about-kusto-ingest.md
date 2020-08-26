@@ -9,16 +9,16 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 03/18/2020
-ms.openlocfilehash: a5655ac982ab65d06cdee7c93a166dce51377eed
-ms.sourcegitcommit: e66c5f4b833b4f6269bb7bfa5695519fcb11d9fa
+ms.openlocfilehash: c5a0bd91df6e12d90436e3b27a2b55021668117a
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/19/2020
-ms.locfileid: "83630032"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88874339"
 ---
 # <a name="kusto-ingest-client-library"></a>Bibliothèque cliente de réception Kusto 
 
-`Kusto.Ingest`la bibliothèque est une bibliothèque .NET 4.6.2 permettant d’envoyer des données au service Kusto.
+`Kusto.Ingest` la bibliothèque est une bibliothèque .NET 4.6.2 permettant d’envoyer des données au service Kusto.
 Il prend des dépendances sur les bibliothèques et kits de développement logiciel suivants :
 
 * ADAL pour l’authentification Azure AD
@@ -97,3 +97,4 @@ Pour réduire la charge inutile sur votre service Kusto, nous vous recommandons 
 * Les [exemples Kusto. deréception](kusto-ingest-client-examples.md) montrent des extraits de code qui illustrent diverses techniques d’ingestion de données dans Kusto
 
 * L’ingestion de [données sans Kusto. Inréception Library](kusto-ingest-client-rest.md) explique comment implémenter l’ingestion de Kusto en file d’attente, à l’aide des API REST Kusto et sans dépendre de la `Kusto.Ingest` bibliothèque.
+

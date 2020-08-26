@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/26/2020
-ms.openlocfilehash: 7f012b5b99cdf12ab1ace452838860aff312a28d
-ms.sourcegitcommit: b0cbb89e88b64a36880e6d34b4d6779283174456
+ms.openlocfilehash: 4d2f493e2057d81a813c26eac2e73643097e9482
+ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84633748"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88793863"
 ---
 # <a name="visualize-data-with-azure-data-explorer-dashboards"></a>Visualiser des données avec des tableaux de bord Azure Data Explorer
 

@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 06/03/2019
-ms.openlocfilehash: 15756e0971069e6ff619b5362d2fddeb045fe6dd
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 3bd0826f200a6c92b480c0495709e019381863a9
+ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350279"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88793771"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-by-using-c"></a>Créer un cluster et une base de données Azure Data Explorer en utilisant C#
 
@@ -99,8 +99,8 @@ Si le résultat contient `ProvisioningState` avec la valeur `Succeeded`, alors l
     await kustoManagementClient.Databases.CreateOrUpdateAsync(resourceGroupName, clusterName, databaseName, database);
     ```
 
-        [!NOTE]
-        If you are using C# version 2.0.0 or below, use Database instead of ReadWriteDatabase.
+    > [!NOTE]
+    > Si vous utilisez C# version 2.0.0 ou antérieure, utilisez Database au lieu de ReadWriteDatabase.
 
    |**Paramètre** | **Valeur suggérée** | **Description du champ**|
    |---|---|---|
@@ -129,4 +129,4 @@ Vous disposez maintenant d’un cluster et d’une base de données.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Ingérer des données à l'aide du SDK .NET Standard d'Azure Data Explorer (préversion)](net-standard-ingest-data.md)
+* [Ingérer des données à l’aide du kit SDK .NET Standard Azure Data Explorer (préversion)](net-standard-ingest-data.md)

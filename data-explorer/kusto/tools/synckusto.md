@@ -6,14 +6,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: zivc
 ms.service: data-explorer
-ms.topic: reference
+ms.topic: how-to
 ms.date: 08/12/2019
-ms.openlocfilehash: a85f9eca4c0c93ab60641813b01cd9faf13eb777
-ms.sourcegitcommit: bf2c9da0c23ebcaec19b229d2079032d54a2cc82
+ms.openlocfilehash: 6e1cd00cb84ad7b4d62429a932d3ffe298a83766
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "86140533"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88875189"
 ---
 # <a name="sync-kusto"></a>Synchroniser Kusto
 
