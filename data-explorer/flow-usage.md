@@ -7,12 +7,12 @@ ms.reviewer: dorcohen
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/15/2020
-ms.openlocfilehash: 0ecf0124051b6c003e056263afb6a3c5aa9ddb81
-ms.sourcegitcommit: 98eabf249b3f2cc7423dade0f386417fb8e36ce7
+ms.openlocfilehash: 56851a159f6d8d2cee5f3991dab290070fb8c482
+ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82868709"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88610489"
 ---
 # <a name="usage-examples-for-azure-data-explorer-connector-to-power-automate-preview"></a>Exemples d’utilisation du connecteur Azure Data Explorer vers Power Automate (préversion)
 
@@ -66,12 +66,12 @@ Pour créer un flux similaire, suivez ces instructions :
 1. Dans la fenêtre de contenu dynamique, sélectionnez le paramètre que vous voulez utiliser comme condition pour les actions suivantes.
 1. Sélectionnez le type de *Relation* et la *Valeur* souhaités pour définir une condition spécifique sur le paramètre lui-même.
 
-    [![](./media/flow-usage/flow-condition.png "Screenshot of flow conditions")](./media/flow-usage/flow-condition.png#lightbox)
+    :::image type="content" source="./media/flow-usage/flow-condition.png" alt-text="Utilisation de conditions de flux en fonction des résultats d’une requête Kusto pour déterminer l’action de flux suivante, Azure Data Explorer" lightbox="./media/flow-usage/flow-condition.png#lightbox":::
 
     Le flux applique cette condition sur chaque ligne de la table des résultats de requête.
 1. Ajoutez des actions à effectuer lorsque la condition a la valeur true ou false.
 
-    [![](./media/flow-usage/flow-conditionactions.png "Screenshot of flow condition actions")](./media/flow-usage/flow-conditionactions.png#lightbox)
+    :::image type="content" source="./media/flow-usage/flow-conditionactions.png" alt-text="Ajout d’actions quand une condition a la valeur true ou false, conditions de flux basées sur les résultats de la requête Kusto, Azure Data Explorer" lightbox="./media/flow-usage/flow-conditionactions.png#lightbox":::
 
 Vous pouvez utiliser les valeurs de résultat de la requête Kusto comme entrée pour les actions suivantes. Sélectionnez les valeurs de résultat dans la fenêtre de contenu dynamique.
 Dans l’exemple suivant, nous ajoutons une action **Slack - Publier un message** et une action **Visual Studio - Créer un élément de travail** contenant des données issues de la requête Kusto.
@@ -116,9 +116,9 @@ Visualisez ces informations affichées sous forme de graphique à secteurs, puis
 
 Résultats :
 
-[![](./media/flow-usage/flow-resultsmultipleattachments.png "Screenshot of results of multiple attachments, visualized as a pie chart and bar chart")](./media/flow-usage/flow-resultsmultipleattachments.png#lightbox)
+:::image type="content" source="./media/flow-usage/flow-resultsmultipleattachments.png" alt-text="Résultats de plusieurs pièces jointes, visualisés sous la forme d’un graphique à secteurs et d’un graphique à barres, Azure Data Explorer" lightbox="./media/flow-usage/flow-resultsmultipleattachments.png#lightbox":::
 
-[![](./media/flow-usage/flow-resultsmultipleattachments2.png "Screenshot of results of multiple attachments, visualized as a time chart")](./media/flow-usage/flow-resultsmultipleattachments2.png#lightbox)
+:::image type="content" source="./media/flow-usage/flow-resultsmultipleattachments2.png" alt-text="Résultats de plusieurs pièces jointes, visualisés sous la forme d’un graphique chronologique, Azure Data Explorer" lightbox="./media/flow-usage/flow-resultsmultipleattachments2.png#lightbox":::
 
 ## <a name="next-steps"></a>Étapes suivantes
 

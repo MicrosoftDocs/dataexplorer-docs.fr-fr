@@ -7,12 +7,12 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/01/2020
-ms.openlocfilehash: d9564eec41fd78b3506994da2917f1d8765ee266
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 2f82c1f381bf377226579ca9fa3b086c1396f2d4
+ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373984"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88610387"
 ---
 # <a name="use-azure-notebooks-to-analyze-data-in-azure-data-explorer"></a>Utiliser Azure Notebooks pour analyser les données dans Azure Data Explorer
 
@@ -28,7 +28,7 @@ ms.locfileid: "83373984"
 
 1. Sélectionnez l’onglet **Mes projets** dans l’en-tête. 
 
-    [![](media/azurenotebooks/an-myprojects.png "My projects")](media/azurenotebooks/an-myprojects.png#lightbox)
+    :::image type="content" source="media/azurenotebooks/an-myprojects.png" alt-text="Page Projets, Onglet Mes projets, Microsoft Azure Notebooks, Azure Data Explorer" lightbox="media/azurenotebooks/an-myprojects.png#lightbox":::
 
 1. Sélectionnez **+ Nouveaux projets**.
     
@@ -90,7 +90,7 @@ Pour créer un notebook, sélectionnez **+ Nouveau**, puis **Notebook**.
 
 1. Revenez à votre notebook pour voir le résultat de l’authentification. 
 
-[![](media/azurenotebooks/an-python-commands.png "Python commands")](media/azurenotebooks/an-python-commands.png#lightbox)
+:::image type="content" source="media/azurenotebooks/an-python-commands.png" alt-text="Sortie du résultat de l’authentification, Fenêtre de notebook, Microsoft Azure Notebooks, Azure Data Explorer" lightbox="media/azurenotebooks/an-python-commands.png#lightbox":::
 
 ## <a name="execute-a-kusto-query"></a>Exécuter une requête Kusto
 
@@ -103,7 +103,7 @@ Pour créer un notebook, sélectionnez **+ Nouveau**, puis **Notebook**.
         print(", ".join(row))
     ```    
 
-[![](media/azurenotebooks/an-commands.png "Python commands")](media/azurenotebooks/an-commands.png#lightbox)
+:::image type="content" source="media/azurenotebooks/an-commands.png" alt-text="Bouton Exécuter, Fenêtre de notebook, Microsoft Azure Notebooks, Azure Data Explorer" lightbox="media/azurenotebooks/an-commands.png#lightbox":::
 
 ## <a name="next-steps"></a>Étapes suivantes
 
