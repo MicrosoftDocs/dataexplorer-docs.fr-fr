@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/10/2020
-ms.openlocfilehash: 944ada323a1a928d4b63c2d8f4e168c442e78ffa
-ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
+ms.openlocfilehash: cbafde1b87807c449923b8b010c57e3394c4a74f
+ms.sourcegitcommit: d08b3344d7e9a6201cf01afc8455c7aea90335aa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/25/2020
-ms.locfileid: "88793677"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88964742"
 ---
 # <a name="data-partitioning-policy"></a>Stratégie de partitionnement des données
 
@@ -53,11 +53,11 @@ Les types de clés de partition suivants sont pris en charge.
 * `MaxPartitionCount` nombre maximal de partitions à créer (l’argument modulo de la fonction de hachage-modulo) par période.
   * Les valeurs prises en charge sont comprises dans la plage `(1,1024]` .
     * La valeur doit être :
-      * Plus grand que le nombre de nœuds dans le cluster.
+      * Plus de 5 fois le nombre de nœuds dans le cluster.
       * Plus petite que la cardinalité de la colonne.
     * Plus la valeur est élevée, plus la surcharge du processus de partitionnement des données sur les nœuds du cluster est importante et plus le nombre d’étendues pour chaque période de temps est élevé.
-    * Pour les clusters contenant moins de 30 nœuds, nous vous recommandons de commencer par la valeur `256` .
-      * Ajustez la valeur si nécessaire, en fonction des considérations ci-dessus, ou en fonction de l’avantage des performances des requêtes et de la surcharge liée au partitionnement de la publication des données.
+    * Pour les clusters contenant moins de 50 nœuds, nous vous recommandons de commencer par la valeur `256` .
+      * Ajustez la valeur si nécessaire, en fonction des considérations ci-dessus (par exemple, le nombre de nœuds dans le cluster augmente), ou en fonction de l’avantage des performances des requêtes et de la surcharge liée au partitionnement de la publication des données.
 * `Seed` valeur à utiliser pour la randomisation de la valeur de hachage.
   * La valeur doit être un entier positif.
   * La valeur recommandée est `1` , qui est la valeur par défaut, si elle n’est pas spécifiée.
@@ -190,7 +190,7 @@ Les propriétés suivantes peuvent être définies dans le cadre de la stratégi
 * Le partitionnement des données s’exécute uniquement sur les extensions chaudes, quelle que soit la valeur de la `EffectiveDateTime` propriété dans la stratégie.
   * Si le partitionnement des extensions à froid est requis, vous devez ajuster temporairement la [stratégie de mise en cache](cachepolicy.md).
 
-#### <a name="monitoring"></a>Supervision
+#### <a name="monitoring"></a>Surveillance
 
 Utilisez la commande [. afficher les diagnostics](../management/diagnostics.md#show-diagnostics) pour surveiller la progression ou l’état du partitionnement dans un cluster.
 

@@ -8,14 +8,14 @@ ms.reviewer: ohbitton
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/19/2020
-ms.openlocfilehash: c4a64db6d1103aa2a004b816969ab73c7ba19943
-ms.sourcegitcommit: ee90472a4f9d751d4049744d30e5082029c1b8fa
+ms.openlocfilehash: cd498d43d98250bad0a7ce00c4a8fec7b4f3ad4f
+ms.sourcegitcommit: d08b3344d7e9a6201cf01afc8455c7aea90335aa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/21/2020
-ms.locfileid: "83722063"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88964725"
 ---
-# <a name="data-mappings"></a>Mappages de données
+# <a name="data-mappings"></a>Mappages des données
 
 Les mappages de données sont utilisés lors de l’ingestion pour mapper les données entrantes aux colonnes dans les tables Kusto.
 
@@ -46,7 +46,7 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
 |`constantValue`|Facultatif Valeur de constante à utiliser pour une colonne au lieu d’une valeur dans le CSV|
 
 > [!NOTE]
-> `Ordinal`et `ConstantValue` s’excluent mutuellement.
+> `Ordinal` et `ConstantValue` s’excluent mutuellement.
 
 ### <a name="example-of-the-csv-mapping"></a>Exemple de mappage de volumes partagés de cluster
 
@@ -176,10 +176,10 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
 |`Path`|Alternative à l’utilisation de `field` qui permet de détenir la partie interne d’un champ d’enregistrement Avro, si nécessaire. La valeur désigne un chemin d’accès JSON à partir de la racine de l’enregistrement. Pour plus d’informations, consultez les remarques ci-dessous. |
 |`transform`|Facultatif Transformation à appliquer au contenu à l’aide de [transformations prises en charge](#mapping-transformations).|
 
-**Remarques**
+**Notes**
 >[!NOTE]
-> * `field`et `path` ne peuvent pas être utilisés ensemble, un seul est autorisé. 
-> * `path`Impossible de pointer vers la racine `$` uniquement, elle doit avoir au moins un niveau de chemin d’accès.
+> * `field` et `path` ne peuvent pas être utilisés ensemble, un seul est autorisé. 
+> * `path` Impossible de pointer vers la racine `$` uniquement, elle doit avoir au moins un niveau de chemin d’accès.
 
 Les deux options ci-dessous sont égales :
 
@@ -344,7 +344,6 @@ Certains mappages de format de données (parquet, JSON et Avro) prennent en char
 |Transformation dépendante du chemin d’accès|Description|Conditions|
 |--|--|--|
 |`PropertyBagArrayToDictionary`|Transforme un tableau JSON de propriétés (par exemple, {Events : [{"N1" : "V1"}, {"N2" : "v2"}]}) en dictionary et le sérialise vers un document JSON valide (par exemple, {"N1" : "V1", "N2" : "v2"}).|Peut être appliqué uniquement quand `path` est utilisé|
-|`GetPathElement(index)`|Extrait un élément du chemin d’accès donné en fonction de l’index donné (par exemple, chemin d’accès : $. a. b. c, GetPathElement (0) = = "c", GetPathElement (-1) = = "b", chaîne de type|Peut être appliqué uniquement quand `path` est utilisé|
 |`SourceLocation`|Nom de l’artefact de stockage qui a fourni les données, type chaîne (par exemple, le champ « BaseUri » de l’objet BLOB).|
 |`SourceLineNumber`|Décalage par rapport à cet artefact de stockage, type long (commençant par « 1 » et incrémentant par nouvel enregistrement).|
 |`DateTimeFromUnixSeconds`|Convertit le nombre représentant l’heure UNIX (en secondes depuis 1970-01-01) en chaîne DateTime UTC|
