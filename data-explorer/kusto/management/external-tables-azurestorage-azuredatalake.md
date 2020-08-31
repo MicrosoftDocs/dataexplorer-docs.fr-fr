@@ -8,16 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 866436d74e3e37319ec06b477503c11e3d7d6be7
-ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
+ms.openlocfilehash: 1db42577a0d4d10da732b54b0a5032ab2be11b69
+ms.sourcegitcommit: 91e7d49a1046575bbc63a4f25724656ebfc070db
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/13/2020
-ms.locfileid: "88201326"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89151159"
 ---
 # <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Créer et modifier des tables externes dans Stockage Azure ou Azure Data Lake
 
 La commande suivante décrit comment créer une table externe située dans le stockage d’objets BLOB Azure, Azure Data Lake Store Gen1 ou Azure Data Lake Store Gen2. 
+
+Pour obtenir une présentation de la fonctionnalité de tables de stockage Azure externes, consultez [interroger des données dans Azure Data Lake à l’aide d’Azure Explorateur de données](../../data-lake-query-data.md).
 
 ## <a name="create-or-alter-external-table"></a>. Create ou. Alter External table
 
@@ -81,6 +83,7 @@ La liste partitions est toute combinaison de colonnes de partition, spécifiée 
   *PartitionName* `:` `datetime` `=` ( `startofyear` \| `startofmonth` \| `startofweek` \| `startofday` ) `(` *ColumnName*`)`  
   *PartitionName* `:` `datetime` `=` `bin` `(` *ColumnName* `,` *Intervalle* de ColumnName`)`
 
+Pour vérifier l’exactitude de la définition de partitionnement, utilisez la propriété lors de la `sampleUris` création d’une table externe.
 
 <a name="path-format"></a>
 *PathFormat*
@@ -112,6 +115,8 @@ Par défaut, les valeurs DateTime sont rendues à l’aide des formats suivants�
 | `bin(`*Chronique*`, 1m)` | `yyyy/MM/dd/HH/mm` |
 
 Si *PathFormat* est omis de la définition de la table externe, il est supposé que toutes les partitions, exactement dans le même ordre que celui dans lequel elles sont définies, sont séparées par un `/` séparateur. Les partitions sont rendues à l’aide de leur présentation de chaîne par défaut.
+
+Pour vérifier que la définition de format de chemin d’accès est correcte, utilisez la propriété lors de la `sampleUris` création d’une table externe.
 
 <a name="format"></a>
 *Format*
@@ -238,9 +243,6 @@ dataformat=parquet
 )
 ```
 
-> [!NOTE]
-> Actuellement, les colonnes virtuelles ne sont pas prises en charge pour les formats de données suivants : `CSV` , `TSV` ,,,, `TSVE` `SCsv` `SOHsv` `PSV` `RAW` et `TXT` .
-
 <a name="file-filtering"></a>
 **Logique de filtrage de fichier**
 
@@ -257,7 +259,7 @@ Lors de l’interrogation d’une table externe, le moteur de requête améliore
 Une fois que toutes les conditions sont remplies, le fichier est extrait et traité par le moteur de requête.
 
 > [!NOTE]
-> Le modèle d’URI initial est généré à l’aide de valeurs de prédicat de requête. Cela fonctionne mieux pour un ensemble limité de valeurs de chaîne, ainsi que pour des plages de temps fermées. 
+> Le modèle d’URI initial est généré à l’aide de valeurs de prédicat de requête. Cela fonctionne mieux pour un ensemble limité de valeurs de chaîne, ainsi que pour des plages de temps fermées.
 
 ## <a name="show-external-table-artifacts"></a>. afficher les artefacts de table externe
 

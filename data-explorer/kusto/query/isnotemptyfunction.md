@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 6d325861c7264c77535caf6df6c363ec801dd697
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 9f7811c2668bd0bb2d6e3711800ee5d9a450b9ec
+ms.sourcegitcommit: 487485c87706183a9824f695e5b56b0bc5ade048
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347202"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89056232"
 ---
 # <a name="isnotempty"></a>isnotempty()
 
@@ -27,4 +27,12 @@ isnotempty("") == false
 
 `isnotempty(`[*valeur*]`)`
 
-`notempty(`[*valeur*] `)` --alias de`isnotempty`
+`notempty(`[*valeur*] `)` --alias de `isnotempty`
+
+## <a name="example"></a>Exemple
+
+```kusto
+T
+| where isnotempty(fieldName)
+| count
+```
