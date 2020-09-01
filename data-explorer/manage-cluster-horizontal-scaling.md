@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: gabil
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 12/09/2019
-ms.openlocfilehash: 874c667e210996a838573df7ad982cadc1bb3360
-ms.sourcegitcommit: 4cc56775f0ff1c71c062dd69746db9962c122b78
+ms.openlocfilehash: 05d3e5be7f2c3c228c3db623c7798957fa101450
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/21/2020
-ms.locfileid: "83757150"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88875138"
 ---
 # <a name="manage-cluster-horizontal-scaling-scale-out-in-azure-data-explorer-to-accommodate-changing-demand"></a>Gérer la mise à l'échelle horizontale d'un cluster (scale-out) dans Azure Data Explorer pour prendre en compte les fluctuations de la demande
 

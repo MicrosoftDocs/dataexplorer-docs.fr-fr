@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: vladikb
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 07/07/2020
-ms.openlocfilehash: 35dff1c9aa4ecb9bee96c5c7f2c54898abd45089
-ms.sourcegitcommit: bcd0c96b1581e43e33aa35f4d68af6dcb4979d39
+ms.openlocfilehash: c6a544228d5527f1703567256bd3e824ddc0504a
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88039163"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88872707"
 ---
 # <a name="ingest-data-using-the-azure-data-explorer-net-sdk"></a>Ingérer des données à l’aide du SDK .NET Azure Data Explorer 
 

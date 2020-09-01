@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: mblythe
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 07/10/2019
-ms.openlocfilehash: 81efe25e5d644549bf24a2f958a0762afc161b67
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 4ab51eaef43596da0f2b511a4a617afaade939cf
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494361"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88875070"
 ---
 # <a name="visualize-data-using-a-query-imported-into-power-bi"></a>Visualiser des données avec une requête importée dans Power BI
 

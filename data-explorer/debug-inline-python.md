@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: adieldar
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 12/04/2019
-ms.openlocfilehash: 808d51ff5bc070449c87d14822fe4f41d2038950
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 21e3da862931219a338d2364117b8990280118d9
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493489"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88874288"
 ---
 # <a name="debug-kusto-query-language-inline-python-using-vs-code"></a>Déboguer le code Python inline dans le langage de requête Kusto avec VS Code
 

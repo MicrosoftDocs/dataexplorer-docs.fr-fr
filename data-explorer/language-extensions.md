@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: orhasban
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 04/01/2020
-ms.openlocfilehash: 104b3e4db18334f33c54177da7b996bc679db2de
-ms.sourcegitcommit: d9fbcd6c9787f90de62e8e832c92d43b8090cbfc
+ms.openlocfilehash: e8868000f49845fb3dd9f5140def5863b4eafa2f
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87515887"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88875206"
 ---
 # <a name="manage-language-extensions-in-your-azure-data-explorer-cluster-preview"></a>Gérer les extensions de langage dans votre cluster Azure Data Explorer (préversion)
 

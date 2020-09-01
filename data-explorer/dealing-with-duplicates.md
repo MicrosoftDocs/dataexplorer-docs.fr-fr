@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: mblythe
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 12/19/2018
-ms.openlocfilehash: 681bb931f2ccb4291d7e186024ca89168b579e0a
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: ef71c978681c9e355e82791d4df3ad7da8db66f7
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493473"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88874696"
 ---
 # <a name="handle-duplicate-data-in-azure-data-explorer"></a>Traiter des données en double dans Azure Data Explorer
 

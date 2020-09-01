@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: maraheja
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 7/29/2020
-ms.openlocfilehash: 31aa478647b902353db9d39a5ad36b5d5830c127
-ms.sourcegitcommit: 6e84f50efc8c5c3fe57080341ed3effe72197886
+ms.openlocfilehash: 9eb10d9a87e8cf001b229d9c6c553e88ef355144
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87440002"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88875274"
 ---
 # <a name="azure-data-explorer-connector-for-apache-spark"></a>Connecteur Azure Data Explorer pour Apache Spark
 

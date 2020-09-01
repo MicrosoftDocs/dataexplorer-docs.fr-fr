@@ -6,14 +6,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: gabil
 ms.service: data-explorer
-ms.topic: reference
+ms.topic: how-to
 ms.date: 06/09/2020
-ms.openlocfilehash: 6a06e5ea90bb16466c3550c8de07f930477dad96
-ms.sourcegitcommit: b0cbb89e88b64a36880e6d34b4d6779283174456
+ms.openlocfilehash: fd33ea4d4607c9c3af0ded26ec7f58de761f24ea
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84637238"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88873846"
 ---
 # <a name="use-parameters-in-azure-data-explorer-dashboards"></a>Utiliser des paramètres dans des tableaux de bord Azure Data Explorer
 

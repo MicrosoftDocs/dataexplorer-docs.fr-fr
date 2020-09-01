@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: mblythe
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: tutorial
 ms.date: 04/07/2019
-ms.openlocfilehash: 4490310664a7c27a319ce758a63b1dc90be8bef0
-ms.sourcegitcommit: 3cdb365c0174e517fb5cb16784da278ceb801b23
+ms.openlocfilehash: a7a964f8bb022885c6ac3bc4828469031987b162
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84214415"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88872622"
 ---
 # <a name="write-queries-for-azure-data-explorer"></a>Rédiger des requêtes pour l’Explorateur de données Azure
 

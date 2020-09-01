@@ -6,14 +6,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
-ms.topic: reference
+ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: 5dadde42bcdade8d7839c149cf7ca335b8a49bc8
-ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
+ms.openlocfilehash: 8b24d6f771eaa4004b36a1b3171eb593e2fc0f6c
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/13/2020
-ms.locfileid: "88202403"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88874883"
 ---
 # <a name="connect-to-event-hub"></a>Connexion à Event Hub
 

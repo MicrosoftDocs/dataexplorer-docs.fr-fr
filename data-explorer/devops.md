@@ -6,14 +6,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: jasonh
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 05/05/2019
-ms.openlocfilehash: 7d0c45a587a396da934bcb3465d60e101d0150a0
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.openlocfilehash: b45e6d0be5a61e4eff8f1c70d3df2fe7ee6901ea
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85967160"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88874713"
 ---
 # <a name="azure-devops-task-for-azure-data-explorer"></a>Azure DevOps Task pour Azure Data Explorer
 

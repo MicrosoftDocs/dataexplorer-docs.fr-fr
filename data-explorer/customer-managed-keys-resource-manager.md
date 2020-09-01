@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: itsagui
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 01/06/2020
-ms.openlocfilehash: c9594862d9dbe0eae1e8357a81e1bce5bba79da7
-ms.sourcegitcommit: d9fbcd6c9787f90de62e8e832c92d43b8090cbfc
+ms.openlocfilehash: d67705722fb3f78cc4e69b2dcb38153ab3800b0b
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87515799"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88872027"
 ---
 # <a name="configure-customer-managed-keys-using-the-azure-resource-manager-template"></a>Configurer des clés gérées par le client à l’aide du modèle Azure Resource Manager
 

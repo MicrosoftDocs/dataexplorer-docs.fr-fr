@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: kedamari
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 05/12/2020
-ms.openlocfilehash: 3f170a48f31f9d842e39fcf42fcfce0c383c71ed
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 6bf447a845954bde58a0308a03bee45f98f16111
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83232364"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88873231"
 ---
 # <a name="enable-data-purge-on-your-azure-data-explorer-cluster"></a>Activer le vidage des données dans votre cluster Azure Data Explorer
 

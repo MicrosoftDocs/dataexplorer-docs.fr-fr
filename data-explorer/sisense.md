@@ -5,15 +5,15 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.custom: has-adal-ref
 ms.date: 5/29/2019
-ms.openlocfilehash: 4afbf9ddf53715b045dba46d03f233f1401ff770
-ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
+ms.openlocfilehash: d7e476a6396d4ba695dd290226c3ace4d77153ba
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82862154"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88875393"
 ---
 # <a name="visualize-data-from-azure-data-explorer-in-sisense"></a>Visualiser des données Azure Data Explorer dans Sisense
 

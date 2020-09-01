@@ -6,14 +6,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: tomersh26
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 01/20/2020
-ms.openlocfilehash: b3ff40f04ba9152fa1b12b7211bf7a7cf07c69bb
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 03df6c4714a24dfad33940e29016fd66dccca27f
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373934"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88873302"
 ---
 # <a name="integrate-azure-data-explorer-with-azure-data-factory"></a>Intégrer Azure Data Explorer avec Azure Data Factory
 

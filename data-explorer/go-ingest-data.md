@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: abhishgu
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 08/10/2020
-ms.openlocfilehash: 010ee029c4f16248b0f9249d7331da436439cdc0
-ms.sourcegitcommit: ed902a5a781e24e081cd85910ed15cd468a0db1e
+ms.openlocfilehash: b733e70c78d9792e53dfe9cf133efe759e8ea91e
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/11/2020
-ms.locfileid: "88072359"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88873982"
 ---
 # <a name="ingest-data-using-the-azure-data-explorer-go-sdk"></a>Ingérer des données à l’aide du kit de développement logiciel (SDK) Go Azure Data Explorer 
 

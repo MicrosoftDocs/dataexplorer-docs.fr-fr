@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: gabil
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 06/03/2019
-ms.openlocfilehash: 5fc98a0bb173bc926dc289b16c1aa8d1a0f5d9de
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: f20d580cab401df6f4c39b093d79d7866c22989c
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494113"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88875325"
 ---
 # <a name="visualize-data-from-azure-data-explorer-in-tableau"></a>Visualiser des données Azure Data Explorer dans Tableau
 

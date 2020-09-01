@@ -5,14 +5,15 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: gabil
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 01/19/2020
-ms.openlocfilehash: 2b90f029d881c1f050bce4d458f08e9f1ba20ef9
-ms.sourcegitcommit: afc369ab4c4bcc74f2dce22b397a340572db8ecf
+ms.custom: contperfq1
+ms.openlocfilehash: 51b595554029c29d961445e6013a668cbd110cd5
+ms.sourcegitcommit: d08b3344d7e9a6201cf01afc8455c7aea90335aa
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87528161"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88964759"
 ---
 # <a name="monitor-azure-data-explorer-performance-health-and-usage-with-metrics"></a>Superviser les performances, l’intégrité et l’utilisation d’Azure Data Explorer avec des métriques
 

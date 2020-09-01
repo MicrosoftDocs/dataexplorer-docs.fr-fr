@@ -6,14 +6,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
-ms.topic: reference
+ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: e815a008c219c0eb1eeede8df07817d872ca1fed
-ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
+ms.openlocfilehash: 5369f3166e3700740be2a30927da793a8d21e05c
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/13/2020
-ms.locfileid: "88202405"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88874900"
 ---
 # <a name="connect-to-event-grid"></a>Se connecter à Event Grid
 

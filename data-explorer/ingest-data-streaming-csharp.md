@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: alexefro
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 07/13/2020
-ms.openlocfilehash: 73d1308ab38cf032eca52f772627f0946b5ea252
-ms.sourcegitcommit: 537a7eaf8c8e06a5bde57503fedd1c3706dd2b45
+ms.openlocfilehash: 72525e15427d7c2135f881bc63e34826791050f2
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86424243"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88874832"
 ---
 # <a name="configure-streaming-ingestion-on-your-azure-data-explorer-cluster-using-c"></a>Configurer l’ingestion de streaming dans votre cluster Azure Data Explorer à l’aide du langage C#
 

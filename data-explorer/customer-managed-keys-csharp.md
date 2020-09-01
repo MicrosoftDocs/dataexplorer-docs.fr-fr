@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: itsagui
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 01/06/2020
-ms.openlocfilehash: 5d06b226edd08cbe4696499f6a7ec206fc902608
-ms.sourcegitcommit: d9fbcd6c9787f90de62e8e832c92d43b8090cbfc
+ms.openlocfilehash: ade06e6fffb31a5c76fa12fe02d5192e4126091e
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87515786"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88872095"
 ---
 # <a name="configure-customer-managed-keys-using-c"></a>Configurer des clés gérées par le client à l’aide de C#
 

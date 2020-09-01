@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: maraheja
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 08/14/2020
-ms.openlocfilehash: 29d3c10dc08d0506f43af7127cbf705a8b1881c1
-ms.sourcegitcommit: ec191391f5ea6df8c591e6d747c67b2c46f98ac4
+ms.openlocfilehash: 01c8edee98a8f44ae4ad480cb14a327c4edcee83
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/16/2020
-ms.locfileid: "88259922"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88873183"
 ---
 # <a name="use-azure-data-share-to-share-data-with-azure-data-explorer"></a>Utiliser Azure Data Share pour partager des données avec Azure Data Explorer
 

@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: gabil
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 09/18/2019
-ms.openlocfilehash: c4c7114dd53b8f77150f88cf3da5d26ca73bb93b
-ms.sourcegitcommit: 2baa6a1c25ba25ef02a53b4f8d023ea821bd04ed
+ms.openlocfilehash: f16a1ec55c327dfdc4f3cf6a2ded2c3be8ae264a
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81527586"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88875376"
 ---
 # <a name="monitor-azure-data-explorer-ingestion-operations-using-diagnostic-logs"></a>Superviser les opérations d’ingestion d’Azure Data Explorer à l’aide des journaux de diagnostic
 

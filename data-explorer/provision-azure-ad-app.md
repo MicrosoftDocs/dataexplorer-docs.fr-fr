@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: herauch
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 04/01/2020
-ms.openlocfilehash: 7bbb8064cd71e61b6fdfb1205e783099ec21c687
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 5cffee705c6a9225112e7ada8154084de40035c4
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494257"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88875019"
 ---
 # <a name="create-an-azure-active-directory-application-registration-in-azure-data-explorer"></a>Créer une inscription d’application Azure Active Directory dans Azure Data Explorer
 

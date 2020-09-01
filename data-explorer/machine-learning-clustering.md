@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: adieldar
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 04/29/2019
-ms.openlocfilehash: 4665064a645ad0001251a0c7246c9d799ff6e638
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: 7825f7fad16d8194d1e97008e9958d30ca20ddd5
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780488"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88875155"
 ---
 # <a name="machine-learning-capability-in-azure-data-explorer"></a>Fonctionnalité d’apprentissage automatique dans Azure Data Explorer
 

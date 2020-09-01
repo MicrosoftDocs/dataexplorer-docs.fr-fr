@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: basaba
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 03/24/2020
-ms.openlocfilehash: 753c2a21812c850613c2c2462394b6b0bde8b740
-ms.sourcegitcommit: 4eb64e72861d07cedb879e7b61a59eced74517ec
+ms.openlocfilehash: cb31dc576e7bcaa30a37b04dcd4ff7ad3b5fae9c
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/29/2020
-ms.locfileid: "85517951"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88874033"
 ---
 # <a name="create-an-azure-data-explorer-cluster-in-your-virtual-network"></a>Créer un cluster Azure Data Explorer dans votre réseau virtuel
 

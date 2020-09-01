@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: dorcohen
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 03/25/2020
-ms.openlocfilehash: 57f3ae587f449739f7e3aaaa0aa817530447097e
-ms.sourcegitcommit: 98eabf249b3f2cc7423dade0f386417fb8e36ce7
+ms.openlocfilehash: 58b384b502683b69020c1f211345bfcec8c095b5
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82868727"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88874271"
 ---
 # <a name="azure-data-explorer-connector-to-power-automate-preview"></a>Connecteur Azure Data Explorer vers Power Automate (préversion)
 

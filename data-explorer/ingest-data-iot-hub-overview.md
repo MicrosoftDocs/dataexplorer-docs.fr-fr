@@ -6,14 +6,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
-ms.topic: reference
+ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: a98c1b07e71eecdd725790e6f64901a073f458b5
-ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
+ms.openlocfilehash: 8a009c82f787dac0bd4a86209b07ffc14d9ec8cf
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/13/2020
-ms.locfileid: "88202402"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88874866"
 ---
 # <a name="connect-to-iot-hub"></a>Connexion à IoT Hub
 

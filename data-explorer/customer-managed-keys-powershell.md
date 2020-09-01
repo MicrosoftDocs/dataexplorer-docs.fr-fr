@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: roshauli
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 06/04/2020
-ms.openlocfilehash: ff9ad23e1e534e831e981e64cb2839f5e36d67c7
-ms.sourcegitcommit: a7e040fc844098323aa1c00e254bcbcd41fe587f
+ms.openlocfilehash: 5c52253a6d8c4978931aeff3a5a5a73367f14ce5
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84428348"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88871993"
 ---
 # <a name="configure-customer-managed-keys-using-powershell"></a>Configurer des clés gérées par le client avec PowerShell
 

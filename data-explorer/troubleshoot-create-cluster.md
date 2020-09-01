@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: mblythe
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 09/24/2018
-ms.openlocfilehash: 863d9ecedf095e0ab284a0d7fd86363b69ae5658
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 1bfec09d8ab953508ce89365f8431e7211dfd9cb
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494101"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88874917"
 ---
 # <a name="troubleshoot-failed-cluster-creation-of-azure-data-explorer"></a>Résoudre les problèmes : Échec de création du cluster Azure Data Explorer
 

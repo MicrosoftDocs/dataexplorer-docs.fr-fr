@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: gabil
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 11/04/2019
-ms.openlocfilehash: 99d242358f5b4a54f7e1faa246a1cfc64d1414d3
-ms.sourcegitcommit: 6e84f50efc8c5c3fe57080341ed3effe72197886
+ms.openlocfilehash: 679e3fd4f9b065229951f570101b931a7cb091ea
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87439871"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88874509"
 ---
 # <a name="visualize-data-from-azure-data-explorer-in-redash"></a>Visualiser des données Azure Data Explorer dans Redash
 

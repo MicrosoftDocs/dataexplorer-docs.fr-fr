@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: lugoldbe
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 02/03/2020
-ms.openlocfilehash: 54b2d05c666c1ac3ed35520ad383f01eff3371cb
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 188d14e6144b163418d2eb23088f4d05ce228de3
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350007"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88873115"
 ---
 # <a name="add-database-principals-for-azure-data-explorer-by-using-python"></a>Ajouter des principaux de base de données pour Azure Data Explorer à l’aide de Python
 

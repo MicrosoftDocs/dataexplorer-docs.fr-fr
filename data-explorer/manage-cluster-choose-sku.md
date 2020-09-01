@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: avnera
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 07/14/2019
-ms.openlocfilehash: 61a43f767ea1f2bf048357e4032bb69025a85ad0
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 196bfdd69b5fc73676dc39c0d8fae92682cc2f93
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351622"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88875121"
 ---
 # <a name="select-the-correct-vm-sku-for-your-azure-data-explorer-cluster"></a>Sélectionner la bonne référence SKU de machine virtuelle pour votre cluster Azure Data Explorer 
 

@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: lugoldbe
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 02/03/2020
-ms.openlocfilehash: 92ec0b5fcd5635bc13052bcf4141956fe8d59c55
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: a7079235d3ab43bd193b7e4c0f7cbe25689a5d3e
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350415"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88872299"
 ---
 # <a name="add-cluster-principals-for-azure-data-explorer-by-using-c"></a>Ajouter des principaux de cluster pour Azure Data Explorer à l’aide de C#
 
