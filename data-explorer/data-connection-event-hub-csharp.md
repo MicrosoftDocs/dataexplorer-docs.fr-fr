@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: lugoldbe
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 10/07/2019
-ms.openlocfilehash: d71dabaa3ed597b641d0e16c2ff152779fda2d53
-ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
+ms.openlocfilehash: 41768e01dfd41745615a0483d9a9ad9818f080f1
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/13/2020
-ms.locfileid: "88201373"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88873693"
 ---
 # <a name="create-an-event-hub-data-connection-for-azure-data-explorer-by-using-c"></a>Créer une connexion de données au hub d’événements pour Azure Data Explorer à l’aide de C#
 
