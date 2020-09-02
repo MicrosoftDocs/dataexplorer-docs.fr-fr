@@ -1,4 +1,4 @@
-- name: Documentation de l’Explorateur de données Azure
+- name: Documentation Azure Data Explorer
   href: index.yml
 - name: Vue d’ensemble
   items:
