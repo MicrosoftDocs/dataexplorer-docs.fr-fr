@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/23/2020
-ms.openlocfilehash: c75924ed450b2995f2d35d206951adf05aecec0e
-ms.sourcegitcommit: fb54d71660391a63b0c107a9703adea09bfc7cb9
+ms.openlocfilehash: 7f17302475221bb259e6717987f7d31e96d7c118
+ms.sourcegitcommit: a4779e31a52d058b07b472870ecd2b8b8ae16e95
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/22/2020
-ms.locfileid: "86946119"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89366025"
 ---
 # <a name="make_list-aggregation-function"></a>make_list () (fonction d’agrégation)
 
@@ -40,7 +40,7 @@ Si l’entrée de l' `summarize` opérateur n’est pas triée, l’ordre des é
 Si l’entrée de l' `summarize` opérateur est triée, l’ordre des éléments dans le tableau résultant suit celui de l’entrée.
 
 > [!TIP]
-> Utilisez l' [`mv-apply`](./mv-applyoperator.md) opérateur pour créer une liste ordonnée à l’aide d’une clé. Consultez les exemples [ici](./mv-applyoperator.md#using-the-mv-apply-operator-to-sort-the-output-of-makelist-aggregate-by-some-key).
+> Utilisez l' [`mv-apply`](./mv-applyoperator.md) opérateur pour créer une liste ordonnée à l’aide d’une clé. Consultez les exemples [ici](./mv-applyoperator.md#using-the-mv-apply-operator-to-sort-the-output-of-make_list-aggregate-by-some-key).
 
 ## <a name="examples"></a>Exemples
 
@@ -124,4 +124,4 @@ shapes
 
 ## <a name="see-also"></a>Voir aussi
 
-[`make_list_if`](./makelistif-aggfunction.md)est semblable à `make_list` , sauf qu’il accepte également un prédicat.
+[`make_list_if`](./makelistif-aggfunction.md) est semblable à `make_list` , sauf qu’il accepte également un prédicat.

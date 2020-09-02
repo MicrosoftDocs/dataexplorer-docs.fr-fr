@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 656d1d5d9120baebced624fee476d261214eff57
-ms.sourcegitcommit: 83202ec6fec0ce98fdf993bbb72adc985d6d9c78
+ms.openlocfilehash: ee6239b7e8ad4cbdd3d36e6b7b3c20f0cc0cdaeb
+ms.sourcegitcommit: a4779e31a52d058b07b472870ecd2b8b8ae16e95
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87871848"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89366042"
 ---
 # <a name="mv-apply-operator"></a>mv-apply, opérateur
 
@@ -94,7 +94,7 @@ et *sous-requête* a la même syntaxe qu’une instruction de requête.
 
 * *Sous-requête*: expression de requête tabulaire avec une source tabulaire implicite qui est appliquée à chaque sous-table développée par un tableau.
 
-**Remarques**
+**Notes**
 
 * Contrairement à l' [`mv-expand`](./mvexpandoperator.md) opérateur, l' `mv-apply` opérateur prend en charge l’expansion de tableau uniquement. Le développement des conteneurs de propriétés n’est pas pris en charge.
 
@@ -163,7 +163,7 @@ _data
 |3|8|
 |4|10|
 
-## <a name="using-the-mv-apply-operator-to-sort-the-output-of-makelist-aggregate-by-some-key"></a>Utilisation de l' `mv-apply` opérateur pour trier la sortie de l' `makelist` agrégat par clé
+## <a name="using-the-mv-apply-operator-to-sort-the-output-of-make_list-aggregate-by-some-key"></a>Utilisation de l' `mv-apply` opérateur pour trier la sortie de l' `make_list` agrégat par clé
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
