@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: gabil
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 06/30/2019
-ms.openlocfilehash: 156257613195cb53730273ac3a654908feac9601
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: ee5b898b5e4bbb72ad1cd32fcfb40ba0d144c02d
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492725"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88872996"
 ---
 # <a name="connect-to-azure-data-explorer-with-odbc"></a>Connexion à Azure Data Explorer avec ODBC
 
@@ -48,7 +48,7 @@ Suivez ces étapes pour configurer une source de données ODBC à l’aide du pi
 
     ![Sélectionner un pilote](media/connect-odbc/select-driver.png)
 
-1. Saisissez un nom et une description pour la connexion et le cluster auquel que vous souhaitez vous connecter, puis sélectionnez **Suivant**. L’URL du cluster doit avoir le format suivant : *\<NomCluster\>.\<Région\>.kusto.windows.net*.
+1. Saisissez un nom et une description pour la connexion et le cluster auquel que vous souhaitez vous connecter, puis sélectionnez **Suivant**. L’URL du cluster doit être sous la forme *\<ClusterName\>.\<Region\>.kusto.windows.net*.
 
     ![Sélectionner un serveur](media/connect-odbc/select-server.png)
 

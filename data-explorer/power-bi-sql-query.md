@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: gabil
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 07/10/2019
-ms.openlocfilehash: ba53be55f2aab6d63db6e983ba2730e303674769
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 5a8e95b6ba21455f2673a019dca7b0959697a80c
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494321"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88875036"
 ---
 # <a name="visualize-data-from-azure-data-explorer-using-a-sql-query-in-power-bi"></a>Visualiser des données Azure Data Explorer avec une requête SQL dans Power BI
 
@@ -50,7 +50,7 @@ Vous utilisez généralement le langage de requête natif avec Azure Data Explor
 
     **Paramètre** | **Valeur** | **Description du champ**
     |---|---|---|
-    | Serveur | *help.kusto.windows.net* | URL pour le cluster help (sans *https://* ). Pour les autres clusters, l’URL est de la forme *\<NomCluster\>.\<Région\>.kusto.windows.net*. |
+    | Serveur | *help.kusto.windows.net* | URL pour le cluster help (sans *https://* ). Pour les autres clusters, l’URL est sous la forme *\<ClusterName\>.\<Region\>.kusto.windows.net*. |
     | Base de données | *Exemples* | Exemple de base de données hébergée sur le cluster auquel vous vous connectez. |
     | Mode de connectivité des données | *Importer* | Détermine si Power BI importe les données ou s’il se connecte directement à la source de données. Vous pouvez utiliser l’une ou l’autre des options avec ce connecteur. |
     | Délai d’expiration de la commande | Laisser vide | Durée pendant laquelle la requête s’exécute avant de lever une erreur d’expiration. |

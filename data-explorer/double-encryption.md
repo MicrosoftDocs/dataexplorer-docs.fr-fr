@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: toleibov
 ms.service: data-explorer
-ms.topic: conceptual
-ms.date: 08/02/2020
-ms.openlocfilehash: 4a550d7596a74c3ae0bfca1718f10a69a183cc58
-ms.sourcegitcommit: d9fbcd6c9787f90de62e8e832c92d43b8090cbfc
+ms.topic: how-to
+ms.date: 08/11/2020
+ms.openlocfilehash: e89ce6f77545b4f0b42cbb3d792edd5ceeb0ed34
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87515900"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88874667"
 ---
 # <a name="enable-infrastructure-encryption-double-encryption-during-cluster-creation-in-azure-data-explorer"></a>Activer le chiffrement d’infrastructure (double chiffrement) lors de la création de cluster dans Azure Data Explorer
   
@@ -22,6 +22,15 @@ Lorsque vous créez un cluster, son stockage est [automatiquement chiffré au ni
 > * L’activation du double chiffrement est possible uniquement lors de la création de cluster.
 > * Une fois que le chiffrement d’infrastructure est activé sur votre cluster, vous **ne pouvez pas** le désactiver.
 > * Le double chiffrement est disponible uniquement dans les régions où le chiffrement d’infrastructure est pris en charge. Pour plus d’informations, consultez [Chiffrement d’infrastructure de stockage](/azure/storage/common/infrastructure-encryption-enable).
+
+# <a name="azure-portal"></a>[Portail Azure](#tab/portal)
+
+1. [Créez un cluster Azure Data Explorer](create-cluster-database-portal.md#create-a-cluster). 
+1. Sous l’onglet **Sécurité** > **Activer le chiffrement double**, sélectionnez **Activé**. Pour supprimer le chiffrement double, sélectionnez **Désactivé**.
+1. Sélectionnez **Suivant : Réseau >** ou **Vérifier + créer** pour créer le cluster.
+
+    :::image type="content" source="media/double-encryption/double-encryption-portal.png" alt-text="chiffrement double et nouveau cluster":::
+
 
 # <a name="c"></a>[C#](#tab/c-sharp)
 
@@ -67,7 +76,7 @@ Configurez une identité managée à l’aide du client C# Azure Data Explorer 
     await kustoManagementClient.Clusters.CreateOrUpdateAsync(resourceGroupName, clusterName, cluster);
     ```
     
-2. Exécutez la commande suivante pour vérifier si votre cluster a bien été créé :
+1. Exécutez la commande suivante pour vérifier si votre cluster a bien été créé :
 
     ```csharp
     kustoManagementClient.Clusters.Get(resourceGroupName, clusterName);
@@ -84,33 +93,33 @@ Vous pouvez utiliser un modèle Azure Resource Manager pour automatiser le dépl
 ## <a name="add-a-system-assigned-identity-using-an-azure-resource-manager-template"></a>Ajouter une identité affectée par le système à l’aide d’un modèle Azure Resource Manager
 
 1. Ajoutez le type « EnableDoubleEncryption » pour indiquer à Azure d’activer le chiffrement d’infrastructure (chiffrement double) pour votre cluster.
-
-```json
-{
-    "apiVersion": "2020-06-14",
-    "type": "Microsoft.Kusto/clusters",
-    "name": "[variables('clusterName')]",
-    "location": "[resourceGroup().location]",
-    "properties": {
-        "trustedExternalTenants": [],
-        "virtualNetworkConfiguration": null,
-        "optimizedAutoscale": null,
-        "enableDiskEncryption": false,
-        "enableStreamingIngest": false,
-        "enableDoubleEncryption": true,
+    
+    ```json
+    {
+        "apiVersion": "2020-06-14",
+        "type": "Microsoft.Kusto/clusters",
+        "name": "[variables('clusterName')]",
+        "location": "[resourceGroup().location]",
+        "properties": {
+            "trustedExternalTenants": [],
+            "virtualNetworkConfiguration": null,
+            "optimizedAutoscale": null,
+            "enableDiskEncryption": false,
+            "enableStreamingIngest": false,
+            "enableDoubleEncryption": true,
+        }
     }
-}
-```
+    ```
 
-2. Quand le cluster est créé, il a les propriétés supplémentaires suivantes :
+1. Quand le cluster est créé, il a les propriétés supplémentaires suivantes :
 
-```json
-"identity": {
-    "type": "SystemAssigned",
-    "tenantId": "<TENANTID>",
-    "principalId": "<PRINCIPALID>"
-}
-```
+    ```json
+    "identity": {
+        "type": "SystemAssigned",
+        "tenantId": "<TENANTID>",
+        "principalId": "<PRINCIPALID>"
+    }
+    ```
 ---
 
 ## <a name="next-steps"></a>Étapes suivantes

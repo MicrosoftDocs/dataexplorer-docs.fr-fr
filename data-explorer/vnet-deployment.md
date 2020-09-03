@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: basaba
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 10/31/2019
-ms.openlocfilehash: 10c2cf41ae1ab149b6eeffe35f94052069309152
-ms.sourcegitcommit: b8415e01464ca2ac9cd9939dc47e4c97b86bd07a
+ms.openlocfilehash: 93860688f798c3b9ac2552052f22cc1ca1ca565e
+ms.sourcegitcommit: 91e7d49a1046575bbc63a4f25724656ebfc070db
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88028508"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89151193"
 ---
 # <a name="deploy-azure-data-explorer-cluster-into-your-virtual-network"></a>Déployer un cluster Azure Data Explorer dans votre réseau virtuel
 
@@ -63,6 +63,14 @@ Le déploiement du cluster Azure Data Explorer dans votre sous-réseau vous perm
 
 > [!NOTE]
 > Quand vous utilisez une configuration EventGrid avec [Stockage](/azure/storage/common/storage-introduction) et [Event Hub], le compte de stockage utilisé dans l’abonnement peut être verrouillé avec des points de terminaison de service sur le sous-réseau d’Azure Data Explorer tout en autorisant les services de plateforme Azure approuvés dans la [configuration du pare-feu](/azure/storage/common/storage-network-security), alors que le hub d’événements ne peut pas activer le point de terminaison de service car il ne prend pas en charge les [services de plateforme Azure](/azure/event-hubs/event-hubs-service-endpoints) approuvés.
+
+## <a name="private-endpoints"></a>Points de terminaison privés
+
+Les [points de terminaison privés](/azure/private-link/private-endpoint-overview) autorisent un accès privé aux ressources Azure (comme Stockage/Event Hub/Data Lake Gen 2) et utilisent une adresse IP privée de votre réseau virtuel pour apporter la ressource dans votre réseau virtuel.
+Créez un [point de terminaison privé](/azure/private-link/private-endpoint-overview) pour les ressources utilisées par les connexions de données, comme Stockage et Event Hub, et pour les tables externes, comme Stockage, Data Lake Gen 2 et SQL Database, de votre réseau virtuel pour accéder aux ressources sous-jacentes en privé.
+
+ [!NOTE]
+ > La configuration d’un point de terminaison privé demande de [configurer DNS](/azure/private-link/private-endpoint-dns). Nous prenons en charge la configuration d’une [zone DNS privée Azure](/azure/dns/private-dns-privatednszone) uniquement. Les serveurs DNS personnalisés ne sont pas pris en charge. 
 
 ## <a name="dependencies-for-vnet-deployment"></a>Dépendances pour le déploiement de réseau virtuel
 
@@ -221,7 +229,7 @@ wdcp.microsoft.com:443
 login.microsoftonline.com:443
 azureprofilerfrontdoor.cloudapp.net:443
 *.core.windows.net:443
-*.servicebus.windows.net:443
+*.servicebus.windows.net:443,5671
 shoebox2.metrics.nsatc.net:443
 prod-dsts.dsts.core.windows.net:443
 ocsp.msocsp.com:80
@@ -235,6 +243,9 @@ www.microsoft.com:80
 adl.windows.com:80
 crl3.digicert.com:80
 ```
+
+> [!NOTE]
+> Si vous utilisez le [Pare-feu Azure](/azure/firewall/overview), vous devez ajouter « Règle réseau » afin d’autoriser *AzureMonitor* (Étiquette de service) pour le port 443.
 
 Vous devez aussi définir la [table de route](/azure/virtual-network/virtual-networks-udr-overview) sur le sous-réseau avec les [adresses de gestion](#azure-data-explorer-management-ip-addresses) et les [adresses de surveillance de l’intégrité](#health-monitoring-addresses) avec le dernier tronçon *Internet* pour éviter des problèmes d’itinéraire asymétriques.
 

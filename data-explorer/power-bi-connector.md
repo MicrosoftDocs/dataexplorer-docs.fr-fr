@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: gabil
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 07/10/2019
-ms.openlocfilehash: d162adec8ea0c5244fef601bf409d12432f4ce00
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 591f8add363f0d1b09d8314c21a209fdc4cbedac
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494381"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88875172"
 ---
 # <a name="visualize-data-using-the-azure-data-explorer-connector-for-power-bi"></a>Visualiser des données à l’aide du connecteur Azure Data Explorer pour Power BI
 
@@ -44,7 +44,7 @@ Connectez-vous d’abord au cluster help d’Azure Data Explorer : vous récup�
 
     **Paramètre** | **Valeur** | **Description du champ**
     |---|---|---|
-    | Cluster | *https://help.kusto.windows.net* | URL pour le cluster help. Pour les autres clusters, l’URL est de la forme *https://\<NomCluster\>.\< Région\>.kusto.windows.net*. |
+    | Cluster | *https://help.kusto.windows.net* | URL pour le cluster help. Pour les autres clusters, l’URL est sous la forme *https://\<ClusterName\>.\<Region\>.kusto.windows.net*. |
     | Base de données | Laisser vide | Une base de données qui est hébergée sur le cluster auquel vous vous connectez. Nous la sélectionnerons dans une étape ultérieure. |
     | Nom de la table | Laisser vide | Une des tables de la base de données ou une requête comme <code>StormEvents \| take 1000</code>. Nous la sélectionnerons dans une étape ultérieure. |
     | Options avancées | Laisser vide | Options pour vos requêtes, comme la taille du jeu de résultats. |
