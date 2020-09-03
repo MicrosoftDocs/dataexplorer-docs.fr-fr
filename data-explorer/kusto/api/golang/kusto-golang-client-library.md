@@ -6,25 +6,29 @@ ms.author: orspodek
 ms.reviewer: vladikb
 ms.topic: reference
 ms.date: 04/16/2020
-ms.openlocfilehash: c9de23d175f3eb412865e540580a7db75be650bf
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 12a049ac1c3a13788a7daf361b5cc363f18675b0
+ms.sourcegitcommit: 9e0289945270db517e173aa10024e0027b173b52
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350500"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89428377"
 ---
 # <a name="azure-data-explorer-golang-sdk"></a>Kit de développement logiciel (SDK) Azure Explorateur de données Golang
 
-La bibliothèque cliente Azure Explorateur de données Go offre la possibilité d’interroger, de contrôler et de recevoir des clusters Azure Explorateur de données à l’aide de go. Il s’agit d’un kit de développement logiciel (SDK) de **plan de données** (il est destiné à interagir avec le service Azure Explorateur de données). Pour le plan de contrôle (administration des ressources), accédez à :https://github.com/Azure/azure-sdk-for-go/tree/master/services/kusto/mgmt 
+La bibliothèque cliente Azure Explorateur de données Go offre la possibilité d’interroger, de contrôler et de recevoir des clusters Azure Explorateur de données à l’aide de go. Ce kit de développement logiciel (SDK) est un kit de développement logiciel (SDK) de type **plan de données** qui est utilisé pour interagir avec Azure Explorateur de données service. Pour le plan de contrôle, ou l’administration des ressources, consultez [la bibliothèque GitHub](https://github.com/Azure/azure-sdk-for-go/tree/master/services/kusto/mgmt).
 
 ## <a name="minimum-requirements"></a>Configuration minimale requise
+
 * Passez à la version 1.13
 
 ## <a name="installation"></a>Installation
+
 `go get github.com/Azure/azure-kusto-go/kusto`
 
 ## <a name="docs-godoc"></a>Documentation (GODOC)
-https://godoc.org/github.com/Azure/azure-kusto-go
+
+[https://godoc.org/github.com/Azure/azure-kusto-go](https://godoc.org/github.com/Azure/azure-kusto-go)
 
 ## <a name="repo"></a>Dépôt
+
 * [Dépôt GitHub](https://github.com/Azure/azure-kusto-go)
