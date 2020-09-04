@@ -176,10 +176,12 @@
       items:
         - name: Tableaux de bord Azure Data Explorer
           items:
-            - name: Utilisation de tableaux de bord
+            - name: Utiliser les tableaux de bord
               href: azure-data-explorer-dashboards.md
-            - name: Utilisation des paramètres de tableau de bord
+            - name: Utiliser les paramètres de tableau de bord
               href: dashboard-parameters.md
+            - name: Personnaliser les visuels des tableaux de bord
+              href: dashboard-customize-visuals.md
         - name: Power BI
           items:
             - name: Meilleures pratiques
