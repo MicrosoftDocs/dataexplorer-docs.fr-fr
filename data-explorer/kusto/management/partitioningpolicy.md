@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/10/2020
-ms.openlocfilehash: cbafde1b87807c449923b8b010c57e3394c4a74f
-ms.sourcegitcommit: d08b3344d7e9a6201cf01afc8455c7aea90335aa
+ms.openlocfilehash: 0b85d0c4bd0604f46375e314cb1fe029647b8d32
+ms.sourcegitcommit: 9b96a0c1ba0d07fec81f29bdf8f71b9549e79b3a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88964742"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89472238"
 ---
 # <a name="data-partitioning-policy"></a>Stratégie de partitionnement des données
 
@@ -51,7 +51,7 @@ Les types de clés de partition suivants sont pris en charge.
 * `Function` nom d’une fonction de hachage-modulo à utiliser.
   * Valeur prise en charge : `XxHash64` .
 * `MaxPartitionCount` nombre maximal de partitions à créer (l’argument modulo de la fonction de hachage-modulo) par période.
-  * Les valeurs prises en charge sont comprises dans la plage `(1,1024]` .
+  * Les valeurs prises en charge sont comprises dans la plage `(1,2048]` .
     * La valeur doit être :
       * Plus de 5 fois le nombre de nœuds dans le cluster.
       * Plus petite que la cardinalité de la colonne.
@@ -181,7 +181,7 @@ Les propriétés suivantes peuvent être définies dans le cadre de la stratégi
   * Cette propriété est facultative. Sa valeur par défaut est `0` , avec une cible par défaut de 5 millions enregistrements.
     * Vous pouvez définir une valeur inférieure à 5 millions si vous constatez que les opérations de partitionnement consomment une grande quantité de mémoire ou de processeur, par opération. Pour plus d’informations, consultez [Monitoring](#monitoring).
 
-## <a name="notes"></a>Notes
+## <a name="notes"></a>Remarques
 
 ### <a name="the-data-partitioning-process"></a>Processus de partitionnement des données
 
@@ -205,7 +205,7 @@ La sortie comprend les éléments suivants :
     * Si ce pourcentage reste constamment inférieur à 90%, évaluez la [capacité](partitioningpolicy.md#capacity)de partitionnement du cluster.
   * `TableWithMinPartitioningPercentage`: Nom qualifié complet de la table dont le pourcentage de partitionnement est indiqué ci-dessus.
 
-Utilisez les [commandes. Show](commands.md) pour surveiller les commandes de partitionnement et leur utilisation des ressources. Par exemple :
+Utilisez les [commandes. Show](commands.md) pour surveiller les commandes de partitionnement et leur utilisation des ressources. Par exemple :
 
 ```kusto
 .show commands 

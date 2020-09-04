@@ -220,6 +220,8 @@
               href: vnet-deployment.md
             - name: 'Résoudre les problèmes liés à la création, à la connectivité et au fonctionnement d’un cluster de réseaux virtuels'
               href: vnet-deploy-troubleshoot.md
+            - name: Créer un point de terminaison privé pour votre cluster de réseau virtuel - Portail
+              href: vnet-create-private-endpoint.md
         - name: Chiffrement
           items:
             - name: Chiffrement de disque de cluster - portail
