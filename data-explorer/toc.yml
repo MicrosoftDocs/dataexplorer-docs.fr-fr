@@ -92,7 +92,7 @@
           href: lightingest.md
         - name: Event Hub
           items:
-            - name: Connexion à Event Hub
+            - name: Créer une connexion à Event Hub
               href: ingest-data-event-hub-overview.md
             - name: Portail Azure
               href: ingest-data-event-hub.md
@@ -104,7 +104,7 @@
               href: data-connection-event-hub-resource-manager.md
         - name: Event Grid
           items:
-            - name: Se connecter à Event Grid
+            - name: Créer une connexion à Event Grid
               href: ingest-data-event-grid-overview.md
             - name: Portail Azure
               href: ingest-data-event-grid.md
@@ -116,7 +116,7 @@
               href: data-connection-event-grid-resource-manager.md
         - name: IoT Hub
           items:
-            - name: Connexion à IoT Hub
+            - name: Créer une connexion à IoT Hub
               href: ingest-data-iot-hub-overview.md
             - name: Portail Azure
               href: ingest-data-iot-hub.md
@@ -297,7 +297,8 @@
       items:
         - name: Utiliser des journaux de diagnostic pour superviser l’ingestion
           href: using-diagnostic-logs.md
-        - name: Utiliser des métriques pour superviser l’intégrité du cluster
+        - name: Superviser Azure Data Explorer avec des métriques
+          displayName: 'health, performance'
           href: using-metrics.md
         - name: Utiliser Resource Health pour superviser l’intégrité du cluster
           href: monitor-with-resource-health.md
