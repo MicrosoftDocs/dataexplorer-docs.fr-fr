@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/06/2019
-ms.openlocfilehash: a128db995c78c0583bc7c7712c06292a2f6598d1
-ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
+ms.openlocfilehash: cc10fcc725e038d6428d4b794a1f6d368a86a39e
+ms.sourcegitcommit: 9e0289945270db517e173aa10024e0027b173b52
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/18/2020
-ms.locfileid: "83550535"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89428411"
 ---
 # <a name="ms-tds-t-sql-support"></a>Prise en charge de MS-TDS T-SQL
 
-Azure Data Explorer (Kusto) prend en charge une partie du protocole de communication Microsoft SQL Server (MS-TDS) avec une partie du langage de requête T-SQL. Microsoft Excel et Microsoft Power BI font partie des nombreux outils pouvant fonctionner avec Azure Data Explorer (Kusto). Ces applications Microsoft savent également comment interroger SQL Server.
+Azure Data Explorer prend en charge un sous-ensemble du protocole de communication Microsoft SQL Server (MS-TDS), avec un sous-ensemble du langage de requête T-SQL. Microsoft Excel et Microsoft Power BI ne sont que deux parmi les nombreux outils pouvant fonctionner avec Azure Data Explorer. Ces applications Microsoft savent également comment interroger SQL Server.
 
 > [!NOTE]
 > Utilisez l’authentification intégrée Azure Active Directory (Azure AD) comme outil client pour interroger Kusto via MS-TDS.
@@ -30,7 +30,7 @@ Azure Data Explorer (Kusto) prend en charge une partie du protocole de communica
 
 * [Clients MS-TDS et Kusto](./clients.md) - Utilisez Azure Data Explorer à partir de clients connus qui se servent de MS-TDS/T-SQL.
 
-* [Azure Data Explorer (Kusto) comme serveur lié à un serveur SQL](./linkedserver.md) - Configurez le cluster en tant que serveur lié à un serveur SQL local. 
+* [Azure Data Explorer en tant que serveur lié à un serveur SQL](./linkedserver.md) - Configurez le cluster en tant que serveur lié à un serveur SQL local. 
 
 * [MS-TDS avec Azure Active Directory](./aad.md) - Utilisez Azure AD via TDS pour vous connecter à Azure Data Explorer.
 
