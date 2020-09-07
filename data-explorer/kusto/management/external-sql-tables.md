@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: ea32c7631681c12aa1262c4dbdb8debdcc22a3c7
-ms.sourcegitcommit: 83202ec6fec0ce98fdf993bbb72adc985d6d9c78
+ms.openlocfilehash: 79816960b75735e226395f70286ea9d81829a173
+ms.sourcegitcommit: 08c54dabc1efe3d4e2d2581c4b668a6b73daf855
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87871916"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89510693"
 ---
 # <a name="create-and-alter-external-sql-tables"></a>Créer et modifier des tables SQL externes
 
 Crée ou modifie une table SQL externe dans la base de données dans laquelle la commande est exécutée.  
 
-## <a name="syntax"></a>Syntaxe
+## <a name="syntax"></a>Syntax
 
 ( `.create`  |  `.alter`  |  `.create-or-alter` ) `external` `table` *TableName* ([ColumnName : ColumnType],...)  
 `kind` `=` `sql`  
@@ -57,7 +57,7 @@ Requiert l' [autorisation utilisateur de base de données](../management/access-
 **Exemple** 
 
 ```kusto
-.create external table ExternalSql (x:long, s:string) 
+.create external table MySqlExternalTable (x:long, s:string) 
 kind=sql
 table=MySqlTable
 ( 
@@ -77,14 +77,14 @@ with
 
 | TableName   | TableType | Dossier         | DocString | Propriétés                            |
 |-------------|-----------|----------------|-----------|---------------------------------------|
-| ExternalSql | SQL       | ExternalTables | Docs      | {<br>  "TargetEntityKind": "sqltable'",<br>  "TargetEntityName": "MySqlTable",<br>  "TargetEntityConnectionString" : "Server = TCP :myserver. Database. Windows. net, 1433 ; Authentication = Active Directory intégré ; initial catalog = mabdd ;»,<br>  « FireTriggers » : true,<br>  « CreateIfNotExists » : true,<br>  « PrimaryKey » : « x »<br>} |
+| MySqlExternalTable | SQL       | ExternalTables | Docs      | {<br>  "TargetEntityKind": "sqltable'",<br>  "TargetEntityName": "MySqlTable",<br>  "TargetEntityConnectionString" : "Server = TCP :myserver. Database. Windows. net, 1433 ; Authentication = Active Directory intégré ; initial catalog = mabdd ;»,<br>  « FireTriggers » : true,<br>  « CreateIfNotExists » : true,<br>  « PrimaryKey » : « x »<br>} |
 
-## <a name="querying-an-external-table-of-type-sql"></a>Interrogation d’une table externe de type SQL 
+## <a name="querying-an-external-table-of-type-sql"></a>Interrogation d’une table externe de type SQL
 
 L’interrogation d’une table SQL externe est prise en charge. Consultez [interrogation de tables externes](../../data-lake-query-data.md). 
 
 > [!Note]
-> L’implémentation de la requête de table externe SQL exécute un « SELECT * » complet (ou sélectionne des colonnes appropriées) dans la table SQL. Le reste de la requête s’exécute du côté Kusto. 
+> L’implémentation de requête de table externe SQL exécute l' `SELECT x, s FROM MySqlTable` instruction, où `x` et `s` sont des noms de colonnes de table externe. Le reste de la requête s’exécute du côté Kusto.
 
 Examinez la requête de table externe suivante : 
 
@@ -92,7 +92,7 @@ Examinez la requête de table externe suivante :
 external_table('MySqlExternalTable') | count
 ```
 
-Kusto exécute une requête’SELECT * FROM TABLE’dans la base de données SQL, suivie d’un décompte du côté Kusto. Dans ce cas, les performances devraient être meilleures si elles sont écrites directement dans T-SQL (« SELECT COUNT (1) FROM TABLE ») et exécutées à l’aide du [plug-in sql_request](../query/sqlrequestplugin.md), au lieu d’utiliser la fonction de table externe. De même, les filtres ne sont pas transmis à la requête SQL.  
+Kusto exécute une `SELECT x, s FROM MySqlTable` requête sur la base de données SQL, suivie d’un décompte du côté Kusto. Dans ce cas, les performances devraient être meilleures si elles sont écrites directement dans T-SQL ( `SELECT COUNT(1) FROM MySqlTable` ) et exécutées à l’aide du [plug-in sql_request](../query/sqlrequestplugin.md), au lieu d’utiliser la fonction de table externe. De même, les filtres ne sont pas transmis à la requête SQL.  
 
 Utilisez la table externe pour interroger la table SQL lorsque celle-ci requiert la lecture de la totalité de la table (ou des colonnes appropriées) pour une exécution ultérieure côté Kusto. Quand une requête SQL peut être optimisée dans T-SQL, utilisez le [plug-in sql_request](../query/sqlrequestplugin.md).
 
