@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/07/2019
-ms.openlocfilehash: 41768e01dfd41745615a0483d9a9ad9818f080f1
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: c2cfe861898c2fa68960636b3c4bb4a2dc9b3075
+ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88873693"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89502447"
 ---
 # <a name="create-an-event-hub-data-connection-for-azure-data-explorer-by-using-c"></a>Créer une connexion de données au hub d’événements pour Azure Data Explorer à l’aide de C#
 
@@ -91,5 +91,40 @@ await kustoManagementClient.DataConnections.CreateOrUpdateAsync(resourceGroupNam
 | eventHubResourceId | *ID de ressource* | ID de ressource de votre hub d’événements qui contient les données à des fins d’ingestion. |
 | consumerGroup | *$Default* | Groupe de consommateurs de votre hub d’événements.|
 | location | *USA Centre* | Emplacement de la ressource de connexion de données.|
+
+## <a name="generate-data"></a>Générer les données
+
+Consultez l’[exemple d’application](https://github.com/Azure-Samples/event-hubs-dotnet-ingest) qui génère des données et les envoie à un hub d’événements.
+
+Un événement peut contenir un ou plusieurs enregistrements, jusqu’à sa limite de taille. Dans l’exemple suivant, nous envoyons deux événements, chacun avec cinq enregistrements ajoutés :
+
+```csharp
+var events = new List<EventData>();
+var data = string.Empty;
+var recordsPerEvent = 5;
+var rand = new Random();
+var counter = 0;
+
+for (var i = 0; i < 10; i++)
+{
+    // Create the data
+    var metric = new Metric { Timestamp = DateTime.UtcNow, MetricName = "Temperature", Value = rand.Next(-30, 50) }; 
+    var data += JsonConvert.SerializeObject(metric) + Environment.NewLine;
+    counter++;
+
+    // Create the event
+    if (counter == recordsPerEvent)
+    {
+        var eventData = new EventData(Encoding.UTF8.GetBytes(data));
+        events.Add(eventData);
+
+        counter = 0;
+        data = string.Empty;
+    }
+}
+
+// Send events
+eventHubClient.SendAsync(events).Wait();
+```
 
 [!INCLUDE [data-explorer-data-connection-clean-resources-csharp](includes/data-explorer-data-connection-clean-resources-csharp.md)]
