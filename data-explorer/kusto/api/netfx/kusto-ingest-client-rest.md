@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 02/19/2020
-ms.openlocfilehash: eb13b53ba5f6785c79aaa586de50478074901c8d
-ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
+ms.openlocfilehash: 10f59a167de12e4b688f6d9b5f15d3f0f15d8291
+ms.sourcegitcommit: f689547c0f77b1b8bfa50a19a4518cbbc6d408e5
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85901920"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89557392"
 ---
 # <a name="ingestion-without-kustoingest-library"></a>Ingestion sans la bibliothèque Kusto. deréception
 
@@ -283,7 +283,7 @@ internal static string PrepareIngestionMessage(string db, string table, string d
 Enfin, publiez le message que vous avez créé dans la file d’attente d’ingestion sélectionnée que vous avez obtenue à partir d’Azure Explorateur de données.
 
 > [!NOTE]
-> Le client de stockage .net, lorsqu’il est utilisé, encode le message au format Base64 par défaut. Pour plus d’informations, consultez la documentation relative au [stockage](https://docs.microsoft.com/dotnet/api/microsoft.azure.storage.queue.cloudqueue.encodemessage?view=azure-dotnet-legacy#Microsoft_WindowsAzure_Storage_Queue_CloudQueue_EncodeMessage). Si vous n’utilisez pas ce client, assurez-vous de coder correctement le contenu du message.
+> Versions du client de stockage .net sous V12, par défaut, encodez le message en base64 pour plus d’informations, consultez la documentation relative au [stockage](https://docs.microsoft.com/dotnet/api/microsoft.azure.storage.queue.cloudqueue.encodemessage?view=azure-dotnet-legacy#Microsoft_WindowsAzure_Storage_Queue_CloudQueue_EncodeMessage). Si vous utilisez des versions du client de stockage .net au-dessus de V12, vous devez encoder correctement le contenu du message.
 
 ```csharp
 internal static void PostMessageToQueue(string queueUriWithSas, string message)
