@@ -4,14 +4,15 @@ description: Cet article décrit le kit de développement logiciel (SDK) Azure E
 author: orspod
 ms.author: orspodek
 ms.reviewer: vladikb
+ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/16/2020
-ms.openlocfilehash: 12a049ac1c3a13788a7daf361b5cc363f18675b0
-ms.sourcegitcommit: 9e0289945270db517e173aa10024e0027b173b52
+ms.openlocfilehash: 0c9bf91b7ea6733775c42ac25854dd16f0be05a1
+ms.sourcegitcommit: 993bc7b69096ab5516d3c650b9df97a1f419457b
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/03/2020
-ms.locfileid: "89428377"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89614537"
 ---
 # <a name="azure-data-explorer-golang-sdk"></a>Kit de développement logiciel (SDK) Azure Explorateur de données Golang
 

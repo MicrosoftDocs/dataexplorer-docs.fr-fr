@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: 6b76f7a3ce61a0530d885de29c1a85d170431bb9
-ms.sourcegitcommit: 4507466bdcc7dd07e6e2a68c0707b6226adc25af
+ms.openlocfilehash: b470d017937ed6f2687016ab8a7cf53fed7b51ab
+ms.sourcegitcommit: 993bc7b69096ab5516d3c650b9df97a1f419457b
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/23/2020
-ms.locfileid: "87106431"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89614479"
 ---
 # <a name="export-data-to-storage"></a>Exporter des données dans le stockage
 
@@ -48,9 +48,9 @@ Exécute une requête et écrit le premier jeu de résultats dans un stockage ex
 |`fileExtension` |`string`|Indique la partie « extension » de l’artefact de stockage (par exemple, `.csv` ou `.tsv` ). Si la compression est utilisée, est `.gz` également ajouté.|
 |`namePrefix`    |`string`|Indique un préfixe à ajouter à chaque nom d’artefact de stockage généré. Un préfixe aléatoire est utilisé s’il n’est pas spécifié.       |
 |`encoding`      |`string`|Indique comment encoder le texte : `UTF8NoBOM` (valeur par défaut) ou `UTF8BOM` . |
-|`compressionType`|`string`|Indique le type de compression à utiliser. Les valeurs possibles sont `gzip` ou `snappy`. La valeur par défaut est `gzip`. `snappy`peut (éventuellement) être utilisé pour le `parquet` format. |
+|`compressionType`|`string`|Indique le type de compression à utiliser. Les valeurs possibles sont `gzip` ou `snappy`. La valeur par défaut est `gzip`. `snappy` peut (éventuellement) être utilisé pour le `parquet` format. |
 |`distribution`   |`string`  |Indicateur de distribution ( `single` , `per_node` , `per_shard` ). Si la valeur est égale `single` à, un thread unique écrit dans le stockage. Dans le cas contraire, l’exportation écrira à partir de tous les nœuds exécutant la requête en parallèle. Consultez [évaluer un opérateur de plug-in](../../query/evaluateoperator.md). La valeur par défaut est `per_shard`.
-|`distributed`   |`bool`  |Désactiver/activer l’exportation distribuée. La définition de la valeur false équivaut à l' `single` indicateur de distribution. La valeur par défaut est True.
+|`distributed`   |`bool`  |Désactiver/activer l’exportation distribuée. La définition de la valeur false équivaut à l' `single` indicateur de distribution. La valeur par défaut est true.
 |`persistDetails`|`bool`  |Indique que la commande doit conserver ses résultats (consultez `async` flag). La valeur par défaut `true` est dans les exécutions Async, mais peut être désactivée si l’appelant n’a pas besoin des résultats. La valeur par défaut est `false` dans les exécutions synchrones, mais peut également être activée dans celles-ci. |
 |`parquetRowGroupSize`|`int`  |S’applique uniquement lorsque le format de données est parquet. Contrôle la taille du groupe de lignes dans les fichiers exportés. La taille du groupe de lignes par défaut est de 100000 enregistrements.|
 
@@ -59,7 +59,7 @@ Exécute une requête et écrit le premier jeu de résultats dans un stockage ex
 La commande retourne une table qui décrit les artefacts de stockage générés.
 Chaque enregistrement décrit un artefact unique et inclut le chemin d’accès de stockage à l’artefact et le nombre d’enregistrements de données qu’il contient.
 
-|Chemin|NumRecords|
+|Chemin d’accès|NumRecords|
 |---|---|
 |http://storage1.blob.core.windows.net/containerName/export_1_d08afcae2f044c1092b279412dcb571b.csv|10|
 |http://storage1.blob.core.windows.net/containerName/export_2_454c0f1359e24795b6529da8a0101330.csv|15|
@@ -100,7 +100,8 @@ Les étiquettes de nom de colonne sont ajoutées en tant que première ligne pou
 
 #### <a name="known-issues"></a>Problèmes connus
 
-*Erreurs de stockage pendant l’exportation, commande*
+**Échecs lors de la commande d’exportation**
 
-Par défaut, la commande d’exportation est distribuée de telle sorte que toutes les [étendues](../extents-overview.md) contiennent des données à exporter simultanément dans le stockage. Sur les exportations volumineuses, lorsque le nombre d’étendues est élevé, cela peut entraîner une charge élevée sur le stockage qui entraîne une limitation du stockage, ou des erreurs de stockage temporaire. Dans ce cas, il est recommandé d’essayer d’améliorer le nombre de comptes de stockage fournis à la commande d’exportation (la charge sera distribuée entre les comptes) et/ou de réduire la concurrence en définissant l’indicateur de distribution sur `per_node` (voir Propriétés de la commande). La désactivation complète de la distribution est également possible, mais cela peut avoir un impact significatif sur les performances de la commande.
- 
+* La commande d’exportation peut échouer momentanément pendant l’exécution. Lorsque la commande d’exportation échoue, les artefacts déjà écrits dans le stockage ne sont pas supprimés. Ces artefacts sont conservés dans le stockage. Si la commande échoue, supposez que l’exportation est incomplète, même si certains artefacts ont été écrits. La meilleure façon d’effectuer le suivi de l’exécution de la commande et des artefacts exportés en cas de réussite de l’opération consiste à utiliser les commandes [. afficher les opérations](../operations.md#show-operations) et [. afficher les détails](../operations.md#show-operation-details) de l’opération.
+
+* Par défaut, la commande d’exportation est distribuée de telle sorte que toutes les [étendues](../extents-overview.md) contiennent des données à exporter simultanément dans le stockage. Sur les exportations volumineuses, lorsque le nombre d’étendues est élevé, cela peut entraîner une charge élevée sur le stockage qui entraîne une limitation du stockage, ou des erreurs de stockage temporaire. Dans ce cas, il est recommandé d’essayer d’améliorer le nombre de comptes de stockage fournis à la commande d’exportation (la charge sera distribuée entre les comptes) et/ou de réduire la concurrence en définissant l’indicateur de distribution sur `per_node` (voir Propriétés de la commande). La désactivation complète de la distribution est également possible, mais cela peut avoir un impact significatif sur les performances de la commande.
