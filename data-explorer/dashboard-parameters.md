@@ -8,12 +8,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/09/2020
-ms.openlocfilehash: fd33ea4d4607c9c3af0ded26ec7f58de761f24ea
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 4921a48ff879879084ec1941ab69c6e9d29b9773
+ms.sourcegitcommit: a4779e31a52d058b07b472870ecd2b8b8ae16e95
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88873846"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89366161"
 ---
 # <a name="use-parameters-in-azure-data-explorer-dashboards"></a>Utiliser des paramètres dans des tableaux de bord Azure Data Explorer
 
@@ -47,12 +47,12 @@ Pour créer un paramètre, sélectionnez le bouton **Nouveau paramètre** situé
 |Champ  |Description |
 |---------|---------|
 |**Nom complet du paramètre**    |   Nom du paramètre affiché sur le tableau de bord ou la carte de modification.      |
-|**Type de paramètre**    |Celui-ci peut avoir l'une des valeurs suivantes :<ul><li>**Sélection unique** : une seule valeur peut être sélectionnée dans le filtre comme entrée du paramètre.</li><li>**Sélection multiple** : une ou plusieurs valeurs peuvent être sélectionnées dans le filtre comme entrées du paramètre.</li><li>**Intervalle de temps** : permet de créer des paramètres supplémentaires pour filtrer les requêtes et les tableaux de bord en fonction du temps. Chaque tableau de bord a un sélecteur de plage d’heures par défaut.</li></ul>    |
+|**Type de paramètre**    |L’un des paramètres suivants :<ul><li>**Sélection unique** : une seule valeur peut être sélectionnée dans le filtre comme entrée du paramètre.</li><li>**Sélection multiple** : une ou plusieurs valeurs peuvent être sélectionnées dans le filtre comme entrées du paramètre.</li><li>**Intervalle de temps** : permet de créer des paramètres supplémentaires pour filtrer les requêtes et les tableaux de bord en fonction du temps. Chaque tableau de bord a un sélecteur de plage d’heures par défaut.</li><li>**Texte libre** : N’a aucune valeur renseignée dans le filtre. L’utilisateur peut taper une valeur ou copier/coller une valeur dans le champ de texte. Le filtre conserve les valeurs récentes utilisées.</li></ul>    |
 |**Nom de la variable**     |   Nom du paramètre à utiliser dans la requête.      |
 |**Type de données**    |    Type de données des valeurs de paramètre.     |
 |**Épingler comme filtre de tableau de bord**   |   Épingle le filtre basé sur le paramètre au tableau de bord ou le désépingle.       |
 |**Source**     |    Source des valeurs de paramètre : <ul><li>**Valeurs fixes** : Valeurs de filtre statiques introduites manuellement. </li><li>**Requête** : Valeurs introduites dynamiquement à l’aide d’une requête KQL.  </li></ul>    |
-|**Ajouter une valeur « Tout sélectionner »**    |   S’applique uniquement aux types de paramètres Sélection unique et Sélection multiple. Permet de récupérer les données pour toutes les valeurs du paramètre. Cette valeur doit être intégrée à la requête pour fournir cette fonctionnalité. Pour obtenir plus d’exemples sur la génération de telles requêtes, consultez [Utiliser le paramètre basé sur une requête et à sélection multiple](#use-the-multiple-selection-query-based-parameter).     |
+|**Ajouter une valeur « Tout sélectionner »**    |   S’applique uniquement aux types de paramètres Sélection unique et Sélection multiple. Permet de récupérer les données pour toutes les valeurs du paramètre. Cette valeur doit être intégrée à la requête pour fournir cette fonctionnalité. Consultez [Utiliser le paramètre basé sur une requête et à sélection multiple](#use-the-multiple-selection-query-based-parameter) pour obtenir plus d’exemples sur la génération de telles requêtes.     |
 
 ## <a name="manage-parameters-in-parameter-card"></a>Gérer des paramètres dans une carte de paramètres
 
@@ -220,7 +220,7 @@ Les valeurs des paramètres basés sur une requête sont récupérées lors du c
 
 #### <a name="use-a-parameter-in-the-query"></a>Utiliser un paramètre dans la requête
 
-1. Voici un exemple de requête utilisant le nouveau paramètre Event avec la variable `_ event` :
+1. L’exemple de requête suivant avec le nouveau paramètre Event utilise la variable `_ event` :
 
     ``` kusto
     EventsAll
@@ -264,3 +264,43 @@ Les valeurs des paramètres basés sur une requête sont dérivées au moment du
     Le nouveau paramètre s’affiche dans la liste de paramètres en haut du tableau de bord. 
 
 1. Sélectionnez une ou plusieurs valeurs différentes pour mettre à jour les visuels.
+
+### <a name="use-the-free-text-parameter"></a>Utiliser le paramètre de texte libre
+
+Les paramètres de texte libre ne contiennent aucune valeur. Ils vous permettent d’introduire votre propre valeur.
+
+#### <a name="create-the-parameter"></a>Créer le paramètre
+
+1. Sélectionnez **Paramètres** pour ouvrir le volet **Paramètres**, puis sélectionnez **Nouveau paramètre**.
+1. Renseignez les détails comme suit :
+    * **Nom complet du paramètre** : Company
+    * **Type de paramètre** : Texte libre
+    * **Nom de la variable** : _company
+    * **Type de données** : String
+    * **Épingler comme filtre de tableau de bord** : activé
+    * **Valeur par défaut** : Pas de valeur par défaut
+
+#### <a name="use-parameters-in-the-query"></a>Utiliser des paramètres dans la requête
+
+1. Exécutez un exemple de requête à l’aide du nouveau paramètre *Company* en utilisant le nom de variable `_company` :
+
+    ```kusto
+    EventsAll
+    | where CreatedAt > ago(7d)
+    | where Type == "WatchEvent"
+    | where Repo.name has _company
+    | summarize WatchEvents=count() by RepoName = tolower(tostring(Repo.name))
+    | top 5 by WatchEvents
+    ```
+
+Le nouveau paramètre est désormais visible dans la liste de paramètres en haut du tableau de bord.
+
+## <a name="use-filter-search-for-single-and-multiple-selection-filters"></a>Utiliser la recherche de filtre pour les filtres mono- et multi-sélection
+
+Dans les filtres mono- ou multi-sélection, tapez la valeur de votre choix. La recherche de filtre présente toutes les valeurs récemment récupérées qui correspondent au terme de recherche.
+
+## <a name="next-steps"></a>Étapes suivantes
+
+* [Personnaliser les visuels des tableaux de bord](dashboard-customize-visuals.md)
+* [Interroger des données dans Azure Data Explorer](web-query-data.md) 
+

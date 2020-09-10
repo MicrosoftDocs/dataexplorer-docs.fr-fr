@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: 25c82c8890342e00279d137eb749f3acc7df986f
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: c96203ccfa0c4dc70fff83454dac217cccfc0a6c
+ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874985"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89502770"
 ---
 # <a name="ingest-blobs-into-azure-data-explorer-by-subscribing-to-event-grid-notifications"></a>Ingérer des objets blob dans Azure Data Explorer en s’abonnant à des notifications Event Grid
 
@@ -26,6 +26,8 @@ ms.locfileid: "88874985"
 
 Cet article vous montre comment ingérer des objets blob de votre compte de stockage vers Azure Data Explorer en utilisant une connexion de données Event Grid. Vous allez créer une connexion de données Event Grid qui définit un abonnement [Azure Event Grid](/azure/event-grid/overview). L’abonnement Event Grid achemine les événements de votre compte de stockage vers Azure Data Explorer via un hub d’événements Azure. Ensuite, vous verrez un exemple de flux de données dans tout le système.
 
+Pour obtenir des informations générales sur l’ingestion dans Azure Data Explorer à partir d’Event Grid, consultez [Se connecter à Event Grid](ingest-data-event-grid-overview.md).
+
 ## <a name="prerequisites"></a>Prérequis
 
 * Un abonnement Azure. Créez un [compte Azure gratuit](https://azure.microsoft.com/free/).
@@ -38,7 +40,7 @@ Créez une table dans Azure Data Explorer, à laquelle Event Hubs enverra les do
 
 1. Dans le portail Azure, sous votre cluster, sélectionnez **Requête**.
 
-    :::image type="content" source="media/ingest-data-event-grid/query-explorer-link.png" alt-text="Lien vers l’explorateur de requêtes":::    
+    :::image type="content" source="media/ingest-data-event-grid/query-explorer-link.png" alt-text="Lien vers l’explorateur de requêtes"::: 
 
 1. Copiez la commande suivante dans la fenêtre, puis sélectionnez **Exécuter** pour créer la table (TestTable) qui doit recevoir les données ingérées.
 
@@ -159,11 +161,7 @@ Enregistrez les données dans un fichier et chargez celui-ci avec ce script :
 
 ### <a name="ingestion-properties"></a>Propriétés d’ingestion
 
-Vous pouvez spécifier les [propriétés d’ingestion](ingestion-properties.md) de l’ingestion d’objets blob via les métadonnées d’objet blob.
-
-Les propriétés suivantes peuvent être définies :
-
-[!INCLUDE [ingestion-properties-event-grid](includes/ingestion-properties-event-grid.md)]
+Vous pouvez spécifier les [propriétés d’ingestion](ingest-data-event-grid-overview.md#set-ingestion-properties) de l’ingestion d’objets blob via les métadonnées d’objet blob. 
 
 > [!NOTE]
 > Azure Data Explorer ne supprimera pas les objets blob après l’ingestion.

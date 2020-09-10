@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/29/2020
-ms.openlocfilehash: d77c02ee3da7c33fc77416fa712a9108411c2276
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: fa18a89e44a09a877cedb41c6d6e77384c965801
+ms.sourcegitcommit: 811cf98edefd919b412d80201400919eedcab5cd
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874798"
+ms.lasthandoff: 09/01/2020
+ms.locfileid: "89274595"
 ---
 # <a name="what-is-one-click-ingestion"></a>Présentation de l’ingestion en un clic
 
@@ -36,7 +36,7 @@ L’ingestion en un clic est particulièrement utile lorsque vous procédez à l
 * Créez [un cluster et une base de données Azure Data Explorer](create-cluster-database-portal.md).
 * Connectez-vous à [l’interface utilisateur web Azure Data Explorer](https://dataexplorer.azure.com/) et [ajoutez une connexion à votre cluster](web-query-data.md#add-clusters).
 
-## <a name="ingest-new-data"></a>Ingérer de nouvelles données
+## <a name="access-the-one-click-wizard"></a>Accéder à l’Assistant Ingestion en un clic
 
 L’Assistant Ingestion en un clic vous guide tout au long du processus d’ingestion en un clic.
 
@@ -48,7 +48,9 @@ L’Assistant Ingestion en un clic vous guide tout au long du processus d’inge
 
     :::image type="content" source="media/ingest-data-one-click/one-click-ingestion-in-webui.png" alt-text="Sélectionner l’ingestion en un clic dans l’interface utilisateur web":::
 
-<!-- TODO either change the local file tutorial to blob storage or create another one to show users how to do this-->
+* Pour accéder à l’Assistant à partir du portail Azure, sélectionnez **Requête** dans le menu gauche, cliquez avec le bouton droit sur la **base de données** ou la **table**, et sélectionnez **Ingérer de nouvelles données (préversion)** .
+
+    :::image type="content" source="media/ingest-data-one-click/access-from-portal.png" alt-text="Accéder à l’Assistant Ingestion en un clic à partir du portail Azure":::
 
 ## <a name="one-click-ingestion-wizard"></a>Assistant Ingestion en un clic
 
@@ -112,7 +114,7 @@ Une fois que vous avez terminé le mappage de schéma et les manipulations de co
  
 ### <a name="initial-data-exploration"></a>Exploration initiale des données
    
-Une fois l’ingestion terminée, vous pouvez effectuer une exploration initiale de vos données à l’aide des **[commandes rapides](one-click-ingestion-existing-table.md#quick-queries-and-tools)** que l’Assistant met à votre disposition.
+Une fois l’ingestion terminée, vous pouvez effectuer une exploration initiale de vos données à l’aide des **[commandes rapides](one-click-ingestion-existing-table.md#explore-quick-queries-and-tools)** que l’Assistant met à votre disposition.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

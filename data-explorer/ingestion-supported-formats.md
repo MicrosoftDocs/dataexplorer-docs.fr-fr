@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/19/2020
-ms.openlocfilehash: c591c4f774f3af99004d398898b288256861bb75
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 89ee29e70c71c29afb65ee81fc4ce8e498faee33
+ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373717"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89502634"
 ---
 # <a name="data-formats-supported-by-azure-data-explorer-for-ingestion"></a>Formats de données pris en charge par Azure Data Explorer pour l’ingestion
 
@@ -49,7 +49,7 @@ Indiquez la compression en ajoutant l’extension au nom de l’objet blob ou du
 
 Par exemple :
 * `MyData.csv.zip` indique un objet blob ou un fichier au format CSV, compressé avec ZIP (archive ou fichier unique)
-* `MyData.csv.gz` indique un objet blob ou un fichier au format CSV, compressé avec GZip
+* `MyData.json.gz` indique un objet blob ou un fichier au format JSON, compressé avec GZip.
 
 Les noms d’objets blob ou de fichiers qui n’incluent pas les extensions de format mais simplement la compression (par exemple, `MyData.zip`) sont également pris en charge. Dans ce cas, le format de fichier doit être spécifié en tant que propriété d’ingestion, car il ne peut pas être déduit.
 

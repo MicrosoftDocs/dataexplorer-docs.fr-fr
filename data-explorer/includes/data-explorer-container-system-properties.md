@@ -4,22 +4,16 @@ ms.service: data-explorer
 ms.topic: include
 ms.date: 02/27/2020
 ms.author: orspodek
-ms.openlocfilehash: a2297301a0b9c0540c73c0f50483cccfc3181a0f
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 40334f81e39317839c05ce09a2e4923be4e0747c
+ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493405"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89502656"
 ---
-### <a name="event-system-properties-mapping"></a>Mappage des propriétés du système d’événements
+### <a name="schema-mapping-examples"></a>Exemples de mappage de schéma
 
-> [!Note]
-> * Les propriétés système sont prises en charge pour les événements à enregistrement unique.
-> * Pour un mappage `csv`, des propriétés sont ajoutées au début de l’enregistrement. Pour un mappage `json`, des propriétés sont ajoutées en fonction du nom qui s’affiche dans la liste déroulante.
-
-Si vous avez sélectionné **Propriétés du système d’événements** dans la section **Source de données** de la table, vous devez inclure les propriétés suivantes dans le schéma et le mappage de table.
-
-**Exemple schéma de table**
+**Exemple de mappage de schéma de table**
 
 Si vos données comprennent trois colonnes (`Timespan`, `Metric`et `Value`) et que les propriétés que vous incluez sont `x-opt-enqueued-time` et `x-opt-offset`, créez ou modifiez le schéma de table à l’aide de la commande suivante :
 
@@ -44,7 +38,7 @@ Exécutez les commandes suivantes pour ajouter des données au début de l’enr
  
 **Exemple de mappage JSON**
 
-Des données sont ajoutées en utilisant les noms de propriétés système tels qu’ils apparaissent dans la liste **Propriétés système d’événement** du panneau **Connexion de données**. Exécutez ces commandes :
+Les données sont ajoutées à l’aide du mappage des propriétés système. Exécutez les commandes suivantes :
 
 ```kusto
     .create table TestTable ingestion json mapping "JsonMapping1"

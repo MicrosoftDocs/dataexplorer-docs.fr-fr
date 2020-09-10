@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 05/26/2020
-ms.openlocfilehash: 0b5633dc7ed54f9b4a763400ae8de84ba32f09e6
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 47ca1ebdd4136b3add6b4476757f34a24b08eeea
+ms.sourcegitcommit: a4779e31a52d058b07b472870ecd2b8b8ae16e95
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88872588"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89366096"
 ---
 # <a name="visualize-data-with-azure-data-explorer-dashboards"></a>Visualiser des données avec des tableaux de bord Azure Data Explorer
 
@@ -100,7 +100,63 @@ Les paramètres permettent d’utiliser des filtres de tableau de bord. Les para
 
     :::image type="content" source="media/adx-dashboards/save-dashboard.png" alt-text="Enregistrer le tableau de bord":::
 
+## <a name="share-dashboards"></a>Partager des tableaux de bord
+
+Utilisez le menu Partager pour [accorder des autorisations](#grant-permissions) au tableau de bord, [changer le niveau d’autorisation d’un utilisateur](#change-a-user-permission-level) ou [partager le lien du tableau de bord](#share-the-dashboard-link).
+
+> [!IMPORTANT]
+> Pour accéder au tableau de bord, un afficheur de tableau de bord a besoin des éléments suivants :
+> * Lien du tableau de bord pour l’accès
+> * Autorisations du tableau de bord
+> * Accès à la base de données sous-jacente dans le cluster Azure Data Explorer  
+
+1. Sélectionnez l’élément de menu **Partager** dans la barre supérieure du tableau de bord.
+1. Sélectionnez **Gérer les autorisations** dans la liste déroulante. 
+
+    :::image type="content" source="media/adx-dashboards/share-dashboard.png" alt-text="Liste déroulante de partage de tableau de bord":::
+
+### <a name="grant-permissions"></a>Accorder des autorisations
+
+Pour accorder des autorisations à un utilisateur dans le volet **Autorisations du tableau de bord** :
+1. Écrivez le nom ou l’adresse e-mail de l’utilisateur dans la zone **Ajouter de nouveaux membres**.
+1. Sélectionnez le niveau d’**autorisation** **Affichage** ou **Modification**, puis cliquez sur **Ajouter**.
+
+:::image type="content" source="media/adx-dashboards/dashboard-permissions.png" alt-text="Gérer les autorisations du tableau de bord":::
+
+### <a name="change-a-user-permission-level"></a>Changer le niveau d’autorisation d’un utilisateur
+
+Pour changer le niveau d’autorisation d’un utilisateur dans le volet **Autorisations du tableau de bord** :
+1. Utilisez la zone de recherche ou faites défiler la liste des utilisateurs pour trouver l’utilisateur.
+1. Changez le niveau d’**autorisation** en fonction des besoins.
+
+### <a name="share-the-dashboard-link"></a>Partager le lien du tableau de bord
+
+Pour partager le lien du tableau de bord :
+* Sélectionnez la liste déroulante **Partager**, puis sélectionnez **Copier le lien**, ou
+* Dans la fenêtre **Autorisations du tableau de bord**, sélectionnez **Copier le lien**. 
+
+## <a name="enable-auto-refresh"></a>Activer l’actualisation automatique 
+
+1. Sélectionnez **Modifier** dans le menu du tableau de bord pour passer en mode d’édition.
+1. Sélectionnez **Actualisation automatique**. 
+ 
+    :::image type="content" source="media/adx-dashboards/auto-refresh.png" alt-text="Sélectionner l’actualisation automatique":::
+
+1. Activez ou désactivez l’option pour **activer** l’actualisation automatique. 
+1. Sélectionnez des valeurs pour **Intervalle de temps minimal** et **Fréquence d’actualisation par défaut**. 
+
+    :::image type="content" source="media/adx-dashboards/auto-refresh-toggle.png" alt-text="Activer l’actualisation automatique":::
+
+1. Sélectionnez **Appliquer** et **enregistrez** le tableau de bord.
+
+> [!NOTE]
+> * Sélectionnez l’intervalle de temps minimal le plus petit pour réduire la charge inutile sur le cluster. 
+> * Un afficheur de tableau de bord : 
+>    * Peut modifier les intervalles de temps minimum pour un usage personnel uniquement. 
+>    * Ne peut pas sélectionner une valeur inférieure à l’**intervalle de temps minimal** spécifié par l’éditeur.
+
 ## <a name="next-steps"></a>Étapes suivantes
 
 * [Utiliser des paramètres dans des tableaux de bord Azure Data Explorer](dashboard-parameters.md)
+* [Personnaliser les visuels des tableaux de bord](dashboard-customize-visuals.md)
 * [Interroger des données dans Azure Data Explorer](web-query-data.md)

@@ -7,12 +7,12 @@ ms.reviewer: basaba
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/31/2019
-ms.openlocfilehash: 93860688f798c3b9ac2552052f22cc1ca1ca565e
-ms.sourcegitcommit: 91e7d49a1046575bbc63a4f25724656ebfc070db
+ms.openlocfilehash: 9fa58d36815ede98a4f0239f1ce68a6542f24c4b
+ms.sourcegitcommit: cb55064b7cdd57c792ad259b09069525bf799fa0
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/30/2020
-ms.locfileid: "89151193"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89410806"
 ---
 # <a name="deploy-azure-data-explorer-cluster-into-your-virtual-network"></a>Déployer un cluster Azure Data Explorer dans votre réseau virtuel
 
@@ -69,7 +69,7 @@ Le déploiement du cluster Azure Data Explorer dans votre sous-réseau vous perm
 Les [points de terminaison privés](/azure/private-link/private-endpoint-overview) autorisent un accès privé aux ressources Azure (comme Stockage/Event Hub/Data Lake Gen 2) et utilisent une adresse IP privée de votre réseau virtuel pour apporter la ressource dans votre réseau virtuel.
 Créez un [point de terminaison privé](/azure/private-link/private-endpoint-overview) pour les ressources utilisées par les connexions de données, comme Stockage et Event Hub, et pour les tables externes, comme Stockage, Data Lake Gen 2 et SQL Database, de votre réseau virtuel pour accéder aux ressources sous-jacentes en privé.
 
- [!NOTE]
+ > [!NOTE]
  > La configuration d’un point de terminaison privé demande de [configurer DNS](/azure/private-link/private-endpoint-dns). Nous prenons en charge la configuration d’une [zone DNS privée Azure](/azure/dns/private-dns-privatednszone) uniquement. Les serveurs DNS personnalisés ne sont pas pris en charge. 
 
 ## <a name="dependencies-for-vnet-deployment"></a>Dépendances pour le déploiement de réseau virtuel
@@ -163,14 +163,14 @@ Les [groupes de sécurité réseau (NSG)](/azure/virtual-network/security-overvi
 | Centre du Canada | 168.61.212.201 |
 | Est du Canada | 168.61.212.201 |
 | Inde centrale | 23.99.5.162 |
-| USA Centre | 168.61.212.201 |
-| EUAP USA Centre | 168.61.212.201 |
+| USA Centre | 168.61.212.201, 23.101.115.123 |
+| EUAP USA Centre | 168.61.212.201, 23.101.115.123 |
 | Chine orientale 2 | 40.73.96.39 |
 | Chine Nord 2 | 40.73.33.105 |
 | Asie Est | 168.63.212.33 |
-| USA Est | 137.116.81.189 |
-| USA Est 2 | 137.116.81.189 |
-| USA Est 2 (EUAP) | 137.116.81.189 |
+| USA Est | 137.116.81.189, 52.249.253.174 |
+| USA Est 2 | 137.116.81.189, 104.46.110.170 |
+| USA Est 2 (EUAP) | 137.116.81.189, 104.46.110.170 |
 | France Centre | 23.97.212.5 |
 | France Sud | 23.97.212.5 |
 | Japon Est | 138.91.19.129 |
@@ -178,10 +178,10 @@ Les [groupes de sécurité réseau (NSG)](/azure/virtual-network/security-overvi
 | Centre de la Corée | 138.91.19.129 |
 | Corée du Sud | 138.91.19.129 |
 | Centre-Nord des États-Unis | 23.96.212.108 |
-| Europe Nord | 191.235.212.69 
+| Europe Nord | 191.235.212.69, 40.127.194.147 |
 | Afrique du Sud Nord | 104.211.224.189 |
 | Afrique du Sud Ouest | 104.211.224.189 |
-| États-Unis - partie centrale méridionale | 23.98.145.105 |
+| États-Unis - partie centrale méridionale | 23.98.145.105, 104.215.116.88 |
 | Inde Sud | 23.99.5.162 |
 | Asie Sud-Est | 168.63.173.234 |
 | Sud du Royaume-Uni | 23.97.212.5 |
@@ -192,10 +192,10 @@ Les [groupes de sécurité réseau (NSG)](/azure/virtual-network/security-overvi
 | Gouvernement des États-Unis - Texas | 52.238.116.34 |
 | USGov Virginia | 23.97.0.26 |
 | Centre-USA Ouest | 168.61.212.201 |
-| Europe Ouest | 23.97.212.5 |
+| Europe Ouest | 23.97.212.5, 213.199.136.176 |
 | Inde Ouest | 23.99.5.162 |
-| USA Ouest | 23.99.5.162 |
-| USA Ouest 2 | 23.99.5.162, 104.210.32.14 |
+| USA Ouest | 23.99.5.162, 13.88.13.50 |
+| USA Ouest 2 | 23.99.5.162, 104.210.32.14, 52.183.35.124 |
 
 ## <a name="disable-access-to-azure-data-explorer-from-the-public-ip"></a>Désactiver l’accès à Azure Data Explorer à partir de l’adresse IP publique
 
@@ -245,7 +245,10 @@ crl3.digicert.com:80
 ```
 
 > [!NOTE]
-> Si vous utilisez le [Pare-feu Azure](/azure/firewall/overview), vous devez ajouter « Règle réseau » afin d’autoriser *AzureMonitor* (Étiquette de service) pour le port 443.
+> Si vous utilisez le [pare-feu Azure](/azure/firewall/overview), ajoutez une **règle réseau** avec les propriétés suivantes :
+> | **Protocole**   | **Type de source** | **Source** | **Balises de service**  | **Ports de destination** |
+> | ---   | --- | --- | ---  | --- |
+> | TCP | Adresse IP | * | AzureMonitor | 443 |
 
 Vous devez aussi définir la [table de route](/azure/virtual-network/virtual-networks-udr-overview) sur le sous-réseau avec les [adresses de gestion](#azure-data-explorer-management-ip-addresses) et les [adresses de surveillance de l’intégrité](#health-monitoring-addresses) avec le dernier tronçon *Internet* pour éviter des problèmes d’itinéraire asymétriques.
 

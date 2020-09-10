@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 01/08/2020
-ms.openlocfilehash: 578141c63daeecd285d397b356260a4f22720621
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 4433126f67187d1bb2a190821dc6a59d96be3f5b
+ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874934"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89502787"
 ---
 # <a name="ingest-data-from-iot-hub-into-azure-data-explorer"></a>Ingérer les données d’un hub IoT dans Azure Data Explorer 
 
@@ -25,6 +25,8 @@ ms.locfileid: "88874934"
 [!INCLUDE [data-connector-intro](includes/data-connector-intro.md)]
 
 Cet article vous montre comment ingérer des données dans Azure Data Explorer depuis IoT Hub, plateforme de streaming de big data et service d’ingestion IoT.
+
+Pour obtenir des informations générales sur l’ingestion dans Azure Data Explorer à partir d’IoT Hub, consultez [Connexion à IoT Hub](ingest-data-iot-hub-overview.md).
 
 ## <a name="prerequisites"></a>Prérequis
 
@@ -106,7 +108,13 @@ Connectez-vous maintenant au hub IoT depuis Azure Data Explorer. Une fois cette 
     > * Sélectionnez **My data includes routing info** pour utiliser le routage dynamique, où vos données incluent les informations de routage nécessaires comme indiqué dans les commentaires de l’[exemple d’application](https://github.com/Azure-Samples/event-hubs-dotnet-ingest). Si à la fois des propriétés statiques et des propriétés dynamiques sont définies, les propriétés dynamiques remplacent les propriétés statiques. 
     > * Seuls les événements mis en file d’attente après que vous avez créé la connexion de données sont ingérés.
 
-[!INCLUDE [data-explorer-container-system-properties](includes/data-explorer-container-system-properties.md)]
+### <a name="event-system-properties-mapping"></a>Mappage des propriétés du système d’événements
+
+> [!Note]
+> * Les propriétés système sont prises en charge pour les événements à enregistrement unique.
+> * Pour un mappage `csv`, des propriétés sont ajoutées au début de l’enregistrement. Pour un mappage `json`, des propriétés sont ajoutées en fonction du nom qui s’affiche dans la liste déroulante.
+
+Si vous avez sélectionné **Propriétés du système d’événements** dans la section **Source de données** de la table, vous devez inclure des [propriétés système](ingest-data-iot-hub-overview.md#system-properties) dans le schéma et le mappage de table.
 
 ## <a name="generate-sample-data-for-testing"></a>Générer des exemples de données pour les tests
 
@@ -177,7 +185,7 @@ Si vous ne prévoyez pas de réutiliser votre hub IoT, nettoyez votre groupe de 
 
 1. Sous **test-resource-group**, sélectionnez **Supprimer le groupe de ressources**.
 
-2. Dans la nouvelle fenêtre, tapez le nom du groupe de ressources à supprimer, puis sélectionnez **Supprimer**.
+1. Dans la nouvelle fenêtre, tapez le nom du groupe de ressources à supprimer, puis sélectionnez **Supprimer**.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

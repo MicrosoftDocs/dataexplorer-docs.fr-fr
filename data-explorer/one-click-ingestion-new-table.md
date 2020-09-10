@@ -7,14 +7,18 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/29/2020
-ms.openlocfilehash: b9fa22a5cc3831ae2763c18dbfae69e24fd29318
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 9427692d0533550967bfe84a35fd833a4c03b39e
+ms.sourcegitcommit: 811cf98edefd919b412d80201400919eedcab5cd
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88872843"
+ms.lasthandoff: 09/01/2020
+ms.locfileid: "89274793"
 ---
 # <a name="use-one-click-ingestion-to-ingest-csv-data-from-a-container-to-a-new-table-in-azure-data-explorer"></a>Utiliser l’ingestion en un clic pour ingérer des données CSV à partir d’un conteneur dans une nouvelle table d’Azure Data Explorer
+
+> [!div class="op_single_selector"]
+> * [Ingérer des données CSV d’un conteneur dans une nouvelle table](one-click-ingestion-new-table.md)
+> * [Ingérer des données JSON d’un fichier local dans une table existante](one-click-ingestion-existing-table.md)
 
 L’[ingestion en un clic](ingest-data-one-click.md) vous permet d’ingérer rapidement dans une table des données au format JSON, CSV et dans d’autres formats et de créer facilement des structures de mappage. Les données peuvent être ingérées à partir du stockage, d’un fichier local ou d’un conteneur, en tant que processus d’ingestion unique ou continu.  
 
@@ -28,7 +32,7 @@ Pour plus d’informations sur l’ingestion de données dans une table existant
 1. Dans le menu de gauche de l’interface utilisateur web, cliquez avec le bouton droit sur une *base de données*, puis sélectionnez **Ingérer de nouvelles données (préversion)** .
 
     :::image type="content" source="media/one-click-ingestion-new-table/one-click-ingestion-in-web-ui.png" alt-text="Ingérer de nouvelles données":::
- 
+
 1. Dans la fenêtre **Ingérer de nouvelles données (préversion)** , l’onglet **Source** est sélectionné. 
 
 1. Sélectionnez **Créer une table** et entrez un nom pour la nouvelle table. Vous pouvez utiliser des caractères alphanumériques, des traits d’union et des traits de soulignement. Les caractères spéciaux ne sont pas pris en charge.
@@ -50,36 +54,36 @@ Sous **Type d’ingestion**, effectuez les étapes suivantes :
      > [!TIP] 
      > Pour effectuer une ingestion **à partir d’un fichier**, consultez [Utiliser l’ingestion en un clic pour ingérer des données JSON à partir d’un fichier local dans une table existante d’Azure Data Explorer](one-click-ingestion-existing-table.md#select-an-ingestion-type).
 
-Un échantillon des données s’affiche. Si vous le souhaitez, vous pouvez les filtrer pour ingérer uniquement les fichiers qui commencent ou qui se terminent par des caractères spécifiques. Quand vous ajustez les filtres, l’aperçu est mis à jour automatiquement.
-  
- * Par exemple, vous pouvez filtrer tous les fichiers qui commencent par le mot *data* (données) et qui se terminent par l’extension  *.csv.gz*.
+Un échantillon des données s’affiche. Si vous le souhaitez, filtrez les données pour ingérer uniquement les fichiers qui commencent ou finissent par des caractères spécifiques. Quand vous ajustez les filtres, l’aperçu est mis à jour automatiquement.
 
-    :::image type="content" source="media/one-click-ingestion-new-table/from-container-with-filter.png" alt-text="Filtre de l’ingestion en un clic":::
+Par exemple, filtrez tous les fichiers qui commencent par le mot d’extension *.csv*.
+
+:::image type="content" source="media/one-click-ingestion-new-table/from-container-with-filter.png" alt-text="Filtre de l’ingestion en un clic":::
   
 ## <a name="edit-the-schema"></a>Modifier le schéma
 
 Sélectionnez **Modifier le schéma** pour afficher et modifier la configuration de colonne de votre table. Le système sélectionne un des objets blob au hasard, et le schéma est généré en fonction de cet objet blob. En examinant le nom de la source, le service identifie automatiquement s’il est compressé ou non.
 
-### <a name="schema-tab"></a>Onglet Schéma
+Sous l’onglet **Schéma** :
 
-1. Sous l’onglet **Schéma** :
-
-    * Sélectionnez **Format de données**.
+   1. Sélectionnez **Format de données**.
 
         Dans ce cas, le format de données est **CSV**.
 
         > [!TIP]
         > Si vous souhaitez utiliser des fichiers **JSON**, consultez [Utiliser l’ingestion en un clic pour ingérer des données JSON à partir d’un fichier local dans une table existante d’Azure Data Explorer](one-click-ingestion-existing-table.md#edit-the-schema).
 
-    * Vous pouvez cocher la case **Inclure les noms des colonnes** pour ignorer la ligne d’en-tête du fichier.
+   1. Vous pouvez cocher la case **Inclure les noms des colonnes** pour ignorer la ligne d’en-tête du fichier.
 
         :::image type="content" source="media/one-click-ingestion-new-table/non-json-format.png" alt-text="Sélectionner Inclure les noms des colonnes":::
 
-1. Dans le champ **Nom du mappage**, entrez un nom de mappage. Vous pouvez utiliser des caractères alphanumériques et des traits de soulignement. Les espaces, les caractères spéciaux et les traits d’Union ne sont pas pris en charge.
+Dans le champ **Nom du mappage**, entrez un nom de mappage. Vous pouvez utiliser des caractères alphanumériques et des traits de soulignement. Les espaces, les caractères spéciaux et les traits d’Union ne sont pas pris en charge.
 
-    :::image type="content" source="media/one-click-ingestion-new-table/table-mapping.png" alt-text="Nom du mappage de table - Ingestion en un clic":::
+:::image type="content" source="media/one-click-ingestion-new-table/table-mapping.png" alt-text="Nom du mappage de table - Ingestion en un clic":::
 
-### <a name="table"></a>Table de charge de travail
+### <a name="edit-the-table"></a>Modifier la table
+
+Lors de l’ingestion dans une nouvelle table, modifiez les différents aspects de la table lors de la création de la table.
 
 Dans le tableau : 
  * Double-cliquez sur le nom de la nouvelle colonne à modifier.
@@ -87,8 +91,8 @@ Dans le tableau :
 
     [!INCLUDE [data-explorer-one-click-column-table](includes/data-explorer-one-click-column-table.md)]
 
-    > [!NOTE]
-    > Pour les formats tabulaires, chaque colonne peut être ingérée dans une colonne dans Azure Data Explorer.
+  > [!NOTE]
+  > Pour les formats tabulaires, chaque colonne peut être ingérée dans une colonne dans Azure Data Explorer.
 
 [!INCLUDE [data-explorer-one-click-command-editor](includes/data-explorer-one-click-command-editor.md)]
 
@@ -98,7 +102,7 @@ Sélectionnez **Démarrer l’ingestion** pour créer une table et un mappage et
 
 :::image type="content" source="media/one-click-ingestion-new-table/start-ingestion.png" alt-text="Démarrer l’ingestion - Ingestion en un clic":::
 
-## <a name="data-ingestion-completed"></a>Ingestion de données terminée
+## <a name="complete-data-ingestion"></a>Terminer l’ingestion des données
 
 Dans la fenêtre **Ingestion de données terminée**, les trois étapes sont signalées par des coches vertes quand l’ingestion des données s’est terminée avec succès.
 
@@ -110,7 +114,7 @@ Dans la fenêtre **Ingestion de données terminée**, les trois étapes sont sig
 
 L’ingestion continue vous permet de créer une grille d’événement qui recherche les nouveaux fichiers dans le conteneur source. Tout nouveau fichier qui répond aux critères des paramètres prédéfinis (préfixe, suffixe, etc.) est automatiquement ingéré dans la table de destination. 
 
-1. Sélectionnez le bouton **Créer une ingestion continue** dans le coin inférieur droit pour ouvrir le portail Azure. La page de connexion des données s’affiche avec le connecteur de données de la grille d’événement ouvert, et les paramètres source et cible déjà entrés (conteneur source, tables et mappages).
+1. Sélectionnez **Event Grid** dans la vignette **Ingestion continue** pour ouvrir le portail Azure. La page de connexion des données s’affiche avec le connecteur de données de la grille d’événement ouvert, et les paramètres source et cible déjà entrés (conteneur source, tables et mappages).
     
     :::image type="content" source="media/one-click-ingestion-new-table/continuous-button.png" alt-text="Bouton de création d’ingestion continue":::
 

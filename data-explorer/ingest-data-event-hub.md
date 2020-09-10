@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: b9a55915ebef61bef534e42ca0aef6a7c19868ac
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 84f4348f1d172238bd71de55e989ed8520f78b93
+ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874951"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89502753"
 ---
 # <a name="ingest-data-from-event-hub-into-azure-data-explorer"></a>Ingérer des données Event Hub dans Azure Data Explorer
 
@@ -25,6 +25,8 @@ ms.locfileid: "88874951"
 [!INCLUDE [data-connector-intro](includes/data-connector-intro.md)]
 
 L’Explorateur de données Azure offre une ingestion (chargement de données) à partir d’Event Hubs, plateforme de streaming de big data et service d’ingestion d’événements. [Event Hubs](/azure/event-hubs/event-hubs-about) peut traiter des millions d’événements par seconde en quasi-temps réel. Dans cet article, vous créez un Event Hub, vous vous y connectez à partir d’Azure Data Explorer et vous voyez le flux de données via le système.
+
+Pour obtenir des informations générales sur l’ingestion dans Azure Data Explorer à partir d’Event Hub, consultez [Connexion à Event Hub](ingest-data-event-hub-overview.md).
 
 ## <a name="prerequisites"></a>Prérequis
 
@@ -43,11 +45,11 @@ Dans cet article, vous générez des exemples de données et les envoyez à un E
 
 1. Pour créer un hub d’événements, utilisez le bouton suivant pour démarrer le déploiement. Cliquez avec le bouton droit et sélectionnez **Ouvrir dans une nouvelle fenêtre** pour pouvoir suivre le reste des étapes de l’article.
 
-    [![Déployer sur Azure](media/ingest-data-event-hub/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-event-hubs-create-event-hub-and-consumer-group%2Fazuredeploy.json)
+    [![Bouton Déployer dans Azure](media/ingest-data-event-hub/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-event-hubs-create-event-hub-and-consumer-group%2Fazuredeploy.json)
 
     Le bouton **Déployer sur Azure** vous amène dans le portail Azure pour remplir un formulaire de déploiement.
 
-    ![Déployer dans Azure](media/ingest-data-event-hub/deploy-to-azure.png)
+    ![Créer un formulaire Event Hub](media/ingest-data-event-hub/deploy-to-azure.png)
 
 1. Sélectionnez l’abonnement dans lequel vous souhaitez créer le hub d’événements et créez un groupe de ressources nommé *test-hub-rg*.
 
@@ -73,7 +75,7 @@ Dans cet article, vous générez des exemples de données et les envoyez à un E
 
 1. Dans la barre d’outils, sélectionnez **Notifications** pour superviser le processus de provisionnement. Le déploiement peut prendre plusieurs minutes, mais vous pouvez passer à l’étape suivante sans attendre.
 
-    ![Notifications](media/ingest-data-event-hub/notifications.png)
+    ![Icône Notifications](media/ingest-data-event-hub/notifications.png)
 
 ## <a name="create-a-target-table-in-azure-data-explorer"></a>Créer une table cible dans l’Explorateur de données Azure
 
@@ -141,7 +143,15 @@ Vous vous connectez maintenant au hub d’événements depuis l’Explorateur de
     > * Vous pouvez également définir le type de compression via des propriétés dynamiques, comme indiqué dans l’[exemple d’application](https://github.com/Azure-Samples/event-hubs-dotnet-ingest).
     > * Les formats Avro, ORC et PARQUET, ainsi que les propriétés du système d’événements, ne sont pas pris en charge sur la charge utile de compression GZip.
 
-[!INCLUDE [data-explorer-container-system-properties](includes/data-explorer-container-system-properties.md)]
+
+### <a name="event-system-properties-mapping"></a>Mappage des propriétés du système d’événements
+
+> [!Note]
+> * Les propriétés système sont prises en charge pour les événements à enregistrement unique.
+> * Pour un mappage `csv`, des propriétés sont ajoutées au début de l’enregistrement. Pour un mappage `json`, des propriétés sont ajoutées en fonction du nom qui s’affiche dans la liste déroulante.
+
+Si vous avez sélectionné **Propriétés du système d’événements** dans la section **Source de données** de la table, vous devez inclure des [propriétés système](ingest-data-event-hub-overview.md#system-properties) dans le schéma et le mappage de table.
+
 
 ## <a name="copy-the-connection-string"></a>Copier la chaîne de connexion
 
