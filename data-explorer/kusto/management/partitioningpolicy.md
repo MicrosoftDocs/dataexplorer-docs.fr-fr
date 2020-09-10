@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/10/2020
-ms.openlocfilehash: 0b85d0c4bd0604f46375e314cb1fe029647b8d32
-ms.sourcegitcommit: 9b96a0c1ba0d07fec81f29bdf8f71b9549e79b3a
+ms.openlocfilehash: c3f7212b062adaae1bd56399753270653204ad22
+ms.sourcegitcommit: 53a727fceaa89e6022bc593a4aae70f1e0232f49
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/04/2020
-ms.locfileid: "89472238"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89652102"
 ---
 # <a name="data-partitioning-policy"></a>Stratégie de partitionnement des données
 
 La stratégie de partitionnement définit si et comment les [étendues (données partitions)](../management/extents-overview.md) doivent être partitionnées pour une table spécifique.
 
-L’objectif principal de la stratégie est d’améliorer les performances des requêtes qui sont connues pour limiter le jeu de données des valeurs dans les colonnes partitionnées, ou agréger/joindre sur une colonne de chaîne de cardinalité élevée. La stratégie peut également entraîner une meilleure compression des données.
+L’objectif principal de la stratégie est d’améliorer les performances des requêtes qui sont connues pour limiter le jeu de données en filtrant sur les colonnes partitionnées, ou agréger/joindre sur une colonne de chaîne de cardinalité élevée. La stratégie peut également entraîner une meilleure compression des données.
 
 > [!CAUTION]
 > Aucune limite codée en dur n’est définie sur le nombre de tables sur lesquelles la stratégie peut être définie. Toutefois, chaque table supplémentaire ajoute une surcharge au processus de partitionnement des données en arrière-plan qui s’exécute sur les nœuds du cluster. Cela peut entraîner l’utilisation de plus de ressources de cluster. Pour plus d’informations, consultez [surveillance](#monitoring) et [capacité](#capacity).
@@ -30,7 +30,7 @@ Les types de clés de partition suivants sont pris en charge.
 
 |Type                                                   |Type de colonne |Propriétés de la partition                    |Valeur de partition                                        |
 |-------------------------------------------------------|------------|----------------------------------------|----------------------|
-|[Hachage](#hash-partition-key)                            |`string`    |`Function`, `MaxPartitionCount`, `Seed` | `Function`(`ColumnName`, `MaxPartitionCount`, `Seed`) |
+|[Code de hachage](#hash-partition-key)                            |`string`    |`Function`, `MaxPartitionCount`, `Seed` | `Function`(`ColumnName`, `MaxPartitionCount`, `Seed`) |
 |[Plage uniforme](#uniform-range-datetime-partition-key) |`datetime`  |`RangeSize`, `Reference`                | `bin_at`(`ColumnName`, `RangeSize`, `Reference`)      |
 
 ### <a name="hash-partition-key"></a>Clé de partition de hachage
@@ -41,7 +41,6 @@ Les types de clés de partition suivants sont pris en charge.
 > * La plupart des requêtes sont agrégées/jointes sur une `string` colonne de *grande dimension* (cardinalité de 10 millions ou supérieure), telle qu’un `application_ID` , un `tenant_ID` ou un `user_ID` .
 
 * Une fonction de hachage-modulo est utilisée pour partitionner les données.
-* Toutes les étendues homogènes (partitionnées) appartenant à la même partition sont affectées au même nœud de données.
 * Les données dans des étendues homogènes (partitionnées) sont classées par la clé de partition de hachage.
   * Vous n’avez pas besoin d’inclure la clé de partition de hachage dans la [stratégie d’ordre des lignes](roworderpolicy.md), si celle-ci est définie sur la table.
 * Les requêtes qui utilisent la [stratégie de lecture aléatoire](../query/shufflequery.md), et dans laquelle le `shuffle key` utilisé dans `join` , `summarize` ou `make-series` est la clé de partition de hachage de la table, sont censées fonctionner mieux, car la quantité de données requises pour le déplacement entre les nœuds de cluster est considérablement réduite.
@@ -61,6 +60,11 @@ Les types de clés de partition suivants sont pris en charge.
 * `Seed` valeur à utiliser pour la randomisation de la valeur de hachage.
   * La valeur doit être un entier positif.
   * La valeur recommandée est `1` , qui est la valeur par défaut, si elle n’est pas spécifiée.
+* `PartitionAssignmentMode` mode utilisé pour assigner des partitions aux nœuds du cluster.
+  * Modes pris en charge :
+    * `Default`: Toutes les étendues homogènes (partitionnées) appartenant à la même partition sont affectées au même nœud.
+    * `Uniform`: Les valeurs de partition d’étendues sont ignorées, et les extensions sont allouées uniformément aux nœuds du cluster.
+  * Si les requêtes ne sont pas jointes ou agrégées sur la clé de partition de hachage-use `Uniform` . Sinon, utilisez `Default`.
 
 #### <a name="example"></a>Exemple
 
@@ -74,7 +78,8 @@ Elle utilise la `XxHash64` fonction de hachage, avec un `MaxPartitionCount` de `
   "Properties": {
     "Function": "XxHash64",
     "MaxPartitionCount": 256,
-    "Seed": 1
+    "Seed": 1,
+    "PartitionAssignmentMode": "Default"
   }
 }
 ```
@@ -153,7 +158,8 @@ Objet de stratégie de partitionnement de données avec deux clés de partition.
       "Properties": {
         "Function": "XxHash64",
         "MaxPartitionCount": 256,
-        "Seed": 1
+        "Seed": 1,
+        "PartitionAssignmentMode": "Default"
       }
     },
     {
@@ -181,7 +187,7 @@ Les propriétés suivantes peuvent être définies dans le cadre de la stratégi
   * Cette propriété est facultative. Sa valeur par défaut est `0` , avec une cible par défaut de 5 millions enregistrements.
     * Vous pouvez définir une valeur inférieure à 5 millions si vous constatez que les opérations de partitionnement consomment une grande quantité de mémoire ou de processeur, par opération. Pour plus d’informations, consultez [Monitoring](#monitoring).
 
-## <a name="notes"></a>Remarques
+## <a name="notes"></a>Notes
 
 ### <a name="the-data-partitioning-process"></a>Processus de partitionnement des données
 
@@ -205,7 +211,7 @@ La sortie comprend les éléments suivants :
     * Si ce pourcentage reste constamment inférieur à 90%, évaluez la [capacité](partitioningpolicy.md#capacity)de partitionnement du cluster.
   * `TableWithMinPartitioningPercentage`: Nom qualifié complet de la table dont le pourcentage de partitionnement est indiqué ci-dessus.
 
-Utilisez les [commandes. Show](commands.md) pour surveiller les commandes de partitionnement et leur utilisation des ressources. Par exemple :
+Utilisez les [commandes. Show](commands.md) pour surveiller les commandes de partitionnement et leur utilisation des ressources. Par exemple :
 
 ```kusto
 .show commands 
