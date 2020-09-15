@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 01/28/2020
-ms.openlocfilehash: 39865b049512252e08dac9c182a6b1e20a388abe
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 078737ff7e5cd74d15792cc2f0f058cb3ea12a19
+ms.sourcegitcommit: e0cf581d433bbbb2eda5a4209a8eabcdae80c21b
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88875002"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90059489"
 ---
 # <a name="query-data-in-azure-monitor-using-azure-data-explorer-preview"></a>Interroger des données dans Azure Monitor avec Azure Data Explorer (préversion)
 
@@ -59,6 +59,9 @@ Le flux de proxy Azure Data Explorer :
 
 Vous pouvez exécuter les requêtes à l’aide des outils clients qui prennent en charge les requêtes Kusto, par exemple : Kusto Explorer, interface utilisateur ADX Web, Jupyter Kqlmagic, Flow, PowerQuery, PowerShell, Jarvis, Lens, API REST.
 
+> [!NOTE]
+> La fonctionnalité de proxy ADX est utilisée uniquement pour l’extraction de données. Pour plus d’informations, consultez [Prise en charge des fonctions](#function-supportability).
+
 > [!TIP]
 > * Le nom de la base de données doit avoir le même nom que la ressource spécifiée dans le cluster proxy. Les noms respectent la casse.
 > * Dans les requêtes entre clusters, assurez-vous que les noms des applications Application Insights et des espaces de travail Log Analytics sont corrects.
@@ -75,13 +78,13 @@ Perf | take 10 // Demonstrate query through the proxy on the LA workspace
 
 ![Requête de l’espace de travail LA](media/adx-proxy/query-la.png)
 
-### <a name="cross-query-of-your-la-or-ai-adx-proxy-cluster-and-the-adx-native-cluster"></a>Requête croisée de votre cluster proxy ADX LA ou AI et du cluster ADX natif 
+### <a name="cross-query-of-your-la-or-ai-adx-proxy-cluster-and-the-adx-native-cluster"></a>Requête croisée de votre cluster proxy ADX LA ou AI et du cluster ADX natif
 
 Lorsque vous lancez des requêtes croisées à partir du proxy, vérifiez que votre cluster natif ADX est sélectionné dans le volet de gauche. Les exemples suivants illustrent la combinaison de tables de cluster ADX (à l’aide de `union`) avec l’espace de travail LA.
 
 ```kusto
 union StormEvents, cluster('https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.operationalinsights/workspaces/<workspace-name>').database('<workspace-name>').Perf
-| take 10 
+| take 10
 ```
 
 ```kusto
@@ -103,7 +106,8 @@ Les commandes suivantes sont prises en charge par le proxy :
 * `.show function {FunctionName}`
 * `.show database {DatabaseName} schema as json`
 
-L’image suivante illustre un exemple d’interrogation d’une fonction tabulaire à partir de l’interface utilisateur web d’Azure Data Explorer. Pour utiliser la fonction, exécutez son nom dans la fenêtre de requête.
+L’image suivante illustre un exemple d’interrogation d’une fonction tabulaire à partir de l’interface utilisateur web d’Azure Data Explorer.
+Pour utiliser la fonction, exécutez son nom dans la fenêtre de requête.
 
   [ ![Interroger une fonction tabulaire à partir de l’interface utilisateur web Azure Data Explorer](media/adx-proxy/function-query-adx-proxy.png)](media/adx-proxy/function-query-adx-proxy.png#lightbox)
 

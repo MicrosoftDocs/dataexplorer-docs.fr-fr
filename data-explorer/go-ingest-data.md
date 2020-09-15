@@ -7,12 +7,12 @@ ms.reviewer: abhishgu
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/10/2020
-ms.openlocfilehash: b733e70c78d9792e53dfe9cf133efe759e8ea91e
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 82302fc2071eca8bf2fb1e4c89b96de50b1a8806
+ms.sourcegitcommit: f689547c0f77b1b8bfa50a19a4518cbbc6d408e5
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88873982"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89557341"
 ---
 # <a name="ingest-data-using-the-azure-data-explorer-go-sdk"></a>Ingérer des données à l’aide du kit de développement logiciel (SDK) Go Azure Data Explorer 
 
@@ -32,6 +32,7 @@ Dans cet article, vous allez d’abord créer une table et un mappage de donnée
 * Installez [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 * Installez [Go](https://golang.org/) en suivant la configuration minimale requise pour le [kit de développement logiciel (SDK) Go](kusto/api/golang/kusto-golang-client-library.md#minimum-requirements). 
 * Créez [un cluster et une base de données Azure Data Explorer](create-cluster-database-portal.md).
+* Créez une [inscription d’application et accordez-lui des autorisations sur la base de données](provision-azure-ad-app.md). Enregistrez l’ID de client et le secret du client pour une utilisation ultérieure.
 
 ## <a name="install-the-go-sdk"></a>Installer le kit de développement logiciel (SDK) Go
 

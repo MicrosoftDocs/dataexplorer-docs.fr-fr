@@ -7,12 +7,12 @@ ms.reviewer: elbirnbo
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/09/2020
-ms.openlocfilehash: 55de6b9560b2b47496c122e6454e1a128dc26428
-ms.sourcegitcommit: 9e0289945270db517e173aa10024e0027b173b52
+ms.openlocfilehash: 7c2dfe62852b05239215f0c88c711cea4093808e
+ms.sourcegitcommit: 50c799c60a3937b4c9e81a86a794bdb189df02a3
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/03/2020
-ms.locfileid: "89428912"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90067570"
 ---
 # <a name="create-a-private-endpoint-in-your-azure-data-explorer-cluster-in-your-virtual-network"></a>Créer un point de terminaison privé dans votre cluster Azure Data Explorer dans votre réseau virtuel
 
@@ -23,7 +23,9 @@ Pour configurer votre [service de liaison privée](https://docs.microsoft.com/az
 ## <a name="prerequisites"></a>Prérequis
 
 * Créez un [cluster Azure Data Explorer dans votre réseau virtuel](https://docs.microsoft.com/azure/data-explorer/vnet-create-cluster-portal).
-* [Désactivez les stratégies réseau](https://docs.microsoft.com/azure/private-link/disable-private-endpoint-network-policy) comme les groupes de sécurité réseau (NSG). Ces groupes ne sont pas pris en charge pour les points de terminaison privés.
+* Désactivez les stratégies réseau :
+  * Dans le réseau virtuel du cluster Azure Data Explorer, désactivez la [stratégie du service Private Link](https://docs.microsoft.com/azure/private-link/disable-private-link-service-network-policy).
+  * Dans le réseau virtuel du point de terminaison privé, qui peut être le même que le réseau virtuel du cluster Azure Data Explorer, désactivez la [stratégie de point de terminaison privé](https://docs.microsoft.com/azure/private-link/disable-private-endpoint-network-policy).
 
 ## <a name="create-private-link-service"></a>Créer un service de liaison privée
 
