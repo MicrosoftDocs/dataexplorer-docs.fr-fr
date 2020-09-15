@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: 42254e00e629a19dfceeef2d4a6c2d1877400c05
-ms.sourcegitcommit: 283cce0e7635a2d8ca77543f297a3345a5201395
+ms.openlocfilehash: ad2a4180be714e5220121dfeaff5b34f801c4745
+ms.sourcegitcommit: 95527c793eb873f0135c4f0e9a2f661ca55305e3
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/27/2020
-ms.locfileid: "84011548"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90533981"
 ---
 # <a name="callout-policy"></a>Stratégie de légende
 
@@ -21,15 +21,15 @@ Les clusters Explorateur de données Azure peuvent communiquer avec des services
 Les administrateurs de cluster peuvent gérer les domaines autorisés pour les appels externes, en mettant à jour la stratégie de légende du cluster.
 
 Les stratégies de légende sont gérées au niveau du cluster et sont classées dans les types suivants.
-* `kusto`-Contrôle les requêtes entre clusters Azure Explorateur de données.
-* `sql`-Contrôle le [plug-in SQL](../query/sqlrequestplugin.md).
-
-* `webapi`-Contrôle d’autres appels Web externes.
+* `kusto` -Contrôle les requêtes entre clusters Azure Explorateur de données.
+* `sql` -Contrôle le [plug-in SQL](../query/sqlrequestplugin.md).
+* `cosmosdb` -Contrôle le [plug-in CosmosDB](../query/cosmosdb-plugin.md).
+* `webapi` -Contrôle d’autres appels Web externes.
 * `sandbox_artifacts`-Contrôle les plug-ins sandbox ([python](../query/pythonplugin.md)  |  [R](../query/rplugin.md)).
 
 La stratégie de légende est composée des éléments suivants.
 
-* **CalloutType** : définit le type de la légende et peut être `kusto` , `sql` ou`webapi`
+* **CalloutType** : définit le type de la légende et peut être `kusto` , `sql` ou `webapi`
 * **CalloutUriRegex** : spécifie l’expression régulière autorisée du domaine de la légende
 * **CanCall** : indique si la légende est autorisée par des appels externes.
 

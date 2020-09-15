@@ -248,6 +248,8 @@
       items:
         - name: Cluster
           items:
+            - name: Utiliser les recommandations Advisor pour optimiser votre cluster
+              href: azure-advisor.md
             - name: Sélectionner une référence SKU de machine virtuelle de cluster
               href: manage-cluster-choose-sku.md
             - name: Gérer la mise à l’échelle horizontale des clusters
@@ -452,6 +454,8 @@
                   href: ./kusto/query/bag-unpackplugin.md
                 - name: 'basket, plug-in'
                   href: ./kusto/query/basketplugin.md
+                - name: 'cosmosdb_sql_request, plug-in'
+                  href: ./kusto/query/cosmosdb-plugin.md
                 - name: 'dcount_intersect, plug-in'
                   href: ./kusto/query/dcount-intersect-plugin.md
                 - name: 'diffpatterns, plug-in'
@@ -1682,18 +1686,18 @@
       items:
         - name: Liste des fonctions
           href: kusto/functions-library/functions-library.md
-        - name: predict_lf()
-          href: kusto/functions-library/predict-lf.md
-        - name: predict_onnx_lf()
-          href: kusto/functions-library/predict-onnx-lf.md
-        - name: quantize_lf()
-          href: kusto/functions-library/quantize-lf.md
-        - name: series_fit_poly_lf()
-          href: kusto/functions-library/series-fit-poly-lf.md
-        - name: series_moving_avg_lf()
-          href: kusto/functions-library/series-moving-avg-lf.md
-        - name: series_rolling_lf()
-          href: kusto/functions-library/series-rolling-lf.md
+        - name: predict_fl()
+          href: kusto/functions-library/predict-fl.md
+        - name: predict_onnx_fl()
+          href: kusto/functions-library/predict-onnx-fl.md
+        - name: quantize_fl()
+          href: kusto/functions-library/quantize-fl.md
+        - name: series_fit_poly_fl()
+          href: kusto/functions-library/series-fit-poly-fl.md
+        - name: series_moving_avg_fl()
+          href: kusto/functions-library/series-moving-avg-fl.md
+        - name: series_rolling_fl()
+          href: kusto/functions-library/series-rolling-fl.md
 - name: Ressources
   items:
     - name: Blog
