@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a98fe59755e47be8f4f4e53595d25bb260004236
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 8a3711594ec5d1cbcaf36c7286f1484a708c29a0
+ms.sourcegitcommit: 50c799c60a3937b4c9e81a86a794bdb189df02a3
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349225"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90067519"
 ---
 # <a name="beta_cdf"></a>beta_cdf()
 
@@ -37,17 +37,19 @@ La distribution Bêta est couramment utilisée pour étudier la variation du pou
 * *alpha*: paramètre de la distribution.
 * *bêta*: paramètre de la distribution.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 * [Fonction de distribution cumulative bêta](https://en.wikipedia.org/wiki/Beta_distribution#Cumulative_distribution_function).
 
-**Remarques**
+**Notes**
 
 Si un argument n’est pas numérique, beta_cdf () retourne une valeur null.
 
 Si x < 0 ou x > 1, beta_cdf () retourne une valeur NaN.
 
-Si alpha ≤ 0 ou beta ≤ 0, beta_cdf () retourne la valeur NaN.
+Si alpha ≤ 0 ou alpha > 10000, beta_cdf () retourne la valeur NaN.
+
+Si beta ≤ 0 ou bêta > 10000, beta_cdf () retourne la valeur NaN.
 
 ## <a name="examples"></a>Exemples
 
@@ -65,10 +67,10 @@ datatable(x:double, alpha:double, beta:double, comment:string)
 
 |x|alpha|bêta|comment|b|
 |---|---|---|---|---|
-|0.9|10|20|Entrée valide|0.999999999999959|
+|0,9|10|20|Entrée valide|0.999999999999959|
 |1.5|10|20|x > 1, produit NaN|NaN|
 |-10|10|20|x < 0, produit NaN|NaN|
-|0.1|-1|20|Alpha est < 0, produit NaN|NaN|
+|0,1|-1|20|Alpha est < 0, produit NaN|NaN|
 
 
 **Voir aussi**
