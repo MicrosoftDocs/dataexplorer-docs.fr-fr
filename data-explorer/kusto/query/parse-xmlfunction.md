@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 5e294a60545a081861597e772c39d2e7e99824e8
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 41e3f58ba857e23d31062484f11f30e80fb37317
+ms.sourcegitcommit: 313a91d2a34383b5a6e39add6c8b7fabb4f8d39a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346369"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90680729"
 ---
 # <a name="parse_xml"></a>parse_xml()
 
@@ -27,11 +27,9 @@ Interprète une `string` en tant que valeur XML, convertit la valeur en un JSON 
 
 * *XML*: expression de type `string` , représentant une valeur au format XML.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Objet de type [Dynamic](./scalar-data-types/dynamic.md) qui est déterminé par la valeur de *XML*, ou null, si le format XML n’est pas valide.
-
-La conversion de XML en JSON s’effectue à l’aide de la bibliothèque [xml2json](https://github.com/Cheedoong/xml2json) .
 
 La conversion s’effectue comme suit :
 
@@ -45,9 +43,9 @@ XML                                |JSON                                        
 `<e> <a>text</a> <a>text</a> </e>` | {"e" : {"a" : ["texte", "texte"]}}             | o. e. a [0] o. e. a [1]
 `<e> text <a>text</a> </e>`        | {"e" : {"#text" : "texte", "a" : "texte"}}      | 1 'o. e ["#text"] o. e. a
 
-**Remarques**
+**Notes**
 
-* La longueur d’entrée maximale `string` pour `parse_xml` est de 128 Ko. L’interprétation des chaînes plus longue entraînera un objet null 
+* La longueur d’entrée maximale `string` pour `parse_xml` est 1 mo (1 048 576 octets). L’interprétation des chaînes plus longue entraînera un objet null
 * Seuls les nœuds d’élément, les attributs et les nœuds de texte seront traduits. Tout le reste sera ignoré
  
 ## <a name="example"></a>Exemple

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: ad2a4180be714e5220121dfeaff5b34f801c4745
-ms.sourcegitcommit: 95527c793eb873f0135c4f0e9a2f661ca55305e3
+ms.openlocfilehash: 809088f35567f85444755d89ab30e02fad46abaf
+ms.sourcegitcommit: 313a91d2a34383b5a6e39add6c8b7fabb4f8d39a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90533981"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90680675"
 ---
 # <a name="callout-policy"></a>Stratégie de légende
 
@@ -26,6 +26,7 @@ Les stratégies de légende sont gérées au niveau du cluster et sont classées
 * `cosmosdb` -Contrôle le [plug-in CosmosDB](../query/cosmosdb-plugin.md).
 * `webapi` -Contrôle d’autres appels Web externes.
 * `sandbox_artifacts`-Contrôle les plug-ins sandbox ([python](../query/pythonplugin.md)  |  [R](../query/rplugin.md)).
+* `external_data` -Contrôle l’accès aux données externes via des [tables externes](../query/schema-entities/externaltables.md) ou un opérateur [ExternalData](../query/externaldata-operator.md) .
 
 La stratégie de légende est composée des éléments suivants.
 

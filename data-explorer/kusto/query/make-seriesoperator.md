@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/16/2020
-ms.openlocfilehash: 4f303726532da7ead1c2416f3d485979d045b0b2
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 6ed841a6f47eb9a0a1e73182a3b9acd1c0209bd9
+ms.sourcegitcommit: 313a91d2a34383b5a6e39add6c8b7fabb4f8d39a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346964"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90680757"
 ---
 # <a name="make-series-operator"></a>opérateur make-series
 
@@ -43,7 +43,7 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
   |---------------|-------------------------------------|------------------------------------------------------------------------------|
   |`kind`          |`nonempty`                               |Produit un résultat par défaut lorsque l’entrée de l’opérateur de série make est vide|                                
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Les lignes d’entrée sont organisées en groupes ayant les mêmes valeurs d' `by` expressions et l' `bin_at(` *AxisColumn* `, ` expression de début d'*étape*AxisColumn `, ` *start* `)` . Ensuite, les fonctions d’agrégation spécifiées sont calculées sur chaque groupe, générant une ligne pour chaque groupe. Le résultat contient les `by` colonnes, la colonne *AxisColumn* et également au moins une colonne pour chaque agrégat calculé. (L’agrégation qui ne prend pas en charge les colonnes multiples ou les résultats non numériques).
 
@@ -69,21 +69,26 @@ Il est recommandé d’utiliser la syntaxe principale de make-Series et non la s
 
 **Distribution et lecture aléatoire**
 
-`make-series`prend en charge `summarize` les [indicateurs shufflekey](shufflequery.md) à l’aide de l’indicateur de syntaxe. shufflekey.
+`make-series` prend en charge `summarize` les [indicateurs shufflekey](shufflequery.md) à l’aide de l’indicateur de syntaxe. shufflekey.
 
 ## <a name="list-of-aggregation-functions"></a>Liste des fonctions d’agrégation
 
 |Fonction|Description|
 |--------|-----------|
 |[Any ()](any-aggfunction.md)|Retourne une valeur non vide aléatoire pour le groupe|
-|[Moy ()](avg-aggfunction.md)|Retourne une valeur moyenne dans le groupe|
+|[avg()](avg-aggfunction.md)|Retourne une valeur moyenne dans le groupe|
+|[avgif()](avgif-aggfunction.md)|Retourne une moyenne avec le prédicat du groupe.|
 |[Count ()](count-aggfunction.md)|Retourne le nombre de groupes|
 |[countif()](countif-aggfunction.md)|Retourne un nombre avec le prédicat du groupe.|
 |[dcount()](dcount-aggfunction.md)|Retourne un nombre approximatif distinct des éléments de groupe|
+|[dcountif()](dcountif-aggfunction.md)|Retourne un compte approximatif distinct avec le prédicat du groupe|
 |[max()](max-aggfunction.md)|Retourne la valeur maximale dans l'ensemble du groupe|
+|[maxif()](maxif-aggfunction.md)|Retourne la valeur maximale avec le prédicat du groupe.|
 |[min()](min-aggfunction.md)|Retourne la valeur minimale dans l'ensemble du groupe|
-|[ECARTYPE ()](stdev-aggfunction.md)|Retourne l’écart type de l’ensemble du groupe|
-|[Sum ()](sum-aggfunction.md)|Retourne la somme des éléments dans le groupe|
+|[minif()](minif-aggfunction.md)|Retourne la valeur minimale avec le prédicat du groupe.|
+|[stdev()](stdev-aggfunction.md)|Retourne l’écart type de l’ensemble du groupe|
+|[sum()](sum-aggfunction.md)|Retourne la somme des éléments dans le groupe|
+|[sumif()](sumif-aggfunction.md)|Retourne la somme des éléments avec le prédicat du groupe.|
 |[variance()](variance-aggfunction.md)|Retourne la variance dans le groupe|
 
 ## <a name="list-of-series-analysis-functions"></a>Liste des fonctions d’analyse de série
@@ -185,7 +190,7 @@ data
 | count 
 ```
 
-|Count|
+|Nombre|
 |---|
 |0|
 

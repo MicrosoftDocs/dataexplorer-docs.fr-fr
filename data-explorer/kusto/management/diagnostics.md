@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 6c9bfed37ea54e541e55106a505471f04fe94e99
-ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
+ms.openlocfilehash: 60d25403b230be9ef625a6d52d1fdb159f9fc4e3
+ms.sourcegitcommit: 313a91d2a34383b5a6e39add6c8b7fabb4f8d39a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88610557"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90680658"
 ---
 # <a name="diagnostic-information"></a>Informations de diagnostic
 
@@ -40,7 +40,7 @@ Retourne un jeu qui contient un enregistrement pour chaque nœud actuellement ac
 |Adresse|String |Point de terminaison interne utilisé par le cluster pour les communications entre les nœuds
 |Nom |String |Nom interne du nœud. Le nom comprend le nom de l’ordinateur, le nom du processus et l’ID du processus.
 |StartTime |DateTime |Date/heure (au format UTC) de début de l’instanciation Kusto actuelle dans le nœud. Cette valeur peut être utilisée pour détecter si le nœud (ou Kusto en cours d’exécution sur le nœud) a été redémarré récemment.
-|IsAdmin |Boolean |Si ce nœud est actuellement le « responsable » du cluster 
+|IsAdmin |Booléen |Si ce nœud est actuellement le « responsable » du cluster 
 |MachineTotalMemory  |Int64 |Quantité de RAM du nœud.
 |MachineAvailableMemory  |Int64 |Quantité de mémoire vive (RAM) actuellement disponible pour une utilisation sur le nœud.
 |ProcessorCount  |Int32 |Nombre de processeurs sur le nœud.
@@ -54,10 +54,10 @@ Retourne un jeu qui contient un enregistrement pour chaque nœud actuellement ac
 
 ID|Adresse|Nom|StartTime|IsAdmin|MachineTotalMemory|MachineAvailableMemory|ProcessorCount|EnvironmentDescription
 ---|---|---|---|---|---|---|---|---
-Kusto. Azure. Svc_IN_1|NET. TCP://100.112.150.30:23107/|Kusto. Azure. Svc_IN_4/RD000D3AB1E9BD/WaWorkerHost/3820|2016-01-15 02:00:22.6522152|Vrai|274877435904|247797796864|16|{"UpdateDomain" : 0, "FaultDomain" : 0}
-Kusto. Azure. Svc_IN_3|NET. TCP://100.112.154.34:23107/|Kusto. Azure. Svc_IN_3/RD000D3AB1E062/WaWorkerHost/2760|2016-01-15 05:52:52.1434683|Faux|274877435904|258740346880|16|{"UpdateDomain" : 1, "FaultDomain" : 1}
-Kusto. Azure. Svc_IN_2|NET. TCP://100.112.128.40:23107/|Kusto. Azure. Svc_IN_2/RD000D3AB1E054/WaWorkerHost/3776|2016-01-15 07:17:18.0699790|Faux|274877435904|244232339456|16|{"UpdateDomain" : 2, "FaultDomain" : 2}
-Kusto. Azure. Svc_IN_0|NET. TCP://100.112.138.15:23107/|Kusto. Azure. Svc_IN_0/RD000D3AB0D6C6/WaWorkerHost/3208|2016-01-15 09:46:36.9865016|Faux|274877435904|238414581760|16|{"UpdateDomain" : 3, "FaultDomain" : 3}
+Kusto. Azure. Svc_IN_1|NET. TCP://100.112.150.30:23107/|Kusto. Azure. Svc_IN_4/RD000D3AB1E9BD/WaWorkerHost/3820|2016-01-15 02:00:22.6522152|True|274877435904|247797796864|16|{"UpdateDomain" : 0, "FaultDomain" : 0}
+Kusto. Azure. Svc_IN_3|NET. TCP://100.112.154.34:23107/|Kusto. Azure. Svc_IN_3/RD000D3AB1E062/WaWorkerHost/2760|2016-01-15 05:52:52.1434683|False|274877435904|258740346880|16|{"UpdateDomain" : 1, "FaultDomain" : 1}
+Kusto. Azure. Svc_IN_2|NET. TCP://100.112.128.40:23107/|Kusto. Azure. Svc_IN_2/RD000D3AB1E054/WaWorkerHost/3776|2016-01-15 07:17:18.0699790|False|274877435904|244232339456|16|{"UpdateDomain" : 2, "FaultDomain" : 2}
+Kusto. Azure. Svc_IN_0|NET. TCP://100.112.138.15:23107/|Kusto. Azure. Svc_IN_0/RD000D3AB0D6C6/WaWorkerHost/3208|2016-01-15 09:46:36.9865016|False|274877435904|238414581760|16|{"UpdateDomain" : 3, "FaultDomain" : 3}
 
 
 ## <a name="show-diagnostics"></a>. afficher les Diagnostics
@@ -72,8 +72,8 @@ Retourne des informations sur l’état d’intégrité du cluster Kusto.
 
 |Paramètre de sortie |Type |Description|
 |-----------------|-----|-----------| 
-|IsHealthy|Boolean|Si le cluster est sain ou non
-|IsScaleOutRequired|Boolean|Si la taille du cluster doit être augmentée en ajoutant des nœuds de calcul supplémentaires
+|IsHealthy|Booléen|Si le cluster est sain ou non
+|IsScaleOutRequired|Booléen|Si la taille du cluster doit être augmentée en ajoutant des nœuds de calcul supplémentaires
 |MachinesTotal|Int64|Nombre d’ordinateurs dans le cluster
 |MachinesOffline|Int64|Nombre d’ordinateurs actuellement hors connexion
 |NodeLastRestartedOn|DateTime|Date/heure de la dernière redémarrage de tout nœud du cluster
@@ -83,8 +83,8 @@ Retourne des informations sur l’état d’intégrité du cluster Kusto.
 |Réservé|Int64|
 |Réservé|Int64|
 |InstancesTargetBasedOnDataCapacity|Int64|Nombre d’instances nécessaires pour amener le ClusterDataCapacityFactor inférieur à 80. Cette valeur est valide uniquement lorsque tous les ordinateurs sont dimensionnés de la même façon
-|TotalOriginalDataSize|Int64|Taille totale des données ingérées à l’origine
-|TotalExtentSize|Int64|Taille totale des données stockées, après la compression et l’indexation
+|TotalOriginalDataSize|Int64|Taille totale des données ingérées à l’origine en octets
+|TotalExtentSize|Int64|Taille totale des données stockées, après la compression et l’indexation en octets
 |IngestionsLoadFactor|Double|Pourcentage de la capacité d’ingestion du cluster qui a été utilisé. La capacité maximale peut être affichée à l’aide de la `.show capacity` commande
 |IngestionsInProgress|Int64|Nombre d’opérations d’ingestion en cours
 |IngestionsSuccessRate|Double|Le pourcentage d’opérations d’ingestion qui se sont terminées avec succès au cours des 10 dernières minutes
@@ -92,18 +92,18 @@ Retourne des informations sur l’état d’intégrité du cluster Kusto.
 |BuildVersion|String|La version du logiciel Kusto déployée sur le cluster
 |BuildTime|DateTime|Date/heure de la version de build du logiciel Kusto.
 |ClusterDataCapacityFactor|Double|Pourcentage de la capacité de données du cluster utilisé. Le pourcentage est calculé comme étant SUM (Extent Size Data)/SUM (taille du cache SSD).
-|IsDataWarmingRequired|Boolean|Interne : si les requêtes de réchauffement du cluster doivent être exécutées, pour importer les données dans le cache SSD local 
+|IsDataWarmingRequired|Booléen|Interne : si les requêtes de réchauffement du cluster doivent être exécutées, pour importer les données dans le cache SSD local 
 |DataWarmingLastRunOn|DateTime|Date/heure de la dernière exécution des données. chaude sur le cluster
 |MergesSuccessRate|Double|Pourcentage d’opérations de fusion qui se sont terminées avec succès au cours des 10 dernières minutes.
 |NotHealthyReason|String|Spécifie la raison pour laquelle le cluster n’est pas sain 
-|IsAttentionRequired|Boolean|Si le cluster nécessite une attention de l’équipe chargée des opérations
+|IsAttentionRequired|Booléen|Si le cluster nécessite une attention de l’équipe chargée des opérations
 |AttentionRequiredReason|String|Spécifie la raison pour laquelle le cluster nécessite une attention
 |ProductVersion|String|Spécifie les informations sur le produit (branche, version, etc.)
 |FailedIngestOperations|Int64|Nombre d’opérations d’ingestion ayant échoué au cours des 10 dernières minutes
 |FailedMergeOperations|Int64|Nombre d’opérations de fusion ayant échoué au cours de la précédente 1 heure
 |MaxExtentsInSingleTable|Int64|Nombre maximal d’étendues dans la table (TableWithMaxExtents)
 |TableWithMaxExtents|String|Table avec le nombre maximal d’extensions (MaxExtentsInSingleTable)
-|WarmExtentSize|Double|Taille totale des étendues dans le cache à chaud
+|WarmExtentSize|Double|Taille totale, en octets, des étendues dans le cache actif
 |NumberOfDatabases|Int32|Nombre de bases de données dans le cluster
 
 ## <a name="show-capacity"></a>. afficher la capacité
@@ -156,8 +156,8 @@ Cette commande retourne une table qui contient toutes les opérations d’admini
  
 |id |Opération |ID du nœud |Démarré le |Dernière mise à jour le |Duration |État |Statut 
 |--|--|--|--|--|--|--|--
-|3827def6-0773-4f2a-859e-c02cf395deaf |SchemaShow | |2015-01-06 08:47:01.0000000 |2015-01-06 08:47:01.0000000 |0001-01-01 00:00:00.0000000 |Completed | 
-|841fafa4-076a-4cba-9300-4836da0d9c75 |DataIngestPull |Kusto. Azure. Svc_IN_1 |2015-01-06 08:47:02.0000000 |2015-01-06 08:48:19.0000000 |0001-01-01 00:01:17.0000000 |Completed | 
-|e198c519-5263-4629-a158-8d68f7a1022f |OperationsShow | |2015-01-06 08:47:18.0000000 |2015-01-06 08:47:18.0000000 |0001-01-01 00:00:00.0000000 |Completed |
+|3827def6-0773-4f2a-859e-c02cf395deaf |SchemaShow | |2015-01-06 08:47:01.0000000 |2015-01-06 08:47:01.0000000 |0001-01-01 00:00:00.0000000 |Effectué | 
+|841fafa4-076a-4cba-9300-4836da0d9c75 |DataIngestPull |Kusto. Azure. Svc_IN_1 |2015-01-06 08:47:02.0000000 |2015-01-06 08:48:19.0000000 |0001-01-01 00:01:17.0000000 |Effectué | 
+|e198c519-5263-4629-a158-8d68f7a1022f |OperationsShow | |2015-01-06 08:47:18.0000000 |2015-01-06 08:47:18.0000000 |0001-01-01 00:00:00.0000000 |Effectué |
 |a9f287a1-f3e6-4154-ad18-b86438da0929 |ExtentsDrop | |2015-01-11 08:41:01.0000000 |0001-01-01 00:00:00.0000000 |0001-01-01 00:00:00.0000000 |InProgress |
 |9edb3ecc-f4b4-4738-87e1-648eed2bd998 |DataIngestPull | |2015-01-10 14:57:41.0000000 |2015-01-10 14:57:41.0000000 |0001-01-01 00:00:00.0000000 |Échec |La collection a été modifiée. L’opération d’énumération peut ne pas s’exécuter |
