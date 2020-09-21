@@ -212,6 +212,8 @@
           href: k2bridge.md
     - name: Sécuriser
       items:
+        - name: Calcul isolé
+          href: isolated-compute.md
         - name: Isolement réseau (réseau virtuel)
           items:
             - name: "Créer un cluster dans votre réseau virtuel\_- Portail"
@@ -297,7 +299,7 @@
               href: dealing-with-duplicates.md
     - name: Superviser
       items:
-        - name: Utiliser des journaux de diagnostic pour superviser l’ingestion
+        - name: 'Utiliser les journaux de diagnostic pour superviser l’ingestion, les commandes et les requêtes'
           href: using-diagnostic-logs.md
         - name: Superviser Azure Data Explorer avec des métriques
           displayName: 'health, performance'
