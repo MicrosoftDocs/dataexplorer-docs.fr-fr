@@ -72,6 +72,8 @@
           href: create-cluster-database-python.md
         - name: "Modèle Azure\_Resource\_Manager"
           href: create-cluster-database-resource-manager.md
+    - name: Créer une table
+      href: one-click-table.md
     - name: Réception de données
       items:
         - name: Ingestion en un clic
@@ -316,10 +318,12 @@
       items:
         - name: Power Automate
           items:
-            - name: Connecteur de flux Power Automate
+            - name: Connecteur Power Automate
               href: flow.md
+              displayName: 'Microsoft Flow, flow, flow connector'
             - name: Exemples d’utilisation de connecteur Power Automate
               href: flow-usage.md
+              displayName: 'Microsoft Flow, flow, flow connector'
         - name: Logic Apps
           href: kusto/tools/logicapps.md
         - name: Connecteur Apache Spark

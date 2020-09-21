@@ -7,14 +7,14 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/08/2020
-ms.openlocfilehash: 3834e3189a62cd8581d2e3607acad9c7d8c8d7c2
-ms.sourcegitcommit: 50c799c60a3937b4c9e81a86a794bdb189df02a3
+ms.openlocfilehash: 7be785a7a3a0abe0c1f6483e016484ee0124f29b
+ms.sourcegitcommit: 97404e9ed4a28cd497d2acbde07d00149836d026
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90075153"
+ms.lasthandoff: 09/21/2020
+ms.locfileid: "90832601"
 ---
-# <a name="series_fit_poly_fl"></a>series_fit_poly_fl ()
+# <a name="series_fit_poly_fl"></a>series_fit_poly_fl()
 
 La fonction `series_fit_poly_fl()` applique une régression polynomiale sur une série. Elle prend une table qui contient plusieurs séries (tableau numérique dynamique) et génère, pour chaque série, le polynôme à poids fort qui le contiendra le mieux à l’aide de la [régression polynomiale](https://en.wikipedia.org/wiki/Polynomial_regression). Cette fonction retourne à la fois les coefficients polynomiaux et le polynôme interpolé sur la plage de la série.
 
@@ -34,7 +34,7 @@ La fonction `series_fit_poly_fl()` applique une régression polynomiale sur une 
 * *x_series*: nom de la colonne contenant la [variable indépendante](https://en.wikipedia.org/wiki/Dependent_and_independent_variables), autrement dit, l’axe x ou l’axe de temps. Ce paramètre est facultatif et n’est nécessaire que pour les [séries espacées](https://en.wikipedia.org/wiki/Unevenly_spaced_time_series)de manière inégale. La valeur par défaut est une chaîne vide, car x est redondant pour la régression d’une série espacée de manière égale.
 * *x_istime*: ce paramètre booléen est facultatif. Ce paramètre est nécessaire uniquement si *x_series* est spécifié et qu’il s’agit d’un vecteur de DateTime.
 
-## <a name="usage"></a>Utilisation
+## <a name="usage"></a>Usage
 
 `series_fit_poly_fl()`[fonction tabulaire](../query/functions/user-defined-functions.md#tabular-function)définie par l’utilisateur, à appliquer à l’aide de l' [opérateur Invoke](../query/invokeoperator.md). Vous pouvez incorporer son code dans votre requête ou l’installer dans votre base de données. Il existe deux options d’utilisation : une utilisation ad hoc et une utilisation permanente. Consultez les onglets ci-dessous pour obtenir des exemples.
 
@@ -58,13 +58,14 @@ let series_fit_poly_fl=(tbl:(*), y_series:string, y_fit_series:string, fit_coeff
         '\n'
         'def fit(ts_row, x_col, y_col, deg):\n'
         '    y = ts_row[y_col]\n'
-        '    # if x column exists check whether its a time column. If so, convert it to numeric seconds, else take it as is. If there is no x column creates sequential numbers\n'
-        '    if x_col == "":\n'
-        '       x = np.arange(len(y))\n'
-        '    else:\n'
-        '       if x_istime:\n'
-        '           x = pd.to_numeric(pd.to_datetime(ts_row[x_col]))/(1e9*60) #convert ticks to minutes\n'
+        '    if x_col == "": # If there is no x column creates sequential range [1, len(y)]\n'
+        '       x = np.arange(len(y)) + 1\n'
+        '    else: # if x column exists check whether its a time column. If so, normalize it to the [1, len(y)] range, else take it as is.\n'
+        '       if x_istime: \n'
+        '           x = pd.to_numeric(pd.to_datetime(ts_row[x_col]))\n'
         '           x = x - x.min()\n'
+        '           x = x / x.max()\n'
+        '           x = x * (len(x) - 1) + 1\n'
         '       else:\n'
         '           x = ts_row[x_col]\n'
         '    coeff = np.polyfit(x, y, deg)\n'
@@ -113,13 +114,14 @@ series_fit_poly_fl(tbl:(*), y_series:string, y_fit_series:string, fit_coeff:stri
         '\n'
         'def fit(ts_row, x_col, y_col, deg):\n'
         '    y = ts_row[y_col]\n'
-        '    # if x column exists check whether its a time column. If so, convert it to numeric seconds, else take it as is. If there is no x column creates sequential numbers\n'
-        '    if x_col == "":\n'
-        '       x = np.arange(len(y))\n'
-        '    else:\n'
-        '       if x_istime:\n'
-        '           x = pd.to_numeric(pd.to_datetime(ts_row[x_col]))/(1e9*60) #convert ticks to minutes\n'
+        '    if x_col == "": # If there is no x column creates sequential range [1, len(y)]\n'
+        '       x = np.arange(len(y)) + 1\n'
+        '    else: # if x column exists check whether its a time column. If so, normalize it to the [1, len(y)] range, else take it as is.\n'
+        '       if x_istime: \n'
+        '           x = pd.to_numeric(pd.to_datetime(ts_row[x_col]))\n'
         '           x = x - x.min()\n'
+        '           x = x / x.max()\n'
+        '           x = x * (len(x) - 1) + 1\n'
         '       else:\n'
         '           x = ts_row[x_col]\n'
         '    coeff = np.polyfit(x, y, deg)\n'
@@ -136,7 +138,7 @@ series_fit_poly_fl(tbl:(*), y_series:string, y_fit_series:string, fit_coeff:stri
 }
 ```
 
-### <a name="usage"></a>Utilisation
+### <a name="usage"></a>Usage
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
