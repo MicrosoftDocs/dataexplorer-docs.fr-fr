@@ -6,14 +6,14 @@ ms.author: orspodek
 ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
-ms.date: 01/19/2020
+ms.date: 09/19/2020
 ms.custom: contperfq1
-ms.openlocfilehash: f1a7a0d9be744e4014732689e76220adab3bcd93
-ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
+ms.openlocfilehash: d12e1d2382c3d7fe9a980b2b777a02205d28e5de
+ms.sourcegitcommit: 97404e9ed4a28cd497d2acbde07d00149836d026
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/07/2020
-ms.locfileid: "89502724"
+ms.lasthandoff: 09/21/2020
+ms.locfileid: "90832550"
 ---
 # <a name="monitor-azure-data-explorer-performance-health-and-usage-with-metrics"></a>Superviser les performances, l’intégrité et l’utilisation d’Azure Data Explorer avec des métriques
 
@@ -81,7 +81,7 @@ Les métriques d’exportation permettent d’effectuer le suivi de l’intégri
 
 |**Mesure** | **Unité** | **Agrégation** | **Description de la métrique** | **Dimensions** |
 |---|---|---|---|---|
-Exportation continue : Nombre d’enregistrements exportés    | Count | SUM | Nombre d’enregistrements exportés dans tous les travaux d’exportation continue. | None |
+Exportation continue : Nombre d’enregistrements exportés    | Count | SUM | Nombre d’enregistrements exportés dans tous les travaux d’exportation continue. | ContinuousExportName |
 Retard max. pour l’exportation continue |    Count   | Max   | Retard (en minutes) signalé par les travaux d’exportation continue dans le cluster. | None |
 Nombre d’exportations continues en attente | Count | Max   | Nombre de travaux d’exportation continue en attente. Ces travaux sont prêts à être exécutés mais attendent dans une file d’attente, probablement en raison d’une capacité insuffisante. 
 Résultat de l’exportation continue    | Count |   Count   | Échec ou réussite de chaque exécution d’exportation continue. | ContinuousExportName |
@@ -96,7 +96,7 @@ Les métriques d’ingestion permettent d’effectuer le suivi de l’intégrit�
 | Nombre d’objets blob du lot | Count | Moy, Max, Min | Nombre de sources de données d’un lot effectué pour l’ingestion. | Base de données |
 | Durée du lot | Secondes | Moy, Max, Min | Durée de la phase de traitement par lot du flux d’ingestion  | Base de données |
 | Taille du lot | Octets | Moy, Max, Min | Taille de données attendue non compressée dans un lot agrégé pour l’ingestion. | Base de données |
-| Lots traités | Count | Moy, Max, Min | Nombre de lots effectués pour l’ingestion. `BatchCompletionReason`: si le lot a atteint la limite du temps de traitement par lot, de taille des données ou de nombre de fichiers définie par la [stratégie de traitement par lot](/azure/data-explorer/kusto/management/batchingpolicy). | Database, BatchCompletionReason |
+| Lots traités | Count | Moy, Max, Min | Nombre de lots effectués pour l’ingestion. `Batching Type` : indique si le lot a atteint la limite du temps de traitement par lot, de taille des données ou de nombre de fichiers définie par la [stratégie de traitement par lot](/azure/data-explorer/kusto/management/batchingpolicy). | Base de données, type de traitement par lot |
 | Latence de découverte | Secondes | Moy, Max, Min | Temps depuis l’empilement des données jusqu’à la découverte par la connexion de données. Ce temps n’est pas inclus dans la **durée totale d’ingestion Kusto** ni dans **KustoEventAge (latence d’ingestion)** | Base de données, table, type de connexion de données, nom de connexion de données |
 | Événements traités (pour Event/IoT Hubs) | Count | Max, Min, Somme | Nombre total d’événements lus à partir de hubs d’événements et traités par le cluster. Les événements sont divisés en événements rejetés et en événements acceptés par le moteur de cluster. | EventStatus |
 | Latence d’ingestion | Secondes | Moy, Max, Min | Latence des données ingérées, depuis la réception des données dans le cluster jusqu’à ce qu’elles soient prêtes à être interrogées. La période de latence d’ingestion varie en fonction du scénario d’ingestion. | None |

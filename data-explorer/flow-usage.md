@@ -7,34 +7,34 @@ ms.reviewer: dorcohen
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/15/2020
-ms.openlocfilehash: a9f2be17e02103a64fa31a10bc6195076addb1fc
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 03422de8987e125b5565b0625434ef660426b40a
+ms.sourcegitcommit: c2ab3176db4dd55ac9ca8eee52bbd24096d1277f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874526"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90740267"
 ---
 # <a name="usage-examples-for-azure-data-explorer-connector-to-power-automate-preview"></a>Exemples d’utilisation du connecteur Azure Data Explorer vers Power Automate (préversion)
 
-Le connecteur de flux Azure Data Explorer permet à Azure Data Explorer d’utiliser les fonctionnalités de flux de [Microsoft Power Automate](https://flow.microsoft.com/). Vous pouvez exécuter automatiquement des requêtes et des commandes Kusto dans le cadre d’une tâche planifiée ou déclenchée. Cet article comprend plusieurs exemples d’utilisation courants du connecteur de flux.
+Le connecteur Azure Data Explorer Power Automate (anciennement Microsoft Flow) permet à Azure Data Explorer d’utiliser les fonctionnalités de flux de [Microsoft Power Automate](https://flow.microsoft.com/). Vous pouvez exécuter automatiquement des requêtes et des commandes Kusto dans le cadre d’une tâche planifiée ou déclenchée. Cet article comprend plusieurs exemples d’utilisation courants du connecteur Power Automate.
 
-Pour plus d’informations, consultez [Connecteur de flux Azure Data Explorer (préversion)](flow.md).
+Pour plus d’informations, consultez [Connecteur Azure Data Explorer Power Automate (préversion)](flow.md).
 
-## <a name="flow-connector-and-your-sql-database"></a>Connecteur de flux et votre base de données SQL
+## <a name="power-automate-connector-and-your-sql-database"></a>Connecteur Power Automate et votre base de données SQL
 
-Utilisez le connecteur de flux pour interroger vos données et les agréger dans une base de données SQL.
+Utilisez le connecteur Power Automate pour interroger vos données et les agréger dans une base de données SQL.
 
 > [!Note]
-> Utilisez le connecteur de flux uniquement pour de petites quantités de données de sortie. L’opération d’insertion SQL est effectuée individuellement pour chaque ligne. 
+> Utilisez le connecteur Power Automate uniquement pour de petites quantités de données de sortie. L’opération d’insertion SQL est effectuée individuellement pour chaque ligne. 
 
-![Capture d’écran de l’interrogation de données à l’aide du connecteur de flux](./media/flow-usage/flow-sqlexample.png)
+![Capture d’écran de l’interrogation de données à l’aide du connecteur Power Automate](./media/flow-usage/flow-sqlexample.png)
 
 > [!IMPORTANT]
 > Dans le champ **Nom du cluster**, entrez l’URL du cluster.
 
 ## <a name="push-data-to-a-microsoft-power-bi-dataset"></a>Envoyer par push des données à un jeu de données Microsoft Power BI
 
-Vous pouvez utiliser le connecteur de flux avec le connecteur Power BI pour envoyer par push des données issues de requêtes Kusto vers des jeux de données de streaming Power BI.
+Vous pouvez utiliser le connecteur Power Automate avec le connecteur Power BI pour envoyer (push) des données issues de requêtes Kusto vers des jeux de données de streaming Power BI.
 
 1. Créez une action **Exécuter la requête et répertorier les résultats**.
 1. Sélectionnez **Nouvelle étape**.
@@ -54,7 +54,7 @@ Le flux applique automatiquement l’action Power BI pour chaque ligne de la ta
 
 ## <a name="conditional-queries"></a>Requêtes conditionnelles
 
-Vous pouvez utiliser les résultats des requêtes Kusto comme entrée ou conditions pour les actions de flux suivantes.
+Vous pouvez utiliser les résultats des requêtes Kusto comme entrée ou conditions pour les actions Power Automate suivantes.
 
 Dans l’exemple suivant, nous interrogeons Kusto pour les incidents qui se sont produits au cours du dernier jour. Pour chaque incident résolu, un message Slack est publié et une notification Push est créée.
 Pour chaque incident toujours actif, nous interrogeons Kusto pour obtenir des informations supplémentaires sur des incidents similaires. Il envoie ces informations sous forme d’e-mail et ouvre une tâche associée dans Azure DevOps Server.

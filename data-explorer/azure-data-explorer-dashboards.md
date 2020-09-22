@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 05/26/2020
-ms.openlocfilehash: 47ca1ebdd4136b3add6b4476757f34a24b08eeea
-ms.sourcegitcommit: a4779e31a52d058b07b472870ecd2b8b8ae16e95
+ms.openlocfilehash: 66bbaddc6fcc953c620b2b439027ecec97016f19
+ms.sourcegitcommit: 95527c793eb873f0135c4f0e9a2f661ca55305e3
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/02/2020
-ms.locfileid: "89366096"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90534015"
 ---
 # <a name="visualize-data-with-azure-data-explorer-dashboards"></a>Visualiser des données avec des tableaux de bord Azure Data Explorer
 
@@ -27,6 +27,9 @@ Les tableaux de bord Azure Data Explorer offrent trois avantages principaux :
 L’image suivante représente un tableau de bord Azure Data Explorer.
 
 :::image type="content" source="media/adx-dashboards/dash.png" alt-text="Tableau de bord final":::
+
+> [!IMPORTANT]
+> Vos données sont sécurisées. Les tableaux de bord et les métadonnées relatives aux tableaux de bord concernant les utilisateurs sont chiffrés au repos.
 
 ## <a name="create-a-dashboard"></a>Création d’un tableau de bord
 

@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 01/08/2020
-ms.openlocfilehash: 4433126f67187d1bb2a190821dc6a59d96be3f5b
-ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
+ms.openlocfilehash: 47fce36f598c334c5e372ccb7bc44d21bd9ff94f
+ms.sourcegitcommit: 97404e9ed4a28cd497d2acbde07d00149836d026
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/07/2020
-ms.locfileid: "89502787"
+ms.lasthandoff: 09/21/2020
+ms.locfileid: "90832774"
 ---
 # <a name="ingest-data-from-iot-hub-into-azure-data-explorer"></a>Ingérer les données d’un hub IoT dans Azure Data Explorer 
 
@@ -75,38 +75,48 @@ Connectez-vous maintenant au hub IoT depuis Azure Data Explorer. Une fois cette 
     
     ![Sélectionner la base de données de test](media/ingest-data-iot-hub/select-database.png)
 
-1. Sélectionnez **Ingestion des données**, puis **Ajouter une connexion de données**. Renseignez ensuite le formulaire avec les informations ci-après. Sélectionnez **Créer** après avoir terminé.
+1. Sélectionnez **Ingestion des données**, puis **Ajouter une connexion de données**.
 
-    ![Connexion au hub IoT](media/ingest-data-iot-hub/iot-hub-connection.png)
+    :::image type="content" source="media/ingest-data-iot-hub/iot-hub-connection.png" alt-text="Créer une connexion de données à IoT Hub - Azure Data Explorer":::
 
-    **Source de données** :
+### <a name="create-a-data-connection"></a>Créer une connexion de données
+
+1. Renseignez le formulaire avec les informations suivantes. 
+    
+    :::image type="content" source="media/ingest-data-iot-hub/data-connection-pane.png" alt-text="Volet Connexion de données dans IoT Hub - Azure Data Explorer":::
 
     **Paramètre** | **Description du champ**
     |---|---|
     | Nom de la connexion de données | Nom de la connexion que vous souhaitez créer dans Azure Data Explorer
+    | Abonnement |  ID d’abonnement dans lequel se trouve la ressource de hub d’événements.  |
     | IoT Hub | Nom de l’IoT Hub |
     | Stratégie d’accès partagé | Nom de la stratégie d’accès partagé. Doit avoir des autorisations de lecture |
     | Groupe de consommateurs |  Groupe de consommateurs défini dans le point de terminaison intégré au hub IoT |
     | Propriétés du système d’événements | [Propriétés système d’événement du hub IoT](/azure/iot-hub/iot-hub-devguide-messages-construct#system-properties-of-d2c-iot-hub-messages). Lors de l’ajout des propriétés système, [créez](kusto/management/create-table-command.md) ou [mettez à jour](kusto/management/alter-table-command.md) le schéma de table et le [mappage](kusto/management/mappings.md) pour inclure les propriétés sélectionnées. | | | 
 
-    > [!NOTE]
-    > En cas de [basculement manuel](/azure/iot-hub/iot-hub-ha-dr#manual-failover), vous devez recréer la connexion de données.
+#### <a name="target-table"></a>Table cible
 
-    **Table cible** :
+Deux options sont disponibles pour le routage des données ingérées : *statique* et *dynamique*. Dans le cadre de cet article, vous utilisez le routage statique, où vous spécifiez le nom de table, le format des données et le mappage. Si le message du hub d’événements comprend des informations de routage de données, ces informations de routage remplacent les paramètres par défaut.
 
-    Deux options sont disponibles pour le routage des données ingérées : *statique* et *dynamique*. 
-    Dans le cadre de cet article, vous utilisez le routage statique, où vous spécifiez le nom de table, le format des données et le mappage. Par conséquent, ne sélectionnez pas **My data includes routing info** (Mes données incluent des informations de routage).
+1. Renseignez les paramètres de routage suivants :
+    
+    :::image type="content" source="media/ingest-data-iot-hub/default-routing-settings.png" alt-text="Propriétés de routage par défaut - IoT Hub - Azure Data Explorer":::
 
      **Paramètre** | **Valeur suggérée** | **Description du champ**
     |---|---|---|
-    | Table de charge de travail | *TestTable* | Table que vous avez créée dans **testdb**. |
+    | Nom de la table | *TestTable* | Table que vous avez créée dans **testdb**. |
     | Format de données | *JSON* | Les formats pris en charge sont Avro, CSV, JSON, MULTILINE JSON, ORC, PARQUET, PSV, SCSV, SOHSV, TSV, TXT, TSVE, APACHEAVRO et W3CLOG.|
-    | Mappage de colonnes | *TestMapping* | [Mappage](kusto/management/mappings.md) que vous avez créé dans **testdb**, qui mappe les données JSON entrantes aux noms de colonnes et aux types de données de **testdb**. Obligatoire pour les formats JSON, MULTILINE JSON et AVRO, et facultatif pour les autres formats.|
+    | Mappage | *TestMapping* | [Mappage](kusto/management/mappings.md) que vous avez créé dans **testdb**, qui mappe les données entrantes aux noms de colonnes et aux types de données de **testdb**. Obligatoire pour les formats JSON, MULTILINE JSON et AVRO, et facultatif pour les autres formats.|
     | | |
 
+    > [!WARNING]
+    > En cas de [basculement manuel](/azure/iot-hub/iot-hub-ha-dr#manual-failover), vous devez recréer la connexion de données.
+    
     > [!NOTE]
-    > * Sélectionnez **My data includes routing info** pour utiliser le routage dynamique, où vos données incluent les informations de routage nécessaires comme indiqué dans les commentaires de l’[exemple d’application](https://github.com/Azure-Samples/event-hubs-dotnet-ingest). Si à la fois des propriétés statiques et des propriétés dynamiques sont définies, les propriétés dynamiques remplacent les propriétés statiques. 
+    > * Vous n’êtes pas obligé de spécifier tous les **paramètres de routage par défaut**. Des paramètres partiels sont également acceptés.
     > * Seuls les événements mis en file d’attente après que vous avez créé la connexion de données sont ingérés.
+
+1. Sélectionnez **Create** (Créer).
 
 ### <a name="event-system-properties-mapping"></a>Mappage des propriétés du système d’événements
 

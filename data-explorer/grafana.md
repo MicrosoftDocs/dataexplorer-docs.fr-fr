@@ -6,13 +6,13 @@ ms.author: orspodek
 ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
-ms.date: 11/13/2019
-ms.openlocfilehash: 30a78efa9cc9a54ac12eeaa6bfbdf8f5a7541eeb
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.date: 09/09/2020
+ms.openlocfilehash: 08093fd06fed1facc1d8e55d98785abb952632c8
+ms.sourcegitcommit: 95527c793eb873f0135c4f0e9a2f661ca55305e3
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874441"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90534054"
 ---
 # <a name="visualize-data-from-azure-data-explorer-in-grafana"></a>Visualiser des données Azure Data Explorer dans Grafana
 
@@ -22,7 +22,7 @@ Grafana est une plateforme d’analytique qui vous permet d’interroger et de v
 
 > [!VIDEO https://www.youtube.com/embed/fSR_qCIFZSA]
 
-Vous pouvez également [configurer la source de données](#configure-the-data-source) et [visualiser les données](#visualize-data) comme expliqué dans l’article ci-dessous.
+Au lieu de cela, vous pouvez [configurer la source de données](#configure-the-data-source) et [visualiser les données](#visualize-data) comme expliqué dans l’article ci-dessous.
 
 ## <a name="prerequisites"></a>Conditions préalables requises
 
@@ -30,9 +30,9 @@ Vous avez besoin des éléments suivants dans le cadre de cet article :
 
 * [Grafana version 5.3.0 ou ultérieure](https://docs.grafana.org/installation/) pour votre système d’exploitation
 
-* Le [plug-in Azure Data Explorer](https://grafana.com/plugins/grafana-azure-data-explorer-datasource/installation) pour Grafana
+* Le [plug-in Azure Data Explorer](https://grafana.com/plugins/grafana-azure-data-explorer-datasource/installation) pour Grafana. La version 3.0.5 ou ultérieure du plug-in est requise pour utiliser le générateur de requêtes Grafana
 
-* Un cluster qui inclut l’exemple de données StormEvents. Pour plus d’informations, consultez [Démarrage rapide : Créer un cluster et une base de données Explorateur de données Azure](create-cluster-database-portal.md) et [Ingérer des exemples de données dans l’Explorateur de données Azure](ingest-sample-data.md).
+* Un cluster qui inclut l’exemple de données StormEvents. Pour plus d’informations, consultez [Démarrage rapide : Créer un cluster et une base de données Azure Data Explorer](create-cluster-database-portal.md) et [Ingérer des exemples de données dans Azure Data Explorer](ingest-sample-data.md).
 
     [!INCLUDE [data-explorer-storm-events](includes/data-explorer-storm-events.md)]
 
@@ -61,7 +61,7 @@ Maintenant que le principal de service est affecté au rôle *observateurs*, vou
     | ID d’abonnement | ID D’ABONNEMENT | SubscriptionId |
     | ID client | ID du répertoire | tenant |
     | ID de client | ID de l'application | appId |
-    | Clé secrète client | Mot de passe | password |
+    | Clé secrète client | Mot de passe | mot de passe |
     | | | |
 
 1. Sélectionnez **Enregistrer et tester**.
@@ -70,13 +70,13 @@ Maintenant que le principal de service est affecté au rôle *observateurs*, vou
 
 ## <a name="visualize-data"></a>Visualiser les données
 
-Maintenant que vous avez fini de configurer Azure Data Explorer en tant que source de données pour Grafana, le moment est venu de visualiser les données. Nous allons vous montrer un exemple très simple, mais sachez que les possibilités qui s’offrent à vous sont bien plus grandes. Nous vous recommandons de consulter [Écrire des requêtes pour Azure Data Explorer](write-queries.md) pour obtenir d’autres exemples de requêtes à exécuter sur l’exemple de jeu de données.
+Maintenant que vous avez fini de configurer Azure Data Explorer en tant que source de données pour Grafana, le moment est venu de visualiser les données. Nous allons voir un exemple de base utilisant à la fois le mode générateur de requêtes et le mode brut de l’éditeur de requête. Nous vous recommandons de consulter [Écrire des requêtes pour Azure Data Explorer](write-queries.md) pour obtenir d’autres exemples de requêtes à exécuter sur l’exemple de jeu de données.
 
 1. Dans Grafana, dans le menu de gauche, sélectionnez l’icône plus (+), puis **Tableau de bord**.
 
     ![Créer un tableau de bord](media/grafana/create-dashboard.png)
 
-1. Sous l’onglet **Ajouter**, sélectionnez **Graphe**.
+1. Sous l’onglet **Add**, sélectionnez **Add new panel**.
 
     ![Ajouter un graphe](media/grafana/add-graph.png)
 
@@ -88,7 +88,46 @@ Maintenant que vous avez fini de configurer Azure Data Explorer en tant que sour
 
     ![Sélectionnez la source de données](media/grafana/select-data-source.png)
 
-1. Dans le volet de requête, copiez la requête suivante, puis sélectionnez **Exécuter**. La requête compartimente le nombre d’événements par jour pour l’exemple de jeu de données.
+### <a name="query-builder-mode"></a>Mode générateur de requêtes
+
+L’éditeur de requête a deux modes : le mode générateur de requêtes et le mode brut. Utilisez le mode générateur de requêtes pour définir votre requête.
+
+1. Sous la source de données, sélectionnez **Database** et choisissez votre base de données dans la liste déroulante. 
+1. Sélectionnez **From** et choisissez votre table dans la liste déroulante.
+
+    :::image type="content" source="media/grafana/query-builder-from-table.png" alt-text="Sélectionner une table dans le générateur de requêtes":::    
+
+1. Une fois la table définie, filtrez les données, sélectionnez les valeurs à présenter et définissez le regroupement de ces valeurs.
+
+    **Filter**
+    1. Cliquez sur **+** à droite de **Where (filter)** pour sélectionner dans la liste déroulante une ou plusieurs colonnes de votre table. 
+    1. Pour chaque filtre, définissez la ou les valeurs à l’aide de l’opérateur applicable. 
+    Cette sélection s’apparente à l’utilisation de l’[opérateur where](kusto/query/whereoperator.md) dans le langage de requête Kusto.
+
+    **Sélection des valeurs**
+    1. Cliquez sur **+** à droite de **value columns** pour sélectionner dans la liste déroulante les colonnes de valeurs qui seront affichées dans le panneau.
+    1. Pour chaque colonne de valeur, définissez le type d’agrégation. 
+    Vous pouvez définir une ou plusieurs colonnes de valeurs. Cette sélection s’apparente à l’utilisation de l’[opérateur summarize](kusto/query/summarizeoperator.md).
+
+    **Regroupement de valeurs** <br> 
+    Cliquez sur **+** à droite de **Group by (summarize)** pour sélectionner dans la liste déroulante une ou plusieurs colonnes qui seront utilisées pour réorganiser les valeurs en groupes. Cela équivaut à l’expression de groupe dans l’opérateur summarize.
+
+1. Pour exécuter la requête, sélectionnez **Run query**.
+
+    :::image type="content" source="media/grafana/query-builder-all-values.png" alt-text="Générateur de requêtes avec toutes les valeurs renseignées":::
+
+    > [!TIP]
+    > Lors de la finalisation des paramètres dans le générateur de requêtes, une requête en langage de requête Kusto est créée. Cette requête affiche la logique que vous avez construite avec l’éditeur de requête graphique. 
+
+1. Sélectionnez **Edit KQL** pour basculer en mode brut et modifier votre requête en utilisant la flexibilité et la puissance du langage de requête Kusto.
+
+:::image type="content" source="media/grafana/query-builder-with-raw-query.png" alt-text="Générateur de requêtes avec requête brute":::
+
+### <a name="raw-mode"></a>Mode brut
+
+Utilisez le mode RAW pour modifier votre requête. 
+
+1. Dans le volet de requête, copiez la requête suivante, puis sélectionnez **Run Query**. La requête compartimente le nombre d’événements par jour pour l’exemple de jeu de données.
 
     ```kusto
     StormEvents
@@ -110,6 +149,11 @@ Maintenant que vous avez fini de configurer Azure Data Explorer en tant que sour
     ![Graphe terminé](media/grafana/finished-graph.png)
 
 1. Dans le menu supérieur, sélectionnez l’icône Enregistrer : ![Icône Enregistrer](media/grafana/save-icon.png).
+
+> [!IMPORTANT]
+> Pour basculer en mode générateur de requêtes, sélectionnez **Switch to builder**. Grafana convertit la requête dans la logique disponible dans le générateur de requêtes. La logique du générateur de requêtes étant limitée, vous risquez de perdre des modifications manuelles apportées à la requête.
+
+:::image type="content" source="media/grafana/raw-mode.png" alt-text="Basculer vers le générateur à partir du mode brut":::
 
 ## <a name="create-alerts"></a>Créer des alertes
 

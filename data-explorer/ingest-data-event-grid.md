@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: c96203ccfa0c4dc70fff83454dac217cccfc0a6c
-ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
+ms.openlocfilehash: 5cab29b20ad726c1482fa892ad4dadece464f01d
+ms.sourcegitcommit: 97404e9ed4a28cd497d2acbde07d00149836d026
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/07/2020
-ms.locfileid: "89502770"
+ms.lasthandoff: 09/21/2020
+ms.locfileid: "90832713"
 ---
 # <a name="ingest-blobs-into-azure-data-explorer-by-subscribing-to-event-grid-notifications"></a>Ingérer des objets blob dans Azure Data Explorer en s’abonnant à des notifications Event Grid
 
@@ -68,19 +68,20 @@ Connectez maintenant le compte de stockage à Azure Data Explorer afin que le fl
 
     :::image type="content" source="media/ingest-data-event-grid/data-ingestion-create.png" alt-text="Ajouter une connexion de données pour l’ingestion des données":::
 
+### <a name="data-connection---basics-tab"></a>Connexion de données - Onglet Informations de base
+
 1. Sélectionnez le type de connexion : **Stockage Blob**.
 
 1. Renseignez le formulaire avec les informations suivantes :
 
-    :::image type="content" source="media/ingest-data-event-grid/create-event-grid-data-connection-basics.png" alt-text="Remplir le formulaire Event Grid avec les informations de base de la connexion":::
-
-     Source de données :
+    :::image type="content" source="media/ingest-data-event-grid/data-connection-basics.png" alt-text="Remplir le formulaire Event Grid avec les informations de base de la connexion":::
 
     |**Paramètre** | **Valeur suggérée** | **Description du champ**|
     |---|---|---|
     | Nom de la connexion de données | *test-grid-connection* | Nom de la connexion que vous souhaitez créer dans Azure Data Explorer.|
     | Abonnement du compte de stockage | Votre ID d’abonnement | ID d’abonnement où se trouve votre compte de stockage.|
     | Compte de stockage | *gridteststorage1* | Nom du compte de stockage que vous avez créé précédemment.|
+    | Type d'événement | *Objet blob créé* ou *Objet blob renommé* | Type d’événement qui déclenche l’ingestion. |
     | Création de ressources | *Automatique* | Indiquez si vous voulez qu’Azure Data Explorer crée un abonnement Event Grid, un espace de noms Event Hub et un hub d’événements. Vous trouverez une explication détaillée sur la création manuelle d’un abonnement Event Grid dans les références sous la section [Créer un abonnement Event Grid dans votre compte de stockage](ingest-data-event-grid.md).|
 
 1. Sélectionnez **Paramètres de filtre** si vous voulez suivre des sujets spécifiques. Définissez les filtres pour les notifications comme suit :
@@ -95,25 +96,36 @@ Connectez maintenant le compte de stockage à Azure Data Explorer afin que le fl
 
 1. Sélectionnez **Suivant : Propriétés d’ingestion**.
 
-1. Renseignez le formulaire avec les informations suivantes, puis sélectionnez **Suivant : Vérifier + créer**. Les noms de table et de mappage sont sensibles à la casse :
+### <a name="data-connection---ingest-properties-tab"></a>Connexion de données - Onglet Propriétés d’ingestion
 
-   :::image type="content" source="media/ingest-data-event-grid/create-event-grid-data-connection-ingest-properties.png" alt-text="Vérifier et créer les propriétés d’ingestion de table et de mappage":::
+1. Renseignez le formulaire avec les informations suivantes. Les noms de table et de mappage sont sensibles à la casse :
+
+   :::image type="content" source="media/ingest-data-event-grid/data-connection-ingest-properties.png" alt-text="Vérifier et créer les propriétés d’ingestion de table et de mappage":::
 
     Propriétés d’ingestion :
 
      **Paramètre** | **Valeur suggérée** | **Description du champ**
     |---|---|---|
-    | Table de charge de travail | *TestTable* | Table que vous avez créée dans **TestDatabase**. |
+    | Nom de la table | *TestTable* | Table que vous avez créée dans **TestDatabase**. |
     | Format de données | *JSON* | Les formats pris en charge sont Avro, CSV, JSON, MULTILINE JSON, ORC, PARQUET, PSV, SCSV, SOHSV, TSV, TXT, TSVE, APACHEAVRO, RAW et W3CLOG. Les options de compression prises en charge sont Zip et GZip. |
     | Mappage | *TestMapping* | Le mappage que vous avez créé dans **TestDatabase**, qui mappe les données JSON entrantes dans les colonnes des noms de colonne et les types de données de **TestTable**.|
+    | Paramètres avancés | *Mes données comprennent des en-têtes* | Ignore les en-têtes. Pris en charge pour les fichiers de type *SV.|
+
+   > [!NOTE]
+   > Vous n’êtes pas obligé de spécifier tous les **paramètres de routage par défaut**. Des paramètres partiels sont également acceptés.
+1. Sélectionnez **Suivant : Vérifier + créer**
+
+### <a name="data-connection---review--create-tab"></a>Connexion de données - Onglet Vérifier + créer
 
 1. Passez en revue les ressources qui ont été créées automatiquement pour vous et sélectionnez **Créer**.
 
     :::image type="content" source="media/ingest-data-event-grid/create-event-grid-data-connection-review-create.png" alt-text="Vérifier et créer la connexion de données pour Event Grid":::
 
-1. Attendez la fin du déploiement. Si votre déploiement a échoué, sélectionnez **Détails de l’opération** à côté de la phase qui a échoué pour obtenir plus d’informations sur la raison de l’échec. Sélectionnez **Redéployer** pour retenter de déployer les ressources.
+### <a name="deployment"></a>Déploiement
 
-    :::image type="content" source="media/ingest-data-event-grid/deploy-event-grid-resources.png" alt-text="Déployer les ressources Event Grid":::
+Attendez la fin du déploiement. Si votre déploiement a échoué, sélectionnez **Détails de l’opération** à côté de la phase qui a échoué pour obtenir plus d’informations sur la raison de l’échec. Sélectionnez **Redéployer** pour retenter de déployer les ressources. Vous pouvez modifier les paramètres avant le déploiement.
+
+:::image type="content" source="media/ingest-data-event-grid/deploy-event-grid-resources.png" alt-text="Déployer les ressources Event Grid":::
 
 ## <a name="generate-sample-data"></a>Générer un exemple de données
 

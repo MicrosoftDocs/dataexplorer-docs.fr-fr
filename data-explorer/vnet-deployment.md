@@ -7,18 +7,18 @@ ms.reviewer: basaba
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/31/2019
-ms.openlocfilehash: 9fa58d36815ede98a4f0239f1ce68a6542f24c4b
-ms.sourcegitcommit: cb55064b7cdd57c792ad259b09069525bf799fa0
+ms.openlocfilehash: 74d72ced89b1953b2f7e327656517f1febe4166f
+ms.sourcegitcommit: 803a572ab6f04494f65dbc60a4c5df7fcebe1600
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/03/2020
-ms.locfileid: "89410806"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90714021"
 ---
 # <a name="deploy-azure-data-explorer-cluster-into-your-virtual-network"></a>Déployer un cluster Azure Data Explorer dans votre réseau virtuel
 
 Cet article décrit les ressources présentes lorsque vous déployez un cluster Azure Data Explorer dans un réseau virtuel Azure personnalisé. Ces informations vous aideront à déployer un cluster dans un sous-réseau de votre réseau virtuel (VNet). Pour plus d’informations sur les réseaux virtuels Azure, consultez [Qu’est-ce que le réseau virtuel Azure ?](/azure/virtual-network/virtual-networks-overview)
 
-   ![diagramme de réseau virtuel](media/vnet-deployment/vnet-diagram.png)
+:::image type="content" source="media/vnet-deployment/vnet-diagram.png" alt-text="Diagramme montrant l’architecture réseau virtuelle schématique"::: 
 
 Azure Data Explorer prend en charge le déploiement d’un cluster dans un sous-réseau de votre réseau virtuel (VNet). Cette fonctionnalité vous permet d’effectuer les opérations suivantes :
 
@@ -62,7 +62,7 @@ Nombre total d’adresses IP :
 Le déploiement du cluster Azure Data Explorer dans votre sous-réseau vous permet de configurer des connexions de données avec [Event Hub](/azure/event-hubs/event-hubs-about) ou [Event Grid](/azure/event-grid/overview) tout en limitant les ressources sous-jacentes pour le sous-réseau Azure Data Explorer.
 
 > [!NOTE]
-> Quand vous utilisez une configuration EventGrid avec [Stockage](/azure/storage/common/storage-introduction) et [Event Hub], le compte de stockage utilisé dans l’abonnement peut être verrouillé avec des points de terminaison de service sur le sous-réseau d’Azure Data Explorer tout en autorisant les services de plateforme Azure approuvés dans la [configuration du pare-feu](/azure/storage/common/storage-network-security), alors que le hub d’événements ne peut pas activer le point de terminaison de service car il ne prend pas en charge les [services de plateforme Azure](/azure/event-hubs/event-hubs-service-endpoints) approuvés.
+> Quand vous utilisez une configuration EventGrid avec [Stockage](/azure/storage/common/storage-introduction) et [Hub d’événements](/azure/event-hubs/event-hubs-about), le compte de stockage utilisé dans l’abonnement peut être verrouillé avec des points de terminaison de service sur le sous-réseau d’Azure Data Explorer tout en autorisant les services de plateforme Azure approuvés dans la [configuration du pare-feu](/azure/storage/common/storage-network-security), alors que le hub d’événements ne peut pas activer le point de terminaison de service car il ne prend pas en charge les [services de plateforme Azure](/azure/event-hubs/event-hubs-service-endpoints) approuvés.
 
 ## <a name="private-endpoints"></a>Points de terminaison privés
 
@@ -201,7 +201,7 @@ Les [groupes de sécurité réseau (NSG)](/azure/virtual-network/security-overvi
 
 Si vous voulez désactiver complètement l’accès à Azure Data Explorer via l’adresse IP publique, créez une autre règle de trafic entrant dans le NSG. Cette règle doit avoir une [priorité](/azure/virtual-network/security-overview#security-rules) inférieure (un nombre plus élevé). 
 
-| **Utilisation**   | **Source** | **Balise du service source** | **Plages de ports source**  | **Destination** | **Plages de ports de destination** | **Protocole ** | **Action** | **Priorité ** |
+| **Utilisation**   | **Source** | **Balise du service source** | **Plages de ports source**  | **Destination** | **Plages de ports de destination** | **Protocole** | **Action** | **Priorité** |
 | ---   | --- | --- | ---  | --- | --- | --- | --- | --- |
 | Désactiver l’accès à partir d’Internet | Étiquette du service | Internet | *  | VirtualNetwork | * | Quelconque | Deny | nombre plus élevé que les règles ci-dessus |
 
@@ -245,10 +245,8 @@ crl3.digicert.com:80
 ```
 
 > [!NOTE]
-> Si vous utilisez le [pare-feu Azure](/azure/firewall/overview), ajoutez une **règle réseau** avec les propriétés suivantes :
-> | **Protocole**   | **Type de source** | **Source** | **Balises de service**  | **Ports de destination** |
-> | ---   | --- | --- | ---  | --- |
-> | TCP | Adresse IP | * | AzureMonitor | 443 |
+> Si vous utilisez le [pare-feu Azure](/azure/firewall/overview), ajoutez une **règle réseau** avec les propriétés suivantes : <br>
+> **Protocole** : TCP <br> **Type de source** : Adresse IP <br> **Source** : * <br> **Étiquettes de service** : AzureMonitor <br> **Ports de destination** : 443
 
 Vous devez aussi définir la [table de route](/azure/virtual-network/virtual-networks-udr-overview) sur le sous-réseau avec les [adresses de gestion](#azure-data-explorer-management-ip-addresses) et les [adresses de surveillance de l’intégrité](#health-monitoring-addresses) avec le dernier tronçon *Internet* pour éviter des problèmes d’itinéraire asymétriques.
 

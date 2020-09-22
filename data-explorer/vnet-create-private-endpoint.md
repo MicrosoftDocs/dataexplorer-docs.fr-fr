@@ -7,14 +7,14 @@ ms.reviewer: elbirnbo
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/09/2020
-ms.openlocfilehash: 7c2dfe62852b05239215f0c88c711cea4093808e
-ms.sourcegitcommit: 50c799c60a3937b4c9e81a86a794bdb189df02a3
+ms.openlocfilehash: aeb807db9b69c6c5b806a7f4b152330ea2dabc72
+ms.sourcegitcommit: 313a91d2a34383b5a6e39add6c8b7fabb4f8d39a
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90067570"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90680743"
 ---
-# <a name="create-a-private-endpoint-in-your-azure-data-explorer-cluster-in-your-virtual-network"></a>Créer un point de terminaison privé dans votre cluster Azure Data Explorer dans votre réseau virtuel
+# <a name="create-a-private-endpoint-in-your-azure-data-explorer-cluster-in-your-virtual-network-preview"></a>Créer un point de terminaison privé dans votre cluster Azure Data Explorer dans votre réseau virtuel (préversion)
 
 Utilisez un lien privé avec un point de terminaison privé pour accéder de façon sécurisée à votre cluster Azure Data Explorer dans votre réseau virtuel. 
 

@@ -7,16 +7,16 @@ ms.reviewer: dorcohen
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/25/2020
-ms.openlocfilehash: 58b384b502683b69020c1f211345bfcec8c095b5
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 7c40d6b1f62014e8ede6ed3328dd3a3974d41a88
+ms.sourcegitcommit: c2ab3176db4dd55ac9ca8eee52bbd24096d1277f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874271"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90740301"
 ---
 # <a name="azure-data-explorer-connector-to-power-automate-preview"></a>Connecteur Azure Data Explorer vers Power Automate (préversion)
 
-Le connecteur de flux Azure Data Explorer permet à Azure Data Explorer d’utiliser les fonctionnalités de flux de [Microsoft Power Automate](https://flow.microsoft.com/). Vous pouvez exécuter automatiquement des requêtes et des commandes Kusto dans le cadre d’une tâche planifiée ou déclenchée.
+Le connecteur Azure Data Explorer Power Automate (anciennement Microsoft Flow) permet à Azure Data Explorer d’utiliser les fonctionnalités de flux de [Microsoft Power Automate](https://flow.microsoft.com/). Vous pouvez exécuter automatiquement des requêtes et des commandes Kusto dans le cadre d’une tâche planifiée ou déclenchée.
 
 Vous pouvez :
 
@@ -25,7 +25,7 @@ Vous pouvez :
 * Planifier des commandes de contrôle sur des clusters.
 * Exporter et importer des données entre Azure Data Explorer et d’autres bases de données. 
 
-Pour plus d’informations, consultez [Exemples d’utilisation du connecteur de flux Azure Data Explorer](flow-usage.md).
+Pour plus d’informations, consultez [Exemples d’utilisation du connecteur Azure Data Explorer Power Automate](flow-usage.md).
 
 ##  <a name="sign-in"></a>Se connecter 
 
@@ -66,7 +66,7 @@ Une fois l’authentification terminée, vous verrez que votre flux utilise la c
 
 ## <a name="find-the-azure-kusto-connector"></a>Rechercher le connecteur Azure Kusto
 
-Pour utiliser le connecteur de flux, vous devez d’abord ajouter un déclencheur. Vous pouvez définir un déclencheur en fonction d’une période récurrente ou en réponse à une action de flux antérieure.
+Pour utiliser le connecteur Power Automate, vous devez d’abord ajouter un déclencheur. Vous pouvez définir un déclencheur en fonction d’une période récurrente ou en réponse à une action de flux antérieure.
 
 1. [Créez un flux](https://flow.microsoft.com/manage/flows/new) ou, à partir de la page d’accueil Microsoft Power Automate, sélectionnez **Mes flux** >  **+ Nouveau**.
 
@@ -98,15 +98,15 @@ Utilisez cette action pour exécuter une [commande de contrôle](kusto/managemen
 1. Spécifiez l’URL du cluster. Par exemple : `https://clusterName.eastus.kusto.windows.net`.
 1. Entrez le nom de la base de données.
 1. Spécifiez la commande de contrôle :
-   - Sélectionnez du contenu dynamique des applications et des connecteurs utilisés dans le flux.
-   - Ajoutez une expression pour accéder aux valeurs, les convertir et les comparer.
+   * Sélectionnez du contenu dynamique des applications et des connecteurs utilisés dans le flux.
+   * Ajoutez une expression pour accéder aux valeurs, les convertir et les comparer.
 1. Pour envoyer les résultats de cette action par e-mail sous la forme d’un tableau ou d’un graphique, spécifiez le type de graphique. Il peut s’agir des ordinateurs suivants :
-   - Un tableau HTML.
-   - Un graphique à secteurs.
-   - Un graphique de temps.
-   - Un graphique à barres.
+   * Un tableau HTML.
+   * Un graphique à secteurs.
+   * Un graphique de temps.
+   * Un graphique à barres.
 
-![Capture d’écran de l’option « Exécuter une commande de contrôle et visualiser les résultats »](./media/flow/flow-runcontrolcommand.png)
+![Capture d’écran de l’option « Exécuter une commande de contrôle et visualiser les résultats » dans le volet de récurrence](./media/flow/flow-runcontrolcommand.png)
 
 > [!IMPORTANT]
 > Dans le champ **Nom du cluster**, entrez l’URL du cluster.

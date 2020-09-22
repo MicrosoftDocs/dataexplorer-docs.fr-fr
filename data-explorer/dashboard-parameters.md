@@ -8,12 +8,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/09/2020
-ms.openlocfilehash: 4921a48ff879879084ec1941ab69c6e9d29b9773
-ms.sourcegitcommit: a4779e31a52d058b07b472870ecd2b8b8ae16e95
+ms.openlocfilehash: 4e11ccd1c775fa2cae2e25f7cf1bd8b802a11567
+ms.sourcegitcommit: 95527c793eb873f0135c4f0e9a2f661ca55305e3
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/02/2020
-ms.locfileid: "89366161"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90533998"
 ---
 # <a name="use-parameters-in-azure-data-explorer-dashboards"></a>Utiliser des paramètres dans des tableaux de bord Azure Data Explorer
 
@@ -297,10 +297,9 @@ Le nouveau paramètre est désormais visible dans la liste de paramètres en hau
 
 ## <a name="use-filter-search-for-single-and-multiple-selection-filters"></a>Utiliser la recherche de filtre pour les filtres mono- et multi-sélection
 
-Dans les filtres mono- ou multi-sélection, tapez la valeur de votre choix. La recherche de filtre présente toutes les valeurs récemment récupérées qui correspondent au terme de recherche.
+Dans les filtres mono- ou multi-sélection, tapez la valeur de votre choix. La recherche filtrée présente uniquement les valeurs récemment récupérées qui correspondent au terme de recherche.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
 * [Personnaliser les visuels des tableaux de bord](dashboard-customize-visuals.md)
 * [Interroger des données dans Azure Data Explorer](web-query-data.md) 
-
