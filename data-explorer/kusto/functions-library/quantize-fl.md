@@ -7,20 +7,21 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/08/2020
-ms.openlocfilehash: f5cff6a5ef8490a90126a8cd90297067bdd709ad
-ms.sourcegitcommit: 50c799c60a3937b4c9e81a86a794bdb189df02a3
+ms.openlocfilehash: 38d353caf1e0352688ee91edfe7f1d2cef94d18a
+ms.sourcegitcommit: 5aba5f694420ade57ef24b96699d9b026cdae582
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90075145"
+ms.lasthandoff: 09/22/2020
+ms.locfileid: "90998940"
 ---
-# <a name="quantize_fl"></a>quantize_fl ()
+# <a name="quantize_fl"></a>quantize_fl()
 
 
 Les `quantize_fl()` colonnes de métriques des emplacements de fonction. Il quantifie les colonnes métriques en étiquettes catégoriques, en fonction de l’algorithme K-signifiant.
 
 > [!NOTE]
-> `quantize_fl()` est une [fonction définie par l’utilisateur (UDF)](../query/functions/user-defined-functions.md). Cette fonction contient python inline et nécessite l' [activation du plug-in Python ()](../query/pythonplugin.md#enable-the-plugin) sur le cluster. Pour plus d’informations, consultez [utilisation](#usage).
+> * `quantize_fl()` est une [fonction définie par l’utilisateur (UDF)](../query/functions/user-defined-functions.md).
+> * Cette fonction contient python inline et nécessite l' [activation du plug-in Python ()](../query/pythonplugin.md#enable-the-plugin) sur le cluster. Pour plus d’informations, consultez [utilisation](#usage).
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -33,7 +34,7 @@ Les `quantize_fl()` colonnes de métriques des emplacements de fonction. Il quan
 * *out_cols*: tableau dynamique contenant les noms des colonnes de sortie respectives pour les valeurs Binned (.
 * *étiquettes*: tableau dynamique contenant les noms d’étiquette. Ce paramètre est optionnel. Si les *étiquettes* ne sont pas fournies, les plages de l’emplacement sont utilisées.
 
-## <a name="usage"></a>Utilisation
+## <a name="usage"></a>Usage
 
 `quantize_fl()` est une [fonction tabulaire](../query/functions/user-defined-functions.md#tabular-function)définie par l’utilisateur, à appliquer à l’aide de l' [opérateur Invoke](../query/invokeoperator.md). Vous pouvez incorporer son code dans votre requête ou l’installer dans votre base de données. Il existe deux options d’utilisation : une utilisation ad hoc et une utilisation permanente. Consultez les onglets ci-dessous pour obtenir des exemples.
 
@@ -118,7 +119,7 @@ quantize_fl(tbl:(*), num_bins:int, in_cols:dynamic, out_cols:dynamic, labels:dyn
 }
 ```
 
-### <a name="usage"></a>Utilisation
+### <a name="usage"></a>Usage
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

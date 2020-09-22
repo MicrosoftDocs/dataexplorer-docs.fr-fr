@@ -7,20 +7,21 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/08/2020
-ms.openlocfilehash: 38c3933eb7e09709594892d0d73082c1171a6355
-ms.sourcegitcommit: 50c799c60a3937b4c9e81a86a794bdb189df02a3
+ms.openlocfilehash: 218ef000869e4cea0f237137a0481a9b4d72d65e
+ms.sourcegitcommit: 5aba5f694420ade57ef24b96699d9b026cdae582
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90075135"
+ms.lasthandoff: 09/22/2020
+ms.locfileid: "90998991"
 ---
-# <a name="series_rolling_fl"></a>series_rolling_fl ()
+# <a name="series_rolling_fl"></a>series_rolling_fl()
 
 
 La fonction `series_rolling_fl()` applique l’agrégation dynamique sur une série. Elle prend une table contenant plusieurs séries (tableau numérique dynamique) et s’applique, pour chaque série, une fonction d’agrégation propagée.
 
 > [!NOTE]
-> `series_rolling_fl()` est une [fonction définie par l’utilisateur (UDF)](../query/functions/user-defined-functions.md).  Cette fonction ontains Inline Python et nécessite l' [activation du plug-in Python ()](../query/pythonplugin.md#enable-the-plugin) sur le cluster. Pour plus d’informations, consultez [utilisation](#usage).
+> * `series_rolling_fl()` est une [fonction définie par l’utilisateur (UDF)](../query/functions/user-defined-functions.md).
+> * Cette fonction contient python inline et nécessite l' [activation du plug-in Python ()](../query/pythonplugin.md#enable-the-plugin) sur le cluster. Pour plus d’informations, consultez [utilisation](#usage).
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -61,7 +62,7 @@ Cette fonction prend en charge n’importe quelle fonction d’agrégation de [n
 * [`tstd`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.tstd.html)
 * [`iqr` (intervalle entre quantile)](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.iqr.html) 
 
-## <a name="usage"></a>Utilisation
+## <a name="usage"></a>Usage
 
 `series_rolling_fl()` est une [fonction tabulaire](../query/functions/user-defined-functions.md#tabular-function)définie par l’utilisateur, à appliquer à l’aide de l' [opérateur Invoke](../query/invokeoperator.md). Vous pouvez incorporer son code dans votre requête ou l’installer dans votre base de données. Il existe deux options d’utilisation : une utilisation ad hoc et une utilisation permanente. Consultez les onglets ci-dessous pour obtenir des exemples.
 
@@ -139,7 +140,7 @@ series_rolling_fl(tbl:(*), y_series:string, y_rolling_series:string, n:int, aggr
 }
 ```
 
-### <a name="usage"></a>Utilisation
+### <a name="usage"></a>Usage
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
