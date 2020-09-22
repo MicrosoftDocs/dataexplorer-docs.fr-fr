@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/03/2019
-ms.openlocfilehash: d3fedb37042dabbede106b036e7351a0a24d2a7d
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: c20897b0bf3d02e1dfac7e791b4c15189090703c
+ms.sourcegitcommit: 97404e9ed4a28cd497d2acbde07d00149836d026
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88875291"
+ms.lasthandoff: 09/21/2020
+ms.locfileid: "90832584"
 ---
 # <a name="ingest-data-using-the-azure-data-explorer-python-library"></a>Ingérer des données à l’aide de la bibliothèque Python de l’Explorateur de données Azure
 
@@ -50,7 +50,7 @@ pip install azure-kusto-ingest
 Importer des classes à partir d’azure-kusto-data.
 
 ```python
-from azure.kusto.data.request import KustoClient, KustoConnectionStringBuilder
+from azure.kusto.data import KustoClient, KustoConnectionStringBuilder
 from azure.kusto.data.exceptions import KustoServiceError
 from azure.kusto.data.helpers import dataframe_from_result_table
 ```
@@ -96,7 +96,6 @@ DESTINATION_TABLE_COLUMN_MAPPING = "StormEvents_CSV_Mapping"
 Importez des classes supplémentaires et définissez des constantes pour le fichier de source de données. Cet exemple utilise un exemple de fichier hébergé sur Stockage Blob Azure. L’exemple de jeu de données **StormEvents** contient des données météorologiques des [National Centers for Environmental Information](https://www.ncdc.noaa.gov/stormevents/).
 
 ```python
-from azure.storage.blob import BlockBlobService
 from azure.kusto.ingest import KustoIngestClient, IngestionProperties, FileDescriptor, BlobDescriptor, DataFormat, ReportLevel, ReportMethod
 
 CONTAINER = "samplefiles"
