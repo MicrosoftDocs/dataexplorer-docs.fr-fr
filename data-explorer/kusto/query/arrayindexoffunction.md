@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/22/2020
-ms.openlocfilehash: a366120428d14c713b18aee6652460817c75433a
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 4b3cd0996b4c60362c7377c06621b140c29203a9
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349565"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91103031"
 ---
 # <a name="array_index_of"></a>array_index_of()
 
@@ -28,7 +28,7 @@ Recherche l’élément spécifié dans le tableau et retourne sa position.
 * *tableau*: tableau d’entrée à rechercher.
 * *valeur*: valeur à rechercher. La valeur doit être de type long, Integer, double, DateTime, TimeSpan, Decimal, String ou GUID.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>retourne :
 
 Position d’index de base zéro de la recherche.
 Retourne-1 si la valeur est introuvable dans le tableau.
@@ -45,6 +45,6 @@ print arr=dynamic(["this", "is", "an", "example"])
 |---|
 |3|
 
-**Voir aussi**
+## <a name="see-also"></a>Voir aussi
 
 Si vous souhaitez uniquement vérifier si une valeur existe dans un tableau, mais que vous n’êtes pas intéressé par sa position, vous pouvez utiliser [set_has_element ( `arr` , `value` )](sethaselementfunction.md). Cette fonction permet d’améliorer la lisibilité de votre requête. Les deux fonctions ont les mêmes performances.

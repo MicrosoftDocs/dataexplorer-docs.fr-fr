@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 5597f21d5e426329e2793978a6b207efc3868d13
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: f73effae8d91524f46548d57288a23d79cffd0a5
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347219"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91103271"
 ---
 # <a name="isnan"></a>isnan()
 
@@ -27,11 +27,11 @@ Retourne une valeur indiquant si l’entrée n’est pas un nombre (NaN).
 
 * *x*: nombre réel.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>retourne :
 
 Valeur différente de zéro (true) si x est NaN ; et zéro (false) dans le cas contraire.
 
-**Voir aussi**
+## <a name="see-also"></a>Voir aussi
 
 * Pour vérifier si la valeur est null, consultez [IsNull ()](isnullfunction.md).
 * Pour vérifier si la valeur est finie, consultez [isFinite, ()](isfinitefunction.md).

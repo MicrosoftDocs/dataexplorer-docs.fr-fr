@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/23/2020
-ms.openlocfilehash: 314244c58eca6082b9042b263e6b3e6faeb69840
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: b62e5032d6f2ccedc2883b6cbccaf7be69e1cebf
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351197"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91103517"
 ---
 # <a name="set_has_element"></a>set_has_element()
 
@@ -28,7 +28,7 @@ Détermine si le jeu spécifié contient l’élément spécifié.
 * *tableau*: tableau d’entrée à rechercher.
 * *valeur*: valeur à rechercher. La valeur doit être de type `long` ,,, `integer` `double` `datetime` , `timespan` , `decimal` , `string` ou `guid` .
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>retourne :
 
 True ou false selon que la valeur existe dans le tableau.
 
@@ -40,10 +40,10 @@ print arr=dynamic(["this", "is", "an", "example"])
 | project Result=set_has_element(arr, "example")
 ```
 
-|Résultat|
+|Résultats|
 |---|
 |1|
 
-**Voir aussi**
+## <a name="see-also"></a>Voir aussi
 
 Utilisez [`array_index_of(arr, value)`](arrayindexoffunction.md) pour rechercher la position à laquelle la valeur existe dans le tableau. Les deux fonctions sont tout aussi performantes.

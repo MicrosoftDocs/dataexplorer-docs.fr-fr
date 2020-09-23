@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: dda177c39959f860ad7e019371133f16e1de91e2
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 9090e752f018c4abcce759c37a8ecb3571e2fbd6
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346930"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91102915"
 ---
 # <a name="make_list_if-aggregation-function"></a>make_list_if () (fonction d’agrégation)
 
@@ -31,7 +31,7 @@ Retourne un `dynamic` tableau (JSON) de toutes les valeurs de *expr* dans le gro
 * *Predicate*: prédicat qui doit être évalué à, pour que `true` *expr* soit ajouté au résultat.
 * *MaxSize* est une limite d’entier facultative sur le nombre maximal d’éléments retournés (la valeur par défaut est *1048576*). La valeur MaxSize ne peut pas dépasser 1048576.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>retourne :
 
 Retourne un `dynamic` tableau (JSON) de toutes les valeurs de *expr* dans le groupe, pour lequel le *prédicat* a la valeur `true` .
 Si l’entrée de l' `summarize` opérateur n’est pas triée, l’ordre des éléments dans le tableau résultant n’est pas défini.
@@ -55,6 +55,6 @@ T
 |----|
 |["George", "Ringo"]|
 
-**Voir aussi**
+## <a name="see-also"></a>Voir aussi
 
-[`make_list`](./makelist-aggfunction.md)fonction, qui fait la même chose, sans expression de prédicat.
+[`make_list`](./makelist-aggfunction.md) fonction, qui fait la même chose, sans expression de prédicat.

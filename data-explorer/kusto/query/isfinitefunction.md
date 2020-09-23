@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f53c74fd2ac56219351c4d194c93e9fa4b627cf4
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: d1f70675a1f455c6cd0c392483eb574867088394
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347253"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91103282"
 ---
 # <a name="isfinite"></a>isfinite()
 
@@ -27,11 +27,11 @@ Retourne une valeur indiquant si l’entrée est une valeur finie (n’est ni in
 
 * *x*: nombre réel.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>retourne :
 
 Valeur différente de zéro (true) si x est fini ; et zéro (false) dans le cas contraire.
 
-**Voir aussi**
+## <a name="see-also"></a>Voir aussi
 
 * Pour vérifier si la valeur est null, consultez [IsNull ()](isnullfunction.md).
 * Pour vérifier si la valeur est infinie, consultez [isinf, ()](isinffunction.md).

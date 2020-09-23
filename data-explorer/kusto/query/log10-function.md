@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/11/2019
-ms.openlocfilehash: 9db15900ea258d42e377f47de9ad12eecf52386d
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 62813f5680e89c2bca0a6ec547fd7055ddc0e414
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347117"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91103190"
 ---
 # <a name="log10"></a>log10()
 
-`log10()`retourne la fonction de logarithme (base 10) courant.  
+`log10()` retourne la fonction de logarithme (base 10) courant.  
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -27,12 +27,12 @@ ms.locfileid: "87347117"
 
 * *x*: nombre réel > 0.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>retourne :
 
 * Le logarithme commun est le logarithme de base 10 : l’inverse de la fonction exponentielle (exp) avec base 10.
-* `null`Si l’argument est négatif ou null ou ne peut pas être converti en `real` valeur. 
+* `null` Si l’argument est négatif ou null ou ne peut pas être converti en `real` valeur. 
 
-**Voir aussi**
+## <a name="see-also"></a>Voir aussi
 
 * Pour obtenir des logarithmes naturels (base-e), consultez [log ()](log-function.md).
 * Pour les logarithmes en base 2, consultez [Log2 ()](log2-function.md)

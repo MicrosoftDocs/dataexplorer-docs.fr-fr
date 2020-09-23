@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/11/2019
-ms.openlocfilehash: 866f7865abe2debeab22bfbf13bc7641d9bc5078
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: a38eda3fb595256527c277b12a16f359ef9eb910
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349616"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91102705"
 ---
 # <a name="array_shift_right"></a>array_shift_right()
 
-`array_shift_right()`déplace les valeurs à l’intérieur d’un tableau vers la droite.
+`array_shift_right()` déplace les valeurs à l’intérieur d’un tableau vers la droite.
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -29,11 +29,11 @@ ms.locfileid: "87349616"
 * *`shift_count`*: Entier spécifiant le nombre de positions que les éléments du tableau seront décalés vers la droite. Si la valeur est négative, les éléments sont décalés vers la gauche.
 * *`fill_value`*: valeur scalaire utilisée pour insérer des éléments à la place de ceux qui ont été déplacés et supprimés. Valeur par défaut : valeur null ou chaîne vide (selon le type *arr* ).
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>retourne :
 
 Tableau dynamique contenant la même quantité d’éléments que dans le tableau d’origine. Chaque élément a été déplacé en fonction de *`shift_count`* . Les nouveaux éléments ajoutés à la place des éléments supprimés auront la valeur *`fill_value`* .
 
-**Voir aussi**
+## <a name="see-also"></a>Voir aussi
 
 * Pour décaler le tableau à gauche, consultez [array_shift_left ()](array_shift_leftfunction.md).
 * Pour faire pivoter un tableau vers la droite, consultez [array_rotate_right ()](array_rotate_rightfunction.md).

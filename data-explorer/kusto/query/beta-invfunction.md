@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b69fed2b3d7028fdc29d8098e8358c0088fcd8bb
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: deb91e6131d5662017ebdf714a79d0ee391c8ba1
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349208"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91103299"
 ---
 # <a name="beta_inv"></a>beta_inv()
 
@@ -37,7 +37,7 @@ La distribution Bêta peut être utilisée dans la planification de projet pour 
 * *alpha*: paramètre de la distribution.
 * *bêta*: paramètre de la distribution.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>retourne :
 
 * Inverse de la fonction de densité de probabilité cumulative bêta [beta_cdf ()](./beta-cdffunction.md)
 
@@ -66,11 +66,11 @@ datatable(p:double, alpha:double, beta:double, comment:string)
 
 |p|alpha|bêta|comment|b|
 |---|---|---|---|---|
-|0.1|10|20|Entrée valide|0.226415022388749|
+|0,1|10|20|Entrée valide|0.226415022388749|
 |1.5|10|20|p > 1, donne NULL||
-|0.1|-1|20|Alpha est < 0, produit NaN|NaN|
+|0,1|-1|20|Alpha est < 0, produit NaN|NaN|
 
-**Voir aussi**
+## <a name="see-also"></a>Voir aussi
 
 * Pour calculer la fonction de distribution cumulative bêta, consultez [beta-CDF ()](./beta-cdffunction.md).
 * Pour le calcul de la fonction de densité bêta de probabilité, consultez [beta-PDF ()](./beta-pdffunction.md).

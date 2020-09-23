@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 8a3711594ec5d1cbcaf36c7286f1484a708c29a0
-ms.sourcegitcommit: 50c799c60a3937b4c9e81a86a794bdb189df02a3
+ms.openlocfilehash: b500f5f0e727fde315bea8d77ab60f600f127271
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90067519"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91103400"
 ---
 # <a name="beta_cdf"></a>beta_cdf()
 
@@ -37,11 +37,11 @@ La distribution Bêta est couramment utilisée pour étudier la variation du pou
 * *alpha*: paramètre de la distribution.
 * *bêta*: paramètre de la distribution.
 
-## <a name="returns"></a>Retours
+## <a name="returns"></a>retourne :
 
 * [Fonction de distribution cumulative bêta](https://en.wikipedia.org/wiki/Beta_distribution#Cumulative_distribution_function).
 
-**Notes**
+**Remarques**
 
 Si un argument n’est pas numérique, beta_cdf () retourne une valeur null.
 
@@ -67,13 +67,13 @@ datatable(x:double, alpha:double, beta:double, comment:string)
 
 |x|alpha|bêta|comment|b|
 |---|---|---|---|---|
-|0,9|10|20|Entrée valide|0.999999999999959|
+|0.9|10|20|Entrée valide|0.999999999999959|
 |1.5|10|20|x > 1, produit NaN|NaN|
 |-10|10|20|x < 0, produit NaN|NaN|
 |0,1|-1|20|Alpha est < 0, produit NaN|NaN|
 
 
-**Voir aussi**
+## <a name="see-also"></a>Voir aussi
 
 
 * Pour calculer l’inverse de la fonction de densité de probabilité cumulative bêta, consultez [beta-INV ()](./beta-invfunction.md).

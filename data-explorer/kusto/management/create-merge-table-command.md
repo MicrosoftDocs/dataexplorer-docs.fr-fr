@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/05/2020
-ms.openlocfilehash: afe5011717fd77d654eaf6c2b70e9ffbdea87128
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.openlocfilehash: 19dc7db9e344a516b5c92917dccbf8362b1ca858
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85967623"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91102872"
 ---
-# <a name="create-merge-table"></a>. Create-fusionner la table
+# <a name="create-merge-table"></a>.create-merge table
 
 Crée une table ou étend une table existante. 
 
@@ -23,7 +23,7 @@ La commande doit s’exécuter dans le contexte d’une base de données spécif
 
 Nécessite l' [autorisation de l’utilisateur de base de données](../management/access-control/role-based-authorization.md).
 
-**Syntaxe**
+## <a name="syntax"></a>Syntaxe
 
 `.create-merge``table` *TableName* ([ColumnName : ColumnType],...)  [ `with` `(` [ `docstring` `=` *Documentation*] [ `,` `folder` `=` *NomDossier*] `)` ]
 
@@ -35,7 +35,7 @@ Si la table T existe et que vous envoyez une commande « . Create-Merge table T
 * Toute colonne dans T qui ne se trouve pas dans <columns specification> ne sera pas supprimée de t.
 * Toute colonne de <columns specification> qui existe dans T, mais avec un type de données différent, entraîne l’échec de la commande.
 
-**Voir aussi**
+## <a name="see-also"></a>Voir aussi
 
 * [.create-merge tables](create-merge-tables-command.md)
-* [.create table](create-table-command.md)
+* [. Create table](create-table-command.md)

@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/11/2019
-ms.openlocfilehash: 1408afbe378377e63758ffb7c67ff7939f6d2529
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: a7f434f2425815f154ffda701832fa5e3ee70f05
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349667"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91102813"
 ---
 # <a name="array_rotate_left"></a>array_rotate_left()
 
-`array_rotate_left()`fait pivoter les valeurs à l’intérieur d’un tableau vers la gauche.
+`array_rotate_left()` fait pivoter les valeurs à l’intérieur d’un tableau vers la gauche.
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -28,11 +28,11 @@ ms.locfileid: "87349667"
 * *arr*: tableau d’entrée à fractionner, doit être un tableau dynamique.
 * *rotate_count*: entier spécifiant le nombre de positions que les éléments de tableau feront pivoter vers la gauche. Si la valeur est négative, les éléments sont pivotés vers la droite.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>retourne :
 
 Tableau dynamique contenant la même quantité d’éléments que dans le tableau d’origine, où chaque élément a été pivoté d’après *rotate_count*.
 
-**Voir aussi**
+## <a name="see-also"></a>Voir aussi
 
 * Pour faire pivoter un tableau vers la droite, consultez [array_rotate_right ()](array_rotate_rightfunction.md).
 * Pour décaler le tableau vers la gauche, consultez [array_shift_left ()](array_shift_leftfunction.md).

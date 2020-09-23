@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: c758cc9a60e8e785031450e09e50e37b8fbf44b7
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 0373fdf7c687dd7af63895ce3a542ae9b6b4f150
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351418"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91103550"
 ---
 # <a name="series_less_equals"></a>series_less_equals()
 
@@ -27,7 +27,7 @@ Calcule l' `<=` opération logique d’infériorité ou d’égalité des élém
 
 * *Series1, Series2*: les tableaux numériques d’entrée doivent être comparés par élément. Tous les arguments doivent être des tableaux dynamiques. 
 
-## <a name="returns"></a>Retours
+## <a name="returns"></a>retourne :
 
 Tableau dynamique de valeurs booléennes contenant l’opération logique d’infériorité ou d’égalité des éléments calculée entre les deux entrées. Tout élément non numérique ou élément non existant (tableaux de tailles différentes) produit une `null` valeur d’élément.
 
@@ -43,7 +43,7 @@ print s1 = dynamic([1,2,4]), s2 = dynamic([4,2,1])
 |---|---|---|
 |[1, 2, 4]|[4, 2, 1]|[true, true, false]|
 
-**Voir aussi**
+## <a name="see-also"></a>Voir aussi
 
 Pour les comparaisons de statistiques de série entières, consultez :
 * [series_stats()](series-statsfunction.md)

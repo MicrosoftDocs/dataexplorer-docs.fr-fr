@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 42eb17b6aca5fc722597bcbf656f18c6d92ba545
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: d844f693b1509a823702b12bd28b85a9f19a07bd
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345859"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91102897"
 ---
 # <a name="reduce-operator"></a>opérateur reduce
 
@@ -36,9 +36,9 @@ Pour chaque groupe de ce type, il génère un **modèle** qui décrit le mieux l
 * *Caractères*: `string` littéral contenant une liste de caractères à ajouter à la liste des caractères qui ne comcoupent pas un terme. (Par exemple, si vous souhaitez `aaa=bbbb` et `aaa:bbb` pour chaque terme entier, plutôt que d’arrêter sur `=` et `:` , utilisez `":="` comme littéral de chaîne.)
 * *ReduceKind*: spécifie la version de réduction. La seule valeur valide pour l’heure est `source` .
 
-## <a name="returns"></a>Retours
+## <a name="returns"></a>retourne :
 
-Cet opérateur retourne une table avec trois colonnes ( `Pattern` , `Count` et `Representative` ), et autant de lignes qu’il y a de groupes. `Pattern`est la valeur de modèle pour le groupe, avec l' `*` utilisation d’un caractère générique (représentant des chaînes d’insertion arbitraires), `Count` compte le nombre de lignes dans l’entrée de l’opérateur qui sont représentées par ce modèle, et `Representative` représente une valeur de l’entrée qui se trouve dans ce groupe.
+Cet opérateur retourne une table avec trois colonnes ( `Pattern` , `Count` et `Representative` ), et autant de lignes qu’il y a de groupes. `Pattern` est la valeur de modèle pour le groupe, avec l' `*` utilisation d’un caractère générique (représentant des chaînes d’insertion arbitraires), `Count` compte le nombre de lignes dans l’entrée de l’opérateur qui sont représentées par ce modèle, et `Representative` représente une valeur de l’entrée qui se trouve dans ce groupe.
 
 Si `[kind=source]` est spécifié, l’opérateur ajoute la `Pattern` colonne à la structure de table existante.
 Notez que la syntaxe d’un schéma de cette version peut être soumise à des modifications ultérieures.
@@ -82,10 +82,10 @@ Trace | take 10000
 | reduce by Text with characters="-_"
 ```
 
-**Voir aussi**
+## <a name="see-also"></a>Voir aussi
 
 [autocluster](./autoclusterplugin.md)
 
-**Notes**
+**Remarques**
 
 L’implémentation de l' `reduce` opérateur est en grande partie basée sur la documentation d' [un algorithme de clustering de données pour les modèles d’exploration de données des journaux des événements](https://ristov.github.io/publications/slct-ipom03-web.pdf), par Risto Vaarandi.
