@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 11/25/2019
-ms.openlocfilehash: 7031ecf15ea3f7a472fbfbe1791d166e2e35b065
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: 7b97d62e007b5294bf776fb5d5adcbac435056ef
+ms.sourcegitcommit: 3fc8e9b6a313a863916031d4beba84123edcf123
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763892"
+ms.lasthandoff: 09/22/2020
+ms.locfileid: "90847851"
 ---
 # <a name="kusto-access-control-overview"></a>Vue d’ensemble de Kusto Access Control
 

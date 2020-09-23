@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 830db0da43da241ffb77ff05f15c0a5f62eb1725
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.openlocfilehash: 87980046e6f0ebbbdd17a9037aa1206779d2a61e
+ms.sourcegitcommit: 21dee76964bf284ad7c2505a7b0b6896bca182cc
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85967568"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91057034"
 ---
 # <a name="merge-policy"></a>Stratégie de fusion
 
@@ -60,6 +60,7 @@ La stratégie de fusion contient les propriétés suivantes :
     * Définit si les `Merge` opérations sont activées, auquel cas elles sont moins préférées que les `Rebuild` opérations.
 * **MaxRangeInHours**:
     * La valeur par défaut est 8.
+        * La valeur par défaut est de 14 jours dans les [vues matérialisées](materialized-views/materialized-view-overview.md), sauf si la récupération est désactivée dans la [stratégie de rétention](retentionpolicy.md)effective des vues matérialisées.
     * Différence maximale autorisée, en heures, entre deux durées de création d’étendues différentes, afin qu’elles puissent toujours être fusionnées.
     * Les horodateurs sont de la création d’extension et ne sont pas liés aux données réelles contenues dans les étendues.
     * S’applique aux opérations de fusion et de régénération.
