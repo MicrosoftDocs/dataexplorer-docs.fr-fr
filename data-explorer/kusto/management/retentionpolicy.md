@@ -1,6 +1,6 @@
 ---
 title: La stratégie de rétention Kusto contrôle la manière dont les données sont supprimées-Azure Explorateur de données
-description: Cet article décrit la stratégie de rétention dans Azure Explorateur de données.
+description: Cet article décrit les stratégies de rétention dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,26 +8,24 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 7c9bc193e739011a5f91d9bd5d4d8746a7ce2591
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: 871ad751105ba6a3f6ce5dcba55b3a0fd1c17789
+ms.sourcegitcommit: 21dee76964bf284ad7c2505a7b0b6896bca182cc
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780556"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91056983"
 ---
 # <a name="retention-policy"></a>Stratégie de rétention
 
-La stratégie de rétention contrôle le mécanisme qui supprime automatiquement les données des tables. Il est utile de supprimer les données qui sont transmises en continu à une table, dont la pertinence est basée sur l’âge. Par exemple, la stratégie peut être utilisée pour une table qui contient des événements de diagnostic qui peuvent devenir inintéressants au bout de deux semaines.
+La stratégie de rétention contrôle le mécanisme qui supprime automatiquement les données des tables ou des [vues matérialisées](materialized-views/materialized-view-overview.md). Il est utile de supprimer les données qui sont transmises en continu à une table, dont la pertinence est basée sur l’âge. Par exemple, la stratégie peut être utilisée pour une table qui contient des événements de diagnostic qui peuvent devenir inintéressants au bout de deux semaines.
 
-La stratégie de rétention peut être configurée pour une table spécifique ou pour une base de données entière.
-La stratégie s’applique alors à toutes les tables de la base de données qui ne se substituent pas à celle-ci.
+La stratégie de rétention peut être configurée pour une table ou une vue matérialisée spécifique, ou pour une base de données entière. La stratégie s’applique alors à toutes les tables de la base de données qui ne se substituent pas à celle-ci.
 
 La configuration d’une stratégie de rétention est importante pour les clusters qui ingèrent en continu des données, ce qui limite les coûts.
 
-Les données « en dehors » de la stratégie de rétention peuvent être supprimées. Kusto ne garantit pas le moment où la suppression se produit. Les données peuvent être en « Lingo » même si la stratégie de rétention est déclenchée.
+Les données « en dehors » de la stratégie de rétention peuvent être supprimées. Il n’existe aucune garantie spécifique lors de la suppression. Les données peuvent être en « Lingo » même si la stratégie de rétention est déclenchée.
 
-La stratégie de rétention est généralement définie pour limiter l’ancienneté des données depuis l’ingestion.
-Pour plus d’informations, consultez [SoftDeletePeriod](#the-policy-object).
+La stratégie de rétention est généralement définie pour limiter l’ancienneté des données depuis l’ingestion. Pour plus d’informations, consultez [SoftDeletePeriod](#the-policy-object).
 
 > [!NOTE]
 > * L’heure de suppression est imprécise. Le système garantit que les données ne sont pas supprimées avant que la limite soit dépassée, mais la suppression n’est pas immédiate après ce point.
@@ -51,8 +49,8 @@ Une stratégie de rétention comprend les propriétés suivantes :
 
 ## <a name="control-commands"></a>Commandes de contrôle
 
-* Utilisez [. afficher la rétention](../management/retention-policy.md) de la stratégie pour afficher la stratégie de rétention actuelle d’une base de données ou d’une table.
-* Utilisez la [rétention](../management/retention-policy.md) de la stratégie pour modifier la stratégie de rétention actuelle d’une base de données ou d’une table.
+* Utilisez [. afficher la rétention](../management/retention-policy.md) de la stratégie pour afficher la stratégie de rétention actuelle pour une base de données, une table ou une [vue matérialisée](materialized-views/materialized-view-overview.md).
+* Utilisez la [rétention](../management/retention-policy.md) de la stratégie pour modifier la stratégie de rétention actuelle d’une base de données, d’une table ou d’une [vue matérialisée](materialized-views/materialized-view-overview.md).
 
 ## <a name="defaults"></a>Valeurs par défaut
 
@@ -64,6 +62,7 @@ La stratégie de rétention par défaut, avec les valeurs par défaut mentionné
 ```kusto
 .alter database DatabaseName policy retention "{}"
 .alter table TableName policy retention "{}"
+.alter materialized-view ViewName policy retention "{}"
 ```
 
 La commande génère l’objet de stratégie suivant appliqué à la base de données ou à la table.
@@ -96,6 +95,7 @@ Définissez toutes les tables de la base de données pour qu’elles aient une p
 .delete table MyTable2 policy retention        // optional, only if the table previously had its policy set
 .delete table MySpecialTable policy retention  // optional, only if the table previously had its policy set
 .alter-merge database MyDatabase policy retention softdelete = 7d recoverability = disabled
+.alter-merge materialized-view ViewName policy retention softdelete = 7d 
 ```
 
 * *Option 2*: pour chaque table, définissez une stratégie de rétention au niveau de la table, avec une période de suppression réversible de sept jours et une récupération désactivée.
