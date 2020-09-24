@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: bb3f217b1ec0631f533a10433a7be368945667d7
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 8433773111f65e0271692bc3d1ba68cf0bc7c544
+ms.sourcegitcommit: 44a4f7ea5c5d75301d7a09b7dc1254a1e5f08eaa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87344533"
+ms.lasthandoff: 09/24/2020
+ms.locfileid: "91210509"
 ---
 # <a name="series_fill_const"></a>series_fill_const()
 
 Remplace les valeurs manquantes dans une série par une valeur de constante spécifiée.
 
-Accepte une expression contenant un tableau numérique dynamique comme entrée, remplace toutes les instances de missing_value_placeholder par les constant_value spécifiées et retourne le tableau résultant.
+Accepte une expression contenant un tableau numérique dynamique comme entrée, remplace toutes les instances de missing_value_placeholder par le constant_value spécifié et retourne le tableau résultant.
 
 ## <a name="syntax"></a>Syntaxe
 
-`series_fill_const(`*x* `[, ` *constant_value* `[,` *missing_value_placeholder*`]])`
+`series_fill_const(`*x* `, ` *constant_value* `[,` *missing_value_placeholder*`])`
 * Renverra la série *x* avec toutes les instances de *missing_value_placeholder* remplacées par *constant_value*.
 
 ## <a name="arguments"></a>Arguments
 
 * *x*: expression scalaire de tableau dynamique qui est un tableau de valeurs numériques.
-* *constant_value*: paramètre qui spécifie un espace réservé pour une valeur manquante à remplacer. La valeur par défaut est *0*. 
+* *constant_value*: valeur qui remplace les valeurs manquantes. 
 * *missing_value_placeholder*: paramètre facultatif qui spécifie un espace réservé pour une valeur manquante à remplacer. La valeur par défaut est `double` (*null*).
 
-**Remarques**
-* Vous pouvez créer une série qui remplit une valeur constante à l’aide de la `default = ` syntaxe *DefaultValue* (ou simplement en omettant qui suppose 0). Pour plus d’informations, consultez [Make-Series](make-seriesoperator.md).
+**Notes**
+* Si vous créez la série à l’aide de l’opérateur [Make-Series](make-seriesoperator.md) , elle remplit les valeurs manquantes par défaut 0, ou vous pouvez spécifier une valeur de constante à remplir en spécifiant `default = ` *DefaultValue* dans l’instruction make-Series.
 
 ```kusto
 make-series num=count() default=-1 on TimeStamp from ago(1d) to ago(1h) step 1h by Os, Browser
