@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 8433773111f65e0271692bc3d1ba68cf0bc7c544
-ms.sourcegitcommit: 44a4f7ea5c5d75301d7a09b7dc1254a1e5f08eaa
+ms.openlocfilehash: 7e587ab08c009516788e3a44b0b8e4a321741d94
+ms.sourcegitcommit: 8853e50a798ee7c78b69bf9822bbf1ced3abe73c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/24/2020
-ms.locfileid: "91210509"
+ms.lasthandoff: 09/25/2020
+ms.locfileid: "91227022"
 ---
 # <a name="series_fill_const"></a>series_fill_const()
 
@@ -33,7 +33,7 @@ Accepte une expression contenant un tableau numérique dynamique comme entrée, 
 * *missing_value_placeholder*: paramètre facultatif qui spécifie un espace réservé pour une valeur manquante à remplacer. La valeur par défaut est `double` (*null*).
 
 **Notes**
-* Si vous créez la série à l’aide de l’opérateur [Make-Series](make-seriesoperator.md) , elle remplit les valeurs manquantes par défaut 0, ou vous pouvez spécifier une valeur de constante à remplir en spécifiant `default = ` *DefaultValue* dans l’instruction make-Series.
+* Si vous créez la série à l’aide de l’opérateur [Make-Series](make-seriesoperator.md) , elle remplit les valeurs manquantes à l’aide de la valeur par défaut 0. Vous pouvez également spécifier une valeur de constante à remplir en spécifiant `default = ` *DefaultValue* dans l’instruction make-Series.
 
 ```kusto
 make-series num=count() default=-1 on TimeStamp from ago(1d) to ago(1h) step 1h by Os, Browser
