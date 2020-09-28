@@ -8,12 +8,12 @@ ms.reviewer: amitof
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/16/2020
-ms.openlocfilehash: 7b7a96a01a4ec2b6c84609b2f9c518637d174390
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: e037b6ed01a2eba7c7370d75a4efea0f7cbc1756
+ms.sourcegitcommit: 92b8057a36bd7daa16226f1526b29253bceb3602
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349888"
+ms.lasthandoff: 09/28/2020
+ms.locfileid: "91402716"
 ---
 # <a name="show-database-cache-query_results"></a>. afficher le cache de base de données query_results
 
@@ -21,7 +21,7 @@ Retourne une table qui affiche des statistiques relatives au [cache des résulta
 
 **Syntaxe**
 
-`.show database query results cache`
+`.show database cache query_results`
 
 **Sortie**
  
@@ -32,4 +32,4 @@ Retourne une table qui affiche des statistiques relatives au [cache des résulta
 |Absences  |`long`|Nombre d’absences dans le cache.
 |CacheCapacityInBytes |`long` |Capacité du cache en octets.
 |UsedBytes  |`long` |Espace utilisé par le cache.
-|Count  |`long`| Nombre de résultats de requête uniques stockés dans le cache.
+|Nombre  |`long`| Nombre de résultats de requête uniques stockés dans le cache.
