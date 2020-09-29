@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 03/29/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: cf10a18a699e1e93521b4927008858cbebd2baf8
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 5485088ba8dd4e348733c9d8e14e2dc54dd2c858
+ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345842"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91452831"
 ---
 # <a name="render-operator"></a>render, opérateur
 
@@ -30,11 +30,11 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 > * L’opérateur Render ne modifie pas les données. Elle injecte une annotation (« visualisation ») dans les propriétés étendues du résultat. L’annotation contient les informations fournies par l’opérateur dans la requête.
 > * L’interprétation des informations de visualisation est effectuée par l’agent utilisateur. Différents agents (tels que Kusto. Explorer, Kusto. webexplorer) peuvent prendre en charge différentes visualisations.
 
-## <a name="syntax"></a>Syntaxe
+## <a name="syntax"></a>Syntax
 
 *T* `|` `render` *Visualization* [ `with` `(` *PropertyName* `=` *PropertyValue* [ `,` ...] `)` ]
 
-Où :
+Où :
 
 * La *visualisation* indique le type de visualisation à utiliser. Les valeurs prises en charge sont les suivantes :
 
@@ -43,19 +43,19 @@ Où :
 |*Visualisation*     |Description|
 |--------------------|-|
 | `anomalychart`     | Semblable à graphique temporel, mais [met en évidence les anomalies](./samples.md#get-more-out-of-your-data-in-kusto-with-machine-learning) à l’aide de [series_decompose_anomalies](./series-decompose-anomaliesfunction.md) fonction. |
-| `areachart`        | Graphique en aires. La première colonne est l’axe des abscisses (x) et doit être une colonne numérique. Les autres colonnes numériques sont des axes y. |
+| `areachart`        | Graphique en aires. La première colonne est l’axe des abscisses (x) et doit être une colonne numérique. Les autres colonnes numériques correspondent aux axes y. |
 | `barchart`         | La première colonne est l’axe des abscisses (x) et peut être de type text, DateTime ou numeric. Les autres colonnes sont numériques, affichées sous forme de bandes horizontales.|
 | `card`             | Le premier enregistrement de résultat est traité comme un ensemble de valeurs scalaires et s’affiche sous la forme d’une carte. |
 | `columnchart`      | Comme `barchart` avec les bandes verticales au lieu des bandes horizontales.|
 | `ladderchart`      | Les deux dernières colonnes sont l’axe des abscisses (x), les autres colonnes sont l’axe des ordonnées (y).|
-| `linechart`        | graphique linéaire. La première colonne est l’axe des abscisses (x) et doit être une colonne numérique. Les autres colonnes numériques sont des axes y. |
+| `linechart`        | graphique linéaire. La première colonne est l’axe des abscisses (x) et doit être une colonne numérique. Les autres colonnes numériques correspondent aux axes y. |
 | `piechart`         | la première colonne correspond à l’axe des couleurs, la deuxième est de type numérique. |
 | `pivotchart`       | Affiche un tableau croisé dynamique et un graphique. L’utilisateur peut sélectionner de manière interactive des données, des colonnes, des lignes et divers types de graphiques. |
-| `scatterchart`     | Graphique des points. La première colonne est l’axe des abscisses (x) et doit être une colonne numérique. Les autres colonnes numériques sont des axes y. |
-| `stackedareachart` | Graphique en aires empilées. La première colonne est l’axe des abscisses (x) et doit être une colonne numérique. Les autres colonnes numériques sont des axes y. |
+| `scatterchart`     | Graphique des points. La première colonne est l’axe des abscisses (x) et doit être une colonne numérique. Les autres colonnes numériques correspondent aux axes y. |
+| `stackedareachart` | Graphique en aires empilées. La première colonne est l’axe des abscisses (x) et doit être une colonne numérique. Les autres colonnes numériques correspondent aux axes y. |
 | `table`            | Default-les résultats sont affichés sous forme de tableau.|
 | `timechart`        | graphique linéaire. La première colonne est l’axe X et doit être de type datetime. Les autres colonnes (numériques) sont des axes y. Il existe une colonne de chaîne dont les valeurs sont utilisées pour « regrouper » les colonnes numériques et pour créer des lignes différentes dans le graphique (les autres colonnes de chaîne sont ignorées). |
-| `timepivot`        | Navigation interactive sur la ligne de temps des événements (pivotement sur l’axe du temps)|
+| `timepivot`        | Navigation interactive sur la chronologie des événements (pivotement sur l’axe du temps)|
 
 ::: zone-end
 
@@ -63,11 +63,11 @@ Où :
 
 |*Visualisation*     |Description|
 |--------------------|-|
-| `areachart`        | Graphique en aires. La première colonne est l’axe des abscisses (x) et doit être une colonne numérique. Les autres colonnes numériques sont des axes y. |
+| `areachart`        | Graphique en aires. La première colonne est l’axe des abscisses (x) et doit être une colonne numérique. Les autres colonnes numériques correspondent aux axes y. |
 | `barchart`         | La première colonne est l’axe des abscisses (x) et peut être de type text, DateTime ou numeric. Les autres colonnes sont numériques, affichées sous forme de bandes horizontales.|
 | `columnchart`      | Comme `barchart` avec les bandes verticales au lieu des bandes horizontales.|
 | `piechart`         | la première colonne correspond à l’axe des couleurs, la deuxième est de type numérique. |
-| `scatterchart`     | Graphique des points. La première colonne est l’axe des abscisses (x) et doit être une colonne numérique. Les autres colonnes numériques sont des axes y. |
+| `scatterchart`     | Graphique des points. La première colonne est l’axe des abscisses (x) et doit être une colonne numérique. Les autres colonnes numériques correspondent aux axes y. |
 | `table`            | Default-les résultats sont affichés sous forme de tableau.|
 | `timechart`        | graphique linéaire. La première colonne est l’axe X et doit être de type datetime. Les autres colonnes (numériques) sont des axes y. Il existe une colonne de chaîne dont les valeurs sont utilisées pour « regrouper » les colonnes numériques et pour créer des lignes différentes dans le graphique (les autres colonnes de chaîne sont ignorées).|
 
@@ -110,24 +110,24 @@ Où :
 ::: zone-end
 
 Certaines visualisations peuvent être élaborées plus en détail en fournissant la `kind` propriété.
-Ces deux types de pools sont les suivants :
+Ces règles sont les suivantes :
 
 |*Visualisation*|`kind`             |Description                        |
 |---------------|-------------------|-----------------------------------|
 |`areachart`    |`default`          |Chaque « Area » est autonome.     |
-|               |`unstacked`        |Identique à `default`.                 |
+|               |`unstacked`        |Comme pour `default`.                 |
 |               |`stacked`          |Empilez les « zones » à droite.        |
 |               |`stacked100`       |Empilez les « zones » à droite et étendez chacune d’elles à la même largeur que les autres.|
 |`barchart`     |`default`          |Chaque « bar » est autonome.      |
-|               |`unstacked`        |Identique à `default`.                 |
+|               |`unstacked`        |Comme pour `default`.                 |
 |               |`stacked`          |« Barres » de la pile.                      |
 |               |`stacked100`       |Empilez « Bard » et étirez-les dans la même largeur que les autres.|
 |`columnchart`  |`default`          |Chaque « colonne » est autonome.   |
-|               |`unstacked`        |Identique à `default`.                 |
+|               |`unstacked`        |Comme pour `default`.                 |
 |               |`stacked`          |Empilez les « colonnes » les unes sur les autres.|
 |               |`stacked100`       |Empilez les « colonnes » et étendez chacune d’elles à la même hauteur que les autres.|
+|`scatterchart` |`map`              |Les colonnes attendues sont [longitude, Latitude] ou point JSON. La colonne de série est facultative.|
 |`piechart`     |`map`              |Les colonnes attendues sont [longitude, Latitude] ou géojson point, Color-AXIS et numeric. Pris en charge dans Kusto Explorer Desktop.|
-|`scatterchart` |`map`              |Les colonnes attendues sont [longitude, Latitude] ou point JSON. La colonne de série est facultative. Pris en charge dans Kusto Explorer Desktop.|
 
 ::: zone pivot="azuredataexplorer"
 
@@ -170,6 +170,6 @@ range x from -2 to 2 step 0.1
 
 [Exemples de rendu dans le didacticiel](./tutorial.md#render-display-a-chart-or-table).
 
-[Détection d’anomalie](./samples.md#get-more-out-of-your-data-in-kusto-with-machine-learning)
+[Détection des anomalies](./samples.md#get-more-out-of-your-data-in-kusto-with-machine-learning)
 
 ::: zone-end

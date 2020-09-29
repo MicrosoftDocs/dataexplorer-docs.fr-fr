@@ -8,21 +8,20 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/30/2020
-ms.openlocfilehash: 1be8f66300b2d605c4004661c68e64f741437dc1
-ms.sourcegitcommit: 21dee76964bf284ad7c2505a7b0b6896bca182cc
+ms.openlocfilehash: bb1fab3f211de4b33ca0dd2cee6a8cfa0cc796a9
+ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91057132"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91452678"
 ---
-# <a name="disable--enable-materialized-view"></a>. Disable |. activer la vue matérialisée
+# <a name="disable--enable-materialized-view"></a>.disable | .enable materialized-view
 
 Une vue matérialisée peut être désactivée de l’une des manières suivantes :
 
 * **Désactivation automatique par le système :**  La vue matérialisée est automatiquement désactivée si la matérialisation échoue avec une erreur permanente. Ce processus peut se produire dans les cas suivants : 
     * Modifications de schéma qui ne sont pas cohérentes avec la définition de la vue.  
-    * Les modifications apportées à la table source qui entraînent la non-sémantique sémantique de la requête de vue matérialisée. <br>
-    Pour plus d’informations, consultez [créer des vues matérialisées](materialized-view-create.md).
+    * Les modifications apportées à la table source qui entraînent la non-sémantique sémantique de la requête de vue matérialisée. 
 * **Désactivez explicitement la vue matérialisée :**  Si la vue matérialisée a un impact négatif sur l’intégrité du cluster (par exemple, si vous consommez trop d’UC), désactivez la vue à l’aide de la [commande](#syntax) ci-dessous.
 
 > [!NOTE]
@@ -31,7 +30,7 @@ Une vue matérialisée peut être désactivée de l’une des manières suivante
 
 La désactivation d’une vue est recommandée uniquement si vous soupçonnez que la vue a un impact sur l’intégrité de votre cluster.
 
-## <a name="syntax"></a>Syntaxe
+## <a name="syntax"></a>Syntax
 
 `.enable` | `disable``materialized-view` *MaterializedViewName*
 
@@ -39,7 +38,7 @@ La désactivation d’une vue est recommandée uniquement si vous soupçonnez qu
 
 |Propriété|Type|Description
 |----------------|-------|---|
-|MaterializedViewName|Chaîne|Nom de la vue matérialisée.|
+|MaterializedViewName|String|Nom de la vue matérialisée.|
 
 ## <a name="example"></a>Exemple
 

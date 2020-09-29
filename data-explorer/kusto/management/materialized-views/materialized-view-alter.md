@@ -8,23 +8,23 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/30/2020
-ms.openlocfilehash: ac9fb575f46bb60e313da4fa2b3c023ac826daec
-ms.sourcegitcommit: 21dee76964bf284ad7c2505a7b0b6896bca182cc
+ms.openlocfilehash: eaa4e759f0987940a86c509788f5e8a58b2f9e75
+ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91057169"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91452729"
 ---
-# <a name="alter-materialized-view"></a>. ALTER MATERIALIZED-VIEW
+# <a name="alter-materialized-view"></a>.alter materialized-view
 
 La modification de la [vue matérialisée](materialized-view-overview.md) peut être utilisée pour modifier la requête d’une vue matérialisée, tout en conservant les données existantes dans la vue.
 
-La modification de la vue matérialisée requiert des autorisations d' [administrateur de base de données](../access-control/role-based-authorization.md) ou un administrateur de la vue matérialisée. Pour plus d’informations, consultez [gestion des rôles de sécurité](../security-roles.md).
+Requiert des autorisations d' [administrateur de base de données](../access-control/role-based-authorization.md) ou un administrateur de la vue matérialisée.
 
 > [!WARNING]
 > Soyez très prudent lors de la modification d’une vue matérialisée. Une utilisation incorrecte peut entraîner une perte de données.
 
-## <a name="syntax"></a>Syntaxe
+## <a name="syntax"></a>Syntax
 
 `.alter` `materialized-view`  
 [ `with` `(` *PropertyName* `=` *PropertyValue* `,` ... `)` ]  
@@ -37,9 +37,9 @@ La modification de la vue matérialisée requiert des autorisations d' [administ
 
 |Argument|Type|Description
 |----------------|-------|---|
-|NomVue|Chaîne|Nom de la vue matérialisée.|
-|SourceTableName|Chaîne|Nom de la table source sur laquelle la vue est définie.|
-|Requête|Chaîne|Requête de vue matérialisée.|
+|NomVue|String|Nom de la vue matérialisée.|
+|SourceTableName|String|Nom de la table source sur laquelle la vue est définie.|
+|Requête|String|Requête de vue matérialisée.|
 
 ## <a name="properties"></a>Propriétés
 

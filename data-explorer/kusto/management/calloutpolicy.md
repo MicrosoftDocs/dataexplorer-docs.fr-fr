@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: 809088f35567f85444755d89ab30e02fad46abaf
-ms.sourcegitcommit: 313a91d2a34383b5a6e39add6c8b7fabb4f8d39a
+ms.openlocfilehash: 6e3bb943347e4ea794733451fcf65674e5e23ca7
+ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/16/2020
-ms.locfileid: "90680675"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91452661"
 ---
 # <a name="callout-policy"></a>Stratégie de légende
 
@@ -24,13 +24,12 @@ Les stratégies de légende sont gérées au niveau du cluster et sont classées
 * `kusto` -Contrôle les requêtes entre clusters Azure Explorateur de données.
 * `sql` -Contrôle le [plug-in SQL](../query/sqlrequestplugin.md).
 * `cosmosdb` -Contrôle le [plug-in CosmosDB](../query/cosmosdb-plugin.md).
-* `webapi` -Contrôle d’autres appels Web externes.
 * `sandbox_artifacts`-Contrôle les plug-ins sandbox ([python](../query/pythonplugin.md)  |  [R](../query/rplugin.md)).
 * `external_data` -Contrôle l’accès aux données externes via des [tables externes](../query/schema-entities/externaltables.md) ou un opérateur [ExternalData](../query/externaldata-operator.md) .
 
 La stratégie de légende est composée des éléments suivants.
 
-* **CalloutType** : définit le type de la légende et peut être `kusto` , `sql` ou `webapi`
+* **CalloutType** : définit le type de la légende et peut être `kusto` ou `sql` .
 * **CalloutUriRegex** : spécifie l’expression régulière autorisée du domaine de la légende
 * **CanCall** : indique si la légende est autorisée par des appels externes.
 
@@ -63,13 +62,13 @@ Les commandes requièrent des autorisations [AllDatabasesAdmin](access-control/r
 **Stratégies ALTER Callout**
 
 ```kusto
-.alter cluster policy callout @'[{"CalloutType": "webapi","CalloutUriRegex": "en\\.wikipedia\\.org","CanCall": true}]'
+.alter cluster policy callout @'[{"CalloutType": "sql","CalloutUriRegex": "sqlname.database.azure.com","CanCall": true}]'
 ```
 
 **Ajouter un ensemble de légendes autorisées**
 
 ```kusto
-.alter-merge cluster policy callout @'[{"CalloutType": "webapi","CalloutUriRegex": "en\\.wikipedia\\.org","CanCall": true}, {"CalloutType": "webapi","CalloutUriRegex": "bing\\.com","CanCall": true}]'
+.alter-merge cluster policy callout @'[{"CalloutType": "sql","CalloutUriRegex": "sqlname.database.azure.com","CanCall": true}]'
 ```
 
 **Supprimer toutes les stratégies de légende non immuables**

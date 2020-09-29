@@ -8,26 +8,35 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/30/2020
-ms.openlocfilehash: 807ca8a9bfd8d3f356fd849b6adc2102201513cf
-ms.sourcegitcommit: 21dee76964bf284ad7c2505a7b0b6896bca182cc
+ms.openlocfilehash: 354908df7ab0e65c8d4110dbff3a45a876b748a0
+ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91057159"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91452746"
 ---
-# <a name="create-materialized-view"></a>. créer une vue matérialisée
+# <a name="create-materialized-view"></a>.create materialized-view
 
 Une [vue matérialisée](materialized-view-overview.md) est une requête d’agrégation sur une table source, qui représente une seule instruction de synthèse.
-Pour obtenir des informations générales et des instructions sur la création d’une vue matérialisée, consultez [créer une vue matérialisée](materialized-view-overview.md#create-a-materialized-view).
 
-Requiert des autorisations d' [administrateur de base de données](../access-control/role-based-authorization.md) .
+Il existe deux façons de créer une vue matérialisée, notée par l’option de *renvoi* dans la commande :
 
-La vue matérialisée est toujours basée sur un unique `fact table` et peut également faire référence à un ou plusieurs [`dimension tables`](../../concepts/fact-and-dimension-tables.md) . Pour plus d’informations sur les limitations de jointure avec les tables de dimension dans les vues matérialisées, consultez [Propriétés](#properties). Pour connaître les limitations générales, consultez [limitations relatives à la création de vues matérialisées](materialized-view-overview.md#limitations-on-creating-materialized-views). 
+ * **Créez en fonction des enregistrements existants dans la table source :** 
+      * La création peut prendre un certain temps, en fonction du nombre d’enregistrements dans la table source. La vue ne sera pas disponible pour les requêtes jusqu’à ce qu’elle soit terminée.
+      * Quand vous utilisez cette option, la commande CREATE doit être `async` et l’exécution peut être surveillée à l’aide de la commande [. Show Operations](../operations.md#show-operations) .
 
-* Suivez le processus de création avec la commande [. Show Operations](../operations.md#show-operations) .
-* Annulez le processus de création à l’aide de la commande d' [opération. Cancel](#cancel-materialized-view-creation) .
+    * L’annulation du processus de renvoi est possible à l’aide de la commande [opération. Cancel](#cancel-materialized-view-creation) .
 
-## <a name="syntax"></a>Syntaxe
+      > [!IMPORTANT]
+      > * L’utilisation de l’option de renvoi n’est pas prise en charge pour les données dans le cache à froid. Augmentez la période de cache à chaud, si nécessaire, pour la création de la vue. Cela peut nécessiter une montée en puissance parallèle.    
+      > * L’utilisation de l’option de renvoi peut prendre beaucoup de temps pour les tables sources volumineuses. Si ce processus échoue de façon transitoire lors de son exécution, il ne sera pas automatiquement retenté et une nouvelle exécution de la commande Create est nécessaire.
+    
+* **Créez la vue matérialisée à partir de maintenant :** 
+    * La vue matérialisée est créée vide et n’inclut que les enregistrements ingérés après la création de la vue. La création de ce type est immédiatement retournée, ne nécessite pas `async` , et la vue est immédiatement disponible pour la requête.
+
+L’opération de création requiert des autorisations d' [administrateur de base de données](../access-control/role-based-authorization.md) . Le créateur de la vue matérialisée en devient l’administrateur.
+
+## <a name="syntax"></a>Syntax
 
 `.create` [`async`] `materialized-view` <br>
 [ `with` `(` *PropertyName* `=` *PropertyValue* `,` ... `)` ] <br>
@@ -38,9 +47,9 @@ La vue matérialisée est toujours basée sur un unique `fact table` et peut ég
 
 |Argument|Type|Description
 |----------------|-------|---|
-|NomVue|Chaîne|Nom de la vue matérialisée. Le nom de la vue ne peut pas être en conflit avec des noms de table ou de fonction dans la même base de données et doit respecter les [règles d’attribution](../../query/schema-entities/entity-names.md#identifier-naming-rules)de noms d’identificateur. |
-|SourceTableName|Chaîne|Nom de la table source sur laquelle la vue est définie.|
-|Requête|Chaîne|Requête de vue matérialisée. Pour plus d’informations, consultez [query](#query-argument).|
+|NomVue|String|Nom de la vue matérialisée. Le nom de la vue ne peut pas être en conflit avec des noms de table ou de fonction dans la même base de données et doit respecter les [règles d’attribution](../../query/schema-entities/entity-names.md#identifier-naming-rules)de noms d’identificateur. |
+|SourceTableName|String|Nom de la table source sur laquelle la vue est définie.|
+|Requête|String|Requête de vue matérialisée. Pour plus d’informations, consultez [query](#query-argument).|
 
 ### <a name="query-argument"></a>Argument de requête
 
@@ -48,10 +57,10 @@ La requête utilisée dans l’argument de vue matérialisée est limitée par l
 
 * L’argument de requête doit faire référence à une table de faits unique qui est la source de la vue matérialisée, inclure un seul opérateur de synthèse et une ou plusieurs fonctions d’agrégation agrégées par une ou plusieurs groupes par des expressions. L’opérateur de synthèse doit toujours être le dernier opérateur dans la requête.
 
-* La requête ne doit pas inclure d’opérateurs qui dépendent de `now()` ou de `ingestion_time()` . Par exemple, la requête ne doit pas avoir `where Timestamp > ago(5d)` . Une vue matérialisée avec une `arg_max` / `arg_min` / `any` agrégation ne peut pas inclure les autres fonctions d’agrégation prises en charge. Limitez la durée couverte par la vue à l’aide de la stratégie de rétention de la vue matérialisée.
-
 * Une vue est soit une `arg_max` / `arg_min` / `any` vue (ces fonctions peuvent être utilisées ensemble dans la même vue), soit l’une des autres fonctions prises en charge, mais pas les deux à la fois dans la même vue matérialisée. 
     Par exemple, `SourceTable | summarize arg_max(Timestamp, *), count() by Id` n’est pas pris en charge. 
+
+* La requête ne doit pas inclure d’opérateurs qui dépendent de `now()` ou de `ingestion_time()` . Par exemple, la requête ne doit pas avoir `where Timestamp > ago(5d)` . Une vue matérialisée avec une `arg_max` / `arg_min` / `any` agrégation ne peut pas inclure les autres fonctions d’agrégation prises en charge. Limitez la durée couverte par la vue à l’aide de la stratégie de rétention de la vue matérialisée.
 
 * Les agrégations composites ne sont pas prises en charge dans la définition de vue matérialisée. Par exemple, au lieu de la vue suivante : `SourceTable | summarize Result=sum(Column1)/sum(Column2) by Id` , définissez la vue matérialisée comme suit : `SourceTable | summarize a=sum(Column1), b=sum(Column2) by Id` . Pendant l’affichage du temps de requête, exécutez- `ViewName | project Id, Result=a/b` . La sortie requise de la vue, y compris la colonne calculée ( `a/b` ), peut être encapsulée dans une [fonction stockée](../../query/functions/user-defined-functions.md). Accédez à la fonction stockée au lieu d’accéder directement à la vue matérialisée.
 
@@ -59,32 +68,34 @@ La requête utilisée dans l’argument de vue matérialisée est limitée par l
 
 * Les références aux [external_table ()](../../query/externaltablefunction.md) et [ExternalData](../../query/externaldata-operator.md) ne sont pas prises en charge.
 
+* En plus de la table source de la vue, elle peut également faire référence à un ou plusieurs [`dimension tables`](../../concepts/fact-and-dimension-tables.md) . Les tables de dimension doivent être appelées explicitement dans les propriétés de la vue. Il est important de comprendre le comportement de la jointure avec les tables de dimension :
+
+    * Les enregistrements de la table source de la vue (table de faits) sont matérialisés une seule fois. Une latence d’ingestion différente entre la table de faits et la table de dimension peut avoir un impact sur les résultats de la vue.
+
+    * **Exemple**: une définition de vue comprend une jointure interne avec une table de dimension. Au moment de la matérialisation, l’enregistrement de dimension n’a pas été entièrement ingéré, mais il a déjà été ingéré dans la table de faits. Cet enregistrement est supprimé de la vue et n’est plus retraité. 
+
+        De même, si la jointure est une jointure externe, l’enregistrement de la table de faits est traité et ajouté à la vue avec une valeur null pour les colonnes de la table de dimension. Les enregistrements qui ont déjà été ajoutés (avec des valeurs null) à la vue ne seront pas traités à nouveau. Leurs valeurs, dans les colonnes de la table de dimension, restent null.
+
 ## <a name="properties"></a>Propriétés
 
 Les éléments suivants sont pris en charge dans la `with(propertyName=propertyValue)` clause. Toutes les propriétés sont facultatives.
 
-|Propriété|Type|Description | Notes |
-|----------------|-------|---|---|
-|expiration|bool|Indique si la vue doit être créée en fonction de tous les enregistrements actuellement dans *SourceTable* ( `true` ) ou si elle doit être créée « à partir de maintenant-on » ( `false` ). La valeur par défaut est `false`.| La commande doit être `async` , et la vue ne sera pas disponible pour les requêtes tant que la création n’est pas terminée. Selon la quantité de données à renvoyer, la création avec le renvoi peut prendre beaucoup de temps. Il est intentionnellement « lent » pour s’assurer qu’il ne consomme pas trop de ressources du cluster. Voir l' [explication du renvoi](materialized-view-overview.md#create-a-materialized-view) |
+|Propriété|Type|Description |
+|----------------|-------|---|
+|expiration|bool|Indique si la vue doit être créée en fonction de tous les enregistrements actuellement dans *SourceTable* ( `true` ) ou si elle doit être créée « à partir de maintenant-on » ( `false` ). La valeur par défaut est `false`.| 
 |effectiveDateTime|DATETIME| S’il est spécifié avec `backfill=true` , la création de remplissages uniquement avec des enregistrements ingérés après la valeur DateTime. Le renvoi doit également avoir la valeur true. Attend un littéral DateTime, par exemple `effectiveDateTime=datetime(2019-05-01)`|
-|dimensionTables|Array|Liste de tables de dimension séparées par des virgules dans la vue.|  Les tables de dimension doivent être appelées explicitement dans les propriétés de la vue. Les jointures/recherches avec les tables de dimension doivent utiliser les [meilleures pratiques de requête](../../query/best-practices.md). Consultez [jointure avec la table de dimension](#join-with-dimension-table).
-|autoUpdateSchema|bool|Indique s’il faut mettre à jour automatiquement la vue sur les modifications de la table source. La valeur par défaut est `false`.| L' `autoUpdateSchema` option est valide uniquement pour les vues de type `arg_max(Timestamp, *)`  /  `arg_min(Timestamp, *)`  /  `any(*)` (uniquement lorsque l’argument Columns est `*` ). Si cette option a la valeur true, les modifications apportées à la table source sont automatiquement reflétées dans la vue matérialisée. Toutes les modifications apportées à la table source ne sont pas prises en charge lors de l’utilisation de cette option. Pour plus d’informations, consultez [. ALTER MATERIALIZED-VIEW](materialized-view-alter.md). |
+|dimensionTables|Array|Liste de tables de dimension séparées par des virgules dans la vue. Voir l' [argument de requête](#query-argument)
+|autoUpdateSchema|bool|Indique s’il faut mettre à jour automatiquement la vue sur les modifications de la table source. La valeur par défaut est `false`. Cette option est valide uniquement pour les vues de type `arg_max(Timestamp, *)`  /  `arg_min(Timestamp, *)`  /  `any(*)` (uniquement lorsque l’argument Columns est `*` ). Si cette option a la valeur true, les modifications apportées à la table source sont automatiquement reflétées dans la vue matérialisée.
 |dossier|string|Dossier de la vue matérialisée.|
 |docString|string|Chaîne qui documente la vue matérialisée|
 
 > [!WARNING]
-> L’utilisation de `autoUpdateSchema` peut entraîner une perte de données irréversible lorsque les colonnes de la table source sont supprimées. La vue est désactivée si elle n’a pas la valeur `autoUpdateSchema` et qu’une modification est apportée à la table source, ce qui entraîne une modification du schéma de la vue matérialisée. Si le problème est résolu, réactivez la vue matérialisée à l’aide de la commande [activer la vue matérialisée](materialized-view-enable-disable.md) . 
+> * L’utilisation de `autoUpdateSchema` peut entraîner une perte de données irréversible lorsque les colonnes de la table source sont supprimées. 
+> * Si une modification est apportée à la table source, entraînant une modification de schéma dans la vue matérialisée, et `autoUpdateSchema` la valeur false, la vue sera automatiquement désactivée. 
+>    * Cette erreur est courante lors de l’utilisation d’un `arg_max(Timestamp, *)` et de l’ajout de colonnes à la table source. 
+>    * Évitez ce problème en définissant la requête de la vue en tant que `arg_max(Timestamp, Column1, Column2, ...)` ou en utilisant l' `autoUpdateSchema` option.
+> * Si la vue est désactivée pour ces raisons, vous pouvez la réactiver après avoir corrigé le problème à l’aide de la commande [activer la vue matérialisée](materialized-view-enable-disable.md) .
 >
->Ce processus est courant lors de l’utilisation d’un `arg_max(Timestamp, *)` et de l’ajout de colonnes à la table source. Évitez l’échec en définissant la requête de la vue en tant que `arg_max(Timestamp, Column1, Column2, ...)` ou en utilisant l' `autoUpdateSchema` option. 
-
-### <a name="join-with-dimension-table"></a>Jointure avec la table de dimension
-
-Les enregistrements de la table source de la vue (table de faits) sont matérialisés une seule fois. Une latence d’ingestion différente entre la table de faits et la table de dimension peut avoir un impact sur les résultats de la vue.
-
-**Exemple**: une définition de vue comprend une jointure interne avec une table de dimension. Au moment de la matérialisation, l’enregistrement de dimension n’a pas été entièrement ingéré, mais il a déjà été ingéré dans la table de faits. Cet enregistrement est supprimé de la vue et n’est plus retraité. 
-
-Pour remédier à ce recours, supposez que la jointure est une jointure externe. L’enregistrement de la table de faits sera traité et ajouté à la vue avec une valeur null pour les colonnes de la table de dimension. Les enregistrements qui ont déjà été ajoutés (avec des valeurs null) à la vue ne seront pas traités à nouveau. Leurs valeurs, dans les colonnes de la table de dimension, restent null.
-
 
 ## <a name="examples"></a>Exemples
 
@@ -239,6 +250,20 @@ Les fonctions d’agrégation suivantes sont prises en charge :
 > [!NOTE]
 > Si vous avez besoin des meilleures performances en matière de temps de requête, mais que vous pouvez sacrifier l’actualisation des données, utilisez la [fonction materialized_view ()](../../query/materialized-view-function.md).
 
+## <a name="limitations-on-creating-materialized-views"></a>Limitations relatives à la création de vues matérialisées
+
+* Impossible de créer une vue matérialisée :
+    * Au-dessus d’une autre vue matérialisée.
+    * Sur les [bases de données de suivi](../../../follower.md). Les bases de données de suivi sont en lecture seule et les vues matérialisées nécessitent des opérations d’écriture.  Les vues matérialisées définies sur les bases de données de leader peuvent être interrogées à partir de leurs abonnés, comme n’importe quelle autre table dans le responsable. 
+* La table source d’une vue matérialisée :
+    * Doit être une table qui est ingérée directement, soit à l’aide de l’une des [méthodes](../../../ingest-data-overview.md#ingestion-methods-and-tools)d’ingestion, à l’aide d’une [stratégie de mise à jour](../updatepolicy.md), soit en ingestion [des commandes de requête](../data-ingestion/ingest-from-query.md).
+        * En particulier, l’utilisation d' [étendues de déplacement](../move-extents.md) d’autres tables dans la table source de la vue matérialisée n’est pas prise en charge. Les étendues de déplacement peuvent échouer avec l’erreur suivante : `Cannot drop/move extents from/to table 'TableName' since Materialized View 'ViewName' is currently processing some of these extents` . 
+    * La [stratégie IngestionTime](../ingestiontimepolicy.md) doit être activée (la valeur par défaut est activé).
+    * Ne peut pas être activé pour l’ingestion de diffusion en continu.
+    * Il ne peut pas s’agir d’une table restreinte ou d’une table pour laquelle la sécurité au niveau des lignes est activée.
+* Les [fonctions de curseur](../databasecursor.md#cursor-functions) ne peuvent pas être utilisées sur des vues matérialisées.
+* L’exportation continue à partir d’une vue matérialisée n’est pas prise en charge.
+
 ## <a name="cancel-materialized-view-creation"></a>Annuler la création de la vue matérialisée
 
 Annulez le processus de création d’une vue matérialisée lors de l’utilisation de l' `backfill` option. Cette action est utile lorsque la création prend trop de temps et que vous souhaitez l’abandonner lors de l’exécution.  
@@ -248,7 +273,7 @@ Annulez le processus de création d’une vue matérialisée lors de l’utilisa
 
 Le processus de création ne peut pas être abandonné immédiatement. La commande Cancel signale que la matérialisation est arrêtée et que la création vérifie régulièrement si l’annulation a été demandée. La commande Cancel attend une période maximale de 10 minutes jusqu’à ce que le processus de création de la vue matérialisée soit annulé et resignale si l’annulation a réussi. Même si l’annulation n’a pas réussi dans les 10 minutes, et que la commande Cancel signale un échec, la vue matérialisée s’abandonnera probablement plus tard dans le processus de création. La commande [. Show Operations](../operations.md#show-operations) indique si l’opération a été annulée. La `cancel operation` commande est uniquement prise en charge pour l’annulation de la création de vues matérialisées, et non pour l’annulation d’autres opérations.
 
-### <a name="syntax"></a>Syntaxe
+### <a name="syntax"></a>Syntax
 
 `.cancel` `operation` *operationId*
 
@@ -258,12 +283,12 @@ Le processus de création ne peut pas être abandonné immédiatement. La comman
 |----------------|-------|---|
 |operationId|Guid|L’ID d’opération retourné par la commande CREATE MATERIALIZED-VIEW.|
 
-### <a name="output"></a>Output
+### <a name="output"></a>Sortie
 
 |Paramètre de sortie |Type |Description
 |---|---|---
 |OperationId|Guid|ID d’opération de la commande créer une vue matérialisée.
-|Opération|Chaîne|Type d’opération.
+|Opération|String|Type d’opération.
 |StartedOn|DATETIME|Heure de début de l’opération de création.
 |CancellationState|string|Un de- `Cancelled successfully` (la création a été annulée), ( `Cancellation failed` attente de l’annulation expirée), `Unknown` (la création de la vue n’est plus exécutée, mais n’a pas été annulée par cette opération).
 |ReasonPhrase|string|Raison pour laquelle l’annulation n’a pas réussi.

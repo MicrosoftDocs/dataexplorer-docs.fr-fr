@@ -8,27 +8,27 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/01/2020
-ms.openlocfilehash: c5a66255f719d3bd0da962a8eb9d3cae23a8c254
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: f86ec0349b4e84215e9b2fdff33b2d705967bcac
+ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347831"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91452814"
 ---
 # <a name="geo_line_densify"></a>geo_line_densify()
 
-Convertit les bords de trait planaires en géodésique en ajoutant des points intermédiaires.
+Convertit les bords d’une ligne ou d’une ligne planaire en géodésique en ajoutant des points intermédiaires.
 
-## <a name="syntax"></a>Syntaxe
+## <a name="syntax"></a>Syntax
 
 `geo_line_densify(`*lineString* `, ` *tolérance*`)`
 
 ## <a name="arguments"></a>Arguments
 
-* *lineString*: ligne au [format géojson](https://tools.ietf.org/html/rfc7946) et d’un type de données [dynamique](./scalar-data-types/dynamic.md) .
+* *lineString*: ligne ou multiligne au [format géojson](https://tools.ietf.org/html/rfc7946) et d’un type de données [dynamique](./scalar-data-types/dynamic.md) .
 * *Tolerance*: valeur numérique facultative qui définit la distance maximale en mètres entre le bord planaire d’origine et la chaîne d’arêtes géodésique convertie. Les valeurs prises en charge sont comprises dans la plage [0,1, 10000]. S’il n’est pas spécifié, la valeur par défaut `10` est utilisée.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Densified ligne au [format géojson](https://tools.ietf.org/html/rfc7946) et d’un type de données [dynamique](./scalar-data-types/dynamic.md) . Si la ligne ou la tolérance n’est pas valide, la requête produira un résultat NULL.
 
@@ -38,6 +38,8 @@ Densified ligne au [format géojson](https://tools.ietf.org/html/rfc7946) et d�
 **Définition de LineString**
 
 dynamique ({"type" : "LineString", "coordinates" : [[lng_1, lat_1], [lng_2, lat_2],..., [lng_N, lat_N]]})
+
+dynamique ({"type" : "MultiLineString", "coordinates" : [[line_1, line_2,..., line_N]]})
 
 * Le tableau de coordonnées LineString doit contenir au moins deux entrées.
 * Les coordonnées [longitude, Latitude] doivent être valides. La longitude doit être un nombre réel dans la plage [-180, + 180] et la latitude doit être un nombre réel dans la plage [-90, + 90].

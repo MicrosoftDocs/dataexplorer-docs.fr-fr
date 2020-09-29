@@ -8,25 +8,25 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/30/2020
-ms.openlocfilehash: c1f96fa2fcfd8989936f31ac0c3b608dabdd6830
-ms.sourcegitcommit: 21dee76964bf284ad7c2505a7b0b6896bca182cc
+ms.openlocfilehash: 77c86708a20349f5864bd10fa298719dce0fbab9
+ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91057140"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91452797"
 ---
 # <a name="materialized-views-preview"></a>Vues matérialisées (préversion)
 
-Les [vues matérialisées](../../query/materialized-view-function.md) exposent une requête d' *agrégation* sur une table source. Les vues matérialisées retournent toujours un résultat à jour de la requête d’agrégation (toujours actualisée). L' [interrogation d’une vue matérialisée](#materialized-views-queries), qui est un processus de nettoyage des données à usage unique, est plus performante que l’exécution de l’agrégation directement sur la table source, qui est effectuée à chaque requête.
+Les [vues matérialisées](../../query/materialized-view-function.md) exposent une requête d' *agrégation* sur une table source. Les vues matérialisées retournent toujours un résultat à jour de la requête d’agrégation (toujours actualisée). L' [interrogation d’une vue matérialisée](#materialized-views-queries) est plus performante que l’exécution de l’agrégation directement sur la table source, qui est effectuée pour chaque requête.
 
 > [!NOTE]
-> Les vues matérialisées présentent des [limitations](#limitations-on-creating-materialized-views)et ne sont pas assurées de fonctionner correctement pour tous les scénarios. Passez en revue les [considérations relatives aux performances](#performance-considerations) avant d’utiliser la fonctionnalité.
+> Les vues matérialisées présentent des [limitations](materialized-view-create.md#limitations-on-creating-materialized-views)et ne sont pas assurées de fonctionner correctement pour tous les scénarios. Passez en revue les [considérations relatives aux performances](#performance-considerations) avant d’utiliser la fonctionnalité.
 
 Utilisez les commandes suivantes pour gérer les vues matérialisées :
-* [. créer une vue matérialisée](materialized-view-create.md)
-* [. ALTER MATERIALIZED-VIEW](materialized-view-alter.md)
-* [. Drop-vue](materialized-view-drop.md)
-* [. Disable |. activer la vue matérialisée](materialized-view-enable-disable.md)
+* [.create materialized-view](materialized-view-create.md)
+* [.alter materialized-view](materialized-view-alter.md)
+* [.drop materialized-view](materialized-view-drop.md)
+* [.disable | .enable materialized-view](materialized-view-enable-disable.md)
 * [. afficher les commandes matérialisées-views](materialized-view-show-commands.md)
 
 ## <a name="why-use-materialized-views"></a>Pourquoi utiliser des vues matérialisées ?
@@ -37,7 +37,16 @@ En investissant des ressources (stockage de données, cycles d’UC en arrière-
 
 * **Actualisation :** Une requête de vue matérialisée retourne toujours les résultats les plus récents, indépendamment du moment où la matérialisation a eu lieu. La requête combine la partie matérialisée de la vue avec les enregistrements de la table source, qui n’ont pas encore été matérialisés (la `delta` partie), fournissant toujours les résultats les plus récents.
 
-* **Réduction des coûts :** l' [interrogation d’une vue matérialisée](#materialized-views-queries) consomme moins de ressources du cluster que l’agrégation sur l’intégralité de la table source. La stratégie de rétention de la table source peut être réduite si seule l’agrégation est requise. Cette configuration réduit les coûts de cache à chaud pour la table source.
+* **Réduction des coûts :** l' [interrogation d’une vue matérialisée](#materialized-views-queries) consomme moins de ressources du cluster que l’agrégation sur la table source. La stratégie de rétention de la table source peut être réduite si seule l’agrégation est requise. Cette configuration réduit les coûts de cache à chaud pour la table source.
+
+## <a name="materialized-views-use-cases"></a>Cas d’usage de vues matérialisées
+
+Voici quelques scénarios courants qui peuvent être traités à l’aide d’une vue matérialisée :
+
+* Interroger le dernier enregistrement par entité à l’aide [de ARG_MAX () (fonction d’agrégation)](../../query/arg-max-aggfunction.md).
+* Dédupliquer les enregistrements d’une table à l’aide de [Any () (fonction d’agrégation)](../../query/any-aggfunction.md).
+* Réduisez la résolution des données en calculant des statistiques périodiques sur les données brutes. Utilisez différentes [fonctions d’agrégation](materialized-view-create.md#supported-aggregation-functions) par période de temps.
+    * Par exemple, utilisez `T | summarize dcount(User) by bin(Timestamp, 1d)` pour conserver un instantané à jour d’utilisateurs distincts par jour.
 
 ## <a name="how-materialized-views-work"></a>Fonctionnement des vues matérialisées
 
@@ -46,46 +55,8 @@ Une vue matérialisée est constituée de deux composants :
 * Une partie *matérialisée* : table de Explorateur de données Azure contenant des enregistrements agrégés de la table source qui ont déjà été traités.  Cette table contient toujours un enregistrement unique par combinaison Group-by de l’agrégation.
 * *Delta* : enregistrements nouvellement ingérés de la table source qui n’ont pas encore été traités.
 
-L’interrogation de la vue matérialisée associe la partie matérialisée à la partie Delta, ce qui fournit un résultat à jour de la requête d’agrégation. Le processus de matérialisation hors connexion ingère les nouveaux enregistrements du *Delta* vers la table matérialisée et remplace les enregistrements existants. Le remplacement est effectué en reconstruisant des étendues qui contiennent des enregistrements à remplacer. Si les enregistrements dans le *Delta* se croisent constamment avec tous les partitions de données de la partie *matérialisée* , chaque cycle de matérialisation nécessitera la reconstruction de l’intégralité de la partie *matérialisée* et peut ne pas suivre le rythme. Le taux d’ingestion sera supérieur au taux de matérialisation. Dans ce cas, la vue devient non intègre et le *Delta* augmente en permanence.
-
-## <a name="create-a-materialized-view"></a>Créer une vue matérialisée
-
-Il existe deux façons de créer une vue matérialisée, notée par l’option *Backfill* dans la [commande CREATE](materialized-view-create.md):
- * **Créez en fonction des enregistrements existants dans la table source :** 
-      * La création peut prendre un certain temps, en fonction du nombre d’enregistrements dans la table source. La vue ne sera pas disponible pour les requêtes jusqu’à ce qu’elle soit terminée.
-      * Quand vous utilisez cette option, la commande CREATE doit être `async` et l’exécution peut être surveillée à l’aide de la commande [. Show Operations](../operations.md#show-operations) .
-    
-      > [!IMPORTANT]
-      > * L’utilisation de l’option de renvoi n’est pas prise en charge pour les données dans le cache à froid. Augmentez la période de cache à chaud, si nécessaire, pour la création de la vue. Cela peut nécessiter une montée en puissance parallèle.    
-      > * L’utilisation de l’option de renvoi peut prendre beaucoup de temps pour les tables sources volumineuses. Si ce processus échoue de façon transitoire lors de son exécution, il ne sera pas automatiquement retenté et une nouvelle exécution de la commande Create est nécessaire.
-    
-* **Créez la vue matérialisée à partir de maintenant :** 
-    * La vue matérialisée est créée vide et n’inclut que les enregistrements ingérés après la création de la vue. La création de ce type est immédiatement retournée, ne nécessite pas `async` , et la vue est immédiatement disponible pour la requête.
-
-### <a name="limitations-on-creating-materialized-views"></a>Limitations relatives à la création de vues matérialisées
-
-* Impossible de créer une vue matérialisée :
-    * Au-dessus d’une autre vue matérialisée.
-    * Sur les [bases de données de suivi](../../../follower.md). Les bases de données de suivi sont en lecture seule et les vues matérialisées nécessitent des opérations d’écriture.  Les vues matérialisées définies sur les bases de données de leader peuvent être interrogées à partir de leurs abonnés, comme n’importe quelle autre table dans le responsable. 
-* La table source d’une vue matérialisée :
-    * Doit être une table qui est ingérée directement, soit à l’aide de l’une des [méthodes](../../../ingest-data-overview.md#ingestion-methods-and-tools)d’ingestion, à l’aide d’une [stratégie de mise à jour](../updatepolicy.md), soit en ingestion [des commandes de requête](../data-ingestion/ingest-from-query.md).
-        * En particulier, l’utilisation d' [étendues de déplacement](../move-extents.md) d’autres tables dans la table source de la vue matérialisée n’est pas prise en charge. Les étendues de déplacement peuvent échouer avec l’erreur suivante : `Cannot drop/move extents from/to table 'TableName' since Materialized View 'ViewName' is currently processing some of these extents` . 
-    * La [stratégie IngestionTime](../ingestiontimepolicy.md) doit être activée (la valeur par défaut est activé).
-    * Ne peut pas être activé pour l’ingestion de diffusion en continu.
-    * Il ne peut pas s’agir d’une table restreinte ou d’une table pour laquelle la sécurité au niveau des lignes est activée.
-* Les [fonctions de curseur](../databasecursor.md#cursor-functions) ne peuvent pas être utilisées sur des vues matérialisées.
-* L’exportation continue à partir d’une vue matérialisée n’est pas prise en charge.
-
-### <a name="materialized-view-retention-policy"></a>Stratégie de rétention de vue matérialisée
-
-La vue matérialisée dérive par défaut la stratégie de rétention de la base de données. La stratégie peut être modifiée à l’aide de [commandes de contrôle](../retentionpolicy.md).
-   
-   * La stratégie de rétention de la vue matérialisée n’est pas liée à la stratégie de rétention de la table source.
-   * Si les enregistrements de la table source ne sont pas utilisés par ailleurs, la stratégie de rétention de la table source peut être déplacée au minimum. La vue matérialisée stocke toujours les données en fonction de la stratégie de rétention définie sur la vue. 
-   * Bien que les vues matérialisées soient en mode aperçu, il est recommandé d’autoriser au moins sept jours et la capacité de récupération définie sur true. Ce paramètre permet une récupération rapide des erreurs et à des fins de diagnostic.
-    
-> [!NOTE]
-> Aucune stratégie de rétention de la table source n’est actuellement prise en charge.
+L’interrogation de la vue matérialisée associe la partie matérialisée à la partie Delta, ce qui fournit un résultat à jour de la requête d’agrégation. Le processus de matérialisation hors connexion ingère les nouveaux enregistrements du *Delta* vers la table matérialisée et remplace les enregistrements existants. Le remplacement est effectué en reconstruisant des étendues qui contiennent des enregistrements à remplacer. Si les enregistrements dans le *Delta* se croisent constamment avec tous les partitions de données de la partie *matérialisée* , chaque cycle de matérialisation nécessite la reconstruction de la totalité de la partie *matérialisée* et peut ne pas suivre le taux d’ingestion. Dans ce cas, la vue devient non intègre et le *Delta* augmente en permanence.
+La section [surveillance](#materialized-views-monitoring) explique comment dépanner de telles situations.
 
 ## <a name="materialized-views-queries"></a>Requêtes de vues matérialisées
 
@@ -95,16 +66,7 @@ Vous pouvez également interroger la vue à l’aide de la [fonction materialize
 
 La vue peut participer à des requêtes entre des clusters ou des bases de données croisées, mais elles ne sont pas incluses dans les recherches ou les unions génériques.
 
-### <a name="query-use-cases"></a>Cas d’usage de requête
-
-Voici quelques scénarios courants qui peuvent être traités à l’aide d’une vue matérialisée :
-
-* Interroger le dernier enregistrement par entité à l’aide [de ARG_MAX () (fonction d’agrégation)](../../query/arg-max-aggfunction.md).
-* Dédupliquer les enregistrements d’une table à l’aide de [Any () (fonction d’agrégation)](../../query/any-aggfunction.md).
-* Réduisez la résolution des données en calculant des statistiques périodiques sur les données brutes. Utilisez différentes [fonctions d’agrégation](materialized-view-create.md#supported-aggregation-functions) par période de temps.
-    * Par exemple, utilisez `T | summarize dcount(User) by bin(Timestamp, 1d)` pour conserver un instantané à jour d’utilisateurs distincts par jour.
-
-### <a name="query-examples"></a>Exemples de requêtes
+### <a name="examples"></a>Exemples
 
 1. Interrogez la vue entière. Les enregistrements les plus récents de la table source sont inclus :
     
@@ -119,7 +81,7 @@ Voici quelques scénarios courants qui peuvent être traités à l’aide d’un
     ```kusto
     materialized_view("ViewName")
     ```
-    
+  
 ## <a name="performance-considerations"></a>Considérations relatives aux performances
 
 Les contributeurs principaux qui peuvent avoir un impact sur l’intégrité de la vue matérialisée sont les suivants :
@@ -133,6 +95,19 @@ Les contributeurs principaux qui peuvent avoir un impact sur l’intégrité de 
 * **Nombre de vues matérialisées dans le cluster :** Les considérations ci-dessus s’appliquent à chaque vue matérialisée définie dans le cluster. Chaque vue utilise ses propres ressources, et de nombreuses vues sont en concurrence sur les ressources disponibles. Il n’existe aucune limite codée en dur pour le nombre de vues matérialisées dans un cluster. Toutefois, la recommandation générale consiste à ne pas avoir plus de 10 vues matérialisées sur un cluster. La [stratégie de capacité](../capacitypolicy.md#materialized-views-capacity-policy) peut être ajustée si plusieurs vues matérialisées sont définies dans le cluster.
 
 * **Définition de la vue matérialisée**: la définition de la vue matérialisée doit être définie conformément aux meilleures pratiques de requête pour optimiser les performances des requêtes. Pour plus d’informations, consultez conseils sur les performances de la [commande CREATE](materialized-view-create.md#performance-tips).
+
+## <a name="materialized-views-policies"></a>Stratégies de vues matérialisées
+
+Vous pouvez définir la stratégie de [rétention](../retentionpolicy.md) et la [stratégie de mise en cache](../cachepolicy.md) d’une vue matérialisée, comme n’importe quelle table Azure Explorateur de données.
+
+La vue matérialisée dérive par défaut les stratégies de rétention et de mise en cache de la base de données. Les stratégies peuvent être modifiées à l’aide de commandes de [contrôle de stratégie de rétention](../retention-policy.md) ou de [commandes de contrôle de stratégie de cache](../cache-policy.md).
+   
+   * La stratégie de rétention de la vue matérialisée n’est pas liée à la stratégie de rétention de la table source.
+   * Si les enregistrements de la table source ne sont pas utilisés par ailleurs, la stratégie de rétention de la table source peut être déplacée au minimum. La vue matérialisée stocke toujours les données en fonction de la stratégie de rétention définie sur la vue. 
+   * Bien que les vues matérialisées soient en mode aperçu, il est recommandé d’autoriser au moins sept jours et la capacité de récupération définie sur true. Ce paramètre permet une récupération rapide des erreurs et à des fins de diagnostic.
+    
+> [!NOTE]
+> Aucune stratégie de rétention de la table source n’est actuellement prise en charge.
 
 ## <a name="materialized-views-monitoring"></a>Analyse de vues matérialisées
 
@@ -184,5 +159,5 @@ En cas d’échec de la matérialisation, la `MaterializedViewResult` métrique 
 ## <a name="next-steps"></a>Étapes suivantes
 
 * [. créer une vue matérialisée](materialized-view-create.md)
-* [. ALTER MATERIALIZED-VIEW](materialized-view-alter.md)
+* [.alter materialized-view](materialized-view-alter.md)
 * [Les vues matérialisées affichent les commandes](materialized-view-show-commands.md)

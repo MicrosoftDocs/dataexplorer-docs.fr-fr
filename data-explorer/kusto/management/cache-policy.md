@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 319a71e5db7019ed28001f44a1d4a4bcb21984e9
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.openlocfilehash: 9b080badd2dc1015319e9b6d44c4c477061f92f9
+ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85967245"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91452712"
 ---
 # <a name="cache-policy-command"></a>Commande de stratégie de cache
 
@@ -21,15 +21,16 @@ Cet article décrit les commandes utilisées pour la création et la modificatio
 
 ## <a name="displaying-the-cache-policy"></a>Affichage de la stratégie de cache
 
-La stratégie peut être définie sur des données ou une table, et est affichée à l’aide de l’une des commandes suivantes :
+La stratégie peut être définie sur une base de données, une table ou une [vue matérialisée](materialized-views/materialized-view-overview.md), et elle est affichée à l’aide de l’une des commandes suivantes :
 
 * `.show``database` *DatabaseName* DatabaseName `policy``caching`
-* `.show``table` *DatabaseName*, `.` *TableName* table `policy``caching`
+* `.show``table` *TableName* TableName `policy``caching`
+* `.show``materialized-view` *MaterializedViewName* MaterializedViewName `policy``caching`
 
 ## <a name="altering-the-cache-policy"></a>Modification de la stratégie de cache
 
 ```kusto
-.alter <entity_type> <database_or_table_name> policy caching hot = <timespan>
+.alter <entity_type> <database_or_table_or_materialized-view_name> policy caching hot = <timespan>
 ```
 
 Modification de la stratégie de cache pour plusieurs tables (dans le même contexte de base de données) :
@@ -51,11 +52,11 @@ Stratégie de cache :
 }
 ```
 
-* `entity_type`: table, base de données ou cluster
-* `database_or_table`: si l’entité est une table ou une base de données, son nom doit être spécifié dans la commande comme suit : 
+* `entity_type` : table, base de données ou cluster
+* `database_or_table_or_materialized-view`: si l’entité est une table ou une base de données, son nom doit être spécifié dans la commande comme suit : 
   - `database_name` ou 
   - `database_name.table_name` ou 
-  - `table_name`(en cas d’exécution dans le contexte de la base de données spécifique)
+  - `table_name` (en cas d’exécution dans le contexte de la base de données spécifique)
 
 ## <a name="deleting-the-cache-policy"></a>Suppression de la stratégie de cache
 
@@ -75,6 +76,7 @@ Définition de la stratégie de cache de la table `MyTable` (dans le contexte de
 
 ```kusto
 .alter table MyTable policy caching hot = 3d
+.alter materialized-view MyMaterializedView policy caching hot = 3d
 ```
 
 Définition de la stratégie pour plusieurs tables (dans le contexte de base de données), à 3 jours :
@@ -87,6 +89,12 @@ Suppression d’une stratégie définie sur une table :
 
 ```kusto
 .delete table MyTable policy caching
+```
+
+Suppression d’une stratégie définie sur une vue matérialisée :
+
+```kusto
+.delete materialized-view MyMaterializedView policy caching
 ```
 
 Suppression d’une stratégie définie sur une base de données :
