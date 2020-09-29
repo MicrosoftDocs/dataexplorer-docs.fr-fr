@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/06/2020
-ms.openlocfilehash: 8732edf3b2cb9600fcce1ed03097d893c6615528
-ms.sourcegitcommit: c2ab3176db4dd55ac9ca8eee52bbd24096d1277f
+ms.openlocfilehash: 3302e7cb94a2184be64664f3c3d8698b8bea7643
+ms.sourcegitcommit: 92b8057a36bd7daa16226f1526b29253bceb3602
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90740893"
+ms.lasthandoff: 09/28/2020
+ms.locfileid: "91402738"
 ---
 # <a name="create-a-table-in-azure-data-explorer-preview"></a>Créer une table cible dans Azure Data Explorer (préversion)
 
@@ -41,19 +41,19 @@ La fenêtre **Créer une table** s’ouvre avec l’onglet **Source** sélection
 1. Dans **Type de source**, sélectionnez la source de données que vous utiliserez pour créer votre mappage de table. Choisissez parmi les options suivantes : **À partir d’un blob**, **À partir d’un fichier** ou **À partir d’un container**.
    
     
-    * Si vous utilisez un **objet blob** :
+    * Si vous utilisez un **conteneur** :
         * Entrez l’URL de stockage de votre objet blob et entrez éventuellement la taille de l’échantillon. 
         * Filtrez vos fichiers à l’aide des **filtres de fichiers**. 
         * Sélectionnez un fichier qui sera utilisé à l’étape suivante pour définir le schéma.
 
-        :::image type="content" source="media/one-click-table/blob.png" alt-text="Créer une table à l’aide d’un objet blob pour créer une mise en correspondance du schéma":::
+        :::image type="content" source="media/one-click-table/storage.png" alt-text="Créer une table à l’aide d’un objet blob pour créer une mise en correspondance du schéma":::
     
     * Si vous utilisez un **fichier local** :
         * Sélectionnez **Parcourir** pour localiser le fichier ou faites glisser ce dernier dans le champ.
 
         :::image type="content" source="./media/one-click-table/data-from-file.png" alt-text="Créer une table basée sur les données d’un fichier local":::
 
-    * Si vous utilisez un **conteneur** :
+    * Si vous utilisez un **objet blob** :
         * Dans le champ **Lien vers le stockage**, ajoutez l’[URL SAS](/azure/vs-azure-tools-storage-explorer-blobs#get-the-sas-for-a-blob-container) du conteneur, puis entrez éventuellement la taille de l’échantillon. 
 
 1. Sélectionnez **Modifier le schéma** pour accéder à l’onglet **Schéma**.
