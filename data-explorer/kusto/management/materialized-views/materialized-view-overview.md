@@ -8,12 +8,12 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/30/2020
-ms.openlocfilehash: 77c86708a20349f5864bd10fa298719dce0fbab9
-ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
+ms.openlocfilehash: f19104111d8db615c82eff2e399fb4857f27c841
+ms.sourcegitcommit: 463ee13337ed6d6b4f21eaf93cf58885d04bccaa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/29/2020
-ms.locfileid: "91452797"
+ms.lasthandoff: 09/30/2020
+ms.locfileid: "91572157"
 ---
 # <a name="materialized-views-preview"></a>Vues matérialisées (préversion)
 
@@ -47,6 +47,8 @@ Voici quelques scénarios courants qui peuvent être traités à l’aide d’un
 * Dédupliquer les enregistrements d’une table à l’aide de [Any () (fonction d’agrégation)](../../query/any-aggfunction.md).
 * Réduisez la résolution des données en calculant des statistiques périodiques sur les données brutes. Utilisez différentes [fonctions d’agrégation](materialized-view-create.md#supported-aggregation-functions) par période de temps.
     * Par exemple, utilisez `T | summarize dcount(User) by bin(Timestamp, 1d)` pour conserver un instantané à jour d’utilisateurs distincts par jour.
+
+Pour obtenir des exemples de tous les cas d’usage, consultez [commande de création de vue matérialisée](materialized-view-create.md#examples).
 
 ## <a name="how-materialized-views-work"></a>Fonctionnement des vues matérialisées
 

@@ -8,12 +8,12 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/30/2020
-ms.openlocfilehash: 354908df7ab0e65c8d4110dbff3a45a876b748a0
-ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
+ms.openlocfilehash: f67b2d61cfed297886447a97dd178dfb578a2c68
+ms.sourcegitcommit: 463ee13337ed6d6b4f21eaf93cf58885d04bccaa
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/29/2020
-ms.locfileid: "91452746"
+ms.lasthandoff: 09/30/2020
+ms.locfileid: "91572141"
 ---
 # <a name="create-materialized-view"></a>.create materialized-view
 
@@ -36,7 +36,7 @@ Il existe deux façons de créer une vue matérialisée, notée par l’option d
 
 L’opération de création requiert des autorisations d' [administrateur de base de données](../access-control/role-based-authorization.md) . Le créateur de la vue matérialisée en devient l’administrateur.
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>Syntaxe
 
 `.create` [`async`] `materialized-view` <br>
 [ `with` `(` *PropertyName* `=` *PropertyValue* `,` ... `)` ] <br>
@@ -83,7 +83,7 @@ Les éléments suivants sont pris en charge dans la `with(propertyName=propertyV
 |Propriété|Type|Description |
 |----------------|-------|---|
 |expiration|bool|Indique si la vue doit être créée en fonction de tous les enregistrements actuellement dans *SourceTable* ( `true` ) ou si elle doit être créée « à partir de maintenant-on » ( `false` ). La valeur par défaut est `false`.| 
-|effectiveDateTime|DATETIME| S’il est spécifié avec `backfill=true` , la création de remplissages uniquement avec des enregistrements ingérés après la valeur DateTime. Le renvoi doit également avoir la valeur true. Attend un littéral DateTime, par exemple `effectiveDateTime=datetime(2019-05-01)`|
+|effectiveDateTime|datetime| S’il est spécifié avec `backfill=true` , la création de remplissages uniquement avec des enregistrements ingérés après la valeur DateTime. Le renvoi doit également avoir la valeur true. Attend un littéral DateTime, par exemple `effectiveDateTime=datetime(2019-05-01)`|
 |dimensionTables|Array|Liste de tables de dimension séparées par des virgules dans la vue. Voir l' [argument de requête](#query-argument)
 |autoUpdateSchema|bool|Indique s’il faut mettre à jour automatiquement la vue sur les modifications de la table source. La valeur par défaut est `false`. Cette option est valide uniquement pour les vues de type `arg_max(Timestamp, *)`  /  `arg_min(Timestamp, *)`  /  `any(*)` (uniquement lorsque l’argument Columns est `*` ). Si cette option a la valeur true, les modifications apportées à la table source sont automatiquement reflétées dans la vue matérialisée.
 |dossier|string|Dossier de la vue matérialisée.|
@@ -99,7 +99,7 @@ Les éléments suivants sont pris en charge dans la `with(propertyName=propertyV
 
 ## <a name="examples"></a>Exemples
 
-1. Créez un affichage vide qui matérialise uniquement les enregistrements qui sont ingérés à partir de maintenant : 
+1. Créez une vue de arg_max vide qui matérialise uniquement les enregistrements ingérés à partir de maintenant :
 
     <!-- csl -->
     ```
@@ -109,7 +109,7 @@ Les éléments suivants sont pris en charge dans la `with(propertyName=propertyV
     }
     ```
     
-1. Créer une vue matérialisée avec l’option de renvoi, à l’aide de `async` :
+1. Créer une vue matérialisée pour les agrégats quotidiens avec l’option de renvoi, à l’aide de `async` :
 
     <!-- csl -->
     ```
@@ -132,7 +132,17 @@ Les éléments suivants sont pris en charge dans la `with(propertyName=propertyV
         | summarize count(), dcount(User), max(Duration) by Customer, Day
     } 
     ```
-    
+1. Vue matérialisée qui déduplique la table source, en fonction de la colonne EventId :
+
+    <!-- csl -->
+    ```
+    .create materialized-view DedupedT on table T
+    {
+        T
+        | summarize any(*) by EventId
+    }
+    ```
+
 1. La définition peut inclure des opérateurs supplémentaires avant l' `summarize` instruction, tant que `summarize` est le dernier :
 
     <!-- csl -->
@@ -146,7 +156,7 @@ Les éléments suivants sont pris en charge dans la `with(propertyName=propertyV
         | summarize count(), dcount(User), max(Duration) by Customer, Api, Month
     }
     ```
-    
+
 1. Vues matérialisées qui se joignent à une table de dimension :
 
     <!-- csl -->
@@ -273,7 +283,7 @@ Annulez le processus de création d’une vue matérialisée lors de l’utilisa
 
 Le processus de création ne peut pas être abandonné immédiatement. La commande Cancel signale que la matérialisation est arrêtée et que la création vérifie régulièrement si l’annulation a été demandée. La commande Cancel attend une période maximale de 10 minutes jusqu’à ce que le processus de création de la vue matérialisée soit annulé et resignale si l’annulation a réussi. Même si l’annulation n’a pas réussi dans les 10 minutes, et que la commande Cancel signale un échec, la vue matérialisée s’abandonnera probablement plus tard dans le processus de création. La commande [. Show Operations](../operations.md#show-operations) indique si l’opération a été annulée. La `cancel operation` commande est uniquement prise en charge pour l’annulation de la création de vues matérialisées, et non pour l’annulation d’autres opérations.
 
-### <a name="syntax"></a>Syntax
+### <a name="syntax"></a>Syntaxe
 
 `.cancel` `operation` *operationId*
 
@@ -289,7 +299,7 @@ Le processus de création ne peut pas être abandonné immédiatement. La comman
 |---|---|---
 |OperationId|Guid|ID d’opération de la commande créer une vue matérialisée.
 |Opération|String|Type d’opération.
-|StartedOn|DATETIME|Heure de début de l’opération de création.
+|StartedOn|datetime|Heure de début de l’opération de création.
 |CancellationState|string|Un de- `Cancelled successfully` (la création a été annulée), ( `Cancellation failed` attente de l’annulation expirée), `Unknown` (la création de la vue n’est plus exécutée, mais n’a pas été annulée par cette opération).
 |ReasonPhrase|string|Raison pour laquelle l’annulation n’a pas réussi.
 
