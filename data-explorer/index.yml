@@ -9,12 +9,12 @@ metadata:
   author: orspod
   ms.author: orspodek
   ms.date: 03/19/2020
-  ms.openlocfilehash: e9e434423919643e75dd7c90c60ae3c90072283f
-  ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+  ms.openlocfilehash: 19fee896eb9e3d6dd857b8c85bd7962b820ff3b3
+  ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
   ms.translationtype: HT
   ms.contentlocale: fr-FR
-  ms.lasthandoff: 07/01/2020
-  ms.locfileid: "85763906"
+  ms.lasthandoff: 09/29/2020
+  ms.locfileid: "91452695"
 landingContent:
 - title: À propos d’Azure Data Explorer
   linkLists:
@@ -22,6 +22,10 @@ landingContent:
     links:
     - text: Qu’est-ce que l’Explorateur de données Azure ?
       url: data-explorer-overview.md
+  - linkListType: whats-new
+    links:
+    - text: Pour découvrir les nouveautés d’Azure Data Explorer, assistez à notre événement en ligne le 14 octobre 2020
+      url: https://azuredataexplorer.events.idloom.com/azure-data-explorer-online-event
   - linkListType: video
     links:
     - text: Qu’est-ce que l’Explorateur de données Azure ? (19:47)
