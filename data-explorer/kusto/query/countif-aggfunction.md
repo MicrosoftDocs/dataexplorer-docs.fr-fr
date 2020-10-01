@@ -8,20 +8,16 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/02/2020
-ms.openlocfilehash: 669978d8828f54926a8535f199ef7a9bc2ba7451
-ms.sourcegitcommit: d9fbcd6c9787f90de62e8e832c92d43b8090cbfc
+ms.openlocfilehash: 9e81b4947f3a3a0b1102256cb7fd2f635ce4611b
+ms.sourcegitcommit: 1618cbad18f92cf0cda85cb79a5cc1aa789a2db7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87515768"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91614971"
 ---
 # <a name="countif-aggregation-function"></a>NB.si () (fonction d’agrégation)
 
-Retourne le nombre de lignes pour lesquelles *Predicate* a la valeur `true`.
-
-* Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
-
-Voir également la fonction [Count ()](count-aggfunction.md) , qui compte les lignes sans expression de prédicat.
+Retourne le nombre de lignes pour lesquelles *Predicate* a la valeur `true`. Ne peut être utilisé que dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md).
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -31,11 +27,11 @@ synthétiser le `countif(` *prédicat*`)`
 
 *Predicate*: expression qui sera utilisée pour le calcul de l’agrégation. Le *prédicat* peut être n’importe quelle expression scalaire avec le type de retour bool (évaluation à true/false).
 
-## <a name="returns"></a>Retours
+## <a name="returns"></a>retourne :
 
 Retourne le nombre de lignes pour lesquelles *Predicate* a la valeur `true`.
 
-## <a name="example"></a>Exemple
+## <a name="example"></a> Exemple
 
 ```kusto
 let T = datatable(name:string, day_of_birth:long)
@@ -53,3 +49,6 @@ T
 |----|
 |2|
 
+## <a name="see-also"></a>Voir aussi
+
+fonction [Count ()](count-aggfunction.md) , qui compte les lignes sans expression de prédicat.
