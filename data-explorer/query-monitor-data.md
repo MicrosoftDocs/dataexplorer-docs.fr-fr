@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 01/28/2020
-ms.openlocfilehash: 078737ff7e5cd74d15792cc2f0f058cb3ea12a19
-ms.sourcegitcommit: e0cf581d433bbbb2eda5a4209a8eabcdae80c21b
+ms.openlocfilehash: b8de71ffcda28a7baa0f8452e501c7485e861122
+ms.sourcegitcommit: 5aba5f694420ade57ef24b96699d9b026cdae582
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90059489"
+ms.lasthandoff: 09/22/2020
+ms.locfileid: "90999008"
 ---
 # <a name="query-data-in-azure-monitor-using-azure-data-explorer-preview"></a>Interroger des données dans Azure Monitor avec Azure Data Explorer (préversion)
 
@@ -95,6 +95,20 @@ union <ADX table>, cluster(CL1).database(<workspace-name>).<table name>
    [ ![Requête croisée à partir du proxy Azure Data Explorer](media/adx-proxy/cross-query-adx-proxy.png)](media/adx-proxy/cross-query-adx-proxy.png#lightbox)
 
 L’utilisation de l’[`join`opérateur](kusto/query/joinoperator.md), au lieu de l’union, peut nécessiter un [`hint`](kusto/query/joinoperator.md#join-hints) pour l’exécuter sur un cluster natif Azure Data Explorer (et non sur le proxy). 
+
+### <a name="join-data-from-an-adx-cluster-in-one-tenant-with-an-azure-monitor-resource-in-another"></a>Joindre les données d’un cluster ADX d’un locataire avec une ressource Azure Monitor à un autre
+
+Les requêtes interlocataires ne sont pas prises en charge par le proxy ADX. Vous êtes connecté à un seul locataire pour exécuter la requête qui couvre les deux ressources.
+
+Si la ressource Azure Data Explorer est dans le locataire « A » et que l’espace de travail LA est dans le locataire « B », utilisez l’une des deux méthodes suivantes :
+
+1. Azure Data Explorer vous permet d’ajouter des rôles pour les principaux dans différents locataires. Ajoutez votre ID d’utilisateur dans le locataire « B » en tant qu’utilisateur autorisé sur le cluster Azure Data Explorer. Validez la propriété *'ExternalTrustedTenant'* sur le cluster Azure Data Explorer qui contient le locataire « B ». Exécutez la requête croisée intégralement dans le locataire « B ». 
+
+2. Utilisez [Lighthouse](https://docs.microsoft.com/azure/lighthouse/) pour projeter la ressource Azure Monitor dans le locataire « A ».
+
+### <a name="connect-to-azure-data-explorer-clusters-from-different-tenants"></a>Se connecter à des clusters Azure Data Explorer à partir de différents locataires
+
+Kusto Explorer vous connecte automatiquement au locataire auquel le compte d’utilisateur appartient à l’origine. Pour accéder aux ressources d’autres locataires avec le même compte d’utilisateur, le `tenantId` doit être spécifié explicitement dans la chaîne de connexion : `Data Source=https://ade.applicationinsights.io/subscriptions/SubscriptionId/resourcegroups/ResourceGroupName;Initial Catalog=NetDefaultDB;AAD Federated Security=True;Authority ID=\*\*TenantId**`
 
 ## <a name="function-supportability"></a>Prise en charge des fonctions
 

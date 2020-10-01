@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/19/2020
 ms.custom: contperfq1
-ms.openlocfilehash: d12e1d2382c3d7fe9a980b2b777a02205d28e5de
-ms.sourcegitcommit: 97404e9ed4a28cd497d2acbde07d00149836d026
+ms.openlocfilehash: e2adf84e869638d6019b149af7623e12a64930d8
+ms.sourcegitcommit: 21dee76964bf284ad7c2505a7b0b6896bca182cc
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/21/2020
-ms.locfileid: "90832550"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91056966"
 ---
 # <a name="monitor-azure-data-explorer-performance-health-and-usage-with-metrics"></a>Superviser les performances, l’intégrité et l’utilisation d’Azure Data Explorer avec des métriques
 
@@ -59,6 +59,7 @@ Les types de métriques sont les suivants :
 * [Métriques d’ingestion](#ingestion-metrics) 
 * [Métriques d’ingestion de streaming](#streaming-ingest-metrics)
 * [Métriques de requête](#query-metrics) 
+* [Métriques de vue matérialisée](#materialized-view-metrics)
 
 Pour obtenir la liste alphabétique des métriques d’Azure Monitor pour Azure Data Explorer, consultez [Métriques de cluster Azure Data Explorer prises en charge](/azure/azure-monitor/platform/metrics-supported#microsoftkustoclusters).
 
@@ -124,6 +125,17 @@ Les métriques de performances des requêtes effectuent le suivi de la durée de
 | Durée de la requête | Millisecondes | Moy, Min, Max, Somme | Durée totale jusqu’à réception des résultats de requête (n’inclut pas la latence du réseau). | QueryStatus |
 | Nombre total de demandes simultanées | Count | Moy, Max, Min, Somme | Nombre de requêtes exécutées en parallèle dans le cluster. Cette métrique est un bon moyen d’estimer la charge sur le cluster. | None |
 | Nombre total de demandes limitées | Count | Moy, Max, Min, Somme | Nombre de requêtes limitées (rejetées) dans le cluster. Le nombre maximal de requêtes simultanées (parallèles) autorisées est défini dans la stratégie de requête simultanée. | None |
+
+## <a name="materialized-view-metrics"></a>Métriques de vue matérialisée
+
+|**Mesure** | **Unité** | **Agrégation** | **Description de la métrique** | **Dimensions** |
+|---|---|---|---|---|
+|MaterializedViewHealth                    | 1, 0    | Avg     |  La valeur est 1 si la vue est considérée comme saine, sinon 0. | Base de données, MaterializedViewName |
+|MaterializedViewAgeMinutes                | Minutes | Avg     | L’`age` de la vue est défini par l’heure actuelle moins la dernière heure d’ingestion traitée par la vue. La valeur de la métrique est l’heure en minutes (plus la valeur est basse, plus la vue est « saine »). | Base de données, MaterializedViewName |
+|MaterializedViewResult                    | 1       | Avg     | La métrique comprend une dimension `Result` indiquant le résultat du dernier cycle de matérialisation (voir les valeurs possibles ci-dessous). La valeur de la métrique est toujours égale à 1. | Base de données, MaterializedViewName, Résultat |
+|MaterializedViewRecordsInDelta            | Nombre d’enregistrements | Avg | Nombre d’enregistrements actuellement dans la partie non traitée de la table source. Pour plus d’informations, découvrez [comment fonctionnent les vues matérialisées](./kusto/management/materialized-views/materialized-view-overview.md#how-materialized-views-work)| Base de données, MaterializedViewName |
+|MaterializedViewExtentsRebuild            | Nombre d’étendues | Avg | Nombre d’étendues recréées dans le cycle de matérialisation. | Base de données, MaterializedViewName|
+|MaterializedViewDataLoss                  | 1       | Max    | La métrique est déclenchée lorsque les données sources non traitées s’approchent de la conservation. | Base de données, MaterializedViewName, Genre |
 
 ## <a name="next-steps"></a>Étapes suivantes
 
