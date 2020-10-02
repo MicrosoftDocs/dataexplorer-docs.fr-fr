@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 9c969cafbf2ec38d9d192cf28c7b1e5599f58631
-ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
+ms.openlocfilehash: 15720109ffa49eb89b2595d2de3105c15749960d
+ms.sourcegitcommit: 58faa053eb003192db01df034cd6f5067ecc31bd
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/25/2020
-ms.locfileid: "88793428"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91625446"
 ---
 # <a name="dcount_intersect-plugin"></a>dcount_intersect, plug-in
 
@@ -38,7 +38,7 @@ T | evaluate dcount_intersect(hll_1, hll_2, hll_3)
 * *T*: expression tabulaire d’entrée.
 * *hll_i*: valeurs de Set S<sub>i</sub> calculées à l’aide de la [`hll()`](./hll-aggfunction.md) fonction.
 
-## <a name="returns"></a>Retours
+## <a name="returns"></a>retourne :
 
 Retourne une table avec N `dcount` valeurs (par colonne, représentant les intersections de jeu).
 Les noms de colonnes sont S0, S1,... (jusqu’à n-1).
