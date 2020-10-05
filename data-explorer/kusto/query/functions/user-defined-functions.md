@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: f1d77e91ba625b3f38c4b1fde31a841377bb88a5
-ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
+ms.openlocfilehash: 769ebc16da0780f1d1832dcbf49bad516c47abd3
+ms.sourcegitcommit: 2764e739b4ad51398f4f0d3a9742d7168c4f5fd7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88610516"
+ms.lasthandoff: 10/05/2020
+ms.locfileid: "91712015"
 ---
 # <a name="user-defined-functions"></a>Fonctions définies par l’utilisateur
 
@@ -279,10 +279,10 @@ union T*
 
 ## <a name="restrictions"></a>Restrictions
 
-Les restrictions suivantes s’appliquent :
+Les restrictions suivantes s’appliquent :
 
 * Les fonctions définies par l’utilisateur ne peuvent pas passer dans les informations d’appel [toscalar ()](../toscalarfunction.md) qui dépendent du contexte de ligne dans lequel la fonction est appelée.
-* Fonctions définies par l’utilisateur qui retournent une expression tabulaire can’tbe appelée avec un argument qui varie selon le contexte de ligne.
+* Les fonctions définies par l’utilisateur qui retournent une expression tabulaire ne peuvent pas être appelées avec un argument qui varie en fonction du contexte de ligne.
 * Une fonction acceptant au moins une entrée tabulaire ne peut pas être appelée sur un cluster distant.
 * Une fonction scalaire ne peut pas être appelée sur un cluster distant.
 

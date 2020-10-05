@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/27/2020
-ms.openlocfilehash: eb974793875fd5f797fe1a1b801598abdc60e354
-ms.sourcegitcommit: 454b9bf6449449fc3382ff5794894502f920795a
+ms.openlocfilehash: 3a6897bc7acce8cf216c0f21cd46251c2f033d6c
+ms.sourcegitcommit: 2764e739b4ad51398f4f0d3a9742d7168c4f5fd7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/29/2020
-ms.locfileid: "91517614"
+ms.lasthandoff: 10/05/2020
+ms.locfileid: "91712134"
 ---
 # <a name="scalar-function-types"></a>Types de fonction scalaire
 
@@ -36,7 +36,7 @@ ms.locfileid: "91517614"
 |[tobool()](toboolfunction.md)|Convertit l’entrée en représentation booléenne (8 bits signée).|
 |[todatetime()](todatetimefunction.md)|Convertit l’entrée en valeur scalaire DateTime.|
 |[ToDouble ()/TOREAL ()](todoublefunction.md)|Convertit l’entrée en une valeur de type Real. (ToDouble () et TOREAL () sont des synonymes.)|
-|[ToString ()](tostringfunction.md)|Convertit l’entrée en une représentation sous forme de chaîne.|
+|[tostring()](tostringfunction.md)|Convertit l’entrée en une représentation sous forme de chaîne.|
 |[totimespan()](totimespanfunction.md)|Convertit l’entrée en scalaire TimeSpan.|
 
 ## <a name="datetimetimespan-functions"></a>Fonctions DateTime/TimeSpan
@@ -44,12 +44,12 @@ ms.locfileid: "91517614"
 |Nom de fonction     |Description                                          |
 |-------------------------|--------------------------------------------------------|
 |[ago()](agofunction.md)|Soustrait l’intervalle de temps donné de l’heure UTC actuelle.|
-|[datetime_add ()](datetime-addfunction.md)|Calcule une nouvelle valeur DateTime à partir d’une partie de date spécifiée, multipliée par une quantité spécifiée, ajoutée à une valeur DateTime spécifiée.|
-|[datetime_part ()](datetime-partfunction.md)|Extrait la partie de date demandée sous la forme d’une valeur entière.|
-|[datetime_diff ()](datetime-difffunction.md)|Retourne la fin de l’année contenant la date, décalée d’un décalage, si elle est fournie.|
+|[datetime_add()](datetime-addfunction.md)|Calcule une nouvelle valeur DateTime à partir d’une partie de date spécifiée, multipliée par une quantité spécifiée, ajoutée à une valeur DateTime spécifiée.|
+|[datetime_part()](datetime-partfunction.md)|Extrait la partie de date demandée sous la forme d’une valeur entière.|
+|[datetime_diff()](datetime-difffunction.md)|Retourne la fin de l’année contenant la date, décalée d’un décalage, si elle est fournie.|
 |[dayofmonth()](dayofmonthfunction.md)|Retourne le nombre entier représentant le nombre de jours du mois donné.|
 |[dayofweek()](dayofweekfunction.md)|Retourne le nombre entier de jours depuis le dimanche précédent, sous la forme d’un intervalle de temps.|
-|[DayOfYear ()](dayofyearfunction.md)|Retourne le nombre entier représente le nombre de jours de l’année donnée.|
+|[dayofyear()](dayofyearfunction.md)|Retourne le nombre entier représente le nombre de jours de l’année donnée.|
 |[endofday()](endofdayfunction.md)|Retourne la fin de la journée contenant la date, décalée d’un décalage, si elle est fournie.|
 |[endofmonth()](endofmonthfunction.md)|Retourne la fin du mois contenant la date, décalée d’un décalage, si elle est fournie.|
 |[endofweek()](endofweekfunction.md)|Retourne la fin de la semaine contenant la date, décalée d’un décalage, si elle est fournie.|
@@ -80,13 +80,19 @@ ms.locfileid: "91517614"
 
 |Nom de fonction     |Description                                          |
 |-------------------------|--------------------------------------------------------|
-|[array_concat ()](arrayconcatfunction.md)|Concatène un certain nombre de tableaux dynamiques en un seul tableau.|
+|[array_concat()](arrayconcatfunction.md)|Concatène un certain nombre de tableaux dynamiques en un seul tableau.|
 |[array_iif()](arrayifffunction.md)|Applique la fonction IIF au niveau des éléments sur les tableaux.|
 |[array_index_of()](arrayindexoffunction.md)|Recherche l’élément spécifié dans le tableau et retourne sa position.|
-|[array_length ()](arraylengthfunction.md)|Calcule le nombre d’éléments dans un tableau dynamique.|
-|[array_slice ()](arrayslicefunction.md)|Extrait un segment d’un tableau dynamique.|
+|[array_length()](arraylengthfunction.md)|Calcule le nombre d’éléments dans un tableau dynamique.|
+|[array_rotate_left()](array_rotate_leftfunction.md)|Fait pivoter les valeurs à l’intérieur d’un tableau dynamique vers la gauche.|
+|[array_rotate_right()](array_rotate_rightfunction.md)|Fait pivoter les valeurs à l’intérieur d’un tableau dynamique vers la droite.|
+|[array_shift_left()](array_shift_leftfunction.md)|Déplace les valeurs à l’intérieur d’un tableau dynamique vers la gauche.|
+|[array_shift_right()](array_shift_rightfunction.md)|Déplace les valeurs à l’intérieur d’un tableau dynamique vers la droite.|
+|[array_slice()](arrayslicefunction.md)|Extrait un segment d’un tableau dynamique.|
 |[array_split()](arraysplitfunction.md)|Génère un tableau de tableaux fractionnés à partir du tableau d’entrée.|
 |[bag_keys()](bagkeysfunction.md)|Énumère toutes les clés racines dans un objet de jeu de propriétés dynamique.|
+|[bag_merge()](bag-merge-function.md)|Fusionne des conteneurs de propriétés dynamiques dans un conteneur de propriétés dynamique avec toutes les propriétés fusionnées.|
+|[bag_remove_keys ()](bag-remove-keys-function.md)|Supprime les clés et les valeurs associées d’un conteneur de propriétés dynamique.|
 |[pack()](packfunction.md)|Crée un objet dynamique (jeu de propriétés) à partir d’une liste de noms et de valeurs.|
 |[pack_all()](packallfunction.md)|Crée un objet dynamique (jeu de propriétés) à partir de toutes les colonnes de l’expression tabulaire.|
 |[pack_array()](packarrayfunction.md)|Compresse toutes les valeurs d’entrée dans un tableau dynamique.|
@@ -102,10 +108,10 @@ ms.locfileid: "91517614"
 
 |Nom de fonction     |Description                                          |
 |-------------------------|--------------------------------------------------------|
-|[suivant ()](nextfunction.md)|Pour l’ensemble de lignes sérialisé, retourne une valeur d’une colonne spécifiée à partir de la ligne ultérieure en fonction de l’offset.|
+|[next()](nextfunction.md)|Pour l’ensemble de lignes sérialisé, retourne une valeur d’une colonne spécifiée à partir de la ligne ultérieure en fonction de l’offset.|
 |[prev()](prevfunction.md)|Pour l’ensemble de lignes sérialisé, retourne une valeur d’une colonne spécifiée à partir de la ligne précédente en fonction de l’offset.|
 |[row_cumsum()](rowcumsumfunction.md)|Calcule la somme cumulée d’une colonne.|
-|[row_number ()](rownumberfunction.md)|Retourne le nombre d’une ligne dans le jeu de lignes sérialisées, nombres consécutifs à partir d’un index donné ou à partir de 1 par défaut.|
+|[row_number()](rownumberfunction.md)|Retourne le nombre d’une ligne dans le jeu de lignes sérialisées, nombres consécutifs à partir d’un index donné ou à partir de 1 par défaut.|
 
 ## <a name="flow-control-functions"></a>Fonctions de contrôle de Flow
 
@@ -118,38 +124,38 @@ ms.locfileid: "91517614"
 |Nom de fonction     |Description                                          |
 |-------------------------|--------------------------------------------------------|
 |[ABS ()](abs-function.md)|Calcule la valeur absolue de l’entrée.|
-|[ACOS ()](acosfunction.md)|Retourne l’angle dont le cosinus est le nombre spécifié (l’opération inverse de COS ()).|
-|[ASIN ()](asinfunction.md)|Retourne l’angle dont le sinus est le nombre spécifié (l’opération inverse de Sin ()).|
-|[ATAN ()](atanfunction.md)|Retourne l’angle dont la tangente est le nombre spécifié (l’opération inverse de Tan ()).|
+|[acos()](acosfunction.md)|Retourne l’angle dont le cosinus est le nombre spécifié (l’opération inverse de COS ()).|
+|[asin()](asinfunction.md)|Retourne l’angle dont le sinus est le nombre spécifié (l’opération inverse de Sin ()).|
+|[atan()](atanfunction.md)|Retourne l’angle dont la tangente est le nombre spécifié (l’opération inverse de Tan ()).|
 |[atan2()](atan2function.md)|Calcule l’angle, en radians, entre l’axe des abscisses positif et le rayon depuis l’origine jusqu’au point (y, x).|
 |[beta_cdf()](beta-cdffunction.md)|Retourne la fonction de distribution bêta cumulative standard.|
 |[beta_inv()](beta-invfunction.md)|Retourne l’inverse de la fonction de densité bêta cumulative de probabilité bêta.|
 |[beta_pdf()](beta-pdffunction.md)|Retourne la fonction de densité de probabilité bêta.|
-|[COS ()](cosfunction.md)|Retourne la fonction cosinus.|
-|[Cot ()](cotfunction.md)|Calcule la cotangente trigonométrique de l’angle spécifié, en radians.|
-|[degrés ()](degreesfunction.md)|Convertit la valeur d’angle en radians en valeur en degrés, à l’aide de la formule degrés = (180/PI) * angle-in-radians.|
-|[exp ()](exp-function.md)|Fonction exponentielle base-e de x, qui est e élevée à la puissance x : e ^ x.|
+|[cos()](cosfunction.md)|Retourne la fonction cosinus.|
+|[cot()](cotfunction.md)|Calcule la cotangente trigonométrique de l’angle spécifié, en radians.|
+|[degrees()](degreesfunction.md)|Convertit la valeur d’angle en radians en valeur en degrés, à l’aide de la formule degrés = (180/PI) * angle-in-radians.|
+|[exp()](exp-function.md)|Fonction exponentielle base-e de x, qui est e élevée à la puissance x : e ^ x.|
 |[exp10()](exp10-function.md)|Fonction exponentielle en base 10 de x, qui est 10 élevée à la puissance x : 10 ^ x.|
 |[exp2()](exp2-function.md)|Fonction exponentielle en base 2 de x, qui est 2 élevée à la puissance x : 2 ^ x.|
 |[gamma()](gammafunction.md)|Calcule la fonction gamma.|
 |[isfinite()](isfinitefunction.md)|Retourne une valeur indiquant si l’entrée est une valeur finie (n’est pas infinie ou NaN).|
 |[isinf()](isinffunction.md)|Retourne une valeur indiquant si l’entrée est une valeur infinie (positive ou négative).|
 |[isnan()](isnanfunction.md)|Retourne une valeur indiquant si l’entrée n’est pas un nombre (NaN).|
-|[log ()](log-function.md)|Retourne la fonction de logarithme népérien.|
-|[log10 ()](log10-function.md)|Retourne la fonction de logarithme (base 10) courant.|
+|[log()](log-function.md)|Retourne la fonction de logarithme népérien.|
+|[log10()](log10-function.md)|Retourne la fonction de logarithme (base 10) courant.|
 |[log2()](log2-function.md)|Retourne la fonction de logarithme en base 2.|
 |[loggamma()](loggammafunction.md)|Calcule le journal de la valeur absolue de la fonction gamma.|
-|[Not ()](notfunction.md)|Inverse la valeur de son argument bool.|
-|[pi ()](pifunction.md)|Retourne la valeur constante de pi (π).|
+|[not()](notfunction.md)|Inverse la valeur de son argument bool.|
+|[pi()](pifunction.md)|Retourne la valeur constante de pi (π).|
 |[pow()](powfunction.md)|Retourne un résultat de l’élévation à Power.|
-|[radians ()](radiansfunction.md)|Convertit la valeur d’angle en degrés en radians, à l’aide de la formule radians = (PI/180) * angle-in-degrees.|
-|[Rand ()](randfunction.md)|Retourne un nombre aléatoire.|
-|[Plage ()](rangefunction.md)|Génère un tableau dynamique contenant une série de valeurs uniformément espacées.|
-|[Round ()](roundfunction.md)|Retourne la source arrondie à la précision spécifiée.|
-|[Sign ()](signfunction.md)|Signe d’une expression numérique.|
-|[Sin ()](sinfunction.md)|Retourne la fonction sinus.|
-|[sqrt ()](sqrtfunction.md)|Retourne la fonction racine carrée.|
-|[Tan ()](tanfunction.md)|Retourne la fonction tangente.|
+|[radians()](radiansfunction.md)|Convertit la valeur d’angle en degrés en radians, à l’aide de la formule radians = (PI/180) * angle-in-degrees.|
+|[rand()](randfunction.md)|Retourne un nombre aléatoire.|
+|[range()](rangefunction.md)|Génère un tableau dynamique contenant une série de valeurs uniformément espacées.|
+|[round()](roundfunction.md)|Retourne la source arrondie à la précision spécifiée.|
+|[sign()](signfunction.md)|Signe d’une expression numérique.|
+|[sin()](sinfunction.md)|Retourne la fonction sinus.|
+|[sqrt()](sqrtfunction.md)|Retourne la fonction racine carrée.|
+|[tan()](tanfunction.md)|Retourne la fonction tangente.|
 |[welch_test()](welch-testfunction.md)|Calcule la valeur p de la [fonction Welch-test](https://en.wikipedia.org/wiki/Welch%27s_t-test).|
 
 ## <a name="metadata-functions"></a>Fonctions de métadonnées
@@ -174,15 +180,15 @@ ms.locfileid: "91517614"
 |-------------------------|--------------------------------------------------------|
 |[bin()](binfunction.md)|Arrondit les valeurs à l’entier inférieur multiple d’une taille bin donnée.|
 |[bin_at()](binatfunction.md)|Arrondit les valeurs à un « chutier » de taille fixe, avec un contrôle sur le point de départ de l’emplacement. (Voir aussi fonction bin.)|
-|[plafond ()](ceilingfunction.md)|Calcule le plus petit entier supérieur ou égal à l’expression numérique spécifiée.|
-|[Floor ()](floorfunction.md)|Arrondit les valeurs à l’entier inférieur multiple d’une taille bin donnée.|
+|[ceiling()](ceilingfunction.md)|Calcule le plus petit entier supérieur ou égal à l’expression numérique spécifiée.|
+|[floor()](floorfunction.md)|Arrondit les valeurs à l’entier inférieur multiple d’une taille bin donnée.|
 
 ## <a name="conditional-functions"></a>Fonctions conditionnelles
 
 |Nom de fonction     |Description                                          |
 |-------------------------|--------------------------------------------------------|
 |[case()](casefunction.md)|Évalue une liste de prédicats et retourne la première expression de résultat dont le prédicat est respecté.|
-|[COALESCE ()](coalescefunction.md)|Évalue une liste d’expressions et retourne la première expression non null (ou non vide pour String).|
+|[coalesce()](coalescefunction.md)|Évalue une liste d’expressions et retourne la première expression non null (ou non vide pour String).|
 |[IIF ()/IFF ()](iiffunction.md)|Évalue le premier argument (le prédicat) et retourne la valeur du deuxième ou du troisième argument, selon que le prédicat est évalué à true (deuxième) ou false (troisième).|
 |[max_of()](max-offunction.md)|Retourne la valeur maximale de plusieurs expressions numériques évaluées.|
 |[min_of()](min-offunction.md)|Retourne la valeur minimale de plusieurs expressions numériques évaluées.|
@@ -237,14 +243,14 @@ ms.locfileid: "91517614"
 |[base64_decode_tostring()](base64_decode_tostringfunction.md)|Décode une chaîne base64 en une chaîne UTF-8.|
 |[base64_decode_toarray()](base64_decode_toarrayfunction.md)|Décode une chaîne base64 en un tableau de valeurs longues.|
 |[countof ()](countoffunction.md)|Compte les occurrences d’une sous-chaîne dans une chaîne. Les correspondances de chaînes brutes peuvent se chevaucher ; les correspondances Regex ne sont pas.|
-|[Extract ()](extractfunction.md)|Obtient une correspondance pour une expression régulière à partir d’une chaîne de texte.|
+|[extract()](extractfunction.md)|Obtient une correspondance pour une expression régulière à partir d’une chaîne de texte.|
 |[extract_all()](extractallfunction.md)|Obtenir toutes les correspondances pour une expression régulière à partir d’une chaîne de texte.|
 |[extractjson()](extractjsonfunction.md)|Obtient un élément spécifié à partir d’un texte JSON à l’aide d’une expression de chemin.|
-|[IndexOf ()](indexoffunction.md)|La fonction signale l’index de base zéro de la première occurrence d’une chaîne spécifiée dans la chaîne d’entrée.|
+|[indexof()](indexoffunction.md)|La fonction signale l’index de base zéro de la première occurrence d’une chaîne spécifiée dans la chaîne d’entrée.|
 |[isempty()](isemptyfunction.md)|Retourne la valeur true si l’argument est une chaîne vide ou a la valeur null.|
 |[isnotempty()](isnotemptyfunction.md)|Retourne la valeur true si l’argument n’est pas une chaîne vide ou une valeur null.|
 |[isnotnull()](isnotnullfunction.md)|Retourne la valeur true si l’argument n’a pas la valeur null.|
-|[IsNull ()](isnullfunction.md)|Évalue son argument unique et retourne une valeur booléenne indiquant si l’argument correspond à une valeur null.|
+|[isnull()](isnullfunction.md)|Évalue son argument unique et retourne une valeur booléenne indiquant si l’argument correspond à une valeur null.|
 |[parse_command_line()](parse-command-line.md)|Analyse une chaîne de ligne de commande Unicode et retourne un tableau des arguments de ligne de commande.|
 |[parse_csv()](parsecsvfunction.md)|Fractionne une chaîne donnée représentant des valeurs séparées par des virgules et retourne un tableau de chaînes avec ces valeurs.|
 |[parse_ipv4()](parse-ipv4function.md)|Convertit l’entrée en une représentation de nombre longue (signée 64 bits).|
@@ -255,17 +261,17 @@ ms.locfileid: "91517614"
 |[parse_url()](parseurlfunction.md)|Analyse une chaîne d’URL absolue et retourne un objet dynamique qui contient toutes les parties de l’URL.|
 |[parse_urlquery()](parseurlqueryfunction.md)|Analyse une chaîne de requête d’URL et retourne un objet dynamique contenant les paramètres de requête.|
 |[parse_version()](parse-versionfunction.md)|Convertit la représentation sous forme de chaîne d’entrée d’une version en nombre décimal comparable.|
-|[remplacer ()](replacefunction.md)|Remplace toutes les correspondances d’expression régulière par une autre chaîne.|
-|[inverse ()](reversefunction.md)|La fonction effectue l’inversion de la chaîne d’entrée.|
+|[replace()](replacefunction.md)|Remplace toutes les correspondances d’expression régulière par une autre chaîne.|
+|[reverse()](reversefunction.md)|La fonction effectue l’inversion de la chaîne d’entrée.|
 |[split()](splitfunction.md)|Fractionne une chaîne donnée en fonction d’un délimiteur donné et retourne un tableau de chaînes avec les sous-chaînes contenues.|
 |[strcat()](strcatfunction.md)|Concatène entre 1 et 64 arguments.|
 |[strcat_delim()](strcat-delimfunction.md)|Concatène entre 2 et 64 arguments, avec le délimiteur, fourni comme premier argument.|
 |[strcmp()](strcmpfunction.md)|Compare deux chaînes.|
 |[strlen()](strlenfunction.md)|Retourne la longueur, en caractères, de la chaîne d’entrée.|
 |[strrep()](strrepfunction.md)|Répète le nombre de fois spécifié pour la chaîne (valeur par défaut : 1).|
-|[Substring ()](substringfunction.md)|Extrait une sous-chaîne d’une chaîne source à partir d’un index jusqu’à la fin de la chaîne.|
+|[substring()](substringfunction.md)|Extrait une sous-chaîne d’une chaîne source à partir d’un index jusqu’à la fin de la chaîne.|
 |[toupper()](toupperfunction.md)|Convertit une chaîne en majuscules.|
-|[translate ()](translatefunction.md)|Remplace un jeu de caractères (« searchList ») par un autre jeu de caractères (« replacementList ») dans une chaîne donnée.|
+|[translate()](translatefunction.md)|Remplace un jeu de caractères (« searchList ») par un autre jeu de caractères (« replacementList ») dans une chaîne donnée.|
 |[Trim ()](trimfunction.md)|Supprime toutes les correspondances de début et de fin de l’expression régulière spécifiée.|
 |[trim_end()](trimendfunction.md)|Supprime la correspondance de fin de l’expression régulière spécifiée.|
 |[trim_start()](trimstartfunction.md)|Supprime la correspondance de début de l’expression régulière spécifiée.|
