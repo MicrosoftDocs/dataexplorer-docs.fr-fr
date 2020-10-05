@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/11/2019
-ms.openlocfilehash: 7d6e9cfac03e0169bd0bfae12a01ac685d265736
-ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
+ms.openlocfilehash: 267e2b4d5769efee87dd90b9a3265310998fcbd9
+ms.sourcegitcommit: 2764e739b4ad51398f4f0d3a9742d7168c4f5fd7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91102785"
+ms.lasthandoff: 10/05/2020
+ms.locfileid: "91712100"
 ---
 # <a name="array_rotate_right"></a>array_rotate_right()
 
-`array_rotate_right()` fait pivoter les valeurs à l’intérieur d’un tableau vers la droite.
+Fait pivoter les valeurs à l’intérieur `dynamic` d’un tableau vers la droite.
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -28,7 +28,7 @@ ms.locfileid: "91102785"
 * *arr*: tableau d’entrée à fractionner, doit être un tableau dynamique.
 * *rotate_count*: entier spécifiant le nombre de positions que les éléments de tableau feront pivoter vers la droite. Si la valeur est négative, les éléments sont pivotés vers la gauche.
 
-## <a name="returns"></a>retourne :
+## <a name="returns"></a>Retours
 
 Tableau dynamique contenant la même quantité d’éléments que dans le tableau d’origine, où chaque élément a été pivoté d’après *rotate_count*.
 
