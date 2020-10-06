@@ -7,19 +7,25 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/08/2020
-ms.openlocfilehash: 7be785a7a3a0abe0c1f6483e016484ee0124f29b
-ms.sourcegitcommit: 97404e9ed4a28cd497d2acbde07d00149836d026
+ms.openlocfilehash: eff9a5cd8ed2d9ed7e518be9aade9ecf2aded7bf
+ms.sourcegitcommit: d0f8d71261f8f01e7676abc77283f87fc450c7b1
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/21/2020
-ms.locfileid: "90832601"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91765476"
 ---
 # <a name="series_fit_poly_fl"></a>series_fit_poly_fl()
 
-La fonction `series_fit_poly_fl()` applique une régression polynomiale sur une série. Elle prend une table qui contient plusieurs séries (tableau numérique dynamique) et génère, pour chaque série, le polynôme à poids fort qui le contiendra le mieux à l’aide de la [régression polynomiale](https://en.wikipedia.org/wiki/Polynomial_regression). Cette fonction retourne à la fois les coefficients polynomiaux et le polynôme interpolé sur la plage de la série.
+La fonction `series_fit_poly_fl()` applique une régression polynomiale sur une série. Cette fonction prend une table contenant plusieurs séries (tableaux numériques dynamiques) et génère le plus grand degré polynomial pour chaque série à l’aide de la [régression polynomiale](https://en.wikipedia.org/wiki/Polynomial_regression). Cette fonction retourne à la fois les coefficients polynomiaux et le polynôme interpolé sur la plage de la série.
 
 > [!NOTE]
-> `series_fit_poly_fl()` est une [fonction définie par l’utilisateur (UDF)](../query/functions/user-defined-functions.md). Cette fonction contient python inline et nécessite l' [activation du plug-in Python ()](../query/pythonplugin.md#enable-the-plugin) sur le cluster. Pour plus d’informations, consultez [utilisation](#usage). Pour la régression linéaire d’une série espacée uniformément, telle qu’elle est créée par l' [opérateur make-Series](../query/make-seriesoperator.md), utilisez la fonction native [series_fit_line ()](../query/series-fit-linefunction.md).
+> Utilisez la fonction native [series_fit_poly ()](../query/series-fit-poly-function.md). La fonction ci-dessous est uniquement à des fins de référence.
+
+
+> [!NOTE]
+> * `series_fit_poly_fl()` est une [fonction définie par l’utilisateur (UDF)](../query/functions/user-defined-functions.md).
+> * Cette fonction contient python inline et nécessite l' [activation du plug-in Python ()](../query/pythonplugin.md#enable-the-plugin) sur le cluster. Pour plus d’informations, consultez [utilisation](#usage).
+> * Pour la régression linéaire d’une série espacée uniformément, telle qu’elle est créée par l' [opérateur make-Series](../query/make-seriesoperator.md), utilisez la fonction native [series_fit_line ()](../query/series-fit-linefunction.md).
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -31,7 +37,7 @@ La fonction `series_fit_poly_fl()` applique une régression polynomiale sur une 
 * *y_fit_series*: nom de la colonne dans laquelle stocker la série la mieux adaptée.
 * *fit_coeff*: nom de la colonne dans laquelle stocker les coefficients polynomiaux les mieux adaptés.
 * *degree*: ordre requis du polynôme à ajuster. Par exemple, 1 pour la régression linéaire, 2 pour la régression quadratique, et ainsi de suite.
-* *x_series*: nom de la colonne contenant la [variable indépendante](https://en.wikipedia.org/wiki/Dependent_and_independent_variables), autrement dit, l’axe x ou l’axe de temps. Ce paramètre est facultatif et n’est nécessaire que pour les [séries espacées](https://en.wikipedia.org/wiki/Unevenly_spaced_time_series)de manière inégale. La valeur par défaut est une chaîne vide, car x est redondant pour la régression d’une série espacée de manière égale.
+* *x_series*: nom de la colonne contenant la [variable indépendante](https://en.wikipedia.org/wiki/Dependent_and_independent_variables), autrement dit, l’axe x ou l’axe de temps. Ce paramètre est facultatif et n’est nécessaire que pour les [séries espacées](https://en.wikipedia.org/wiki/Unevenly_spaced_time_series)de manière inégale. La valeur par défaut est une chaîne vide, car x est redondant pour la régression d’une série uniformément espacée.
 * *x_istime*: ce paramètre booléen est facultatif. Ce paramètre est nécessaire uniquement si *x_series* est spécifié et qu’il s’agit d’un vecteur de DateTime.
 
 ## <a name="usage"></a>Usage
@@ -81,7 +87,7 @@ let series_fit_poly_fl=(tbl:(*), y_series:string, y_fit_series:string, fit_coeff
      | evaluate python(typeof(*), code, kwargs)
 };
 //
-// Fit 5th order polynomial to a regular (evenly spaced) time series, created with make-series
+// Fit fifth order polynomial to a regular (evenly spaced) time series, created with make-series
 //
 let max_t = datetime(2016-09-03);
 demo_make_series1
@@ -143,7 +149,7 @@ series_fit_poly_fl(tbl:(*), y_series:string, y_fit_series:string, fit_coeff:stri
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 //
-// Fit 5th order polynomial to a regular (evenly spaced) time series, created with make-series
+// Fit fifth order polynomial to a regular (evenly spaced) time series, created with make-series
 //
 let max_t = datetime(2016-09-03);
 demo_make_series1
@@ -155,7 +161,7 @@ demo_make_series1
 
 ---
 
-:::image type="content" source="images/series-fit-poly-fl/usage-example.png" alt-text="Graphique représentant 5e ordre polynomial pour une série chronologique régulière" border="false":::
+:::image type="content" source="images/series-fit-poly-fl/usage-example.png" alt-text="Graphique représentant le cinquième ordre polynomial pour une série chronologique régulière" border="false":::
 
 ## <a name="additional-examples"></a>Exemples supplémentaires
 
@@ -165,9 +171,6 @@ Les exemples suivants supposent que la fonction est déjà installée :
     
     <!-- csl: https://help.kusto.windows.net:443/Samples -->
     ```kusto
-    //
-    //  Test irregular (unevenly spaced) time series
-    //
     let max_t = datetime(2016-09-03);
     demo_make_series1
     | where TimeStamp between ((max_t-2d)..max_t)
@@ -180,20 +183,16 @@ Les exemples suivants supposent que la fonction est déjà installée :
     | render timechart with(ycolumns=num, fnum)
     ```
     
-    :::image type="content" source="images/series-fit-poly-fl/irregular-time-series.png" alt-text="Graphique présentant la valeur polynomiale 8 pour une série chronologique irrégulière" border="false":::
+    :::image type="content" source="images/series-fit-poly-fl/irregular-time-series.png" alt-text="Graphique représentant le cinquième ordre polynomial pour une série chronologique régulière" border="false":::
 
-1. 5e ordre polynomial avec bruit sur les axes x & y
+1. Cinquième ordre polynomial avec bruit sur les axes x & y
 
     <!-- csl: https://help.kusto.windows.net:443/Samples -->
     ```kusto
-    //
-    // 5th order polynomial with noise on x & y axes
-    //
     range x from 1 to 200 step 1
     | project x = rand()*5 - 2.3
     | extend y = pow(x, 5)-8*pow(x, 3)+10*x+6
     | extend y = y + (rand() - 0.5)*0.5*y
-    | order by x asc 
     | summarize x=make_list(x), y=make_list(y)
     | extend y_fit = dynamic(null), coeff=dynamic(null)
     | invoke series_fit_poly_fl('y', 'y_fit', 'coeff', 5, 'x')
@@ -201,6 +200,6 @@ Les exemples suivants supposent que la fonction est déjà installée :
     | render linechart
     ```
         
-    :::image type="content" source="images/series-fit-poly-fl/fifth-order-noise.png" alt-text="Graphique de la taille du cinquième ordre polynomial avec le bruit sur les axes x & y":::
+    :::image type="content" source="images/series-fit-poly-fl/fifth-order-noise.png" alt-text="Graphique représentant le cinquième ordre polynomial pour une série chronologique régulière":::
        
-    :::image type="content" source="images/series-fit-poly-fl/fifth-order-noise-table.png" alt-text="Coefficients de la 5e ordre polynomial avec le bruit" border="false":::
+    :::image type="content" source="images/series-fit-poly-fl/fifth-order-noise-table.png" alt-text="Graphique représentant le cinquième ordre polynomial pour une série chronologique régulière" border="false":::

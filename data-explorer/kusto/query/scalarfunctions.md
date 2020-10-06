@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/27/2020
-ms.openlocfilehash: 3a6897bc7acce8cf216c0f21cd46251c2f033d6c
-ms.sourcegitcommit: 2764e739b4ad51398f4f0d3a9742d7168c4f5fd7
+ms.openlocfilehash: 4e16e739048bc12a0a621e7fd98933b8e60073be
+ms.sourcegitcommit: d0f8d71261f8f01e7676abc77283f87fc450c7b1
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/05/2020
-ms.locfileid: "91712134"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91765435"
 ---
 # <a name="scalar-function-types"></a>Types de fonction scalaire
 
@@ -92,7 +92,7 @@ ms.locfileid: "91712134"
 |[array_split()](arraysplitfunction.md)|Génère un tableau de tableaux fractionnés à partir du tableau d’entrée.|
 |[bag_keys()](bagkeysfunction.md)|Énumère toutes les clés racines dans un objet de jeu de propriétés dynamique.|
 |[bag_merge()](bag-merge-function.md)|Fusionne des conteneurs de propriétés dynamiques dans un conteneur de propriétés dynamique avec toutes les propriétés fusionnées.|
-|[bag_remove_keys ()](bag-remove-keys-function.md)|Supprime les clés et les valeurs associées d’un conteneur de propriétés dynamique.|
+|[bag_remove_keys()](bag-remove-keys-function.md)|Supprime les clés et les valeurs associées d’un conteneur de propriétés dynamique.|
 |[pack()](packfunction.md)|Crée un objet dynamique (jeu de propriétés) à partir d’une liste de noms et de valeurs.|
 |[pack_all()](packallfunction.md)|Crée un objet dynamique (jeu de propriétés) à partir de toutes les colonnes de l’expression tabulaire.|
 |[pack_array()](packarrayfunction.md)|Compresse toutes les valeurs d’entrée dans un tableau dynamique.|
@@ -225,6 +225,7 @@ ms.locfileid: "91712134"
 |[series_fit_2lines_dynamic()](series-fit-2lines-dynamicfunction.md)|Applique deux segments de régression linéaire sur une série, en retournant un objet dynamique.|
 |[series_fit_line()](series-fit-linefunction.md)|Applique la régression linéaire sur une série, en retournant plusieurs colonnes.|
 |[series_fit_line_dynamic()](series-fit-line-dynamicfunction.md)|Applique la régression linéaire sur une série, en retournant un objet dynamique.|
+|[series_fit_poly ()](series-fit-poly-function.md)|Applique la régression polynomiale sur une série, en retournant plusieurs colonnes.|
 |[series_ifft()](series-ifft-function.md)|Applique la transformation de Fourier rapide inverse (IFFT) sur une série.|
 |[series_iir()](series-iirfunction.md)|Applique un filtre à réponse impulsionnelle infinie sur une série.|
 |[series_outliers()](series-outliersfunction.md)|Notation des points d’anomalies dans une série.|
@@ -272,7 +273,7 @@ ms.locfileid: "91712134"
 |[substring()](substringfunction.md)|Extrait une sous-chaîne d’une chaîne source à partir d’un index jusqu’à la fin de la chaîne.|
 |[toupper()](toupperfunction.md)|Convertit une chaîne en majuscules.|
 |[translate()](translatefunction.md)|Remplace un jeu de caractères (« searchList ») par un autre jeu de caractères (« replacementList ») dans une chaîne donnée.|
-|[Trim ()](trimfunction.md)|Supprime toutes les correspondances de début et de fin de l’expression régulière spécifiée.|
+|[trim()](trimfunction.md)|Supprime toutes les correspondances de début et de fin de l’expression régulière spécifiée.|
 |[trim_end()](trimendfunction.md)|Supprime la correspondance de fin de l’expression régulière spécifiée.|
 |[trim_start()](trimstartfunction.md)|Supprime la correspondance de début de l’expression régulière spécifiée.|
 |[url_decode()](urldecodefunction.md)|La fonction convertit l’URL encodée en une représentation d’URL régulière.|
