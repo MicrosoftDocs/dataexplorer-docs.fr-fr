@@ -1431,6 +1431,12 @@
                   href: ./kusto/management/partitioningpolicy.md
                 - name: Commande de stratégie de partitionnement
                   href: ./kusto/management/partitioning-policy.md
+            - name: Limitation des requêtes
+              items:
+                - name: Stratégie de limitation des requêtes
+                  href: ./kusto/management/query-throttling-policy.md
+                - name: Commandes d’une stratégie de limitation des requêtes
+                  href: ./kusto/management/query-throttling-policy-commands.md
             - name: Rétention
               items:
                 - name: Stratégie de rétention
