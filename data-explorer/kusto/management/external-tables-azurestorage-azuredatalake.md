@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 1db42577a0d4d10da732b54b0a5032ab2be11b69
-ms.sourcegitcommit: 91e7d49a1046575bbc63a4f25724656ebfc070db
+ms.openlocfilehash: c10e6502c4e18a5c30d971c4814c2270a0b27ff1
+ms.sourcegitcommit: 830837607f344f1ce1f146f946a41e45bfebcb22
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/30/2020
-ms.locfileid: "89151159"
+ms.lasthandoff: 10/07/2020
+ms.locfileid: "91806680"
 ---
 # <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Créer et modifier des tables externes dans Stockage Azure ou Azure Data Lake
 
@@ -279,6 +279,8 @@ où *MaxResults* est un paramètre facultatif, qui peut être défini pour limit
 | Paramètre de sortie | Type   | Description                       |
 |------------------|--------|-----------------------------------|
 | Uri              | string | URI du fichier de données de stockage externe |
+| Taille             | long   | Longueur du fichier en octets              |
+| Partition        | dynamique | Objet dynamique décrivant les partitions de fichiers pour une table externe partitionnée |
 
 > [!TIP]
 > L’itération sur tous les fichiers référencés par une table externe peut être relativement coûteuse, en fonction du nombre de fichiers. Veillez à utiliser le `limit` paramètre si vous souhaitez simplement voir des exemples d’URI.
@@ -291,9 +293,19 @@ où *MaxResults* est un paramètre facultatif, qui peut être défini pour limit
 
 **Output:**
 
-| Uri                                                                     |
-|-------------------------------------------------------------------------|
-| `https://storageaccount.blob.core.windows.net/container1/folder/file.csv` |
+| Uri                                                                     | Taille | Partition |
+|-------------------------------------------------------------------------| ---- | --------- |
+| `https://storageaccount.blob.core.windows.net/container1/folder/file.csv` | 10743 | `{}`   |
+
+
+Pour une table partitionnée, la `Partition` colonne contient des valeurs de partition extraites :
+
+**Output:**
+
+| Uri                                                                     | Taille | Partition |
+|-------------------------------------------------------------------------| ---- | --------- |
+| `https://storageaccount.blob.core.windows.net/container1/customer=john.doe/dt=20200101/file.csv` | 10743 | `{"Customer": "john.doe", "Date": "2020-01-01T00:00:00.0000000Z"}` |
+
 
 ## <a name="create-external-table-mapping"></a>. créer un mappage de table externe
 
@@ -309,7 +321,7 @@ Crée un nouveau mappage. Pour plus d’informations, consultez [mappages de don
 
 **Exemple de sortie**
 
-| Nom     | Type | Mappage                                                           |
+| Nom     | Kind | Mappage                                                           |
 |----------|------|-------------------------------------------------------------------|
 | mapping1 | JSON | [{"ColumnName" : "RowNumber", "Properties" : {"path" : "$. RowNumber"}}, {"ColumnName" : "rowguid", "Properties" : {"path" : "$. rowguid"}}] |
 
@@ -327,7 +339,7 @@ Modifie un mappage existant.
 
 **Exemple de sortie**
 
-| Nom     | Type | Mappage                                                                |
+| Nom     | Kind | Mappage                                                                |
 |----------|------|------------------------------------------------------------------------|
 | mapping1 | JSON | [{"ColumnName" : "RowNumber", "Properties" : {"path" : "$. RowNumber"}}, {"ColumnName" : "rowguid", "Properties" : {"path" : "$. rowguid"}}] |
 
@@ -349,7 +361,7 @@ Affichez les mappages (tout ou partie spécifiés par nom).
 
 **Exemple de sortie**
 
-| Nom     | Type | Mappage                                                                         |
+| Nom     | Kind | Mappage                                                                         |
 |----------|------|---------------------------------------------------------------------------------|
 | mapping1 | JSON | [{"ColumnName" : "RowNumber", "Properties" : {"path" : "$. RowNumber"}}, {"ColumnName" : "rowguid", "Properties" : {"path" : "$. rowguid"}}] |
 
