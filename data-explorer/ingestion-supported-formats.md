@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/19/2020
-ms.openlocfilehash: 89ee29e70c71c29afb65ee81fc4ce8e498faee33
-ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
+ms.openlocfilehash: 4f7e61755b12c84fc49373a12edc0b507aee9bf4
+ms.sourcegitcommit: 2764e739b4ad51398f4f0d3a9742d7168c4f5fd7
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/07/2020
-ms.locfileid: "89502634"
+ms.lasthandoff: 10/05/2020
+ms.locfileid: "91712049"
 ---
 # <a name="data-formats-supported-by-azure-data-explorer-for-ingestion"></a>Formats de données pris en charge par Azure Data Explorer pour l’ingestion
 
@@ -20,8 +20,8 @@ L’ingestion des données est le processus par lequel les données sont ajouté
 
 |Format   |Extension   |Description|
 |---------|------------|-----------|
-|Avro     |`.avro`     |[Fichier de conteneur Avro](https://avro.apache.org/docs/current/). Les codes suivants sont pris en charge : `null`, `deflate` (`snappy` n’est pas pris en charge actuellement).|
-|ApacheAvro|`.avro`    |Implémentation native expérimentale pour le format [Avro](https://avro.apache.org/docs/current/) avec prise en charge des [types logiques](https://avro.apache.org/docs/current/spec.html#Logical+Types) et du codec de compression `snappy`.|
+|ApacheAvro|`.avro`    |Format [Avro](https://avro.apache.org/docs/current/) avec prise en charge des [types logiques](https://avro.apache.org/docs/current/spec.html#Logical+Types) et du codec de compression `snappy`.|
+|Avro     |`.avro`     |Implémentation existante du [fichier conteneur Avro](https://avro.apache.org/docs/current/). Les codes suivants sont pris en charge : `null`, `deflate` (pour `snappy` - utiliser le format de fichier `apacheavro`).|
 |CSV      |`.csv`      |Fichier texte avec des valeurs séparées par des virgules (`,`). Consultez [RFC 4180 : _Common Format and MIME Type for Comma-Separated Values (CSV) Files_](https://www.ietf.org/rfc/rfc4180.txt).|
 |JSON     |`.json`     |Fichier texte avec des objets JSON délimités par `\n` ou `\r\n`. Consultez [JSON Lines (JSONL)](http://jsonlines.org/).|
 |MultiJSON|`.multijson`|Fichier texte avec un tableau JSON de conteneurs des propriétés (représentant chacun un enregistrement) ou n’importe quel nombre de conteneurs des propriétés délimités par des espaces, `\n` ou `\r\n`. Chaque conteneur de propriétés peut être réparti sur plusieurs lignes. Ce format est préférable à `JSON`, sauf si les données ne sont pas des conteneurs de propriétés.|

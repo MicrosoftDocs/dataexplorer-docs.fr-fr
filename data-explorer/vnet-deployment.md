@@ -7,12 +7,12 @@ ms.reviewer: basaba
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/31/2019
-ms.openlocfilehash: 74d72ced89b1953b2f7e327656517f1febe4166f
-ms.sourcegitcommit: 803a572ab6f04494f65dbc60a4c5df7fcebe1600
+ms.openlocfilehash: 5a7f680dc2ab76a9f952efa52d60b59c7b1d1c93
+ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90714021"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91452848"
 ---
 # <a name="deploy-azure-data-explorer-cluster-into-your-virtual-network"></a>Déployer un cluster Azure Data Explorer dans votre réseau virtuel
 
@@ -37,7 +37,7 @@ Les enregistrements DNS suivants sont créés pour accéder au service :
 
 * `[clustername].[geo-region].kusto.windows.net` (moteur) `ingest-[clustername].[geo-region].kusto.windows.net` (gestion des données) sont mappés à l’adresse IP publique de chaque service. 
 
-* `private-[clustername].[geo-region].kusto.windows.net` (moteur) `private-ingest-[clustername].[geo-region].kusto.windows.net` (gestion des données) sont mappés à l’adresse IP privée de chaque service.
+* `private-[clustername].[geo-region].kusto.windows.net` (moteur) `ingest-private-[clustername].[geo-region].kusto.windows.net`\\`private-ingest-[clustername].[geo-region].kusto.windows.net` (gestion des données) sont mappés à l’adresse IP privée de chaque service.
 
 ## <a name="plan-subnet-size-in-your-vnet"></a>Planifier la taille du sous-réseau dans votre réseau virtuel
 

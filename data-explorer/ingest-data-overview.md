@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/18/2020
-ms.openlocfilehash: d46455fcce2880c4f347d04125a9f6355cb4cffa
-ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
+ms.openlocfilehash: e6630067cb02f3bf4685e274d2d5d2a6d00a97c5
+ms.sourcegitcommit: 1618cbad18f92cf0cda85cb79a5cc1aa789a2db7
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/13/2020
-ms.locfileid: "88201546"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91615034"
 ---
 # <a name="azure-data-explorer-data-ingestion-overview"></a>Vue d’ensemble de l’ingestion des données dans Azure Data Explorer 
 
@@ -36,7 +36,7 @@ Azure Data Explorer extrait des données d’une source externe et lit les deman
 
 ## <a name="batching-vs-streaming-ingestion"></a>Ingestion par lot/en streaming
 
-* L’ingestion par lot, qui traite les données par lot, est optimisée pour un débit d’ingestion élevé. Cette méthode d’ingestion est la plus performante et donc recommandée. Les données sont traitées par lot en fonction des propriétés d’ingestion. Les petits lots de données sont ensuite fusionnés et optimisés pour des résultats de requête rapides. La stratégie d’[ingestion par lot](kusto/management/batchingpolicy.md) peut être définie sur des bases de données ou des tables. Par défaut, les valeurs maximales de traitement par lot sont les suivantes : 5 minutes, 1 000 éléments ou une taille totale de 500 Mo.
+* L’ingestion par lot, qui traite les données par lot, est optimisée pour un débit d’ingestion élevé. Cette méthode d’ingestion est la plus performante et donc recommandée. Les données sont traitées par lot en fonction des propriétés d’ingestion. Les petits lots de données sont ensuite fusionnés et optimisés pour des résultats de requête rapides. La stratégie d’[ingestion par lot](kusto/management/batchingpolicy.md) peut être définie sur des bases de données ou des tables. Par défaut, les valeurs maximales de traitement par lot sont les suivantes : 5 minutes, 1000 éléments ou une taille totale de 1 Go.
 
 * L’[ingestion en streaming](ingest-data-streaming.md) ingère les données en continu à partir d’une source de streaming. L’ingestion en streaming permet une latence en quasi temps réel pour les petits jeux de données par table. Les données sont initialement ingérées dans un rowstore, puis déplacées dans des étendues columnstore. L’ingestion en streaming peut être effectuée à l’aide d’une bibliothèque cliente Azure Data Explorer ou de l’un des pipelines de données pris en charge. 
 

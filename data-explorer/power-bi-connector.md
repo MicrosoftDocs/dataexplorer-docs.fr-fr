@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 07/10/2019
-ms.openlocfilehash: 591f8add363f0d1b09d8314c21a209fdc4cbedac
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: d6c3e49aa2141e2428251f806b29b47a9c65c164
+ms.sourcegitcommit: 1618cbad18f92cf0cda85cb79a5cc1aa789a2db7
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88875172"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91615051"
 ---
 # <a name="visualize-data-using-the-azure-data-explorer-connector-for-power-bi"></a>Visualiser des données à l’aide du connecteur Azure Data Explorer pour Power BI
 
@@ -42,26 +42,35 @@ Connectez-vous d’abord au cluster help d’Azure Data Explorer : vous récup�
 
     ![Options pour le cluster, la base de données et la table](media/power-bi-connector/cluster-database-table.png)
 
-    **Paramètre** | **Valeur** | **Description du champ**
-    |---|---|---|
+    | Paramètre | Valeur | Description du champ
+    |---|---|---
     | Cluster | *https://help.kusto.windows.net* | URL pour le cluster help. Pour les autres clusters, l’URL est sous la forme *https://\<ClusterName\>.\<Region\>.kusto.windows.net*. |
     | Base de données | Laisser vide | Une base de données qui est hébergée sur le cluster auquel vous vous connectez. Nous la sélectionnerons dans une étape ultérieure. |
     | Nom de la table | Laisser vide | Une des tables de la base de données ou une requête comme <code>StormEvents \| take 1000</code>. Nous la sélectionnerons dans une étape ultérieure. |
-    | Options avancées | Laisser vide | Options pour vos requêtes, comme la taille du jeu de résultats. |
+    | Options avancées | Laisser vide | Options pour vos requêtes, comme la taille du jeu de résultats.
     | Mode de connectivité des données | *DirectQuery* | Détermine si Power BI importe les données ou s’il se connecte directement à la source de données. Vous pouvez utiliser l’une ou l’autre des options avec ce connecteur. |
-    | | | |
-    
+
     > [!NOTE]
     > En mode **Import**, les données sont déplacées vers Power BI. En mode **DirectQuery**, les données sont interrogées directement à partir de votre cluster Azure Data Explorer.
     >
     > Utilisez le mode **Import** dans les cas suivants :
+    >
     > * Votre jeu de données est petit.
-    > * Vous n’avez pas besoin de données en quasi temps réel. 
-    > * Vos données sont déjà agrégées ou vous effectuez l’[agrégation dans Kusto](kusto/query/summarizeoperator.md#list-of-aggregation-functions)    
+    > * Vous n’avez pas besoin de données en quasi temps réel.
+    > * Vos données sont déjà agrégées ou vous effectuez l’[agrégation dans Kusto](kusto/query/summarizeoperator.md#list-of-aggregation-functions)
     >
     > Utilisez le mode **DirectQuery** dans les cas suivants :
-    > * Votre jeu de données est très volumineux. 
-    > * Vous avez besoin de données en quasi temps réel.   
+    > * Votre jeu de données est très volumineux.
+    > * Vous avez besoin de données en quasi temps réel.
+
+    ### <a name="advanced-options"></a>Options avancées
+
+    | Paramètre | Exemple de valeur | Description du champ
+    |---|---|---
+    | Limiter le nombre d’enregistrements dans les résultats de requête| `300000` | Nombre maximal d'enregistrements à retourner dans le résultat |
+    | Limiter la taille des données dans les résultats de requête | `4194304` | Taille maximale des données, en octets, à retourner dans le résultat |
+    | Désactiver la troncation du jeu de résultats | `true` | Activer/désactiver la troncation des résultats avec l’option de demande notruncation |
+    | Autres instructions définies | `set query_datascope=hotcache` | Définit les options de requête pour la durée de la requête. Les options de requête contrôlent la manière dont une requête s’exécute et retourne les résultats. |
 
 1. Si vous n’avez pas déjà une connexion au cluster help, connectez-vous. Connectez-vous avec un compte professionnel, puis sélectionnez **Se connecter**.
 
