@@ -4,16 +4,16 @@ description: Cet article décrit les mappages de données dans Azure Explorateur
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: ohbitton
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/19/2020
-ms.openlocfilehash: cd498d43d98250bad0a7ce00c4a8fec7b4f3ad4f
-ms.sourcegitcommit: d08b3344d7e9a6201cf01afc8455c7aea90335aa
+ms.openlocfilehash: 9695bd1a1330b4dc7cd44131d566c538c0264de4
+ms.sourcegitcommit: eff06eb34f78630fd78470d918ebc04ff5dc863e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88964725"
+ms.lasthandoff: 10/08/2020
+ms.locfileid: "91847194"
 ---
 # <a name="data-mappings"></a>Mappages des données
 
@@ -46,7 +46,7 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
 |`constantValue`|Facultatif Valeur de constante à utiliser pour une colonne au lieu d’une valeur dans le CSV|
 
 > [!NOTE]
-> `Ordinal` et `ConstantValue` s’excluent mutuellement.
+> `Ordinal` and `ConstantValue` s'excluent mutuellement.
 
 ### <a name="example-of-the-csv-mapping"></a>Exemple de mappage de volumes partagés de cluster
 
@@ -67,19 +67,6 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
 > [!NOTE]
 > Lorsque le mappage ci-dessus est fourni dans le cadre de la `.ingest` commande de contrôle, il est sérialisé en tant que chaîne JSON.
 
-* Lorsque le mappage ci-dessus est [créé au préalable](create-ingestion-mapping-command.md) , il peut être référencé dans la `.ingest` commande de contrôle :
-
-```kusto
-.ingest into Table123 (@"source1", @"source2")
-    with 
-    (
-        format="csv", 
-        ingestionMappingReference = "Mapping1"
-    )
-```
-
-* Lorsque le mappage ci-dessus est fourni dans le cadre de la `.ingest` commande de contrôle, il est sérialisé en tant que chaîne JSON :
-
 ```kusto
 .ingest into Table123 (@"source1", @"source2")
     with 
@@ -93,7 +80,20 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
     )
 ```
 
-**Remarque :** Le format de mappage suivant, sans le `Properties` conteneur de propriétés, est déconseillé.
+> [!NOTE]
+> Lorsque le mappage ci-dessus est [créé au préalable](create-ingestion-mapping-command.md) , il peut être référencé dans la `.ingest` commande de contrôle :
+
+```kusto
+.ingest into Table123 (@"source1", @"source2")
+    with 
+    (
+        format="csv", 
+        ingestionMappingReference = "Mapping1"
+    )
+```
+
+> [!NOTE]
+> Le format de mappage suivant, sans le `Properties` conteneur de propriétés, est déconseillé.
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2")
@@ -116,7 +116,7 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
 
 |Propriété|Description|
 |----|--|
-|`path`|Si commence par `$` : chemin d’accès JSON au champ qui devient le contenu de la colonne dans le document JSON (le chemin d’accès JSON qui indique le document entier est `$` ). Si la valeur ne commence pas par `$` : une valeur constante est utilisée.|
+|`path`|Si commence par `$` : chemin d’accès JSON au champ qui devient le contenu de la colonne dans le document JSON (le chemin d’accès JSON qui indique le document entier est `$` ). Si la valeur ne commence pas par `$` : une valeur constante est utilisée. Les chemins d’accès JSON qui incluent des espaces blancs doivent être placés dans une séquence d’échappement en tant que [ \' nom de propriété \' ].|
 |`transform`|Facultatif Transformation à appliquer sur le contenu avec des [transformations de mappage](#mapping-transformations).|
 
 ### <a name="example-of-json-mapping"></a>Exemple de mappage JSON
@@ -141,6 +141,23 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
 > Lorsque le mappage ci-dessus est fourni dans le cadre de la `.ingest` commande de contrôle, il est sérialisé en tant que chaîne JSON.
 
 ```kusto
+.ingest into Table123 (@"source1", @"source2") 
+  with 
+  (
+      format = "json", 
+      ingestionMapping = 
+      "["
+        "{\"column\":\"rownumber\",\"Properties\":{\"Path\":\"$.rownumber\"}},"
+        "{\"column\":\"rowguid\",  \"Properties\":{\"Path\":\"$.rowguid\"}}",
+        "{\"column\":\"custom_column\",  \"Properties\":{\"Path\":\"$.[\'property name with space\']\"}}"
+      "]"
+  )
+```
+
+> [!NOTE]
+> Lorsque le mappage ci-dessus est [créé au préalable](create-ingestion-mapping-command.md) , il peut être référencé dans la `.ingest` commande de contrôle :
+
+```kusto
 .ingest into Table123 (@"source1", @"source2")
     with 
     (
@@ -149,7 +166,8 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
     )
 ```
 
-**Remarque :** Le format de mappage suivant, sans le `Properties` conteneur de propriétés, est déconseillé.
+> [!NOTE]
+> Le format de mappage suivant, sans le `Properties` conteneur de propriétés, est déconseillé.
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2") 
@@ -173,10 +191,10 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
 |Propriété|Description|
 |----|--|
 |`Field`|Nom du champ dans l’enregistrement Avro.|
-|`Path`|Alternative à l’utilisation de `field` qui permet de détenir la partie interne d’un champ d’enregistrement Avro, si nécessaire. La valeur désigne un chemin d’accès JSON à partir de la racine de l’enregistrement. Pour plus d’informations, consultez les remarques ci-dessous. |
+|`Path`|Alternative à l’utilisation de `field` qui permet de détenir la partie interne d’un champ d’enregistrement Avro, si nécessaire. La valeur désigne un chemin d’accès JSON à partir de la racine de l’enregistrement. Pour plus d’informations, consultez les remarques ci-dessous. Les chemins d’accès JSON qui incluent des espaces blancs doivent être placés dans une séquence d’échappement en tant que [ \' nom de propriété \' ].|
 |`transform`|Facultatif Transformation à appliquer au contenu à l’aide de [transformations prises en charge](#mapping-transformations).|
 
-**Notes**
+**Remarques**
 >[!NOTE]
 > * `field` et `path` ne peuvent pas être utilisés ensemble, un seul est autorisé. 
 > * `path` Impossible de pointer vers la racine `$` uniquement, elle doit avoir au moins un niveau de chemin d’accès.
@@ -214,6 +232,22 @@ Les deux options ci-dessous sont égales :
 > Lorsque le mappage ci-dessus est fourni dans le cadre de la `.ingest` commande de contrôle, il est sérialisé en tant que chaîne JSON.
 
 ```kusto
+.ingest into Table123 (@"source1", @"source2") 
+  with 
+  (
+      format = "avro", 
+      ingestionMapping = 
+      "["
+        "{\"column\":\"rownumber\",\"Properties\":{\"Path\":\"$.rownumber\"}},"
+        "{\"column\":\"rowguid\",  \"Properties\":{\"Path\":\"$.rowguid\"}}"
+      "]"
+  )
+```
+
+> [!NOTE]
+> Lorsque le mappage ci-dessus est [créé au préalable](create-ingestion-mapping-command.md) , il peut être référencé dans la `.ingest` commande de contrôle :
+
+```kusto
 .ingest into Table123 (@"source1", @"source2")
     with 
     (
@@ -222,7 +256,8 @@ Les deux options ci-dessous sont égales :
     )
 ```
 
-**Remarque :** Le format de mappage suivant, sans le `Properties` conteneur de propriétés, est déconseillé.
+> [!NOTE]
+> Le format de mappage suivant, sans le `Properties` conteneur de propriétés, est déconseillé.
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2") 
@@ -245,7 +280,7 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
 
 |Propriété|Description|
 |----|--|
-|`path`|Si commence par `$` : chemin d’accès JSON au champ qui deviendra le contenu de la colonne dans le document parquet (le chemin d’accès JSON qui indique le document entier est `$` ). Si la valeur ne commence pas par `$` : une valeur constante est utilisée.|
+|`path`|Si commence par `$` : chemin d’accès JSON au champ qui deviendra le contenu de la colonne dans le document parquet (le chemin d’accès JSON qui indique le document entier est `$` ). Si la valeur ne commence pas par `$` : une valeur constante est utilisée. Les chemins d’accès JSON qui incluent des espaces blancs doivent être placés dans une séquence d’échappement en tant que [ \' nom de propriété \' ]. |
 |`transform`|Facultatif [mappages de transformations](#mapping-transformations) qui doivent être appliqués au contenu.
 
 
@@ -268,7 +303,22 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
 > [!NOTE]
 > Lorsque le mappage ci-dessus est fourni dans le cadre de la `.ingest` commande de contrôle, il est sérialisé en tant que chaîne JSON.
 
-* Lorsque le mappage ci-dessus est [créé au préalable](create-ingestion-mapping-command.md) , il peut être référencé dans la `.ingest` commande de contrôle :
+```kusto
+.ingest into Table123 (@"source1", @"source2") 
+  with 
+  (
+      format = "parquet", 
+      ingestionMapping = 
+      "["
+        "{\"column\":\"rownumber\",\"Properties\":{\"Path\":\"$.rownumber\"}},"
+        "{\"column\":\"rowguid\",  \"Properties\":{\"Path\":\"$.rowguid\"}}",
+        "{\"column\":\"custom_column\",  \"Properties\":{\"Path\":\"$.[\'property name with space\']\"}}"
+      "]"
+  )
+```
+
+> [!NOTE]
+> Lorsque le mappage ci-dessus est [créé au préalable](create-ingestion-mapping-command.md) , il peut être référencé dans la `.ingest` commande de contrôle :
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2")
@@ -279,21 +329,6 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
     )
 ```
 
-* Lorsque le mappage ci-dessus est fourni dans le cadre de la `.ingest` commande de contrôle, il est sérialisé en tant que chaîne JSON :
-
-```kusto
-.ingest into Table123 (@"source1", @"source2") 
-  with 
-  (
-      format = "parquet", 
-      ingestionMapping = 
-      "["
-        "{\"column\":\"rownumber\",\"Properties\":{\"Path\":\"$.rownumber\"}},"
-        "{\"column\":\"rowguid\",  \"Properties\":{\"Path\":\"$.rowguid\"}}"
-      "]"
-  )
-```
-
 ## <a name="orc-mapping"></a>Mappage ORC
 
 Lorsque le fichier source est au format ORC, le contenu du fichier est mappé à la table Kusto. La table doit exister dans la base de données Kusto, sauf si un type de données valide est spécifié pour toutes les colonnes mappées. Les colonnes mappées dans le mappage ORC doivent exister dans la table Kusto, sauf si un type de données est spécifié pour toutes les colonnes non existantes.
@@ -302,7 +337,7 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
 
 |Propriété|Description|
 |----|--|
-|`path`|Si commence par `$` : chemin d’accès JSON au champ qui deviendra le contenu de la colonne dans le document orc (le chemin d’accès JSON qui indique le document entier est `$` ). Si la valeur ne commence pas par `$` : une valeur constante est utilisée.|
+|`path`|Si commence par `$` : chemin d’accès JSON au champ qui deviendra le contenu de la colonne dans le document orc (le chemin d’accès JSON qui indique le document entier est `$` ). Si la valeur ne commence pas par `$` : une valeur constante est utilisée. Les chemins d’accès JSON qui incluent des espaces blancs doivent être placés dans une séquence d’échappement en tant que [ \' nom de propriété \' ].|
 |`transform`|Facultatif [mappages de transformations](#mapping-transformations) qui doivent être appliqués au contenu.
 
 ### <a name="example-of-orc-mapping"></a>Exemple de mappage ORC
@@ -332,9 +367,22 @@ Chaque élément de la liste décrit un mappage pour une colonne spécifique et 
       ingestionMapping = 
       "["
         "{\"column\":\"rownumber\",\"Properties\":{\"Path\":\"$.rownumber\"}},"
-        "{\"column\":\"rowguid\",  \"Properties\":{\"Path\":\"$.rowguid\"}}"
+        "{\"column\":\"rowguid\",  \"Properties\":{\"Path\":\"$.rowguid\"}}",
+        "{\"column\":\"custom_column\",  \"Properties\":{\"Path\":\"$.[\'property name with space\']\"}}"
       "]"
   )
+```
+
+> [!NOTE]
+> Lorsque le mappage ci-dessus est [créé au préalable](create-ingestion-mapping-command.md) , il peut être référencé dans la `.ingest` commande de contrôle :
+
+```kusto
+.ingest into Table123 (@"source1", @"source2")
+    with 
+    (
+        format="orc", 
+        ingestionMappingReference = "Mapping1"
+    )
 ```
 
 ## <a name="mapping-transformations"></a>Mappages de transformations
