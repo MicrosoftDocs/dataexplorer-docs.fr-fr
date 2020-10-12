@@ -1,21 +1,21 @@
 ---
-title: Sécurité au niveau des lignes (version préliminaire)-Azure Explorateur de données
-description: Cet article décrit Sécurité au niveau des lignes (version préliminaire) dans Azure Explorateur de données.
+title: Sécurité au niveau des lignes-Explorateur de données Azure
+description: Cet article décrit Sécurité au niveau des lignes dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 03/25/2020
-ms.openlocfilehash: f3d42835733ffe9303806687891c69df4dcc2178
-ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
+ms.date: 10/11/2020
+ms.openlocfilehash: 2b81319740143a1c0ebc31c4a9b93d7b3b2e5223
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88610455"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91941806"
 ---
-# <a name="row-level-security-preview"></a>Sécurité au niveau des lignes (version préliminaire)
+# <a name="row-level-security"></a>Sécurité au niveau des lignes
 
 Utilisez l’appartenance à un groupe ou un contexte d’exécution pour contrôler l’accès aux lignes d’une table de base de données.
 
@@ -27,7 +27,7 @@ La sécurité au niveau des lignes vous permet de fournir un accès à d’autre
 
 * Accorder l’accès uniquement aux lignes qui répondent à certains critères
 * Anonymiser les données dans certaines colonnes
-* Toutes les propositions ci-dessus
+* Tous les éléments ci-dessus
 
 Pour plus d’informations, consultez [commandes de contrôle pour la gestion de la stratégie de sécurité au niveau des lignes](../management/row-level-security-policy.md).
 
@@ -102,7 +102,7 @@ union DataForGroup1, DataForGroup2, DataForGroup3
 
 Tout d’abord, définissez une fonction qui reçoit le nom de la table en tant que paramètre de chaîne et fait référence à la table à l’aide de l' `table()` opérateur. 
 
-Par exemple :
+Exemple :
 
 ```kusto
 .create-or-alter function RLSForCustomersTables(TableName: string) {
@@ -137,7 +137,7 @@ Vous pouvez combiner cette approche avec d’autres exemples. Par exemple, vous 
 
 La stratégie RLS que vous configurez sur la base de données de production prendra également effet dans les bases de données suivantes. Vous ne pouvez pas configurer différentes stratégies RLS sur les bases de données de production et de suivi. Toutefois, vous pouvez utiliser la [`current_cluster_endpoint()`](../query/current-cluster-endpoint-function.md) fonction dans votre requête RLS pour obtenir le même effet, comme avec différentes requêtes RLS dans les tables de suivi.
 
-Par exemple :
+Exemple :
 
 ```kusto
 .create-or-alter function RLSForCustomersTables() {
@@ -163,7 +163,7 @@ Lorsqu’une stratégie RLS est activée sur une table, il y aura un impact sur 
 * Vérifications d’appartenance dans Azure Active Directory
 * Filtres appliqués aux données
 
-Par exemple :
+Exemple :
 
 ```kusto
 let IsRestrictedUser = current_principal_is_member_of('aadgroup=some_group@domain.com');

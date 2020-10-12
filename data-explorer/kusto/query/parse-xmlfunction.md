@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 41e3f58ba857e23d31062484f11f30e80fb37317
-ms.sourcegitcommit: 313a91d2a34383b5a6e39add6c8b7fabb4f8d39a
+ms.openlocfilehash: 3f003c5e9c6733391d61a2130528c9babc4aae67
+ms.sourcegitcommit: d157e661de293aa4c2b5ad334a554eda0295bd2c
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/16/2020
-ms.locfileid: "90680729"
+ms.lasthandoff: 10/09/2020
+ms.locfileid: "91886296"
 ---
 # <a name="parse_xml"></a>parse_xml()
 
@@ -43,7 +43,7 @@ XML                                |JSON                                        
 `<e> <a>text</a> <a>text</a> </e>` | {"e" : {"a" : ["texte", "texte"]}}             | o. e. a [0] o. e. a [1]
 `<e> text <a>text</a> </e>`        | {"e" : {"#text" : "texte", "a" : "texte"}}      | 1 'o. e ["#text"] o. e. a
 
-**Notes**
+**Remarques**
 
 * La longueur d’entrée maximale `string` pour `parse_xml` est 1 mo (1 048 576 octets). L’interprétation des chaînes plus longue entraînera un objet null
 * Seuls les nœuds d’élément, les attributs et les nœuds de texte seront traduits. Tout le reste sera ignoré
@@ -81,7 +81,7 @@ Ensuite, le fragment CSL suivant traduit le code XML au format JSON suivant :
 }
 ```
 
-et récupèrent la valeur de l' `duration` emplacement dans l’objet et, à partir de ce qu’il récupère deux emplacements, `duration.value` et `duration.min` ( `118.0` `110.0` respectivement).
+et récupèrent la valeur de l' `duration` emplacement dans l’objet et, à partir de ce qu’il récupère deux emplacements, `duration.value` et `duration.min` ( `118.0` `100.0` respectivement).
 
 ```kusto
 T

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/16/2020
-ms.openlocfilehash: 6ed841a6f47eb9a0a1e73182a3b9acd1c0209bd9
-ms.sourcegitcommit: 313a91d2a34383b5a6e39add6c8b7fabb4f8d39a
+ms.openlocfilehash: 56742b04386bfda9e2cdbaa40a85d2220f2373d5
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/16/2020
-ms.locfileid: "90680757"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91942350"
 ---
 # <a name="make-series-operator"></a>opérateur make-series
 
@@ -89,7 +89,7 @@ Il est recommandé d’utiliser la syntaxe principale de make-Series et non la s
 |[stdev()](stdev-aggfunction.md)|Retourne l’écart type de l’ensemble du groupe|
 |[sum()](sum-aggfunction.md)|Retourne la somme des éléments dans le groupe|
 |[sumif()](sumif-aggfunction.md)|Retourne la somme des éléments avec le prédicat du groupe.|
-|[variance()](variance-aggfunction.md)|Retourne la variance dans le groupe|
+|[variance ()](variance-aggfunction.md)|Retourne la variance dans le groupe|
 
 ## <a name="list-of-series-analysis-functions"></a>Liste des fonctions d’analyse de série
 
@@ -127,7 +127,7 @@ T | make-series PriceAvg=avg(Price) default=0
 on Purchase from datetime(2016-09-10) to datetime(2016-09-13) step 1d by Supplier, Fruit
 ```
 
-:::image type="content" source="images/make-seriesoperator/makeseries.png" alt-text="Makeseries":::  
+:::image type="content" source="images/make-seriesoperator/makeseries.png" alt-text="Trois tables. La première liste les données brutes, la seconde n’a que des combinaisons distinctes de la date des fournisseurs et la troisième contient les résultats de la série make.":::  
 
 <!-- csl: https://help.kusto.windows.net:443/Samples --> 
 ```kusto

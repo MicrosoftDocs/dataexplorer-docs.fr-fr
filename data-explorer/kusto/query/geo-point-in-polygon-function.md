@@ -8,12 +8,12 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/10/2020
-ms.openlocfilehash: 49b3e8b92d022ac5d1d8191bef8f00436b9f7211
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: d8bbebc4043ed2b3a64e90e12f629a1ab9521e6d
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347797"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91941789"
 ---
 # <a name="geo_point_in_polygon"></a>geo_point_in_polygon()
 
@@ -29,7 +29,7 @@ Calcule si les coordonnées géospatiales se trouvent à l’intérieur d’un p
 * *Latitude*: coordonnée géographique, valeur de latitude en degrés. La valeur valide est un nombre réel et dans la plage [-90, + 90].
 * *polygone*: polygone ou multipolygone au [format géojson](https://tools.ietf.org/html/rfc7946) et d’un type de données [dynamique](./scalar-data-types/dynamic.md) .
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Indique si les coordonnées géospatiales sont à l’intérieur d’un polygone. Si les coordonnées ou le polygone ne sont pas valides, la requête produira un résultat NULL. 
 
@@ -61,7 +61,7 @@ dynamique ({"type" : "MultiPolygon", "coordinates" : [[LinearRingShell, Linear
 
 Manhattan Island sans Park Central.
 
-:::image type="content" source="images/geo-point-in-polygon-function/polygon-manhattan-with-hole.png" alt-text="Manhattan avec trou":::
+:::image type="content" source="images/geo-point-in-polygon-function/polygon-manhattan-with-hole.png" alt-text="Capture d’écran d’une carte de la zone Manhattan, avec marqueurs pour un repère, un musée et un aéroport. L’île est grisée, à l’exception du parking central.":::
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -80,7 +80,7 @@ datatable(longitude:real, latitude:real, description:string)
 
 Rechercher des coordonnées dans un multipolygone.
 
-:::image type="content" source="images/geo-point-in-polygon-function/multipolygon-manhattan.png" alt-text="Manhattan avec trou":::
+:::image type="content" source="images/geo-point-in-polygon-function/multipolygon-manhattan.png" alt-text="Capture d’écran d’une carte de la zone Manhattan, avec marqueurs pour un repère, un musée et un aéroport. L’île est grisée, à l’exception du parking central.":::
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -103,7 +103,7 @@ coordinates
 
 Événements Storm en Californie. Les événements sont filtrés par un polygone d’état de Californie et agrégés par type d’événement et hachage.
 
-:::image type="content" source="images/geo-point-in-polygon-function/california-storm-events.png" alt-text="Événements Storm en Californie":::
+:::image type="content" source="images/geo-point-in-polygon-function/california-storm-events.png" alt-text="Capture d’écran d’une carte de la zone Manhattan, avec marqueurs pour un repère, un musée et un aéroport. L’île est grisée, à l’exception du parking central.":::
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

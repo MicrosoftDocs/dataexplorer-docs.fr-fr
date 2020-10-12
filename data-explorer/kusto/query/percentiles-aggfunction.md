@@ -8,21 +8,21 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 13cc0edad5e0e4673c34e7e5b1b517f097fa4e9a
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 0322dd6a8ba900fa4d55bea6b3568a5c42f61b52
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346182"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91942367"
 ---
 # <a name="percentile-percentiles-aggregation-function"></a>centile (), centile () (fonction d’agrégation)
 
 Retourne une estimation pour le [centile le plus proche](#nearest-rank-percentile) de la population défini par `*Expr*` .
 La précision dépend de la densité de population dans la région du centile. Cette fonction ne peut être utilisée que dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
 
-* `percentiles()`est similaire `percentile()` à, mais calcule un nombre de valeurs de centile, ce qui est plus rapide que le calcul individuel de chaque centile.
-* `percentilesw()`est similaire `percentilew()` à, mais calcule un nombre de valeurs de centile pondérées, ce qui est plus rapide que le calcul individuel de chaque centile.
-* `percentilew()`et `percentilesw()` vous permettent de calculer des centile pondérés. Les centile pondérés calculent les centile donnés d’une manière « pondérée », en traitant chaque valeur comme si elle était répétée `weight` , dans l’entrée.
+* `percentiles()` est similaire `percentile()` à, mais calcule un nombre de valeurs de centile, ce qui est plus rapide que le calcul individuel de chaque centile.
+* `percentilesw()` est similaire `percentilew()` à, mais calcule un nombre de valeurs de centile pondérées, ce qui est plus rapide que le calcul individuel de chaque centile.
+* `percentilew()` et `percentilesw()` vous permettent de calculer des centile pondérés. Les centile pondérés calculent les centile donnés d’une manière « pondérée », en traitant chaque valeur comme si elle était répétée `weight` , dans l’entrée.
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -49,7 +49,7 @@ résumer le `percentilesw_array(` *Expr* `,` *WeightExpr* `,` *tableau dynamique
 * `*Percentile*`: Constante double qui spécifie le centile.
 * `*Dynamic array*`: liste de centiles dans un tableau dynamique de nombres entiers ou à virgule flottante.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Retourne une estimation pour `*Expr*` les centiles spécifiés dans le groupe. 
 
@@ -68,7 +68,7 @@ CallDetailRecords
 | summarize percentiles(Duration, 5, 50, 95) by continent
 ```
 
-:::image type="content" source="images/percentiles-aggfunction/percentiles.png" alt-text="Centiles":::
+:::image type="content" source="images/percentiles-aggfunction/percentiles.png" alt-text="Tableau répertoriant les résultats, avec les colonnes du continent et les valeurs de durée des cinquième, Fiftieth et cinquième centile.":::
 
 Les résultats montrent qu’en Europe, 5% des appels sont plus courts que 11.55 s, 50% des appels sont plus courts que 3 minutes, 18,46 secondes et 95% des appels sont plus courts que 40 minutes 48 secondes.
 
@@ -89,7 +89,7 @@ Un client a un ensemble de valeurs de latence en millisecondes : `{ 1, 1, 2, 2,
 
 Pour réduire la bande passante et le stockage, effectuez une pré-agrégation pour les compartiments suivants : `{ 10, 20, 30, 40, 50, 100 }` . Comptez le nombre d’événements dans chaque compartiment pour générer le tableau suivant :
 
-:::image type="content" source="images/percentiles-aggfunction/percentilesw-table.png" alt-text="Table Percentilesw":::
+:::image type="content" source="images/percentiles-aggfunction/percentilesw-table.png" alt-text="Tableau répertoriant les résultats, avec les colonnes du continent et les valeurs de durée des cinquième, Fiftieth et cinquième centile.":::
 
 Le tableau suivant affiche :
  * Huit événements dans le compartiment 10-ms (correspondant au sous-ensemble `{ 1, 1, 2, 2, 2, 5, 7, 7 }` )
@@ -113,12 +113,12 @@ datatable (ReqCount:long, LatencyBucket:long)
 
 Le résultat de la requête ci-dessus est le suivant :
 
-:::image type="content" source="images/percentiles-aggfunction/percentilesw-result.png" alt-text="Résultat de Percentilesw" border="false":::
+:::image type="content" source="images/percentiles-aggfunction/percentilesw-result.png" alt-text="Tableau répertoriant les résultats, avec les colonnes du continent et les valeurs de durée des cinquième, Fiftieth et cinquième centile." border="false":::
 
 
 La requête ci-dessus correspond à la fonction `percentiles(LatencyBucket, 50, 75, 99.9)` , si les données ont été développées au format suivant :
 
-:::image type="content" source="images/percentiles-aggfunction/percentilesw-rawtable.png" alt-text="Percentilesw table brute":::
+:::image type="content" source="images/percentiles-aggfunction/percentilesw-rawtable.png" alt-text="Tableau répertoriant les résultats, avec les colonnes du continent et les valeurs de durée des cinquième, Fiftieth et cinquième centile.":::
 
 ## <a name="getting-multiple-percentiles-in-an-array"></a>Obtention de plusieurs centiles dans un tableau
 
@@ -129,7 +129,7 @@ CallDetailRecords
 | summarize percentiles_array(Duration, 5, 25, 50, 75, 95), avg(Duration)
 ```
 
-:::image type="content" source="images/percentiles-aggfunction/percentiles-array-result.png" alt-text="Résultat du tableau de centiles":::
+:::image type="content" source="images/percentiles-aggfunction/percentiles-array-result.png" alt-text="Tableau répertoriant les résultats, avec les colonnes du continent et les valeurs de durée des cinquième, Fiftieth et cinquième centile.":::
 
 De même, les centile pondérés peuvent être retournés sous la forme d’un tableau dynamique à l’aide de `percentilesw_array` .
 

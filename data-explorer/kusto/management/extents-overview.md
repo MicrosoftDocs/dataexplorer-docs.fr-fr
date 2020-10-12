@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/13/2020
-ms.openlocfilehash: 6c7910a222227dbb6b22e1fc4f0f4136897a0ef9
-ms.sourcegitcommit: be1bbd62040ef83c08e800215443ffee21cb4219
+ms.openlocfilehash: 2ad77b1763c8f4d85d676b34039a9300fca5912d
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84665110"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91941840"
 ---
 # <a name="extents-data-shards"></a>Étendues (partitions de données)
 
@@ -54,7 +54,7 @@ L’un des éléments d’information les plus importants pour chaque extension 
 
 1. Les étendues de **rétention** créées précédemment seront supprimées précédemment.
 1. **Mise en cache** -étendues créées récemment seront conservées dans le [cache à chaud](cachepolicy.md))
-1. **Échantillonnage** -les extensions récentes sont privilégiées lors de l’utilisation d’opérations de requête telles que`take`
+1. **Échantillonnage** -les extensions récentes sont privilégiées lors de l’utilisation d’opérations de requête telles que `take`
 
 En fait, Kusto suit deux `datetime` valeurs par extension : `MinCreatedOn` et `MaxCreatedOn` .
 Au départ, les deux valeurs sont identiques. Lorsque l’étendue est fusionnée avec d’autres extensions, les nouvelles valeurs sont conformes aux valeurs minimale et maximale d’origine des étendues fusionnées.
@@ -77,7 +77,7 @@ Kusto assigne une signification spéciale à toutes les balises d’étendue don
 
 Les balises qui commencent par un `drop-by:` préfixe peuvent être utilisées pour contrôler les autres extensions avec lesquelles effectuer la fusion. Les extensions qui ont une `drop-by:` balise donnée peuvent être fusionnées ensemble, mais elles ne sont pas fusionnées avec d’autres extensions. Vous pouvez ensuite émettre une commande pour supprimer des extensions en fonction de leur `drop-by:` étiquette.
 
-Par exemple :
+Exemple :
 
 ```kusto
 .ingest ... with @'{"tags":"[\"drop-by:2016-02-17\"]"}'
@@ -112,5 +112,5 @@ L’exemple suivant ingère les données une seule fois. Les 2e et 3e commandes 
 
 * Il est déconseillé d’utiliser des `ingest-by` balises.
 Si le Kusto d’alimentation du pipeline est connu pour avoir des doublons de données, nous vous recommandons de résoudre ces doublons autant que possible avant d’ingérer les données dans Kusto. En outre, utilisez `ingest-by` des balises dans Kusto uniquement lorsque la partie qui ingère Kusto peut introduire des doublons par lui-même (par exemple, un mécanisme de nouvelle tentative peut chevaucher des appels d’ingestion déjà en cours). Toute tentative de définition d’une `ingest-by` balise unique pour chaque appel d’ingestion peut avoir un impact sérieux sur les performances.
-* Si ces étiquettes ne sont pas requises pendant un certain laps de temps après la réception des données, nous vous recommandons de [Supprimer les balises](extents-commands.md#drop-extent-tags).
+* Si ces étiquettes ne sont pas requises pendant un certain laps de temps après la réception des données, nous vous recommandons de [supprimer des balises d’étendue](drop-extent-tags.md).
  

@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 03/18/2020
-ms.openlocfilehash: c5a0bd91df6e12d90436e3b27a2b55021668117a
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: a79c815202e65fa32f62a76c700d808d0fda86ea
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874339"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91941993"
 ---
 # <a name="kusto-ingest-client-library"></a>Bibliothèque cliente de réception Kusto 
 
@@ -45,7 +45,7 @@ Le mode de réception en file d’attente, défini par [IKustoQueuedIngestClient
 
 Le diagramme suivant présente l’interaction du client d’ingestion en attente avec Kusto :
 
-:::image type="content" source="../images/about-kusto-ingest/queued-ingest.png" alt-text="en attente-réception":::
+:::image type="content" source="../images/about-kusto-ingest/queued-ingest.png" alt-text="Diagramme montrant comment la bibliothèque Kusto. deréception envoie des requêtes au service Kusto en mode ingestion interrogé.":::
  
 ### <a name="direct-ingestion"></a>Ingestion directe
 
@@ -53,7 +53,7 @@ Le mode d’ingestion directe, défini par IKustoDirectIngestClient, force l’i
 
 Le diagramme suivant présente l’interaction du client d’ingestion directe avec Kusto :
 
-:::image type="content" source="../images/about-kusto-ingest/direct-ingest.png" alt-text="réception directe":::
+:::image type="content" source="../images/about-kusto-ingest/direct-ingest.png" alt-text="Diagramme montrant comment la bibliothèque Kusto. deréception envoie des requêtes au service Kusto en mode ingestion interrogé.":::
 
 > [!NOTE]
 > Le mode direct n’est pas recommandé pour les solutions d’ingestion des niveaux de production.

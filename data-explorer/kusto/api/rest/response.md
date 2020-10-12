@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 11/05/2018
-ms.openlocfilehash: f926daa248a74b7b61ea4867d3a54f857444823e
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 2642ffc6b87afab785dc5f7ba962e1f659232cc2
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226021"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91942265"
 ---
 # <a name="querymanagement-http-response"></a>Réponse HTTP d’interrogation ou de gestion
 
@@ -26,7 +26,7 @@ Les codes d’état suivants sont en cours d’utilisation, bien que tout code H
 
 |Code|Sous-code        |Description                                    |
 |----|---------------|-----------------------------------------------|
-|100 |Continue       |Le client peut continuer à envoyer la demande.       |
+|100 |Continuer       |Le client peut continuer à envoyer la demande.       |
 |200 |OK             |Le traitement de la requête a commencé.       |
 |400 |BadRequest     |La demande est incorrecte et a échoué (de façon permanente).|
 |401 |Non autorisé   |Le client doit d’abord s’authentifier.            |
@@ -50,7 +50,7 @@ Les en-têtes personnalisés suivants sont retournés.
 |`x-ms-client-request-id`|Identificateur unique de la demande envoyé dans l’en-tête de la demande portant le même nom, ou un identificateur unique.     |
 |`x-ms-activity-id`      |Identificateur de corrélation global unique pour la demande. Elle est créée par le service.                    |
 
-## <a name="response-body"></a>Corps de réponse
+## <a name="response-body"></a>Response body
 
 Si le code d’État est 200, le corps de la réponse est un document JSON qui encode les résultats de la commande de requête ou de contrôle sous la forme d’une séquence de tables rectangulaires.
 Voir les détails ci-dessous.
@@ -68,13 +68,13 @@ Pour plus d’informations, consultez [les instructions de l’API REST de Micro
 
 L’encodage JSON d’une séquence de tables est un conteneur de propriétés JSON unique avec les paires nom/valeur suivantes.
 
-|Nom  |Valeur                              |
+|Name  |Value                              |
 |------|-----------------------------------|
 |Tables|Tableau du conteneur des propriétés de table.|
 
 Le conteneur de propriétés de table contient les paires nom/valeur suivantes.
 
-|Nom     |Valeur                               |
+|Name     |Value                               |
 |---------|------------------------------------|
 |TableName|Chaîne qui identifie la table. |
 |Colonnes  |Tableau du conteneur des propriétés de colonne.|
@@ -82,7 +82,7 @@ Le conteneur de propriétés de table contient les paires nom/valeur suivantes.
 
 Le jeu de propriétés de colonne contient les paires nom/valeur suivantes.
 
-|Nom      |Valeur                                                          |
+|Name      |Value                                                          |
 |----------|---------------------------------------------------------------|
 |ColumnName|Chaîne qui identifie la colonne.                           |
 |DataType  |Chaîne qui fournit le type .NET approximatif de la colonne.|
@@ -107,9 +107,9 @@ L’exemple suivant illustre un objet de ce type, lorsqu’il contient une seule
 }
 ```
 
-Autre exemple : 
+Autre exemple : 
 
-:::image type="content" source="../images/rest-json-representation.png" alt-text="Rest-représentation JSON":::
+:::image type="content" source="../images/rest-json-representation.png" alt-text="Capture d’écran montrant l’arborescence d’un fichier JSON qui contient un tableau d’objets de table.":::
 
 ## <a name="the-meaning-of-tables-in-the-response"></a>Signification des tables dans la réponse
 
@@ -126,7 +126,7 @@ Trois tables sont souvent produites :
   
   Cette table a une seule colonne de type `string` , contenant des valeurs de type JSON :
 
-  |Valeur|
+  |Value|
   |-----|
   |{« Visualization » : « graphique en secteurs »,...}|
   |{« Cursor » : « 637239957206013576 »}|
@@ -135,9 +135,9 @@ Trois tables sont souvent produites :
 
   La structure de cette table est la suivante :
 
-  |Timestamp                  |Gravité|SeverityName|StatusCode|StatusDescription            |Count|RequestId|ActivityId|SubActivityId|ClientActivityId|
+  |Timestamp                  |severity|SeverityName|StatusCode|StatusDescription            |Nombre|RequestId|ActivityId|SubActivityId|ClientActivityId|
   |---------------------------|--------|------------|----------|-----------------------------|-----|---------|----------|-------------|----------------|
-  |2020-05-02 06:09:12.7052077|4       |Info        | 0        | Requête exécutée avec succès|1    |...      |...       |...          |...             |
+  |2020-05-02 06:09:12.7052077|4       |Informations        | 0        | Requête exécutée avec succès|1    |...      |...       |...          |...             |
 
   Les valeurs de gravité de 2 ou moins indiquent un échec.
 
@@ -145,7 +145,7 @@ Trois tables sont souvent produites :
 
   Voici un exemple de cette table :
 
-  |Ordinal|Type            |Nom               |Id                                  |PrettyName|
+  |Ordinal|Kind            |Name               |Id                                  |PrettyName|
   |-------|----------------|-------------------|------------------------------------|----------|
   |0      | QueryResult    |PrimaryResult      |db9520f9-0455-4cb5-b257-53068497605a||
   |1      | QueryProperties|@ExtendedProperties|908901f6-5319-4809-ae9e-009068c267c7||

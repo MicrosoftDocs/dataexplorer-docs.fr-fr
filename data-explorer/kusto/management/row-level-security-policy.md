@@ -1,21 +1,21 @@
 ---
-title: Stratégie RowLevelSecurity (version préliminaire)-Azure Explorateur de données | Microsoft Docs
-description: Cet article décrit la stratégie RowLevelSecurity (préversion) dans Azure Explorateur de données.
+title: Stratégie RowLevelSecurity-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit la stratégie RowLevelSecurity dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 03/25/2020
-ms.openlocfilehash: 2df8178bbc75b9338699c00cdd8a16e7ab3b057f
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.date: 10/11/2020
+ms.openlocfilehash: f73cf5718a80528415c9aed201917c1bd52bb660
+ms.sourcegitcommit: 86636f80a12f47ea434f128fa04fe9fc09629730
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85967517"
+ms.lasthandoff: 10/12/2020
+ms.locfileid: "91942631"
 ---
-# <a name="row_level_security-policy-command-preview"></a>commande de stratégie de row_level_security (version préliminaire)
+# <a name="row_level_security-policy-command"></a>Commande de stratégie row_level_security
 
 Cet article décrit les commandes utilisées pour configurer une [stratégie de row_level_security](rowlevelsecuritypolicy.md) pour les tables de base de données.
 

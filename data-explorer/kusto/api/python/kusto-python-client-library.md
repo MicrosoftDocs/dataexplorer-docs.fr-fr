@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: 7718eb5983f1d7893a27df5db7ae0c52983dea85
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: 355d7e5e9135087fd0023a235990b8c9589a2e86
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763838"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91942248"
 ---
 # <a name="azure-data-explorer-python-sdk"></a>Kit de développement logiciel (SDK) python Azure Explorateur de données
 
@@ -38,8 +38,8 @@ Le *client de réception python Kusto* est une bibliothèque Python qui vous per
 * Packages Pypi :
 
     * [Azure-Kusto-données](https://pypi.org/project/azure-kusto-data/) 
-     [ ![ Version de PyPI](https://badge.fury.io/py/azure-kusto-data.svg)](https://badge.fury.io/py/azure-kusto-data)
+     [ ![ Capture d’écran d’un bouton intitulé p Y package a.](https://badge.fury.io/py/azure-kusto-data.svg)](https://badge.fury.io/py/azure-kusto-data)
     * [Azure-Kusto-réception](https://pypi.org/project/azure-kusto-ingest/) 
-     [ ![ Version de PyPI](https://badge.fury.io/py/azure-kusto-ingest.svg)](https://badge.fury.io/py/azure-kusto-ingest)
+     [ ![ Capture d’écran d’un bouton. Le bouton est intitulé P Y Package 1.0.2.](https://badge.fury.io/py/azure-kusto-ingest.svg)](https://badge.fury.io/py/azure-kusto-ingest)
     * [Azure-Mgmt-Kusto](https://pypi.org/project/azure-mgmt-kusto/) 
-     [ ![ Version de PyPI](https://badge.fury.io/py/azure-mgmt-kusto.svg)](https://badge.fury.io/py/azure-mgmt-kusto)
+     [ ![ Capture d’écran d’un bouton intitulé p Y package 0.9.0.](https://badge.fury.io/py/azure-mgmt-kusto.svg)](https://badge.fury.io/py/azure-mgmt-kusto)

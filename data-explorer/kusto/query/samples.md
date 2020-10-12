@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1408bfa0af8c07166bde94c2738b53cd0065ec97
-ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
+ms.openlocfilehash: bc28fcb860dc067d55dd2e5ce9de3f3a17b402f2
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85902168"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91942316"
 ---
 # <a name="samples"></a>Exemples
 
@@ -36,7 +36,7 @@ StormEvents
 * Utilisez `where` , `summarize` et `top` pour limiter le volume de données que vous affichez.
 * Triez les résultats pour définir l’ordre de l’axe x.
 
-:::image type="content" source="images/samples/060.png" alt-text="060":::
+:::image type="content" source="images/samples/060.png" alt-text="Capture d’écran d’un histogramme. L’axe des y est compris entre 0 et environ 50. Dix colonnes colorées représentent les valeurs respectives de 10 emplacements.":::
 
 ## <a name="get-sessions-from-start-and-stop-events"></a>Obtenir des sessions à partir d’événements de démarrage et d’arrêt
 
@@ -45,7 +45,7 @@ Supposons que vous avez un journal d’événements. Certains événements marqu
 |Nom|City|SessionId|Timestamp|
 |---|---|---|---|
 |Démarrer|London|2817330|2015-12-09T10:12:02.32|
-|Game|London|2817330|2015-12-09T10:12:52.45|
+|Jeu|London|2817330|2015-12-09T10:12:52.45|
 |Démarrer|Manchester|4267667|2015-12-09T10:14:02.23|
 |Arrêter|London|2817330|2015-12-09T10:23:43.18|
 |Annuler|Manchester|4267667|2015-12-09T10:27:26.29|
@@ -103,9 +103,9 @@ La jointure fait correspondre chaque heure de démarrage à toutes les heures d�
 1. Regroupez par heure de début et adresse IP pour obtenir un groupe pour chaque session. 
 1. Fournissez une `bin` fonction pour le paramètre startTime. Si vous ne le faites pas, Kusto utilisera automatiquement des emplacements de 1 heure qui correspondront à des heures de démarrage avec des heures d’arrêt incorrectes.
 
-`arg_min`sélectionne la ligne avec la plus petite durée dans chaque groupe, et le `*` paramètre passe par toutes les autres colonnes. L’argument préfixe « min_ » à chaque nom de colonne. 
+`arg_min` sélectionne la ligne avec la plus petite durée dans chaque groupe, et le `*` paramètre passe par toutes les autres colonnes. L’argument préfixe « min_ » à chaque nom de colonne. 
 
-:::image type="content" source="images/samples/040.png" alt-text="040"::: 
+:::image type="content" source="images/samples/040.png" alt-text="Capture d’écran d’un histogramme. L’axe des y est compris entre 0 et environ 50. Dix colonnes colorées représentent les valeurs respectives de 10 emplacements."::: 
 
 Ajoutez du code pour compter les durées dans des emplacements facilement dimensionnés. Dans cet exemple, en raison d’une préférence pour un graphique à barres, divisez par `1s` pour convertir les intervalles en nombres. 
 
@@ -118,7 +118,7 @@ Ajoutez du code pour compter les durées dans des emplacements facilement dimens
     | sort by duration asc | render barchart 
 ```
 
-:::image type="content" source="images/samples/050.png" alt-text="050":::
+:::image type="content" source="images/samples/050.png" alt-text="Capture d’écran d’un histogramme. L’axe des y est compris entre 0 et environ 50. Dix colonnes colorées représentent les valeurs respectives de 10 emplacements.":::
 
 ### <a name="real-example"></a>Exemple concret
 
@@ -209,7 +209,7 @@ Voici un résultat intermédiaire.
 X | extend samples = range(bin(StartTime, 1m), StopTime, 1m)
 ```
 
-`range`génère un tableau de valeurs aux intervalles spécifiés.
+`range` génère un tableau de valeurs aux intervalles spécifiés.
 
 |SessionId | StartTime | StopTime  | exemples|
 |---|---|---|---|
@@ -352,7 +352,7 @@ Logs
 | project Count, Pattern
 ```
 
-|Count|Modèle
+|Nombre|Modèle
 |---|---
 |7125|Échec de ExecuteAlgorithmMethod pour la méthode « RunCycleFromInterimData »...
 |  7125|Appel InferenceHostService failed..SysTEM. NullReferenceException : la référence d’objet n’est pas définie sur une instance d’un objet...
@@ -378,7 +378,7 @@ Logs
 | evaluate autocluster()
 ```
 
-|Count |Pourcentage (%)|Composant|Cluster|Message
+|Nombre |Pourcentage (%)|Composant|Cluster|Message
 |---|---|---|---|---
 |7125|26,64|InferenceHostService|EST renommé db4|ExecuteAlgorithmMethod pour la méthode....
 |7125|26,64|Composant inconnu|EST renommé db4|Échec de l’appel de InferenceHostService...
@@ -389,10 +389,10 @@ Logs
 
 Un cas d’usage courant est le mappage statique de valeurs, qui peut aider à rendre les résultats plus présents.
 Par exemple, considérons le tableau suivant. 
-`DeviceModel`spécifie un modèle de l’appareil, qui n’est pas une forme très pratique de référencer le nom de l’appareil.  
+`DeviceModel` spécifie un modèle de l’appareil, qui n’est pas une forme très pratique de référencer le nom de l’appareil.  
 
 
-|DeviceModel |Count 
+|DeviceModel |Nombre 
 |---|---
 |iPhone5, 1 |32 
 |iPhone3, 2 |432 
@@ -402,7 +402,7 @@ Par exemple, considérons le tableau suivant.
   
 Vous trouverez ci-dessous une meilleure représentation.  
 
-|FriendlyName |Count 
+|FriendlyName |Nombre 
 |---|---
 |iPhone 5 |32 
 |iPhone 4 |432 
@@ -437,7 +437,7 @@ Source
 | project FriendlyName = phone_mapping[DeviceModel], Count
 ```
 
-|FriendlyName|Count|
+|FriendlyName|Nombre|
 |---|---|
 |iPhone 5|32|
 |iPhone 4|432|
@@ -484,7 +484,7 @@ Devices
 
 Résultat :
 
-|FriendlyName |Count 
+|FriendlyName |Nombre 
 |---|---
 |iPhone 5 |32 
 |iPhone 4 |432 
@@ -494,7 +494,7 @@ Résultat :
 
 ## <a name="create-and-use-query-time-dimension-tables"></a>Créer et utiliser des tables de dimension de temps de requête
 
-Vous souhaiterez souvent joindre les résultats d’une requête avec une table de dimension ad hoc qui n’est pas stockée dans la base de données. Il est possible de définir une expression dont le résultat est une table dont l’étendue est limitée à une seule requête. Par exemple :
+Vous souhaiterez souvent joindre les résultats d’une requête avec une table de dimension ad hoc qui n’est pas stockée dans la base de données. Il est possible de définir une expression dont le résultat est une table dont l’étendue est limitée à une seule requête. Exemple :
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -540,7 +540,7 @@ Supposons que vous disposiez d’une table qui comprend les éléments suivants�
 
 Une requête qui retourne les deux derniers enregistrements pour chaque valeur de la `ID` colonne, où « latest » est défini comme « ayant la valeur la plus élevée `timestamp` », peut être créé avec l' [opérateur de niveau supérieur](topnestedoperator.md).
 
-Par exemple :
+Exemple :
 
 ```kusto
 datatable(id:string, timestamp:datetime, bla:string)           // #1
@@ -707,8 +707,8 @@ A; B
 |2019-01-01 00:00:00.0000000|x|Ax1|
 |2019-01-01 00:00:00.0000000|z|Az1|
 |2019-01-01 00:00:01.0000000|x|Ax2|
-|2019-01-01 00:00:02.0000000|y|Ay1|
-|2019-01-01 00:00:05.0000000|y|Ay2|
+|2019-01-01 00:00:02.0000000|o|Ay1|
+|2019-01-01 00:00:05.0000000|o|Ay2|
 
 </br>
 
@@ -716,7 +716,7 @@ A; B
 |---|---|---|
 |2019-01-01 00:00:03.0000000|x|B|
 |2019-01-01 00:00:04.0000000|x|B|
-|2019-01-01 00:00:04.0000000|y|B|
+|2019-01-01 00:00:04.0000000|o|B|
 |2019-01-01 00:02:00.0000000|z|B|
 
 Sortie attendue : 
@@ -725,7 +725,7 @@ Sortie attendue :
 |---|---|---|---|---|
 |x|2019-01-01 00:00:03.0000000|B|2019-01-01 00:00:01.0000000|Ax2|
 |x|2019-01-01 00:00:04.0000000|B|2019-01-01 00:00:01.0000000|Ax2|
-|y|2019-01-01 00:00:04.0000000|B|2019-01-01 00:00:02.0000000|Ay1|
+|o|2019-01-01 00:00:04.0000000|B|2019-01-01 00:00:02.0000000|Ay1|
 |z|2019-01-01 00:02:00.0000000|B|2019-01-01 00:00:00.0000000|Az1|
 
 Il existe deux approches différentes suggérées pour résoudre ce problème. Vous devez tester les deux sur votre jeu de données spécifique, afin de trouver celui qui convient le mieux à vos besoins.
@@ -784,5 +784,5 @@ B_events
 |---|---|---|---|---|
 |x|2019-01-01 00:00:03.0000000|2019-01-01 00:00:01.0000000|B|Ax2|
 |x|2019-01-01 00:00:04.0000000|2019-01-01 00:00:01.0000000|B|Ax2|
-|y|2019-01-01 00:00:04.0000000|2019-01-01 00:00:02.0000000|B|Ay1|
+|o|2019-01-01 00:00:04.0000000|2019-01-01 00:00:02.0000000|B|Ay1|
 |z|2019-01-01 00:02:00.0000000||B||
