@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/19/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: f56bd1c9f87833f7c1a9d29580a71557fedb894c
-ms.sourcegitcommit: ed902a5a781e24e081cd85910ed15cd468a0db1e
+ms.openlocfilehash: 30d4f6bd315b5a32c67570ab16b9abc3160f0177
+ms.sourcegitcommit: 6f610cd9c56dbfaff4eb0470ac0d1441211ae52d
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/11/2020
-ms.locfileid: "88072393"
+ms.lasthandoff: 10/12/2020
+ms.locfileid: "91954482"
 ---
 # <a name="using-hll-and-tdigest"></a>Utilisation de hll() et de tdigest()
 
@@ -52,7 +52,7 @@ MyTable
 | project isempty(hll_x)
 ```
 
-| Colonne1 |
+| Column1 |
 |---------|
 | 1       |
 
@@ -76,13 +76,13 @@ MyTable
 | project isempty(hll_x)
 ```
 
-|Colonne1|
+|Column1|
 |---|
 |1|
 |0|
 
 
-## <a name="example"></a>Exemple
+## <a name="example-count-with-binned-timestamp"></a>Exemple : Count avec horodateur Binned (
 
 Il existe une table, `PageViewsHllTDigest` , contenant `hll` les valeurs des pages affichées dans chaque heure. Vous souhaitez que ces valeurs Binned (ent à `12h` . Fusionnez les `hll` valeurs à l’aide de la `hll_merge()` fonction d’agrégation, avec l’horodateur Binned (à `12h` . Utilisez la fonction `dcount_hll` pour retourner la `dcount` valeur finale :
 
@@ -128,7 +128,7 @@ PageViewsHllTDigest
 |2016-05-02 12:00:00.0000000|181315|
 |2016-05-03 00:00:00.0000000|146817|
  
-## <a name="example"></a>Exemple
+## <a name="example-temporary-table"></a>Exemple : table temporaire
 
 Les limites de Kusto sont atteintes avec les jeux de données trop volumineux, où vous devez exécuter des requêtes périodiques sur le jeu de données, mais exécuter les requêtes régulières pour calculer [`percentile()`](percentiles-aggfunction.md) ou [`dcount()`](dcount-aggfunction.md) sur des jeux de données volumineux.
 
@@ -148,7 +148,7 @@ Lorsque vous avez besoin d’obtenir les résultats finaux de ces valeurs, les r
 
 En supposant qu’il existe une table, PageViews, dans laquelle les données sont ingérées quotidiennement, chaque jour sur lequel vous souhaitez calculer le nombre de pages affichées par minute plus tard que date = DateTime (2016-05-01 18:00:00.0000000).
 
-Exécutez la requête suivante :
+Exécutez la requête suivante :
 
 ```kusto
 PageViews   
@@ -179,7 +179,7 @@ PageViewsHllTDigest
 
 Cette requête doit être plus performante, car elle s’exécute sur une table plus petite. Dans cet exemple, la première requête s’exécute sur environ 215M enregistrements, tandis que la deuxième s’exécute sur seulement 32 enregistrements :
 
-## <a name="example"></a>Exemple
+## <a name="example-intermediate-results"></a>Exemple : résultats intermédiaires
 
 Requête de rétention.
 Supposons que vous disposiez d’une table qui résume le moment où chaque page Wikipédia a été affichée (la taille de l’échantillon est de 10 m) et que vous souhaitez rechercher pour chaque date1 date2 le pourcentage de pages consultées dans date1 et date2 par rapport aux pages affichées à partir de date1 (date1 < date2).

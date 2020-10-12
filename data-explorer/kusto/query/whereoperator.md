@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: ed207a9db0b6440bae8f8fb4ae1c250d274565d7
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 79eb1314fad1c3d3bdbbda242b3bd6a86c19e158
+ms.sourcegitcommit: 6f610cd9c56dbfaff4eb0470ac0d1441211ae52d
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87338216"
+ms.lasthandoff: 10/12/2020
+ms.locfileid: "91954465"
 ---
 # <a name="where-operator"></a>opérateur where
 
@@ -54,7 +54,7 @@ Pour obtenir des performances optimales :
 
 Pour plus d’informations, consultez le résumé des [opérateurs de chaîne disponibles](./datatypes-string-operators.md) et le résumé des [opérateurs numériques disponibles](./numoperators.md).
 
-## <a name="example"></a>Exemple
+## <a name="example-simple-comparisons-first"></a>Exemple : premières comparaisons simples
 
 ```kusto
 Traces
@@ -67,7 +67,7 @@ Cet exemple récupère les enregistrements qui ne sont pas antérieurs à 1 heur
 
 Notez que nous avons placé la comparaison entre deux colonnes en dernier, car elle ne peut pas utiliser l’index et force une analyse.
 
-## <a name="example"></a>Exemple
+## <a name="example-columns-contain-string"></a>Exemple : les colonnes contiennent une chaîne
 
 ```kusto
 Traces | where * has "Kusto"

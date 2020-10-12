@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 1f4213af91cfee667fdfc87b2d352fe42df3f915
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 48bfab2549da572efba117c21d783b35ac0202af
+ms.sourcegitcommit: 6f610cd9c56dbfaff4eb0470ac0d1441211ae52d
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346454"
+ms.lasthandoff: 10/12/2020
+ms.locfileid: "91954720"
 ---
 # <a name="parse_ipv4"></a>parse_ipv4()
 
@@ -37,11 +37,9 @@ parse_ipv4('192.1.168.1') < parse_ipv4('192.1.168.2') == true
 Les adresses IP peuvent être définies à `IP-prefix notation` l’aide d’une barre oblique ( `/` ).
 L’adresse IP à gauche de la barre oblique ( `/` ) est l’adresse IP de base. Le nombre (1 à 32) à droite de la barre oblique (/) est le nombre de 1 bit contigu dans le masque réseau.
 
-## <a name="example"></a>Exemple
+Par exemple, 192.168.2.0/24 aura un net/Masque_Sous_réseau associé contenant 24 bits contigus ou 255.255.255.0 au format décimal avec points.
 
-192.168.2.0/24 aura un net/Masque_Sous_réseau associé contenant 24 bits contigus ou 255.255.255.0 au format décimal avec points.
-
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Si la conversion réussit, le résultat sera un nombre long.
 Si la conversion échoue, le résultat sera `null` .

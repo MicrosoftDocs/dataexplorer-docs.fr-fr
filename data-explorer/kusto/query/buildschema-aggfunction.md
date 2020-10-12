@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 3fb6ae643bb4350cea1ffef4493625bc9c7d191d
-ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
+ms.openlocfilehash: 37e7ad11bc96ab7567897a231f52e23ba9a6c661
+ms.sourcegitcommit: 6f610cd9c56dbfaff4eb0470ac0d1441211ae52d
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/25/2020
-ms.locfileid: "88793574"
+ms.lasthandoff: 10/12/2020
+ms.locfileid: "91954754"
 ---
 # <a name="buildschema-aggregation-function"></a>buildschema () (fonction d’agrégation)
 
@@ -44,12 +44,9 @@ Valeur maximale de *`Expr`* dans le groupe.
 
 Supposons que la colonne d’entrée comporte trois valeurs dynamiques.
 
-||
-|---|
-|`{"x":1, "y":3.5}`|
-|`{"x":"somevalue", "z":[1, 2, 3]}`|
-|`{"y":{"w":"zzz"}, "t":["aa", "bb"], "z":["foo"]}`|
-||
+* `{"x":1, "y":3.5}`
+* `{"x":"somevalue", "z":[1, 2, 3]}`
+* `{"y":{"w":"zzz"}, "t":["aa", "bb"], "z":["foo"]}`
 
 Le schéma résultant serait :
 

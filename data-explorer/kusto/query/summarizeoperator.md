@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/20/2020
-ms.openlocfilehash: 00d205a710b7b3bf41dc181e79e5e6d0baa95fc6
-ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
+ms.openlocfilehash: 9514f7c94568e73a704e6ba6f4bcc5bf61590d2f
+ms.sourcegitcommit: 6f610cd9c56dbfaff4eb0470ac0d1441211ae52d
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/25/2020
-ms.locfileid: "88793930"
+ms.lasthandoff: 10/12/2020
+ms.locfileid: "91954771"
 ---
 # <a name="summarize-operator"></a>opérateur summarize
 
@@ -117,7 +117,7 @@ Opérateur       |Valeur par défaut
 
 :::image type="content" source="images/summarizeoperator/summarize-price-by-supplier.png" alt-text="Résumer le prix par fruit et fournisseur":::
 
-## <a name="example"></a>Exemple
+## <a name="example-unique-combination"></a>Exemple : combinaison unique
 
 Déterminez les combinaisons uniques de `ActivityType` et de `CompletionStatus` dans une table. Il n’existe aucune fonction d’agrégation, mais uniquement des clés de regroupement. La sortie affiche simplement les colonnes de ces résultats :
 
@@ -132,7 +132,7 @@ Activities | summarize by ActivityType, completionStatus
 |`dancing`|`abandoned`
 |`singing`|`completed`
 
-## <a name="example"></a>Exemple
+## <a name="example-minimum-and-maximum-timestamp"></a>Exemple : horodatage minimal et maximal
 
 Recherche l’horodateur minimal et maximal de tous les enregistrements dans la table des activités. Comme il n’y a pas de clause group by, la sortie contient une seule ligne :
 
@@ -144,7 +144,7 @@ Activities | summarize Min = min(Timestamp), Max = max(Timestamp)
 |---|---
 |`1975-06-09 09:21:45` | `2015-12-24 23:45:00`
 
-## <a name="example"></a>Exemple
+## <a name="example-distinct-count"></a>Exemple : compte distinct
 
 Créez une ligne pour chaque continent, en indiquant le nombre de villes dans lesquelles les activités se produisent. Comme il y a peu de valeurs pour « continent », aucune fonction de regroupement n’est nécessaire dans la clause « by » :
 
@@ -159,7 +159,7 @@ Activities | summarize cities=dcount(city) by continent
 |`2673`|`North America`|
 
 
-## <a name="example"></a>Exemple
+## <a name="example-histogram"></a>Exemple : histogramme
 
 L’exemple suivant calcule un histogramme pour chaque type d’activité. Étant donné que `Duration` a de nombreuses valeurs, utilisez `bin` pour regrouper ses valeurs en intervalles de 10 minutes :
 

@@ -1,6 +1,6 @@
 ---
-title: fonction .drop - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit la fonction .drop dans Azure Data Explorer.
+title: . Drop, fonction-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit la fonction. Drop dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,31 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 8930f7333ff18fad0d5b3dbbebe9328f8bf7a0b9
-ms.sourcegitcommit: e94be7045d71a0435b4171ca3a7c30455e6dfa57
+ms.openlocfilehash: 279af228d15f511b35c26eebd0d21521450be786
+ms.sourcegitcommit: 6f610cd9c56dbfaff4eb0470ac0d1441211ae52d
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81744776"
+ms.lasthandoff: 10/12/2020
+ms.locfileid: "91954737"
 ---
 # <a name="drop-function"></a>.drop function
 
-Laisse tomber une fonction de la base de données.
-Pour laisser tomber plusieurs fonctions de la base de données, voir [.drop fonctions](#drop-functions).
+Supprime une fonction de la base de données.
+Pour supprimer plusieurs fonctions de la base de données, consultez [. Drop Functions](#drop-functions).
 
 **Syntaxe**
 
-`.drop``function` *FunctionName* `ifexists`[ ]
+`.drop``function` *Nomfonction* [ `ifexists` ]
 
-* `ifexists`: Si spécifié, modifie le comportement de la commande de ne pas manquer pour une fonction inexistante.
+* `ifexists`: Si spécifié, modifie le comportement de la commande de sorte qu’il n’échoue pas pour une fonction inexistante.
 
 > [!NOTE]
-> * Nécessite [l’autorisation d’administration de base de données](../management/access-control/role-based-authorization.md).
-> * [L’utilisateur de base de données](../management/access-control/role-based-authorization.md) qui a créé la fonction à l’origine est autorisé à modifier la fonction.  
+> * Requiert l' [autorisation Function admin](../management/access-control/role-based-authorization.md).
     
 |Paramètre de sortie |Type |Description
 |---|---|--- 
-|Nom  |String |Le nom de la fonction qui a été supprimée
+|Nom  |String |Nom de la fonction qui a été supprimée.
  
 **Exemple** 
 
@@ -40,27 +39,27 @@ Pour laisser tomber plusieurs fonctions de la base de données, voir [.drop fonc
 .drop function MyFunction1
 ```
 
-## <a name="drop-functions"></a>.drop fonctions
+## <a name="drop-functions"></a>. Drop, fonctions
 
 Supprime plusieurs fonctions de la base de données.
 
 **Syntaxe**
 
-`.drop``functions` (*FunctionName1*, *FunctionName2*,..) [ifexists]
+`.drop``functions`(*FunctionName1*, *FunctionName2*,..) [IfExists]
 
 **Retourne**
 
-Cette commande renvoie une liste des fonctions restantes dans la base de données.
+Cette commande retourne une liste des fonctions restantes dans la base de données.
 
 |Paramètre de sortie |Type |Description
 |---|---|--- 
 |Nom  |String |Nom de la fonction. 
-|Paramètres  |String |Les paramètres requis par la fonction.
-|body  |String |(Zéro ou plus) `let` déclarations suivies d’une expression CSL valide qui est évaluée sur l’invocation de la fonction.
-|Dossier|String|Un dossier utilisé pour la catégorisation des fonctions d’interface utilisateur. Ce paramètre ne change pas la façon dont la fonction est invoquée.
-|DocString (en)|String|Une description de la fonction à des fins d’assurance-chômage.
+|Paramètres  |String |Paramètres requis par la fonction.
+|body  |String |(Zéro, un ou plusieurs) `let` instructions suivies d’une expression CSL valide qui est évaluée lors de l’appel de la fonction.
+|Dossier|String|Dossier utilisé pour la catégorisation des fonctions d’interface utilisateur. Ce paramètre ne modifie pas la façon dont la fonction est appelée.
+|DocString|String|Description de la fonction pour les besoins de l’interface utilisateur.
 
-Nécessite [la permission d’administration de fonction](../management/access-control/role-based-authorization.md).
+Requiert l' [autorisation Function admin](../management/access-control/role-based-authorization.md).
 
 **Exemple** 
  
