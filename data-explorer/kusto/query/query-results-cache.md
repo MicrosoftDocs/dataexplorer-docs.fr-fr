@@ -8,12 +8,12 @@ ms.reviewer: amitof
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/16/2020
-ms.openlocfilehash: 4bfc7b591683940e10d2737ec776421f65d1427a
-ms.sourcegitcommit: 93510ef1e5570ce4da2cbf76eb77946c93a7dec8
+ms.openlocfilehash: d0942a949454bf12840626ff25d3703a23aed2cc
+ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "85372466"
+ms.lasthandoff: 10/13/2020
+ms.locfileid: "92002939"
 ---
 # <a name="query-results-cache"></a>Cache des résultats de requête
 
@@ -55,7 +55,6 @@ Les résultats de la requête ne seront pas mis en cache si l’une des conditio
     * [current_principal](current-principalfunction.md)
     * [current_principal_details](current-principal-detailsfunction.md)
     * [current_principal_is_member_of](current-principal-ismemberoffunction.md)
-* La requête est une [requête entre clusters](cross-cluster-or-database-queries.md).
 * La requête accède à une [table externe](schema-entities/externaltables.md) ou à des [données externes](externaldata-operator.md).
 * La requête utilise l’opérateur de [plug-in Evaluate](evaluateoperator.md) .
 
@@ -71,10 +70,10 @@ Si un résultat mis en cache satisfaisant aux contraintes de temps est introuvab
 Comment le service indique-t-il que les résultats de la requête sont servis à partir du cache ?
 Lors de la réponse à une requête, Kusto envoie une table de réponse [ExtendedProperties](../api/rest/response.md) supplémentaire qui comprend une `Key` colonne et une `Value` colonne.
 Les résultats de requête mis en cache comporteront une ligne supplémentaire ajoutée à cette table :
-* La colonne de la ligne `Key` contient la chaîne`ServerCache`
+* La colonne de la ligne `Key` contient la chaîne `ServerCache`
 * La colonne de la ligne `Value` contient un conteneur de propriétés avec deux champs :
-   * `OriginalClientRequestId`-Spécifie le [ClientRequestId](../api/netfx/request-properties.md#the-clientrequestid-x-ms-client-request-id-named-property)de la demande d’origine.
-   * `OriginalStartedOn`-Spécifie l’heure de début d’exécution de la demande d’origine.
+   * `OriginalClientRequestId` -Spécifie le [ClientRequestId](../api/netfx/request-properties.md#the-clientrequestid-x-ms-client-request-id-named-property)de la demande d’origine.
+   * `OriginalStartedOn` -Spécifie l’heure de début d’exécution de la demande d’origine.
 
 ## <a name="distribution"></a>Distribution
 

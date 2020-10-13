@@ -1,6 +1,6 @@
 ---
 title: Gestion de la stratégie de mise à jour Kusto-Azure Explorateur de données
-description: Cet article décrit la stratégie de mise à jour dans Azure Explorateur de données.
+description: En savoir plus sur les commandes de mise à jour de stratégie dans Azure Explorateur de données. Consultez Comment afficher, définir, modifier et supprimer des stratégies de mise à jour de table.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/04/2020
-ms.openlocfilehash: 111110ac69e726c8367af4a2741a79061df7531a
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: c9ef5b2a205665c692c383654f3d050c4658c0f1
+ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803860"
+ms.lasthandoff: 10/13/2020
+ms.locfileid: "92002992"
 ---
-# <a name="update-policy-commands"></a>mettre à jour les commandes de stratégie
+# <a name="update-policy-commands"></a>commandes de stratégie de mise à jour
 
 La [stratégie de mise à jour](updatepolicy.md) est un objet de stratégie au niveau de la table qui exécute automatiquement une requête, puis ingère les résultats lorsque les données sont ingérées dans une autre table.
 
@@ -63,7 +63,7 @@ Cette commande définit la stratégie de mise à jour de la table spécifiée.
 > * Utilisez une fonction stockée pour la `Query` propriété de l’objet de stratégie de mise à jour.
    Il vous suffit de modifier la définition de la fonction, au lieu de l’intégralité de l’objet de stratégie.
 > * Si `IsEnabled` a la valeur `true` , les validations suivantes sont effectuées sur la stratégie de mise à jour, car elle est définie :
->    * `Source`-Vérifie que la table existe dans la base de données cible.
+>    * `Source` -Vérifie que la table existe dans la base de données cible.
 >    * `Query` 
 >        * Vérifie que le schéma défini par le schéma correspond à celui de la table cible.
 >        * Vérifie que la requête fait référence `source` à la table de la stratégie de mise à jour. 

@@ -1,6 +1,6 @@
 ---
 title: Effacer le cache des résultats de la requête-Azure Explorateur de données
-description: Cet article décrit la commande de gestion pour l’effacement du schéma de base de données mis en cache dans Azure Explorateur de données.
+description: Découvrez comment effacer les résultats de requête mis en cache dans Azure Explorateur de données. Découvrez la commande à utiliser et consultez un exemple.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: amitof
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/16/2020
-ms.openlocfilehash: 27806155d105a109c7419d04d945fbc854c44286
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 72678453211ada2a6366b771153eeb11a717d7a3
+ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349922"
+ms.lasthandoff: 10/13/2020
+ms.locfileid: "92002943"
 ---
 # <a name="clear-query-results-cache"></a>Effacer le cache des résultats de requête
 

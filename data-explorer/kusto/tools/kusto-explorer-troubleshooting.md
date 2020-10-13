@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/13/2020
-ms.openlocfilehash: 6dd52dbe9b69000b109f613957d1405190194b13
-ms.sourcegitcommit: 6db94135b9902ad0ea84f9cef00ded8ec0a90fc3
+ms.openlocfilehash: 9a697cfd37590f0368d5a8f0bacf91d02e1c8725
+ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86870088"
+ms.lasthandoff: 10/13/2020
+ms.locfileid: "92003164"
 ---
 # <a name="troubleshooting"></a>Dépannage
 
@@ -22,11 +22,11 @@ Ce document présente les difficultés courantes liées à l’exécution et à 
 
 ### <a name="kustoexplorer-shows-error-dialog-during-or-after-start-up"></a>Kusto. Explorer affiche la boîte de dialogue d’erreur pendant ou après le démarrage
 
-**Symptôme**
+#### <a name="symptom"></a>Symptôme
 
 Au démarrage, Kusto. Explorer affiche une `InvalidOperationException` erreur.
 
-**Solution possible**
+#### <a name="possible-solution"></a>Solution possible
 
 Cette erreur peut suggérer que le système d’exploitation est endommagé ou qu’il manque certains modules essentiels.
 Pour vérifier les fichiers système manquants ou endommagés, suivez les étapes décrites ici :   
@@ -34,11 +34,11 @@ Pour vérifier les fichiers système manquants ou endommagés, suivez les étape
 
 ## <a name="kustoexplorer-always-downloads-even-when-there-are-no-updates"></a>Kusto. Explorer télécharge toujours les fichiers, même s’il n’y a aucune mise à jour
 
-**Symptôme**
+#### <a name="symptom"></a>Symptôme
 
 Chaque fois que vous ouvrez Kusto. Explorer, vous êtes invité à installer une nouvelle version. Kusto. Explorer télécharge le package entier, sans mettre à jour la version déjà installée.
 
-**Solution possible**
+#### <a name="possible-solution"></a>Solution possible
 
 Ce symptôme peut être dû à un endommagement dans votre magasin ClickOnce local. Vous pouvez effacer le magasin ClickOnce local en exécutant la commande suivante, dans une invite de commandes avec élévation de privilèges.
 
@@ -54,7 +54,7 @@ Essayez d’installer Kusto. Explorer à nouveau à partir de l’un des [miroir
 
 ### <a name="clickonce-error-cannot-start-application"></a>Erreur ClickOnce : impossible de démarrer l’application
 
-**Symptômes**  
+#### <a name="symptoms"></a>Symptômes
 
 Le programme ne parvient pas à démarrer et affiche l’une des erreurs suivantes : 
 * `External component has thrown an exception`
@@ -82,7 +82,7 @@ Following errors were detected during this operation.
             at System.Deployment.Application.ApplicationActivator.ActivateDeploymentWorker(Object state)
 ```
 
-**Étapes de la solution proposée**
+#### <a name="proposed-solution-steps"></a>Étapes de la solution proposée
 
 1. Désinstallez Kusto. Explorer à l’aide `Programs and Features` de ( `appwiz.cpl` ).
 
@@ -124,8 +124,10 @@ Following errors were detected during this operation.
         copy %LOCALAPPDATA%\Kusto.Explorer.bak\User*.xml %LOCALAPPDATA%\Kusto.Explorer
         ```
 
+#### <a name="enabling-clickonce-verbose-logging"></a>Activation de la journalisation détaillée ClickOnce
+
 1. Si l’application ne démarre toujours pas :
-    1. Activez la journalisation ClickOnce détaillée en créant une valeur de chaîne LogVerbosityLevel de 1 sous :
+    1. [Activez la journalisation ClickOnce détaillée](https://docs.microsoft.com/visualstudio/deployment/how-to-specify-verbose-log-files-for-clickonce-deployments) en créant une valeur de chaîne LogVerbosityLevel de 1 sous :
 
         ```kusto
         HKEY_CURRENT_USER\Software\Classes\Software\Microsoft\Windows\CurrentVersion\Deployment
@@ -136,12 +138,12 @@ Following errors were detected during this operation.
 
 ### <a name="clickonce-error-your-administrator-has-blocked-this-application-because-it-potentially-poses-a-security-risk-to-your-computer"></a>Erreur ClickOnce : votre administrateur a bloqué cette application, car elle risque de poser un problème de sécurité sur votre ordinateur
 
-**Symptôme**  
+#### <a name="symptom"></a>Symptôme 
 L’installation de l’application échoue avec l’une des erreurs suivantes :
 * `Your administrator has blocked this application because it potentially poses a security risk to your computer`.
 * `Your security settings do not allow this application to be installed on your computer.`
 
-**Solution**
+#### <a name="solution"></a>Solution
 
 Ce symptôme peut être dû au fait qu’une autre application remplace le comportement par défaut de l’invite d’approbation ClickOnce. 
 1. Affichez vos paramètres de configuration par défaut.
@@ -163,7 +165,7 @@ Si nécessaire, vous pouvez réinitialiser complètement Kusto. Explorer. La pro
 
 1. Dans Windows, ouvrez **modifier ou supprimer un programme** (également appelé **programmes et fonctionnalités**).
 1. Sélectionnez chaque élément qui commence par `Kusto.Explorer` .
-1. Sélectionnez **Désinstaller**.
+1. Sélectionner **Désinstaller**.
 
    Si cette procédure ne permet pas de désinstaller l’application (problème connu avec les applications ClickOnce), consultez [cet article pour obtenir des instructions](https://stackoverflow.com/questions/10896223/how-do-i-completely-uninstall-a-clickonce-application-from-my-computer).
 
