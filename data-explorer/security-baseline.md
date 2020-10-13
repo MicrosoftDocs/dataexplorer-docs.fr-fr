@@ -7,12 +7,12 @@ ms.topic: conceptual
 ms.date: 03/25/2020
 ms.author: mbaldwin
 ms.custom: security-benchmark
-ms.openlocfilehash: e67621e92af12c45ac7e66bd6055f90245f705d2
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: d56681eaee708fa66c2fc0ceedb08b003e259955
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494173"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91941959"
 ---
 # <a name="azure-security-baseline-for-data-explorer"></a>Base de référence de sécurité Azure pour Data Explorer
 
@@ -657,9 +657,9 @@ Comment créer des requêtes avec Azure Resource Graph : https://docs.microsoft
 
 **Aide** : Vous pouvez utiliser des stratégies Azure pour appliquer des restrictions aux types de ressources pouvant être créés dans les abonnements client en utilisant les définitions de stratégie intégrées suivantes :
 
-    - Types de ressources non autorisés
+- Types de ressources non autorisés
 
-    - Types de ressources autorisés
+- Types de ressources autorisés
 
 Vous pouvez superviser les événements générés par la stratégie à l’aide des 
 
@@ -681,7 +681,7 @@ Créez, consultez et gérez des alertes de journal d’activité à l’aide d�
 
 ### <a name="66-monitor-for-unapproved-software-applications-within-compute-resources"></a>6.6 : Détecter les applications logicielles non approuvées dans les ressources de calcul
 
-**Aide** : Non applicable. Cette recommandation a trait aux ressources de calcul.
+**Conseils** : Non applicable. Cette recommandation a trait aux ressources de calcul.
 
 **Supervision d’Azure Security Center** : Non applicable
 
@@ -707,9 +707,9 @@ Créez, consultez et gérez des alertes de journal d’activité à l’aide d�
 
 **Aide** : Vous pouvez utiliser des stratégies Azure pour appliquer des restrictions aux types de ressources pouvant être créés dans les abonnements client en utilisant les définitions de stratégie intégrées suivantes :
 
-    - Types de ressources non autorisés
+- Types de ressources non autorisés
 
-    - Types de ressources autorisés
+- Types de ressources autorisés
 
 Tutoriel : Créer et gérer des stratégies pour assurer la conformité : https://docs.microsoft.com/azure/governance/policy/tutorials/create-and-manage
 
@@ -751,7 +751,7 @@ Gérer l’accès à la gestion Azure avec l’accès conditionnel : https://do
 
 ### <a name="613-physically-or-logically-segregate-high-risk-applications"></a>6.13 : Séparer physiquement ou logiquement des applications à risque élevé
 
-**Aide** : Non applicable. Cette recommandation a trait aux applications web s’exécutant sur Azure App Service ou des ressources de calcul.
+**Conseils** : Non applicable. Cette recommandation a trait aux applications web s’exécutant sur Azure App Service ou des ressources de calcul.
 
 **Supervision d’Azure Security Center** : Non applicable
 
@@ -1021,22 +1021,13 @@ Configurer des clés gérées par le client à l’aide du modèle Azure Resourc
 
 ### <a name="101-create-incident-response-guide"></a>10.1 : Créer un guide de réponse aux incidents
 
-**Aide** : Créez un guide de réponse aux incidents pour votre organisation. Assurez-vous qu’il existe des plans de réponse aux incidents écrits qui définissent tous les rôles du personnel, ainsi que les phases de gestion des incidents, depuis la détection jusqu’à la revue une fois l’incident terminé.
-    
+**Conseils** : Créez un guide de réponse aux incidents pour votre organisation. Assurez-vous qu’il existe des plans de réponse aux incidents écrits qui définissent tous les rôles du personnel, ainsi que les phases de gestion des incidents, depuis la détection jusqu’à la revue une fois l’incident terminé.
 
-    Guidance on building your own security incident response process: https://msrc-blog.microsoft.com/2019/07/01/inside-the-msrc-building-your-own-security-incident-response-process/
+Aide sur la création de votre propre processus de réponse aux incidents de sécurité : https://msrc-blog.microsoft.com/2019/07/01/inside-the-msrc-building-your-own-security-incident-response-process/
 
-    
+Anatomie d’un incident dans le centre de réponse aux incidents de sécurité Microsoft : https://msrc-blog.microsoft.com/2019/06/27/inside-the-msrc-anatomy-of-a-ssirp-incident/
 
-    Microsoft Security Response Center's Anatomy of an Incident: https://msrc-blog.microsoft.com/2019/06/27/inside-the-msrc-anatomy-of-a-ssirp-incident/
-
-    
-
-    Customer may also leverage NIST's Computer Security Incident Handling Guide to aid in the creation of their own incident response plan: https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final
-
-    
-
-
+Le client peut également tirer parti du guide de gestion des incidents de sécurité informatique du NIST pour faciliter la création de son propre plan de réponse aux incidents : https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final
 
 **Supervision d’Azure Security Center** : Non applicable
 
@@ -1045,32 +1036,22 @@ Configurer des clés gérées par le client à l’aide du modèle Azure Resourc
 ### <a name="102-create-incident-scoring-and-prioritization-procedure"></a>10.2 : Créer une procédure de scoring et de hiérarchisation des incidents
 
 **Aide** : Security Center attribue un niveau de gravité à chaque alerte pour vous aider à hiérarchiser celles devant être examinées en premier. La gravité dépend du niveau de confiance que Security Center accorde à la recherche ou aux données analytiques utilisées pour émettre l’alerte, mais aussi de l’intention malveillante estimée de l’activité à l’origine de l’alerte. 
-    
 
-    Additionally, clearly mark subscriptions (for ex. production, non-prod) using tags and create a naming system to clearly identify and categorize Azure resources, especially those processing sensitive data.  It is your responsibility to prioritize the remediation of alerts based on the criticality of the Azure resources and environment where the incident occurred.
+En outre, marquez clairement les abonnements (par ex. production, non-production) à l’aide d’étiquettes et créez un système de nommage pour identifier et classer clairement les ressources Azure, en particulier celles qui traitent des données sensibles.  Il vous incombe de hiérarchiser le traitement des alertes en fonction de la criticité des ressources et de l’environnement Azure où l’incident s’est produit.
 
-    
+Alertes de sécurité dans Azure Security Center : https://docs.microsoft.com/azure/security-center/security-center-alerts-overview
 
-    Security alerts in Azure Security Center: https://docs.microsoft.com/azure/security-center/security-center-alerts-overview
+Utilisez des étiquettes pour organiser vos ressources Azure : https://docs.microsoft.com/azure/azure-resource-manager/resource-group-using-tags
 
-    
-
-    Use tags to organize your Azure resources: https://docs.microsoft.com/azure/azure-resource-manager/resource-group-using-tags
-
-
-
-**Supervision Azure Security Center** : Oui
+**Supervision d’Azure Security Center** : Oui
 
 **Responsabilité** : Customer
 
 ### <a name="103-test-security-response-procedures"></a>10.3 : Tester les procédures de réponse de sécurité
 
 **Aide** : Effectuez des exercices pour tester les capacités de réponse aux incidents de vos systèmes à intervalles réguliers, afin de protéger vos ressources Azure. Identifiez les points faibles et les lacunes, et révisez le plan en fonction des besoins.
-    
 
-    Refer to NIST's publication: Guide to Test, Training, and Exercise Programs for IT Plans and Capabilities: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-84.pdf
-
-
+Reportez-vous à la publication du NIST : « Guide to Test, Training, and Exercise Programs for IT Plans and Capabilities » : https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-84.pdf
 
 **Supervision d’Azure Security Center** : Non applicable
 
@@ -1090,15 +1071,10 @@ Comment définir le contact de sécurité d’Azure Security Center : https://d
 ### <a name="105-incorporate-security-alerts-into-your-incident-response-system"></a>10.5 : Intégrer des alertes de sécurité à votre système de réponse aux incidents
 
 **Aide** : Exportez vos alertes et recommandations Azure Security Center en utilisant la fonctionnalité d’exportation continue pour identifier les risques pesant sur les ressources Azure. L’exportation continue vous permet d’exporter les alertes et les recommandations manuellement, ou automatiquement de manière continue. Vous pouvez utiliser le connecteur de données Azure Security Center pour diffuser en continu les alertes vers Azure Sentinel.
-    
 
-    How to configure continuous export: https://docs.microsoft.com/azure/security-center/continuous-export
+Comment configurer l’exportation continue : https://docs.microsoft.com/azure/security-center/continuous-export
 
-    
-
-    How to stream alerts into Azure Sentinel: https://docs.microsoft.com/azure/sentinel/connect-azure-security-center
-
-
+Comment diffuser en continu des alertes dans Azure Sentinel : https://docs.microsoft.com/azure/sentinel/connect-azure-security-center
 
 **Supervision d’Azure Security Center** : actuellement non disponible
 
@@ -1106,12 +1082,9 @@ Comment définir le contact de sécurité d’Azure Security Center : https://d
 
 ### <a name="106-automate-the-response-to-security-alerts"></a>10.6 : Automatiser la réponse aux alertes de sécurité
 
-**Aide** : Utilisez la fonctionnalité d’automatisation de workflow d’Azure Security Center pour déclencher automatiquement des réponses via « Logic Apps » aux alertes et aux recommandations de sécurité afin de protéger vos ressources Azure.
-    
+**Aide** : Utilisez la fonctionnalité d’automatisation de flux de travail disponible dans Azure Security Center pour déclencher automatiquement des réponses via « Logic Apps » aux alertes et aux recommandations de sécurité afin de protéger vos ressources Azure.
 
-    How to configure Workflow Automation and Logic Apps: https://docs.microsoft.com/azure/security-center/workflow-automation
-
-
+Comment configurer l’automatisation des workflows et Logic Apps : https://docs.microsoft.com/azure/security-center/workflow-automation
 
 **Supervision d’Azure Security Center** : actuellement non disponible
 
