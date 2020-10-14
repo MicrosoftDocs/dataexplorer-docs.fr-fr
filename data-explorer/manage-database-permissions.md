@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/24/2018
-ms.openlocfilehash: 25bdd9c36c63d521cd662ab5c69f3dfec974b1e6
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 0ff2b0892231f52390f103fe299f219a7a3f3860
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874764"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91942044"
 ---
 # <a name="manage-azure-data-explorer-database-permissions"></a>Gérer les autorisations de base de données de l’Explorateur de données Azure
 
@@ -54,11 +54,11 @@ L’Explorateur de données Azure a les rôles suivants :
 
 1. Recherchez le principal, sélectionnez-le, puis **Sélectionner**.
 
-    ![Gérer les autorisations dans le portail Azure](media/manage-database-permissions/new-principals.png)
+    :::image type="content" source="media/manage-database-permissions/new-principals.png" alt-text="Capture d’écran de la page Nouveaux principaux du portail Azure. Un nom et une image de principal sont sélectionnés et mis en évidence. Le bouton Sélectionner est également mis en évidence." border="false":::
 
 1. Sélectionnez **Enregistrer**.
 
-    ![Gérer les autorisations dans le portail Azure](media/manage-database-permissions/save-permission.png)
+    :::image type="content" source="media/manage-database-permissions/save-permission.png" alt-text="Capture d’écran de la page Nouveaux principaux du portail Azure. Un nom et une image de principal sont sélectionnés et mis en évidence. Le bouton Sélectionner est également mis en évidence." border="false":::
 
 ## <a name="manage-permissions-with-management-commands"></a>Gérer les autorisations avec des commandes de gestion
 

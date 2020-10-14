@@ -7,12 +7,12 @@ ms.reviewer: prvavill
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/31/2020
-ms.openlocfilehash: 5de30b4e6eb2ac9d01314482b693f6643075ca4a
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 630b03fc0e89005f1031aba4cbd1a86d803ff275
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88872741"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91942027"
 ---
 # <a name="monitor-azure-data-explorer-using-resource-health-preview"></a>Surveiller Azure Data Explorer à l'aide de Resource Health (préversion)
 
@@ -40,13 +40,13 @@ L'intégrité d'une ressource est déterminée par les états suivants : dispon
 
 L'état d'intégrité **Disponible** indique que votre ressource Azure Data Explorer est saine et ne présente aucun problème.
 
-![Disponible](media/monitor-with-resource-health/available.png)
+:::image type="content" source="media/monitor-with-resource-health/available.png" alt-text="Capture d’écran d’une page Intégrité des ressources pour une ressource Azure Data Explorer. L’état est listé comme disponible et mis en évidence." border="false":::
 
 ### <a name="unavailable"></a>Non disponible
 
 L'état d'intégrité **Non disponible** indique que votre ressource Azure Data Explorer a rencontré un problème qui la rend indisponible pour les requêtes et l'ingestion. Par exemple, les nœuds de votre ressource Azure Data Explorer peuvent avoir redémarré de manière inattendue. Si votre ressource Azure Data Explorer reste dans cet état pendant une période prolongée, contactez le [support]().
 
-![Non disponible](media/monitor-with-resource-health/unavailable.png)
+:::image type="content" source="media/monitor-with-resource-health/unavailable.png" alt-text="Capture d’écran d’une page Intégrité des ressources pour une ressource Azure Data Explorer. L’état est listé comme disponible et mis en évidence." border="false":::
 
 > [!TIP]
 > Vous pouvez utiliser les commandes [d’informations système](kusto/management/systeminfo.md) pour rechercher la source du problème.
@@ -58,7 +58,7 @@ L'état d'intégrité **Inconnu** indique que **Resource Health** n'a reçu aucu
 > [!TIP]
 > L'intégrité des ressources du cluster Azure Data Explorer sera **Inconnue** si l'état est « Arrêté ».
 
-![Unknown](media/monitor-with-resource-health/unknown.png)
+:::image type="content" source="media/monitor-with-resource-health/unknown.png" alt-text="Capture d’écran d’une page Intégrité des ressources pour une ressource Azure Data Explorer. L’état est listé comme disponible et mis en évidence." border="false":::
 
 ## <a name="historical-information"></a>Informations d’historique
 

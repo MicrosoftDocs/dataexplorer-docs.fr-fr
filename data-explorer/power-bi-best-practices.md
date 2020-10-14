@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/26/2019
-ms.openlocfilehash: 404d8f2d6b7eacc61571575613fd8017baadb54d
-ms.sourcegitcommit: 1618cbad18f92cf0cda85cb79a5cc1aa789a2db7
+ms.openlocfilehash: 3d1e8b4df2507a9b2eb7126973dea891edc1d6ac
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91614847"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91941976"
 ---
 # <a name="best-practices-for-using-power-bi-to-query-and-visualize-azure-data-explorer-data"></a>Bonnes pratiques relatives à l’utilisation de Power BI pour interroger et visualiser des données Azure Data Explorer
 
@@ -92,8 +92,8 @@ Vous pouvez utiliser l’une des options suivantes dans votre requête M :
 | AdditionalSetStatements | `[AdditionalSetStatements="set query_datascope=hotcache"]` | Ajoute les instructions définies fournies à votre requête. Ces instructions sont utilisées pour définir des options de requête pour la durée de la requête. Les options de requête contrôlent la manière dont une requête s’exécute et retourne les résultats.
 | CaseInsensitive | `[CaseInsensitive=true]` | Fait en sorte que le connecteur génère des requêtes qui sont insensibles à la casse : les requêtes utiliseront l’opérateur `=~` au lieu de l’opérateur `==` lors de la comparaison des valeurs.
 
-    > [!NOTE]
-    > You can combine multiple options together to reach the desired behavior: `[NoTruncate=true, CaseInsensitive=true]`
+> [!NOTE]
+> Vous pouvez combiner plusieurs options pour arriver au comportement souhaité : `[NoTruncate=true, CaseInsensitive=true]`
 
 ### <a name="reaching-kusto-query-limits"></a>Atteindre les limites de requête Kusto
 

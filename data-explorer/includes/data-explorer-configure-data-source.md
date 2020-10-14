@@ -4,12 +4,12 @@ ms.service: data-explorer
 ms.topic: include
 ms.date: 11/03/2019
 ms.author: orspodek
-ms.openlocfilehash: 3cd9d017429b629acad39f5b902e842886c3c818
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: b6c50e466df1028f11021e75fe572ea1ecb32225
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492373"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91942654"
 ---
 ## <a name="configure-the-data-source"></a>Configurer la source de données
 
@@ -93,17 +93,17 @@ Maintenant que vous avez un principal de service, ajoutez-le au rôle *observate
 
 1. Recherchez le principal de service que vous avez créé. Sélectionnez le principal, puis **Sélectionner**.
 
-    ![Gérer les autorisations dans le portail Azure](media/data-explorer-configure-data-source/new-principals.png)
+    :::image type="content" source="media/data-explorer-configure-data-source/new-principals.png" alt-text="Capture d’écran du volet Nouveaux principaux du portail Azure. Le bouton Sélectionner et deux champs avec des propriétés de principal de service indéchiffrables sont mis en évidence." border="false":::
 
 1. Sélectionnez **Enregistrer**.
 
-    ![Gérer les autorisations dans le portail Azure](media/data-explorer-configure-data-source/save-permission.png)
+    :::image type="content" source="media/data-explorer-configure-data-source/save-permission.png" alt-text="Capture d’écran du volet Nouveaux principaux du portail Azure. Le bouton Sélectionner et deux champs avec des propriétés de principal de service indéchiffrables sont mis en évidence." border="false":::
 
 #### <a name="management-command---query"></a>Commande de gestion - Requête
 
 1. Dans le portail Azure, accédez à votre cluster Azure Data Explorer, puis sélectionnez **Requête**.
 
-    ![Requête](media/data-explorer-configure-data-source/query.png)
+    :::image type="content" source="media/data-explorer-configure-data-source/query.png" alt-text="Capture d’écran du volet Nouveaux principaux du portail Azure. Le bouton Sélectionner et deux champs avec des propriétés de principal de service indéchiffrables sont mis en évidence." border="false":::
 
 1. Exécutez la commande suivante dans la fenêtre de requête. Utiliser l’ID d’application et l’ID de locataire à partir du portail Azure ou de l’interface CLI.
 

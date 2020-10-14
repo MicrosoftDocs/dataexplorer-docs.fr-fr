@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: quickstart
 ms.date: 06/15/2020
-ms.openlocfilehash: 061c3ea6c2a493cbda8ac428837720efe42f2082
-ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
+ms.openlocfilehash: 78666938417ce02d5320c56b247e1b854b842234
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/25/2020
-ms.locfileid: "88793955"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91942333"
 ---
 # <a name="quickstart-query-data-in-azure-data-explorer-web-ui"></a>Démarrage rapide : Interroger des données dans l’interface utilisateur web Azure Data Explorer
 
@@ -75,7 +75,7 @@ Vous pouvez maintenant exécuter des requêtes sur un cluster auquel vous êtes 
     ```
     Cette requête retourne les dix enregistrements les plus récents dans la table **StormEvents**. Le côté gauche du résultat doit ressembler à la table suivante.
 
-    ![Jeu de résultats de la requête](media/web-query-data/result-set-01.png)
+    :::image type="content" source="media/web-query-data/result-set-01.png" alt-text="Capture d’écran d’un tableau listant l’heure de début, l’heure de fin, l’épisode, l’ID d’événement, l’état et le type d’événement pour dix événements orageux." border="false":::
 
     L’image suivante montre à quoi l’application doit maintenant ressembler, avec les clusters ajoutés et une requête avec les résultats.
 
@@ -95,7 +95,7 @@ Vous pouvez maintenant exécuter des requêtes sur un cluster auquel vous êtes 
 
    Cette requête retourne les mêmes enregistrements que la première, mais contient uniquement les colonnes spécifiées dans l’instruction `project`. Le résultat doit ressembler à la table suivante.
 
-    ![Jeu de résultats de la requête](media/web-query-data/result-set-02.png)
+    :::image type="content" source="media/web-query-data/result-set-02.png" alt-text="Capture d’écran d’un tableau listant l’heure de début, l’heure de fin, l’épisode, l’ID d’événement, l’état et le type d’événement pour dix événements orageux." border="false":::
 
 1. En haut de la fenêtre de requête, sélectionnez **Rappeler**.
 
@@ -131,7 +131,7 @@ Maintenant que vous avez vu comment fonctionnent les requêtes simples, voyons c
 
 1. Dans la grille, développez **California** pour voir les enregistrements de cet état.
 
-    ![Jeu de résultats de la requête](media/web-query-data/result-set-03.png)
+    :::image type="content" source="media/web-query-data/result-set-03.png" alt-text="Capture d’écran d’un tableau listant l’heure de début, l’heure de fin, l’épisode, l’ID d’événement, l’état et le type d’événement pour dix événements orageux." border="false":::
 
     Ce type de regroupement peut être utile lors d’une analyse exploratoire.
 
@@ -175,7 +175,7 @@ Souvent, vous souhaitez partager les requêtes que vous créez.
 
 1. En haut de la fenêtre de la requête, sélectionnez **Partager**. 
 
-:::image type="content" source="media/web-query-data/share-menu.png" alt-text="Menu Partager":::
+:::image type="content" source="media/web-query-data/share-menu.png" alt-text="Capture d’écran d’un tableau listant l’heure de début, l’heure de fin, l’épisode, l’ID d’événement, l’état et le type d’événement pour dix événements orageux.":::
 
 Les options suivantes sont disponibles dans le menu déroulant :
 * Lien dans le Presse-papiers
@@ -194,7 +194,7 @@ Vous pouvez fournir un lien ciblé afin que les utilisateurs avec un accès au c
 
 1. Collez le lien dans une nouvelle fenêtre de navigateur. Une fois la requête exécutée, le résultat doit ressembler à ceci.
 
-    :::image type="content" source="media/web-query-data/shared-query.png" alt-text="Lien ciblé d’une requête partagée":::
+    :::image type="content" source="media/web-query-data/shared-query.png" alt-text="Capture d’écran d’un tableau listant l’heure de début, l’heure de fin, l’épisode, l’ID d’événement, l’état et le type d’événement pour dix événements orageux.":::
 
 ### <a name="pin-to-dashboard"></a>Épingler au tableau de bord
 
@@ -211,7 +211,7 @@ Pour épingler une requête :
     1. Cochez la case **Afficher le tableau de bord après sa création** (s’il s’agit d’un nouveau tableau de bord).
     1. Sélectionnez **Épingler**.
 
-    :::image type="content" source="media/web-query-data/pin-to-dashboard.png" alt-text="Volet Épingler au tableau de bord":::
+    :::image type="content" source="media/web-query-data/pin-to-dashboard.png" alt-text="Capture d’écran d’un tableau listant l’heure de début, l’heure de fin, l’épisode, l’ID d’événement, l’état et le type d’événement pour dix événements orageux.":::
     
 > [!NOTE]
 > **Épingler au tableau de bord** épingle uniquement la requête sélectionnée. Pour créer la source de données du tableau de bord et traduire des commandes de rendu en visuel dans le tableau de bord, vous devez sélectionner la base de données appropriée dans la liste de bases de données.
@@ -220,7 +220,7 @@ Pour épingler une requête :
 
 Pour exporter les résultats de la requête dans un fichier CSV, sélectionnez **Fichier** > **Exporter au format CSV**.
 
-:::image type="content" source="media/web-query-data/export-results.png" alt-text="Exporter les résultats dans un fichier CSV":::
+:::image type="content" source="media/web-query-data/export-results.png" alt-text="Capture d’écran d’un tableau listant l’heure de début, l’heure de fin, l’épisode, l’ID d’événement, l’état et le type d’événement pour dix événements orageux.":::
 
 ## <a name="provide-feedback"></a>Fournir des commentaires
 

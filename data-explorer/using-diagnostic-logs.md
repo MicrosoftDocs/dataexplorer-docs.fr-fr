@@ -7,12 +7,12 @@ ms.reviewer: guregini
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/16/2020
-ms.openlocfilehash: 61e0a4f13aba871a92bdcf36a8af9ed78bb09624
-ms.sourcegitcommit: 97404e9ed4a28cd497d2acbde07d00149836d026
+ms.openlocfilehash: 5446337177d0e261bd86fbd18119c34b861b89e4
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/21/2020
-ms.locfileid: "90832567"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91942384"
 ---
 # <a name="monitor-azure-data-explorer-ingestion-commands-and-queries-using-diagnostic-logs"></a>Superviser l’ingestion, les commandes et les requêtes Azure Data Explorer à l’aide des journaux de diagnostic
 
@@ -70,8 +70,8 @@ Les journaux de diagnostic sont désactivés par défaut. Pour activer les journ
 
 Les nouveaux paramètres sont définis en quelques minutes. Les journaux apparaissent alors dans la cible d’archivage configurée (compte de stockage, Event Hub ou Log Analytics). 
 
-    > [!NOTE]
-    > If you send logs to Log Analytics, the `SucceededIngestion`, `FailedIngestion`, `Command`, and `Query` logs will be stored in Log Analytics tables named: `SucceededIngestion`, `FailedIngestion`, `ADXCommand`, `ADXQuery`, respectively.
+> [!NOTE]
+> Si vous envoyez des journaux à Log Analytics, les journaux `SucceededIngestion`, `FailedIngestion`, `Command` et `Query` seront stockés dans des tables Log Analytics appelées `SucceededIngestion`, `FailedIngestion`, `ADXCommand`, `ADXQuery`, respectivement.
 
 ## <a name="diagnostic-logs-schema"></a>Schéma des journaux de diagnostic
 
