@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/10/2020
-ms.openlocfilehash: c3f7212b062adaae1bd56399753270653204ad22
-ms.sourcegitcommit: 53a727fceaa89e6022bc593a4aae70f1e0232f49
+ms.openlocfilehash: d1e1af6e7fef39295dde61034f63701a466abb51
+ms.sourcegitcommit: 58588ba8d1fc5a6adebdce2b556db5bc542e38d8
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/10/2020
-ms.locfileid: "89652102"
+ms.lasthandoff: 10/15/2020
+ms.locfileid: "92098385"
 ---
 # <a name="data-partitioning-policy"></a>Stratégie de partitionnement des données
 
@@ -140,6 +140,8 @@ La stratégie de partitionnement des données comporte les propriétés principa
   * DateTime UTC à partir de laquelle la stratégie est effective.
   * Cette propriété est facultative. Si elle n’est pas spécifiée, la stratégie prend effet sur les données ingérées après l’application de la stratégie.
   * Toutes les extensions non homogènes (non partitionnées) qui peuvent être supprimées en raison de la rétention sont ignorées par le processus de partitionnement, car leur heure de création précède 90% de la période de suppression effective de la table.
+  * **Remarque :** Il est possible de définir une valeur DateTime dans le passé et de faire en sorte que les données déjà ingérées soient partitionnées.
+    Toutefois, cela peut augmenter considérablement l’utilisation des ressources du processus de partitionnement, et vous devez évaluer les avantages de cette opération en conséquence.
 
 ### <a name="example"></a>Exemple
 
@@ -211,7 +213,7 @@ La sortie comprend les éléments suivants :
     * Si ce pourcentage reste constamment inférieur à 90%, évaluez la [capacité](partitioningpolicy.md#capacity)de partitionnement du cluster.
   * `TableWithMinPartitioningPercentage`: Nom qualifié complet de la table dont le pourcentage de partitionnement est indiqué ci-dessus.
 
-Utilisez les [commandes. Show](commands.md) pour surveiller les commandes de partitionnement et leur utilisation des ressources. Par exemple :
+Utilisez les [commandes. Show](commands.md) pour surveiller les commandes de partitionnement et leur utilisation des ressources. Exemple :
 
 ```kusto
 .show commands 

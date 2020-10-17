@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 7dbbd4b94169e6b1e23547c7a6b9ed94cf5e70ca
-ms.sourcegitcommit: be1bbd62040ef83c08e800215443ffee21cb4219
+ms.openlocfilehash: cb8e9d5afea956ee42fe3b444c564059e34b9a24
+ms.sourcegitcommit: d9569989283f4e98846725e2bc4c96149bd01281
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84664958"
+ms.lasthandoff: 10/17/2020
+ms.locfileid: "92155408"
 ---
 # <a name="sandboxes"></a>Bacs à sable
 
@@ -65,7 +65,8 @@ Certaines des limitations peuvent être contrôlées à l’aide d’une [strat�
 
 ## <a name="errors"></a>Erreurs
 
-|Code                      |Message                                                                                        |Raison potentielle                                                                                                    |
-|--------------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
-|E_SB_QUERY_THROTTLED_ERROR|La requête bac à sable (sandbox) a été abandonnée en raison de la limitation. Une nouvelle tentative peut être effectuée après un certain intervalle   |Il n’y a aucun bac à sable (sandbox) disponible sur le nœud cible. De nouveaux bacs à sable doivent être disponibles en quelques secondes     |
-|E_SB_QUERY_THROTTLED_ERROR|Les bacs à sable (sandbox) de type « {Kind} » n’ont pas encore été initialisés                       |La stratégie du bac à sable (sandbox) a récemment changé. Les nouveaux bacs à sable qui obéissent à la nouvelle stratégie sont disponibles en quelques secondes.           |
+|ErrorCode                 |Statut                     |Message                                                                                            |Raison potentielle                                                                                                    |
+|--------------------------|---------------------------|---------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+|E_SB_QUERY_THROTTLED_ERROR|TooManyRequests (429)      |La requête bac à sable (sandbox) a été abandonnée en raison de la limitation. Une nouvelle tentative peut être effectuée après un certain intervalle   |Il n’y a aucun bac à sable (sandbox) disponible sur le nœud cible. De nouveaux bacs à sable doivent être disponibles en quelques secondes         |
+|E_SB_QUERY_THROTTLED_ERROR|TooManyRequests (429)      |Les bacs à sable (sandbox) de type « {Kind} » n’ont pas encore été initialisés                                            |La stratégie du bac à sable (sandbox) a récemment changé. Les nouveaux bacs à sable qui obéissent à la nouvelle stratégie sont disponibles en quelques secondes.|
+|                          |InternalServiceError (520) |La requête bac à sable (sandbox) a été abandonnée en raison d’un échec lors de l’initialisation des bacs à sable                         |Une défaillance inattendue de l’infrastructure. Si le problème persiste, ouvrez une demande de support                         |

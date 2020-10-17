@@ -29,6 +29,8 @@
       href: visualize-power-bi.md
 - name: Concepts
   items:
+    - name: EngineV3
+      href: engine-v3.md
     - name: Ingestion de données
       items:
         - name: Vue d’ensemble de l’ingestion de données
@@ -316,26 +318,43 @@
           href: follower.md
     - name: Intégrer aux autres outils
       items:
-        - name: Power Automate
+        - name: Orchestrer
           items:
-            - name: Connecteur Power Automate
-              href: flow.md
-              displayName: 'Microsoft Flow, flow, flow connector'
-            - name: Exemples d’utilisation de connecteur Power Automate
-              href: flow-usage.md
-              displayName: 'Microsoft Flow, flow, flow connector'
-        - name: Logic Apps
-          href: kusto/tools/logicapps.md
-        - name: Connecteur Apache Spark
-          href: spark-connector.md
+            - name: Power Automate
+              items:
+                - name: Connecteur Power Automate
+                  href: flow.md
+                  displayName: 'Microsoft Flow, flow, flow connector'
+                - name: Exemples d’utilisation de connecteur Power Automate
+                  href: flow-usage.md
+                  displayName: 'Microsoft Flow, flow, flow connector'
+            - name: Logic Apps
+              href: kusto/tools/logicapps.md
         - name: Cosmos DB
           href: 'https://github.com/Azure/azure-kusto-labs/tree/master/cosmosdb-adx-integration'
+        - name: Connecteur Apache Spark
+          href: spark-connector.md
+        - name: Se connecter depuis Azure Synapse Apache Spark
+          href: 'https://docs.microsoft.com/azure/synapse-analytics/quickstart-connect-azure-data-explorer?toc=/azure/data-explorer/toc.json&bc=/azure/data-explorer/breadcrumb/toc.json'
         - name: Se connecter depuis Azure Databricks
           href: connect-from-databricks.md
-        - name: Analyser des données dans Jupyter Notebook et Kqlmagic
-          href: kqlmagic.md
-        - name: Analyser des données dans Azure Notebooks
-          href: azure-notebooks.md
+        - name: Notebooks
+          items:
+            - name: Analyser des données dans Jupyter Notebook et Kqlmagic
+              href: kqlmagic.md
+            - name: Analyser des données dans Azure Notebooks
+              href: azure-notebooks.md
+            - name: Azure Data Studio
+              items:
+                - name: Vue d’ensemble de l’extension Kusto
+                  displayName: Azure Data Studio
+                  href: 'https://docs.microsoft.com/sql/azure-data-studio/extensions/kusto-extension?toc=/azure/data-explorer/toc.json&bc=/azure/data-explorer/breadcrumb/toc.json'
+                - name: Utiliser l’extension Kusto
+                  displayName: Azure Data Studio
+                  href: 'https://docs.microsoft.com/sql/azure-data-studio/notebooks/notebooks-kusto-kernel?toc=/azure/data-explorer/toc.json&bc=/azure/data-explorer/breadcrumb/toc.json'
+                - name: Utiliser Kqlmagic
+                  displayName: Azure Data Studio
+                  href: 'https://docs.microsoft.com/sql/azure-data-studio/notebooks/notebooks-kqlmagic?context=/azure/data-explorer/context/context'
         - name: Azure Pipelines
           href: devops.md
         - name: Synchroniser Kusto

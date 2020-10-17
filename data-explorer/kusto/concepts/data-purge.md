@@ -8,12 +8,12 @@ ms.reviewer: kedamari
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/12/2020
-ms.openlocfilehash: 86712a2e85f2785666b0b6245962aca39cd82729
-ms.sourcegitcommit: 4507466bdcc7dd07e6e2a68c0707b6226adc25af
+ms.openlocfilehash: 053581b5109d0eeacd7b69fd0eda2b53f43ac701
+ms.sourcegitcommit: 468b4ad125657c5131e4c3c839f702ebb6e455a0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/23/2020
-ms.locfileid: "87106489"
+ms.lasthandoff: 10/16/2020
+ms.locfileid: "92134742"
 ---
 # <a name="data-purge"></a>Vidage des données
 
@@ -55,7 +55,7 @@ L’émission d’une `.purge` commande déclenche ce processus, qui prend quelq
 
 * La `.purge` commande est exécutée sur le point de terminaison gestion des données : `https://ingest-[YourClusterName].[region].kusto.windows.net` .
    La commande nécessite des autorisations d’[administrateur de base de données](../management/access-control/role-based-authorization.md) pour les bases de données appropriées. 
-* En raison de l’impact sur les performances du processus de purge, et pour garantir que les [instructions de purge](#purge-guidelines) ont été suivies, l’appelant doit modifier le schéma de données afin que les tables minimales incluent les données pertinentes et les commandes batch par table pour réduire l’impact CMV significatif du processus de purge.
+* En raison de l’impact sur les performances du processus de purge, et pour garantir que les  [instructions de purge](#purge-guidelines) ont été suivies, l’appelant doit modifier le schéma de données afin que les tables minimales incluent les données pertinentes et les commandes batch par table pour réduire l’impact CMV significatif du processus de purge.
 * Le `predicate` paramètre de la commande [. purge](#purge-table-tablename-records-command) est utilisé pour spécifier les enregistrements à purger.
 La taille de `Predicate` est limitée à 63 Ko. Lors de la construction de `predicate` :
     * Utilisez l' [opérateur « in »](../query/inoperator.md), par exemple, `where [ColumnName] in ('Id1', 'Id2', .. , 'Id1000')` . 
@@ -94,11 +94,11 @@ La commande de vidage peut être appelée de deux manières pour différents sc�
   .purge table [TableName] records in database [DatabaseName] with (noregrets='true') <| [Predicate]
    ```
 
-  > [!NOTE]
-  > Générez cette commande à l’aide de l’API CslCommandGenerator, disponible dans le cadre du package NuGet de la [bibliothèque cliente Kusto](../api/netfx/about-kusto-data.md) .
+* Appel humain : processus en deux étapes qui nécessite une confirmation explicite, effectuée dans le cadre d’une étape distincte. Le premier appel de la commande retourne un jeton de vérification, qui doit être fourni pour exécuter le vidage réel. Cette séquence réduit le risque de supprimer par inadvertance des données incorrectes.
 
-* Appel humain : processus en deux étapes qui nécessite une confirmation explicite, effectuée dans le cadre d’une étape distincte. Le premier appel de la commande retourne un jeton de vérification, qui doit être fourni pour exécuter le vidage réel. Cette séquence réduit le risque de supprimer par inadvertance des données incorrectes. Cette option peut mettre beaucoup de temps à s’exécuter sur les tables volumineuses contenant une grande quantité de données de cache brutes.
-    <!-- If query times-out on DM endpoint (default timeout is 10 minutes), it is recommended to use the [engine `whatif` command](#purge-whatif-command) directly againt the engine endpoint while increasing the [server timeout limit](../concepts/querylimits.md#limit-on-request-execution-time-timeout). Only after you have verified the expected results using the engine whatif command, issue the purge command via the DM endpoint using the 'noregrets' option. -->
+ > [!NOTE]
+ > La première étape de l’appel en deux étapes requiert l’exécution d’une requête sur l’ensemble du jeu de données, afin d’identifier les enregistrements à purger.
+ > Cette requête peut expirer ou échouer sur des tables volumineuses, en particulier avec une quantité importante de données de cache à froid. En cas de défaillance, validez le prédicat vous-même et, après avoir vérifié l’exactitude, utilisez la purge à une étape avec l' `noregrets` option.
 
   **Syntaxe**
 
@@ -214,7 +214,7 @@ Status = 'Completed’indique la réussite de la première phase de l’opérati
 
 ### <a name="show-purges-command"></a>Afficher les purges, commande
 
-`Show purges`la commande affiche l’état de l’opération de purge en spécifiant l’ID d’opération dans la période demandée. 
+`Show purges` la commande affiche l’état de l’opération de purge en spécifiant l’ID d’opération dans la période demandée. 
 
 ```kusto
 .show purges <OperationId>
@@ -247,26 +247,26 @@ Status = 'Completed’indique la réussite de la première phase de l’opérati
 
 |`OperationId` |`DatabaseName` |`TableName` |`ScheduledTime` |`Duration` |`LastUpdatedOn` |`EngineOperationId` |`State` |`StateDetails` |`EngineStartTime` |`EngineDuration` |`Retries` |`ClientRequestId` |`Principal`
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-|c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:33.6782130 |2019-01-20 11:42:34.6169153 |a0825d4d-6b0f-47f3-a499-54ac5681ab78 |Completed |Purge terminée avec succès (artefacts de stockage en attente de suppression) |2019-01-20 11:41:34.6486506 |00:00:04.4687310 |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...
+|c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:33.6782130 |2019-01-20 11:42:34.6169153 |a0825d4d-6b0f-47f3-a499-54ac5681ab78 |Effectué |Purge terminée avec succès (artefacts de stockage en attente de suppression) |2019-01-20 11:41:34.6486506 |00:00:04.4687310 |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...
 
-* `OperationId`: ID d’opération DM renvoyé lors de l’exécution de la purge. 
+* `OperationId` : ID d’opération DM renvoyé lors de l’exécution de la purge. 
 * `DatabaseName`* *-nom de la base de données (sensible à la casse). 
-* `TableName`-nom de la table (sensible à la casse). 
-* `ScheduledTime`-heure de l’exécution de la commande de vidage pour le service DM. 
-* `Duration`-durée totale de l’opération de vidage, y compris le temps d’attente de la file d’attente DM d’exécution. 
-* `EngineOperationId`: ID d’opération de la purge réelle en cours d’exécution dans le moteur. 
-* `State`-purge de l’État, peut prendre l’une des valeurs suivantes : 
-    * `Scheduled`-l’exécution de l’opération de vidage est planifiée. Si la tâche reste planifiée, il y a probablement un backlog d’opérations de vidage. Consultez [purger les performances](#purge-performance) pour effacer ce Backlog. Si une opération de vidage échoue sur une erreur temporaire, elle est retentée par le DM et définie à nouveau planifiée (de sorte que vous pouvez voir une opération transition de planifié à en cours, puis revenir à planifié).
-    * `InProgress`-l’opération de vidage est en cours dans le moteur. 
-    * `Completed`-purge terminée avec succès.
-    * `BadInput`-échec de la purge en cas d’entrée incorrecte et ne sera pas retenté. Cet échec peut être dû à différents problèmes, tels qu’une erreur de syntaxe dans le prédicat, un prédicat non conforme pour les commandes de vidage, une requête qui dépasse les limites (par exemple, plus de 1 million d’entités dans un `externaldata` opérateur ou plus de 64 Mo de taille totale des requêtes étendues) et les erreurs 404 ou 403 pour les `externaldata` objets BLOB.
-    * `Failed`-échec de la purge et aucune nouvelle tentative n’est effectuée. Cet échec peut se produire si l’opération attendait trop longtemps dans la file d’attente (plus de 14 jours), en raison d’un backlog d’autres opérations de vidage ou d’un certain nombre de défaillances qui dépassent la limite de tentatives. Cette dernière déclenchera une alerte de surveillance interne et sera examinée par l’équipe Azure Explorateur de données. 
-* `StateDetails`-Description de l’État.
-* `EngineStartTime`: heure à laquelle la commande a été envoyée au moteur. S’il y a une grande différence entre cette heure et ScheduledTime, il y a généralement un backlog significatif des opérations de vidage et le cluster ne suit pas le rythme. 
-* `EngineDuration`-heure de l’exécution de la purge réelle dans le moteur. Si la purge a été retentée plusieurs fois, il s’agit de la somme de toutes les durées d’exécution. 
-* `Retries`-nombre de fois que l’opération a été retentée par le service DM en raison d’une erreur temporaire.
-* `ClientRequestId`-ID d’activité du client de la demande DM purge. 
-* `Principal`-identité de l’émetteur de commande de vidage.
+* `TableName` -nom de la table (sensible à la casse). 
+* `ScheduledTime` -heure de l’exécution de la commande de vidage pour le service DM. 
+* `Duration` -durée totale de l’opération de vidage, y compris le temps d’attente de la file d’attente DM d’exécution. 
+* `EngineOperationId` : ID d’opération de la purge réelle en cours d’exécution dans le moteur. 
+* `State` -purge de l’État, peut prendre l’une des valeurs suivantes : 
+    * `Scheduled` -l’exécution de l’opération de vidage est planifiée. Si la tâche reste planifiée, il y a probablement un backlog d’opérations de vidage. Consultez [purger les performances](#purge-performance) pour effacer ce Backlog. Si une opération de vidage échoue sur une erreur temporaire, elle est retentée par le DM et définie à nouveau planifiée (de sorte que vous pouvez voir une opération transition de planifié à en cours, puis revenir à planifié).
+    * `InProgress` -l’opération de vidage est en cours dans le moteur. 
+    * `Completed` -purge terminée avec succès.
+    * `BadInput` -échec de la purge en cas d’entrée incorrecte et ne sera pas retenté. Cet échec peut être dû à différents problèmes, tels qu’une erreur de syntaxe dans le prédicat, un prédicat non conforme pour les commandes de vidage, une requête qui dépasse les limites (par exemple, plus de 1 million d’entités dans un `externaldata` opérateur ou plus de 64 Mo de taille totale des requêtes étendues) et les erreurs 404 ou 403 pour les `externaldata` objets BLOB.
+    * `Failed` -échec de la purge et aucune nouvelle tentative n’est effectuée. Cet échec peut se produire si l’opération attendait trop longtemps dans la file d’attente (plus de 14 jours), en raison d’un backlog d’autres opérations de vidage ou d’un certain nombre de défaillances qui dépassent la limite de tentatives. Cette dernière déclenchera une alerte de surveillance interne et sera examinée par l’équipe Azure Explorateur de données. 
+* `StateDetails` -Description de l’État.
+* `EngineStartTime` : heure à laquelle la commande a été envoyée au moteur. S’il y a une grande différence entre cette heure et ScheduledTime, il y a généralement un backlog significatif des opérations de vidage et le cluster ne suit pas le rythme. 
+* `EngineDuration` -heure de l’exécution de la purge réelle dans le moteur. Si la purge a été retentée plusieurs fois, il s’agit de la somme de toutes les durées d’exécution. 
+* `Retries` -nombre de fois que l’opération a été retentée par le service DM en raison d’une erreur temporaire.
+* `ClientRequestId` -ID d’activité du client de la demande DM purge. 
+* `Principal` -identité de l’émetteur de commande de vidage.
 
 ## <a name="purging-an-entire-table"></a>Vidage d’une table entière
 
