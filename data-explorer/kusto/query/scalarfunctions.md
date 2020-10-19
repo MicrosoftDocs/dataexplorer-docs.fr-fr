@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/27/2020
-ms.openlocfilehash: 4e16e739048bc12a0a621e7fd98933b8e60073be
-ms.sourcegitcommit: d0f8d71261f8f01e7676abc77283f87fc450c7b1
+ms.openlocfilehash: 02271e3b282dd632a94631c09fca11b8b06db3cf
+ms.sourcegitcommit: 62476f682b7812cd9cff7e6958ace5636ee46755
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91765435"
+ms.lasthandoff: 10/19/2020
+ms.locfileid: "92169572"
 ---
 # <a name="scalar-function-types"></a>Types de fonction scalaire
 
@@ -89,6 +89,8 @@ ms.locfileid: "91765435"
 |[array_shift_left()](array_shift_leftfunction.md)|Déplace les valeurs à l’intérieur d’un tableau dynamique vers la gauche.|
 |[array_shift_right()](array_shift_rightfunction.md)|Déplace les valeurs à l’intérieur d’un tableau dynamique vers la droite.|
 |[array_slice()](arrayslicefunction.md)|Extrait un segment d’un tableau dynamique.|
+|[array_sort_asc ()](arraysortascfunction.md)|Trie une collection de tableaux dans l’ordre croissant.|
+|[array_sort_desc ()](arraysortdescfunction.md)|Trie une collection de tableaux dans l’ordre décroissant.|
 |[array_split()](arraysplitfunction.md)|Génère un tableau de tableaux fractionnés à partir du tableau d’entrée.|
 |[bag_keys()](bagkeysfunction.md)|Énumère toutes les clés racines dans un objet de jeu de propriétés dynamique.|
 |[bag_merge()](bag-merge-function.md)|Fusionne des conteneurs de propriétés dynamiques dans un conteneur de propriétés dynamique avec toutes les propriétés fusionnées.|
@@ -141,7 +143,7 @@ ms.locfileid: "91765435"
 |[isfinite()](isfinitefunction.md)|Retourne une valeur indiquant si l’entrée est une valeur finie (n’est pas infinie ou NaN).|
 |[isinf()](isinffunction.md)|Retourne une valeur indiquant si l’entrée est une valeur infinie (positive ou négative).|
 |[isnan()](isnanfunction.md)|Retourne une valeur indiquant si l’entrée n’est pas un nombre (NaN).|
-|[log()](log-function.md)|Retourne la fonction de logarithme népérien.|
+|[log ()](log-function.md)|Retourne la fonction de logarithme népérien.|
 |[log10()](log10-function.md)|Retourne la fonction de logarithme (base 10) courant.|
 |[log2()](log2-function.md)|Retourne la fonction de logarithme en base 2.|
 |[loggamma()](loggammafunction.md)|Calcule le journal de la valeur absolue de la fonction gamma.|
@@ -150,7 +152,7 @@ ms.locfileid: "91765435"
 |[pow()](powfunction.md)|Retourne un résultat de l’élévation à Power.|
 |[radians()](radiansfunction.md)|Convertit la valeur d’angle en degrés en radians, à l’aide de la formule radians = (PI/180) * angle-in-degrees.|
 |[rand()](randfunction.md)|Retourne un nombre aléatoire.|
-|[range()](rangefunction.md)|Génère un tableau dynamique contenant une série de valeurs uniformément espacées.|
+|[Plage ()](rangefunction.md)|Génère un tableau dynamique contenant une série de valeurs uniformément espacées.|
 |[round()](roundfunction.md)|Retourne la source arrondie à la précision spécifiée.|
 |[sign()](signfunction.md)|Signe d’une expression numérique.|
 |[sin()](sinfunction.md)|Retourne la fonction sinus.|
@@ -225,7 +227,7 @@ ms.locfileid: "91765435"
 |[series_fit_2lines_dynamic()](series-fit-2lines-dynamicfunction.md)|Applique deux segments de régression linéaire sur une série, en retournant un objet dynamique.|
 |[series_fit_line()](series-fit-linefunction.md)|Applique la régression linéaire sur une série, en retournant plusieurs colonnes.|
 |[series_fit_line_dynamic()](series-fit-line-dynamicfunction.md)|Applique la régression linéaire sur une série, en retournant un objet dynamique.|
-|[series_fit_poly ()](series-fit-poly-function.md)|Applique la régression polynomiale sur une série, en retournant plusieurs colonnes.|
+|[series_fit_poly()](series-fit-poly-function.md)|Applique la régression polynomiale sur une série, en retournant plusieurs colonnes.|
 |[series_ifft()](series-ifft-function.md)|Applique la transformation de Fourier rapide inverse (IFFT) sur une série.|
 |[series_iir()](series-iirfunction.md)|Applique un filtre à réponse impulsionnelle infinie sur une série.|
 |[series_outliers()](series-outliersfunction.md)|Notation des points d’anomalies dans une série.|
@@ -236,7 +238,7 @@ ms.locfileid: "91765435"
 |[series_stats()](series-statsfunction.md)|Retourne des statistiques pour une série dans plusieurs colonnes.|
 |[series_stats_dynamic()](series-stats-dynamicfunction.md)|Retourne des statistiques pour une série dans un objet dynamique.|
 
-## <a name="string-functions"></a>Fonctions de chaîne
+## <a name="string-functions"></a>Fonctions de chaînes
 
 |Nom de fonction     |Description                                          |
 |-------------------------|--------------------------------------------------------|
@@ -262,7 +264,7 @@ ms.locfileid: "91765435"
 |[parse_url()](parseurlfunction.md)|Analyse une chaîne d’URL absolue et retourne un objet dynamique qui contient toutes les parties de l’URL.|
 |[parse_urlquery()](parseurlqueryfunction.md)|Analyse une chaîne de requête d’URL et retourne un objet dynamique contenant les paramètres de requête.|
 |[parse_version()](parse-versionfunction.md)|Convertit la représentation sous forme de chaîne d’entrée d’une version en nombre décimal comparable.|
-|[replace()](replacefunction.md)|Remplace toutes les correspondances d’expression régulière par une autre chaîne.|
+|[remplacer ()](replacefunction.md)|Remplace toutes les correspondances d’expression régulière par une autre chaîne.|
 |[reverse()](reversefunction.md)|La fonction effectue l’inversion de la chaîne d’entrée.|
 |[split()](splitfunction.md)|Fractionne une chaîne donnée en fonction d’un délimiteur donné et retourne un tableau de chaînes avec les sous-chaînes contenues.|
 |[strcat()](strcatfunction.md)|Concatène entre 1 et 64 arguments.|

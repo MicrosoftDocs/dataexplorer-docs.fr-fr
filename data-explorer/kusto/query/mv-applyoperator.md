@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 8380e26b01f74585b2c3e99bb3eb4cd8c51df01c
-ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
+ms.openlocfilehash: 4fb1ca893f80c045432715cd99e2dc4ea3d18c2a
+ms.sourcegitcommit: 62476f682b7812cd9cff7e6958ace5636ee46755
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91103067"
+ms.lasthandoff: 10/19/2020
+ms.locfileid: "92169521"
 ---
 # <a name="mv-apply-operator"></a>mv-apply, opérateur
 
@@ -94,7 +94,7 @@ et *sous-requête* a la même syntaxe qu’une instruction de requête.
 
 * *Sous-requête*: expression de requête tabulaire avec une source tabulaire implicite qui est appliquée à chaque sous-table développée par un tableau.
 
-**Remarques**
+**Notes**
 
 * Contrairement à l' [`mv-expand`](./mvexpandoperator.md) opérateur, l' `mv-apply` opérateur prend en charge l’expansion de tableau uniquement. Le développement des conteneurs de propriétés n’est pas pris en charge.
 
@@ -161,35 +161,6 @@ _data
 |4|9|
 |3|8|
 |4|10|
-
-## <a name="using-the-mv-apply-operator-to-sort-the-output-of-make_list-aggregate-by-some-key"></a>Utilisation de l' `mv-apply` opérateur pour trier la sortie de l' `make_list` agrégat par clé
-
-<!-- csl: https://help.kusto.windows.net/Samples -->
-```kusto
-datatable(command:string, command_time:datetime, user_id:string)
-[
-    'chmod',        datetime(2019-07-15),   "user1",
-    'ls',           datetime(2019-07-02),   "user1",
-    'dir',          datetime(2019-07-22),   "user1",
-    'mkdir',        datetime(2019-07-14),   "user1",
-    'rm',           datetime(2019-07-27),   "user1",
-    'pwd',          datetime(2019-07-25),   "user1",
-    'rm',           datetime(2019-07-23),   "user2",
-    'pwd',          datetime(2019-07-25),   "user2",
-]
-| summarize commands_details = make_list(pack('command', command, 'command_time', command_time)) by user_id
-| mv-apply command_details = commands_details on
-(
-    order by todatetime(command_details['command_time']) asc
-    | summarize make_list(tostring(command_details['command']))
-)
-| project-away commands_details
-```
-
-|`user_id`|`list_command_details_command`|
-|---|---|
-|user1|[<br>  « LS »,<br>  « mkdir »,<br>  « chmod »,<br>  « dir »,<br>  « pwd »,<br>  RM<br>]|
-|user2|[<br>  « RM »,<br>  pwd<br>]|
 
 ## <a name="see-also"></a>Voir aussi
 
