@@ -1,6 +1,6 @@
 ---
-title: Kusto Explorer Code Analyzer - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit Kusto Explorer Code Analyzer dans Azure Data Explorer.
+title: Analyseur de code Kusto Explorer-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit l’analyseur de code Kusto Explorer dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,17 +8,17 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/05/2019
-ms.openlocfilehash: 246f047a7276bbb403598ff45b4c84f157e549d8
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 058ba490727d50ca8c45252414dcbf94e2e20e8e
+ms.sourcegitcommit: 88923cfb2495dbf10b62774ab2370b59681578b9
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81524189"
+ms.lasthandoff: 10/19/2020
+ms.locfileid: "92175570"
 ---
 # <a name="kusto-explorer-code-analyzer"></a>Analyseur de code Kusto Explorer
 
-Kusto.Explorer fournit l’utilité d’analyseur de code qui analyse la requête et produit une série de recommandations d’amélioration applicables. 
+Kusto. Explorer fournit un utilitaire d’analyseur de code qui analyse la requête actuelle et génère un ensemble de recommandations d’amélioration applicables. 
 
-`Ctrl` + Utilisez `F6` pour exécuter l’analyseur sur la requête active.
+Utilisez `Ctrl` + `F6` pour exécuter l’analyseur sur la requête active.
 
-![texte de remplacement](./Images/KustoTools-KustoExplorer/ke-codeanalyze.gif "code-analyseur-référence")
+:::image type="content" source="images/kusto-explorer-code-analyzer/ke-code-analyze.gif" alt-text="GIF de l’analyseur de code dans Kusto Explorer":::

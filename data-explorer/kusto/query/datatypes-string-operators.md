@@ -7,13 +7,13 @@ ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 02/13/2020
-ms.openlocfilehash: 8ad104b7802bde2355b46bc31e74e63a6708d4f4
-ms.sourcegitcommit: d2edf654f71f8686d1f03d8ec16200f84e671b12
+ms.date: 10/19/2020
+ms.openlocfilehash: c2a841bc78c8f17ac3a929b2541b08d5db682da1
+ms.sourcegitcommit: 88923cfb2495dbf10b62774ab2370b59681578b9
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "88659261"
+ms.lasthandoff: 10/19/2020
+ms.locfileid: "92175511"
 ---
 # <a name="string-operators"></a>Opérateurs de chaîne
 
@@ -69,8 +69,8 @@ Opérateur        |Description                                                  
 `!startswith_cs`|RHS n’est pas une sous-séquence initiale de LHS                          |Oui           |`"Fabrikam" !startswith_cs "fab"`
 `endswith`      |RHS est une sous-séquence fermante de LHS                               |Non            |`"Fabrikam" endswith "Kam"`
 `!endswith`     |RHS n’est pas une sous-séquence fermante de LHS                           |Non            |`"Fabrikam" !endswith "brik"`
-`endswith_cs`   |RHS est une sous-séquence fermante de LHS                               |Oui           |`"Fabrikam" endswith "Kam"`
-`!endswith_cs`  |RHS n’est pas une sous-séquence fermante de LHS                           |Oui           |`"Fabrikam" !endswith "brik"`
+`endswith_cs`   |RHS est une sous-séquence fermante de LHS                               |Oui           |`"Fabrikam" endswith_cs "kam"`
+`!endswith_cs`  |RHS n’est pas une sous-séquence fermante de LHS                           |Oui           |`"Fabrikam" !endswith_cs "brik"`
 `matches regex` |LHS contient une correspondance pour RHS                                      |Oui           |`"Fabrikam" matches regex "b.*k"`
 `in`            |Égal à l’un des éléments                                     |Oui           |`"abc" in ("123", "345", "abc")`
 `!in`           |N’est égal à aucun des éléments                                 |Oui           |`"bca" !in ("123", "345", "abc")`

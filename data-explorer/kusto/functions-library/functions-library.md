@@ -7,12 +7,12 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/08/2020
-ms.openlocfilehash: 8cdccf261f755a0ea7a3d6a6299aa54ce021f366
-ms.sourcegitcommit: 1618cbad18f92cf0cda85cb79a5cc1aa789a2db7
+ms.openlocfilehash: ebde38055cb2d962b6007668117a55c779cc9c94
+ms.sourcegitcommit: 88923cfb2495dbf10b62774ab2370b59681578b9
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91614972"
+ms.lasthandoff: 10/19/2020
+ms.locfileid: "92175504"
 ---
 # <a name="functions-library"></a>Bibliothèque de fonctions
 
@@ -24,6 +24,7 @@ Le code des fonctions définies par l’utilisateur est fourni dans les articles
 
 |Nom de fonction     |Description                                          |
 |-------------------------|--------------------------------------------------------|
+|[kmeans_fl ()](kmeans-fl.md)|Clusterisation à l’aide de l’algorithme k-signifiant. |
 |[predict_fl()](predict-fl.md)|Prédiction à l’aide d’un modèle de Machine Learning formé existant. |
 |[predict_onnx_fl()](predict-onnx-fl.md)| Prédiction à l’aide d’un modèle de Machine Learning formé existant au format ONNX. |
 
@@ -32,6 +33,7 @@ Le code des fonctions définies par l’utilisateur est fourni dans les articles
 |Nom de fonction     |Description                                          |
 |-------------------------|--------------------------------------------------------|
 |[quantize_fl()](quantize-fl.md)|Quantifier les colonnes métriques. |
-|[series_fit_poly_fl()](series-fit-poly-fl.md)|Ajuster un polynomial à la série à l’aide de l’analyse de régression. |
+|[series_dot_product_fl ()](series-dot-product-fl.md)|Calcule le produit scalaire de deux vecteurs numériques. |
+|[series_fit_poly_fl()](series-fit-poly-fl.md)|Ajuste un polynomial à la série à l’aide de l’analyse de régression. |
 |[series_moving_avg_fl()](series-moving-avg-fl.md)|Applique un filtre de moyenne mobile sur une série. |
 |[series_rolling_fl()](series-rolling-fl.md)|Applique une fonction d’agrégation propagée sur une série. |

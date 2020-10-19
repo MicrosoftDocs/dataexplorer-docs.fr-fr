@@ -1,6 +1,6 @@
 ---
-title: Kusto Explorer Code Navigation - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit Kusto Explorer Code Navigation dans Azure Data Explorer.
+title: Navigation dans le code Kusto Explorer-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit la navigation dans le code Kusto Explorer dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,23 +8,23 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/31/2020
-ms.openlocfilehash: c81ea5360013b779717e87164a71baf5ac4ae6c1
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: ecb499ac0f5840d9ad415179788db118257f35d7
+ms.sourcegitcommit: 88923cfb2495dbf10b62774ab2370b59681578b9
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81524104"
+ms.lasthandoff: 10/19/2020
+ms.locfileid: "92175558"
 ---
-# <a name="kusto-explorer-code-navigation"></a>Kusto Explorer Code Navigation
+# <a name="kusto-explorer-code-navigation"></a>Navigation dans le code Kusto Explorer
 
-Kusto.Explorer fournit plusieurs fonctionnalités pour une navigation de code facile à l’aide d’informations sur les symboles de requête.
+Kusto. Explorer fournit plusieurs fonctionnalités pour faciliter la navigation dans le code à l’aide des informations de symboles de requête.
 
-## <a name="go-to-symbol-definition"></a>Définition du symbole Go-to
+## <a name="go-to-symbol-definition"></a>Définition des symboles Go
 
-Vous pouvez naviguer vers la définition `F12` `Alt` + `Home` du symbole actuel à l’aide ou à raccourcir.
+Vous pouvez accéder à la définition du symbole actuel à l’aide de ou de la `F12` `Alt` + `Home` raccourci.
 
-## <a name="list-all-references-of-a-symbol"></a>Énumérer toutes les références d’un symbole
+## <a name="list-all-references-of-a-symbol"></a>Répertorier toutes les références d’un symbole
 
-Vous pouvez obtenir toutes les `Ctrl` + `F12` références du symbole actuel à l’aide de raccourci.
+Vous pouvez obtenir toutes les références du symbole actuel à l’aide de la `Ctrl` + `F12` raccourci.
 
-![texte de remplacement](./Images/KustoTools-KustoExplorer/ke-codenav-refernces.gif "code-navigation-références")
+:::image type="content" source="images/kusto-explorer-codenav/ke-code-nav-references.gif" alt-text="Références d’un symbole Kusto Explorer navigation dans le code":::
