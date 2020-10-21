@@ -4,16 +4,16 @@ description: Cet article décrit endofyear () dans Azure Explorateur de données
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a76a402725eaefe9f12cbb67228381e3b0c25351
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: a93b24af949beedc02ddd3dbbc479074f0aa891c
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348256"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92249137"
 ---
 # <a name="endofyear"></a>endofyear()
 
@@ -28,7 +28,7 @@ Retourne la fin de l’année contenant la date, décalée d’un décalage, si 
 * `date`: Date d’entrée.
 * `offset`: Nombre facultatif d’années de décalage à partir de la date d’entrée (entier, par défaut-0).
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Date/heure représentant la fin de l’année pour la valeur de *Date* donnée, avec le décalage, s’il est spécifié.
 

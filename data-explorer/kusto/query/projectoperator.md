@@ -4,16 +4,16 @@ description: Cet article décrit l’opérateur Project dans Azure Explorateur d
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7a7cbb563a10b1cd1bdd91f12b0ce9d7da1c0e7b
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 7529fb02c85d10ac451e78b878a21040e966ee34
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346029"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242271"
 ---
 # <a name="project-operator"></a>opérateur project
 
@@ -41,7 +41,7 @@ or
 
     Il est possible de retourner une nouvelle colonne calculée portant le même nom qu’une colonne figurant dans l’entrée.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Une table contenant les colonnes nommées en tant qu’arguments, et autant de lignes que la table d’entrée.
 

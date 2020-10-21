@@ -4,18 +4,18 @@ description: Cet article décrit le plug-in R (version préliminaire) dans Azure
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 429140a1ae74dc0d7189e4b8dec1a32428fe3bb3
-ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
+ms.openlocfilehash: ae8a82253dfd17b7d3667cd4c72648df0c42658a
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85902143"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242783"
 ---
 # <a name="r-plugin-preview"></a>Plug-in R (version préliminaire)
 
@@ -24,7 +24,7 @@ ms.locfileid: "85902143"
 Le plug-in R exécute une fonction définie par l’utilisateur (UDF) à l’aide d’un script R. Le script obtient les données tabulaires en tant qu’entrée, et produit une sortie tabulaire.
 Le runtime du plug-in est hébergé dans un [bac à sable (sandbox)](../concepts/sandboxes.md) sur les nœuds du cluster. Le bac à sable (sandbox) fournit un environnement isolé et sécurisé.
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>Syntaxe
 
 *T* `|` `evaluate` [ `hint.distribution` `=` ( `single`  |  `per_node` )] `r(` *output_schema* `,` *script* [ `,` *script_parameters*]`)`
 

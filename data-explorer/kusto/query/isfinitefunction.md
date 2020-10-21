@@ -4,16 +4,16 @@ description: Cet article décrit isFinite, () dans Azure Explorateur de données
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: d1f70675a1f455c6cd0c392483eb574867088394
-ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
+ms.openlocfilehash: b428d43afd7984bbcf19351da702517a3a1244a9
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91103282"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242315"
 ---
 # <a name="isfinite"></a>isfinite()
 
@@ -27,7 +27,7 @@ Retourne une valeur indiquant si l’entrée est une valeur finie (n’est ni in
 
 * *x*: nombre réel.
 
-## <a name="returns"></a>retourne :
+## <a name="returns"></a>Retours
 
 Valeur différente de zéro (true) si x est fini ; et zéro (false) dans le cas contraire.
 

@@ -4,16 +4,16 @@ description: Cet article décrit les opérateurs in et NOTIN dans Azure Explorat
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/18/2019
-ms.openlocfilehash: a6551ee2d4ac01d6d896cc8daff466f3c4a7852e
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: 52e26bb5564079de56817e75a203a400ef7f1a50
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803962"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248983"
 ---
 # <a name="in-and-in-operators"></a>in et !in, opérateurs
 
@@ -69,7 +69,7 @@ StormEvents
 | count
 ```
 
-|Count|
+|Nombre|
 |---|
 |4775|  
 
@@ -82,7 +82,7 @@ StormEvents
 | count
 ```
 
-|Count|
+|Nombre|
 |---|
 |4775|  
 
@@ -95,7 +95,7 @@ StormEvents
 | count
 ```
 
-|Count|
+|Nombre|
 |---|
 |54291|  
 
@@ -110,7 +110,7 @@ StormEvents
 | count
 ```
 
-|Count|
+|Nombre|
 |---|
 |3218|
 
@@ -142,7 +142,7 @@ StormEvents
 | count
 ```
 
-|Count|
+|Nombre|
 |---|
 |14242|  
 
@@ -164,7 +164,7 @@ Lightning_By_State
 | TEXAS     | 55                   |
 | Floride   | 85 %                   |
 | Géorgie   | 106                  |
-| Autre     | 415                  |
+| Autres     | 415                  |
 
 ### <a name="use-a-static-list-returned-by-a-function"></a>Utiliser une liste statique retournée par une fonction
 
@@ -174,7 +174,7 @@ StormEvents | where State in (InterestingStates()) | count
 
 ```
 
-|Count|
+|Nombre|
 |---|
 |4775|  
 
@@ -185,6 +185,6 @@ Définition de la fonction.
 .show function InterestingStates
 ```
 
-|Nom|Paramètres|Corps|Dossier|DocString|
+|Nom|Paramètres|body|Dossier|DocString|
 |---|---|---|---|---|
 |InterestingStates|()|{Dynamic (["WASHINGTON", "Floride", "GEORGIA", "NEW YORK"])}

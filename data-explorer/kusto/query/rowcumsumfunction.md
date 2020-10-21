@@ -4,16 +4,16 @@ description: Cet article décrit row_cumsum () dans Azure Explorateur de donnée
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 83dc48589fce7332c8e24d1e5a47c75a6cfca608
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 6ad1df20972238bee17217f5d9de19a020b4cbce
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345723"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242850"
 ---
 # <a name="row_cumsum"></a>row_cumsum()
 
@@ -27,7 +27,7 @@ Calcule la somme cumulée d’une colonne dans un [ensemble de lignes sérialis�
   L’expression doit être une scalaire de l’un des types suivants : `decimal` , `int` , `long` ou `real` . Les valeurs de *terme* NULL n’affectent pas la somme.
 * *Restart* est un argument facultatif de type `bool` qui indique à quel moment l’opération d’accumulation doit être redémarrée (rétablit la valeur 0). Il peut être utilisé pour indiquer des partitions de données ; consultez le deuxième exemple ci-dessous.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 La fonction retourne la somme cumulée de son argument.
 

@@ -4,16 +4,16 @@ description: Cet article décrit l’inverse () dans Azure Explorateur de donné
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: fa87dae85b158e162cea90c276057abb210ea23b
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: dc348643ff6e098b2291e69d68ca817c1f5af9c2
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345774"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92243006"
 ---
 # <a name="reverse"></a>reverse()
 
@@ -28,7 +28,7 @@ Si la valeur d’entrée n’est pas de type `string` , la fonction effectue un 
 
 * *source*: valeur d’entrée.  
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Ordre inverse d’une valeur de chaîne.
 

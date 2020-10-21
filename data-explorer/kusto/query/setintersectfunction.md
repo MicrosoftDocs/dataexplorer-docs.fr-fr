@@ -4,16 +4,16 @@ description: Cet article décrit set_intersect () dans Azure Explorateur de donn
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/02/2019
-ms.openlocfilehash: 709da983599b4e8b0c8b06cf7bff4276ba03b5cf
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 682cff2dc5a4334a4543767048429b1ea04dc329
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351163"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242436"
 ---
 # <a name="set_intersect"></a>set_intersect()
 
@@ -27,7 +27,7 @@ Retourne un `dynamic` tableau de l’ensemble de toutes les valeurs distinctes q
 
 * *Arr1... arrN*: tableaux d’entrée pour créer un ensemble d’intersection (au moins deux tableaux). Tous les arguments doivent être des tableaux dynamiques. Pour plus d’informations, consultez [pack_array](packarrayfunction.md). 
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Retourne un tableau dynamique du jeu de toutes les valeurs distinctes qui se trouvent dans tous les tableaux. Consultez [`set_union()`](setunionfunction.md) et [`set_difference()`](setdifferencefunction.md) .
 
@@ -43,7 +43,7 @@ range x from 1 to 3 step 1
 | project set_intersect(a1, a2, a3)
 ```
 
-|Colonne1|
+|Column1|
 |---|
 | [1]|
 |2|

@@ -4,18 +4,18 @@ description: Cet article décrit l’opérateur de rendu dans Azure Explorateur 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/29/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 5485088ba8dd4e348733c9d8e14e2dc54dd2c858
-ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
+ms.openlocfilehash: 069733d2215257106ede58f4fd6e4f2a923a8982
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/29/2020
-ms.locfileid: "91452831"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92243123"
 ---
 # <a name="render-operator"></a>render, opérateur
 
@@ -30,7 +30,7 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 > * L’opérateur Render ne modifie pas les données. Elle injecte une annotation (« visualisation ») dans les propriétés étendues du résultat. L’annotation contient les informations fournies par l’opérateur dans la requête.
 > * L’interprétation des informations de visualisation est effectuée par l’agent utilisateur. Différents agents (tels que Kusto. Explorer, Kusto. webexplorer) peuvent prendre en charge différentes visualisations.
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>Syntaxe
 
 *T* `|` `render` *Visualization* [ `with` `(` *PropertyName* `=` *PropertyValue* [ `,` ...] `)` ]
 

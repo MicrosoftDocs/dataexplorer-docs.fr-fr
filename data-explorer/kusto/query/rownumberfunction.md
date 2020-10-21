@@ -4,16 +4,16 @@ description: Cet article décrit row_number () dans Azure Explorateur de donnée
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: ea51e6171b8a7683a0454d177dc729ed754b8896
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 457e9445aa113e76052b9c4d96019352215d08f9
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351588"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242805"
 ---
 # <a name="row_number"></a>row_number()
 
@@ -29,7 +29,7 @@ En outre, l’index de ligne peut être réinitialisé selon un prédicat fourni
 * *StartingIndex* est une expression constante de type `long` indiquant la valeur de l’index de ligne à partir duquel commencer (ou à redémarrer). La valeur par défaut est `1`.
 * *Restart* est un argument facultatif de type `bool` qui indique quand la numérotation doit être redémarrée à la valeur *StartingIndex* . S’il n’est pas fourni, la valeur par défaut de `false` est utilisée.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 La fonction retourne l’index de ligne de la ligne actuelle en tant que valeur de type `long` .
 

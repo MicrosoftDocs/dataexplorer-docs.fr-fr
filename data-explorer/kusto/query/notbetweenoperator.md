@@ -4,16 +4,16 @@ description: Cet article décrit l’opérateur notBetween dans Azure Explorateu
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 3ae821e76c78f8beba465651ffc759bfefdfa001
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 7dd8f04010cbc10afa34fa8b27e6be8d31feae9d
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346607"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248705"
 ---
 # <a name="not-between-operator-between"></a>not-between, opérateur (!between)
 
@@ -24,7 +24,7 @@ Table1 | where Num1 !between (1 .. 10)
 Table1 | where Time !between (datetime(2017-01-01) .. datetime(2017-01-01))
 ```
 
-`!between`peut fonctionner sur n’importe quelle expression numérique, DateTime ou TimeSpan.
+`!between` peut fonctionner sur n’importe quelle expression numérique, DateTime ou TimeSpan.
  
 ## <a name="syntax"></a>Syntaxe
 
@@ -41,7 +41,7 @@ Si l’expression *expr* est DateTime, une autre syntaxe de sucre syntaxique est
 * *leftRange* -expression de la plage gauche (inclusive).
 * *rightRange* -expression de la plage droite (inclusive).
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Les lignes dans *T* pour lesquelles le prédicat de (*expr*  <  *leftRange* ou *expr*  >  *rightRange*) prend la valeur `true` .
 
@@ -72,7 +72,7 @@ StormEvents
 | count 
 ```
 
-|Count|
+|Nombre|
 |---|
 |58590|
 
@@ -83,6 +83,6 @@ StormEvents
 | count 
 ```
 
-|Count|
+|Nombre|
 |---|
 |58590|

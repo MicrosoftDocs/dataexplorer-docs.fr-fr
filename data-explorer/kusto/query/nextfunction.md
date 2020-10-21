@@ -4,16 +4,16 @@ description: Cet article décrit la rubrique suivante () dans Azure Explorateur 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a265d536f655df3086ece1b9953eaade4717781c
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: ca9361c0a43a2881f7448312e4f8a5129426e55a
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346624"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248741"
 ---
 # <a name="next"></a>next()
 

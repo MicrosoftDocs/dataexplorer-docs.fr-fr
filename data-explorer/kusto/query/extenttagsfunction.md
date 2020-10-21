@@ -4,18 +4,18 @@ description: Cet article décrit extent_tags () dans Azure Explorateur de donné
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: f745d9cb180842e86c184a24ed24c4e2f024f129
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: da705d558a09bdcc52bf07fc807e53fdccb9396c
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348120"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92249089"
 ---
 # <a name="extent_tags"></a>extent_tags()
 
@@ -29,7 +29,7 @@ L’application de cette fonction aux données calculées qui ne sont pas attach
 
 `extent_tags()`
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Valeur de type `dynamic` qui est un tableau contenant les balises d’étendue de l’enregistrement actuel ou une valeur vide.
 

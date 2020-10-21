@@ -4,20 +4,20 @@ description: Cet article décrit row_window_session () dans Azure Explorateur de
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: ce8da96733dd483b8600c7cfb3618ed986e9d2b0
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: f872004a8291adc95f594c6301075faa02c8ec6c
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351554"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242868"
 ---
 # <a name="row_window_session"></a>row_window_session()
 
-`row_window_session()`calcule les valeurs de début de session d’une colonne dans un [ensemble de lignes sérialisé](./windowsfunctions.md#serialized-row-set).
+`row_window_session()` calcule les valeurs de début de session d’une colonne dans un [ensemble de lignes sérialisé](./windowsfunctions.md#serialized-row-set).
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -35,11 +35,11 @@ ms.locfileid: "87351554"
 
 * *Restart* est une expression scalaire facultative de type `boolean` . Si cette valeur est spécifiée, chaque valeur qui correspond à `true` redémarrera immédiatement la session.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 La fonction retourne les valeurs au début de chaque session.
 
-**Remarques**
+**Notes**
 
 La fonction a le modèle de calcul conceptuel suivant :
 

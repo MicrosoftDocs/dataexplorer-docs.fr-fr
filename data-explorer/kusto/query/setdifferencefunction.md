@@ -4,16 +4,16 @@ description: Cet article décrit set_difference () dans Azure Explorateur de don
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/02/2019
-ms.openlocfilehash: bd442f70b3411b61f213098fefec918622f8d916
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 1657e6e9b82e433d7712dfb21930c4ae4d20a315
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351180"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242662"
 ---
 # <a name="set_difference"></a>set_difference()
 
@@ -27,7 +27,7 @@ Retourne un `dynamic` tableau (JSON) de l’ensemble de toutes les valeurs disti
 
 * *Arr1... arrN*: tableaux d’entrée pour créer un ensemble de différences (au moins deux tableaux). Tous les arguments doivent être des tableaux dynamiques (voir [pack_array](packarrayfunction.md)). 
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Retourne un tableau dynamique de l’ensemble de toutes les valeurs distinctes qui se trouvent dans Arr1, mais qui ne sont pas dans d’autres tableaux. Consultez [`set_union()`](setunionfunction.md) et [`set_intersect()`](setintersectfunction.md) .
 
@@ -43,7 +43,7 @@ range x from 1 to 3 step 1
 | project set_difference(a1, a2, a3)
 ```
 
-|Colonne1|
+|Column1|
 |---|
 |[4]|
 |version8|

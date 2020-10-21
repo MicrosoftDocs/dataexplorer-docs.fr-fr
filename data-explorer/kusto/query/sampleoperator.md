@@ -4,16 +4,16 @@ description: Cet article décrit l’exemple d’opérateur dans Azure Explorate
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/18/2020
-ms.openlocfilehash: 89e9eea4e8a6a5922e9141818fc5832156ac8e72
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: 35495b9541f7dac35bb1aa45cbc435e7f3fedfad
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803554"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242720"
 ---
 # <a name="sample-operator"></a>opérateur d’échantillon
 
@@ -24,8 +24,8 @@ T | sample 5
 ```
 
 > [!NOTE]
-> * `sample`est adapté à la vitesse plutôt qu’à la distribution des valeurs. Plus précisément, cela signifie qu’il ne produira pas de résultats « justes » s’ils sont utilisés après les opérateurs qui Union 2 ont des jeux de données de différentes tailles (tels que les `union` `join` opérateurs ou). Il est recommandé d’utiliser `sample` juste après la référence de table et les filtres.
-> * `sample`est un opérateur non déterministe qui retourne un jeu de résultats différent chaque fois qu’il est évalué au cours de la requête. Par exemple, la requête suivante génère deux lignes différentes (même si on s’attend à renvoyer deux fois la même ligne).
+> * `sample` est adapté à la vitesse plutôt qu’à la distribution des valeurs. Plus précisément, cela signifie qu’il ne produira pas de résultats « justes » s’ils sont utilisés après les opérateurs qui Union 2 ont des jeux de données de différentes tailles (tels que les `union` `join` opérateurs ou). Il est recommandé d’utiliser `sample` juste après la référence de table et les filtres.
+> * `sample` est un opérateur non déterministe qui retourne un jeu de résultats différent chaque fois qu’il est évalué au cours de la requête. Par exemple, la requête suivante génère deux lignes différentes (même si on s’attend à renvoyer deux fois la même ligne).
 
 ## <a name="syntax"></a>Syntaxe
 

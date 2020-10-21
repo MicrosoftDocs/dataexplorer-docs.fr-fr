@@ -4,16 +4,16 @@ description: Cet article décrit Pack () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 560f7ca9f423eb57fd9be0478e0e51dc2ce26755
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 7b72a4ab3f64fb119d8a35767ea4e5cfedfdf71f
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346505"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248672"
 ---
 # <a name="pack"></a>pack()
 

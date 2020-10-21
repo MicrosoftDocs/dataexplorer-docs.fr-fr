@@ -4,16 +4,16 @@ description: Cet article décrit ipv4_is_match () dans Azure Explorateur de donn
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 1abe99a4739d68e6acb76b800af293e77e62b2f0
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: 0e00b2bffb31f66fc0e684bb5300af2c334fc825
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803911"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242465"
 ---
 # <a name="ipv4_is_match"></a>ipv4_is_match()
 
