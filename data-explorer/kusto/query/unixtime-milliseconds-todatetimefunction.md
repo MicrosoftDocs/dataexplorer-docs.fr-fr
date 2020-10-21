@@ -4,16 +4,16 @@ description: Cet article décrit unixtime_milliseconds_todatetime () dans Azure 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 11/25/2019
-ms.openlocfilehash: d30190f320cd728de3cfd851f763954e58abf65f
-ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
+ms.openlocfilehash: 9f029b18a147907a9e77e5ade7a1b708d3bed877
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91103491"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92245649"
 ---
 # <a name="unixtime_milliseconds_todatetime"></a>unixtime_milliseconds_todatetime()
 
@@ -27,7 +27,7 @@ Convertit les millisecondes d’époque UNIX en date/heure UTC.
 
 * *millisecondes*: un nombre réel représente l’horodatage de l’époque en millisecondes. `Datetime` Cela se produit avant l’heure de l’époque (1970-01-01 00:00:00) a une valeur d’horodatage négative.
 
-## <a name="returns"></a>retourne :
+## <a name="returns"></a>Retours
 
 Si la conversion réussit, le résultat sera une valeur [DateTime](./scalar-data-types/datetime.md) . Si la conversion échoue, le résultat sera null.
 

@@ -4,16 +4,16 @@ description: Cet article décrit percentile_tdigest () dans Azure Explorateur de
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/10/2019
-ms.openlocfilehash: 814124dc0ae9fa5f26a198fafc1bf1d7fd2b83e4
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 7111f34fcd42e025b22960aa013310d7e4b672fd
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346199"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252175"
 ---
 # <a name="percentile_tdigest"></a>percentile_tdigest()
 
@@ -34,7 +34,7 @@ Calcule le résultat de centile à partir des `tdigest` résultats (générés p
 * *typeLiteral*: littéral de type facultatif (par exemple, `typeof(long)` ). Si elle est fournie, le jeu de résultats sera de ce type. 
 * *Tableau dynamique*: liste de centiles dans un tableau dynamique de nombres entiers ou à virgule flottante.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Valeur centiles/percentilesw de chaque valeur dans *`Expr`* .
 

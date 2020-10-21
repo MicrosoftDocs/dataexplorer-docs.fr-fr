@@ -4,16 +4,16 @@ description: Cet article décrit le hachage () dans Azure Explorateur de donnée
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 16b570d996148f1dad9e285b3c2da24d136b20c4
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: d840ba106079a85435ee88f8b73cfc6daa7e4c5b
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347576"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252313"
 ---
 # <a name="hash"></a>hash()
 

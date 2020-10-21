@@ -4,16 +4,16 @@ description: Cet article décrit set_has_element () dans Azure Explorateur de do
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/23/2020
-ms.openlocfilehash: b62e5032d6f2ccedc2883b6cbccaf7be69e1cebf
-ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
+ms.openlocfilehash: b32fd7361d98c47c8e93814db6b794a762fad1cf
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91103517"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92247198"
 ---
 # <a name="set_has_element"></a>set_has_element()
 
@@ -28,7 +28,7 @@ Détermine si le jeu spécifié contient l’élément spécifié.
 * *tableau*: tableau d’entrée à rechercher.
 * *valeur*: valeur à rechercher. La valeur doit être de type `long` ,,, `integer` `double` `datetime` , `timespan` , `decimal` , `string` ou `guid` .
 
-## <a name="returns"></a>retourne :
+## <a name="returns"></a>Retours
 
 True ou false selon que la valeur existe dans le tableau.
 
@@ -40,7 +40,7 @@ print arr=dynamic(["this", "is", "an", "example"])
 | project Result=set_has_element(arr, "example")
 ```
 
-|Résultats|
+|Résultat|
 |---|
 |1|
 

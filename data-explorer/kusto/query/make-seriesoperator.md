@@ -4,16 +4,16 @@ description: Cet article décrit l’opérateur make-Series dans Azure Explorate
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/16/2020
-ms.openlocfilehash: 56742b04386bfda9e2cdbaa40a85d2220f2373d5
-ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
+ms.openlocfilehash: 1e39e71aa9406815338974b2da03d05315054b65
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/11/2020
-ms.locfileid: "91942350"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92247365"
 ---
 # <a name="make-series-operator"></a>opérateur make-series
 
@@ -75,7 +75,7 @@ Il est recommandé d’utiliser la syntaxe principale de make-Series et non la s
 
 |Fonction|Description|
 |--------|-----------|
-|[Any ()](any-aggfunction.md)|Retourne une valeur non vide aléatoire pour le groupe|
+|[any()](any-aggfunction.md)|Retourne une valeur non vide aléatoire pour le groupe|
 |[avg()](avg-aggfunction.md)|Retourne une valeur moyenne dans le groupe|
 |[avgif()](avgif-aggfunction.md)|Retourne une moyenne avec le prédicat du groupe.|
 |[Count ()](count-aggfunction.md)|Retourne le nombre de groupes|
@@ -89,7 +89,7 @@ Il est recommandé d’utiliser la syntaxe principale de make-Series et non la s
 |[stdev()](stdev-aggfunction.md)|Retourne l’écart type de l’ensemble du groupe|
 |[sum()](sum-aggfunction.md)|Retourne la somme des éléments dans le groupe|
 |[sumif()](sumif-aggfunction.md)|Retourne la somme des éléments avec le prédicat du groupe.|
-|[variance ()](variance-aggfunction.md)|Retourne la variance dans le groupe|
+|[variance()](variance-aggfunction.md)|Retourne la variance dans le groupe|
 
 ## <a name="list-of-series-analysis-functions"></a>Liste des fonctions d’analyse de série
 

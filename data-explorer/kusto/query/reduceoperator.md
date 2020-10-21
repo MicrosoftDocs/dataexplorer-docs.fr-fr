@@ -4,16 +4,16 @@ description: Cet article décrit l’opérateur de réduction dans Azure Explora
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: d844f693b1509a823702b12bd28b85a9f19a07bd
-ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
+ms.openlocfilehash: 6ef5e42dc9c41426cd66dbf4d857ec0d2c32e2ae
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91102897"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252121"
 ---
 # <a name="reduce-operator"></a>opérateur reduce
 
@@ -36,7 +36,7 @@ Pour chaque groupe de ce type, il génère un **modèle** qui décrit le mieux l
 * *Caractères*: `string` littéral contenant une liste de caractères à ajouter à la liste des caractères qui ne comcoupent pas un terme. (Par exemple, si vous souhaitez `aaa=bbbb` et `aaa:bbb` pour chaque terme entier, plutôt que d’arrêter sur `=` et `:` , utilisez `":="` comme littéral de chaîne.)
 * *ReduceKind*: spécifie la version de réduction. La seule valeur valide pour l’heure est `source` .
 
-## <a name="returns"></a>retourne :
+## <a name="returns"></a>Retours
 
 Cet opérateur retourne une table avec trois colonnes ( `Pattern` , `Count` et `Representative` ), et autant de lignes qu’il y a de groupes. `Pattern` est la valeur de modèle pour le groupe, avec l' `*` utilisation d’un caractère générique (représentant des chaînes d’insertion arbitraires), `Count` compte le nombre de lignes dans l’entrée de l’opérateur qui sont représentées par ce modèle, et `Representative` représente une valeur de l’entrée qui se trouve dans ce groupe.
 
@@ -45,7 +45,7 @@ Notez que la syntaxe d’un schéma de cette version peut être soumise à des m
 
 Par exemple, le résultat de `reduce by city` peut inclure : 
 
-|Modèle     |Count |Representative|
+|Modèle     |Nombre |Representative|
 |------------|------|--------------|
 | San *      | 5182 |Bernard San   |
 | Saint *    | 2846 |Saint Lucy    |
@@ -62,7 +62,7 @@ range x from 1 to 1000 step 1
 | reduce by MyText  with threshold=0.001 , characters = "X" 
 ```
 
-|Modèle         |Count|Representative   |
+|Modèle         |Nombre|Representative   |
 |----------------|-----|-----------------|
 |MachineLearning|1 000 |MachineLearningX4|
 
@@ -86,6 +86,6 @@ Trace | take 10000
 
 [autocluster](./autoclusterplugin.md)
 
-**Remarques**
+**Notes**
 
 L’implémentation de l' `reduce` opérateur est en grande partie basée sur la documentation d' [un algorithme de clustering de données pour les modèles d’exploration de données des journaux des événements](https://ristov.github.io/publications/slct-ipom03-web.pdf), par Risto Vaarandi.

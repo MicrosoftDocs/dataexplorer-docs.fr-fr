@@ -4,16 +4,16 @@ description: Cet article décrit make_string () dans Azure Explorateur de donné
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 36d31e88a89f23006dac73b92777b13db4933d06
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: c8f3497e10c15bfd6df0337758d8dc3002419fa1
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346879"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252230"
 ---
 # <a name="make_string"></a>make_string()
 
@@ -21,7 +21,7 @@ Retourne la chaîne générée par les caractères Unicode.
     
 ## <a name="syntax"></a>Syntaxe
 
-`make_string (`*Arg1*[, *ArgN*]...`)`
+`make_string (`*Arg1*[, *ArgN*]... `)`
 
 ## <a name="arguments"></a>Arguments
 

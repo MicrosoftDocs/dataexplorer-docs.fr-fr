@@ -4,16 +4,16 @@ description: Cet article décrit extract_all () dans Azure Explorateur de donné
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: e52f90b911331bca6374318869d3f8ebf262d81f
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 85c118e8cd68c52278a34080eda4936151600cd5
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348069"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92247523"
 ---
 # <a name="extract_all"></a>extract_all()
 
@@ -34,9 +34,9 @@ print extract_all(@"(\d+)", "a set of numbers: 123, 567 and 789") // results wit
 |----------------|---------------------------------------------|----------------------|
 |regex           | [Expression régulière](./re2.md). L’expression doit avoir au moins un groupe de capture, et inférieure ou égale à 16 groupes de capture                                                         |Obligatoire              |
 |captureGroups   |Constante de tableau dynamique qui indique le groupe de capture à extraire. Les valeurs valides sont comprises entre 1 et le nombre de groupes de capture dans l’expression régulière. Les groupes de capture nommés sont également autorisés (voir les [exemples](#examples))|Facultatif         |
-|text            |`string`À rechercher                         |Obligatoire              |
+|texte            |`string`À rechercher                         |Obligatoire              |
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 * Si *Regex* trouve une correspondance dans le *texte*: retourne le tableau dynamique, y compris toutes les correspondances par rapport aux groupes de capture *captureGroups*spécifiés, ou tous les groupes de capture dans l' *expression régulière*.
 * Si le nombre de *captureGroups* est 1 : le tableau retourné a une seule dimension de valeurs correspondantes.

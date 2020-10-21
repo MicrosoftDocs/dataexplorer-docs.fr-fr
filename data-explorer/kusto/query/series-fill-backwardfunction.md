@@ -4,16 +4,16 @@ description: Cet article décrit series_fill_backward () dans Azure Explorateur 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 42012111c7f862672a1335e0e9165eb62179dfe7
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 572a80cc6e11a94f1597478f8395fe477f0cb64c
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87344924"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92247221"
 ---
 # <a name="series_fill_backward"></a>series_fill_backward()
 
@@ -31,7 +31,7 @@ Une expression contenant un tableau numérique dynamique est l’entrée. La fon
 * *x*: expression scalaire de tableau dynamique, qui est un tableau de valeurs numériques.
 * *missing_value_placeholder*: ce paramètre facultatif spécifie un espace réservé pour les valeurs manquantes. La valeur par défaut est `double` (*null*).
 
-**Remarques**
+**Notes**
 
 * Spécifiez *null* comme valeur par défaut pour appliquer les fonctions d’interpolation après [Make-Series](make-seriesoperator.md): 
 

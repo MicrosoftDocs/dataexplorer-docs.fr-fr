@@ -4,16 +4,16 @@ description: Cet article décrit isascii () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: d8a060e4a332988fd966e0dec9ed07b3c76d0e3f
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: a17836597277b2cf5401f2caeaa60b44da731dd5
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347287"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92251779"
 ---
 # <a name="isascii"></a>isascii()
 
@@ -27,7 +27,7 @@ isascii("some string") == true
 
 `isascii(`[*valeur*]`)`
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Indique si l’argument est une chaîne ASCII valide.
 

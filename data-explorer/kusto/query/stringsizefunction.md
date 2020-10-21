@@ -4,16 +4,16 @@ description: Cet article décrit string_size () dans Azure Explorateur de donné
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 4832d00703ab9e6d1478af5b3f45ec294dfb79ce
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: ea06e7e41ebe48e09839109745f3fe7ba5a96e7a
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350908"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92251465"
 ---
 # <a name="string_size"></a>string_size()
 
@@ -27,7 +27,7 @@ Retourne la taille, en octets, de la chaîne d’entrée.
 
 * *source*: chaîne source qui sera mesurée pour la taille de chaîne.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Retourne la longueur, en octets, de la chaîne d’entrée.
 

@@ -4,16 +4,16 @@ description: Cet article décrit series_less_equals () dans Azure Explorateur de
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: 0373fdf7c687dd7af63895ce3a542ae9b6b4f150
-ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
+ms.openlocfilehash: e7172d9840562b26b3f9c532c8a83413131e0c21
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91103550"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92251574"
 ---
 # <a name="series_less_equals"></a>series_less_equals()
 
@@ -27,7 +27,7 @@ Calcule l' `<=` opération logique d’infériorité ou d’égalité des élém
 
 * *Series1, Series2*: les tableaux numériques d’entrée doivent être comparés par élément. Tous les arguments doivent être des tableaux dynamiques. 
 
-## <a name="returns"></a>retourne :
+## <a name="returns"></a>Retours
 
 Tableau dynamique de valeurs booléennes contenant l’opération logique d’infériorité ou d’égalité des éléments calculée entre les deux entrées. Tout élément non numérique ou élément non existant (tableaux de tailles différentes) produit une `null` valeur d’élément.
 

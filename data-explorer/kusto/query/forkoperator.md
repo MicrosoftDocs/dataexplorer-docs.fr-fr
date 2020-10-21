@@ -4,16 +4,16 @@ description: Cet article décrit l’opérateur Fork dans Azure Explorateur de d
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b234a95b4a541099f3fc050501ca6b0fd9f67ccf
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: dfa4d2218c3f54a9c85644fb0ee1edf4b7c012dd
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348001"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92247412"
 ---
 # <a name="fork-operator"></a>fork, opérateur
 
@@ -38,7 +38,7 @@ Plusieurs tables de résultats, une pour chacune des sous-requêtes.
 
 **Notes**
 
-* [`materialize`](materializefunction.md)la fonction peut être utilisée comme remplacement pour l’utilisation de [`join`](joinoperator.md) ou [`union`](unionoperator.md) sur des jambes de fourche.
+* [`materialize`](materializefunction.md) la fonction peut être utilisée comme remplacement pour l’utilisation de [`join`](joinoperator.md) ou [`union`](unionoperator.md) sur des jambes de fourche.
 Le flux d’entrée sera mis en cache par matérialisation, puis l’expression mise en cache peut être utilisée dans les jambes de jointure/Union.
 
 * Un nom, fourni par l' `name` argument ou à l’aide de l’opérateur, est [`as`](asoperator.md) utilisé comme pour nommer l’onglet résultat dans l' [`Kusto.Explorer`](../tools/kusto-explorer.md) outil.

@@ -4,16 +4,16 @@ description: Cet article décrit toscalar () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 649d09fcf6d228714fdf20b40c81b2a2552374e6
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 1210a820b4b3c8790d218ba53992da0255028de2
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87340256"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252015"
 ---
 # <a name="toscalar"></a>toscalar()
 
@@ -29,7 +29,7 @@ Cette fonction est utile pour les requêtes qui requièrent des calculs intermé
 
 * *Expression*: expression qui sera évaluée pour la conversion scalaire.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Valeur de constante scalaire de l’expression évaluée.
 Si le résultat est un tableau, la première colonne et la première ligne sont prises pour la conversion.
@@ -37,9 +37,9 @@ Si le résultat est un tableau, la première colonne et la première ligne sont 
 > [!TIP]
 > Vous pouvez utiliser une [instruction Let](letstatement.md) pour améliorer la lisibilité de la requête lors de l’utilisation de `toscalar()` .
 
-**Remarques**
+**Notes**
 
-`toscalar()`peut être calculé un nombre constant de fois pendant l’exécution de la requête.
+`toscalar()` peut être calculé un nombre constant de fois pendant l’exécution de la requête.
 La `toscalar()` fonction ne peut pas être appliquée au niveau de la ligne (scénario pour chaque ligne).
 
 ## <a name="examples"></a>Exemples

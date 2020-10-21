@@ -4,18 +4,18 @@ description: Cet article décrit cursor_after () dans Azure Explorateur de donn�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 0f555cd1ebec8d95a3e7d0e46c986b04154c721e
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 3b1a89ab84b62241058a24573c0362f7215f82c7
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348630"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252478"
 ---
 # <a name="cursor_after"></a>cursor_after()
 
@@ -31,11 +31,11 @@ Prédicat sur les enregistrements d’une table pour comparer leur temps d’ing
 
 * *RHS*: un littéral de chaîne vide ou une valeur de curseur de base de données valide.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Valeur scalaire de type `bool` qui indique si l’enregistrement a été reçu après le curseur de base de données *RHS* ( `true` ) ou non ( `false` ).
 
-**Remarques**
+**Notes**
 
 Pour plus d’informations sur les curseurs de base de données, consultez [curseurs de](../management/databasecursor.md) base de données.
 

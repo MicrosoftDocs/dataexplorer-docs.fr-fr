@@ -4,16 +4,16 @@ description: Cet article décrit maxif () (fonction d’agrégation) dans Azure 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 471ca0e3d6623b77fd2d799949bfe060643798e2
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 4df30f50d82e0ad5af87acaaa88b55f151a2a77a
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346811"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92251715"
 ---
 # <a name="maxif-aggregation-function"></a>maxif () (fonction d’agrégation)
 
@@ -32,7 +32,7 @@ Voir aussi-fonction [Max ()](max-aggfunction.md) , qui retourne la valeur maxima
 * *Expr*: expression qui sera utilisée pour le calcul de l’agrégation. 
 * *Predicate*: prédicat qui, si la valeur est true, la valeur calculée *expr* est vérifiée pour le nombre maximal.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Valeur maximale de *expr* dans le groupe pour lequel le *prédicat* est évalué à `true` .
 

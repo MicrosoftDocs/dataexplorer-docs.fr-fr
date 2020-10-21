@@ -4,16 +4,16 @@ description: Cet article décrit IsEmpty () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: ac2bf5d5ea55172cbdb07bf90704ae5ad497e925
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 2944e90f14f38e2f136f5815a95584edc50d8235
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347270"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92251719"
 ---
 # <a name="isempty"></a>isempty()
 
@@ -27,7 +27,7 @@ isempty("") == true
 
 `isempty(`[*valeur*]`)`
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Indique si l’argument est une chaîne vide ou s’il a la valeur isnull.
 

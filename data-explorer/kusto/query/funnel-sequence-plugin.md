@@ -4,16 +4,16 @@ description: Cet article décrit funnel_sequence plug-in dans Azure Explorateur 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 67a5e05a5720c8a9290523344f793c07c47c5ed2
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 34159fb6d02cd30907924109c861d5e9fd963568
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347916"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252342"
 ---
 # <a name="funnel_sequence-plugin"></a>plug-in funnel_sequence
 
@@ -39,7 +39,7 @@ T | evaluate funnel_sequence(id, datetime_column, startofday(ago(30d)), startofd
 * *StateColumn*: référence de colonne représentant l’État, qui doit être présente dans l’expression source.
 * *Sequence*: tableau dynamique constant avec les valeurs de séquence (les valeurs sont recherchées dans `StateColumn` ).
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Retourne trois tables de sortie, qui sont utiles pour construire un diagramme Sankey pour la séquence analysée :
 
@@ -74,7 +74,7 @@ StormEvents
 
 Le résultat comprend trois tables :
 
-* #1 de table : toutes les variantes possibles de ce qui s’est passé avant et après la séquence. Par exemple, la deuxième ligne signifie qu’il existait 87 événements différents qui se sont dépendants de la séquence suivante :`Hail` -> `Tornado` -> `Hail`
+* #1 de table : toutes les variantes possibles de ce qui s’est passé avant et après la séquence. Par exemple, la deuxième ligne signifie qu’il existait 87 événements différents qui se sont dépendants de la séquence suivante : `Hail` -> `Tornado` -> `Hail`
 
 
 |`StartTime`|`prev`|`next`|`dcount`|

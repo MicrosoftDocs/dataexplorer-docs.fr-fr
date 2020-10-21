@@ -4,16 +4,16 @@ description: Cet article décrit array_shift_left () dans Azure Explorateur de d
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/11/2019
-ms.openlocfilehash: 25498fa86803914c7445373e96167ca000cd4737
-ms.sourcegitcommit: 2764e739b4ad51398f4f0d3a9742d7168c4f5fd7
+ms.openlocfilehash: 4bdadd276a59b30ed347a3e293eb5e5c7831063b
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/05/2020
-ms.locfileid: "91712066"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92247034"
 ---
 # <a name="array_shift_left"></a>array_shift_left()
 

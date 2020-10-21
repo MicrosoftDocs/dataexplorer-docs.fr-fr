@@ -4,16 +4,16 @@ description: Cet article décrit bag_keys () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 2fa63bf0b4eea594a54a3abe132a0127929e0c52
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: f36022bb1e9d0f72f2f63e14be888c0f462ccc70
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803794"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92245466"
 ---
 # <a name="bag_keys"></a>bag_keys()
 

@@ -4,16 +4,16 @@ description: Cet article décrit trim_end () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: cab78680a3b996234724bc052d75959928520289
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 6a764752f126408ceb48f1c4a1af5c74014b6eab
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87339848"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92251975"
 ---
 # <a name="trim_end"></a>trim_end()
 
@@ -28,13 +28,13 @@ Supprime la correspondance de fin de l’expression régulière spécifiée.
 * *Regex*: chaîne ou [expression régulière](re2.md) à tronquer à partir de la fin du *texte*.  
 * *Text*: chaîne.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 *texte* après le rognage des correspondances de l' *expression régulière* trouvée à la fin du *texte*.
 
 ## <a name="example"></a>Exemple
 
-L’instruction « souffle » supprime la *sous-chaîne* à partir de la fin de *string_to_trim*:
+L’instruction « souffle » supprime la *sous-chaîne*  à partir de la fin de *string_to_trim*:
 
 ```kusto
 let string_to_trim = @"bing.com";
