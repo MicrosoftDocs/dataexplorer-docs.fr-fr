@@ -4,16 +4,16 @@ description: Cet article décrit endofday () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a9d5da550a22bfb773a5b706baddff7365f80b74
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: d87f188cf0ae3639df4261d1813ebbe2a6788192
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348307"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92245082"
 ---
 # <a name="endofday"></a>endofday()
 
@@ -28,7 +28,7 @@ Retourne la fin de la journée contenant la date, décalée d’un décalage, si
 * `date`: Date d’entrée.
 * `offset`: Nombre facultatif de jours de décalage à partir de la date d’entrée (entier, par défaut-0).
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Date/heure représentant la fin de la journée pour la valeur de *Date* donnée, avec le décalage, s’il est spécifié.
 

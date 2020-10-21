@@ -4,16 +4,16 @@ description: Cet article décrit bin_at () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 530f58aaf733add61b5f0aeb54ca12180f5a818e
-ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
+ms.openlocfilehash: ae888fc050387af28281b84229044114a72a5dbf
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/13/2020
-ms.locfileid: "88201675"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92245385"
 ---
 # <a name="bin_at"></a>bin_at()
 
@@ -36,7 +36,7 @@ Le multiple le plus proche de l' *expression*de *casier* ci-dessous, décalé po
 
 ## <a name="examples"></a>Exemples
 
-|Expression                                                                    |Résultats                           |Commentaires                   |
+|Expression                                                                    |Résultat                           |Commentaires                   |
 |------------------------------------------------------------------------------|---------------------------------|---------------------------|
 |`bin_at(6.5, 2.5, 7)`                                                         |`4.5`                            ||
 |`bin_at(time(1h), 1d, 12h)`                                                   |`-12h`                           ||

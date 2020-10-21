@@ -4,16 +4,16 @@ description: Cet article décrit les expressions régulières dans Azure Explora
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/09/2019
-ms.openlocfilehash: 6bdf666b46adea8105b61fc2b907fc060530ba96
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.openlocfilehash: 1923b46aa7ec7176d2a41181326d32a2214f00c4
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85967585"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92244828"
 ---
 # <a name="re2-syntax"></a>Syntaxe RE2
 
@@ -21,11 +21,11 @@ La syntaxe d’expression régulière RE2 décrit la syntaxe de la bibliothèque
 Certaines fonctions de Kusto effectuent la correspondance, la sélection et l’extraction de chaînes à l’aide d’une expression régulière
 
 - [countof()](countoffunction.md)
-- [extract()](extractfunction.md)
+- [Extract ()](extractfunction.md)
 - [extract_all()](extractallfunction.md)
 - [matches regex](datatypes-string-operators.md)
 - [opérateur parse](parseoperator.md)
-- [replace()](replacefunction.md)
+- [remplacer ()](replacefunction.md)
 - [trim()](trimfunction.md)
 - [TrimEnd ()](trimendfunction.md)
 - [TrimStart ()](trimstartfunction.md)

@@ -4,16 +4,16 @@ description: Cet article décrit make_list () (fonction d’agrégation) dans Az
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/23/2020
-ms.openlocfilehash: ecfcaa39195caec06184b966403bd6655a00b714
-ms.sourcegitcommit: 62476f682b7812cd9cff7e6958ace5636ee46755
+ms.openlocfilehash: f5a4c16f1f259de457ef963f2a400d6c9fd79727
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "92169538"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246391"
 ---
 # <a name="make_list-aggregation-function"></a>make_list () (fonction d’agrégation)
 

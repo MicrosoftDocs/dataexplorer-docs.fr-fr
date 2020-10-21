@@ -4,16 +4,16 @@ description: Cet article décrit array_slice () dans Azure Explorateur de donné
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/03/2018
-ms.openlocfilehash: e2216361022f055078be66f37f3d2b084afaa4c6
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: ecb30d00a6c95e3754686eb264d9439c1c1e605f
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349531"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246765"
 ---
 # <a name="array_slice"></a>array_slice()
 
@@ -31,7 +31,7 @@ Extrait un segment d’un tableau dynamique.
 
 Remarque : les index en dehors des limites sont ignorés.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Tableau dynamique des valeurs de la plage [ `start..end` ] à partir de `arr` .
 

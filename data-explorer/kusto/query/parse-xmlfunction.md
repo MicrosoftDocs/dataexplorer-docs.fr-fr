@@ -4,16 +4,16 @@ description: Cet article décrit parse_xml () dans Azure Explorateur de données
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 3f003c5e9c6733391d61a2130528c9babc4aae67
-ms.sourcegitcommit: d157e661de293aa4c2b5ad334a554eda0295bd2c
+ms.openlocfilehash: 95741bb407baec3298bb84695ed98b4adcbbd5a6
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/09/2020
-ms.locfileid: "91886296"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246162"
 ---
 # <a name="parse_xml"></a>parse_xml()
 
@@ -33,7 +33,7 @@ Objet de type [Dynamic](./scalar-data-types/dynamic.md) qui est déterminé par 
 
 La conversion s’effectue comme suit :
 
-XML                                |JSON                                            |Accès
+XML                                |JSON                                            |Access
 -----------------------------------|------------------------------------------------|--------------         
 `<e/>`                             | {"e" : null}                                  | o. e
 `<e>text</e>`                      | {"e" : "texte"}                                | o. e
@@ -43,7 +43,7 @@ XML                                |JSON                                        
 `<e> <a>text</a> <a>text</a> </e>` | {"e" : {"a" : ["texte", "texte"]}}             | o. e. a [0] o. e. a [1]
 `<e> text <a>text</a> </e>`        | {"e" : {"#text" : "texte", "a" : "texte"}}      | 1 'o. e ["#text"] o. e. a
 
-**Remarques**
+**Notes**
 
 * La longueur d’entrée maximale `string` pour `parse_xml` est 1 mo (1 048 576 octets). L’interprétation des chaînes plus longue entraînera un objet null
 * Seuls les nœuds d’élément, les attributs et les nœuds de texte seront traduits. Tout le reste sera ignoré

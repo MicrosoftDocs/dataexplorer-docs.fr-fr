@@ -4,16 +4,16 @@ description: Cet article décrit parse_user_agent () dans Azure Explorateur de d
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 4b4371ee691cea65096cff683a348fcac31e7e48
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: a7261f6996aecdf10446c990dac54afa4638147e
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346403"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246303"
 ---
 # <a name="parse_user_agent"></a>parse_user_agent()
 
@@ -30,7 +30,7 @@ Interprète une chaîne User-agent, qui identifie le navigateur de l’utilisate
 * *Rechercher*: expression de type `string` ou `dynamic` représentant ce que la fonction doit rechercher dans la chaîne de l’agent utilisateur (cible d’analyse). Les options possibles sont les suivantes : « Browser », « OS », « Device ». Si une seule cible d’analyse est requise, il peut être passé à un `string` paramètre.
 Si deux ou trois sont requis, ils peuvent être passés en tant que `dynamic array` .
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Objet de type `dynamic` qui contient les informations sur les cibles d’analyse demandées.
 

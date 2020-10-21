@@ -4,16 +4,16 @@ description: Cet article décrit GetType () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 0efa07b7a1b050fe81ce2f369e8df5af4c05e212
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 8fc1c3949ef13e504de6ba76be1bd5e600926288
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347661"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92244807"
 ---
 # <a name="gettype"></a>gettype()
 
@@ -25,13 +25,13 @@ Le type au moment de l’exécution peut être différent du type nominal (stati
 
 `gettype(`*Expr*`)`
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Chaîne représentant le type au moment de l’exécution de son argument unique.
 
 ## <a name="examples"></a>Exemples
 
-|Expression                          |Retourne      |
+|Expression                          |Retours      |
 |------------------------------------|-------------|
 |`gettype("a")`                      |`string`     |
 |`gettype(111)`                      |`long`       |

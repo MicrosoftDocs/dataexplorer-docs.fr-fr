@@ -4,18 +4,18 @@ description: Cet article décrit l’opérateur Union dans Azure Explorateur de 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 4995c989b04df5dd66e20e3405b5fb7da7c739ce
-ms.sourcegitcommit: 6f610cd9c56dbfaff4eb0470ac0d1441211ae52d
+ms.openlocfilehash: b3b7d571662d8a9ed0fd592547f32a131d26e277
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/12/2020
-ms.locfileid: "91954703"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92245746"
 ---
 # <a name="union-operator"></a>opérateur union
 
@@ -48,7 +48,7 @@ Formulaire de remplacement sans entrée dirigée :
 Si la requête (après correspondance avec caractère générique) fait référence à des tables de plusieurs bases de données (la base de données par défaut compte toujours), la valeur de cette colonne aura un nom de table qualifié avec la base de données.
 De même, les compétences __de cluster et de base de données__ sont présentes dans la valeur si plusieurs clusters sont référencés. 
 * `isfuzzy=``true`  |  `false` : Si `isfuzzy` a la valeur `true` -permet la résolution approximative des jambes d’Union. `Fuzzy` s’applique à l’ensemble de `union` sources. Cela signifie que lors de l’analyse de la requête et de la préparation de l’exécution, l’ensemble de sources d’Union est réduit à l’ensemble des références de table qui existent et sont accessibles à ce moment-là. Si au moins une table de ce type a été trouvée, tout échec de résolution génère un avertissement dans les résultats de l’état de la requête (un pour chaque référence manquante), mais n’empêche pas l’exécution de la requête. Si aucune résolution n’a réussi, la requête renverra une erreur.
-Par défaut, il s’agit de `isfuzzy=` `false`.
+La valeur par défaut est `isfuzzy=` `false`.
 * *UnionParameters*: zéro ou plusieurs paramètres (séparés par des espaces) sous la forme d’une valeur de *nom* `=` *Value* qui contrôlent le comportement de l’opération de correspondance des lignes et du plan d’exécution. Les paramètres suivants sont pris en charge : 
 
   |Nom           |Valeurs                                        |Description                                  |
@@ -71,7 +71,7 @@ Par défaut, il s’agit de `isfuzzy=` `false`.
 Si la requête (après correspondance avec caractère générique) fait référence à des tables de plusieurs bases de données (la base de données par défaut compte toujours), la valeur de cette colonne aura un nom de table qualifié avec la base de données.
 De même, les compétences du __cluster et de la base de données__ sont présentes dans la valeur si plusieurs clusters sont référencés. 
 * `isfuzzy=``true`  |  `false` : Si `isfuzzy` a la valeur `true` -permet la résolution approximative des jambes d’Union. `Fuzzy` s’applique à l’ensemble de `union` sources. Cela signifie que lors de l’analyse de la requête et de la préparation de l’exécution, l’ensemble de sources d’Union est réduit à l’ensemble des références de table qui existent et sont accessibles à ce moment-là. Si au moins une table de ce type a été trouvée, tout échec de résolution génère un avertissement dans les résultats de l’état de la requête (un pour chaque référence manquante), mais n’empêche pas l’exécution de la requête. Si aucune résolution n’a réussi, la requête renverra une erreur.
-Par défaut, il s’agit de `isfuzzy=false`.
+La valeur par défaut est `isfuzzy=false`.
 
 ::: zone-end
 
@@ -79,7 +79,7 @@ Par défaut, il s’agit de `isfuzzy=false`.
 
 Une table contenant autant de lignes que dans l’ensemble des tables d’entrée.
 
-**Remarques**
+**Notes**
 
 ::: zone pivot="azuredataexplorer"
 
@@ -144,7 +144,7 @@ union isfuzzy=true
 | count 
 ```
 
-|Count|
+|Nombre|
 |---|
 |2|
 
@@ -159,7 +159,7 @@ union isfuzzy=true View*, SomeView*, OtherView*
 | count 
 ```
 
-|Count|
+|Nombre|
 |---|
 |3|
 

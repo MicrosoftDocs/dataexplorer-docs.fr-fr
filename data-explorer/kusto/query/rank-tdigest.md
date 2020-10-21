@@ -4,16 +4,16 @@ description: Cet article décrit rank_tdigest () dans Azure Explorateur de donn�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/10/2019
-ms.openlocfilehash: 143257a586bb951caeb116882551e55f89c8636e
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: bc0fff9d70c8260781332be61c701aaaca364555
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345876"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92244848"
 ---
 # <a name="rank_tdigest"></a>rank_tdigest()
 
@@ -28,7 +28,7 @@ Calcule le rang approximatif de la valeur dans un jeu. Le rang de `v` la valeur 
 * *TDigest*: expression générée par [TDigest ()](tdigest-aggfunction.md) ou [tdigest_merge ()](tdigest-merge-aggfunction.md)
 * *Expr*: expression représentant une valeur à utiliser pour le calcul du classement.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Valeur de classement foreach dans un jeu de données.
 

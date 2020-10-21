@@ -4,16 +4,16 @@ description: Cet article décrit external_table () dans Azure Explorateur de don
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/21/2019
-ms.openlocfilehash: 30de02ba0ae18fbfd7944a97ad95d78dbe51066b
-ms.sourcegitcommit: 08c54dabc1efe3d4e2d2581c4b668a6b73daf855
+ms.openlocfilehash: 5ec069979d41a7c750c140ad84ef0db4ba5638a4
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/07/2020
-ms.locfileid: "89510676"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92245056"
 ---
 # <a name="external_table"></a>external_table()
 
@@ -27,7 +27,7 @@ external_table('StormEvent')
 > * La `external_table` fonction a des restrictions similaires à celles de la fonction [table](tablefunction.md) .
 > * Les [limites de requête](../concepts/querylimits.md) standard s’appliquent également aux requêtes de table externe.
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>Syntaxe
 
 `external_table``(` *TableName* [ `,` *MappingName* ]`)`
 

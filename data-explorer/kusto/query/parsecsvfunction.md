@@ -4,16 +4,16 @@ description: Cet article décrit parse_csv () dans Azure Explorateur de données
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: eddf893d3c0d8096f57a3f624ddedf753fe35f91
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 1b0f1a0279dcb35e4e196b0f2170f4a64d58eca9
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346352"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246118"
 ---
 # <a name="parse_csv"></a>parse_csv()
 
@@ -31,11 +31,11 @@ parse_csv("aaa,bbb,ccc") == ["aaa","bbb","ccc"]
 
 * *source*: chaîne source représentant un enregistrement unique de valeurs séparées par des virgules.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Tableau de chaînes qui contient les valeurs de fractionnement.
 
-**Remarques**
+**Notes**
 
 Les sauts de ligne incorporés, les virgules et les guillemets peuvent être placés dans une séquence d’échappement à l’aide du guillemet double (' "'). Cette fonction ne prend pas en charge plusieurs enregistrements par ligne (seul le premier enregistrement est pris).
 

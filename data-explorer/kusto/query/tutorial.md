@@ -4,18 +4,18 @@ description: Cet article décrit le didacticiel dans Azure Explorateur de donné
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/23/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 64736d944c71d84c4950dea0341089732b258f27
-ms.sourcegitcommit: a10e7c6ba96bdb94d95ef23f5d1506eb8fda0041
+ms.openlocfilehash: 61b9dff7d03732611f0a0f47b7c8fc9d6784ac96
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92058680"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246034"
 ---
 # <a name="tutorial"></a>Didacticiel
 
@@ -46,7 +46,7 @@ StormEvents | count
 
 Voici le résultat :
 
-|Count|
+|Nombre|
 |-----|
 |59066|
     

@@ -4,16 +4,16 @@ description: Cet article décrit series_outliers () dans Azure Explorateur de do
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/20/2019
-ms.openlocfilehash: c3728b4497e09460fbc19ef2da26a72f02c2ee71
-ms.sourcegitcommit: ec191391f5ea6df8c591e6d747c67b2c46f98ac4
+ms.openlocfilehash: b3ee62940e70f08fa7afb3abf011ee02bda02c7a
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/16/2020
-ms.locfileid: "88260102"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246012"
 ---
 # <a name="series_outliers"></a>series_outliers()
 

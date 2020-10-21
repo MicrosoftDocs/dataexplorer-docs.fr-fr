@@ -4,16 +4,16 @@ description: Cet article décrit series_seasonal () dans Azure Explorateur de do
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: fb1f07c4b964615342adcf4d5ae51e7c99c05d13
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 7997e6312f43316918c197c5ec10eec281495c63
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351282"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92245932"
 ---
 # <a name="series_seasonal"></a>series_seasonal()
 
@@ -31,7 +31,7 @@ Calcule le composant saisonnier d’une série, en fonction de la période saiso
     * Entier positif : utilisé comme période pour le composant saisonnier
     * Toute autre valeur : ignore le caractère saisonnier et retourne une série de zéros
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Tableau dynamique de même longueur que l’entrée de *série* qui contient le composant saisonnier calculé de la série. Le composant saisonnier est calculé comme la valeur *médiane* de toutes les valeurs qui correspondent à l’emplacement de l’emplacement, sur les périodes.
 

@@ -4,18 +4,18 @@ description: Cet article décrit la jonction entre clusters dans Azure Explorate
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: dc22d44bd861a02d0db7fd0d8f7cc80ddcb5c8d4
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: a7c8f89886a8c12941dbc218ad69b35eebd7f1c7
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85128452"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246600"
 ---
 # <a name="cross-cluster-join"></a>Jointure entre clusters
 
@@ -59,11 +59,11 @@ Cette opération peut être effectuée en donnant à Kusto Join l’indicateur d
 T | ... | join hint.remote=<strategy> (cluster("SomeCluster").database("SomeDB").T2 | ...) on Col1
 ```
 
-Voici les valeurs autorisées pour`strategy`
-* `left`-exécuter Join sur le cluster de l’opérande gauche 
-* `right`-exécuter Join sur le cluster de l’opérande de droite
-* `local`-exécuter Join sur le cluster du cluster actif
-* `auto`-(par défaut) laisser Kusto prendre la décision de communication à distance automatique
+Voici les valeurs autorisées pour `strategy`
+* `left` -exécuter Join sur le cluster de l’opérande gauche 
+* `right` -exécuter Join sur le cluster de l’opérande de droite
+* `local` -exécuter Join sur le cluster du cluster actif
+* `auto` -(par défaut) laisser Kusto prendre la décision de communication à distance automatique
 
 > [!Note]
 > L’indicateur de communication à distance Join sera ignoré par Kusto si la stratégie avec indicateur n’est pas applicable à l’opération de jointure.

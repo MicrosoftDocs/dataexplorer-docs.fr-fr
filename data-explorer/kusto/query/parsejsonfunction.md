@@ -4,16 +4,16 @@ description: Cet article décrit parse_json () dans Azure Explorateur de donnée
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: abe49795b7b997abf677fd0fafff10ae38787f44
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 0f49ee6763d4afadf12e9e008bd7ea8e61c49acc
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346335"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246096"
 ---
 # <a name="parse_json"></a>parse_json()
 
@@ -33,7 +33,7 @@ Alias :
 
 * *JSON*: expression de type `string` . Il représente une [valeur au format JSON](https://json.org/), ou une expression de type [Dynamic](./scalar-data-types/dynamic.md), représentant la `dynamic` valeur réelle.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Objet de type `dynamic` qui est déterminé par la valeur de *JSON*:
 * Si *JSON* est de type `dynamic` , sa valeur est utilisée telle quelle.
@@ -56,7 +56,7 @@ T
 | extend duration_value=d.duration.value, duration_min=d["duration"]["min"]
 ```
 
-**Remarques**
+**Notes**
 
 Il est courant d’avoir une chaîne JSON qui décrit un conteneur de propriétés dans lequel l’un des « emplacements » est une autre chaîne JSON. 
 

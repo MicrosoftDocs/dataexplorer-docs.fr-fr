@@ -4,16 +4,16 @@ description: Cet article décrit parse_version () dans Azure Explorateur de donn
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 57ef9eef8f4df5564adc70ed6dd965329fa1807a
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: cae7fe9a46d885555f1b28d9282962319fd51b87
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87804047"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246227"
 ---
 # <a name="parse_version"></a>parse_version()
 

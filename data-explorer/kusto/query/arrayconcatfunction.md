@@ -4,16 +4,16 @@ description: Cet article d√©crit array_concat () dans Azure Explorateur de donn√
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: ecaca4aea221ca2b880b798757de64787901a0cb
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 4c8e2da4d2ba4ed205987b5a1d063ac2e75ed289
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349599"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246913"
 ---
 # <a name="array_concat"></a>array_concat()
 
@@ -42,7 +42,7 @@ range x from 1 to 3 step 1
 | project array_concat(a1, a2)
 ```
 
-|Colonne1|
+|Column1|
 |---|
 |[1, 2, 4, 1, 2]|
 |[2, 4, 8, 2,4]|

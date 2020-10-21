@@ -4,16 +4,16 @@ description: Cet article décrit l’opérateur Top-Hitters dans Azure Explorate
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: be05a3a546bb6f1db003be14e4a1417841b54671
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: d95c981f999d0842a266702ad5fc733281d45a7d
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87804064"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92245790"
 ---
 # <a name="top-hitters-operator"></a>top-hitters, opérateur
 
@@ -24,7 +24,7 @@ T | top-hitters 25 of Page by Views
 ```
 
 > [!NOTE]
-> `top-hitters`est un algorithme d’approximation et doit être utilisé lors de l’exécution avec des données volumineuses. La approximation du Hitters supérieur est basée sur l’algorithme [Count-min-Sketch](https://en.wikipedia.org/wiki/Count%E2%80%93min_sketch) .  
+> `top-hitters` est un algorithme d’approximation et doit être utilisé lors de l’exécution avec des données volumineuses. La approximation du Hitters supérieur est basée sur l’algorithme [Count-min-Sketch](https://en.wikipedia.org/wiki/Count%E2%80%93min_sketch) .  
 
 ## <a name="syntax"></a>Syntaxe
 

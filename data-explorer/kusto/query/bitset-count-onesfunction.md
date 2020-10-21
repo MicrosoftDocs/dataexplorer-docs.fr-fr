@@ -4,16 +4,16 @@ description: Cet article décrit bitset_count_ones () dans Azure Explorateur de 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/22/2020
-ms.openlocfilehash: b8ebef923d1cc67c118317680e1ec414900a469e
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: fb14ffa5807a61ade913631c7d6da6b23edc26d9
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348953"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92245330"
 ---
 # <a name="bitset_count_ones"></a>bitset_count_ones()
 
@@ -31,7 +31,7 @@ bitset_count_ones(42)
 
 * *num1*: nombre long ou entier.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Retourne le nombre de bits définis dans la représentation binaire d’un nombre.
 

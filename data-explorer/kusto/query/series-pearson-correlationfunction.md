@@ -4,16 +4,16 @@ description: Cet article décrit series_pearson_correlation () dans Azure Explor
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/31/2019
-ms.openlocfilehash: 3b65dff40e644852555465fe6ce07ed94c4920ea
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: aa75e3cb2f2aefbc50c148486cb687841408e1d4
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351316"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92245955"
 ---
 # <a name="series_pearson_correlation"></a>series_pearson_correlation()
 
@@ -29,7 +29,7 @@ Consultez : [coefficient de corrélation de Pearson](https://en.wikipedia.org/w
 
 * *Series1, Series2*: entrez des tableaux numériques pour le calcul du coefficient de corrélation. Tous les arguments doivent être des tableaux dynamiques de même longueur. 
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Coefficient de corrélation de Pearson calculé entre les deux entrées. Tout élément non numérique ou élément non existant (tableaux de tailles différentes) produit un `null` résultat.
 

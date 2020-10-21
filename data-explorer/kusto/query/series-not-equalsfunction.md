@@ -4,16 +4,16 @@ description: Cet article décrit series_not_equals () dans Azure Explorateur de 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: 579cc4a7b86340b7e2df3e47482406ce7d31e388
-ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
+ms.openlocfilehash: c55cd4c4846f568dccc7f17e11e024f97c87f14b
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91103559"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246048"
 ---
 # <a name="series_not_equals"></a>series_not_equals()
 
@@ -27,7 +27,7 @@ Calcule l’opération logique au niveau de l’élément ( `!=` ) de deux entr�
 
 * *Series1, Series2*: les tableaux numériques d’entrée doivent être comparés par élément. Tous les arguments doivent être des tableaux dynamiques. 
 
-## <a name="returns"></a>retourne :
+## <a name="returns"></a>Retours
 
 Tableau dynamique de valeurs booléennes contenant l’opération logique des éléments calculés non égaux entre les deux entrées. Tout élément non numérique ou élément non existant (tableaux de tailles différentes) produit une `null` valeur d’élément.
 

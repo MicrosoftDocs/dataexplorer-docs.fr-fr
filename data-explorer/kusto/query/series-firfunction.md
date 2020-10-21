@@ -4,16 +4,16 @@ description: Cet article décrit series_fir () dans Azure Explorateur de donnée
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2019
-ms.openlocfilehash: ef72ce93dd0cc6d4ab95c46365bfb0351d9d565a
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 8085455616fc97337ca115c1ef5b0c0e2422e08e
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87343972"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246191"
 ---
 # <a name="series_fir"></a>series_fir()
 
@@ -64,4 +64,4 @@ range t from bin(now(), 1h)-11h to bin(now(), 1h) step 1h
 | render timechart
 ```
 
-:::image type="content" source="images/series-firfunction/series-fir2.png" alt-text="Série FIR 2" border="false":::
+:::image type="content" source="images/series-firfunction/series-fir2.png" alt-text="Sapin de série" border="false":::

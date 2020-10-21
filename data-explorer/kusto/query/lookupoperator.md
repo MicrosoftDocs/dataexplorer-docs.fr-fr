@@ -4,16 +4,16 @@ description: Cet article décrit l’opérateur de recherche dans Azure Explorat
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: 5eda79977ee641d7ca7835d3d394cb943b4ebac4
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 3305d78dd903160491ac3cdabd274ce8ace8ba2f
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347049"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246418"
 ---
 # <a name="lookup-operator"></a>lookup, opérateur
 
@@ -56,7 +56,7 @@ L' `lookup` opérateur effectue une opération similaire à l' [opérateur de jo
 
 * `kind`: Instruction facultative sur la manière de traiter les lignes de *LeftTable* qui n’ont pas de correspondance dans *RightTable*. Par défaut, `leftouter` est utilisé, ce qui signifie que toutes ces lignes s’affichent dans la sortie avec des valeurs NULL utilisées pour les valeurs manquantes des colonnes *RightTable* ajoutées par l’opérateur. Si `inner` est utilisé, ces lignes sont omises de la sortie. (Les autres types de jointures ne sont pas pris en charge par l' `looku` opérateur p.)
   
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Une table avec :
 
@@ -65,7 +65,7 @@ Une table avec :
 * Une ligne pour chaque correspondance entre les tables d’entrée. Une correspondance est une ligne sélectionnée dans une table, dont tous les champs `on` ont la même valeur qu’une ligne dans l’autre table. 
 * Les attributs (clés de recherche) ne s’affichent qu’une seule fois dans la table de sortie.
 
- * `kind`non spécifié`kind=leftouter`
+ * `kind` non spécifié `kind=leftouter`
 
      Outre les correspondances internes, on trouve une ligne pour chaque ligne du côté gauche (et/ou droit), même s’il n’y a aucune correspondance. Dans ce cas, les cellules de sortie sans correspondance contiennent des valeurs null.
 
