@@ -4,16 +4,16 @@ description: Cet article décrit series_iir () dans Azure Explorateur de donnée
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/20/2019
-ms.openlocfilehash: e1b863b83e08fae680e1a387ca2fdd2a93d111a8
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 3cd0559393e9c5194b06bcf93449a68b7d55cc1c
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351435"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92250027"
 ---
 # <a name="series_iir"></a>series_iir()
 
@@ -64,7 +64,7 @@ print x=x, y = series_iir(x, dynamic([1]), dynamic([1,-1]))
 |:--|:--|
 |1.0|1.0|
 |2.0|3.0|
-|3.0|6.0|
+|3,0|6.0|
 |4.0|10.0|
 
 Voici comment l’encapsuler dans une fonction :
@@ -80,6 +80,6 @@ print d=dynamic([0, 1, 2, 3, 4])
 | extend dd=vector_sum(d)
 ```
 
-|d            |jj  |
+|d            |dd  |
 |-------------|----|
 |`[0,1,2,3,4]`|`10`|

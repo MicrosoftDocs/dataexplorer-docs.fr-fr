@@ -4,16 +4,16 @@ description: Cet article décrit le plug-in étroit dans Azure Explorateur de do
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: e597a2467da21a2c9e83aba28a1e83b242f61c75
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 5a27794647eed3e8b30533d73456a0b1fb8ccde6
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346675"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92243191"
 ---
 # <a name="narrow-plugin"></a>narrow, plug-in
 
@@ -43,8 +43,8 @@ Le résultat de `.show diagnostics` lui-même est une table avec une seule ligne
 Ligne  | Colonne                              | Valeur
 -----|-------------------------------------|-----------------------------
 0    | IsHealthy                           | Vrai
-0    | IsRebalanceRequired                 | Faux
-0    | IsScaleOutRequired                  | Faux
+0    | IsRebalanceRequired                 | False
+0    | IsScaleOutRequired                  | False
 0    | MachinesTotal                       | 2
 0    | MachinesOffline                     | 0
 0    | NodeLastRestartedOn                 | 2017-03-14 10:59:18.9263023
@@ -62,12 +62,12 @@ Ligne  | Colonne                              | Valeur
 0    | BuildVersion                        | 1.0.6281.19882
 0    | BuildTime                           | 2017-03-13 11:02:44.0000000
 0    | ClusterDataCapacityFactor           | 0.130552847673333
-0    | IsDataWarmingRequired               | Faux
+0    | IsDataWarmingRequired               | False
 0    | RebalanceLastRunOn                  | 2017-03-21 09:14:53.8523455
 0    | DataWarmingLastRunOn                | 2017-03-21 09:19:54.1438800
 0    | MergesSuccessRate                   | 100
 0    | NotHealthyReason                    | nul
-0    | IsAttentionRequired                 | Faux
+0    | IsAttentionRequired                 | False
 0    | AttentionRequiredReason             | nul
 0    | ProductVersion                      | KustoRelease_2017.03.13.2
 0    | FailedIngestOperations              | 0

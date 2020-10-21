@@ -4,16 +4,16 @@ description: Cet article décrit l’opérateur Top imbriqué dans Azure Explora
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 85a59adc355c3d8855c34bcf97d29d3bd6eea4a1
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: ce56040e2135a455e29a8ff0ce83d832cbf5c5f7
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803129"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92243726"
 ---
 # <a name="top-nested-operator"></a>Opérateur top-nested
 
@@ -64,7 +64,7 @@ Pour chaque *TopNestedClause*:
    * [centile ()](percentiles-aggfunction.md)et
    * [percentilew ()](percentiles-aggfunction.md). Toute combinaison algébrique des agrégations est également prise en charge.
 
-* `asc`ou `desc` (la valeur par défaut) peut sembler pour contrôler si la sélection est en fait du « bas » ou « supérieur » de la plage de valeurs agrégées.
+* `asc` ou `desc` (la valeur par défaut) peut sembler pour contrôler si la sélection est en fait du « bas » ou « supérieur » de la plage de valeurs agrégées.
 
 ## <a name="returns"></a>Retours
 
@@ -80,7 +80,7 @@ Les colonnes d’entrée qui ne sont pas spécifiées comme *`Expr`* valeurs ne 
 Pour obtenir toutes les valeurs à un certain niveau, ajoutez un nombre d’agrégations qui :
 
 * Omet la valeur de *N*
-* Utilise le nom de colonne comme valeur de*`Expr`*
+* Utilise le nom de colonne comme valeur de *`Expr`*
 * Utilise `Ignore=max(1)` comme agrégation, puis ignore (ou projeter) la colonne `Ignore` .
 
 Le nombre d’enregistrements peut croître de façon exponentielle avec le nombre de clauses d’agrégation ((N1 + 1) \* (N2 + 1). \* ..). La croissance des enregistrements est encore plus rapide si aucune limite *n* n’est spécifiée. Prenez en compte que cet opérateur peut consommer une quantité considérable de ressources.
@@ -100,9 +100,9 @@ StormEvents
 |State|aggregated_State|Source|aggregated_Source|EndLocation|aggregated_EndLocation|
 |---|---|---|---|---|---|
 |KANSAS|87771.2355000001|Respect des lois|18744,823|FT SCOTT|264,858|
-|KANSAS|87771.2355000001|Public|22855,6206|BUCKLIN|488,2457|
+|KANSAS|87771.2355000001|Publiques|22855,6206|BUCKLIN|488,2457|
 |KANSAS|87771.2355000001|Observateur chevronné|21279,7083|SHARON SPGS|388,7404|
-|TEXAS|123400,5101|Public|13650,9079|AMARILLO|246,2598|
+|TEXAS|123400,5101|Publiques|13650,9079|AMARILLO|246,2598|
 |TEXAS|123400,5101|Respect des lois|37228,5966|PERRYTON|289,3178|
 |TEXAS|123400,5101|Observateur chevronné|13997,7124|CLAUDE|421,44|
 
@@ -121,15 +121,15 @@ StormEvents
 |State|aggregated_State|Source|aggregated_Source|EndLocation|aggregated_EndLocation|
 |---|---|---|---|---|---|
 |KANSAS|87771.2355000001|Respect des lois|18744,823|FT SCOTT|264,858|
-|KANSAS|87771.2355000001|Public|22855,6206|BUCKLIN|488,2457|
+|KANSAS|87771.2355000001|Publiques|22855,6206|BUCKLIN|488,2457|
 |KANSAS|87771.2355000001|Observateur chevronné|21279,7083|SHARON SPGS|388,7404|
-|TEXAS|123400,5101|Public|13650,9079|AMARILLO|246,2598|
+|TEXAS|123400,5101|Publiques|13650,9079|AMARILLO|246,2598|
 |TEXAS|123400,5101|Respect des lois|37228,5966|PERRYTON|289,3178|
 |TEXAS|123400,5101|Observateur chevronné|13997,7124|CLAUDE|421,44|
 |KANSAS|87771.2355000001|Respect des lois|18744,823|Tous les autres emplacements de fin|18479,965|
-|KANSAS|87771.2355000001|Public|22855,6206|Tous les autres emplacements de fin|22367,3749|
+|KANSAS|87771.2355000001|Publiques|22855,6206|Tous les autres emplacements de fin|22367,3749|
 |KANSAS|87771.2355000001|Observateur chevronné|21279,7083|Tous les autres emplacements de fin|20890,9679|
-|TEXAS|123400,5101|Public|13650,9079|Tous les autres emplacements de fin|13404,6481|
+|TEXAS|123400,5101|Publiques|13650,9079|Tous les autres emplacements de fin|13404,6481|
 |TEXAS|123400,5101|Respect des lois|37228,5966|Tous les autres emplacements de fin|36939,2788|
 |TEXAS|123400,5101|Observateur chevronné|13997,7124|Tous les autres emplacements de fin|13576,2724|
 |KANSAS|87771.2355000001|||Tous les autres emplacements de fin|24891,0836|
@@ -164,9 +164,9 @@ StormEvents
 |KANSAS|87771.2355000001|Observateur chevronné|21279,7083|SHARON SPGS|388,7404|Vent d’orage|
 |KANSAS|87771.2355000001|Observateur chevronné|21279,7083|SHARON SPGS|388,7404|Grêle|
 |KANSAS|87771.2355000001|Observateur chevronné|21279,7083|SHARON SPGS|388,7404|Tornade|
-|KANSAS|87771.2355000001|Public|22855,6206|BUCKLIN|488,2457|Grêle|
-|KANSAS|87771.2355000001|Public|22855,6206|BUCKLIN|488,2457|Vent d’orage|
-|KANSAS|87771.2355000001|Public|22855,6206|BUCKLIN|488,2457|Crue|
+|KANSAS|87771.2355000001|Publiques|22855,6206|BUCKLIN|488,2457|Grêle|
+|KANSAS|87771.2355000001|Publiques|22855,6206|BUCKLIN|488,2457|Vent d’orage|
+|KANSAS|87771.2355000001|Publiques|22855,6206|BUCKLIN|488,2457|Crue|
 |TEXAS|123400,5101|Observateur chevronné|13997,7124|CLAUDE|421,44|Grêle|
 |TEXAS|123400,5101|Respect des lois|37228,5966|PERRYTON|289,3178|Grêle|
 |TEXAS|123400,5101|Respect des lois|37228,5966|PERRYTON|289,3178|Crue|
@@ -198,7 +198,7 @@ StormEvents
 |KANSAS|Observateur chevronné|ATWOOD|358,6136|1|
 |KANSAS|Observateur chevronné|LENORA|317,0718|2|
 |KANSAS|Observateur chevronné|VILLE DE SCOTT|307,84|3|
-|KANSAS|Public|BUCKLIN|488,2457|0|
-|KANSAS|Public|ASHLAND|446,4218|1|
-|KANSAS|Public|PROTÉGER|446,11|2|
-|KANSAS|Public|PARC D’ÉTATS MEADE|371,1|3|
+|KANSAS|Publiques|BUCKLIN|488,2457|0|
+|KANSAS|Publiques|ASHLAND|446,4218|1|
+|KANSAS|Publiques|PROTÉGER|446,11|2|
+|KANSAS|Publiques|PARC D’ÉTATS MEADE|371,1|3|

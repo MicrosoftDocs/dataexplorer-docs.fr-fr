@@ -4,16 +4,16 @@ description: Cet article décrit l’opérateur Extend dans Azure Explorateur de
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 32100f6668c2fb20ae715b985b0bf3612e13e69b
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 0398efc3f97e9af1f994b16b91a9888fb4fcfa0b
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348154"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92243323"
 ---
 # <a name="extend-operator"></a>opérateur extend
 
@@ -33,7 +33,7 @@ T | extend duration = endTime - startTime
 * *ColumnName :* Facultatif. Nom de la colonne à ajouter ou mettre à jour. En cas d’omission, le nom est généré. Si l' *expression* retourne plusieurs colonnes, une liste de noms de colonnes peut être spécifiée entre parenthèses. Dans ce cas, les colonnes de sortie de l' *expression*reçoivent les noms spécifiés, en supprimant le reste des colonnes de sortie, le cas échéant. Si une liste de noms de colonnes n’est pas spécifiée, toutes les colonnes de sortie de l' *expression*avec des noms générés sont ajoutées à la sortie.
 * *Expression :* Calcul sur les colonnes de l’entrée.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Une copie du jeu de résultats tabulaire d’entrée, de telle sorte que :
 1. Les noms de colonne notés par `extend` qui existent déjà dans l’entrée sont supprimés et ajoutés en tant que nouvelles valeurs calculées.

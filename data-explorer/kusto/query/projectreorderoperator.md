@@ -4,16 +4,16 @@ description: Cet article décrit l’opérateur de réorganisation de projet dan
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 98887c8044be6ea1b429c51953c6f3f9a899d090
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: 7bcb33d30bdfdbd22b28dbb7364427cfa3a81a5b
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87802959"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242136"
 ---
 # <a name="project-reorder-operator"></a>project-reorder, opérateur
 
@@ -42,7 +42,7 @@ T | project-reorder Col2, Col1, Col* asc
 
 ## <a name="returns"></a>Retours
 
-Table qui contient des colonnes dans l’ordre spécifié par les arguments de l’opérateur. `project-reorder`ne renomme pas ou ne supprime pas les colonnes de la table. par conséquent, toutes les colonnes qui existaient dans la table source apparaissent dans la table de résultats.
+Table qui contient des colonnes dans l’ordre spécifié par les arguments de l’opérateur. `project-reorder` ne renomme pas ou ne supprime pas les colonnes de la table. par conséquent, toutes les colonnes qui existaient dans la table source apparaissent dans la table de résultats.
 
 ## <a name="examples"></a>Exemples
 

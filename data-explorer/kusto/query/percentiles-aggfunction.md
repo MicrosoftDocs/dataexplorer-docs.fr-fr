@@ -4,16 +4,16 @@ description: Cet article décrit centile (), centile () dans Azure Explorateur d
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 0322dd6a8ba900fa4d55bea6b3568a5c42f61b52
-ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
+ms.openlocfilehash: 6b48a962e1016b681525c9ee493a7a8a6e436395
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/11/2020
-ms.locfileid: "91942367"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92249715"
 ---
 # <a name="percentile-percentiles-aggregation-function"></a>centile (), centile () (fonction d’agrégation)
 

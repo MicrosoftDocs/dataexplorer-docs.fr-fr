@@ -4,16 +4,16 @@ description: Cet article décrit series_periods_validate () dans Azure Explorate
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2019
-ms.openlocfilehash: 24b47981e90c15e8a0f295d845ca28a03f324a88
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: dbf87c65668289e58fab7280a4b70f04152bcba8
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351299"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242042"
 ---
 # <a name="series_periods_validate"></a>series_periods_validate()
 

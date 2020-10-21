@@ -4,16 +4,16 @@ description: Cet article décrit indexof_regex () dans Azure Explorateur de donn
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 85c39128eeb9b6ded38366ccd3bea228820c67a7
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 472fdea209cc416893043f15b3796862ef91fa82
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347440"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92243278"
 ---
 # <a name="indexof_regex"></a>indexof_regex()
 
@@ -36,7 +36,7 @@ Voir [`indexof()`](indexoffunction.md).
 |occurrence    | Recherche l’index de la N-ième apparence du modèle. 
                  La valeur par défaut est 1, l’index de la première occurrence |Facultatif            |
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Position d’index de base zéro de la *recherche*.
 

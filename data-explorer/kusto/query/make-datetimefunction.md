@@ -4,16 +4,16 @@ description: Cet article décrit make_datetime () dans Azure Explorateur de donn
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 589be4fbbc285309e86647ce8d7392840aedea0e
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 09a199e907f8e09a845fa037129330a2b660187e
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346998"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92249838"
 ---
 # <a name="make_datetime"></a>make_datetime()
 
@@ -40,7 +40,7 @@ make_datetime(2017,10,01,12,10) == datetime(2017-10-01 12:10)
 * *minute*: minute (valeur entière comprise entre 0 et 59)
 * *seconde*: seconde (valeur réelle, comprise entre 0 et 59,9999999)
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Si la création réussit, le résultat sera une valeur [DateTime](./scalar-data-types/datetime.md) ; sinon, le résultat sera null.
  

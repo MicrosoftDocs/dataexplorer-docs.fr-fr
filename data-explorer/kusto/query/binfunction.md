@@ -4,16 +4,16 @@ description: Cet article décrit bin () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: bb6c7c51e295f9af9d6e43a5de5936dfea13f5b6
-ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
+ms.openlocfilehash: 9bafeee9cec5ac81034b879f054e445d8b118dcf
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/13/2020
-ms.locfileid: "88201669"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92243421"
 ---
 # <a name="bin"></a>bin()
 
@@ -45,7 +45,7 @@ Multiple le plus proche de *roundTo*, inférieur à *value*.
 
 ## <a name="examples"></a>Exemples
 
-Expression | Résultats
+Expression | Résultat
 ---|---
 `bin(4.5, 1)` | `4.0`
 `bin(time(16d), 7d)` | `14d`

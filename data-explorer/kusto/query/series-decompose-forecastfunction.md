@@ -4,16 +4,16 @@ description: Cet article décrit series_decompose_forecast () dans Azure Explora
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/26/2019
-ms.openlocfilehash: 21a57e4c49e982fbb113917abe173f89426c74ed
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 4cf02f01504f3111050f28430de9907fb4aad18b
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345145"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92250107"
 ---
 # <a name="series_decompose_forecast"></a>series_decompose_forecast()
 
@@ -39,7 +39,7 @@ Prend une expression contenant une série (tableau numérique dynamique) comme e
     * `none`: Aucune tendance, ignorer l’extraction de ce composant.
 * *Seasonality_threshold*: seuil du score saisonnier lorsque le caractère *saisonnier* est défini sur détection automatique. Le seuil de score par défaut est `0.6` . Pour plus d’informations, consultez [series_periods_detect](series-periods-detectfunction.md).
 
-**Renvoie**
+**Renvoi**
 
  Tableau dynamique avec la série prévue.
 
@@ -49,7 +49,7 @@ Prend une expression contenant une série (tableau numérique dynamique) comme e
 
 ## <a name="example"></a>Exemple
 
-Dans l’exemple suivant, nous générons une série de quatre semaines dans un grain horaire, avec un caractère saisonnier hebdomadaire et une petite tendance à la hausse. Nous utilisons ensuite `make-series` et ajoutons une autre semaine vide à la série. `series_decompose_forecast`est appelé avec une semaine (24 * 7 points) et il détecte automatiquement le caractère saisonnier et la tendance, et génère une prévision de la période de cinq semaines entière.
+Dans l’exemple suivant, nous générons une série de quatre semaines dans un grain horaire, avec un caractère saisonnier hebdomadaire et une petite tendance à la hausse. Nous utilisons ensuite `make-series` et ajoutons une autre semaine vide à la série. `series_decompose_forecast` est appelé avec une semaine (24 * 7 points) et il détecte automatiquement le caractère saisonnier et la tendance, et génère une prévision de la période de cinq semaines entière.
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

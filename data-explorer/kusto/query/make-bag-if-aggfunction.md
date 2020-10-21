@@ -4,16 +4,16 @@ description: Cet article décrit make_bag_if () (fonction d’agrégation) dans 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 67e408653a4873dce3b5e8f21a91775573affbe2
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 997ba519016bf6f6774af3f305ab78515c36c4ed
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347015"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92249917"
 ---
 # <a name="make_bag_if-aggregation-function"></a>make_bag_if () (fonction d’agrégation)
 
@@ -32,7 +32,7 @@ Retourne un `dynamic` conteneur de propriétés (JSON) (dictionnaire) de toutes 
 * *Predicate*: prédicat qui doit être évalué à, afin que `true` *'expr'* soit ajouté au résultat.
 * *MaxSize*: limite d’entier facultative sur le nombre maximal d’éléments retournés (la valeur par défaut est *1048576*). La valeur MaxSize ne peut pas dépasser 1048576.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Retourne un `dynamic` conteneur de propriétés (JSON) (dictionnaire) de toutes les valeurs de *'expr'* dans le groupe qui sont des conteneurs de propriétés (dictionnaires) pour lesquels le *prédicat* a la valeur `true` .
 Les valeurs autres que les dictionnaires seront ignorées.

@@ -4,16 +4,16 @@ description: Cet article décrit strcat_array () dans Azure Explorateur de donn�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 5b8369d2e994477c9d01880632fac5f8a3ebaf6a
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 06bdf7eb55b61cb974e803c9cdeb7b37b34ad87e
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87342595"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92243786"
 ---
 # <a name="strcat_array"></a>strcat_array()
 
@@ -28,7 +28,7 @@ Crée une chaîne concaténée de valeurs de tableau à l’aide du délimiteur 
 * *tableau*: `dynamic` valeur représentant un tableau de valeurs à concaténer.
 * *délimiteur*: `string` valeur qui sera utilisée pour concaténer les valeurs dans le *tableau*
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Valeurs de tableau, concaténées en une chaîne unique.
 

@@ -4,16 +4,16 @@ description: Cet article décrit maintenant () dans Azure Explorateur de donnée
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 9beae6edd1361715dfe84f851ca0a9bb69f4299c
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 63b99b4774c46872b83e526ca00a5d974f0b0c19
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346573"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92249807"
 ---
 # <a name="now"></a>now()
 
@@ -33,7 +33,7 @@ now(-2d)
 
 * *offset*: `timespan` , ajouté à l’heure UTC actuelle. Valeur par défaut : 0.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Heure UTC actuelle, en tant que `datetime`.
 

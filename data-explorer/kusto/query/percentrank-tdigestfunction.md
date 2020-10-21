@@ -4,16 +4,16 @@ description: Cet article décrit percentrank_tdigest () dans Azure Explorateur d
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/10/2019
-ms.openlocfilehash: 33eb35e51f403a3c0b7a2f030604b12c705221ea
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: dd784d8968b45a735bd2df840a09c349e2fdcbd2
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346165"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92249688"
 ---
 # <a name="percentrank_tdigest"></a>percentrank_tdigest()
 
@@ -29,7 +29,7 @@ Cette fonction peut être affichée comme inverse du centile.
 * *TDigest*: expression générée par [TDigest ()](tdigest-aggfunction.md) ou [tdigest_merge ()](tdigest-merge-aggfunction.md).
 * *Expr*: expression représentant une valeur à utiliser pour le calcul du rang en pourcentage.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Rang en pourcentage de la valeur dans un DataSet.
 
@@ -51,7 +51,7 @@ StormEvents
 
 ```
 
-|Colonne1|
+|Column1|
 |---|
 |85.0015237192293|
 
