@@ -4,16 +4,16 @@ description: Cet article décrit active_users_count plug-in dans Azure Explorate
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 75f1c92dfb76c56894d1f38dec24a31690f3f789
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: a35cbb4c9078d58f2c9de3c681453c578baf1476
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349837"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252858"
 ---
 # <a name="active_users_count-plugin"></a>active_users_count plugin
 
@@ -42,7 +42,7 @@ T | evaluate active_users_count(id, datetime_column, startofday(ago(30d)), start
 * *Bin*: valeur constante scalaire de la période de l’étape d’analyse. Peut être une valeur numérique/DateTime/timestamp, ou une chaîne qui est `week` / `month` / `year` . Toutes les périodes seront les fonctions [startOfWeek](startofweekfunction.md) / [StartOfMonth](startofmonthfunction.md) / [STARTOFYEAR](startofyearfunction.md) correspondantes.
 * *dim1*, *dim2*,... : (facultatif) liste des colonnes de dimensions qui découpent le calcul des métriques d’activité.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Retourne une table qui a des valeurs de comptage de valeurs pour les ID qui sont apparues dans ActivePeriodCounts au cours des périodes suivantes : la période lookback, chaque période de chronologie et chaque combinaison de dimensions existante.
 
@@ -92,6 +92,6 @@ Un utilisateur est considéré comme actif si les deux critères suivants sont r
 * L’utilisateur s’est vu dans au moins trois jours distincts (période = 1J, ActivePeriods = 3).
 * L’utilisateur s’est vu dans une fenêtre lookback de 8D avant et y compris son apparence actuelle.
 
-Dans l’illustration ci-dessous, les seules apparences actives par ce critère sont les suivantes : utilisateur A sur 7/20 et utilisateur B sur 7/4 (voir les résultats du plug-in ci-dessus). Les apparences de l’utilisateur B sont incluses pour la fenêtre lookback sur 7/4, mais pas pour l’intervalle de début de fin de 6/29-30. 
+Dans l’illustration ci-dessous, les seules apparences actives par ce critère sont les suivantes : utilisateur A sur 7/20 et utilisateur B sur 7/4 (voir les résultats du plug-in ci-dessus). Les apparences de l’utilisateur B sont incluses pour la fenêtre lookback sur 7/4, mais pas pour l’intervalle de temps Start-End de 6/29-30. 
 
 :::image type="content" source="images/queries/active-users-count.png" alt-text="Exemple de nombre d’utilisateurs actifs":::

@@ -4,16 +4,16 @@ description: Cet article décrit base64_encode_fromarray () dans Azure Explorate
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/11/2020
-ms.openlocfilehash: ede35223b9cc57fddc5318659e6902130a80c011
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 88d9f5b26273fa91ae64ca637b8fe4e2650a8539
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349276"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252692"
 ---
 # <a name="base64_encode_fromarray"></a>base64_encode_fromarray()
 
@@ -27,7 +27,7 @@ Encode une chaîne base64 à partir d’un tableau d’octets.
 
 * *BytesArray*: tableau d’octets d’entrée à encoder en chaîne base64.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Retourne la chaîne base64 encodée à partir du tableau d’octets.
 

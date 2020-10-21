@@ -4,16 +4,16 @@ description: Cet article décrit endofweek () dans Azure Explorateur de données
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 57fa1764753e730f9ff0a2b01a70e0c221217d23
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 47a5c9dd11af7282c38aabdd08b8b3bec571e57a
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348273"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92253030"
 ---
 # <a name="endofweek"></a>endofweek()
 
@@ -30,7 +30,7 @@ Le dernier jour de la semaine est considéré comme un samedi.
 * `date`: Date d’entrée.
 * `offset`: Nombre facultatif de semaines décalées à partir de la date d’entrée (entier, par défaut-0).
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Date/heure représentant la fin de la semaine pour la valeur de *Date* donnée, avec le décalage, s’il est spécifié.
 

@@ -4,16 +4,16 @@ description: Cet article décrit isinf, () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: e9fa24aeec2cc70b41e1fcd4f9d1185ef80b714b
-ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
+ms.openlocfilehash: 1d84d88c6f3a2b4a2a1ef03ba9eec36f84e3c574
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91103234"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92253263"
 ---
 # <a name="isinf"></a>isinf()
 
@@ -27,7 +27,7 @@ Retourne une valeur indiquant si l’entrée est une valeur infinie (positive ou
 
 * *x*: nombre réel.
 
-## <a name="returns"></a>retourne :
+## <a name="returns"></a>Retours
 
 Valeur différente de zéro (true) si x est un entier positif ou négatif ; et zéro (false) dans le cas contraire.
 

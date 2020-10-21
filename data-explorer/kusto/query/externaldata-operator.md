@@ -4,16 +4,16 @@ description: Cet article décrit l’opérateur de données externes dans Azure 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 8bb30180a7506b594e5747e3591f0d1aff80f8c3
-ms.sourcegitcommit: f689547c0f77b1b8bfa50a19a4518cbbc6d408e5
+ms.openlocfilehash: 5b17b69fd49e937b672da07dd0b5c8abae9100fb
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/08/2020
-ms.locfileid: "89557358"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92253058"
 ---
 # <a name="externaldata-operator"></a>externaldata, opérateur
 

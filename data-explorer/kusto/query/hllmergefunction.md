@@ -4,16 +4,16 @@ description: Cet article décrit hll_merge () dans Azure Explorateur de données
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/15/2019
-ms.openlocfilehash: ecf16a714b0466a7ffc2da7b69f117383c90970e
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 6bf364106bef8fbe626f96c22502dae748884180
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347525"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252969"
 ---
 # <a name="hll_merge"></a>hll_merge()
 

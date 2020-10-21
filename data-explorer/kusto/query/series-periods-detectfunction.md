@@ -4,16 +4,16 @@ description: Cet article décrit series_periods_detect () dans Azure Explorateur
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2019
-ms.openlocfilehash: 2ee587bfa7d01ae0602cc870e6c0b776593d53c0
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 6e362dd7d94c57cb79ee58c8ed7b36b719030987
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351333"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252925"
 ---
 # <a name="series_periods_detect"></a>series_periods_detect()
 

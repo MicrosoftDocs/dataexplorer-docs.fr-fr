@@ -4,16 +4,16 @@ description: Cet article décrit les lots dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: e5a38d53fb9b28fc7da0ddf71132e3a047e8188e
-ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
+ms.openlocfilehash: efd4b4c5387016bd66027bcf5e0722f8039f0837
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/18/2020
-ms.locfileid: "83550331"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252627"
 ---
 # <a name="batches"></a>Lots
 

@@ -4,16 +4,16 @@ description: Cet article décrit session_count plug-in dans Azure Explorateur de
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: c46430fe7acc75685b90d2322d709392c91ed6dc
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 0790a3ab173bc653cbd3c4c15b3f28e5a0c70cd5
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351214"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252901"
 ---
 # <a name="session_count-plugin"></a>plug-in session_count
 
@@ -38,7 +38,7 @@ T | evaluate session_count(id, datetime_column, startofday(ago(30d)), startofday
 * *LookBackWindow*: valeur constante scalaire représentant la période de lookback de session. Si l’ID de `IdColumn` s’affiche dans une fenêtre de temps dans `LookBackWindow` , la session est considérée comme étant existante. Si l’ID ne s’affiche pas, la session est considérée comme nouvelle.
 * *dim1*, *dim2*,... : (facultatif) liste des colonnes de dimensions qui découpent le calcul du nombre de sessions.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Retourne une table qui contient les valeurs du nombre de sessions pour chaque période de chronologie et pour chaque combinaison de dimensions existante.
 
@@ -55,7 +55,7 @@ Pour cet exemple, les données sont déterministes et nous utilisons une table a
 - Chronologie : nombre en cours de 1 à 10 000
 - ID : ID de l’utilisateur, de 1 à 50
 
-`Id`apparaît dans l' `Timeline` emplacement spécifique s’il s’agit d’un séparateur de `Timeline` (chronologie% ID = = 0).
+`Id` apparaît dans l' `Timeline` emplacement spécifique s’il s’agit d’un séparateur de `Timeline` (chronologie% ID = = 0).
 
 Un événement avec apparaît `Id==1` à n’importe quel `Timeline` emplacement, un événement avec `Id==2` à chaque deuxième `Timeline` emplacement, et ainsi de suite.
 

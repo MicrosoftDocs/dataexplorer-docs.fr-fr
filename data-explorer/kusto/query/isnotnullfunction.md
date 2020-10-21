@@ -4,16 +4,16 @@ description: Cet article décrit IsNotNull () dans Azure Explorateur de données
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 8ff472919ecda9550e7e0bcd6b403c605d029bfb
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: c198bd34161c683c6e5c6f1bde2990c0605122c8
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347185"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92253275"
 ---
 # <a name="isnotnull"></a>isnotnull()
 
@@ -23,7 +23,7 @@ Retourne `true` si l’argument n’a pas la valeur null.
 
 `isnotnull(`[*valeur*]`)`
 
-`notnull(`[*valeur*] `)` -alias pour`isnotnull`
+`notnull(`[*valeur*] `)` -alias pour `isnotnull`
 
 ## <a name="example"></a>Exemple
 

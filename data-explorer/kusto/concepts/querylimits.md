@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: 5bb05de1ad5a3a055201f42541927619777cafcd
-ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
+ms.openlocfilehash: d0f815cd523e0e53111e791d8faaaf6c37c7bb7b
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/25/2020
-ms.locfileid: "88793715"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252834"
 ---
 # <a name="query-limits"></a>Limites de requête
 
@@ -26,7 +26,8 @@ L' **accès concurrentiel aux requêtes** est une limite qu’un cluster impose 
 
 * La valeur par défaut de la limite de concurrence des requêtes dépend du cluster SKU sur lequel elle s’exécute et est calculé comme suit : `Cores-Per-Node x 10` .
   * Par exemple, pour un cluster qui est configuré sur la référence SKU D14v2, où chaque ordinateur a 16 vCores, la limite de concurrence des requêtes par défaut est `16 cores x10 = 160` .
-* La valeur par défaut peut être modifiée en créant un ticket de support. À l’avenir, ce contrôle sera également exposé via une commande de contrôle.
+* La valeur par défaut peut être modifiée en configurant la [stratégie de limitation des requêtes](../management/query-throttling-policy.md). 
+  * Le nombre réel de requêtes pouvant s’exécuter simultanément sur un cluster dépend de différents facteurs. Les facteurs les plus dominants sont la référence SKU du cluster, les ressources disponibles du cluster et les modèles de requête. La stratégie de limitation des requêtes peut être configurée en fonction des tests de charge effectués sur des modèles de requête de type production.
 
 ## <a name="limit-on-result-set-size-result-truncation"></a>Limite de la taille du jeu de résultats (troncation des résultats)
 

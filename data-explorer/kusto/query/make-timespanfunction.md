@@ -4,16 +4,16 @@ description: Cet article décrit make_timespan () dans Azure Explorateur de donn
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 3904f852fdf813d8b2aff264d6b1bc0019335d78
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 93b8ed12bcfb83c39964f820e61f928357af62c8
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346947"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92253186"
 ---
 # <a name="make_timespan"></a>make_timespan()
 
@@ -38,7 +38,7 @@ make_timespan(1,12,30,55.123) == time(1.12:30:55.123)
 * *minute*: minute (valeur entière comprise entre 0 et 59)
 * *seconde*: seconde (valeur réelle, comprise entre 0 et 59,9999999)
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Si la création réussit, le résultat sera une valeur [TimeSpan](./scalar-data-types/timespan.md) , sinon, le résultat sera null.
  

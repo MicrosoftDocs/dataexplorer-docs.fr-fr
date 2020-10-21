@@ -4,16 +4,16 @@ description: Cet article décrit array_split () dans Azure Explorateur de donné
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/28/2018
-ms.openlocfilehash: be993f3b0a58b56b9b4d171378bf71a645e77f1a
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: b1dad77bd58d64bfcd167cc7d30f0986a54f13c3
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349514"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252793"
 ---
 # <a name="array_split"></a>array_split()
 
@@ -28,7 +28,7 @@ Fractionne un tableau en plusieurs tableaux en fonction des index fractionnés e
 * *`arr`*: Tableau d’entrée à fractionner, doit être un tableau dynamique.
 * *`indices`*: Entier ou tableau dynamique d’entiers avec les index fractionnés (base zéro), les valeurs négatives sont converties en array_length valeur +.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Tableau dynamique contenant N + 1 tableaux avec les valeurs comprises dans la plage `[0..i1), [i1..i2), ... [iN..array_length)` `arr` , où N est le nombre d’index d’entrée et `i1...iN` les index.
 

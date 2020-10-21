@@ -4,16 +4,16 @@ description: Cet article décrit base64_encode_tostring () dans Azure Explorateu
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/22/2019
-ms.openlocfilehash: 218f87a3c11695c4aa8135f98b0c445580de9ad0
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 6fca71cbc7cf33f49a9f4698553391a84ddbb728
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349259"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252667"
 ---
 # <a name="base64_encode_tostring"></a>base64_encode_tostring()
 
@@ -27,7 +27,7 @@ Encode une chaîne au format de chaîne base64.
 
 * *Chaîne*: chaîne d’entrée à encoder sous la forme d’une chaîne base64.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Retourne la chaîne encodée en base64 String.
 

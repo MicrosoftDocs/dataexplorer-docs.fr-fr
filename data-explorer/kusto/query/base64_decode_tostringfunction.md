@@ -4,16 +4,16 @@ description: Cet article décrit base64_decode_tostring () dans Azure Explorateu
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/22/2019
-ms.openlocfilehash: 17d88c8be518b6d31b67a327a7a5d42818132cb9
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: eab1065713bcbc73913a2ab17a99894d9af9f8a4
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349293"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252711"
 ---
 # <a name="base64_decode_tostring"></a>base64_decode_tostring()
 
@@ -52,6 +52,6 @@ Si vous tentez de décoder une chaîne base64 générée à partir d’un encoda
 print Empty=base64_decode_tostring("U3RyaW5n0KHR0tGA0L7Rh9C60LA=")
 ```
 
-|Vide|
+|Empty|
 |-----|
 ||

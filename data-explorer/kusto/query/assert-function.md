@@ -4,16 +4,16 @@ description: Cet article décrit Assert () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/26/2019
-ms.openlocfilehash: 050974af47b0f5cd0e041694ee5f680b8c321614
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: 442fbec2742a4d1edc7a9ad03a81db27e6d18574
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803315"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252784"
 ---
 # <a name="assert"></a>assert()
 
@@ -29,11 +29,11 @@ Vérifie une condition. Si la condition est false, génère des messages d’err
 * *message*: message utilisé si l’assertion est évaluée à `false` . Le *message* doit être un littéral de chaîne.
 
 > [!NOTE]
-> `condition`doit être évaluée à constant pendant la phase d’analyse de la requête. En d’autres termes, elle peut être construite à partir d’autres expressions référençant des constantes et ne peut pas être liée à un contexte de ligne.
+> `condition` doit être évaluée à constant pendant la phase d’analyse de la requête. En d’autres termes, elle peut être construite à partir d’autres expressions référençant des constantes et ne peut pas être liée à un contexte de ligne.
 
 ## <a name="returns"></a>Retours
 
-* `true`-Si la condition est`true`
+* `true` -Si la condition est `true`
 * Génère une erreur sémantique si la condition est évaluée à `false` .
 
 ## <a name="examples"></a>Exemples

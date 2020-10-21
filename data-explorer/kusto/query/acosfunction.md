@@ -4,16 +4,16 @@ description: Cet article décrit ACOS () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: d1daf36e85eec4c8543ba14be153a9d6069e1cd1
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 486be5487071fa281765de410fe4e5be1ce62a38
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349854"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92253113"
 ---
 # <a name="acos"></a>acos()
 
@@ -27,7 +27,7 @@ Retourne l’angle dont le cosinus est le nombre spécifié (l’opération inve
 
 * *x*: nombre réel dans la plage [-1, 1].
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
-* Valeur du cosinus d’arc de`x`
-* `null`Si `x` <-1 ou `x` > 1
+* Valeur du cosinus d’arc de `x`
+* `null` Si `x` <-1 ou `x` > 1

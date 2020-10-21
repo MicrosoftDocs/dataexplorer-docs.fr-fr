@@ -4,16 +4,16 @@ description: Cet article décrit beta_cdf () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b500f5f0e727fde315bea8d77ab60f600f127271
-ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
+ms.openlocfilehash: 16365c7445ca5436098028cbfbe5709e5b425a38
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91103400"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92253095"
 ---
 # <a name="beta_cdf"></a>beta_cdf()
 
@@ -37,11 +37,11 @@ La distribution Bêta est couramment utilisée pour étudier la variation du pou
 * *alpha*: paramètre de la distribution.
 * *bêta*: paramètre de la distribution.
 
-## <a name="returns"></a>retourne :
+## <a name="returns"></a>Retours
 
 * [Fonction de distribution cumulative bêta](https://en.wikipedia.org/wiki/Beta_distribution#Cumulative_distribution_function).
 
-**Remarques**
+**Notes**
 
 Si un argument n’est pas numérique, beta_cdf () retourne une valeur null.
 
@@ -70,7 +70,7 @@ datatable(x:double, alpha:double, beta:double, comment:string)
 |0.9|10|20|Entrée valide|0.999999999999959|
 |1.5|10|20|x > 1, produit NaN|NaN|
 |-10|10|20|x < 0, produit NaN|NaN|
-|0,1|-1|20|Alpha est < 0, produit NaN|NaN|
+|0.1|-1|20|Alpha est < 0, produit NaN|NaN|
 
 
 ## <a name="see-also"></a>Voir aussi

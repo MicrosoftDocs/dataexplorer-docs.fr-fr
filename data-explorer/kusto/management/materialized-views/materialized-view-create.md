@@ -8,12 +8,12 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/30/2020
-ms.openlocfilehash: f67b2d61cfed297886447a97dd178dfb578a2c68
-ms.sourcegitcommit: 463ee13337ed6d6b4f21eaf93cf58885d04bccaa
+ms.openlocfilehash: 95f8ce19c6edb419de4fb5053a79c243e3e332c4
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/30/2020
-ms.locfileid: "91572141"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252839"
 ---
 # <a name="create-materialized-view"></a>.create materialized-view
 
@@ -83,7 +83,7 @@ Les éléments suivants sont pris en charge dans la `with(propertyName=propertyV
 |Propriété|Type|Description |
 |----------------|-------|---|
 |expiration|bool|Indique si la vue doit être créée en fonction de tous les enregistrements actuellement dans *SourceTable* ( `true` ) ou si elle doit être créée « à partir de maintenant-on » ( `false` ). La valeur par défaut est `false`.| 
-|effectiveDateTime|datetime| S’il est spécifié avec `backfill=true` , la création de remplissages uniquement avec des enregistrements ingérés après la valeur DateTime. Le renvoi doit également avoir la valeur true. Attend un littéral DateTime, par exemple `effectiveDateTime=datetime(2019-05-01)`|
+|effectiveDateTime|DATETIME| S’il est spécifié avec `backfill=true` , la création de remplissages uniquement avec des enregistrements ingérés après la valeur DateTime. Le renvoi doit également avoir la valeur true. Attend un littéral DateTime, par exemple `effectiveDateTime=datetime(2019-05-01)`|
 |dimensionTables|Array|Liste de tables de dimension séparées par des virgules dans la vue. Voir l' [argument de requête](#query-argument)
 |autoUpdateSchema|bool|Indique s’il faut mettre à jour automatiquement la vue sur les modifications de la table source. La valeur par défaut est `false`. Cette option est valide uniquement pour les vues de type `arg_max(Timestamp, *)`  /  `arg_min(Timestamp, *)`  /  `any(*)` (uniquement lorsque l’argument Columns est `*` ). Si cette option a la valeur true, les modifications apportées à la table source sont automatiquement reflétées dans la vue matérialisée.
 |dossier|string|Dossier de la vue matérialisée.|
@@ -161,14 +161,14 @@ Les éléments suivants sont pris en charge dans la `with(propertyName=propertyV
 
     <!-- csl -->
     ```
-    .create materialized-view EnrichedArgMax on table T with (dimensionTable = ['DimUsers'])
+    .create materialized-view EnrichedArgMax on table T with (dimensionTables = ['DimUsers'])
     {
         T
         | lookup DimUsers on User  
         | summarize arg_max(Timestamp, *) by User 
     }
     
-    .create materialized-view EnrichedArgMax on table T with (dimensionTable = ['DimUsers'])
+    .create materialized-view EnrichedArgMax on table T with (dimensionTables = ['DimUsers'])
     {
         DimUsers | project User, Age, Address
         | join kind=rightouter hint.strategy=broadcast T on User
@@ -293,13 +293,13 @@ Le processus de création ne peut pas être abandonné immédiatement. La comman
 |----------------|-------|---|
 |operationId|Guid|L’ID d’opération retourné par la commande CREATE MATERIALIZED-VIEW.|
 
-### <a name="output"></a>Sortie
+### <a name="output"></a>Output
 
 |Paramètre de sortie |Type |Description
 |---|---|---
 |OperationId|Guid|ID d’opération de la commande créer une vue matérialisée.
 |Opération|String|Type d’opération.
-|StartedOn|datetime|Heure de début de l’opération de création.
+|StartedOn|DATETIME|Heure de début de l’opération de création.
 |CancellationState|string|Un de- `Cancelled successfully` (la création a été annulée), ( `Cancellation failed` attente de l’annulation expirée), `Unknown` (la création de la vue n’est plus exécutée, mais n’a pas été annulée par cette opération).
 |ReasonPhrase|string|Raison pour laquelle l’annulation n’a pas réussi.
 

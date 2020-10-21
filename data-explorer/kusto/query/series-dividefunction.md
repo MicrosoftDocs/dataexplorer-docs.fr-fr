@@ -4,16 +4,16 @@ description: Cet article décrit series_divide () dans Azure Explorateur de donn
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 39252fb8e7233ddc3532003afc7a131505cd4282
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 093f78cfc30da31474094187a786585fdcd5132b
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345077"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252922"
 ---
 # <a name="series_divide"></a>series_divide()
 
@@ -27,7 +27,7 @@ Calcule la division au niveau des éléments de deux entrées de série numériq
 
 * *Series1, Series2*: entrez des tableaux numériques, le premier étant un élément, divisé par le second en un résultat de tableau dynamique. Tous les arguments doivent être des tableaux dynamiques. 
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Tableau dynamique de l’opération de division par élément calculé entre les deux entrées. Tout élément non numérique ou élément non existant (tableaux de tailles différentes) produit une `null` valeur d’élément.
 

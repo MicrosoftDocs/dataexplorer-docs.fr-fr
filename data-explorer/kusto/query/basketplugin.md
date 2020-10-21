@@ -4,16 +4,16 @@ description: Cet article décrit le plug-in du panier dans Azure Explorateur de 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/26/2019
-ms.openlocfilehash: cf83690d61bb84d1b6b877e76a77d5776be35ad4
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 9436254d72f364edc1f6a758ce2325e272367293
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349242"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252681"
 ---
 # <a name="basket-plugin"></a>basket, plug-in
 
@@ -27,7 +27,7 @@ Panier recherche tous les modèles fréquents d’attributs discrets (dimensions
 
 `T | evaluate basket(`*arguments*`)`
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Panier retourne tous les modèles fréquents qui apparaissent au-dessus du seuil de ratio des lignes. Le seuil par défaut est 0,05. Chaque modèle est représenté par une ligne dans les résultats.
 
