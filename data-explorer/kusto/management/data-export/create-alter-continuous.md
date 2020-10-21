@@ -8,18 +8,18 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/03/2020
-ms.openlocfilehash: b75ac4fe4b03c85eec74ccc69c5c03ff59a4bcfe
-ms.sourcegitcommit: c7b16409995087a7ad7a92817516455455ccd2c5
+ms.openlocfilehash: 11822a58b2ced0b257ad649997bc154ab4be19d5
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/12/2020
-ms.locfileid: "88149472"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92337582"
 ---
 # <a name="create-or-alter-continuous-export"></a>Créer ou modifier une exportation continue
 
 Crée ou modifie une tâche d’exportation continue.
 
-## <a name="syntax"></a>Syntaxe
+## <a name="syntax"></a>Syntax
 
 `.create-or-alter` `continuous-export` *ContinuousExportName* <br>
 [ `over` `(` *T1*, *T2* `)` ] <br>
@@ -31,7 +31,7 @@ Crée ou modifie une tâche d’exportation continue.
 | Propriété             | Type     | Description   |
 |----------------------|----------|---------------------------------------|
 | ContinuousExportName | String   | Nom de l’exportation continue. Le nom doit être unique dans la base de données et utilisé pour exécuter régulièrement l’exportation continue.      |
-| ExternalTableName    | String   | Nom de la [table externe](../externaltables.md) vers laquelle effectuer l’exportation.  |
+| ExternalTableName    | String   | Nom de la [table externe](../external-table-commands.md) vers laquelle effectuer l’exportation.  |
 | Requête                | String   | Requête à exporter.  |
 | sur (T1, T2)        | String   | Liste facultative de tables de faits séparées par des virgules dans la requête. Si cette valeur n’est pas spécifiée, toutes les tables référencées dans la requête sont supposées être des tables de faits. S’ils sont spécifiés, les tables qui *ne sont pas* dans cette liste sont traitées comme des tables de dimension et ne sont pas étendues (tous les enregistrements participent à toutes les exportations). Pour plus d’informations, consultez [vue d’ensemble de l’exportation continue de données](continuous-data-export.md) . |
 | intervalBetweenRuns  | Timespan | Intervalle de temps entre les exécutions d’exportation continue. Doit être supérieur à 1 minute.   |

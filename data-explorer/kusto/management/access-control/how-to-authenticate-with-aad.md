@@ -1,6 +1,6 @@
 ---
 title: Kusto s’authentifier auprès d’AAD pour l’accès-Azure Explorateur de données
-description: Cet article décrit comment s’authentifier avec AAD pour l’accès Explorateur de données Azure dans Azure Explorateur de données.
+description: Cet article décrit How-To s’authentifier auprès d’AAD pour l’accès à Azure Explorateur de données dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -9,14 +9,14 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 09/13/2019
-ms.openlocfilehash: f74848ac3b634affbafde8d0441a4340aff230da
-ms.sourcegitcommit: dc42f4a7fa617a06b5566ce40b7cdc66cfd22185
+ms.openlocfilehash: e1c2a6f5cbec90d59ed54f15147b912ffbc8fdd3
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/04/2020
-ms.locfileid: "87557616"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343417"
 ---
-# <a name="how-to-authenticate-with-aad-for-azure-data-explorer-access"></a>Comment s’authentifier auprès d’AAD pour l’accès Explorateur de données Azure
+# <a name="how-to-authenticate-with-aad-for-azure-data-explorer-access"></a>How-To s’authentifier auprès d’AAD pour l’accès Explorateur de données Azure
 
 La méthode recommandée pour accéder à Azure Explorateur de données consiste à s’authentifier auprès du service **Azure Active Directory** (parfois également appelé **Azure ad**ou simplement **AAD**). Cela garantit qu’Azure Explorateur de données ne voit jamais l’accès aux informations d’identification de l’annuaire du principal, à l’aide d’un processus en deux étapes :
 
@@ -87,7 +87,7 @@ Le moyen le plus simple d’accéder à Azure Explorateur de données avec l’a
 
 Les applications qui n’utilisent pas le kit de développement logiciel (SDK) Azure Explorateur de données peuvent toujours utiliser la bibliothèque cliente AAD (ADAL) au lieu d’implémenter le client du protocole de sécurité du service AAD. https://github.com/AzureADSamples/WebApp-WebAPI-OpenIDConnect-DotNetPour obtenir un exemple de cette procédure à partir d’une application .net, consultez [].
 
-Pour authentifier les utilisateurs pour l’accès à Azure Explorateur de données, une application doit d’abord se voir accorder l' `Access Kusto` autorisation déléguée. Pour plus d’informations, consultez le [Guide Kusto pour l’approvisionnement d’applications AAD](how-to-provision-aad-app.md#set-up-delegated-permissions-for-kusto-service-application) .
+Pour authentifier les utilisateurs pour l’accès à Azure Explorateur de données, une application doit d’abord se voir accorder l' `Access Kusto` autorisation déléguée. Pour plus d’informations, consultez le [Guide Kusto pour l’approvisionnement d’applications AAD](../../../provision-azure-ad-app.md#configure-delegated-permissions-for-the-application-registration) .
 
 L’extrait de code suivant illustre l’utilisation de ADAL pour acquérir un jeton d’utilisateur AAD pour accéder à Azure Explorateur de données (lance l’interface utilisateur d’ouverture de session) :
 
@@ -185,7 +185,7 @@ var queryResult = client.ExecuteQuery(databaseName, query, null);
 **Configuration de l’application AAD**
 
 > [!NOTE]
-> En plus des [étapes](./how-to-provision-aad-app.md) standard que vous devez suivre pour configurer une application AAD, vous devez également activer le fluide implicite OAuth dans votre application AAD. Pour cela, sélectionnez manifeste à partir de la page de votre application dans le portail Azure, puis définissez oauth2AllowImplicitFlow sur true.
+> En plus des [étapes](../../../provision-azure-ad-app.md) standard que vous devez suivre pour configurer une application AAD, vous devez également activer le fluide implicite OAuth dans votre application AAD. Pour cela, sélectionnez manifeste à partir de la page de votre application dans le portail Azure, puis définissez oauth2AllowImplicitFlow sur true.
 
 **Détails**
 
@@ -250,6 +250,6 @@ var settings = {
 $.ajax(settings).then(function(data) {/* do something wil the data */});
 ```
 
-> AVERTISSEMENT : Si vous recevez l’exception suivante ou similaire lors de l’authentification :`ReferenceError: AuthenticationContext is not defined`
+> AVERTISSEMENT : Si vous recevez l’exception suivante ou similaire lors de l’authentification : `ReferenceError: AuthenticationContext is not defined`
 Cela est probablement dû au fait que vous n’avez pas de AuthenticationContext dans l’espace de noms global.
 Malheureusement, AdalJS a actuellement une exigence non documentée selon laquelle le contexte d’authentification sera défini dans l’espace de noms global.

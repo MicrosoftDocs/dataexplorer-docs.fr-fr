@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/13/2020
-ms.openlocfilehash: 2ad77b1763c8f4d85d676b34039a9300fca5912d
-ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
+ms.openlocfilehash: c1ed0de6f638828abe120caffcb5e14517f09a02
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/11/2020
-ms.locfileid: "91941840"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342737"
 ---
 # <a name="extents-data-shards"></a>Étendues (partitions de données)
 
@@ -64,7 +64,7 @@ Le remplacement est utile, par exemple, à des fins de rétention, si le client 
 
 ## <a name="extent-tagging"></a>Balisage d’étendue
 
-Kusto prend en charge l’attachement de plusieurs *balises d’étendue* facultatives dans l’étendue, dans le cadre de ses métadonnées. Une balise d’étendue (ou simplement une *balise*) est une chaîne associée à l’étendue. Vous pouvez utiliser les commandes [. Show extents](extents-commands.md#show-extents) pour voir les balises associées à une extension, et la fonction [extent-Tags ()](../query/extenttagsfunction.md) pour voir les balises associées aux enregistrements dans une étendue.
+Kusto prend en charge l’attachement de plusieurs *balises d’étendue* facultatives dans l’étendue, dans le cadre de ses métadonnées. Une balise d’étendue (ou simplement une *balise*) est une chaîne associée à l’étendue. Vous pouvez utiliser les commandes [. Show extents](./show-extents.md) pour voir les balises associées à une extension, et la fonction [extent-Tags ()](../query/extenttagsfunction.md) pour voir les balises associées aux enregistrements dans une étendue.
 Les balises d’étendue peuvent être utilisées pour décrire efficacement les propriétés communes à toutes les données dans l’étendue.
 Par exemple, vous pouvez ajouter une balise d’étendue lors de l’ingestion, qui indique la source des données ingérées et utiliser cette balise ultérieurement. Étant donné que les étendues décrivent les données, lorsque plusieurs fusions sont fusionnées, leurs balises associées sont également fusionnées. Les balises de l’étendue résultante seront l’Union de toutes les balises de ces étendues fusionnées.
 
@@ -77,7 +77,7 @@ Kusto assigne une signification spéciale à toutes les balises d’étendue don
 
 Les balises qui commencent par un `drop-by:` préfixe peuvent être utilisées pour contrôler les autres extensions avec lesquelles effectuer la fusion. Les extensions qui ont une `drop-by:` balise donnée peuvent être fusionnées ensemble, mais elles ne sont pas fusionnées avec d’autres extensions. Vous pouvez ensuite émettre une commande pour supprimer des extensions en fonction de leur `drop-by:` étiquette.
 
-Exemple :
+Par exemple :
 
 ```kusto
 .ingest ... with @'{"tags":"[\"drop-by:2016-02-17\"]"}'
@@ -88,7 +88,7 @@ Exemple :
 #### <a name="performance-notes"></a>Remarques sur les performances
 
 * N’abusez pas de `drop-by` balises. La suppression de données de la manière mentionnée ci-dessus est destinée à des événements qui se produisent rarement. Il ne s’agit pas de remplacer les données au niveau de l’enregistrement et s’appuie sur le fait que les données marquées de cette manière sont en vrac. Toute tentative de donner une étiquette différente pour chaque enregistrement, ou un petit nombre d’enregistrements, peut avoir un impact sérieux sur les performances.
-* Si `drop-by` les balises ne sont pas nécessaires pendant un certain laps de temps après la réception des données, nous vous recommandons de [Supprimer les balises](extents-commands.md#drop-extent-tags).
+* Si `drop-by` les balises ne sont pas nécessaires pendant un certain laps de temps après la réception des données, nous vous recommandons de [Supprimer les balises](#drop-by-extent-tags).
 
 ### <a name="ingest-by-extent-tags"></a>balises d’extension’ingestion : '
 
@@ -113,4 +113,3 @@ L’exemple suivant ingère les données une seule fois. Les 2e et 3e commandes 
 * Il est déconseillé d’utiliser des `ingest-by` balises.
 Si le Kusto d’alimentation du pipeline est connu pour avoir des doublons de données, nous vous recommandons de résoudre ces doublons autant que possible avant d’ingérer les données dans Kusto. En outre, utilisez `ingest-by` des balises dans Kusto uniquement lorsque la partie qui ingère Kusto peut introduire des doublons par lui-même (par exemple, un mécanisme de nouvelle tentative peut chevaucher des appels d’ingestion déjà en cours). Toute tentative de définition d’une `ingest-by` balise unique pour chaque appel d’ingestion peut avoir un impact sérieux sur les performances.
 * Si ces étiquettes ne sont pas requises pendant un certain laps de temps après la réception des données, nous vous recommandons de [supprimer des balises d’étendue](drop-extent-tags.md).
- 

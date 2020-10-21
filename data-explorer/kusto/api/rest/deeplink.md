@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: aa47811bfe8004037cb04e642c234003087617a1
-ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
+ms.openlocfilehash: 412e489365daabfdde7de8cd61e398100f4bc3ef
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/26/2020
-ms.locfileid: "83863232"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92337395"
 ---
 # <a name="ui-deep-links"></a>Liens détaillés de l’interface utilisateur
 
@@ -26,13 +26,13 @@ API REST des liens profond de l’interface utilisateur :
 * La base de données (facultatif) est spécifiée comme étant le premier et le seul fragment du chemin d’accès de l’URI. La base de données est obligatoire pour les requêtes et facultative pour les commandes de contrôle.
 
 * La commande de requête ou de contrôle (facultatif) est spécifiée à l’aide du paramètre de requête URI `query` ou du paramètre de requête URI `querysrc` (qui pointe vers une ressource Web qui contient la requête).
-  `query`peut être utilisé dans le texte de la commande de requête ou de contrôle proprement dite (encodé à l’aide de l’encodage de paramètre de requête HTTP). Elle peut également être utilisée dans l’encodage Base64 de l’gzip du texte de la commande de requête ou de contrôle (ce qui permet de compresser des requêtes longues afin qu’elles correspondent aux limites de longueur de l’URI du navigateur par défaut).
+  `query` peut être utilisé dans le texte de la commande de requête ou de contrôle proprement dite (encodé à l’aide de l’encodage de paramètre de requête HTTP). Elle peut également être utilisée dans l’encodage Base64 de l’gzip du texte de la commande de requête ou de contrôle (ce qui permet de compresser des requêtes longues afin qu’elles correspondent aux limites de longueur de l’URI du navigateur par défaut).
 
 * Le nom de la connexion au cluster (facultatif) est spécifié à l’aide du paramètre de requête URI `name` .
 
 * L’outil d’interface utilisateur est spécifié à l’aide du `web` paramètre de requête URI facultatif.
-  `web=0`indique l’application de bureau Kusto. Explorer. `web=1`indique l’application Web Kusto. webexplorer.
-  `web=2`est l’ancienne version de Kusto. webexplorer (basée sur Application Insights Analytics). `web=3`Kusto. webexplorer est-il associé à un profil vide (aucun onglet ou clusters précédemment ouverts n’est disponible). Enfin, le `web` paramètre de requête peut être remplacé par `saw=1` pour indiquer la version Saw de Kusto. Explorer.
+  `web=0` indique l’application de bureau Kusto. Explorer. `web=1` indique l’application Web Kusto. webexplorer.
+  `web=2` est l’ancienne version de Kusto. webexplorer (basée sur Application Insights Analytics). `web=3` Kusto. webexplorer est-il associé à un profil vide (aucun onglet ou clusters précédemment ouverts n’est disponible). Enfin, le `web` paramètre de requête peut être remplacé par `saw=1` pour indiquer la version Saw de Kusto. Explorer.
 
 Voici quelques exemples de liens :
 
@@ -52,8 +52,8 @@ Voici quelques exemples de liens :
 Cette API REST effectue une redirection qui installe et exécute l’outil client de bureau Kusto. Explorer avec des paramètres de démarrage spécialement créés qui ouvrent une connexion à un cluster de moteur Kusto spécifique et exécutent une requête sur ce cluster.
 
 * Chemin d’accès : `/` [*DatabaseName*']
-* DoVerb`GET`
-* Chaîne de requête :`web=0`
+* DoVerb `GET`
+* Chaîne de requête : `web=0`
 
 > [!NOTE]
 > Pour obtenir une description de la syntaxe d’URI de redirection pour le démarrage de Kusto. Explorer, consultez [Deep-linking with Kusto. Explorer](../../tools/kusto-explorer-using.md#deep-linking-queries) .
@@ -63,8 +63,8 @@ Cette API REST effectue une redirection qui installe et exécute l’outil clien
 Cette API REST effectue une redirection vers Kusto. webexplorer, une application Web.
 
 * Chemin d’accès : `/` [*DatabaseName*']
-* DoVerb`GET`
-* Chaîne de requête :`web=1`
+* DoVerb `GET`
+* Chaîne de requête : `web=1`
 
 ## <a name="specifying-the-query-or-control-command-in-the-uri"></a>Spécification de la commande de requête ou de contrôle dans l’URI
 
@@ -82,5 +82,4 @@ Par exemple, il peut s’agir de l’URI d’un fichier hébergé par le stockag
 > En outre, si des informations d’authentification/d’autorisation sont requises par ce service, elles doivent être fournies dans le cadre de l’URI lui-même.
 >
 > Par exemple, si `querysrc` pointe vers un objet BLOB dans le stockage d’objets BLOB Azure, vous devez configurer le compte de stockage pour qu’il prenne en charge cors, puis rendre l’objet BLOB proprement public (afin qu’il puisse être téléchargé sans revendications de sécurité) ou ajouter une SAP de stockage Azure appropriée à l’URI. La configuration CORS peut être effectuée à partir de la [portail Azure](https://portal.azure.com/) ou à partir d' [Explorateur stockage Azure](https://azure.microsoft.com/features/storage-explorer/).
-> Consultez [prise en charge de cors dans Azure Storage](https://docs.microsoft.com/rest/api/storageservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services).
-
+> Consultez [prise en charge de cors dans Azure Storage](/rest/api/storageservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services).

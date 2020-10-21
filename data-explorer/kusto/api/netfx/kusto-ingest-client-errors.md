@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: 6b94dfc0fab1150b598fad9d55beec2f3a81ad73
-ms.sourcegitcommit: f34535b0ca63cff22e65c598701cec13856c1742
+ms.openlocfilehash: 61c183f11aa7658faba00c5dd3c4795f235e5467
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/29/2020
-ms.locfileid: "87402336"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92337480"
 ---
 # <a name="kustoingest-errors-and-exceptions"></a>Erreurs et exceptions Kusto. deréception
 Toute erreur au cours de la gestion de la réception côté client est indiquée par une exception C#.
@@ -24,7 +24,7 @@ Toute erreur au cours de la gestion de la réception côté client est indiquée
 
 Lors d’une tentative de réception à partir de plusieurs sources, des erreurs peuvent se produire pendant le processus d’ingestion. Si une ingestion échoue pour l’une des sources, elle est journalisée et le client continue d’ingérer les sources restantes. Une fois que vous avez effectué toutes les sources d’ingestion, une `IngestClientAggregateException` est levée et contient le `IList<IngestClientException> IngestionErrors` membre.
 
-`IngestClientException`et ses classes dérivées contiennent un champ `IngestionSource` et un `Error` champ. Les deux champs créent ensemble un mappage, de la source dont l’ingestion a échoué, à l’erreur qui s’est produite lors de la tentative d’ingestion. Les informations peuvent être utilisées dans la `IngestionErrors` liste pour déterminer quelles sources n’ont pas pu être ingérées et pourquoi. L' `IngestClientAggregateException` exception contient également une propriété booléenne `GlobalError` qui indique si une erreur s’est produite pour toutes les sources.
+`IngestClientException` et ses classes dérivées contiennent un champ `IngestionSource` et un `Error` champ. Les deux champs créent ensemble un mappage, de la source dont l’ingestion a échoué, à l’erreur qui s’est produite lors de la tentative d’ingestion. Les informations peuvent être utilisées dans la `IngestionErrors` liste pour déterminer quelles sources n’ont pas pu être ingérées et pourquoi. L' `IngestClientAggregateException` exception contient également une propriété booléenne `GlobalError` qui indique si une erreur s’est produite pour toutes les sources.
 
 ### <a name="failures-ingesting-from-files-or-blobs"></a>Échecs de réception de fichiers ou d’objets BLOB
 
@@ -38,7 +38,7 @@ Dans les `IngestFromDataReader` `IngestFromDataReaderAsync` méthodes et, l' `re
 
 ## <a name="kustoqueuedingestclient-exceptions"></a>Exceptions KustoQueuedIngestClient
 
-`KustoQueuedIngestClient`ingère les données en téléchargeant des messages dans une file d’attente Azure. Si une erreur se produit avant ou pendant le processus de mise en file d’attente, une `IngestClientAggregateException` est levée à la fin du processus. L’exception levée inclut une collection de `IngestClientException` , qui contient la source de chaque échec et n’a pas été publiée dans la file d’attente. L’erreur qui s’est produite lors de la tentative de publication du message est également levée.
+`KustoQueuedIngestClient` ingère les données en téléchargeant des messages dans une file d’attente Azure. Si une erreur se produit avant ou pendant le processus de mise en file d’attente, une `IngestClientAggregateException` est levée à la fin du processus. L’exception levée inclut une collection de `IngestClientException` , qui contient la source de chaque échec et n’a pas été publiée dans la file d’attente. L’erreur qui s’est produite lors de la tentative de publication du message est également levée.
 
 ### <a name="posting-to-queue-failures-with-a-file-or-blob-as-a-source"></a>Échec de la publication dans une file d’attente avec un fichier ou un objet BLOB en tant que source
 
@@ -52,16 +52,16 @@ Lors de l’utilisation d’une source DataReader, les données à poster dans l
 Dans les `IngestFromDataReader` `IngestFromDataReaderAsync` méthodes et, l' `retainCsvOnFailure` indicateur, dont la valeur par défaut est `false` , détermine si les fichiers doivent être conservés après l’échec de l’ingestion. Si cet indicateur a la valeur `false` , les données qui échouent à l’ingestion ne sont pas conservées, ce qui complique la compréhension de la cause du problème.
 
 ### <a name="common-failures"></a>Échecs courants
-|Error                         |Motif           |Solution                                   |
+|Error                         |Motif           |Limitation des risques                                   |
 |------------------------------|-----------------|---------------------------------------------|
 |Le nom de la base de données <database name> n’existe pas| La base de données n’existe pas|Vérifiez le nom de la base de données dans `kustoIngestionProperties` /Create la base de données |
 |Le nom de table de l’entité qui n’existe pas’table’n’a pas été trouvé.|La table n’existe pas et il n’existe aucun mappage de fichier CSV.| Ajouter le mappage CSV/créer la table requise |
 |Objet BLOB <blob path> exclu pour la raison : le modèle JSON doit être géré avec le paramètre jsonMapping| Ingestion JSON quand aucun mappage JSON n’est fourni.|Fournir un mappage JSON |
 |Échec du téléchargement de l’objet BLOB : « le serveur distant a retourné une erreur : (404) introuvable. »| Le blob n’existe pas.|Vérifiez que l’objet BLOB existe. S’il existe, réessayez et contactez l’équipe Kusto |
 |Le mappage de colonnes JSON n’est pas valide : au moins deux éléments de mappage pointent vers la même colonne.| Le mappage JSON a 2 colonnes avec des chemins d’accès différents|Corriger le mappage JSON |
-|EngineError-[UtilsException] `IngestionDownloader.Download` : un ou plusieurs fichiers n’ont pas pu être téléchargés (recherchez dans KustoLogs la valeur ActivityID : <GUID1> , RootActivityId : <GUID2> )| Échec du téléchargement d’un ou plusieurs fichiers. |Recommencer |
+|EngineError-[UtilsException] `IngestionDownloader.Download` : un ou plusieurs fichiers n’ont pas pu être téléchargés (recherchez dans KustoLogs la valeur ActivityID : <GUID1> , RootActivityId : <GUID2> )| Échec du téléchargement d’un ou plusieurs fichiers. |Réessayer |
 |Échec de l’analyse : le flux ayant l’ID' <stream name> 'a un format CSV incorrect, échec par stratégie ValidationOptions |Fichier CSV incorrect (par exemple, qui n’a pas le même nombre de colonnes sur chaque ligne). Échoue uniquement lorsque la stratégie de validation a la valeur `ValidationOptions` . ValidateCsvInputConstantColumns |Vérifiez vos fichiers CSV. Ce message s’applique uniquement aux fichiers CSV/TSV |
-|`IngestClientAggregateException`avec le message d’erreur « paramètres obligatoires manquants pour la signature d’accès partagé valide » |La SAP utilisée est du service, et non du compte de stockage. |Utiliser la SAP du compte de stockage |
+|`IngestClientAggregateException` avec le message d’erreur « paramètres obligatoires manquants pour la signature d’accès partagé valide » |La SAP utilisée est du service, et non du compte de stockage. |Utiliser la SAP du compte de stockage |
 
 ### <a name="ingestion-error-codes"></a>Codes d’erreur d’ingestion
 
@@ -108,11 +108,11 @@ Pour faciliter le traitement des échecs d’ingestion par programme, les inform
 
 Déclenché quand aucune file d’attente n’a été retournée à partir du cluster Gestion des données
 
-Classe de base : [exception](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
+Classe de base : [exception](/dotnet/api/system.exception)
 
 |Nom du champ |Type     |Signification
 |-----------|---------|------------------------------|
-|Error      | String  | Erreur qui s’est produite lors de la tentative de récupération des files d’attente à partir du DM
+|Erreur      | String  | Erreur qui s’est produite lors de la tentative de récupération des files d’attente à partir du DM
                             
 S’applique uniquement lors de l’utilisation du [client de réception en file d’attente Kusto](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient).
 Pendant le processus d’ingestion, plusieurs tentatives sont effectuées pour récupérer les files d’attente Azure liées au DM. Lorsque ces tentatives échouent, l’exception contenant la raison de l’échec est générée dans le champ « erreur ». Éventuellement, une exception interne dans le champ’InnerException’est également déclenchée.
@@ -122,7 +122,7 @@ Pendant le processus d’ingestion, plusieurs tentatives sont effectuées pour r
 
 Levée quand aucun conteneur d’objets BLOB n’a été retourné à partir du cluster Gestion des données
 
-Classe de base : [exception](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
+Classe de base : [exception](/dotnet/api/system.exception)
 
 |Nom du champ   |Type     |Signification       
 |-------------|---------|------------------------------|
@@ -135,7 +135,7 @@ Lors de l’ingestion de sources qui ne se trouvent pas déjà dans un conteneur
 
 Déclenché quand une propriété d’ingestion est configurée plusieurs fois
 
-Classe de base : [exception](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
+Classe de base : [exception](/dotnet/api/system.exception)
 
 |Nom du champ   |Type     |Signification       
 |-------------|---------|------------------------------------|
@@ -145,19 +145,19 @@ Classe de base : [exception](https://msdn.microsoft.com/library/system.exceptio
 
 Levée lors de l’échec de la publication d’un message dans la file d’attente
 
-Classe de base : [exception](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
+Classe de base : [exception](/dotnet/api/system.exception)
 
 |Nom du champ   |Type     |Signification       
 |-------------|---------|---------------------------------|
 |QueueUri     | String  | URI de la file d’attente
-|Error        | String  | Message d’erreur qui a été généré lors de la tentative de publication dans la file d’attente
+|Erreur        | String  | Message d’erreur qui a été généré lors de la tentative de publication dans la file d’attente
                             
 S’applique uniquement lors de l’utilisation du [client de réception en file d’attente Kusto](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient).  
 Le client de réception mis en file d’attente ingère les données en téléchargeant un message dans la file d’attente Azure appropriée. En cas d’échec de publication, l’exception est levée. Elle contient l’URI de la file d’attente, la raison de l’échec dans le champ « erreur » et éventuellement une exception interne dans le champ « InnerException ».
 
 ### <a name="dataformatnotspecifiedexception"></a>DataFormatNotSpecifiedException
 
-Déclenché lorsqu’un format de données est requis mais non spécifié dans`IngestionProperties`
+Déclenché lorsqu’un format de données est requis mais non spécifié dans `IngestionProperties`
 
 Classe de base : IngestClientException
 
@@ -218,7 +218,7 @@ Classe de base : IngestClientException
 
 Déclenché lorsqu’une ou plusieurs erreurs se produisent pendant une ingestion
 
-Classe de base : [AggregateException](https://msdn.microsoft.com/library/system.aggregateexception(v=vs.110).aspx)
+Classe de base : [AggregateException](/dotnet/api/system.aggregateexception)
 
 |Nom du champ      |Type                             |Signification       
 |----------------|---------------------------------|-----------------------|

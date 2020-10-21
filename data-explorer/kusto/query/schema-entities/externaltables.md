@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/22/2020
-ms.openlocfilehash: a76ef031a3fbcaa26f90fd2c2664920805b823b5
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: a2c3580ee265e0c67003d67c7e5a68cdd9165191
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780267"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342669"
 ---
 # <a name="external-tables"></a>Tables externes
 
@@ -22,7 +22,7 @@ Une **table externe** est une entité de schéma Kusto qui fait référence à d
 Comme pour les [tables](tables.md), une table externe a un schéma bien défini (une liste ordonnée de noms de colonnes et de paires de types de données). Contrairement aux tables, les données sont stockées et gérées en dehors du cluster. La plupart du temps, les données sont stockées dans un format standard, tel que CSV, parquet, Avro, et ne sont pas ingérées par Azure Explorateur de données.
 
 Une **table externe** est créée une fois. Consultez les commandes suivantes pour la création d’une table externe :
-* [Commandes de contrôle générales de table externe](../../management/externaltables.md)
+* [Commandes de contrôle générales de table externe](../../management/external-table-commands.md)
 * [Créer et modifier des tables SQL externes](../../management/external-sql-tables.md)
 * [Créer et modifier des tables dans le stockage Azure ou Azure Data Lake](../../management/external-tables-azurestorage-azuredatalake.md)
 

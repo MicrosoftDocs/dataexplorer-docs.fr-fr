@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 9d652ea8551a21d542ad6afef575616e7387183f
-ms.sourcegitcommit: 4eb64e72861d07cedb879e7b61a59eced74517ec
+ms.openlocfilehash: fc36f31bcdb90ed270a4ad21874d121d91fe429e
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/29/2020
-ms.locfileid: "85517884"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342686"
 ---
 # <a name="entity-references"></a>Références d’entité
 
@@ -39,5 +39,5 @@ Ces noms sont réservés au système.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [types d’entités de schéma](https://docs.microsoft.com/azure/data-explorer/kusto/query/schema-entities/)
-* [noms d’entités de schéma](https://docs.microsoft.com/azure/data-explorer/kusto/query/schema-entities/entity-names)
+* [types d’entités de schéma](./index.md)
+* [noms d’entités de schéma](./entity-names.md)

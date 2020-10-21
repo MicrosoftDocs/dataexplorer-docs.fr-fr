@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 79816960b75735e226395f70286ea9d81829a173
-ms.sourcegitcommit: 08c54dabc1efe3d4e2d2581c4b668a6b73daf855
+ms.openlocfilehash: d6473fd0efd588bfc7a6990dd2f57d70960b40e2
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/07/2020
-ms.locfileid: "89510693"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342754"
 ---
 # <a name="create-and-alter-external-sql-tables"></a>Créer et modifier des tables SQL externes
 
@@ -44,7 +44,7 @@ Crée ou modifie une table SQL externe dans la base de données dans laquelle la
 |---------------------|-----------------|---------------------------------------------------------------------------------------------------|
 | `folder`            | `string`        | Dossier de la table.                  |
 | `docString`         | `string`        | Chaîne qui documente la table.      |
-| `firetriggers`      | `true`/`false`  | Si `true` la valeur est, indique au système cible d’activer les déclencheurs d’insertion définis sur la table SQL. Par défaut, il s’agit de `false`. (Pour plus d’informations, consultez [Bulk Insert](https://msdn.microsoft.com/library/ms188365.aspx) et [System. Data. SqlClient. SqlBulkCopy](https://msdn.microsoft.com/library/system.data.sqlclient.sqlbulkcopy(v=vs.110).aspx)) |
+| `firetriggers`      | `true`/`false`  | Si `true` la valeur est, indique au système cible d’activer les déclencheurs d’insertion définis sur la table SQL. Par défaut, il s’agit de `false`. (Pour plus d’informations, consultez [Bulk Insert](/sql/t-sql/statements/bulk-insert-transact-sql) et [System. Data. SqlClient. SqlBulkCopy](/dotnet/api/system.data.sqlclient.sqlbulkcopy)) |
 | `createifnotexists` | `true`/ `false` | Si `true` la valeur est, la table SQL cible est créée si elle n’existe pas déjà ; la `primarykey` propriété doit être fournie dans ce cas pour indiquer la colonne de résultats qui est la clé primaire. Par défaut, il s’agit de `false`.  |
 | `primarykey`        | `string`        | Si `createifnotexists` est `true` , le nom de colonne résultant sera utilisé comme clé primaire de la table SQL s’il est créé par cette commande.                  |
 
@@ -98,5 +98,5 @@ Utilisez la table externe pour interroger la table SQL lorsque celle-ci requiert
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Commandes de contrôle générales de table externe](externaltables.md)
+* [Commandes de contrôle générales de table externe](./external-table-commands.md)
 * [Créer et modifier des tables externes dans Stockage Azure ou Azure Data Lake](external-tables-azurestorage-azuredatalake.md)

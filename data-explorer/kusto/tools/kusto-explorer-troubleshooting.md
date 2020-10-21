@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/13/2020
-ms.openlocfilehash: 9a697cfd37590f0368d5a8f0bacf91d02e1c8725
-ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
+ms.openlocfilehash: 365ce1e4c8e5dd2157a7975095b9e30dfd1e3722
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/13/2020
-ms.locfileid: "92003164"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342703"
 ---
 # <a name="troubleshooting"></a>Dépannage
 
@@ -148,7 +148,7 @@ L’installation de l’application échoue avec l’une des erreurs suivantes 
 Ce symptôme peut être dû au fait qu’une autre application remplace le comportement par défaut de l’invite d’approbation ClickOnce. 
 1. Affichez vos paramètres de configuration par défaut.
 1. Comparez vos paramètres de configuration aux valeurs réelles sur votre ordinateur.
-1. Réinitialisez vos paramètres de configuration si nécessaire, comme expliqué [dans cet article de procédure](https://docs.microsoft.com/visualstudio/deployment/how-to-configure-the-clickonce-trust-prompt-behavior).
+1. Réinitialisez vos paramètres de configuration si nécessaire, comme expliqué [dans cet article de procédure](/visualstudio/deployment/how-to-configure-the-clickonce-trust-prompt-behavior).
 
 ### <a name="cleanup-application-data"></a>Nettoyer les données d’application
 
@@ -183,4 +183,4 @@ Il est également possible de revenir à une version spécifique de Kusto. Explo
 
 * En savoir plus sur l' [interface utilisateur de Kusto. Explorer](kusto-explorer.md#overview-of-the-user-interface)
 * En savoir plus sur [l’exécution de Kusto. Explorer à partir de la ligne de commande](kusto-explorer-using.md#kustoexplorer-command-line-arguments)
-* En savoir plus sur le [langage de requête Kusto (KQL)](https://docs.microsoft.com/azure/kusto/query/)
+* En savoir plus sur le [langage de requête Kusto (KQL)](../query/index.md)

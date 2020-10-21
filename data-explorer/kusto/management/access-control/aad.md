@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 09/13/2019
-ms.openlocfilehash: 85d01c9192c71b3274907e5f93e4155b4c98accf
-ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
+ms.openlocfilehash: a511f96df09fa9ce4089a0af77ebbe09269c9b44
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83382214"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343434"
 ---
 # <a name="azure-active-directory-aad-authentication"></a>Authentification Azure Active Directory (AAD)
 
@@ -79,5 +79,5 @@ Le jeton retourné par ADAL à la bibliothèque cliente Kusto dispose de l’app
 
 Les articles suivants expliquent comment s’authentifier par programmation auprès de Kusto avec AAD :
 
-* [Comment approvisionner une application AAD](./how-to-provision-aad-app.md)
+* [Comment approvisionner une application AAD](../../../provision-azure-ad-app.md)
 * [Comment effectuer une authentification AAD](./how-to-authenticate-with-aad.md)

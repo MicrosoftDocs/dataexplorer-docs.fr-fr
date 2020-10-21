@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/27/2020
-ms.openlocfilehash: 2c6efc03ea252eba5ed63e99d9214e59113856e9
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: cf9f9e5f6a9c5afca58e2637ed4e639882e3749d
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373580"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92337412"
 ---
 # <a name="querymanagement-http-request"></a>Requête HTTP d’interrogation ou de gestion
 
@@ -42,12 +42,12 @@ Le tableau suivant contient les en-têtes courants utilisés pour les opération
 |En-tête standard  |Description                                                                                 |Obligatoire ou facultatif |
 |-----------------|--------------------------------------------------------------------------------------------|------------------|
 |`Accept`         |Paramètre à définir sur `application/json`                                                                   |Obligatoire          |
-|`Accept-Encoding`|Les encodages pris en charge sont `gzip` et`deflate`                                                |Facultatif          |
+|`Accept-Encoding`|Les encodages pris en charge sont `gzip` et `deflate`                                                |Facultatif          |
 |`Authorization`  |Voir [authentification](./authentication.md)                                                   |Obligatoire          |
-|`Connection`     |Nous vous recommandons d’activer`Keep-Alive`                                                   |Facultatif          |
+|`Connection`     |Nous vous recommandons d’activer `Keep-Alive`                                                   |Facultatif          |
 |`Content-Length` |Nous vous recommandons de spécifier la longueur du corps de la demande quand elle est connue.                            |Facultatif          |
-|`Content-Type`   |Affecter à la valeur `application/json` avec`charset=utf-8`                                              |Obligatoire          |
-|`Expect`         |Peut avoir la valeur`100-Continue`                                                                |Facultatif          |
+|`Content-Type`   |Affecter à la valeur `application/json` avec `charset=utf-8`                                              |Obligatoire          |
+|`Expect`         |Peut avoir la valeur `100-Continue`                                                                |Facultatif          |
 |`Host`           |Défini sur le nom de domaine complet auquel la demande a été envoyée (par exemple, `help.kusto.windows.net` ) |Obligatoire|
 
 Le tableau suivant contient les en-têtes personnalisés communs utilisés pour les opérations de requête et de gestion. Sauf indication contraire, ces en-têtes sont utilisés à des fins de télémétrie uniquement et n’ont aucun impact sur les fonctionnalités.
@@ -77,7 +77,7 @@ Les paramètres suivants peuvent être passés dans la demande. Ils sont encodé
 
 Quand la requête est utilisée, les paramètres de requête de la demande spécifient les paramètres de la requête.
 
-## <a name="body"></a>body
+## <a name="body"></a>Corps
 
 Lorsque la publication est utilisée, le corps de la requête est un document JSON unique encodé au format UTF-8, avec les valeurs des paramètres de la demande.
 
@@ -116,7 +116,7 @@ Cet exemple montre comment créer une requête qui envoie la requête ci-dessus 
 
 1. Obtenez un jeton pour l’authentification.
 
-    Remplacez `AAD_TENANT_NAME_OR_ID` , `AAD_APPLICATION_ID` et `AAD_APPLICATION_KEY` par les valeurs pertinentes, après avoir configuré [l’authentification de l’application AAD](../../management/access-control/how-to-provision-aad-app.md)
+    Remplacez `AAD_TENANT_NAME_OR_ID` , `AAD_APPLICATION_ID` et `AAD_APPLICATION_KEY` par les valeurs pertinentes, après avoir configuré [l’authentification de l’application AAD](../../../provision-azure-ad-app.md)
 
     ```
     curl "https://login.microsoftonline.com/AAD_TENANT_NAME_OR_ID/oauth2/token" \

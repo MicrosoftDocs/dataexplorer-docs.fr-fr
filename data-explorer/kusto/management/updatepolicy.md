@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/04/2020
-ms.openlocfilehash: 9b2d35c796cfd1f41dc2fd8e9385a4c446000b86
-ms.sourcegitcommit: ed902a5a781e24e081cd85910ed15cd468a0db1e
+ms.openlocfilehash: 28e88b71b5d7a2f8729e2f9eef416ee5804a2880
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/11/2020
-ms.locfileid: "88072444"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92337633"
 ---
 # <a name="update-policy-overview"></a>Présentation de la stratégie de mise à jour
 
@@ -78,9 +78,9 @@ Les stratégies de mise à jour prennent effet lorsque les données sont ingér�
 * [. ingestion (pull)](../management/data-ingestion/ingest-from-storage.md)
 * [. ingestion (Inline)](../management/data-ingestion/ingest-inline.md)
 * [. Set |. Append |. set-or-Append |. set-or-Replace](../management/data-ingestion/ingest-from-query.md)
-  * Quand la stratégie de mise à jour est appelée dans le cadre d’une `.set-or-replace` commande, le comportement par défaut est que les données de la ou des tables dérivées sont remplacées de la même façon que dans la table source.
-* [.move extents](../management/extents-commands.md#move-extents)
-* [.replace extents](../management/extents-commands.md#replace-extents)
+  * Quand la stratégie de mise à jour est appelée dans le cadre d’une  `.set-or-replace` commande, le comportement par défaut est que les données de la ou des tables dérivées sont remplacées de la même façon que dans la table source.
+* [.move extents](./move-extents.md)
+* [.replace extents](./replace-extents.md)
   * La `PropagateIngestionProperties` commande prend effet uniquement dans les opérations d’ingestion. Quand la stratégie de mise à jour est déclenchée dans le cadre d’une `.move extents` `.replace extents` commande ou, cette option n’a aucun effet.
 
 ## <a name="regular-ingestion-using-update-policy"></a>Ingestion normale à l’aide d’une stratégie de mise à jour

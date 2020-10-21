@@ -8,24 +8,24 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 663d80f470e17a277fffa89569aeb977c8d713df
-ms.sourcegitcommit: c7b16409995087a7ad7a92817516455455ccd2c5
+ms.openlocfilehash: ddce8e9a61fac4c089574f1e9f30d310304a3618
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/12/2020
-ms.locfileid: "88148164"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342822"
 ---
 # <a name="export-data-to-an-external-table"></a>Exporter des données vers une table externe
 
-Vous pouvez exporter des données en définissant une [table externe](../externaltables.md) et en y exportant des données.
+Vous pouvez exporter des données en définissant une [table externe](../external-table-commands.md) et en y exportant des données.
 Les propriétés de la table sont spécifiées lors [de la création de la table externe](../external-tables-azurestorage-azuredatalake.md#create-or-alter-external-table). Vous n’avez pas besoin d’incorporer les propriétés de la table dans la commande d’exportation. La commande Export fait référence à la table externe par son nom. L’exportation de données nécessite une [autorisation d’administrateur de base de données](../access-control/role-based-authorization.md).
 
-## <a name="syntax"></a>Syntaxe
+## <a name="syntax"></a>Syntax
 
-`.export`[ `async` ] `to` `table` *ExternalTableName* <br>
+`.export` [ `async` ] `to` `table` *ExternalTableName* <br>
 [ `with` `(` *PropertyName* `=` *PropertyValue* `,` ... `)` ] <| *Requête*
 
-## <a name="output"></a>Output
+## <a name="output"></a>Sortie
 
 |Paramètre de sortie |Type |Description
 |---|---|---
@@ -63,7 +63,7 @@ ExternalBlob est une table externe non partitionnée.
 .export to table ExternalBlob <| T
 ```
 
-|ExternalTableName|Path|NumRecords|
+|ExternalTableName|Chemin d’accès|NumRecords|
 |---|---|---|
 |ExternalBlob|http://storage1.blob.core.windows.net/externaltable1cont1/1_58017c550b384c0db0fea61a8661333e.csv|10|
 
@@ -87,7 +87,7 @@ dataformat=csv
 .export to table PartitionedExternalBlob <| T
 ```
 
-|ExternalTableName|Path|NumRecords|
+|ExternalTableName|Chemin d’accès|NumRecords|
 |---|---|---|
 |ExternalBlob|http://storageaccount.blob.core.windows.net/container1/CustomerName=customer1/2019/01/01/fa36f35c-c064-414d-b8e2-e75cf157ec35_1_58017c550b384c0db0fea61a8661333e.csv|10|
 |ExternalBlob|http://storageaccount.blob.core.windows.net/container1/CustomerName=customer2/2019/01/01/fa36f35c-c064-414d-b8e2-e75cf157ec35_2_b785beec2c004d93b7cd531208424dc9.csv|10|

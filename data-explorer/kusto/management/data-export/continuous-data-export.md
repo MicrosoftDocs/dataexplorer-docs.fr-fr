@@ -8,16 +8,16 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/03/2020
-ms.openlocfilehash: fab1f41fc4b72b497900276d33beb1b89820c02c
-ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
+ms.openlocfilehash: 7f9465df4847a24a4877c8b1cb637ba1d7542db3
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/13/2020
-ms.locfileid: "88201634"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342533"
 ---
 # <a name="continuous-data-export-overview"></a>Vue d’ensemble de l’exportation continue de données
 
-Cet article décrit l’exportation continue de données de Kusto vers une [table externe](../externaltables.md) avec une requête exécutée périodiquement. Les résultats sont stockés dans la table externe, qui définit la destination, comme le stockage d’objets BLOB Azure, et le schéma des données exportées. Ce processus garantit que tous les enregistrements sont exportés « exactement une fois », à quelques [exceptions près](#exactly-once-export). 
+Cet article décrit l’exportation continue de données de Kusto vers une [table externe](../external-table-commands.md) avec une requête exécutée périodiquement. Les résultats sont stockés dans la table externe, qui définit la destination, comme le stockage d’objets BLOB Azure, et le schéma des données exportées. Ce processus garantit que tous les enregistrements sont exportés « exactement une fois », à quelques [exceptions près](#exactly-once-export). 
 
 Pour activer l’exportation continue des données, [créez une table externe](../external-tables-azurestorage-azuredatalake.md#create-or-alter-external-table) , puis [créez une définition d’exportation continue](create-alter-continuous.md) pointant vers la table externe. 
 
@@ -95,4 +95,3 @@ Suivi de :
 * L’exportation continue ne prend pas en charge les appels entre plusieurs clusters et bases de données croisées.
 * L’exportation continue n’est pas conçue pour diffuser en continu des données à partir d’Azure Explorateur de données. L’exportation continue s’exécute en mode distribué, où tous les nœuds sont exportés simultanément. Si la plage de données interrogée par chaque exécution est faible, la sortie de l’exportation continue serait un grand nombre de petits artefacts. Le nombre d’artefacts dépend du nombre de nœuds dans le cluster.
 * Si les artefacts utilisés par l’exportation continue sont destinés à déclencher des notifications Event Grid, consultez la [section problèmes connus dans la documentation de Event Grid](../../../ingest-data-event-grid-overview.md#known-event-grid-issues).
- 

@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: d0f815cd523e0e53111e791d8faaaf6c37c7bb7b
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: ee36823bb3f730a12f7ad2d1febe91439d4a2aad
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92252834"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343281"
 ---
 # <a name="query-limits"></a>Limites de requête
 
@@ -27,7 +27,7 @@ L' **accès concurrentiel aux requêtes** est une limite qu’un cluster impose 
 * La valeur par défaut de la limite de concurrence des requêtes dépend du cluster SKU sur lequel elle s’exécute et est calculé comme suit : `Cores-Per-Node x 10` .
   * Par exemple, pour un cluster qui est configuré sur la référence SKU D14v2, où chaque ordinateur a 16 vCores, la limite de concurrence des requêtes par défaut est `16 cores x10 = 160` .
 * La valeur par défaut peut être modifiée en configurant la [stratégie de limitation des requêtes](../management/query-throttling-policy.md). 
-  * Le nombre réel de requêtes pouvant s’exécuter simultanément sur un cluster dépend de différents facteurs. Les facteurs les plus dominants sont la référence SKU du cluster, les ressources disponibles du cluster et les modèles de requête. La stratégie de limitation des requêtes peut être configurée en fonction des tests de charge effectués sur des modèles de requête de type production.
+  * Le nombre réel de requêtes pouvant s’exécuter simultanément sur un cluster dépend de différents facteurs. Les facteurs les plus dominants sont la référence SKU de cluster, les ressources disponibles du cluster et les modèles de requête. La stratégie de limitation des requêtes peut être configurée en fonction des tests de charge effectués sur des modèles de requête de type production.
 
 ## <a name="limit-on-result-set-size-result-truncation"></a>Limite de la taille du jeu de résultats (troncation des résultats)
 
@@ -154,7 +154,7 @@ Le délai d’expiration des requêtes en cours d’exécution (requêtes et com
 
 Par défaut, le délai d’attente est défini sur quatre minutes pour les requêtes et sur 10 minutes pour les commandes de contrôle. Cette valeur peut être augmentée si nécessaire (limité à une heure).
 
-* Si vous interrogez à l’aide de Kusto. Explorer, utilisez **Outils** &gt; **options** *  &gt; **connexions** &gt; **délai du serveur de requêtes**.
+* Si vous interrogez à l’aide de Kusto. Explorer, utilisez options des **Outils** &gt; **Options**_ &gt; _*connexions* *  &gt; **requête du serveur**.
 * Par programmation, définissez la `servertimeout` propriété demande du client, une valeur de type `System.TimeSpan` , jusqu’à une heure.
 
 **Remarques sur les délais d’expiration**

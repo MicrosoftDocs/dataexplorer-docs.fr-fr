@@ -7,18 +7,18 @@ ms.reviewer: docohe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 04/14/2020
-ms.openlocfilehash: ae79fd334b3ac2a59a99c5ad8d63fccf0ed6784c
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 4c918c43f748f97b3bb3f6d0342c660775c1e5c8
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88875223"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342652"
 ---
 # <a name="microsoft-logic-app-and-azure-data-explorer"></a>Application logique Microsoft et Explorateur de données Azure
 
-Le connecteur Azure Kusto Logic App vous permet d’exécuter automatiquement des requêtes et des commandes Kusto dans le cadre d’une tâche planifiée ou déclenchée, à l’aide du connecteur [Microsoft Logic App](https://docs.microsoft.com/azure/logic-apps/logic-apps-what-are-logic-apps) .
+Le connecteur Azure Kusto Logic App vous permet d’exécuter automatiquement des requêtes et des commandes Kusto dans le cadre d’une tâche planifiée ou déclenchée, à l’aide du connecteur [Microsoft Logic App](/azure/logic-apps/logic-apps-what-are-logic-apps) .
 
-L’application logique et le Flow sont créés sur le même connecteur. Par conséquent, les [limitations](flow.md#limitations), les [actions](flow.md#azure-kusto-flow-actions), les exemples [d’authentification](flow.md#authentication) et d' [utilisation](flow.md#azure-kusto-flow-actions) qui s’appliquent à Flow, s’appliquent également à Logic Apps, comme indiqué dans la [page de documentation Flow](flow.md).
+L’application logique et l’automate sont basés sur le même connecteur. Par conséquent, les [limitations](../../flow.md#limitations), les [actions](../../flow.md#flow-actions), les exemples [d’authentification](../../flow.md#authentication) et d' [utilisation](../../flow-usage.md) qui s’appliquent à power automate s’appliquent également à Logic Apps, comme indiqué dans la [page de documentation Power automate](../../flow.md).
 
 ## <a name="how-to-create-a-logic-app-with-azure-data-explorer"></a>Comment créer une application logique avec Azure Explorateur de données
 
@@ -36,7 +36,7 @@ L’application logique et le Flow sont créés sur le même connecteur. Par con
     * Resource group
     * Nom de l’application logique
     * Région ou environnement de service d’intégration
-    * Emplacement
+    * Location
     * Analyse des journaux activée ou désactivée
 1. Sélectionnez **Revoir + créer**.
 
@@ -56,5 +56,5 @@ L’application logique et le Flow sont créés sur le même connecteur. Par con
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* Pour en savoir plus sur la configuration d’une action de récurrence, consultez la [page de documentation Flow](flow.md)
-* Jetez un coup d’œil à certains [exemples d’utilisation](flow.md#azure-kusto-flow-actions) pour des idées sur la configuration de vos actions d’application logique
+* Pour en savoir plus sur la configuration d’une action de récurrence, consultez la [page de documentation Power automate](../../flow.md)
+* Jetez un coup d’œil à certains [exemples d’utilisation](../../flow-usage.md) pour des idées sur la configuration de vos actions d’application logique

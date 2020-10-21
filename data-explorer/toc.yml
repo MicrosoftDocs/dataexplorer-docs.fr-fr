@@ -345,16 +345,14 @@
           items:
             - name: Analyser des données dans Jupyter Notebook et Kqlmagic
               href: kqlmagic.md
-            - name: Analyser des données dans Azure Notebooks
-              href: azure-notebooks.md
             - name: Azure Data Studio
               items:
                 - name: Vue d’ensemble de l’extension Kusto
                   displayName: Azure Data Studio
-                  href: 'https://docs.microsoft.com/sql/azure-data-studio/extensions/kusto-extension?toc=/azure/data-explorer/toc.json&bc=/azure/data-explorer/breadcrumb/toc.json'
+                  href: 'https://docs.microsoft.com/sql/azure-data-studio/extensions/kusto-extension?context=/azure/data-explorer/context/context'
                 - name: Utiliser l’extension Kusto
                   displayName: Azure Data Studio
-                  href: 'https://docs.microsoft.com/sql/azure-data-studio/notebooks/notebooks-kusto-kernel?toc=/azure/data-explorer/toc.json&bc=/azure/data-explorer/breadcrumb/toc.json'
+                  href: 'https://docs.microsoft.com/sql/azure-data-studio/notebooks/notebooks-kusto-kernel?context=/azure/data-explorer/context/context'
                 - name: Utiliser Kqlmagic
                   displayName: Azure Data Studio
                   href: 'https://docs.microsoft.com/sql/azure-data-studio/notebooks/notebooks-kqlmagic?context=/azure/data-explorer/context/context'

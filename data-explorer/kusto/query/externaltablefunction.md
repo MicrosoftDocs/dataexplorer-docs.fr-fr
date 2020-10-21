@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/21/2019
-ms.openlocfilehash: 5ec069979d41a7c750c140ad84ef0db4ba5638a4
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: b966dbd43d1f40842240eaebf7d4008450e1f746
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92245056"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343196"
 ---
 # <a name="external_table"></a>external_table()
 
@@ -27,7 +27,7 @@ external_table('StormEvent')
 > * La `external_table` fonction a des restrictions similaires à celles de la fonction [table](tablefunction.md) .
 > * Les [limites de requête](../concepts/querylimits.md) standard s’appliquent également aux requêtes de table externe.
 
-## <a name="syntax"></a>Syntaxe
+## <a name="syntax"></a>Syntax
 
 `external_table``(` *TableName* [ `,` *MappingName* ]`)`
 
@@ -40,6 +40,6 @@ external_table('StormEvent')
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Commandes de contrôle générales de table externe](../management/externaltables.md)
+* [Commandes de contrôle générales de table externe](../management/external-table-commands.md)
 * [Créer et modifier des tables externes dans Stockage Azure ou Azure Data Lake](../management/external-tables-azurestorage-azuredatalake.md)
 * [Créer et modifier des tables SQL externes](../management/external-sql-tables.md)

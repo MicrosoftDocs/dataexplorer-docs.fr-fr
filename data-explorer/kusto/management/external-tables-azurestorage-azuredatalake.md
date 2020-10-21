@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: c10e6502c4e18a5c30d971c4814c2270a0b27ff1
-ms.sourcegitcommit: 830837607f344f1ce1f146f946a41e45bfebcb22
+ms.openlocfilehash: 0532219b8efc1cab7508d1838882b6fa48f5048f
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/07/2020
-ms.locfileid: "91806680"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343264"
 ---
 # <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Créer et modifier des tables externes dans Stockage Azure ou Azure Data Lake
 
@@ -321,7 +321,7 @@ Crée un nouveau mappage. Pour plus d’informations, consultez [mappages de don
 
 **Exemple de sortie**
 
-| Nom     | Kind | Mappage                                                           |
+| Name     | Type | Mappage                                                           |
 |----------|------|-------------------------------------------------------------------|
 | mapping1 | JSON | [{"ColumnName" : "RowNumber", "Properties" : {"path" : "$. RowNumber"}}, {"ColumnName" : "rowguid", "Properties" : {"path" : "$. rowguid"}}] |
 
@@ -339,7 +339,7 @@ Modifie un mappage existant.
 
 **Exemple de sortie**
 
-| Nom     | Kind | Mappage                                                                |
+| Name     | Type | Mappage                                                                |
 |----------|------|------------------------------------------------------------------------|
 | mapping1 | JSON | [{"ColumnName" : "RowNumber", "Properties" : {"path" : "$. RowNumber"}}, {"ColumnName" : "rowguid", "Properties" : {"path" : "$. rowguid"}}] |
 
@@ -361,7 +361,7 @@ Affichez les mappages (tout ou partie spécifiés par nom).
 
 **Exemple de sortie**
 
-| Nom     | Kind | Mappage                                                                         |
+| Name     | Type | Mappage                                                                         |
 |----------|------|---------------------------------------------------------------------------------|
 | mapping1 | JSON | [{"ColumnName" : "RowNumber", "Properties" : {"path" : "$. RowNumber"}}, {"ColumnName" : "rowguid", "Properties" : {"path" : "$. rowguid"}}] |
 
@@ -378,5 +378,5 @@ Supprime le mappage de la base de données.
 ```
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Commandes de contrôle générales de table externe](externaltables.md)
+* [Commandes de contrôle générales de table externe](./external-table-commands.md)
 * [Créer et modifier des tables SQL externes](external-sql-tables.md)

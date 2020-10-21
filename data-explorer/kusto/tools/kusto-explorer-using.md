@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/19/2020
-ms.openlocfilehash: 8688c7d6f2a5d68e0e1ae4436e099b011fd5faa0
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: 17623f739c3bc3a8573d208434753b879931ac02
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803231"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342771"
 ---
 # <a name="using-kustoexplorer"></a>Utilisation de Kusto.Explorer
 
@@ -32,7 +32,7 @@ Le mode de recherche + + vous permet de rechercher un terme à l’aide de la sy
 
 1. Sélectionnez une cellule dans la grille et sélectionnez **afficher les détails** pour afficher les entrées correspondantes dans le volet des résultats.
 
-    :::image type="content" source="images/kusto-explorer-using/search-plus-plus-results.png" alt-text="Résultats de la recherche et de l’Explorateur Kusto":::
+    :::image type="content" source="images/kusto-explorer-using/search-plus-plus-results.png" alt-text="Rechercher + + Kusto Explorer":::
 
 ## <a name="query-mode"></a>mode Requête
 
@@ -71,9 +71,9 @@ StormEvents
 | limit 10
 ```
 
-:::image type="content" source="images/kusto-explorer-using/basic-query.png" alt-text="Requête de base Kusto Explorer":::
+:::image type="content" source="images/kusto-explorer-using/basic-query.png" alt-text="Rechercher + + Kusto Explorer":::
 
-En savoir plus sur le [langage de requête Kusto](https://docs.microsoft.com/azure/kusto/query/).
+En savoir plus sur le [langage de requête Kusto](../query/index.md).
 
 > [!NOTE]
 > Des lignes vides dans l’expression de requête peuvent avoir une incidence sur la partie de la requête qui est exécutée.
@@ -89,28 +89,28 @@ En savoir plus sur le [langage de requête Kusto](https://docs.microsoft.com/azu
 >
 > * La requête côté client parametrization, décrite ci-dessous, est une fonctionnalité de l’application Kusto. Explorer uniquement. Cela équivaut à utiliser des opérations de remplacement de chaîne sur les requêtes avant de les envoyer à exécuter par le service. La syntaxe décrite ci-dessous ne fait pas partie du langage de requête lui-même et ne peut pas être utilisée lors de l’envoi de requêtes au service par d’autres moyens que Kusto. Explorer.
 
-Si vous utilisez la même valeur dans plusieurs requêtes ou dans plusieurs onglets, il est très difficile de modifier cette valeur à chaque fois qu’elle est utilisée. C’est pourquoi Kusto. Explorer prend en charge les paramètres de requête. Les paramètres de requête sont partagés entre les onglets afin qu’ils puissent être facilement réutilisés. Les paramètres sont dénotés par des {} crochets. Par exemple : `{parameter1}`
+Si vous utilisez la même valeur dans plusieurs requêtes ou dans plusieurs onglets, il est très difficile de modifier cette valeur à chaque fois qu’elle est utilisée. C’est pourquoi Kusto. Explorer prend en charge les paramètres de requête. Les paramètres de requête sont partagés entre les onglets afin qu’ils puissent être facilement réutilisés. Les paramètres sont dénotés par des {} crochets. Par exemple : `{parameter1}`
 
 L’éditeur de script met en surbrillance les paramètres de requête :
 
-:::image type="content" source="images/kusto-explorer-using/parametrized-query-1.png" alt-text="Paramétrée requête 1":::
+:::image type="content" source="images/kusto-explorer-using/parametrized-query-1.png" alt-text="Rechercher + + Kusto Explorer":::
 
 Vous pouvez facilement définir et modifier des paramètres de requête existants :
 
 
-:::image type="content" source="images/kusto-explorer-using/parametrized-query-2.png" alt-text="Modifier la requête paramétrée 2":::
+:::image type="content" source="images/kusto-explorer-using/parametrized-query-2.png" alt-text="Rechercher + + Kusto Explorer":::
 
 
-:::image type="content" source="images/kusto-explorer-using/parametrized-query-3.png" alt-text="Modifier la requête paramétrée 3":::
+:::image type="content" source="images/kusto-explorer-using/parametrized-query-3.png" alt-text="Rechercher + + Kusto Explorer":::
 
 L’éditeur de script dispose également d’IntelliSense pour les paramètres de requête qui sont déjà définis :
 
-:::image type="content" source="images/kusto-explorer-using/parametrized-query-4.png" alt-text="Requête Paramaterized IntelliSense":::
+:::image type="content" source="images/kusto-explorer-using/parametrized-query-4.png" alt-text="Rechercher + + Kusto Explorer":::
 
 Vous pouvez avoir plusieurs jeux de paramètres (répertoriés dans la zone de liste déroulante **Parameters Set** ).
 Sélectionnez **Ajouter nouveau** ou **supprimer le en cours** pour manipuler la liste des jeux de paramètres.
 
-:::image type="content" source="images/kusto-explorer-using/parametrized-query-5.png" alt-text="Liste des jeux de paramètres":::
+:::image type="content" source="images/kusto-explorer-using/parametrized-query-5.png" alt-text="Rechercher + + Kusto Explorer":::
 
 ## <a name="share-queries-and-results"></a>Partager des requêtes et des résultats
 
@@ -123,7 +123,7 @@ Kusto. Explorer offre un moyen pratique de partager des requêtes et des résult
 1. [Exécutez votre requête](#basic-queries) dans Kusto. Explorer.
 1. Dans l’onglet dossier de démarrage, dans la section partager, sélectionnez **Exporter vers le presse-papiers** (ou appuyez sur Ctrl + Maj + C).
 
-    :::image type="content" source="images/kusto-explorer-using/menu-export.png" alt-text="Exporter dans le presse-papiers":::
+    :::image type="content" source="images/kusto-explorer-using/menu-export.png" alt-text="Rechercher + + Kusto Explorer":::
 
     Kusto. Explorer colle les éléments suivants dans le presse-papiers :
      * Votre requête
@@ -133,7 +133,7 @@ Kusto. Explorer offre un moyen pratique de partager des requêtes et des résult
 
 1. Collez le contenu du presse-papiers dans un nouveau message électronique.
 
-    :::image type="content" source="images/kusto-explorer-using/share-results-2.png" alt-text="Partager les résultats par courrier électronique":::
+    :::image type="content" source="images/kusto-explorer-using/share-results-2.png" alt-text="Rechercher + + Kusto Explorer":::
 
 ### <a name="deep-linking-queries"></a>Requêtes de liaison profonde
 
@@ -148,7 +148,7 @@ Le moyen le plus simple de créer un lien profond consiste à créer votre requ�
         
 En cas de copie dans un message électronique, le lien profond est affiché dans une petite police. Par exemple :
 
-https://help.kusto.windows.net:443/Samples[[Cliquez pour exécuter la requête](https://help.kusto.windows.net/Samples?web=0&query=H4sIAAAAAAAEAAsuyS%2fKdS1LzSspVuDlqlEoLs3NTSzKrEpVSM4vzSvR0FRIqlRIyszTCC5JLCoJycxN1VEwT9EEKS1KzUtJLVIoAYolZwAlFQCB3oo%2bTAAAAA%3d%3d)] 
+https://help.kusto.windows.net:443/Samples [[Cliquez pour exécuter la requête](https://help.kusto.windows.net/Samples?web=0&query=H4sIAAAAAAAEAAsuyS%2fKdS1LzSspVuDlqlEoLs3NTSzKrEpVSM4vzSvR0FRIqlRIyszTCC5JLCoJycxN1VEwT9EEKS1KzUtJLVIoAYolZwAlFQCB3oo%2bTAAAAA%3d%3d)] 
 
 Le premier lien ouvre Kusto. Explorer et définit le contexte du cluster et de la base de données de manière appropriée.
 Le deuxième lien ( `Click to run query` ) est le lien profond. Si vous déplacez le lien vers un message électronique et appuyez sur CTRL + K, vous pouvez voir l’URL réelle :
@@ -165,7 +165,7 @@ Vous pouvez utiliser des requêtes paramétrée avec des liens approfondis.
     `https://<your_cluster>.kusto.windows.net/MyDatabase?
 web=0&query=KustoLogs+%7c+where+Timestamp+>+ago({Period})+%7c+count&Period=1h`
 
-    Remplacez &lt; your_cluster &gt; par le nom de votre cluster Azure Explorateur de données.
+    Remplacez &lt;your_cluster&gt; par le nom de votre cluster Azure Data Explorer.
 
 #### <a name="limitations"></a>Limites
 
@@ -173,7 +173,7 @@ Les requêtes sont limitées à environ 2000 caractères en raison des limitatio
 
 Pour réduire les risques d’atteinte à la limite de caractères, consultez [obtenir des liens plus courts](#getting-shorter-links).
 
-Le format de l’URI est le suivant :`https://<ClusterCname>.kusto.windows.net/<DatabaseName>web=0?query=<QueryToExecute>`
+Le format de l’URI est le suivant : `https://<ClusterCname>.kusto.windows.net/<DatabaseName>web=0?query=<QueryToExecute>`
 
 Par exemple : [https://help.kusto.windows.net/Samples?web=0query=StormEvents+%7c+limit+10](https://help.kusto.windows.net/Samples?web=0query=StormEvents+%7c+limit+10)
  
@@ -233,29 +233,29 @@ Kusto.Explorer.exe c:\temp\script.kql uri=https://help.kusto.windows.net/Samples
 
 Cliquez avec le bouton droit sur l’entité cible dans le [panneau connexions](kusto-explorer.md#connections-tab), puis sélectionnez **gérer les principaux autorisés du cluster**. (Vous pouvez également sélectionner cette option dans le menu gestion.)
 
-:::image type="content" source="images/kusto-explorer-using/right-click-manage-authorized-principals.png" alt-text="Gérer les principaux autorisés":::
+:::image type="content" source="images/kusto-explorer-using/right-click-manage-authorized-principals.png" alt-text="Rechercher + + Kusto Explorer":::
 
-:::image type="content" source="images/kusto-explorer-using/manage-authorized-principals-window.png" alt-text="Fenêtre gérer les entités de gestion autorisées":::
+:::image type="content" source="images/kusto-explorer-using/manage-authorized-principals-window.png" alt-text="Rechercher + + Kusto Explorer":::
 
 * Pour ajouter un nouveau principal autorisé, sélectionnez **Ajouter un principal**, fournissez les détails du principal et confirmez l’action.
     
-    :::image type="content" source="images/kusto-explorer-using/add-authorized-principals-window.png" alt-text="Ajouter un principal autorisé":::
+    :::image type="content" source="images/kusto-explorer-using/add-authorized-principals-window.png" alt-text="Rechercher + + Kusto Explorer":::
 
-    :::image type="content" source="images/kusto-explorer-using/confirm-add-authorized-principals.png" alt-text="Confirmer l’ajout du principal autorisé":::
+    :::image type="content" source="images/kusto-explorer-using/confirm-add-authorized-principals.png" alt-text="Rechercher + + Kusto Explorer":::
 
 * Pour supprimer un principal autorisé existant, sélectionnez **Drop principal** et confirmez l’action.
 
-    :::image type="content" source="images/kusto-explorer-using/confirm-drop-authorized-principals.png" alt-text="Confirmer la suppression du principal autorisé":::
+    :::image type="content" source="images/kusto-explorer-using/confirm-drop-authorized-principals.png" alt-text="Rechercher + + Kusto Explorer":::
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Raccourcis clavier de Kusto. Explorer](kusto-explorer-shortcuts.md)
+* [Raccourcis clavier de Kusto.Explorer](kusto-explorer-shortcuts.md)
 * [Options de Kusto.Explorer](kusto-explorer-options.md)
 * [Résolution des problèmes de Kusto.Explorer](kusto-explorer-troubleshooting.md)
 
-En savoir plus sur les outils et utilitaires Kusto. Explorer :
-* [Analyseur de code Kusto. Explorer](kusto-explorer-code-analyzer.md)
-* [Navigation dans le code Kusto. Explorer](kusto-explorer-codenav.md)
-* [Refactorisation du code Kusto. Explorer](kusto-explorer-refactor.md)
-* [Langage de requête Kusto (KQL)](https://docs.microsoft.com/azure/kusto/query/)
+En savoir plus sur les outils et utilitaires Kusto.Explorer :
+* [Analyseur de code Kusto.Explorer](kusto-explorer-code-analyzer.md)
+* [Navigation dans le code Kusto.Explorer](kusto-explorer-codenav.md)
+* [Refactorisation du code Kusto.Explorer](kusto-explorer-refactor.md)
+* [Langage de requête Kusto (KQL)](../query/index.md)

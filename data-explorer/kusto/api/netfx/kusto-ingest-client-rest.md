@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 02/19/2020
-ms.openlocfilehash: 10f59a167de12e4b688f6d9b5f15d3f0f15d8291
-ms.sourcegitcommit: f689547c0f77b1b8bfa50a19a4518cbbc6d408e5
+ms.openlocfilehash: 694b229c36a8bbbe6c15531b555dc8467198cd65
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/08/2020
-ms.locfileid: "89557392"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92337599"
 ---
 # <a name="ingestion-without-kustoingest-library"></a>Ingestion sans la bibliothèque Kusto. deréception
 
@@ -22,7 +22,7 @@ La bibliothèque Kusto. Adout est préférable pour la réception de données da
 Cet article vous montre comment utiliser l’ingestion en *attente* dans Azure Explorateur de données pour les pipelines de niveau production.
 
 > [!NOTE]
-> Le code ci-dessous est écrit en C# et utilise le kit de développement logiciel (SDK) stockage Azure, la bibliothèque d’authentification ADAL et le NewtonSoft.JSsur le package, afin de simplifier l’exemple de code. Si nécessaire, le code correspondant peut être remplacé par des appels d' [API REST Azure Storage](https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api) appropriés, un [package non-.net Adal](https://docs.microsoft.com/azure/active-directory/develop/active-directory-authentication-libraries)et tout package de gestion JSON disponible.
+> Le code ci-dessous est écrit en C# et utilise le kit de développement logiciel (SDK) stockage Azure, la bibliothèque d’authentification ADAL et le NewtonSoft.JSsur le package, afin de simplifier l’exemple de code. Si nécessaire, le code correspondant peut être remplacé par des appels d' [API REST Azure Storage](/rest/api/storageservices/blob-service-rest-api) appropriés, un [package non-.net Adal](/azure/active-directory/develop/active-directory-authentication-libraries)et tout package de gestion JSON disponible.
 
 Cet article traite du mode de réception recommandé. Pour la bibliothèque Kusto. deréception, son entité correspondante est l’interface [IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient) . Ici, le code client interagit avec le service Azure Explorateur de données en publiant des messages de notification d’ingestion dans une file d’attente Azure. Les références aux messages sont obtenues à partir du service Kusto Gestion des données (également connu sous le nom de « réception »). L’interaction avec le service doit être authentifiée à l’aide de Azure Active Directory (Azure AD).
 
@@ -104,7 +104,7 @@ public static void IngestSingleFile(string file, string db, string table, string
 ### <a name="obtain-authentication-evidence-from-azure-ad"></a>Obtenir des preuves d’authentification à partir de Azure AD
 
 Ici, nous utilisons ADAL pour obtenir un jeton Azure AD pour accéder au service Kusto Gestion des données et demander ses files d’attente d’entrée.
-ADAL est disponible sur [les plateformes non-Windows](https://docs.microsoft.com/azure/active-directory/develop/active-directory-authentication-libraries) , si nécessaire.
+ADAL est disponible sur [les plateformes non-Windows](/azure/active-directory/develop/active-directory-authentication-libraries) , si nécessaire.
 
 ```csharp
 // Authenticates the interactive user and retrieves Azure AD Access token for specified resource
@@ -218,7 +218,7 @@ internal static string RetrieveKustoIdentityToken(string ingestClusterBaseUri, s
 
 ### <a name="upload-data-to-the-azure-blob-container"></a>Charger des données dans le conteneur d’objets BLOB Azure
 
-Cette étape consiste à télécharger un fichier local vers un objet BLOB Azure qui sera remis à l’ingestion. Ce code utilise le kit de développement logiciel (SDK) Azure Storage. Si la dépendance n’est pas possible, elle peut être obtenue avec l' [API REST du service BLOB Azure](https://docs.microsoft.com/rest/api/storageservices/fileservices/blob-service-rest-api).
+Cette étape consiste à télécharger un fichier local vers un objet BLOB Azure qui sera remis à l’ingestion. Ce code utilise le kit de développement logiciel (SDK) Azure Storage. Si la dépendance n’est pas possible, elle peut être obtenue avec l' [API REST du service BLOB Azure](/rest/api/storageservices/fileservices/blob-service-rest-api).
 
 ```csharp
 // Uploads a single local file to an Azure Blob container, returns blob URI and original data size
@@ -283,7 +283,7 @@ internal static string PrepareIngestionMessage(string db, string table, string d
 Enfin, publiez le message que vous avez créé dans la file d’attente d’ingestion sélectionnée que vous avez obtenue à partir d’Azure Explorateur de données.
 
 > [!NOTE]
-> Versions du client de stockage .net sous V12, par défaut, encodez le message en base64 pour plus d’informations, consultez la documentation relative au [stockage](https://docs.microsoft.com/dotnet/api/microsoft.azure.storage.queue.cloudqueue.encodemessage?view=azure-dotnet-legacy#Microsoft_WindowsAzure_Storage_Queue_CloudQueue_EncodeMessage). Si vous utilisez des versions du client de stockage .net au-dessus de V12, vous devez encoder correctement le contenu du message.
+> Versions du client de stockage .net sous V12, par défaut, encodez le message en base64 pour plus d’informations, consultez la documentation relative au [stockage](/dotnet/api/microsoft.azure.storage.queue.cloudqueue.encodemessage?view=azure-dotnet-legacy#Microsoft_WindowsAzure_Storage_Queue_CloudQueue_EncodeMessage). Si vous utilisez des versions du client de stockage .net au-dessus de V12, vous devez encoder correctement le contenu du message.
 
 ```csharp
 internal static void PostMessageToQueue(string queueUriWithSas, string message)

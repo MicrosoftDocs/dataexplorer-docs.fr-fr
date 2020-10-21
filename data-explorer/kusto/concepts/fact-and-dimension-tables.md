@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/23/2020
-ms.openlocfilehash: 6db37366ddd3d70aaa89c0d6eebd1ec8affbb76d
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: 608d177d555419f8e2340ddacffd32382118eb7f
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264440"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343298"
 ---
 # <a name="fact-and-dimension-tables"></a>Tables de faits et de dimension
 
@@ -36,7 +36,7 @@ Tables de dimension :
 * Stocker des données de référence, telles que des tables de recherche à partir d’un identificateur d’entité, à ses propriétés
 * Conserver des données de type instantané dans des tables dont le contenu entier change dans une transaction unique
 
-Les tables de dimension ne sont pas ingérées régulièrement avec de nouvelles données. Au lieu de cela, l’ensemble du contenu des données est mis à jour en même temps, à l’aide d’opérations telles que [. set-or-Replace](../management/data-ingestion/ingest-from-query.md), [. Move extents](../management/extents-commands.md#move-extents)ou [. Rename tables](../management/rename-table-command.md).
+Les tables de dimension ne sont pas ingérées régulièrement avec de nouvelles données. Au lieu de cela, l’ensemble du contenu des données est mis à jour en même temps, à l’aide d’opérations telles que [. set-or-Replace](../management/data-ingestion/ingest-from-query.md), [. Move extents](../management/move-extents.md)ou [. Rename tables](../management/rename-table-command.md).
 
 Parfois, les tables de dimension peuvent être dérivées de tables de faits. Ce processus peut être effectué via une [stratégie de mise à jour](../management/updatepolicy.md) sur la table de faits, avec une requête sur la table qui prend le dernier enregistrement pour chaque entité.
 

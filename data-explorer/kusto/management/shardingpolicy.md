@@ -8,19 +8,19 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 74871c2c1a10c199c5eb5415fcdf21590e4cf648
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.openlocfilehash: 70d4013c8524fa88249de14a0a67cc8a85e73b3f
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85967449"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92337565"
 ---
 # <a name="data-sharding-policy"></a>Stratégie de partitionnement de données
 
 La stratégie partitionnement définit si et comment les [étendues (données partitions)](../management/extents-overview.md) du cluster Explorateur de données Azure doivent être sealed.
 
 > [!NOTE]
-> La stratégie s’applique à toutes les opérations qui créent de nouvelles étendues, telles que les commandes pour l’ingestion des [données](../../ingest-data-overview.md#kusto-query-language-ingest-control-commands)et les [commandes. Merge et. Rebuild](../management/extents-commands.md#merge-extents)
+> La stratégie s’applique à toutes les opérations qui créent de nouvelles étendues, telles que les commandes pour l’ingestion des [données](../../ingest-data-overview.md#kusto-query-language-ingest-control-commands)et les [commandes. Merge et. Rebuild](./merge-extents.md)
 
 La stratégie de partitionnement de données contient les propriétés suivantes :
 
@@ -45,4 +45,3 @@ La stratégie de partitionnement de données contient les propriétés suivantes
 Lorsqu’une base de données est créée, elle contient la stratégie de partitionnement de données par défaut. Cette stratégie est héritée par toutes les tables créées dans la base de données (sauf si la stratégie est explicitement remplacée au niveau de la table).
 
 Utilisez les [commandes de contrôle de stratégie partitionnement](../management/sharding-policy.md)) pour gérer les stratégies de partitionnement de données pour les bases de données et les tables.
- 
