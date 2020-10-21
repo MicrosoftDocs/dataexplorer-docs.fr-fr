@@ -4,16 +4,16 @@ description: Cet article décrit schema_merge plug-in dans Azure Explorateur de 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/16/2020
-ms.openlocfilehash: 2873f3d010464b82ef8cb6a9a3e09f7b0a56b8d9
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 9a6f25a7ea1c75211d043fdbca7f99c16ff98e1b
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345706"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92250333"
 ---
 # <a name="schema_merge-plugin"></a>schema_merge, plug-in
 
@@ -37,7 +37,7 @@ union Schema1, Schema2 | evaluate schema_merge()
 
 * *PreserveOrder*: (facultatif) lorsque la valeur est `true` , indique au plug-in de valider l’ordre des colonnes comme défini par le premier schéma tabulaire conservé. Si la même colonne se trouve dans plusieurs schémas, le numéro de colonne doit être identique à l’ordinal de colonne du premier schéma dans lequel elle apparaît. La valeur par défaut est `true`.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Le `schema_merge` plug-in retourne une sortie semblable à celle qui est [`getschema`](./getschemaoperator.md) retournée par l’opérateur.
 

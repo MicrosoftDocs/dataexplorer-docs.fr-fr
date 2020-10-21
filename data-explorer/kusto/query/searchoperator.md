@@ -4,16 +4,16 @@ description: Cet article décrit l’opérateur de recherche dans Azure Explorat
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: edd35e5e259666e8ce4360c072aaac6717e6f8c3
-ms.sourcegitcommit: f9d3f54114fb8fab5c487b6aea9230260b85c41d
+ms.openlocfilehash: 24e79b7feeb51a0626ed270a90c3d323fa94cbf3
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/18/2020
-ms.locfileid: "85071871"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92250284"
 ---
 # <a name="search-operator"></a>opérateur search
 
@@ -74,7 +74,7 @@ Notez que si *TabularSource* et *TableSources* sont tous les deux omis, la reche
   |12|`search "abc" and ("def" or "hij")`    |`where * has "abc" and (* has "def" or * has hij")`||
   |13|`search "err" or (A>a and A<b)`        |`where * has "err" or (A>a and A<b)`   ||
 
-## <a name="remarks"></a>Remarques
+## <a name="remarks"></a>Notes
 
 **Contrairement** à l' [opérateur Find](findoperator.md), l' `search` opérateur ne prend pas en charge les éléments suivants :
 
@@ -109,7 +109,7 @@ search in (C*, TF) "billg" or "davec" or "steveb"
 union C*, TF | search "billg" or "davec" or "steveb"
 ```
 
-## <a name="performance-tips"></a>Conseils pour les performances
+## <a name="performance-tips"></a>Conseils relatifs aux performances
 
   |# |Conseil                                                                                  |Prefer                                        |Over                                                                    |
   |--|-------------------------------------------------------------------------------------|----------------------------------------------|------------------------------------------------------------------------|

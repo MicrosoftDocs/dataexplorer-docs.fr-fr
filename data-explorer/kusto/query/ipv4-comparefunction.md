@@ -4,16 +4,16 @@ description: Cet article d√©crit ipv4_compare () dans Azure Explorateur de donn√
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 68082b68a1c7772135f711248ddfcd4079bc753e
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: 06cb9078464d782d6034ec11e3e0cdc4c249b541
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803928"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92250341"
 ---
 # <a name="ipv4_compare"></a>ipv4_compare()
 

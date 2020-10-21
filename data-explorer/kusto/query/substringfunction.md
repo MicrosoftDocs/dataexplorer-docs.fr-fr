@@ -4,16 +4,16 @@ description: Cet article décrit Substring () dans Azure Explorateur de données
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b0e83e8d0baf33e5c11cb8b7ecafa607a08fe32b
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 3780aac9ad2675e901ffff63a89177b478d461ea
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350857"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92251391"
 ---
 # <a name="substring"></a>substring()
 
@@ -35,11 +35,11 @@ substring("abcdefg", 1, 2) == "bc"
 * *startingIndex*: position de caractère de départ de base zéro de la sous-chaîne demandée.
 * *Length*: paramètre facultatif qui peut être utilisé pour spécifier le nombre de caractères demandé dans la sous-chaîne. 
 
-**Remarques**
+**Notes**
 
 *startingIndex* peut être un nombre négatif, auquel cas la sous-chaîne sera récupérée à partir de la fin de la chaîne source.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Une sous-chaîne de la chaîne donnée. La sous-chaîne commence à la position de caractère startingIndex (de base zéro) et continue jusqu’à la fin de la chaîne ou des caractères de longueur si elle est spécifiée.
 

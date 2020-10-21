@@ -4,16 +4,16 @@ description: Cet article décrit series_decompose_anomalies () dans Azure Explor
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/28/2019
-ms.openlocfilehash: 770eded43fff091c8c500fcda59efcc2d4f95d9e
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: ded1f7ed499d0a8379fdf5b8e9949fa06351fc07
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803571"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92250199"
 ---
 # <a name="series_decompose_anomalies"></a>series_decompose_anomalies()
 
@@ -63,7 +63,7 @@ Cette fonction suit les étapes suivantes :
 
 ### <a name="detect-anomalies-in-weekly-seasonality"></a>Détecter les anomalies dans le caractère saisonnier hebdomadaire
 
-Dans l’exemple suivant, générez une série avec un caractère saisonnier hebdomadaire, puis ajoutez des valeurs hors norme. `series_decompose_anomalies`détecte automatiquement le caractère saisonnier et génère une ligne de base qui capture le modèle répétitif. Les valeurs hors norme que vous avez ajoutées peuvent être clairement repérées dans le composant ad_score.
+Dans l’exemple suivant, générez une série avec un caractère saisonnier hebdomadaire, puis ajoutez des valeurs hors norme. `series_decompose_anomalies` détecte automatiquement le caractère saisonnier et génère une ligne de base qui capture le modèle répétitif. Les valeurs hors norme que vous avez ajoutées peuvent être clairement repérées dans le composant ad_score.
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -99,7 +99,7 @@ series_multiply(10, series_decompose_anomalies_y_ad_flag) // multiply by 10 for 
 | render timechart
 ```
 
-:::image type="content" source="images/series-decompose-anomaliesfunction/weekly-seasonality-outliers-with-trend.png" alt-text="Résultats saisonniers hebdomadaires avec tendance" border="false":::
+:::image type="content" source="images/series-decompose-anomaliesfunction/weekly-seasonality-outliers-with-trend.png" alt-text="Caractère saisonnier hebdomadaire présentant les lignes de base et les valeurs hors norme" border="false":::
 
 Ensuite, exécutez le même exemple, mais comme vous attendez une tendance dans la série, spécifiez `linefit` dans le paramètre Trend. Vous pouvez voir que la ligne de base est plus proche de la série d’entrée. Tous les valeurs hors norme insérées sont détectées, ainsi que des faux positifs. Consultez l’exemple suivant sur la modification du seuil.
 
@@ -118,7 +118,7 @@ series_multiply(10, series_decompose_anomalies_y_ad_flag) // multiply by 10 for 
 | render timechart  
 ```
 
-:::image type="content" source="images/series-decompose-anomaliesfunction/weekly-seasonality-linefit-trend.png" alt-text="Anomalies saisonnieres hebdomadaires avec tendance linefit" border="false":::
+:::image type="content" source="images/series-decompose-anomaliesfunction/weekly-seasonality-linefit-trend.png" alt-text="Caractère saisonnier hebdomadaire présentant les lignes de base et les valeurs hors norme" border="false":::
 
 ### <a name="tweak-the-anomaly-detection-threshold"></a>Ajuster le seuil de détection des anomalies
 
@@ -139,4 +139,4 @@ series_multiply(10, series_decompose_anomalies_y_ad_flag) // multiply by 10 for 
 | render timechart  
 ```
 
-:::image type="content" source="images/series-decompose-anomaliesfunction/weekly-seasonality-higher-threshold.png" alt-text="Série hebdomadaire d’anomalies avec un seuil d’anomalies plus élevé" border="false":::
+:::image type="content" source="images/series-decompose-anomaliesfunction/weekly-seasonality-higher-threshold.png" alt-text="Caractère saisonnier hebdomadaire présentant les lignes de base et les valeurs hors norme" border="false":::

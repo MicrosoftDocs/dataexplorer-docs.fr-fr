@@ -4,16 +4,16 @@ description: Cet article décrit series_fill_const () dans Azure Explorateur de 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7e587ab08c009516788e3a44b0b8e4a321741d94
-ms.sourcegitcommit: 8853e50a798ee7c78b69bf9822bbf1ced3abe73c
+ms.openlocfilehash: d775b6029a7449912db16d5fc232c6eabd0996ff
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/25/2020
-ms.locfileid: "91227022"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92250872"
 ---
 # <a name="series_fill_const"></a>series_fill_const()
 

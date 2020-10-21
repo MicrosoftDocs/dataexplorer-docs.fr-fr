@@ -4,16 +4,16 @@ description: Cet article décrit tdigest () (fonction d’agrégation) dans Azur
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/10/2019
-ms.openlocfilehash: 47b6ab3db5f0ea252fa86ef925026613654afeea
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 9e8f61038856096d4ca6676c5304bb9fc6112070
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87341635"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92250707"
 ---
 # <a name="tdigest-aggregation-function"></a>tdigest () (fonction d’agrégation)
 
@@ -34,7 +34,7 @@ Pour plus d’informations, consultez l' [algorithme sous-jacent (T-Digest) et l
 * *WeightExpr*: expression utilisée comme poids des valeurs pour le calcul d’agrégation.
 
     
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Résultats intermédiaires des centiles pondérés de `*Expr*` l’ensemble du groupe.
  
@@ -53,7 +53,7 @@ StormEvents
 | summarize tdigest(DamageProperty) by State
 ```
 
-|État|tdigest_DamageProperty|
+|State|tdigest_DamageProperty|
 |---|---|
 |SUD DE L’ATLANTIQUE|[[5], [0], [193]]|
 |Floride|[[5], [250, 10, 600000, 5000, 375000, 15000000, 20000, 6000000, 0, 110000, 150000, 500, 12000, 30000, 15000, 46000000, 7000000, 6200000, 200000, 40000, 8000, 52000000, 62000000, 1200000, 130000, 1500000, 4000000, 7000, 250000, 875000, 3000, 100000, 10600000, 300000, 1000000, 25000, 75000, 2000, 60000, 10000, 170000, 350000, 50000, 1000, 16000, 80 500, 400000], [9, 1, 1, 22, 1, 1, 9, 1842, 1, 3, 7, 2, 4, 7, 1, 1, 1, 2, 5, 3, 3, 1, 1, 1, 1, 2, 2, 1, 1, 9, 7, 1, 1, 2, 5, 2, 9, 2, 27, 1, 1, 7, 27, 1, 1, 1, 1]]|

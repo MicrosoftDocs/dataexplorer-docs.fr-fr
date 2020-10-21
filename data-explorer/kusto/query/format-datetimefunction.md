@@ -4,16 +4,16 @@ description: Cet article décrit format_datetime () dans Azure Explorateur de do
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: d0a60a61e5319d9a190f6172b9c0bd8fb7fe1300
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: b9523bf62232c09bdb7fd45298c9430095e39363
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347967"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92244675"
 ---
 # <a name="format_datetime"></a>format_datetime()
 
@@ -32,7 +32,7 @@ format_datetime(datetime(2015-12-14 02:03:04.12345), 'y-M-d h:m:s.fffffff') == "
 * `datetime`: valeur d’un type `datetime` .
 * `format`: chaîne de spécificateur de format, composée d’un ou de plusieurs [éléments de format](#supported-formats).
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Chaîne avec le résultat de format.
 
@@ -75,7 +75,7 @@ Chaîne avec le résultat de format.
 
 Le spécificateur de format peut inclure les caractères séparateurs suivants :
 
-|Délimiteur|Commentaire|
+|Délimiteur|Comment|
 |---------|-------|
 |`' '`| Espace|
 |`'/'`||

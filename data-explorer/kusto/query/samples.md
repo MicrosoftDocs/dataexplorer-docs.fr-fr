@@ -4,16 +4,16 @@ description: Cet article décrit des exemples dans Azure Explorateur de données
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: bc28fcb860dc067d55dd2e5ce9de3f3a17b402f2
-ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
+ms.openlocfilehash: 0db8c472ed3b23a1bf46f8fce9cbd38b0ca960b3
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/11/2020
-ms.locfileid: "91942316"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92251031"
 ---
 # <a name="samples"></a>Exemples
 
@@ -494,7 +494,7 @@ Résultat :
 
 ## <a name="create-and-use-query-time-dimension-tables"></a>Créer et utiliser des tables de dimension de temps de requête
 
-Vous souhaiterez souvent joindre les résultats d’une requête avec une table de dimension ad hoc qui n’est pas stockée dans la base de données. Il est possible de définir une expression dont le résultat est une table dont l’étendue est limitée à une seule requête. Exemple :
+Vous souhaiterez souvent joindre les résultats d’une requête avec une table de dimension ad hoc qui n’est pas stockée dans la base de données. Il est possible de définir une expression dont le résultat est une table dont l’étendue est limitée à une seule requête. Par exemple :
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -540,7 +540,7 @@ Supposons que vous disposiez d’une table qui comprend les éléments suivants�
 
 Une requête qui retourne les deux derniers enregistrements pour chaque valeur de la `ID` colonne, où « latest » est défini comme « ayant la valeur la plus élevée `timestamp` », peut être créé avec l' [opérateur de niveau supérieur](topnestedoperator.md).
 
-Exemple :
+Par exemple :
 
 ```kusto
 datatable(id:string, timestamp:datetime, bla:string)           // #1

@@ -4,16 +4,16 @@ description: Cet article décrit l’opérateur de synthèse dans Azure Explorat
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/20/2020
-ms.openlocfilehash: 9514f7c94568e73a704e6ba6f4bcc5bf61590d2f
-ms.sourcegitcommit: 6f610cd9c56dbfaff4eb0470ac0d1441211ae52d
+ms.openlocfilehash: 1317f9767182ad76f226fae6995763ea832cd36a
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/12/2020
-ms.locfileid: "91954771"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92250850"
 ---
 # <a name="summarize-operator"></a>opérateur summarize
 
@@ -65,11 +65,11 @@ Pour résumer des plages de valeurs numériques, utilisez `bin()` pour réduire 
 
 |Fonction|Description|
 |--------|-----------|
-|[Any ()](any-aggfunction.md)|Retourne une valeur non vide aléatoire pour le groupe|
+|[any()](any-aggfunction.md)|Retourne une valeur non vide aléatoire pour le groupe|
 |[anyif()](anyif-aggfunction.md)|Retourne une valeur non vide aléatoire pour le groupe (prédicat with)|
 |[arg_max()](arg-max-aggfunction.md)|Retourne une ou plusieurs expressions lorsque l’argument est agrandi|
 |[arg_min()](arg-min-aggfunction.md)|Retourne une ou plusieurs expressions lorsque l’argument est réduit|
-|[Moy ()](avg-aggfunction.md)|Retourne une valeur moyenne dans le groupe|
+|[avg()](avg-aggfunction.md)|Retourne une valeur moyenne dans le groupe|
 |[avgif()](avgif-aggfunction.md)|Retourne une valeur moyenne dans le groupe (avec le prédicat)|
 |[binary_all_and](binary-all-and-aggfunction.md)|Retourne une valeur agrégée à l’aide du binaire `AND` du groupe.|
 |[binary_all_or](binary-all-or-aggfunction.md)|Retourne une valeur agrégée à l’aide du binaire `OR` du groupe.|
@@ -94,11 +94,11 @@ Pour résumer des plages de valeurs numériques, utilisez `bin()` pour réduire 
 |[percentiles_array ()](percentiles-aggfunction.md)|Retourne les centiles approximatifs du groupe|
 |[percentilesw()](percentiles-aggfunction.md)|Retourne le centile pondéré approximatif du groupe|
 |[percentilesw_array ()](percentiles-aggfunction.md)|Retourne les centile pondérés approximatifs du groupe|
-|[ECARTYPE ()](stdev-aggfunction.md)|Retourne l’écart type de l’ensemble du groupe|
+|[stdev()](stdev-aggfunction.md)|Retourne l’écart type de l’ensemble du groupe|
 |[stdevif()](stdevif-aggfunction.md)|Retourne l’écart type de l’ensemble du groupe (avec le prédicat)|
-|[Sum ()](sum-aggfunction.md)|Retourne la somme des éléments dans le groupe|
+|[sum()](sum-aggfunction.md)|Retourne la somme des éléments dans le groupe|
 |[sumif()](sumif-aggfunction.md)|Retourne la somme des éléments dans le groupe (prédicat with)|
-|[variance ()](variance-aggfunction.md)|Retourne la variance dans le groupe|
+|[variance()](variance-aggfunction.md)|Retourne la variance dans le groupe|
 |[varianceif()](varianceif-aggfunction.md)|Retourne la variance dans le groupe (avec le prédicat)|
 
 ## <a name="aggregates-default-values"></a>Agrège les valeurs par défaut
