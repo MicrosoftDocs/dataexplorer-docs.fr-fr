@@ -4,16 +4,16 @@ description: Cet article décrit datetime_add () dans Azure Explorateur de donn�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 766f0617b70e21194d731ae1cf8eabf1014265bb
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: ab395dadf178b296929300fe4cfd42742fba5f27
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348545"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92247727"
 ---
 # <a name="datetime_add"></a>datetime_add()
 
@@ -32,9 +32,9 @@ Calcule une nouvelle valeur DateTime à partir d’une partie de [Date](./scalar
 Valeurs possibles de *period*: 
 - Year (Année)
 - Quarter (Trimestre)
-- Month (Mois)
-- Week
-- jour
+- Month
+- Semaine
+- Jour
 - Hour
 - Minute
 - Second
@@ -42,7 +42,7 @@ Valeurs possibles de *period*:
 - Microseconde
 - Nanoseconde
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Date après l’ajout d’un intervalle de date/heure donné.
 

@@ -4,16 +4,16 @@ description: Cet article décrit l’opérateur Order dans Azure Explorateur de 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 510e2de8a30a422955c0cbfcbdf3a0f50e46dbc5
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 3f552143be8c02cece19030fc7b6f79d5a4bdf4a
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346556"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92241397"
 ---
 # <a name="order-operator"></a>order, opérateur 
 
@@ -35,5 +35,5 @@ T | order by country asc, price desc
 * *T*: entrée de table à trier.
 * *Column*: colonne de *T* selon laquelle effectuer le tri. Les valeurs doivent être de type numérique, date, heure ou chaîne.
 * `asc` Tri par ordre croissant, de faible à élevé. La valeur par défaut est `desc`, par ordre décroissant allant d’élevé à faible.
-* `nulls first`(la valeur par défaut pour `asc` Order) place les valeurs NULL au début et `nulls last` (la valeur par défaut pour `desc` Order) place les valeurs NULL à la fin.
+* `nulls first` (la valeur par défaut pour `asc` Order) place les valeurs NULL au début et `nulls last` (la valeur par défaut pour `desc` Order) place les valeurs NULL à la fin.
 

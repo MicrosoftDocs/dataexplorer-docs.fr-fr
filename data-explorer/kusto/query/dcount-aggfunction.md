@@ -4,16 +4,16 @@ description: Cet article décrit DCount () (fonction d’agrégation) dans Azure
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 45ab913fdc659444ac578ca725e2afb24256a38b
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: b35bb7944e894256056e03eb756ac85cf1354ba8
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803707"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92247691"
 ---
 # <a name="dcount-aggregation-function"></a>DCount () (fonction d’agrégation)
 
@@ -80,4 +80,4 @@ L’erreur liée est probabiliste et non une limite théorique. La valeur est l�
 
 L’illustration suivante montre la fonction de distribution de probabilité de l’erreur d’estimation relative, en pourcentage, pour tous les paramètres de précision pris en charge :
 
-:::image type="content" border="false" source="images/dcount-aggfunction/hll-error-distribution.png" alt-text="distribution des erreurs HLL":::
+:::image type="content" border="false" source="images/dcount-aggfunction/hll-error-distribution.png" alt-text="Nombre D":::

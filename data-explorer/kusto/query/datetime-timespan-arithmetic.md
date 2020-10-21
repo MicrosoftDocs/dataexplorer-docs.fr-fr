@@ -1,45 +1,45 @@
 ---
-title: Datetime / timepan arithmétique - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit Datetime / timepan arithmétique dans Azure Data Explorer.
+title: Arithmétiques DateTime/TimeSpan-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit l’arithmétique DateTime/TimeSpan dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 11/27/2019
-ms.openlocfilehash: 34bda7b8418dd519995f25c625a5031202a64a8b
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 0b70cb1730d893e07790ade3079be21da209648c
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81516318"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92247678"
 ---
-# <a name="datetime--timespan-arithmetic"></a>Datetime / timepan arithmétique
+# <a name="datetime--timespan-arithmetic"></a>Arithmétiques DateTime/TimeSpan
 
-Kusto soutient l’exécution des opérations `datetime` d’arithmétique sur les valeurs des types et `timespan`:
+Kusto prend en charge l’exécution d’opérations arithmétiques sur des valeurs de types `datetime` et `timespan` :
 
-* On peut soustraire (mais `datetime` pas ajouter) deux valeurs pour obtenir une `timespan` valeur exprimant leur différence.
-  Par exemple, `datetime(1997-06-25) - datetime(1910-06-11)` c’est l’âge de [Jacques-Yves Cousteau](https://en.wikipedia.org/wiki/Jacques_Cousteau) à sa mort.
+* Il est possible de soustraire (mais pas d’ajouter) deux `datetime` valeurs pour obtenir une `timespan` valeur exprimant leur différence.
+  Par exemple, `datetime(1997-06-25) - datetime(1910-06-11)` est l’ancien [Jacques-Yves Cousteau](https://en.wikipedia.org/wiki/Jacques_Cousteau) lorsqu’il est mort.
 
-* On peut ajouter ou `timespan` soustraire `timespan` deux valeurs pour obtenir une valeur qui est leur somme ou leur différence.
-  Par exemple, c’est `1d + 2d` trois jours.
+* Il est possible d’ajouter ou de soustraire deux `timespan` valeurs pour obtenir une `timespan` valeur qui est sa somme ou sa différence.
+  Par exemple, `1d + 2d` est de trois jours.
 
-* On peut ajouter ou `timespan` soustraire une valeur d’une `datetime` valeur.
-  Par exemple, `datetime(1910-06-11) + 1d` c’est la date à laquelle Cousteau a eu un jour.
+* Il est possible d’ajouter ou de soustraire une `timespan` valeur d’une `datetime` valeur.
+  Par exemple, `datetime(1910-06-11) + 1d` est la date à laquelle Cousteau a été réactivée un jour.
 
-* On peut `timespan` diviser deux valeurs pour obtenir leur quotient.
-  Par `1d / 5h` exemple, `4.8`donne .
-  Cela donne à l’un la possibilité d’exprimer n’importe quelle `timespan` valeur comme un multiple d’une autre `timespan` valeur. Par exemple, pour exprimer une heure `1h` `1s`en `1h / 1s` quelques secondes, `3600`il suffit de diviser par : (avec le résultat évident, ).
+* Il est possible de diviser deux `timespan` valeurs pour qu’elles obtiennent leur quotient.
+  Par exemple, `1d / 5h` donne `4.8` .
+  Cela donne à l’une la possibilité d’exprimer toute `timespan` valeur en tant que multiple d’une autre `timespan` valeur. Par exemple, pour exprimer une heure en secondes, il suffit de diviser `1h` par `1s` : `1h / 1s` (avec le résultat évident, `3600` ).
 
-* Inversement, on peut multipler `double` une `long`valeur `timespan` numérique (comme `timespan` et ) par une valeur pour obtenir une valeur.
-  Par exemple, on peut exprimer une `1.5 * 1h`heure et demie comme .
+* À l’inverse, une valeur peut avoir plusieurs valeurs numériques (telles que `double` et `long` ) par `timespan` valeur pour obtenir une `timespan` valeur.
+  Par exemple, vous pouvez exprimer une heure et une moitié sous la forme `1.5 * 1h` .
 
-## <a name="example-unix-time"></a>Exemple : Heure Unix
+## <a name="example-unix-time"></a>Exemple : heure UNIX
 
-[Unix time](https://en.wikipedia.org/wiki/Unix_time) (également connu sous le nom de HEURE POSIX ou heure unIX) est un système pour décrire un point dans le temps comme le nombre de secondes qui se sont écoulées depuis 00:00:00 Jeudi, 1 Janvier 1970, Coordinated Universal Time (UTC), moins secondes saut.
+L' [heure UNIX](https://en.wikipedia.org/wiki/Unix_time) (également connue sous le nom de temps POSIX ou d’époque UNIX) est un système permettant de décrire un point dans le temps en fonction du nombre de secondes qui se sont écoulées depuis le jeudi 00:00:00, du 1er janvier 1970, du temps universel coordonné (UTC), moins les secondes bissextiles.
 
-Si vos données incluent la représentation du temps Unix en tant qu’intégrant, ou si vous avez besoin d’y être convertie, les fonctions suivantes sont disponibles :
+Si vos données incluent une représentation de l’heure UNIX sous la forme d’un entier, ou si vous avez besoin de les convertir, les fonctions suivantes sont disponibles :
 
 ```kusto
 let fromUnixTime = (t:long)
@@ -66,7 +66,7 @@ print result = toUnixTime(datetime(2019-01-07 21:45:31.0000000))
 |1546897531                 |
 
 > [!NOTE]
-> En plus des fonctions ci-dessus, voir des fonctions dédiées pour les conversions de temps unix-époque: [unixtime_seconds_todatetime ()](unixtime-seconds-todatetimefunction.md)
-> [unixtime_milliseconds_todatetime()](unixtime-milliseconds-todatetimefunction.md)
-> [unixtime_microseconds_todatetime()](unixtime-microseconds-todatetimefunction.md)
-> [unixtime_nanoseconds_todatetime()](unixtime-nanoseconds-todatetimefunction.md)
+> Outre les fonctions ci-dessus, consultez Fonctions dédiées pour les conversions d’heure d’époque UNIX : [unixtime_seconds_todatetime ()](unixtime-seconds-todatetimefunction.md) 
+>  [unixtime_milliseconds_todatetime ()](unixtime-milliseconds-todatetimefunction.md) 
+>  [unixtime_microseconds_todatetime ()](unixtime-microseconds-todatetimefunction.md) 
+>  [unixtime_nanoseconds_todatetime (](unixtime-nanoseconds-todatetimefunction.md) )

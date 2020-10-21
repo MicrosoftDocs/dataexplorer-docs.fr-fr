@@ -4,16 +4,16 @@ description: Cet article décrit any () (fonction d’agrégation) dans Azure Ex
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 73c3a660dc7a34f1f9fef840b13f47c13b4d1b2f
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: c4d718cfb46e3a404c943d579feaf4733499ab3e
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349735"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248219"
 ---
 # <a name="any-aggregation-function"></a>Any () (fonction d’agrégation)
 
@@ -28,7 +28,7 @@ Choisit arbitrairement un enregistrement pour chaque groupe dans un [opérateur 
 * *Expr*: expression sur chaque enregistrement sélectionné à partir de l’entrée à retourner.
 * *Expr2* .. *ExprN*: expressions supplémentaires.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 La `any` fonction d’agrégation retourne les valeurs des expressions calculées pour chacun des enregistrements, sélectionnées de façon aléatoire dans chaque groupe de l’opérateur de synthèse.
 
@@ -58,7 +58,7 @@ Afficher tous les détails d’un enregistrement aléatoire :
 Continents | summarize any(*)
 ```
 
-:::image type="content" source="images/aggfunction/any2.png" alt-text="N’importe laquelle 2":::
+:::image type="content" source="images/aggfunction/any2.png" alt-text="N’importe lequel 1":::
 
 Affichez tous les détails pour chaque continent aléatoire :
 
@@ -66,4 +66,4 @@ Affichez tous les détails pour chaque continent aléatoire :
 Continents | summarize any(*) by Continent
 ```
 
-:::image type="content" source="images/aggfunction/any3.png" alt-text="N’importe laquelle 3":::
+:::image type="content" source="images/aggfunction/any3.png" alt-text="N’importe lequel 1":::

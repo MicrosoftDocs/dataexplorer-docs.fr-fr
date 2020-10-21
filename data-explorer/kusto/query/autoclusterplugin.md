@@ -4,16 +4,16 @@ description: Cet article décrit le plug-in autocluster dans Azure Explorateur d
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 959b11eca2dc369a3f737e01175f77ff6626f773
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: 5a7caa8935176b2d4d52bf8955262509bb2069dd
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803843"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248060"
 ---
 # <a name="autocluster-plugin"></a>autocluster, plug-in
 
@@ -21,10 +21,10 @@ ms.locfileid: "87803843"
 T | evaluate autocluster()
 ```
 
-`autocluster`recherche des modèles communs d’attributs discrets (dimensions) dans les données. Il réduit ensuite les résultats de la requête d’origine, qu’il s’agisse de 100 ou 100 000 lignes, avec un petit nombre de modèles. Le plug-in a été développé pour faciliter l’analyse des défaillances (telles que les exceptions ou les incidents), mais peut éventuellement fonctionner sur n’importe quel jeu de données filtré.
+`autocluster` recherche des modèles communs d’attributs discrets (dimensions) dans les données. Il réduit ensuite les résultats de la requête d’origine, qu’il s’agisse de 100 ou 100 000 lignes, avec un petit nombre de modèles. Le plug-in a été développé pour faciliter l’analyse des défaillances (telles que les exceptions ou les incidents), mais peut éventuellement fonctionner sur n’importe quel jeu de données filtré.
 
 > [!NOTE]
-> `autocluster`repose en grande partie sur l’algorithme Seed-Expand du document suivant : [algorithmes pour l’exploration de données de télémétrie à l’aide d’attributs discrets](https://www.scitepress.org/DigitalLibrary/PublicationsDetail.aspx?ID=d5kcrO+cpEU=&t=1). 
+> `autocluster` est en grande partie basé sur l’algorithme Seed-Expand issu du document suivant : [algorithmes pour l’exploration de données de télémétrie à l’aide d’attributs discrets](https://www.scitepress.org/DigitalLibrary/PublicationsDetail.aspx?ID=d5kcrO+cpEU=&t=1). 
 
 
 ## <a name="syntax"></a>Syntaxe
@@ -55,7 +55,7 @@ Tous les arguments sont facultatifs, mais ils doivent alors être ordonnés comm
 
 |Argument        | Type, plage, valeur par défaut              |Description                | Exemple                                        |
 |----------------|-----------------------------------|---------------------------|------------------------------------------------|
-| SizeWeight     | 0 < *double* < 1 [par défaut : 0,5]   | Vous donne un contrôle sur l’équilibre entre le générique (couverture élevée) et les valeurs informatives (nombreuses). Si vous augmentez la valeur, cela réduit généralement le nombre de modèles, et chaque modèle a tendance à couvrir un pourcentage plus élevé. Si vous diminuez la valeur, cela produit généralement des modèles plus spécifiques avec davantage de valeurs partagées et une couverture de pourcentage plus faible. La formule sous-capot est une moyenne géométrique pondérée entre le score générique normalisé et le score informatif avec les pondérations `SizeWeight` et`1-SizeWeight`                   | `T | evaluate autocluster(0.8)`                |
+| SizeWeight     | 0 < *double* < 1 [par défaut : 0,5]   | Vous donne un contrôle sur l’équilibre entre le générique (couverture élevée) et les valeurs informatives (nombreuses). Si vous augmentez la valeur, cela réduit généralement le nombre de modèles, et chaque modèle a tendance à couvrir un pourcentage plus élevé. Si vous diminuez la valeur, cela produit généralement des modèles plus spécifiques avec davantage de valeurs partagées et une couverture de pourcentage plus faible. La formule sous-capot est une moyenne géométrique pondérée entre le score générique normalisé et le score informatif avec les pondérations `SizeWeight` et `1-SizeWeight`                   | `T | evaluate autocluster(0.8)`                |
 |WeightColumn    | *column_name*                     | Considère chaque ligne de l’entrée en fonction de la pondération spécifiée (par défaut, chaque ligne a une pondération de « 1 »). L’argument doit être un nom de colonne numérique (tel que int, long, Real). Il est courant d’utiliser une colonne de pondération en prenant en compte l’échantillonnage ou la création de compartiments/l’agrégation des données déjà incorporées dans chaque ligne.                                                                                                       | `T | evaluate autocluster('~', sample_Count)` | 
 | NumSeeds        | *int* [valeur par défaut : 25]              | Le nombre de valeurs initiales détermine le nombre de points de recherche locaux initiaux de l’algorithme. Dans certains cas, selon la structure des données et si vous augmentez le nombre de graines, le nombre (ou la qualité) des résultats augmente dans l’espace de recherche développé avec un compromis de requête plus lent. La valeur a réduit les résultats dans les deux sens. par conséquent, si vous la réduisez au-dessous de cinq, vous obtiendrez des améliorations de performances négligeables. Si vous augmentez à plus de 50, il générera rarement des modèles supplémentaires.                                         | `T | evaluate autocluster('~', '~', 15)`       |
 | CustomWildcard  | *« any_value_per_type »*           | Définit la valeur de caractère générique pour un type spécifique dans la table de résultats. Elle indique que le modèle actuel n’a pas de restriction sur cette colonne. La valeur par défaut est null, car la chaîne par défaut est une chaîne vide. Si la valeur par défaut est une bonne valeur dans les données, une autre valeur de caractère générique doit être utilisée (par exemple, `*` ).                                                                                                                | `T | evaluate autocluster('~', '~', '~', '*', int(-1), double(-1), long(0), datetime(1900-1-1))` |

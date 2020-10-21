@@ -4,16 +4,16 @@ description: Cet article décrit l’opérateur d’analyse dans Azure Explorate
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f9dc6e49e9e3d04aadb5aecf8507b7132d8a366a
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: a942015908c9608a76d3c49c411de9d17d6e70f5
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346318"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248617"
 ---
 # <a name="parse-operator"></a>opérateur parse
 
@@ -47,7 +47,7 @@ T | parse Text with "ActivityName=" name ", ActivityType=" type
   
 * *ColumnType :* Facultatif. Valeur scalaire qui indique le type vers lequel convertir la valeur. La valeur par défaut est le `string` type.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 La table d’entrée, étendue selon la liste des colonnes fournies à l’opérateur.
 
@@ -75,11 +75,11 @@ La table d’entrée, étendue selon la liste des colonnes fournies à l’opér
 
     Dans l’instruction Parse, l’expression régulière générée en interne par l’analyse est `.*?<regex1>(.*?)<regex2>(\-\d+)` .
         
-    * `*`a été traduit `.*?` .
+    * `*` a été traduit `.*?` .
         
-    * `string`a été traduit `.*?` .
+    * `string` a été traduit `.*?` .
         
-    * `long`a été traduit `\-\d+` .
+    * `long` a été traduit `\-\d+` .
 
 ## <a name="examples"></a>Exemples
 
@@ -164,7 +164,7 @@ Traces
 |PipelineScheduler, totalSlices = 27, sliceNumber = 16, lockTime = 02/17/2016 08:41:00, releaseTime = 02/17/2016 08:41:00|
 
 Vous n’obtiendrez pas les résultats attendus, car le mode par défaut est gourmand.
-Si vous avez des enregistrements où le *resourceName* apparaît parfois en minuscules et parfois en majuscules, vous pouvez obtenir des valeurs NULL pour certaines valeurs.
+Si vous avez des enregistrements où le *resourceName*  apparaît parfois en minuscules et parfois en majuscules, vous pouvez obtenir des valeurs NULL pour certaines valeurs.
 
 Pour obtenir le résultat souhaité, exécutez la requête avec le non gourmand `U` et désactivez les indicateurs Regex respectant la casse `i` .
 

@@ -4,17 +4,18 @@ description: Cet article décrit l’opérateur de jointure dans Azure Explorate
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 4952e315a974e72135c722b255a96f57bf89cc12
-ms.sourcegitcommit: d6f35df833d5b4f2829a8924fffac1d0b49ce1c2
+ms.openlocfilehash: 8324d0c6537d6d22a2814a7aa80625278dc36aec
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86058777"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92241509"
 ---
 # <a name="join-operator"></a>opérateur join
 
@@ -24,9 +25,9 @@ Fusionnez les lignes de deux tables pour former une nouvelle table en faisant co
 Table1 | join (Table2) on CommonColumn, $left.Col1 == $right.Col2
 ```
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>Syntaxe
 
-*LeftTable* `|` `join`[*JoinParameters*] `(` *RightTable* `)` `on` *attributs*
+*LeftTable* `|` `join` [*JoinParameters*] `(` *RightTable* `)` `on` *attributs*
 
 ## <a name="arguments"></a>Arguments
 
@@ -38,7 +39,7 @@ Table1 | join (Table2) on CommonColumn, $left.Col1 == $right.Col2
 
   Une **règle** peut être l’une des suivantes :
 
-  |Type de règle        |Syntax          |Predicate    |
+  |Type de règle        |Syntaxe          |Predicate    |
   |-----------------|--------------|-------------------------|
   |Égalité par nom |*ColumnName*    |`where`*LeftTable*. *ColumnName* `==` *RightTable*. *ColumnName*|
   |Égalité par valeur|`$left.`*LeftColumn* `==` `$right.` *Rightcolumn*|`where``$left.` *LeftColumn* `==` LeftColumn `$right.` *Rightcolumn*       |
@@ -91,7 +92,7 @@ Table1 | join (Table2) on CommonColumn, $left.Col1 == $right.Col2
 |---|---|
 |`kind=leftanti`, `kind=leftantisemi`| Retourne tous les enregistrements du côté gauche qui n’ont pas de correspondances de droite|
 | `kind=rightanti`, `kind=rightantisemi`| Retourne tous les enregistrements du côté droit qui n’ont pas de correspondances à partir de la gauche.|
-| `kind`non spécifié`kind=innerunique`| Une seule ligne du côté gauche correspond à chaque valeur de la clé `on` . La sortie contient une ligne pour chaque correspondance de cette ligne avec des lignes du côté droit.|
+| `kind` non spécifié `kind=innerunique`| Une seule ligne du côté gauche correspond à chaque valeur de la clé `on` . La sortie contient une ligne pour chaque correspondance de cette ligne avec des lignes du côté droit.|
 | `kind=leftsemi`| Retourne tous les enregistrements du côté gauche qui ont des correspondances à partir de la droite. |
 | `kind=rightsemi`| Retourne tous les enregistrements du côté droit qui ont des correspondances à partir de la gauche. |
 |`kind=inner`| Contient une ligne dans la sortie pour chaque combinaison de lignes correspondantes, de gauche à droite. |
@@ -134,13 +135,13 @@ La version exacte de l’opérateur de jointure est spécifiée avec le mot clé
 
 |Type de jointure/version|Description|
 |--|--|
-|[`innerunique`](#default-join-flavor)(ou vide par défaut)|Jointure interne avec déduplication côté gauche|
+|[`innerunique`](#default-join-flavor) (ou vide par défaut)|Jointure interne avec déduplication côté gauche|
 |[`inner`](#inner-join-flavor)|Jointure interne standard|
 |[`leftouter`](#left-outer-join-flavor)|Jointure externe gauche|
 |[`rightouter`](#right-outer-join-flavor)|Jointure externe droite|
-|[`fullouter`](#full-outer-join-flavor)|Jointure externe complète|
-|[`leftanti`](#left-anti-join-flavor), [`anti`](#left-anti-join-flavor) ou[`leftantisemi`](#left-anti-join-flavor)|Jointure anti gauche|
-|[`rightanti`](#right-anti-join-flavor)ni[`rightantisemi`](#right-anti-join-flavor)|Anti-jointure Right|
+|[`fullouter`](#full-outer-join-flavor)|Jointure externe entière|
+|[`leftanti`](#left-anti-join-flavor), [`anti`](#left-anti-join-flavor) ou [`leftantisemi`](#left-anti-join-flavor)|Jointure anti gauche|
+|[`rightanti`](#right-anti-join-flavor) ni [`rightantisemi`](#right-anti-join-flavor)|Anti-jointure Right|
 |[`leftsemi`](#left-semi-join-flavor)|Semi-jointure gauche|
 |[`rightsemi`](#right-semi-join-flavor)|Semi-jointure droite|
 
@@ -158,7 +159,7 @@ Les deux exemples de tables suivants sont utilisés pour expliquer le fonctionne
 
 **Table X**
 
-|Clé : |Value1
+|Clé |Value1
 |---|---
 |a |1
 |b |2
@@ -167,7 +168,7 @@ Les deux exemples de tables suivants sont utilisés pour expliquer le fonctionne
 
 **Table Y**
 
-|Clé : |Value2
+|Clé |Value2
 |---|---
 |b |10
 |c |20
@@ -176,11 +177,11 @@ Les deux exemples de tables suivants sont utilisés pour expliquer le fonctionne
 
 La jointure par défaut effectue une jointure interne après la déduplication du côté gauche de la clé de jointure (la déduplication conserve le premier enregistrement).
 
-À partir de cette instruction :`X | join Y on Key`
+À partir de cette instruction : `X | join Y on Key`
 
 le côté gauche effectif de la jointure, table X après déduplication, est le suivant :
 
-|Clé : |Value1
+|Clé |Value1
 |---|---
 |a |1
 |b |2
@@ -206,7 +207,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join Y on Key
 ```
 
-|Clé :|Value1|Key1|Value2|
+|Clé|Value1|Key1|Value2|
 |---|---|---|---|
 |b|2|b|10|
 |c|4|c|20|
@@ -237,7 +238,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=inner Y on Key
 ```
 
-|Clé :|Value1|Key1|Value2|
+|Clé|Value1|Key1|Value2|
 |---|---|---|---|
 |b|3|b|10|
 |b|2|b|10|
@@ -352,7 +353,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=leftouter Y on Key
 ```
 
-|Clé :|Value1|Key1|Value2|
+|Clé|Value1|Key1|Value2|
 |---|---|---|---|
 |b|3|b|10|
 |b|2|b|10|
@@ -382,7 +383,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=rightouter Y on Key
 ```
 
-|Clé :|Value1|Key1|Value2|
+|Clé|Value1|Key1|Value2|
 |---|---|---|---|
 |b|3|b|10|
 |b|2|b|10|
@@ -412,7 +413,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=fullouter Y on Key
 ```
 
-|Clé :|Value1|Key1|Value2|
+|Clé|Value1|Key1|Value2|
 |---|---|---|---|
 |b|3|b|10|
 |b|2|b|10|
@@ -443,7 +444,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=leftanti Y on Key
 ```
 
-|Clé :|Value1|
+|Clé|Value1|
 |---|---|
 |a|1|
 
@@ -472,7 +473,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=rightanti Y on Key
 ```
 
-|Clé :|Value2|
+|Clé|Value2|
 |---|---|
 |d|40|
 
@@ -501,7 +502,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=leftsemi Y on Key
 ```
 
-|Clé :|Value1|
+|Clé|Value1|
 |---|---|
 |b|3|
 |b|2|
@@ -529,7 +530,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=rightsemi Y on Key
 ```
 
-|Clé :|Value2|
+|Clé|Value2|
 |---|---|
 |b|10|
 |c|20|

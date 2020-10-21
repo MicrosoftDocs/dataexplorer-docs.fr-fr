@@ -4,16 +4,16 @@ description: Cet article décrit log10 () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/11/2019
-ms.openlocfilehash: 62813f5680e89c2bca0a6ec547fd7055ddc0e414
-ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
+ms.openlocfilehash: 978e40f3a2727b08dd404068ad364c7416361f66
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91103190"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92241410"
 ---
 # <a name="log10"></a>log10()
 
@@ -27,7 +27,7 @@ ms.locfileid: "91103190"
 
 * *x*: nombre réel > 0.
 
-## <a name="returns"></a>retourne :
+## <a name="returns"></a>Retours
 
 * Le logarithme commun est le logarithme de base 10 : l’inverse de la fonction exponentielle (exp) avec base 10.
 * `null` Si l’argument est négatif ou null ou ne peut pas être converti en `real` valeur. 

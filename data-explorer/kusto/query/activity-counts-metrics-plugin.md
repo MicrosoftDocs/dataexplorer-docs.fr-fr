@@ -4,16 +4,16 @@ description: Cet article décrit activity_counts_metrics plug-in dans Azure Expl
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: df7b994350297d911a0f3be59c791b6538899d67
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: f44af0b7c1623bfd8393ddeefee57f7f8ca27d2b
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349786"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92241723"
 ---
 # <a name="activity_counts_metrics-plugin"></a>plug-in activity_counts_metrics
 
@@ -37,7 +37,7 @@ T | evaluate activity_counts_metrics(id, datetime_column, startofday(ago(30d)), 
 * *Window*: scalaire avec la valeur de la période de la fenêtre d’analyse. Peut être une valeur numérique/DateTime/timestamp, ou une chaîne qui est l’une des `week` / `month` / `year` , auquel cas toutes les périodes sont [startOfWeek](startofweekfunction.md) / [StartOfMonth](startofmonthfunction.md) ou [STARTOFYEAR](startofyearfunction.md). 
 * *dim1*, *dim2*,... : (facultatif) liste des colonnes de dimensions qui découpent le calcul des métriques d’activité.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Retourne une table qui contient : nombre total de valeurs, valeurs de comptage de valeurs, nombre distinct de nouvelles valeurs et nombre de valeurs agrégées pour chaque fenêtre de temps.
 
@@ -45,7 +45,7 @@ Le schéma de la table de sortie est le suivant :
 
 |`TimelineColumn`|`dim1`|...|`dim_n`|`count`|`dcount`|`new_dcount`|`aggregated_dcount`
 |---|---|---|---|---|---|---|---|---|
-|type : à partir de*`TimelineColumn`*|..|..|..|long|long|long|long|long
+|type : à partir de *`TimelineColumn`*|..|..|..|long|long|long|long|long
 
 
 * *`TimelineColumn`*: Heure de début de la fenêtre de temps.

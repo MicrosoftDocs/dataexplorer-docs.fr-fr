@@ -4,16 +4,16 @@ description: Cet article décrit l’opérateur de partition dans Azure Explorat
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 2b082e516a1118638bc8e61b545471326dd400e5
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 8587995a6836a1f8a180eada19d450277709a6e7
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346233"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248597"
 ---
 # <a name="partition-operator"></a>partition, opérateur
 
@@ -49,11 +49,11 @@ T | partition by Col1 { U | where Col2=toscalar(Col1) }
   |`hint.concurrency`|*Nombre*|Indique au système le nombre de sous-requêtes simultanées de l' `partition` opérateur qui doivent être exécutées en parallèle. *Valeur par défaut*: quantité de cœurs de processeur sur le nœud unique du cluster (2 à 16).|
   |`hint.spread`|*Nombre*|Indique au système le nombre de nœuds qui doivent être utilisés par l’exécution simultanée des sous- `partition` requêtes. *Valeur par défaut*: 1.|
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 L’opérateur retourne une Union des résultats de l’application de la sous-requête à chaque partition des données d’entrée.
 
-**Remarques**
+**Notes**
 
 * L’opérateur de partition est actuellement limité par le nombre de partitions.
   Jusqu’à 64 partitions distinctes peuvent être créées.
@@ -107,11 +107,11 @@ StormEvents
 | top 5 by Count
 ```
 
-|Source|Count|
+|Source|Nombre|
 |---|---|
 |Observateur chevronné|12770|
 |Respect des lois|8570|
-|Public|6157|
+|Publiques|6157|
 |Gestionnaire des urgences|4900|
 |Observateur COOP|3039|
 
@@ -171,10 +171,10 @@ StormEvents
 | top 5 by Count
 ```
 
-|Source|Count|
+|Source|Nombre|
 |---|---|
 |Observateur chevronné|12770|
 |Respect des lois|8570|
-|Public|6157|
+|Publiques|6157|
 |Gestionnaire des urgences|4900|
 |Observateur COOP|3039|

@@ -4,18 +4,18 @@ description: Cet article décrit sql_request plug-in dans Azure Explorateur de d
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: e4752828b3e4b145026f7ee47a1ade3f8685262e
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: 1a6349547d5cf1eb3af5a21f6e8c504573f15e52
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803469"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92241772"
 ---
 # <a name="sql_request-plugin"></a>sql_request, plug-in
 
@@ -111,8 +111,8 @@ Le plug-in sql_request prend en charge trois méthodes d’authentification pour
 
 Les propriétés de connexion suivantes sont forcées lors de la connexion à un point de terminaison de réseau SQL Server, pour des raisons de sécurité.
 
-* `Encrypt`a la valeur sans `true` condition.
-* `TrustServerCertificate`a la valeur sans `false` condition.
+* `Encrypt` a la valeur sans `true` condition.
+* `TrustServerCertificate` a la valeur sans `false` condition.
 
 Par conséquent, le SQL Server doit être configuré avec un certificat de serveur SSL/TLS valide.
 

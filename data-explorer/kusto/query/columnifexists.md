@@ -4,16 +4,16 @@ description: Cet article décrit column_ifexists () dans Azure Explorateur de do
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 5eeecf9e4756ac18cdeb5c6297aea1bcca5bac14
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 570a832673d94d57d69dfa9c8442d56802ecd7ac
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348851"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92247868"
 ---
 # <a name="column_ifexists"></a>column_ifexists()
 
@@ -29,7 +29,7 @@ Prend un nom de colonne en tant que chaîne et une valeur par défaut. Retourne 
 * *DefaultValue*: valeur à utiliser si la colonne n’existe pas dans le contexte dans lequel la fonction a été utilisée.
                   Cette valeur peut être n’importe quelle expression scalaire (par exemple, une référence à une autre colonne).
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Si *ColumnName* existe, il s’agit de la colonne à laquelle il fait référence. Sinon, *DefaultValue*.
 

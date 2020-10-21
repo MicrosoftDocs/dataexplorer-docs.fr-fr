@@ -4,16 +4,16 @@ description: Cet article décrit log () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/11/2019
-ms.openlocfilehash: e81266bf43da93d2b36f0be5846e5d74f3157c7f
-ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
+ms.openlocfilehash: 2b7c4f0ac50c35dba0a1d59540fdaafb0cda2bfd
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91103227"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92241460"
 ---
 # <a name="log"></a>log()
 
@@ -27,7 +27,7 @@ ms.locfileid: "91103227"
 
 * *x*: nombre réel > 0.
 
-## <a name="returns"></a>retourne :
+## <a name="returns"></a>Retours
 
 * Le logarithme népérien est le logarithme de base e : l’inverse de la fonction exponentielle naturelle (exp).
 * `null` Si l’argument est négatif ou null ou ne peut pas être converti en `real` valeur. 

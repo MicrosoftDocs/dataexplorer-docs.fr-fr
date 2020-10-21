@@ -4,16 +4,16 @@ description: Cet article décrit la lecture aléatoire des requêtes dans Azure 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: d3625be5a3a97b456a2d6d84802b11602f959f3e
-ms.sourcegitcommit: bb7c2ba9f9dcae08710be2345ee6e63004629ea1
+ms.openlocfilehash: a7f9388b85b673237ca676f828fc093b01b2e69d
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88218977"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92241934"
 ---
 # <a name="shuffle-query"></a>Requête de lecture aléatoire
 

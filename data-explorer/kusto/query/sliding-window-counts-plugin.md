@@ -4,16 +4,16 @@ description: Cet article décrit sliding_window_counts plug-in dans Azure Explor
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: af223d31f008b972bc1b61a6a9ace7e19c988ff7
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 9234745a002b88acf23b2e177aa8bc11cda45857
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351044"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92241805"
 ---
 # <a name="sliding_window_counts-plugin"></a>sliding_window_counts plugin
 
@@ -40,7 +40,7 @@ T | evaluate sliding_window_counts(id, datetime_column, startofday(ago(30d)), st
 * *Bin*: valeur constante scalaire de la période de l’étape d’analyse. Cette valeur peut être une valeur numérique/DateTime/timestamp. Si la valeur est une chaîne au format `week` / `month` / `year` , tous les points seront [startOfWeek](startofweekfunction.md) / [StartOfMonth](startofmonthfunction.md) / [STARTOFYEAR](startofyearfunction.md). 
 * *dim1*, *dim2*,... : (facultatif) liste des colonnes de dimensions qui découpent le calcul des métriques d’activité.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Retourne une table qui contient les valeurs Count et distinct Count des ID dans la période lookback, pour chaque période de chronologie (par emplacement) et pour chaque combinaison de dimensions existante.
 
@@ -83,7 +83,7 @@ T | evaluate sliding_window_counts(UserId, Timestamp, start, end, lookbackWindow
 
 ```
 
-|Timestamp|Count|`dcount`|
+|Timestamp|Nombre|`dcount`|
 |---|---|---|
 |2017-08-01 00:00:00.0000000|5|3|
 |2017-08-02 00:00:00.0000000|8|5|

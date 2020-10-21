@@ -4,27 +4,27 @@ description: Cet article décrit le plug-in diffpatterns dans Azure Explorateur 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 0be0dc12f48723bc83376a36db04f764991f7f0d
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: f269bb12c4e4f73f7a7e6c4e9818d47dfc8002ef
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803095"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92249482"
 ---
 # <a name="diff-patterns-plugin"></a>plug-in de modèles diff
 
 Compare deux jeux de données de la même structure et recherche les modèles d’attributs discrets (dimensions) qui caractérisent les différences entre les deux jeux de données.
- `Diffpatterns`a été développé pour aider à analyser les défaillances (par exemple, en comparant les échecs aux échecs dans un laps de temps donné), mais peut éventuellement trouver des différences entre deux jeux de données de la même structure. 
+ `Diffpatterns` a été développé pour aider à analyser les défaillances (par exemple, en comparant les échecs aux échecs dans un laps de temps donné), mais peut éventuellement trouver des différences entre deux jeux de données de la même structure. 
 
 ```kusto
 T | evaluate diffpatterns(splitColumn)
 ```
 > [!NOTE]
-> `diffpatterns`vise à trouver des modèles significatifs (qui capturent des parties de la différence de données entre les jeux) et n’est pas destiné aux différences ligne par ligne.
+> `diffpatterns` vise à trouver des modèles significatifs (qui capturent des parties de la différence de données entre les jeux) et n’est pas destiné aux différences ligne par ligne.
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -81,7 +81,7 @@ Tous les autres arguments sont facultatifs, mais ils doivent alors être ordonn�
 
 ## <a name="returns"></a>Retours
 
-`Diffpatterns`retourne un petit ensemble de modèles qui capturent différentes parties des données dans les deux jeux (autrement dit, un modèle capturant un grand pourcentage de lignes dans le premier jeu de données et un pourcentage faible des lignes du deuxième jeu). Chaque modèle est représenté par une ligne dans les résultats.
+`Diffpatterns` retourne un petit ensemble de modèles qui capturent différentes parties des données dans les deux jeux (autrement dit, un modèle capturant un grand pourcentage de lignes dans le premier jeu de données et un pourcentage faible des lignes du deuxième jeu). Chaque modèle est représenté par une ligne dans les résultats.
 
 Le résultat de `diffpatterns` retourne les colonnes suivantes :
 

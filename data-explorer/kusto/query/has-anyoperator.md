@@ -4,20 +4,20 @@ description: Cet article décrit has_any opérateur dans Azure Explorateur de do
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/11/2019
-ms.openlocfilehash: 4485dde5eb77478e5fd75ce388ada7f4232f2ddb
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 012a6b0555778a30055ac9d7f4619c7b74d13988
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347627"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92241622"
 ---
 # <a name="has_any-operator"></a>has_any, opérateur
 
-`has_any`filtres d’opérateur basés sur l’ensemble de valeurs fourni.
+`has_any` filtres d’opérateur basés sur l’ensemble de valeurs fourni.
 
 ```kusto
 Table1 | where col has_any ('value1', 'value2')
@@ -35,11 +35,11 @@ Table1 | where col has_any ('value1', 'value2')
 * *liste d’expressions* : liste séparée par des virgules d’expressions tabulaires, scalaires ou littérales  
 * *expression tabulaire* -expression tabulaire avec un ensemble de valeurs (si l’expression comporte plusieurs colonnes, la première colonne est utilisée)
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
-Lignes dans *T* pour lesquelles le prédicat est`true`
+Lignes dans *T* pour lesquelles le prédicat est `true`
 
-**Remarques**
+**Notes**
 
 * La liste d’expressions peut produire jusqu’à `10,000` valeurs.    
 * Pour les expressions tabulaires, la première colonne du jeu de résultats est sélectionnée.   

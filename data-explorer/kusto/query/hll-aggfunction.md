@@ -4,16 +4,16 @@ description: Cet article décrit HLL () (fonction d’agrégation) dans Azure Ex
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/15/2020
-ms.openlocfilehash: e602a920dd07089f688f39115805a2f99d505c9c
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 4474299c804e1b54d3060d639d171652e770d989
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347559"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92241617"
 ---
 # <a name="hll-aggregation-function"></a>HLL () (fonction d’agrégation)
 
@@ -38,7 +38,7 @@ En savoir plus sur l' [algorithme sous-jacent (*H*yper*l*og*l*og) et la précisi
   |`3` | high | slow | 0,28% |
   |`4` | très élevé | les plus lents | 0,2% |
     
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Résultats intermédiaires du décompte distinct de *`Expr`* l’ensemble du groupe.
  

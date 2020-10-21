@@ -8,14 +8,14 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/14/2020
-ms.openlocfilehash: 4eaa7e8cc6f3c0f321abb9744bfe1608521e7b0e
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: c8fa3a000de67559c83745c598da40797e31f9b9
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84784529"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248340"
 ---
-# <a name="execute-database-script"></a>. exécuter le script de base de données
+# <a name="execute-database-script"></a>.execute database script
 
 Exécute un lot de commandes de contrôle dans l’étendue d’une base de données unique.
 
@@ -46,7 +46,7 @@ Chaque commande figurant dans le script est signalée comme un enregistrement di
 |OperationId  |Guid |Identificateur de la commande.
 |CommandType  |String |Type de la commande.
 |CommandText  |String |Texte de la commande spécifique.
-|Résultats|String|Résultat de l’exécution de la commande spécifique.
+|Résultat|String|Résultat de l’exécution de la commande spécifique.
 |Motif|String|Informations détaillées sur le résultat de l’exécution de la commande.
 
 >[!NOTE]
@@ -60,13 +60,13 @@ Chaque commande figurant dans le script est signalée comme un enregistrement di
 
 ```kusto
 .execute database script <|
-
+//
 // Create tables
 .create-merge table T(a:string, b:string)
-
+//
 // Apply policies
 .alter-merge table T policy retention softdelete = 10d 
-
+//
 // Create functions
 .create-or-alter function
   with (skipvalidation = "true") 
@@ -75,7 +75,7 @@ Chaque commande figurant dans le script est signalée comme un enregistrement di
 }
 ```
 
-|OperationId|CommandType|CommandText|Résultats|Motif|
+|OperationId|CommandType|CommandText|Résultat|Motif|
 |---|---|---|---|---|
 |1d28531b-58c8-4023-a5d3-16fa73c06cfa|TableCreate|. Create-Merge table T (a :String, b :String)|Completed||
 |67d0ea69-baa4-419a-93d3-234c03834360|RetentionPolicyAlter|. Alter-Merge table T Retention de la stratégie SoftDelete = 10D|Completed||

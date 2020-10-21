@@ -4,16 +4,16 @@ description: Cet article décrit User Analytics dans Azure Explorateur de donné
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 11/17/2019
-ms.openlocfilehash: 5a9ca6259296f2fa2c5ad83622e7f3012169864e
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.openlocfilehash: 63e19b00fef5361b1651bb1f1c88647ab8fd62fe
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85966973"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248352"
 ---
 # <a name="user-analytics-plugins"></a>Plug-ins d’analytique des utilisateurs
 

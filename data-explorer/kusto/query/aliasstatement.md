@@ -4,18 +4,18 @@ description: Cet article décrit l’instruction alias dans Azure Explorateur de
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 5e243984bd6a011b8de224d2c9cdd0108ab1b38f
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 822c8eccf50dc30fd3f56f4402c10a9fafb34084
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349752"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248292"
 ---
 # <a name="alias-statement"></a>Alias, instruction
 
@@ -28,9 +28,9 @@ L’alias doit être défini conformément à la syntaxe suivante, où *ClusterN
 
 ## <a name="syntax"></a>Syntaxe
 
-`alias`cluster de base de données [*« DatabaseAliasName »*] `=` (« https://*ClusterName*. Kusto. Windows. net : 443 »). Database («*DatabaseName*»)
+`alias` cluster de base de données [*« DatabaseAliasName »*] `=` (« https://*ClusterName*. Kusto. Windows. net : 443 »). Database («*DatabaseName*»)
 
-`alias`cluster *DatabaseAliasName* de base de données `=` ("https://*ClusterName*. Kusto. Windows. net : 443"). Database ("*DatabaseName*")
+`alias` cluster *DatabaseAliasName* de base de données `=` ("https://*ClusterName*. Kusto. Windows. net : 443"). Database ("*DatabaseName*")
 
 * *'DatabaseAliasName'* peut être un nom existant ou un nouveau nom.
 * L’URI du cluster mappé et le nom de la base de données mappée doivent figurer entre guillemets doubles (") ou guillemets simples (')

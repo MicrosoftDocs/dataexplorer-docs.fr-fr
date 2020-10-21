@@ -4,16 +4,16 @@ description: Cet article décrit parse_url () dans Azure Explorateur de données
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 94a35dbf742b6df31012e68b5f2b2f09bec9b7e5
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 0ce68151270369bd7dc0898b98029bacddf0c243
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346284"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248626"
 ---
 # <a name="parse_url"></a>parse_url()
 
@@ -28,7 +28,7 @@ Analyse une URL absolue `string` et retourne un `dynamic` objet contient des par
 
 * *URL*: une chaîne représente une URL ou la partie requête de l’URL.
 
-## <a name="returns"></a>Retourne
+## <a name="returns"></a>Retours
 
 Objet de type [dynamique](./scalar-data-types/dynamic.md) qui inclut les composants d’URL : schéma, hôte, port, chemin d’accès, nom d’utilisateur, mot de passe, paramètres de requête, fragment.
 

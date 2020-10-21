@@ -4,16 +4,16 @@ description: Cet article décrit beta_inv () dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: deb91e6131d5662017ebdf714a79d0ee391c8ba1
-ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
+ms.openlocfilehash: 4e302f997addbdc4f2f9da4bd906844dbd1d07a4
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91103299"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248007"
 ---
 # <a name="beta_inv"></a>beta_inv()
 
@@ -37,11 +37,11 @@ La distribution Bêta peut être utilisée dans la planification de projet pour 
 * *alpha*: paramètre de la distribution.
 * *bêta*: paramètre de la distribution.
 
-## <a name="returns"></a>retourne :
+## <a name="returns"></a>Retours
 
 * Inverse de la fonction de densité de probabilité cumulative bêta [beta_cdf ()](./beta-cdffunction.md)
 
-**Remarques**
+**Notes**
 
 Si un argument n’est pas numérique, beta_inv () retourne une valeur null.
 
@@ -66,9 +66,9 @@ datatable(p:double, alpha:double, beta:double, comment:string)
 
 |p|alpha|bêta|comment|b|
 |---|---|---|---|---|
-|0,1|10|20|Entrée valide|0.226415022388749|
+|0.1|10|20|Entrée valide|0.226415022388749|
 |1.5|10|20|p > 1, donne NULL||
-|0,1|-1|20|Alpha est < 0, produit NaN|NaN|
+|0.1|-1|20|Alpha est < 0, produit NaN|NaN|
 
 ## <a name="see-also"></a>Voir aussi
 
