@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/18/2020
-ms.openlocfilehash: e6630067cb02f3bf4685e274d2d5d2a6d00a97c5
-ms.sourcegitcommit: 1618cbad18f92cf0cda85cb79a5cc1aa789a2db7
+ms.openlocfilehash: 04b1f53ad16d8658d3a12d36370261afac02fe86
+ms.sourcegitcommit: 58588ba8d1fc5a6adebdce2b556db5bc542e38d8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91615034"
+ms.lasthandoff: 10/15/2020
+ms.locfileid: "92098419"
 ---
 # <a name="azure-data-explorer-data-ingestion-overview"></a>Vue d’ensemble de l’ingestion des données dans Azure Data Explorer 
 
@@ -126,7 +126,7 @@ Plusieurs méthodes faisant appel à des commandes KQL (Kusto Query Language) pe
 | [**Go**](kusto/api/golang/kusto-golang-client-library.md) | Tous les formats pris en charge | 1 Go non compressé (voir remarque) | Traitement par lot, streaming, directe | Code personnalisé en fonction des besoins de l’organisation |
 
 > [!Note] 
-> Quand elle est référencée dans la table ci-dessus, l’ingestion prend en charge une taille de fichier maximale de 5 Go. Nous vous recommandons d’ingérer des fichiers entre 100 Mo et 1 Go.
+> Quand elle est référencée dans le tableau ci-dessus, l’ingestion prend en charge une taille de fichier maximale de 4 Go. Nous vous recommandons d’ingérer des fichiers entre 100 Mo et 1 Go.
 
 ## <a name="ingestion-process"></a>Processus d’ingestion
 

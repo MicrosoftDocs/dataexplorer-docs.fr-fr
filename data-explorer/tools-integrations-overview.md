@@ -8,12 +8,12 @@ ms.reviewer: olgolden
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 07/08/2020
-ms.openlocfilehash: e341b70dfc2a7c0d3038d6d60d9c8ae2b40b6218
-ms.sourcegitcommit: c2ab3176db4dd55ac9ca8eee52bbd24096d1277f
+ms.openlocfilehash: c1be494fd290b051455010d6e6e082d01650107c
+ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90740250"
+ms.lasthandoff: 10/13/2020
+ms.locfileid: "92003143"
 ---
 # <a name="azure-data-explorer-tools-and-integrations-overview"></a>Vue d’ensemble des outils et des intégrations Azure Data Explorer
 
@@ -30,31 +30,18 @@ L’ingestion des données est le processus utilisé pour charger des enregistre
 ### <a name="azure-data-explorer-ingestion-tools"></a>Outils d’ingestion Azure Data Explorer
 
 * [LightIngest](lightingest.md)utilitaire d’aide pour l’ingestion des données ad hoc dans Azure Data Explorer
-* Ingestion en un clic
-    * [Vue d’ensemble de l’ingestion en un clic](ingest-data-one-click.md) 
-    * [Ingérer des données d’un conteneur dans une nouvelle table](one-click-ingestion-new-table.md)
-    * [Ingérer des données d’un fichier local dans une table existante](one-click-ingestion-existing-table.md)
+* Ingestion en un clic : [vue d’ensemble](ingest-data-one-click.md) et ingérer des données [depuis un conteneur vers une nouvelle table](one-click-ingestion-new-table.md) ou [depuis un fichier local vers une table existante](one-click-ingestion-existing-table.md)
 
 ### <a name="ingestion-integrations"></a>Intégrations d’ingestion
 
-* Event Hub
-    * [Ingérer des données à partir d’Event Hub](ingest-data-event-hub-overview.md)
-    * Ingérez des données d’Event Hub à l’aide du [portail Azure](ingest-data-event-hub.md), de [C#](data-connection-event-hub-csharp.md), de [Python](data-connection-event-hub-python.md) ou d’un [modèle Azure Resource Manager](data-connection-event-hub-resource-manager.md)
-* Event Grid
-    * [Ingérer des données d’Event Grid](ingest-data-event-grid-overview.md)
-    * Ingérez des données d’Event Grid à l’aide du [portail Azure](ingest-data-event-grid.md), de [C#](data-connection-event-grid-csharp.md), de [Python](data-connection-event-grid-python.md) ou d’un [modèle Azure Resource Manager](data-connection-event-grid-resource-manager.md)
-* IoT Hub
-    * [Ingérer des données d’IoT Hub](ingest-data-iot-hub-overview.md)
-    * Ingérez des données d’IoT Hub à l’aide du [portail Azure](ingest-data-iot-hub.md), de [C#](data-connection-iot-hub-csharp.md), de [Python](data-connection-iot-hub-python.md) ou d’un [modèle Azure Resource Manager](data-connection-iot-hub-resource-manager.md)
+* Event Hub : [Vue d’ensemble de l’ingestion depuis Event Hub](ingest-data-event-hub-overview.md) et utilisation du [portail Azure](ingest-data-event-hub.md), de [C#](data-connection-event-hub-csharp.md), de [Python](data-connection-event-hub-python.md) ou d’un [modèle Azure Resource Manager](data-connection-event-hub-resource-manager.md)
+* Event Grid : [Vue d’ensemble de l’ingestion depuis Event Grid](ingest-data-event-grid-overview.md) et utilisation du [portail Azure](ingest-data-event-grid.md), de [C#](data-connection-event-grid-csharp.md), de [Python](data-connection-event-grid-python.md) ou d’un [modèle Azure Resource Manager](data-connection-event-grid-resource-manager.md)
+* IoT Hub : [Vue d’ensemble de l’ingestion depuis IoT Hub](ingest-data-iot-hub-overview.md) et utilisation du [portail Azure](ingest-data-iot-hub.md), de [C#](data-connection-iot-hub-csharp.md), de [Python](data-connection-iot-hub-python.md) ou d’un [modèle Azure Resource Manager](data-connection-iot-hub-resource-manager.md)
 * [Logstash](ingest-data-logstash.md)
-* Azure Data Factory
-    * [Intégrer à Azure Data Factory](data-factory-integration.md)
-    * [Copie de données](data-factory-load-data.md)
-    * [Copier en bloc à partir d’une base de données à l’aide du modèle Azure Data Factory](data-factory-template.md)
-    * [Utiliser l’activité de commande Azure Data Factory pour exécuter des commandes de contrôle Azure Data Explorer](data-factory-command-activity.md)
-* Apache 
-    * [Spark](spark-connector.md)
-    * [Kafka](ingest-data-kafka.md)
+* Azure Data Factory : [vue d’ensemble de l’intégration](data-factory-integration.md), [copier des données](data-factory-load-data.md), [copier en bloc en utilisant le modèle Azure Data Factory](data-factory-template.md) et [exécuter des commandes de contrôle Azure Data Explorer en utilisant l’activité de commande Azure Data Factory](data-factory-command-activity.md)
+* [Azure Synapse - Apache Spark](https://docs.microsoft.com/azure/synapse-analytics/quickstart-connect-azure-data-explorer?context=/azure/data-explorer/context/context)
+* [Apache Spark](spark-connector.md)
+* [Apache Kafka](ingest-data-kafka.md)
 * [Cosmos DB](https://github.com/Azure/azure-kusto-labs/tree/master/cosmosdb-adx-integration)
 * [Power Automate](flow.md)
 
@@ -65,10 +52,8 @@ L’ingestion des données est le processus utilisé pour charger des enregistre
 Plusieurs outils sont disponibles pour exécuter des requêtes dans Azure Data Explorer.
 
 * Kusto.Explorer
-    * [Installation et interface utilisateur](kusto/tools/kusto-explorer.md)
-    * [Utilisation de Kusto.Explorer](kusto/tools/kusto-explorer-using.md)
-    * [options](kusto/tools/kusto-explorer-options.md)
-    * Autres rubriques : [résolution des problèmes](kusto/tools/kusto-explorer-troubleshooting.md), [raccourcis clavier](kusto/tools/kusto-explorer-shortcuts.md), [refactorisation de code](kusto/tools/kusto-explorer-refactor.md), [navigation dans le code](kusto/tools/kusto-explorer-codenav.md) et [analyse de code](kusto/tools/kusto-explorer-code-analyzer.md)
+    * [installation et interface utilisateur](kusto/tools/kusto-explorer.md), [utilisation de Kusto.Explorer](kusto/tools/kusto-explorer-using.md)
+    * Autres rubriques : [options](kusto/tools/kusto-explorer-options.md), [résolution des problèmes](kusto/tools/kusto-explorer-troubleshooting.md), [raccourcis clavier](kusto/tools/kusto-explorer-shortcuts.md), [refactorisation du code](kusto/tools/kusto-explorer-refactor.md), [navigation dans le code](kusto/tools/kusto-explorer-codenav.md) et [analyse du code](kusto/tools/kusto-explorer-code-analyzer.md)
 * [Interface utilisateur web](web-query-data.md)
 * [Kusto.Cli](kusto/tools/kusto-cli.md)
 
@@ -76,9 +61,10 @@ Plusieurs outils sont disponibles pour exécuter des requêtes dans Azure Data E
 
 * [Azure Monitor](query-monitor-data.md)
 * [Azure Data Lake](data-lake-query-data.md)
+* [Azure Synapse - Apache Spark](https://docs.microsoft.com/azure/synapse-analytics/quickstart-connect-azure-data-explorer?context=/azure/data-explorer/context/context)
 * [Apache Spark](spark-connector.md)
 * Microsoft Power Apps
-* [Azure Data Studio](https://docs.microsoft.com/sql/azure-data-studio/notebooks-kqlmagic)
+* Azure Data Studio : [Vue d’ensemble de l’extension Kusto](https://docs.microsoft.com/sql/azure-data-studio/extensions/kusto-extension?context=/azure/data-explorer/context/context), [utiliser Kusto](https://docs.microsoft.com/sql/azure-data-studio/notebooks/notebooks-kusto-kernel?context=/azure/data-explorer/context/context) et [utiliser Kqlmagic](https://docs.microsoft.com/sql/azure-data-studio/notebooks-kqlmagic?context=/azure/data-explorer/context/context)
 
 ## <a name="visualizations-dashboards-and-reporting"></a>Visualisations, tableaux de bord et création de rapports
 
@@ -88,7 +74,7 @@ La [vue d’ensemble de la visualisation](viz-overview.md) détaille la visualis
 
 * [Azure Notebooks](azure-notebooks.md)
 * [Blocs-notes Jupyter](kqlmagic.md)
-* [Azure Data Studio](https://docs.microsoft.com/sql/azure-data-studio/notebooks-kqlmagic)
+* Azure Data Studio : [Vue d’ensemble de l’extension Kusto](https://docs.microsoft.com/sql/azure-data-studio/extensions/kusto-extension?context=/azure/data-explorer/context/context), [utiliser Kusto](https://docs.microsoft.com/sql/azure-data-studio/notebooks/notebooks-kusto-kernel?context=/azure/data-explorer/context/context) et [utiliser Kqlmagic](https://docs.microsoft.com/sql/azure-data-studio/notebooks-kqlmagic?context=/azure/data-explorer/context/context)
 
 ## <a name="orchestration"></a>Orchestration
 

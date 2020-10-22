@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/26/2019
-ms.openlocfilehash: 3d1e8b4df2507a9b2eb7126973dea891edc1d6ac
-ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
+ms.openlocfilehash: 4cb2c64e2a66d8412277717e505626965bca1052
+ms.sourcegitcommit: 7024f73c76bf5b506557fd0ef7a0f4f40ec7d313
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/11/2020
-ms.locfileid: "91941976"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92021217"
 ---
 # <a name="best-practices-for-using-power-bi-to-query-and-visualize-azure-data-explorer-data"></a>Bonnes pratiques relatives à l’utilisation de Power BI pour interroger et visualiser des données Azure Data Explorer
 
@@ -91,6 +91,7 @@ Vous pouvez utiliser l’une des options suivantes dans votre requête M :
 | NoTruncate | `[NoTruncate=true]` | Ajoute l’instruction définie `notruncation` à votre requête. Permet de supprimer la troncation des résultats de la requête retournés à l’appelant.
 | AdditionalSetStatements | `[AdditionalSetStatements="set query_datascope=hotcache"]` | Ajoute les instructions définies fournies à votre requête. Ces instructions sont utilisées pour définir des options de requête pour la durée de la requête. Les options de requête contrôlent la manière dont une requête s’exécute et retourne les résultats.
 | CaseInsensitive | `[CaseInsensitive=true]` | Fait en sorte que le connecteur génère des requêtes qui sont insensibles à la casse : les requêtes utiliseront l’opérateur `=~` au lieu de l’opérateur `==` lors de la comparaison des valeurs.
+| Délai d'expiration | `[Timeout=#duration(0,10,0,0)]` | Configure le délai d’expiration du client et du serveur de la requête sur la durée indiquée.
 
 > [!NOTE]
 > Vous pouvez combiner plusieurs options pour arriver au comportement souhaité : `[NoTruncate=true, CaseInsensitive=true]`

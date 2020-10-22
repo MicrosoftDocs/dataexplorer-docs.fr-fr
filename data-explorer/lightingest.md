@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/28/2020
-ms.openlocfilehash: 1825ef642e5427df58800c8d6a71f75ff484bcf5
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: f3925ed2b3012dffbd7e96ca6dd6a795b0499071
+ms.sourcegitcommit: 88923cfb2495dbf10b62774ab2370b59681578b9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88872639"
+ms.lasthandoff: 10/19/2020
+ms.locfileid: "92175695"
 ---
 # <a name="use-lightingest-to-ingest-data-to-azure-data-explorer"></a>Utiliser LightIngest pour ingérer des données dans Azure Data Explorer
  
@@ -36,8 +36,9 @@ LightIngest est particulièrement utile quand vous souhaitez ingérer une grande
 
 1. Accédez au répertoire *tools* extrait sur votre ordinateur.
 1. Supprimez les informations d’emplacement existantes de la barre d’emplacement.
-    
-    :::image type="content" source="kusto/tools/images/KustoTools-Lightingest/lightingest-locationbar.png" alt-text="Supprimer les informations d’emplacement existantes pour LightIngest":::
+
+    :::image type="content" source="media/lightingest/lightingest-locationbar.png" alt-text="Téléchargement de LightIngest":::
+
 
 1. Entrez `cmd`, puis appuyez sur **Entrée**.
 1. À l’invite de commandes, saisissez `LightIngest.exe` suivi de l’argument de ligne de commande approprié.
@@ -45,7 +46,7 @@ LightIngest est particulièrement utile quand vous souhaitez ingérer une grande
     > [!Tip]
     > Pour obtenir la liste des arguments de ligne de commande pris en charge, saisissez `LightIngest.exe /help`.
     >
-    > :::image type="content" source="media/lightingest/lightingest-cmd-line-help.png" alt-text="Aide relative à la ligne de commande pour LightIngest":::
+    > :::image type="content" source="media/lightingest/lightingest-cmd-line-help.png" alt-text="Téléchargement de LightIngest":::
 
 1. Saisissez `ingest-` suivi de la chaîne de connexion au cluster Azure Data Explorer qui gérera l’ingestion.
     Mettez la chaîne de connexion entre guillemets doubles et suivez la [Spécification des chaînes de connexion Kusto](kusto/api/connection-strings/kusto.md).

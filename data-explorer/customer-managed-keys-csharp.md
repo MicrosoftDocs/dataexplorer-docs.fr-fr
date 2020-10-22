@@ -1,18 +1,18 @@
 ---
 title: Configurer des clés gérées par le client à l’aide de C#
-description: Cet article explique comment configurer le chiffrement de vos données avec des clés gérées par le client dans Azure Data Explorer.
+description: Cet article explique comment configurer des clés gérées par le client pour chiffrer des données Azure Data Explorer en utilisant C#.
 author: orspod
 ms.author: orspodek
 ms.reviewer: itsagui
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 01/06/2020
-ms.openlocfilehash: ade06e6fffb31a5c76fa12fe02d5192e4126091e
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: db20566a9aa9b5c720ea9f72ec9c980042db0625
+ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88872095"
+ms.lasthandoff: 10/13/2020
+ms.locfileid: "92002999"
 ---
 # <a name="configure-customer-managed-keys-using-c"></a>Configurer des clés gérées par le client à l’aide de C#
 

@@ -338,7 +338,7 @@
         - name: Connecteur Apache Spark
           href: spark-connector.md
         - name: Se connecter depuis Azure Synapse Apache Spark
-          href: 'https://docs.microsoft.com/azure/synapse-analytics/quickstart-connect-azure-data-explorer?toc=/azure/data-explorer/toc.json&bc=/azure/data-explorer/breadcrumb/toc.json'
+          href: /azure/synapse-analytics/quickstart-connect-azure-data-explorer?toc=/azure/data-explorer/toc.json&bc=/azure/data-explorer/breadcrumb/toc.json
         - name: Se connecter depuis Azure Databricks
           href: connect-from-databricks.md
         - name: Notebooks
@@ -349,13 +349,13 @@
               items:
                 - name: Vue d’ensemble de l’extension Kusto
                   displayName: Azure Data Studio
-                  href: 'https://docs.microsoft.com/sql/azure-data-studio/extensions/kusto-extension?context=/azure/data-explorer/context/context'
+                  href: /sql/azure-data-studio/extensions/kusto-extension?context=/azure/data-explorer/context/context
                 - name: Utiliser l’extension Kusto
                   displayName: Azure Data Studio
-                  href: 'https://docs.microsoft.com/sql/azure-data-studio/notebooks/notebooks-kusto-kernel?context=/azure/data-explorer/context/context'
+                  href: /sql/azure-data-studio/notebooks/notebooks-kusto-kernel?context=/azure/data-explorer/context/context
                 - name: Utiliser Kqlmagic
                   displayName: Azure Data Studio
-                  href: 'https://docs.microsoft.com/sql/azure-data-studio/notebooks/notebooks-kqlmagic?context=/azure/data-explorer/context/context'
+                  href: /sql/azure-data-studio/notebooks/notebooks-kqlmagic?context=%252fazure%252fdata-explorer%252fcontext%252fcontext
         - name: Azure Pipelines
           href: devops.md
         - name: Synchroniser Kusto
@@ -550,6 +550,8 @@
               href: ./kusto/query/projectoperator.md
             - name: opérateur project-away
               href: ./kusto/query/projectawayoperator.md
+            - name: 'project-keep, opérateur'
+              href: ./kusto/query/project-keep-operator.md
             - name: 'project-rename, opérateur'
               href: ./kusto/query/projectrenameoperator.md
             - name: 'project-reorder, opérateur'

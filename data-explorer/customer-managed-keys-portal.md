@@ -1,18 +1,18 @@
 ---
 title: Configurer des clés gérées par le client à l’aide du Portail Azure
-description: Cet article explique comment configurer le chiffrement de vos données avec des clés gérées par le client dans Azure Data Explorer.
+description: Découvrez comment configurer des clés gérées par le client pour chiffrer des données Azure Data Explorer en utilisant le portail Azure.
 author: orspod
 ms.author: orspodek
 ms.reviewer: itsagui
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/26/2020
-ms.openlocfilehash: 4d828905ce673c3b1c6453d31974334312bd3b5e
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 3c8aaf6f4a6a876707a362ac163de146630a86cb
+ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88872146"
+ms.lasthandoff: 10/13/2020
+ms.locfileid: "92003021"
 ---
 # <a name="configure-customer-managed-keys-using-the-azure-portal"></a>Configurer des clés gérées par le client à l’aide du Portail Azure
 
@@ -59,6 +59,5 @@ En activant des clés gérées par le client pour votre cluster Azure Data Explo
 * [Sécuriser votre cluster en utilisant le chiffrement de disque dans Azure Data Explorer – Portail Azure](cluster-disk-encryption.md) en activant le chiffrement au repos.
 * [Configurer des clés gérées par le client à l’aide du modèle Azure Resource Manager](customer-managed-keys-resource-manager.md)
 * [Configurer des clés gérées par le client à l’aide de C#](customer-managed-keys-csharp.md)
-
 
 

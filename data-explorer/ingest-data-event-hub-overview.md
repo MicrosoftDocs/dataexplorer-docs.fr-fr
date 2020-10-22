@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: b3a8c379ad010a9787fdb8b7d4e2961fb58ead9e
-ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
+ms.openlocfilehash: c20e18a31105dca584ebe35198462e8755cf8dc4
+ms.sourcegitcommit: 88923cfb2495dbf10b62774ab2370b59681578b9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/07/2020
-ms.locfileid: "89502657"
+ms.lasthandoff: 10/19/2020
+ms.locfileid: "92175720"
 ---
 # <a name="create-a-connection-to-event-hub"></a>Créer une connexion à Event Hub
 
@@ -30,7 +30,7 @@ Pour obtenir des informations générales sur l’ingestion de données dans Azu
     > [!NOTE]
     > Event Hub ne prend pas en charge le format .raw.
 
-* Examinez les [compressions prises en charge](ingestion-supported-formats.md#supported-data-compression-formats).
+* Les données peuvent être compressées en utilisant l’algorithme de compression `GZip`. Spécifiez `Compression` dans les [propriétés d’ingestion](#set-ingestion-properties).
    * La compression des données n’est pas prise en charge pour les formats compressés (Avro, Parquet, ORC).
    * L’encodage personnalisé et les [propriétés système](#set-event-system-properties-mapping) incorporées ne sont pas pris en charge sur les données compressées.
   

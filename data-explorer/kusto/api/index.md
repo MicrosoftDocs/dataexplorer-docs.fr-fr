@@ -8,12 +8,12 @@ ms.reviewer: vladikb
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/11/2020
-ms.openlocfilehash: b9fd03bfd08a31d872ca3c0ef48bd96514e9eb18
-ms.sourcegitcommit: 9e0289945270db517e173aa10024e0027b173b52
+ms.openlocfilehash: b352ed44e7beb487588cf94f37d280eb6b51cdf9
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/03/2020
-ms.locfileid: "89428394"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92337463"
 ---
 # <a name="azure-data-explorer-api-overview"></a>Vue d’ensemble de l’API Azure Data Explorer
 
@@ -23,7 +23,7 @@ Le service Azure Data Explorer prend en charge les points de terminaison de comm
    Ce point de terminaison prend en charge le [langage de requête Kusto](../query/index.md) pour les requêtes et les [commandes de contrôle](../management/index.md).
 1. Un point de terminaison [MS-TDS](#ms-tds), qui implémente un sous-ensemble du protocole Microsoft TDS (Tabular Data Stream), utilisé par les produits Microsoft SQL Server.
    Ce point de terminaison est utile pour les outils qui savent comment communiquer avec un point de terminaison SQL Server pour les requêtes.
-1. Un point de terminaison de [Azure Resource Manager (ARM)](https://docs.microsoft.com/azure/role-based-access-control/resource-provider-operations#microsoftkusto) qui est le moyen standard pour les services Azure. Le point de terminaison est utilisé pour gérer les ressources, comme des clusters Azure Data Explorer.
+1. Un point de terminaison de [Azure Resource Manager (ARM)](/azure/role-based-access-control/resource-provider-operations#microsoftkusto) qui est le moyen standard pour les services Azure. Le point de terminaison est utilisé pour gérer les ressources, comme des clusters Azure Data Explorer.
 
 ## <a name="rest-api"></a>API REST
 
