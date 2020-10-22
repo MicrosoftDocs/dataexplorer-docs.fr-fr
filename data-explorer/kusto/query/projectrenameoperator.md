@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 83a4dba3f426189de615640ab48e1fa60f9e5537
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 9c46c8d0271516c56c3549212ad7b74f721ce81b
+ms.sourcegitcommit: ee904f45e3eb3feab046263aa9956cb7780a056d
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92242201"
+ms.lasthandoff: 10/22/2020
+ms.locfileid: "92356501"
 ---
 # <a name="project-rename-operator"></a>project-rename, opérateur
 
@@ -23,7 +23,7 @@ Renomme les colonnes dans la sortie de résultat.
 T | project-rename new_column_name = column_name
 ```
 
-## <a name="syntax"></a>Syntaxe
+## <a name="syntax"></a>Syntax
 
 *T* `| project-rename` *NewColumnName*  =  *ExistingColumnName* [ `,` ...]
 
@@ -36,7 +36,6 @@ T | project-rename new_column_name = column_name
 ## <a name="returns"></a>Retours
 
 Table qui contient les colonnes dans le même ordre que dans une table existante, avec les colonnes renommées.
-
 
 ## <a name="examples"></a>Exemples
 

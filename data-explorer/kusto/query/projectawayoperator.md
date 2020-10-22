@@ -8,24 +8,24 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a708a83e4bef1c1d9b774f0304e2dd8c7cba8cda
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 2938019237c882891af8ff86f4d33de3605a9063
+ms.sourcegitcommit: ee904f45e3eb3feab046263aa9956cb7780a056d
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92244793"
+ms.lasthandoff: 10/22/2020
+ms.locfileid: "92356518"
 ---
 # <a name="project-away-operator"></a>opérateur project-away
 
-Sélectionner les colonnes de l’entrée à exclure de la sortie
+Sélectionnez les colonnes de l’entrée à exclure de la sortie.
 
 ```kusto
 T | project-away price, quantity, zz*
 ```
 
-L’ordre des colonnes dans le résultat est déterminé par leur ordre d’origine dans la table. Seules les colonnes qui ont été spécifiées en tant qu’arguments sont supprimées. Les autres colonnes sont incluses dans le résultat.  (Voir aussi `project`.)
+L’ordre des colonnes dans le résultat est déterminé par leur ordre d’origine dans la table. Seules les colonnes qui ont été spécifiées en tant qu’arguments sont supprimées. Les autres colonnes sont incluses dans le résultat. (Voir aussi `project`.)
 
-## <a name="syntax"></a>Syntaxe
+## <a name="syntax"></a>Syntax
 
 *T* `| project-away` *ColumnNameOrPattern* [ `,` ...]
 
@@ -38,13 +38,11 @@ L’ordre des colonnes dans le résultat est déterminé par leur ordre d’orig
 
 Table dont les colonnes ne sont pas nommées en tant qu’arguments. Contient le même nombre de lignes que la table d’entrée.
 
-**Conseils**
-
-* Utilisez [`project-rename`](projectrenameoperator.md) si vous avez l’intention de renommer des colonnes.
-* Utilisez [`project-reorder`](projectreorderoperator.md) si vous avez l’intention de réorganiser les colonnes.
-
-* Vous pouvez `project-away` toutes les colonnes présentes dans la table d’origine ou qui ont été calculées dans le cadre de la requête.
-
+> [!TIP]
+>
+> * Pour renommer des colonnes, utilisez [`project-rename`](projectrenameoperator.md) .
+> * Pour réorganiser les colonnes, utilisez [`project-reorder`](projectreorderoperator.md) .
+> * Vous pouvez `project-away` toutes les colonnes présentes dans la table d’origine ou qui ont été calculées dans le cadre de la requête.
 
 ## <a name="examples"></a>Exemples
 
@@ -56,7 +54,7 @@ datatable(A:long, B:long, C:long) [1, 2, 3]
 | project-away C    // Removes column C from the output
 ```
 
-|A|B|
+|Un|B|
 |---|---|
 |1|2|
 
@@ -64,11 +62,14 @@ Suppression des colonnes à partir de « a ».
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
-print  a2='a2', b = 'b', a3='a3', a1='a1'
-|  project-away a* 
+print a2='a2', b = 'b', a3='a3', a1='a1'
+| project-away a*
 ```
 
 |b|
 |---|
 |b|
 
+## <a name="see-also"></a>Voir aussi
+
+Pour choisir les colonnes de l’entrée à conserver dans la sortie, utilisez [Project-Keep](project-keep-operator.md).
