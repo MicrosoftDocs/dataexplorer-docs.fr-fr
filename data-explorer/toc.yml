@@ -313,6 +313,8 @@
           href: using-metrics.md
         - name: Utiliser Resource Health pour superviser l’intégrité du cluster
           href: monitor-with-resource-health.md
+        - name: Créer une application Power Apps pour interroger des données dans Azure Data Explorer
+          href: power-apps-connector.md
     - name: Partager des données
       items:
         - name: Utiliser Azure Data Share
@@ -1779,8 +1781,8 @@
           href: 'https://stackoverflow.com/questions/tagged/azure-data-explorer'
         - name: Microsoft Tech Community
           href: 'https://techcommunity.microsoft.com/t5/Azure-Data-Explorer/bd-p/Kusto'
-        - name: Forum MSDN
-          href: 'https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureKusto'
+        - name: Microsoft Q&A
+          href: /answers/topics/azure-data-explorer.html
     - name: Commentaires sur le produit
       href: 'https://aka.ms/adefeedback'
     - name: Tarification et facturation
