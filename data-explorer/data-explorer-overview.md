@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 09/24/2018
-ms.openlocfilehash: 764dea2e3fe82bf795db81a4e8d3f89e256d3517
-ms.sourcegitcommit: 58588ba8d1fc5a6adebdce2b556db5bc542e38d8
+ms.openlocfilehash: 10192cca4e03aa92ec018f7875e457d4cf109f72
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/15/2020
-ms.locfileid: "92098453"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342924"
 ---
 # <a name="what-is-azure-data-explorer"></a>Qu’est-ce que l’Explorateur de données Azure ?
 
@@ -44,7 +44,7 @@ Le diagramme suivant montre les différents aspects de l’utilisation de l’Ex
 
 L’utilisation de l’Explorateur de données Azure suit généralement ce schéma :
 
-1. **Créer une base de données :** Créez un *cluster*, puis une ou plusieurs *bases de données* dans ce cluster. [Démarrage rapide : Créer un cluster et une base de données pour l’Explorateur de données Azure](create-cluster-database-portal.md)
+1. **Créer une base de données :** Créez un *cluster* , puis une ou plusieurs *bases de données* dans ce cluster. [Démarrage rapide : Créer un cluster et une base de données pour l’Explorateur de données Azure](create-cluster-database-portal.md)
 
 1. **Ingérer des données :** Chargez des données dans des tables de base de données pour pouvoir exécuter des requêtes dessus. [Démarrage rapide : Ingérer des données Event Hub dans l’Explorateur de données Azure](ingest-data-event-hub.md)
 
@@ -64,7 +64,7 @@ Nous aimerions beaucoup avoir votre avis sur Azure Data Explorer et son langage 
 
 * Poser des questions
   * [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-data-explorer)
-  * [Microsoft Q&A](https://docs.microsoft.com/answers/topics/azure-data-explorer.html)
+  * [Microsoft Q&A](/answers/topics/azure-data-explorer.html)
   * [Microsoft Tech Community](https://techcommunity.microsoft.com/t5/Azure-Data-Explorer/bd-p/Kusto)
 * [Partager des suggestions produit dans User Voice](https://aka.ms/AzureDataExplorer.UserVoice)
 

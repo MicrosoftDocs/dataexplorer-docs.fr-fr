@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: tutorial
 ms.date: 04/07/2019
-ms.openlocfilehash: a7a964f8bb022885c6ac3bc4828469031987b162
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: f6d993383ecf6c25bf144228e77f02f944bc02d8
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88872622"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343332"
 ---
 # <a name="write-queries-for-azure-data-explorer"></a>Rédiger des requêtes pour l’Explorateur de données Azure
 
@@ -55,7 +55,7 @@ Dans ce cas, le résultat est le suivant :
 |   23|
 | |
 
-Pour plus d’informations, consultez les [informations de référence sur le langage de requête](https://aka.ms/kustolangref).
+Pour plus d’informations, consultez les [informations de référence sur le langage de requête](./kusto/query/index.md).
 
 ## <a name="most-common-operators"></a>Opérateurs les plus courants
 
@@ -67,7 +67,7 @@ Pour exécuter des requêtes sur votre propre cluster :
 
 1. Copiez chaque requête dans l’application de requête web, puis sélectionnez la requête ou placez votre curseur dans la requête.
 
-1. En haut de l’application, sélectionnez **Exécuter**.
+1. En haut de l’application, sélectionnez **Exécuter** .
 
 ### <a name="count"></a>count
 
@@ -85,7 +85,7 @@ StormEvents | count
 
 [**take**](kusto/query/takeoperator.md) : retourne au maximum le nombre spécifié de lignes de données.
 
-La requête suivante retourne cinq lignes de la table StormEvents. Le mot clé *limit* est un alias pour *take*.
+La requête suivante retourne cinq lignes de la table StormEvents. Le mot clé *limit* est un alias pour *take* .
 
 **\[** [**Cliquer pour exécuter la requête**](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAEAAsuyS%2fKdS1LzSspVqhRKEnMTlUwBQDEz2b8FAAAAA%3d%3d) **\]**
 
@@ -190,7 +190,7 @@ StormEvents
 | summarize event_count = count() by State
 ```
 
-L’opérateur **summarize** regroupe des lignes qui ont les mêmes valeurs dans la clause **by**, puis utilise la fonction d’agrégation (telle que **count**) pour combiner chaque groupe en une seule ligne. Par conséquent, dans ce cas, il existe une ligne pour chaque état et une colonne pour le nombre de lignes dans cet état.
+L’opérateur **summarize** regroupe des lignes qui ont les mêmes valeurs dans la clause **by** , puis utilise la fonction d’agrégation (telle que **count** ) pour combiner chaque groupe en une seule ligne. Par conséquent, dans ce cas, il existe une ligne pour chaque état et une colonne pour le nombre de lignes dans cet état.
 
 Il existe une gamme de fonctions d’agrégation et vous pouvez utiliser plusieurs d’entre elles dans un opérateur **summarize** afin de produire plusieurs colonnes calculées. Par exemple, vous pouvez obtenir le nombre de tempêtes dans chaque état et le nombre unique de tempêtes par état, puis utiliser **top** pour obtenir les états les plus touchés par les tempêtes.
 
@@ -202,7 +202,7 @@ StormEvents
 | top 5 by StormCount desc
 ```
 
-Le résultat d’une opération**summarize** contient :
+Le résultat d’une opération **summarize** contient :
 
 - Chaque colonne nommée dans **by**
 
@@ -270,7 +270,7 @@ Cette section aborde certains des opérateurs scalaires les plus importants.
 
 ### <a name="bin"></a>bin()
 
-[**bin()** ](kusto/query/binfunction.md) : Arrondit les valeurs à l’entier inférieur multiple d’une taille bin donnée.
+[**bin()**](kusto/query/binfunction.md) : Arrondit les valeurs à l’entier inférieur multiple d’une taille bin donnée.
 
 La requête suivante calcule le nombre avec une taille de compartiment d’une journée.
 
@@ -284,7 +284,7 @@ StormEvents
 
 ### <a name="case"></a>case()
 
-[**case()** ](kusto/query/casefunction.md) : évalue une liste de prédicats et retourne la première expression de résultat dont le prédicat est satisfait ou la dernière expression **else**. Vous pouvez utiliser cet opérateur pour catégoriser ou regrouper les données :
+[**case()**](kusto/query/casefunction.md) : évalue une liste de prédicats et retourne la première expression de résultat dont le prédicat est satisfait ou la dernière expression **else** . Vous pouvez utiliser cet opérateur pour catégoriser ou regrouper les données :
 
 La requête suivante retourne une nouvelle colonne `deaths_bucket` et regroupe les décès selon le nombre.
 
@@ -303,7 +303,7 @@ StormEvents
 
 ### <a name="extract"></a>extract()
 
-[**extract()** ](kusto/query/extractfunction.md) : obtient une correspondance pour une expression régulière à partir d’une chaîne de texte.
+[**extract()**](kusto/query/extractfunction.md) : obtient une correspondance pour une expression régulière à partir d’une chaîne de texte.
 
 La requête suivante extrait des valeurs d’attribut spécifiques à partir d’une trace.
 
@@ -315,11 +315,11 @@ MyData
 | extend Duration = extract("Duration=([0-9.]+)", 1, Trace, typeof(real)) * time(1s)
 ```
 
-Cette requête utilise une instruction **let**, qui lie un nom (dans ce cas `MyData`) à une expression. Pour le reste de la portée dans laquelle l’instruction **let** apparaît (portée globale ou portée du corps de la fonction), le nom peut être utilisé pour faire référence à sa valeur liée.
+Cette requête utilise une instruction **let** , qui lie un nom (dans ce cas `MyData`) à une expression. Pour le reste de la portée dans laquelle l’instruction **let** apparaît (portée globale ou portée du corps de la fonction), le nom peut être utilisé pour faire référence à sa valeur liée.
 
 ### <a name="parse_json"></a>parse_json()
 
-[**parse_json()** ](kusto/query/parsejsonfunction.md) : interprète une chaîne en tant que valeur JSON et retourne la valeur comme dynamique. Son efficacité est supérieure à celle de la fonction **extractjson()** si vous devez extraire plusieurs éléments d’un objet JSON composite.
+[**parse_json()**](kusto/query/parsejsonfunction.md) : interprète une chaîne en tant que valeur JSON et retourne la valeur comme dynamique. Son efficacité est supérieure à celle de la fonction **extractjson()** si vous devez extraire plusieurs éléments d’un objet JSON composite.
 
 La requête suivante extrait les éléments JSON à partir d’un tableau.
 
@@ -357,7 +357,7 @@ MyData
 
 ### <a name="ago"></a>ago()
 
-[**ago()** ](kusto/query/agofunction.md) : Soustrait l’intervalle de temps donné de l’heure UTC actuelle.
+[**ago()**](kusto/query/agofunction.md) : Soustrait l’intervalle de temps donné de l’heure UTC actuelle.
 
 La requête suivante retourne des données pour les 12 dernières heures.
 
@@ -373,7 +373,7 @@ print TimeStamp= range(now(-5d), now(), 1h), SomeCounter = range(1,121)
 
 ### <a name="startofweek"></a>startofweek()
 
-[**startofweek()** ](kusto/query/startofweekfunction.md) : retourne le début de la semaine contenant la date, avec un décalage, s’il est fourni.
+[**startofweek()**](kusto/query/startofweekfunction.md) : retourne le début de la semaine contenant la date, avec un décalage, s’il est fourni.
 
 La requête suivante retourne le début de la semaine avec des décalages différents.
 
@@ -384,11 +384,11 @@ range offset from -1 to 1 step 1
 | project weekStart = startofweek(now(), offset),offset
 ```
 
-Cette requête utilise l’opérateur **range**, qui génère une table de valeurs à une seule colonne. Voir aussi : [**startofday()** ](kusto/query/startofdayfunction.md), [**startofweek()** ](kusto/query/startofweekfunction.md), [**startofyear()** ](kusto/query/startofyearfunction.md)), [**startofmonth()** ](kusto/query/startofmonthfunction.md), [**endofday()** ](kusto/query/endofdayfunction.md), [**endofweek()** ](kusto/query/endofweekfunction.md), [**endofmonth()** ](kusto/query/endofmonthfunction.md) et [**endofyear()** ](kusto/query/endofyearfunction.md).
+Cette requête utilise l’opérateur **range** , qui génère une table de valeurs à une seule colonne. Voir aussi : [**startofday()**](kusto/query/startofdayfunction.md), [**startofweek()**](kusto/query/startofweekfunction.md), [**startofyear()**](kusto/query/startofyearfunction.md)), [**startofmonth()**](kusto/query/startofmonthfunction.md), [**endofday()**](kusto/query/endofdayfunction.md), [**endofweek()**](kusto/query/endofweekfunction.md), [**endofmonth()**](kusto/query/endofmonthfunction.md) et [**endofyear()**](kusto/query/endofyearfunction.md).
 
 ### <a name="between"></a>between()
 
-[**between()** ](kusto/query/betweenoperator.md) : établit une correspondance avec l’entrée à l’intérieur de la plage inclusive.
+[**between()**](kusto/query/betweenoperator.md) : établit une correspondance avec l’entrée à l’intérieur de la plage inclusive.
 
 La requête suivante filtre les données selon une plage de dates donnée.
 
@@ -412,7 +412,7 @@ StormEvents
 
 ## <a name="tabular-operators"></a>Opérateurs tabulaires
 
-Kusto comporte de nombreux opérateurs tabulaires, certains d’entre eux sont couverts dans d’autres sections de cet article. Ici, nous allons nous concentrer sur **parse**. 
+Kusto comporte de nombreux opérateurs tabulaires, certains d’entre eux sont couverts dans d’autres sections de cet article. Ici, nous allons nous concentrer sur **parse** . 
 
 ### <a name="parse"></a>parse
 
@@ -505,7 +505,7 @@ Pour plus d’informations, consultez la liste complète des [fonctions de séri
 
 ## <a name="advanced-aggregations"></a>Agrégations avancées
 
-Nous avons abordé les agrégations de base, comme **count** et **summarize**, plus haut dans cet article. Cette section présente des options plus avancées.
+Nous avons abordé les agrégations de base, comme **count** et **summarize** , plus haut dans cet article. Cette section présente des options plus avancées.
 
 ### <a name="top-nested"></a>top-nested
 
@@ -542,7 +542,7 @@ StormEvents
 
 ### <a name="dcount"></a>dcount()
 
-[**dcount()** ](kusto/query/dcount-aggfunction.md) : retourne une estimation du nombre de valeurs distinctes d’une expression dans le groupe. Utilisez [**count()** ](kusto/query/countoperator.md) pour compter toutes les valeurs.
+[**dcount()**](kusto/query/dcount-aggfunction.md) : retourne une estimation du nombre de valeurs distinctes d’une expression dans le groupe. Utilisez [**count()**](kusto/query/countoperator.md) pour compter toutes les valeurs.
 
 La requête suivante compte les valeurs distinctes de `Source` par `State`.
 
@@ -555,7 +555,7 @@ StormEvents
 
 ### <a name="dcountif"></a>dcountif()
 
-[**dcountif()** ](kusto/query/dcountif-aggfunction.md) : retourne une estimation du nombre de valeurs distinctes de l’expression pour les lignes pour lesquelles le prédicat prend la valeur True.
+[**dcountif()**](kusto/query/dcountif-aggfunction.md) : retourne une estimation du nombre de valeurs distinctes de l’expression pour les lignes pour lesquelles le prédicat prend la valeur True.
 
 La requête suivante compte les valeurs distinctes de `Source` où `DamageProperty < 5000`.
 
@@ -569,7 +569,7 @@ StormEvents
 
 ### <a name="dcount_hll"></a>dcount_hll()
 
-[**dcount_hll()** ](kusto/query/dcount-hllfunction.md) : Calcule la valeur **dcount** à partir des résultats HyperLogLog (générés par [**hll**](kusto/query/hll-aggfunction.md) ou [**hll_merge**](kusto/query/hll-merge-aggfunction.md)).
+[**dcount_hll()**](kusto/query/dcount-hllfunction.md) : Calcule la valeur **dcount** à partir des résultats HyperLogLog (générés par [**hll**](kusto/query/hll-aggfunction.md) ou [**hll_merge**](kusto/query/hll-merge-aggfunction.md)).
 
 La requête suivante utilise l’algorithme HLL pour générer le nombre.
 
@@ -584,7 +584,7 @@ StormEvents
 
 ### <a name="arg_max"></a>arg_max()
 
-[**arg_max()** ](kusto/query/arg-max-aggfunction.md) : recherche dans le groupe une ligne qui optimise une expression et retourne la valeur d’une autre expression (ou * pour retourner la ligne entière).
+[**arg_max()**](kusto/query/arg-max-aggfunction.md) : recherche dans le groupe une ligne qui optimise une expression et retourne la valeur d’une autre expression (ou * pour retourner la ligne entière).
 
 La requête suivante retourne l’heure du dernier rapport d’inondation dans chaque état.
 
@@ -599,7 +599,7 @@ StormEvents
 
 ### <a name="makeset"></a>makeset()
 
-[**makeset()** ](kusto/query/makeset-aggfunction.md) : Retourne un tableau (JSON) dynamique de l’ensemble de valeurs distinctes prises par une expression dans le groupe.
+[**makeset()**](kusto/query/makeset-aggfunction.md) : Retourne un tableau (JSON) dynamique de l’ensemble de valeurs distinctes prises par une expression dans le groupe.
 
 La requête suivante retourne toutes les heures auxquelles une inondation a été signalée par chaque état et crée un tableau à partir de l’ensemble de valeurs distinctes.
 
@@ -616,7 +616,7 @@ StormEvents
 
 [**mv-expand**](kusto/query/mvexpandoperator.md) : Développe des collections multivaleurs à partir d’une colonne de type dynamique afin que chaque valeur de la collection obtienne une ligne distincte. Toutes les autres colonnes d’une ligne développée sont dupliquées. Il s’agit de l’opposé de makelist.
 
-La requête suivante génère des exemples de données en créant un ensemble, puis en l’utilisant afin d’illustrer les fonctionnalités **mv-expand**.
+La requête suivante génère des exemples de données en créant un ensemble, puis en l’utilisant afin d’illustrer les fonctionnalités **mv-expand** .
 
 **\[** [**Cliquer pour exécuter la requête**](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAEAFWOQQ6CQAxF9yTcoWGliTcws1MPIFygyk9EKTPpVBTj4Z2BjSz%2f738v7WF06r1vD2xcp%2bCoNq9yHDFYLIsvvW5Q0JybKYCco2omqnyNTxHW7oPFckbwajFZhB%2bIsE1trNZ0gi1dpuRmQ%2baC%2bjuuthS7Fbwvi%2f%2bP8lpGvAMP7Wr3A6BceSu7AAAA) **\]**
 
@@ -631,7 +631,7 @@ FloodDataSet
 
 ### <a name="percentiles"></a>percentiles()
 
-[**percentiles()** ](kusto/query/percentiles-aggfunction.md) : Retourne une estimation pour le [**centile de rang le plus proche**](kusto/query/percentiles-aggfunction.md) spécifié de la population définie par une expression. La précision dépend de la densité de population dans la région du centile. Peut être utilisé uniquement dans le contexte d’agrégation à l’intérieur de [**summarize**](kusto/query/summarizeoperator.md).
+[**percentiles()**](kusto/query/percentiles-aggfunction.md) : Retourne une estimation pour le [**centile de rang le plus proche**](kusto/query/percentiles-aggfunction.md) spécifié de la population définie par une expression. La précision dépend de la densité de population dans la région du centile. Peut être utilisé uniquement dans le contexte d’agrégation à l’intérieur de [**summarize**](kusto/query/summarizeoperator.md).
 
 La requête suivante calcule les centiles de durée de la tempête.
 
@@ -684,7 +684,7 @@ LightningStorms
 
 ### <a name="join"></a>join
 
-[**join**](kusto/query/joinoperator.md) : fusionne les lignes de deux tables pour former une nouvelle table en mettant en correspondance les valeurs des colonnes spécifiées de chaque table. Kusto prend en charge une gamme complète de types de jointures : **fullouter**, **inner**, **innerunique**, **leftanti**, **leftantisemi**, **leftouter**, **leftsemi**, **rightanti**, **rightantisemi**, **rightouter**, **rightsemi**.
+[**join**](kusto/query/joinoperator.md) : fusionne les lignes de deux tables pour former une nouvelle table en mettant en correspondance les valeurs des colonnes spécifiées de chaque table. Kusto prend en charge une gamme complète de types de jointures : **fullouter** , **inner** , **innerunique** , **leftanti** , **leftantisemi** , **leftouter** , **leftsemi** , **rightanti** , **rightantisemi** , **rightouter** , **rightsemi** .
 
 L’exemple suivant joint deux tables avec une jointure interne.
 
@@ -727,7 +727,7 @@ StormEvents
 | extend row_number = row_number()
 ```
 
-L’ensemble de lignes est également considéré comme sérialisé s’il s’agit d’un résultat des opérateurs **sort**, **top** ou **range**, suivis éventuellement des opérateurs **project**, **project-away**, **extend**, **where**, **parse**, **mv-expand** ou **take**.
+L’ensemble de lignes est également considéré comme sérialisé s’il s’agit d’un résultat des opérateurs **sort** , **top** ou **range** , suivis éventuellement des opérateurs **project** , **project-away** , **extend** , **where** , **parse** , **mv-expand** ou **take** .
 
 **\[** [**Cliquer pour exécuter la requête**](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAEAAsuyS%2fKdS1LzSsp5uWqUSguzc1NLMqsSlVIzi%2fNK9HQVEiqVAguSSxJBcvmF5XABRQSi5NBgqkVJal5KQpF%2beXxeaW5SalFCrZIHA1NAEGimf5iAAAA) **\]**
 
@@ -948,4 +948,4 @@ L’exemple suivant supprime la fonction qui a été créée dans la première �
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-[Informations de référence sur le langage de requête Kusto](https://aka.ms/kustolangref)
+[Informations de référence sur le langage de requête Kusto](./kusto/query/index.md)
