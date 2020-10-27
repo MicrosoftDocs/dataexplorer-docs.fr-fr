@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: 3452ca547778869ae08e7aef92c1a3a7a4754446
-ms.sourcegitcommit: 58588ba8d1fc5a6adebdce2b556db5bc542e38d8
+ms.openlocfilehash: 209a58dd53dd773567aeb527fa45499ddd397c20
+ms.sourcegitcommit: 4f24d68f1ae4903a2885985aa45fd15948867175
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/15/2020
-ms.locfileid: "92098436"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92558221"
 ---
 # <a name="ingest-blobs-into-azure-data-explorer-by-subscribing-to-event-grid-notifications"></a>Ingérer des objets blob dans Azure Data Explorer en s’abonnant à des notifications Event Grid
 
@@ -38,7 +38,7 @@ Pour obtenir des informations générales sur l’ingestion dans Azure Data Expl
 
 Créez une table dans Azure Data Explorer, à laquelle Event Hubs enverra les données. Créez la table dans le cluster et la base de données préparés dans en lien avec les conditions préalables.
 
-1. Dans le portail Azure, sous votre cluster, sélectionnez **Requête**.
+1. Dans le portail Azure, sous votre cluster, sélectionnez **Requête** .
 
     :::image type="content" source="media/ingest-data-event-grid/query-explorer-link.png" alt-text="Lien vers l’explorateur de requêtes"::: 
 
@@ -60,17 +60,17 @@ Créez une table dans Azure Data Explorer, à laquelle Event Hubs enverra les do
 
 Connectez maintenant le compte de stockage à Azure Data Explorer afin que le flux de données dans le stockage soit envoyé en streaming à la table de test. 
 
-1. Sous le cluster que vous avez créé, sélectionnez **Bases de données** > **TestDatabase**.
+1. Sous le cluster que vous avez créé, sélectionnez **Bases de données** > **TestDatabase** .
 
     :::image type="content" source="media/ingest-data-event-grid/select-test-database.png" alt-text="Lien vers l’explorateur de requêtes":::
 
-1. Sélectionnez **Ingestion des données** > **Ajouter la connexion de données**.
+1. Sélectionnez **Ingestion des données** > **Ajouter la connexion de données** .
 
     :::image type="content" source="media/ingest-data-event-grid/data-ingestion-create.png" alt-text="Lien vers l’explorateur de requêtes":::
 
 ### <a name="data-connection---basics-tab"></a>Connexion de données - Onglet Informations de base
 
-1. Sélectionnez le type de connexion : **Stockage Blob**.
+1. Sélectionnez le type de connexion : **Stockage Blob** .
 
 1. Renseignez le formulaire avec les informations suivantes :
 
@@ -85,7 +85,7 @@ Connectez maintenant le compte de stockage à Azure Data Explorer afin que le fl
     | Création de ressources | *Automatique* | Spécifiez si vous voulez qu’Azure Data Explorer crée un abonnement Event Grid, un espace de noms Event Hub et un hub d’événements pour vous. Pour créer manuellement des ressources, consultez [Créer manuellement des ressources pour l’ingestion Event Grid](ingest-data-event-grid-manual.md).|
 
 1. Sélectionnez **Paramètres de filtre** si vous voulez suivre des sujets spécifiques. Définissez les filtres pour les notifications comme suit :
-    * Le champ **Préfixe** est le préfixe *littéral* du sujet. Comme le modèle appliqué est *startswith*, il peut englober plusieurs conteneurs, dossiers ou objets blob. Les caractères génériques ne sont pas autorisés.
+    * Le champ **Préfixe** est le préfixe *littéral* du sujet. Comme le modèle appliqué est *startswith* , il peut englober plusieurs conteneurs, dossiers ou objets blob. Les caractères génériques ne sont pas autorisés.
         * Pour définir un filtre sur le conteneur d’objets blob, le champ *doit* être défini comme suit : *`/blobServices/default/containers/[container prefix]`* .
         * Pour définir un filtre sur un préfixe d’objet blob (ou un dossier dans Azure Data Lake Gen2), le champ *doit* être défini comme suit : *`/blobServices/default/containers/[container name]/blobs/[folder/blob prefix]`* .
     * Le champ **Suffixe** est le suffixe *littéral* de l’objet blob. Les caractères génériques ne sont pas autorisés.
@@ -94,7 +94,7 @@ Connectez maintenant le compte de stockage à Azure Data Explorer afin que le fl
     
     :::image type="content" source="media/ingest-data-event-grid/filter-settings.png" alt-text="Lien vers l’explorateur de requêtes":::    
 
-1. Sélectionnez **Suivant : Propriétés d’ingestion**.
+1. Sélectionnez **Suivant : Propriétés d’ingestion** .
 
 ### <a name="data-connection---ingest-properties-tab"></a>Connexion de données - Onglet Propriétés d’ingestion
 
@@ -106,18 +106,18 @@ Connectez maintenant le compte de stockage à Azure Data Explorer afin que le fl
 
      **Paramètre** | **Valeur suggérée** | **Description du champ**
     |---|---|---|
-    | Nom de la table | *TestTable* | Table que vous avez créée dans **TestDatabase**. |
+    | Nom de la table | *TestTable* | Table que vous avez créée dans **TestDatabase** . |
     | Format de données | *JSON* | Les formats pris en charge sont Avro, CSV, JSON, MULTILINE JSON, ORC, PARQUET, PSV, SCSV, SOHSV, TSV, TXT, TSVE, APACHEAVRO, RAW et W3CLOG. Les options de compression prises en charge sont Zip et GZip. |
-    | Mappage | *TestMapping* | Le mappage que vous avez créé dans **TestDatabase**, qui mappe les données JSON entrantes dans les colonnes des noms de colonne et les types de données de **TestTable**.|
+    | Mappage | *TestMapping* | Le mappage que vous avez créé dans **TestDatabase** , qui mappe les données JSON entrantes dans les colonnes des noms de colonne et les types de données de **TestTable** .|
     | Paramètres avancés | *Mes données comprennent des en-têtes* | Ignore les en-têtes. Pris en charge pour les fichiers de type *SV.|
 
    > [!NOTE]
-   > Vous n’êtes pas obligé de spécifier tous les **paramètres de routage par défaut**. Des paramètres partiels sont également acceptés.
+   > Vous n’êtes pas obligé de spécifier tous les **paramètres de routage par défaut** . Des paramètres partiels sont également acceptés.
 1. Sélectionnez **Suivant : Vérifier + créer**
 
 ### <a name="data-connection---review--create-tab"></a>Connexion de données - Onglet Vérifier + créer
 
-1. Passez en revue les ressources qui ont été créées automatiquement pour vous et sélectionnez **Créer**.
+1. Passez en revue les ressources qui ont été créées automatiquement pour vous et sélectionnez **Créer** .
 
     :::image type="content" source="media/ingest-data-event-grid/create-event-grid-data-connection-review-create.png" alt-text="Lien vers l’explorateur de requêtes":::
 
@@ -173,7 +173,7 @@ Enregistrez les données dans un fichier et chargez celui-ci avec ce script :
 
 ### <a name="ingestion-properties"></a>Propriétés d’ingestion
 
-Vous pouvez spécifier les [propriétés d’ingestion](ingest-data-event-grid-overview.md#set-ingestion-properties) de l’ingestion d’objets blob via les métadonnées d’objet blob. 
+Vous pouvez spécifier les [propriétés d’ingestion](ingest-data-event-grid-overview.md#ingestion-properties) de l’ingestion d’objets blob via les métadonnées d’objet blob. 
 
 > [!NOTE]
 > Azure Data Explorer ne supprimera pas les objets blob après l’ingestion.
@@ -184,8 +184,8 @@ Vous pouvez spécifier les [propriétés d’ingestion](ingest-data-event-grid-o
 
 > [!NOTE]
 > Azure Data Explorer est associé à une stratégie d’agrégation (traitement par lot) conçue pour optimiser le processus d’ingestion des données.
-Par défaut, la stratégie est configurée sur 5 minutes.
-Vous pouvez modifier la stratégie ultérieurement si nécessaire. Dans cet article, vous pouvez vous attendre à une latence de quelques minutes.
+> Par défaut, la stratégie est configurée sur 5 minutes.
+> Vous pouvez modifier la stratégie ultérieurement si nécessaire. Dans cet article, vous pouvez vous attendre à une latence de quelques minutes.
 
 1. Dans le portail Azure, sous votre grille d’événement, vous voyez le pic de l’activité pendant l’exécution de l’application.
 
@@ -212,7 +212,7 @@ Vous pouvez modifier la stratégie ultérieurement si nécessaire. Dans cet arti
 
 Si vous ne prévoyez pas de réutiliser votre grille d’événement, nettoyez l’abonnement Event Grid, l’espace de noms Event Hub et le hub d’événements qui ont été créés automatiquement pour vous, de façon à éviter d’engendrer des coûts.
 
-1. Dans le portail Azure, accédez au menu de gauche et sélectionnez **Toutes les ressources**.
+1. Dans le portail Azure, accédez au menu de gauche et sélectionnez **Toutes les ressources** .
 
     :::image type="content" source="media/ingest-data-event-grid/clean-up-resources-select-all-resource.png" alt-text="Lien vers l’explorateur de requêtes":::    
 
@@ -222,7 +222,7 @@ Si vous ne prévoyez pas de réutiliser votre grille d’événement, nettoyez l
 
 1. Dans le formulaire Supprimer les ressources, confirmez la suppression pour supprimer l’espace de noms Event Hub et les ressources Event Hub.
 
-1. Accédez à votre compte de stockage. Dans le menu de gauche, sélectionnez **Événements** :
+1. Accédez à votre compte de stockage. Dans le menu de gauche, sélectionnez **Événements**  :
 
     :::image type="content" source="media/ingest-data-event-grid/clean-up-resources-select-events.png" alt-text="Lien vers l’explorateur de requêtes":::
 
@@ -230,17 +230,17 @@ Si vous ne prévoyez pas de réutiliser votre grille d’événement, nettoyez l
 
     :::image type="content" source="media/ingest-data-event-grid/delete-event-grid-subscription.png" alt-text="Lien vers l’explorateur de requêtes":::
 
-1. Pour supprimer votre connexion de données Event Grid, accédez à votre cluster Azure Data Explorer. Dans le menu de gauche, sélectionnez **Bases de données**.
+1. Pour supprimer votre connexion de données Event Grid, accédez à votre cluster Azure Data Explorer. Dans le menu de gauche, sélectionnez **Bases de données** .
 
-1. Sélectionnez votre base de données **TestDatabase** :
+1. Sélectionnez votre base de données **TestDatabase**  :
 
     :::image type="content" source="media/ingest-data-event-grid/clean-up-resources-select-database.png" alt-text="Lien vers l’explorateur de requêtes":::
 
-1. Dans le menu de gauche, sélectionnez **Ingestion des données** :
+1. Dans le menu de gauche, sélectionnez **Ingestion des données**  :
 
     :::image type="content" source="media/ingest-data-event-grid/clean-up-resources-select-data-ingestion.png" alt-text="Lien vers l’explorateur de requêtes":::
 
-1. Sélectionnez votre connexion de données *test-grid-connection*, puis sélectionnez **Supprimer** pour la supprimer.
+1. Sélectionnez votre connexion de données *test-grid-connection* , puis sélectionnez **Supprimer** pour la supprimer.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

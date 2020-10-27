@@ -7,12 +7,12 @@ ms.reviewer: vladikb
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 07/07/2020
-ms.openlocfilehash: c6a544228d5527f1703567256bd3e824ddc0504a
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 56fd2d253cac80f097caa9206cd3b7c2a9d3c118
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88872707"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343502"
 ---
 # <a name="ingest-data-using-the-azure-data-explorer-net-sdk"></a>Ingérer des données à l’aide du SDK .NET Azure Data Explorer 
 
@@ -22,7 +22,7 @@ ms.locfileid: "88872707"
 > * [Nœud](node-ingest-data.md)
 > * [Go](go-ingest-data.md)
 
-L’Explorateur de données Azure est un service d’exploration de données rapide et hautement évolutive pour les données des journaux et les données de télémétrie. Il fournit deux bibliothèques de client pour .NET : une [bibliothèque d’ingestion](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Ingest/) et une [bibliothèque de données](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Data/). Pour plus d’informations sur le SDK .NET, consultez [À propos du SDK .NET](/azure/data-explorer/kusto/api/netfx/about-the-sdk).
+L’Explorateur de données Azure est un service d’exploration de données rapide et hautement évolutive pour les données des journaux et les données de télémétrie. Il fournit deux bibliothèques de client pour .NET : une [bibliothèque d’ingestion](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Ingest/) et une [bibliothèque de données](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Data/). Pour plus d’informations sur le SDK .NET, consultez [À propos du SDK .NET](./kusto/api/netfx/about-the-sdk.md).
 Ces bibliothèques vous permettent d’ingérer (charger) des données dans un cluster et d’interroger les données de votre code. Dans cet article, vous allez d’abord créer une table et un mappage de données dans un cluster de test. Ensuite, vous allez mettre en file d’attente l’ingestion sur le cluster et valider les résultats.
 
 ## <a name="prerequisites"></a>Prérequis
@@ -47,7 +47,7 @@ Pour authentifier une application, le SDK Azure Data Explorer utilise votre ID d
 https://login.windows.net/<YourDomain>/.well-known/openid-configuration/
 ```
 
-Par exemple, si votre domaine est *contoso.com*, l’URL est : [https://login.windows.net/contoso.com/.well-known/openid-configuration/](https://login.windows.net/contoso.com/.well-known/openid-configuration/). Cliquez sur cette URL pour voir les résultats. La première ligne est la suivante. 
+Par exemple, si votre domaine est *contoso.com* , l’URL est : [https://login.windows.net/contoso.com/.well-known/openid-configuration/](https://login.windows.net/contoso.com/.well-known/openid-configuration/). Cliquez sur cette URL pour voir les résultats. La première ligne est la suivante. 
 
 ```console
 "authorization_endpoint":"https://login.windows.net/6babcaad-604b-40ac-a9d7-9fd97c0b779f/oauth2/authorize"

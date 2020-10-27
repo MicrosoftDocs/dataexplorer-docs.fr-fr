@@ -7,21 +7,21 @@ ms.reviewer: maraheja
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 05/21/2020
-ms.openlocfilehash: adbf974852f071dde54cc668b213e7b7d6d7cfea
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: b019f0f8cfefab2ed111b023993c929bd5f19e5f
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88871942"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342516"
 ---
 # <a name="connect-to-azure-data-explorer-from-azure-databricks"></a>Se connecter à Azure Data Explorer à partir d’Azure Databricks
 
-[Azure Databricks](https://docs.microsoft.com/azure/azure-databricks/what-is-azure-databricks) est une plateforme d’analytique basée sur Apache Spark, qui est optimisée pour la plateforme Microsoft Azure. Cet article vous montre comment utiliser Azure Databricks pour accéder aux données d’Azure Data Explorer. Il existe plusieurs façons de s’authentifier auprès d’Azure Data Explorer, notamment une connexion d’appareil et une application Azure Active Directory (Azure AD).
+[Azure Databricks](/azure/azure-databricks/what-is-azure-databricks) est une plateforme d’analytique basée sur Apache Spark, qui est optimisée pour la plateforme Microsoft Azure. Cet article vous montre comment utiliser Azure Databricks pour accéder aux données d’Azure Data Explorer. Il existe plusieurs façons de s’authentifier auprès d’Azure Data Explorer, notamment une connexion d’appareil et une application Azure Active Directory (Azure AD).
  
 ## <a name="prerequisites"></a>Prérequis
 
 - [Créez un cluster et une base de données Azure Data Explorer](create-cluster-database-portal.md).
-- [Créez un espace de travail Azure Databricks](/azure/azure-databricks/quickstart-create-databricks-workspace-portal#create-an-azure-databricks-workspace). Sous **Service Azure Databricks**, dans la liste déroulante **Niveau tarifaire**, sélectionnez **Premium**. Ceci vous permet d’utiliser des secrets Azure Databricks pour stocker vos informations d’identification et les référencer dans des notebooks et des travaux.
+- [Créez un espace de travail Azure Databricks](/azure/azure-databricks/quickstart-create-databricks-workspace-portal#create-an-azure-databricks-workspace). Sous **Service Azure Databricks** , dans la liste déroulante **Niveau tarifaire** , sélectionnez **Premium** . Ceci vous permet d’utiliser des secrets Azure Databricks pour stocker vos informations d’identification et les référencer dans des notebooks et des travaux.
 
 - [Créez un cluster](https://docs.azuredatabricks.net/user-guide/clusters/create.html) dans Azure Databricks avec les paramètres par défaut.
 
@@ -38,7 +38,7 @@ Pour installer [spark-kusto-connector](https://mvnrepository.com/artifact/com.mi
 
 ## <a name="connect-to-azure-data-explorer-by-using-an-azure-ad-app"></a>Se connecter à Azure Data Explorer avec une application Azure AD
 
-1. Créez une application Azure AD en [provisionnant une application Azure AD](kusto/management/access-control/how-to-provision-aad-app.md).
+1. Créez une application Azure AD en [provisionnant une application Azure AD](./provision-azure-ad-app.md).
 1. Accordez l’accès à votre application Azure AD dans votre base de données Azure Data Explorer comme suit :
 
     ```kusto
@@ -59,7 +59,7 @@ Pour authentifier une application, Azure Data Explorer utilise votre ID de locat
 https://login.windows.net/<YourDomain>/.well-known/openid-configuration/
 ```
 
-Par exemple, si votre domaine est *contoso.com*, l’URL est : [https://login.windows.net/contoso.com/.well-known/openid-configuration/](https://login.windows.net/contoso.com/.well-known/openid-configuration/). Sélectionnez cette URL pour voir les résultats. La première ligne se présente comme suit : 
+Par exemple, si votre domaine est *contoso.com* , l’URL est : [https://login.windows.net/contoso.com/.well-known/openid-configuration/](https://login.windows.net/contoso.com/.well-known/openid-configuration/). Sélectionnez cette URL pour voir les résultats. La première ligne se présente comme suit : 
 
 ```
 "authorization_endpoint":"https://login.windows.net/6babcaad-604b-40ac-a9d7-9fd97c0b779f/oauth2/authorize"

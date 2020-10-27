@@ -7,12 +7,12 @@ ms.reviewer: avnera
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 11/03/2019
-ms.openlocfilehash: e954b66c59e480d7fc713841e9a029da61dabd8f
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: aefbde03b123e9c5413b1ed39e85db096f3ff3d7
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350534"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343451"
 ---
 # <a name="prepay-for-azure-data-explorer-markup-units-with-azure-data-explorer-reserved-capacity"></a>Prépayer des unités de majoration Azure Data Explorer avec la capacité de réserve Azure Data Explorer
 
@@ -37,15 +37,15 @@ La taille de la réservation doit être basée sur le nombre total d’unités d
 ## <a name="buy-azure-data-explorer-reserved-capacity"></a>Acheter une capacité de réserve Azure Data Explorer
 
 1. Connectez-vous au [portail Azure](https://portal.azure.com).
-1. Sélectionnez **Tous les services** > **Réservations** > **Acheter**. Sélectionnez **Ajouter**
-1. Dans le volet **Sélectionner le type de produit**, sélectionnez **Azure Data Explorer** pour acheter une nouvelle réservation pour les unités de majoration Azure Data Explorer. 
+1. Sélectionnez **Tous les services** > **Réservations** > **Acheter** . Sélectionnez **Ajouter**
+1. Dans le volet **Sélectionner le type de produit** , sélectionnez **Azure Data Explorer** pour acheter une nouvelle réservation pour les unités de majoration Azure Data Explorer. 
 1. Sélectionnez **Acheter**
 1. Renseignez les champs obligatoires. 
 
     ![Page d’achat](media/pricing-reserved-capacity/purchase-page.png)
 
-1. Vérifiez le coût de la réservation de capacité de réserve pour la majoration Azure Data Explorer dans la section **Coûts**.
-1. Sélectionnez **Achat**.
+1. Vérifiez le coût de la réservation de capacité de réserve pour la majoration Azure Data Explorer dans la section **Coûts** .
+1. Sélectionnez **Achat** .
 1. Sélectionnez **Afficher cette réservation** pour connaître l’état de votre achat.
 
 ## <a name="cancellations-and-exchanges"></a>Annulations et échanges
@@ -74,7 +74,7 @@ Pour plus d’informations sur les réservations Azure, consultez les articles s
 * [Comprendre la remise sur réservation Azure](/azure/cost-management-billing/reservations/understand-reservation-charges)
 * [Comprendre l’utilisation d’une réservation pour votre abonnement avec paiement à l’utilisation](/azure/cost-management-billing/reservations/understand-reserved-instance-usage)
 * [Comprendre l’utilisation d’une réservation pour votre Accord de Mise en Œuvre Entreprise](/azure/cost-management-billing/reservations/understand-reserved-instance-usage-ea)
-* [Réservations Azure dans le cadre du programme Fournisseur de solutions Cloud de l’Espace partenaires](https://docs.microsoft.com/partner-center/azure-reservations)
+* [Réservations Azure dans le cadre du programme Fournisseur de solutions Cloud de l’Espace partenaires](/partner-center/azure-reservations)
 
 ## <a name="need-help-contact-us"></a>Vous avez besoin d’aide ? Nous contacter
 

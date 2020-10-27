@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/24/2019
-ms.openlocfilehash: 9ebce32338bcf82ccea9df5cb23770839c0ee278
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: f5778f4e242361be6c0af7827611ac812137e9c4
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88873030"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342873"
 ---
 # <a name="create-database-and-table-policies-for-azure-data-explorer-by-using-c"></a>Créer des stratégies de base de données et de table pour Azure Data Explorer en utilisant le langage C#
 
@@ -28,7 +28,7 @@ L’Explorateur de données Azure est un service d’exploration de données rap
 * Visual Studio 2019. Si vous n’avez pas Visual Studio 2019, vous pouvez télécharger et utiliser la version *gratuite* de [Visual Studio Community 2019](https://www.visualstudio.com/downloads/). Veillez à sélectionner **Développement Azure** lors de la configuration de Visual Studio.
 * Un abonnement Azure. Si nécessaire, vous pouvez créer un [compte Azure gratuit](https://azure.microsoft.com/free/) avant de commencer.
 * [Un cluster et une base de données de test](create-cluster-database-csharp.md).
-* [Une table de test](net-standard-ingest-data.md#create-a-table-on-your-test-cluster).
+* [Une table de test](./net-sdk-ingest-data.md#create-a-table-on-your-test-cluster).
 
 ## <a name="install-c-nuget"></a>Installer le package NuGet C#
 
@@ -37,7 +37,7 @@ L’Explorateur de données Azure est un service d’exploration de données rap
 * Installez le [package NuGet Microsoft.IdentityModel.Clients.ActiveDirectory](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory/) pour l’authentification.
 
 ## <a name="authentication"></a>Authentification
-Une application Azure Active Directory (Azure AD) et un principal de service ayant accès aux ressources sont nécessaires pour exécuter les exemples de cet article. Vous pouvez utiliser la même application Azure AD pour l’authentification à partir [d’un cluster de test et d’une base de données](create-cluster-database-csharp.md#authentication). Si vous souhaitez utiliser une autre application Azure AD, consultez [Créer une application Azure AD](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal) pour créer une application Azure AD gratuite et ajouter une attribution de rôle au niveau de l’étendue de l’abonnement. Cet article montre également comment obtenir `Directory (tenant) ID`, `Application ID` et `Client secret`. Vous devrez peut-être ajouter la nouvelle application Azure AD en tant que principal dans la base de données. Pour plus d’informations, consultez [Gérer les autorisations de base de données d’Azure Data Explorer](manage-database-permissions.md).
+Une application Azure Active Directory (Azure AD) et un principal de service ayant accès aux ressources sont nécessaires pour exécuter les exemples de cet article. Vous pouvez utiliser la même application Azure AD pour l’authentification à partir [d’un cluster de test et d’une base de données](create-cluster-database-csharp.md#authentication). Si vous souhaitez utiliser une autre application Azure AD, consultez [Créer une application Azure AD](/azure/active-directory/develop/howto-create-service-principal-portal) pour créer une application Azure AD gratuite et ajouter une attribution de rôle au niveau de l’étendue de l’abonnement. Cet article montre également comment obtenir `Directory (tenant) ID`, `Application ID` et `Client secret`. Vous devrez peut-être ajouter la nouvelle application Azure AD en tant que principal dans la base de données. Pour plus d’informations, consultez [Gérer les autorisations de base de données d’Azure Data Explorer](manage-database-permissions.md).
 
 ## <a name="alter-database-retention-policy"></a>Stratégie de conservation de modification de base de données
 Définit une stratégie de rétention avec une période de suppression réversible de 10 jours.

@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/19/2020
 ms.custom: contperfq1
-ms.openlocfilehash: e2adf84e869638d6019b149af7623e12a64930d8
-ms.sourcegitcommit: 21dee76964bf284ad7c2505a7b0b6896bca182cc
+ms.openlocfilehash: a91eca7232cb2583312ea54cab92aec014f4dcbd
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91056966"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343383"
 ---
 # <a name="monitor-azure-data-explorer-performance-health-and-usage-with-metrics"></a>Superviser les performances, l’intégrité et l’utilisation d’Azure Data Explorer avec des métriques
 
@@ -29,7 +29,7 @@ Pour plus d’informations sur Azure Metrics Explorer, consultez [Metrics Explor
 ## <a name="use-metrics-to-monitor-your-azure-data-explorer-resources"></a>Utiliser des métriques pour superviser vos ressources Azure Data Explorer
 
 1. Connectez-vous au [portail Azure](https://portal.azure.com/).
-1. Dans le volet gauche de votre cluster Azure Data Explorer, recherchez *métriques*.
+1. Dans le volet gauche de votre cluster Azure Data Explorer, recherchez *métriques* .
 1. Sélectionnez **Métriques** pour ouvrir le volet de métriques et commencer l’analyse sur votre cluster.
     :::image type="content" source="media/using-metrics/select-metrics.gif" alt-text="Recherche et sélection de Métriques dans le portail Azure":::
 
@@ -41,7 +41,7 @@ Les sélecteurs **Ressource** et **Espace de noms de métrique**  sont préséle
 
 ![Volet Métriques](media/using-metrics/metrics-pane.png)
 
-1. Pour créer un graphique de métriques, sélectionnez le nom de la **Métrique** et l’**agrégation** pertinente par métrique. Pour plus d’informations sur les différentes métriques, consultez [Métriques Azure Data Explorer prises en charge](#supported-azure-data-explorer-metrics).
+1. Pour créer un graphique de métriques, sélectionnez le nom de la **Métrique** et l’ **agrégation** pertinente par métrique. Pour plus d’informations sur les différentes métriques, consultez [Métriques Azure Data Explorer prises en charge](#supported-azure-data-explorer-metrics).
 1. Sélectionnez **Ajouter une métrique** pour afficher le tracé de plusieurs métriques sur le même graphique.
 1. Sélectionnez **+ Nouveau graphique** pour afficher plusieurs graphiques dans une même vue.
 1. Utilisez le sélecteur de temps pour modifier l’intervalle de temps (par défaut : les dernières 24 heures).
@@ -97,11 +97,11 @@ Les métriques d’ingestion permettent d’effectuer le suivi de l’intégrit�
 | Nombre d’objets blob du lot | Count | Moy, Max, Min | Nombre de sources de données d’un lot effectué pour l’ingestion. | Base de données |
 | Durée du lot | Secondes | Moy, Max, Min | Durée de la phase de traitement par lot du flux d’ingestion  | Base de données |
 | Taille du lot | Octets | Moy, Max, Min | Taille de données attendue non compressée dans un lot agrégé pour l’ingestion. | Base de données |
-| Lots traités | Count | Moy, Max, Min | Nombre de lots effectués pour l’ingestion. `Batching Type` : indique si le lot a atteint la limite du temps de traitement par lot, de taille des données ou de nombre de fichiers définie par la [stratégie de traitement par lot](/azure/data-explorer/kusto/management/batchingpolicy). | Base de données, type de traitement par lot |
+| Lots traités | Count | Moy, Max, Min | Nombre de lots effectués pour l’ingestion. `Batching Type` : indique si le lot a atteint la limite du temps de traitement par lot, de taille des données ou de nombre de fichiers définie par la [stratégie de traitement par lot](./kusto/management/batchingpolicy.md). | Base de données, type de traitement par lot |
 | Latence de découverte | Secondes | Moy, Max, Min | Temps depuis l’empilement des données jusqu’à la découverte par la connexion de données. Ce temps n’est pas inclus dans la **durée totale d’ingestion Kusto** ni dans **KustoEventAge (latence d’ingestion)** | Base de données, table, type de connexion de données, nom de connexion de données |
 | Événements traités (pour Event/IoT Hubs) | Count | Max, Min, Somme | Nombre total d’événements lus à partir de hubs d’événements et traités par le cluster. Les événements sont divisés en événements rejetés et en événements acceptés par le moteur de cluster. | EventStatus |
 | Latence d’ingestion | Secondes | Moy, Max, Min | Latence des données ingérées, depuis la réception des données dans le cluster jusqu’à ce qu’elles soient prêtes à être interrogées. La période de latence d’ingestion varie en fonction du scénario d’ingestion. | None |
-| Résultat de l’ingestion | Count | Count | Nombre total d’opérations d’ingestion ayant échoué et réussi. <br> <br> Utilisez **Appliquer la division** pour créer des compartiments de résultats de réussite et d’échec, et analyser les dimensions (**Valeur** > **État**).| IngestionResultDetails |
+| Résultat de l’ingestion | Count | Count | Nombre total d’opérations d’ingestion ayant échoué et réussi. <br> <br> Utilisez **Appliquer la division** pour créer des compartiments de résultats de réussite et d’échec, et analyser les dimensions ( **Valeur** > **État** ).| IngestionResultDetails |
 | Volume d’ingestion (en Mo) | Count | Max, Sum | Taille totale des données ingérées dans le cluster (en Mo) avant la compression. | Base de données |
 | Latence des étapes | Secondes | Moy, Max, Min | Temps nécessaire à un composant particulier pour traiter ce lot de données. La latence totale des étapes pour tous les composants d’un lot de données est égale à sa latence d’ingestion. | Base de données, type de connexion de données, nom de connexion de données|
 

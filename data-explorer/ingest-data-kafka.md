@@ -7,12 +7,12 @@ ms.reviewer: ankhanol
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/22/2020
-ms.openlocfilehash: 14f4ed38ecb2e5b4a94dad8a73fb43ea3ff1e5ee
-ms.sourcegitcommit: c8256390d745e345f44d401e33e775702d62721d
+ms.openlocfilehash: 8274cd04dc2ecf588bf4771c06e3f8a760cac74d
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "91007792"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343162"
 ---
 # <a name="ingest-data-from-apache-kafka-into-azure-data-explorer"></a>Ingérer des données Apache Kafka dans Azure Data Explorer
  
@@ -24,8 +24,8 @@ Pour plus d’informations, consultez le [dépôt Git](https://github.com/Azure/
 
 ## <a name="prerequisites"></a>Prérequis
 
-* Créez un [compte Microsoft Azure](https://docs.microsoft.com/azure/).
-* Installez [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli).
+* Créez un [compte Microsoft Azure](/azure/).
+* Installez [Azure CLI](/cli/azure/install-azure-cli).
 * Installez [Docker](https://docs.docker.com/get-docker/) et [Docker Compose](https://docs.docker.com/compose/install).
 * [Créez une base de données et un cluster Azure Data Explorer dans le portail Azure](create-cluster-database-portal.md) en utilisant les stratégies de conservation et le cache par défaut.
 
@@ -322,7 +322,7 @@ Le connecteur démarre la mise en file d’attente des processus d’ingestion d
     | project StartTime, EndTime, Source, EventId
     ```
     
-1. Utilisez l’opérateur [`summarize`](https://docs.microsoft.com/azure/data-explorer/write-queries#summarize) :
+1. Utilisez l’opérateur [`summarize`](./write-queries.md#summarize) :
 
     ```kusto
     Storms
@@ -334,7 +334,7 @@ Le connecteur démarre la mise en file d’attente des processus d’ingestion d
     
     :::image type="content" source="media/ingest-data-kafka/kusto-query.png" alt-text="Créer une table dans le portail Azure Data Explorer ":::
 
-Pour plus de conseils et d’exemples de requête, consultez [Écrire des requêtes pour Azure Data Explorer](write-queries.md) et la [Documentation sur le langage de requête Kusto](https://docs.microsoft.com/azure/data-explorer/kusto/query/).
+Pour plus de conseils et d’exemples de requête, consultez [Écrire des requêtes pour Azure Data Explorer](write-queries.md) et la [Documentation sur le langage de requête Kusto](./kusto/query/index.md).
 
 ## <a name="reset"></a>Réinitialiser
 
@@ -348,7 +348,7 @@ Pour réinitialiser, procédez comme suit :
 
 ## <a name="clean-up-resources"></a>Nettoyer les ressources
 
-Pour supprimer les ressources Azure Data Explorer, utilisez [az cluster delete](https://docs.microsoft.com/cli/azure/kusto/cluster#az-kusto-cluster-delete) ou [az Kusto database delete](https://docs.microsoft.com/cli/azure/kusto/database#az-kusto-database-delete) :
+Pour supprimer les ressources Azure Data Explorer, utilisez [az cluster delete](/cli/azure/kusto/cluster#az-kusto-cluster-delete) ou [az Kusto database delete](/cli/azure/kusto/database#az-kusto-database-delete) :
 
 ```azurecli-interactive
 az kusto cluster delete -n <cluster name> -g <resource group name>
@@ -358,7 +358,7 @@ az kusto database delete -n <database name> --cluster-name <cluster name> -g <re
 ## <a name="next-steps"></a>Étapes suivantes
 
 * Explorez en détail l’[architecture de big data](/azure/architecture/solution-ideas/articles/big-data-azure-data-explorer).
-* Apprenez à [Ingérer des exemples de données au format JSON dans Azure Data Explorer](https://docs.microsoft.com/azure/data-explorer/ingest-json-formats?tabs=kusto-query-language).
+* Apprenez à [Ingérer des exemples de données au format JSON dans Azure Data Explorer](./ingest-json-formats.md?tabs=kusto-query-language).
 * Pour d’autres labos Kafka :
    * [Hands on lab for ingestion from Confluent Cloud Kafka in distributed mode](https://github.com/Azure/azure-kusto-labs/blob/master/kafka-integration/confluent-cloud/README.md)
    * [Hands on lab for ingestion from HDInsight Kafka in distributed mode](https://github.com/Azure/azure-kusto-labs/tree/master/kafka-integration/distributed-mode/hdinsight-kafka)

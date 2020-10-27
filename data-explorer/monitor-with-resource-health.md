@@ -7,12 +7,12 @@ ms.reviewer: prvavill
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/31/2020
-ms.openlocfilehash: 630b03fc0e89005f1031aba4cbd1a86d803ff275
-ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
+ms.openlocfilehash: 0fe11b4218f86d501c88e6a217f9ae867a17f5f4
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/11/2020
-ms.locfileid: "91942027"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343468"
 ---
 # <a name="monitor-azure-data-explorer-using-resource-health-preview"></a>Surveiller Azure Data Explorer à l'aide de Resource Health (préversion)
 
@@ -25,8 +25,8 @@ Resource Health détermine l'état d'intégrité de vos ressources Azure Data Ex
 ## <a name="access-resource-health-reporting"></a>Accès aux rapports Resource Health
 
 1. Sur le portail [Azure](https://portal.azure.com/), sélectionnez **Surveiller** dans la liste des services.
-1. Sélectionnez **Service Health** > **Resource Health**.
-1. Dans la liste déroulante **Abonnement**, sélectionnez votre abonnement. Dans la liste déroulante **Type de ressource**, sélectionnez **Azure Data Explorer**.
+1. Sélectionnez **Service Health** > **Resource Health** .
+1. Dans la liste déroulante **Abonnement** , sélectionnez votre abonnement. Dans la liste déroulante **Type de ressource** , sélectionnez **Azure Data Explorer** .
 1. Le tableau qui s'affiche répertorie toutes les ressources de l'abonnement choisi. Chaque ressource est accompagnée d'une icône d'état d'intégrité.
 1. Sélectionnez votre ressource pour afficher son [état d'intégrité](#resource-health-status) et les recommandations correspondantes.
 
@@ -62,12 +62,12 @@ L'état d'intégrité **Inconnu** indique que **Resource Health** n'a reçu aucu
 
 ## <a name="historical-information"></a>Informations d’historique
 
-Dans le volet **Resource Health** > **Historique d'intégrité**, accédez à un maximum de quatre semaines d'informations sur l'état d'intégrité de la ressource. Cliquez sur la flèche pour obtenir des informations supplémentaires sur les problèmes liés aux événements d'intégrité signalés dans ce volet. 
+Dans le volet **Resource Health**  > **Historique d'intégrité** , accédez à un maximum de quatre semaines d'informations sur l'état d'intégrité de la ressource. Cliquez sur la flèche pour obtenir des informations supplémentaires sur les problèmes liés aux événements d'intégrité signalés dans ce volet. 
 
 ![Historique](media/monitor-with-resource-health/healthhistory.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Configurer des alertes Resource Health](https://docs.microsoft.com/azure/service-health/resource-health-alert-arm-template-guide)
+* [Configurer des alertes Resource Health](/azure/service-health/resource-health-alert-arm-template-guide)
 * [Tutoriel : Ingérer et interroger des données de supervision dans Azure Data Explorer](ingest-data-no-code.md)
 * [Superviser les performances, l’intégrité et l’utilisation d’Azure Data Explorer avec des métriques](using-metrics.md)

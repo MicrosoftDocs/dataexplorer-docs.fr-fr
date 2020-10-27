@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/07/2019
-ms.openlocfilehash: 9bca4be307cd532c4bcd5ccff2a82ca76cf27ae6
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 1990f601b07c3ab5d740e2e46a31de51875bb44b
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88873625"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343009"
 ---
 # <a name="create-an-event-hub-data-connection-for-azure-data-explorer-by-using-python"></a>Créer une connexion de données au hub d’événements pour Azure Data Explorer à l’aide de Python
 
@@ -30,7 +30,7 @@ Dans cet article, vous créez une connexion de données au hub d’événements 
 * Compte Azure avec un abonnement actif. [Créez un compte gratuitement](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio).
 * [Python 3.4+](https://www.python.org/downloads/).
 * [Un cluster et une base de données](create-cluster-database-python.md).
-* [Un mappage des tables et des colonnes](net-standard-ingest-data.md#create-a-table-on-your-test-cluster).
+* [Un mappage des tables et des colonnes](./net-sdk-ingest-data.md#create-a-table-on-your-test-cluster).
 * [Des stratégies de base de données et de table](database-table-policies-python.md) (facultatif).
 * [Hub d’événements avec des données pour l’ingestion](ingest-data-event-hub.md#create-an-event-hub).
 

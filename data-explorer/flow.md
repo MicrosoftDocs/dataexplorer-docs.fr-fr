@@ -7,12 +7,12 @@ ms.reviewer: dorcohen
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/25/2020
-ms.openlocfilehash: 7c40d6b1f62014e8ede6ed3328dd3a3974d41a88
-ms.sourcegitcommit: c2ab3176db4dd55ac9ca8eee52bbd24096d1277f
+ms.openlocfilehash: 72d092683b490c7b58335abc59fd5e3aea2f3e26
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90740301"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342941"
 ---
 # <a name="azure-data-explorer-connector-to-power-automate-preview"></a>Connecteur Azure Data Explorer vers Power Automate (préversion)
 
@@ -31,7 +31,7 @@ Pour plus d’informations, consultez [Exemples d’utilisation du connecteur Az
 
 1. Quand vous vous connectez pour la première fois, vous êtes invité à entrer vos informations de connexion.
 
-1. Sélectionnez **Se connecter**, puis entrez vos informations d’identification.
+1. Sélectionnez **Se connecter** , puis entrez vos informations d’identification.
 
 ![Capture d’écran de l’invite de connexion à Azure Data Explorer](./media/flow/flow-signin.png)
 
@@ -40,13 +40,13 @@ Pour plus d’informations, consultez [Exemples d’utilisation du connecteur Az
 Vous pouvez vous authentifier avec des informations d’identification d’utilisateur ou avec une application Azure Active Directory (Azure AD).
 
 > [!Note]
-> Vérifiez que votre application est une [application Azure AD](kusto/management/access-control/how-to-provision-aad-app.md) et qu’elle est autorisée à exécuter des requêtes sur votre cluster.
+> Vérifiez que votre application est une [application Azure AD](./provision-azure-ad-app.md) et qu’elle est autorisée à exécuter des requêtes sur votre cluster.
 
-1. Dans **Exécuter une commande de contrôle et visualiser les résultats**, sélectionnez les points de suspension situés en haut à droite du connecteur de flux.
+1. Dans **Exécuter une commande de contrôle et visualiser les résultats** , sélectionnez les points de suspension situés en haut à droite du connecteur de flux.
 
    ![Capture d’écran de l’option « Exécuter une commande de contrôle et visualiser les résultats »](./media/flow/flow-addconnection.png)
 
-1. Sélectionnez **Ajouter une nouvelle connexion** > **Se connecter avec le principal de service**.
+1. Sélectionnez **Ajouter une nouvelle connexion** > **Se connecter avec le principal de service** .
 
    ![Capture d’écran de l’invite de connexion à Azure Data Explorer, avec l’option Se connecter avec le principal du service](./media/flow/flow-signin.png)
 
@@ -68,20 +68,20 @@ Une fois l’authentification terminée, vous verrez que votre flux utilise la c
 
 Pour utiliser le connecteur Power Automate, vous devez d’abord ajouter un déclencheur. Vous pouvez définir un déclencheur en fonction d’une période récurrente ou en réponse à une action de flux antérieure.
 
-1. [Créez un flux](https://flow.microsoft.com/manage/flows/new) ou, à partir de la page d’accueil Microsoft Power Automate, sélectionnez **Mes flux** >  **+ Nouveau**.
+1. [Créez un flux](https://flow.microsoft.com/manage/flows/new) ou, à partir de la page d’accueil Microsoft Power Automate, sélectionnez **Mes flux** >  **+ Nouveau** .
 
     ![Capture d’écran de la page d’accueil Microsoft Power Automate, avec « Mes flux » et « Nouveau » mis en évidence](./media/flow/flow-newflow.png)
 
-1. Sélectionnez **Planifié - à partir de zéro**.
+1. Sélectionnez **Planifié - à partir de zéro** .
 
     ![Capture d’écran de la boîte de dialogue Nouveau, avec « Planifié » mis en évidence](./media/flow/flow-scheduled-from-blank.png)
 
-1. Dans **Créer un flux planifié**, entrez les informations nécessaires.
+1. Dans **Créer un flux planifié** , entrez les informations nécessaires.
     
     ![Capture d’écran de la page Créer un flux planifié, avec les options « Nom du flux » mises en évidence](./media/flow/flow-build-scheduled-flow.png)
 
-1. Sélectionnez **Créer** >  **+ Nouvelle étape**.
-1. Dans la zone de recherche, entrez *Kusto*, puis sélectionnez **Azure Data Explorer**.
+1. Sélectionnez **Créer** >  **+ Nouvelle étape** .
+1. Dans la zone de recherche, entrez *Kusto* , puis sélectionnez **Azure Data Explorer** .
 
     ![Capture d’écran des options « Choisir une action », avec la zone de recherche et Azure Data Explorer mis en évidence](./media/flow/flow-actions.png)
 
@@ -109,7 +109,7 @@ Utilisez cette action pour exécuter une [commande de contrôle](kusto/managemen
 ![Capture d’écran de l’option « Exécuter une commande de contrôle et visualiser les résultats » dans le volet de récurrence](./media/flow/flow-runcontrolcommand.png)
 
 > [!IMPORTANT]
-> Dans le champ **Nom du cluster**, entrez l’URL du cluster.
+> Dans le champ **Nom du cluster** , entrez l’URL du cluster.
 
 ### <a name="run-query-and-list-results"></a>Exécuter la requête et répertorier les résultats
 
@@ -137,27 +137,27 @@ Dans cet exemple, les résultats de la requête sont retournés sous la forme d�
 ![Capture d’écran de l’option « Exécuter une requête et visualiser les résultats »](./media/flow/flow-runquery.png)
 
 > [!IMPORTANT]
-> Dans le champ **Nom du cluster**, entrez l’URL du cluster.
+> Dans le champ **Nom du cluster** , entrez l’URL du cluster.
 
 ## <a name="email-kusto-query-results"></a>Envoyer par e-mail les résultats de la requête Kusto
 
 Vous pouvez inclure une étape dans n’importe quel flux pour envoyer quelle adresse e-mail. 
 
 1. Sélectionnez **+ Nouvelle étape** pour ajouter une nouvelle étape à votre flux.
-1. Dans la zone de recherche, entrez *Office 365*, puis sélectionnez **Office 365 Outlook**.
+1. Dans la zone de recherche, entrez *Office 365* , puis sélectionnez **Office 365 Outlook** .
 1. Sélectionnez **Envoyer un e-mail (V2)** .
 1. Entrez l’adresse e-mail à laquelle vous voulez envoyer le rapport par e-mail.
 1. Entrez l’objet de l’e-mail.
-1. Sélectionnez **Mode Code**.
-1. Placez le curseur dans le champ **Corps**, puis sélectionnez **Ajouter du contenu dynamique**.
-1. Sélectionnez **BodyHtml**.
+1. Sélectionnez **Mode Code** .
+1. Placez le curseur dans le champ **Corps** , puis sélectionnez **Ajouter du contenu dynamique** .
+1. Sélectionnez **BodyHtml** .
     ![Capture d’écran de la boîte de dialogue « Envoyer un e-mail », avec le champ « Corps » et « BodyHtml » mis en évidence](./media/flow/flow-send-email.png)
-1. Sélectionnez **Afficher les options avancées**.
-1. Sous **Nom des pièces jointes -1**, sélectionnez **Nom de la pièce jointe**.
-1. Sous **Contenu des pièces jointes**, sélectionnez **Contenu de la pièce jointe**.
+1. Sélectionnez **Afficher les options avancées** .
+1. Sous **Nom des pièces jointes -1** , sélectionnez **Nom de la pièce jointe** .
+1. Sous **Contenu des pièces jointes** , sélectionnez **Contenu de la pièce jointe** .
 1. Le cas échéant, ajoutez d’autres pièces jointes. 
 1. Le cas échéant, définissez le niveau d’importance.
-1. Sélectionnez **Enregistrer**.
+1. Sélectionnez **Enregistrer** .
 
 ![Capture d’écran de la boîte de dialogue « Envoyer un e-mail », avec « Nom des pièces jointes », « Contenu des pièces jointes » et « Enregistrer » mis en évidence](./media/flow/flow-add-attachments.png)
 
@@ -169,7 +169,7 @@ Pour vérifier si votre flux a réussi, consultez l’historique des exécutions
    
    ![Capture d’écran du menu principal de Microsoft Power Automate, avec « Mes flux » mis en évidence](./media/flow/flow-myflows.png)
 
-1. Sur la ligne du flux que vous voulez examiner, sélectionnez l’icône « Plus de commandes », puis **Historique des exécutions**.
+1. Sur la ligne du flux que vous voulez examiner, sélectionnez l’icône « Plus de commandes », puis **Historique des exécutions** .
 
     ![Capture d’écran de l’onglet « Mes flux », avec « Historique des exécutions » mis en évidence](./media/flow//flow-runhistory.png)
 

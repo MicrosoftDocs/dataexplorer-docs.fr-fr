@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/07/2019
-ms.openlocfilehash: 0df859eb52927d0d59c2cab7de18f1de4bfcf1d7
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: ff4a4f0ada7e12f5de239c1b78b39a8beace15ee
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88873591"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342975"
 ---
 # <a name="create-an-iot-hub-data-connection-for-azure-data-explorer-by-using-c-preview"></a>Créer une connexion de données au hub IoT pour Azure Data Explorer à l’aide de C# (préversion)
 
@@ -30,7 +30,7 @@ Dans cet article, vous créez une connexion de données au hub IoT pour Azure Da
 * Si vous n’avez pas encore installé Visual Studio 2019, vous pouvez télécharger et utiliser la version **gratuite** [Visual Studio 2019 Community Edition](https://www.visualstudio.com/downloads/). Veillez à activer **le développement Azure** lors de l’installation de Visual Studio.
 * Si vous n’avez pas d’abonnement Azure, créez un [compte Azure gratuit](https://azure.microsoft.com/free/) avant de commencer.
 * Créez [un cluster et une base de données](create-cluster-database-csharp.md).
-* Créez [une table et un mappage de colonnes](net-standard-ingest-data.md#create-a-table-on-your-test-cluster).
+* Créez [une table et un mappage de colonnes](./net-sdk-ingest-data.md#create-a-table-on-your-test-cluster).
 * Définissez [des stratégies de base de données et de table](database-table-policies-csharp.md) (facultatif).
 * Créez un [hub IoT avec une stratégie d’accès partagé configurée](ingest-data-iot-hub.md#create-an-iot-hub).
 

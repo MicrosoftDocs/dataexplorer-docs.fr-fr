@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/07/2019
-ms.openlocfilehash: 4c54ae4aeded5579a4c7e5e016d60c8b46ba0908
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: afef1433c8928e0b1b33ca521aeffe881aedf61a
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88873285"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342958"
 ---
 # <a name="create-an-iot-hub-data-connection-for-azure-data-explorer-by-using-python-preview"></a>Créer une connexion de données au hub IoT pour Azure Data Explorer à l’aide de Python (préversion)
 
@@ -30,7 +30,7 @@ Dans cet article, vous créez une connexion de données au hub IoT pour Azure Da
 * Compte Azure avec un abonnement actif. [Créez un compte gratuitement](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio).
 * [Python 3.4+](https://www.python.org/downloads/).
 * [Un cluster et une base de données](create-cluster-database-python.md).
-* [Un mappage des tables et des colonnes](net-standard-ingest-data.md#create-a-table-on-your-test-cluster).
+* [Un mappage des tables et des colonnes](./net-sdk-ingest-data.md#create-a-table-on-your-test-cluster).
 * [Des stratégies de base de données et de table](database-table-policies-python.md) (facultatif).
 * [Un hub IoT avec une stratégie d’accès partagé configurée](ingest-data-iot-hub.md#create-an-iot-hub).
 

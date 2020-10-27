@@ -7,39 +7,39 @@ ms.reviewer: elbirnbo
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/09/2020
-ms.openlocfilehash: aeb807db9b69c6c5b806a7f4b152330ea2dabc72
-ms.sourcegitcommit: 313a91d2a34383b5a6e39add6c8b7fabb4f8d39a
+ms.openlocfilehash: e980527d2342543777ae8186b9166615f9016c5e
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/16/2020
-ms.locfileid: "90680743"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343400"
 ---
 # <a name="create-a-private-endpoint-in-your-azure-data-explorer-cluster-in-your-virtual-network-preview"></a>Créer un point de terminaison privé dans votre cluster Azure Data Explorer dans votre réseau virtuel (préversion)
 
 Utilisez un lien privé avec un point de terminaison privé pour accéder de façon sécurisée à votre cluster Azure Data Explorer dans votre réseau virtuel. 
 
-Pour configurer votre [service de liaison privée](https://docs.microsoft.com/azure/private-link/private-link-service-overview), utilisez un point de terminaison privé avec une adresse IP issue de l’espace d’adressage de votre réseau virtuel Azure. Le [point de terminaison privé Azure](https://docs.microsoft.com/azure/private-link/private-endpoint-overview) utilise une adresse IP privée de votre réseau virtuel pour vous connecter de manière privée et sécurisée à Azure Data Explorer. Vous devez également reconfigurer la [configuration DNS](https://docs.microsoft.com/azure/private-link/private-endpoint-dns) sur votre cluster pour vous connecter à l’aide de votre point de terminaison privé. Avec cette configuration, le trafic réseau entre un client de votre réseau privé et le cluster Azure Data Explorer traverse le réseau virtuel et une [liaison privée](https://docs.microsoft.com/azure/private-link/) sur le réseau principal Microsoft, ce qui élimine toute exposition sur le réseau Internet public. Cet article explique comment créer et configurer un point de terminaison privé dans votre cluster pour la requête (moteur) et l’ingestion (gestion des données).
+Pour configurer votre [service de liaison privée](/azure/private-link/private-link-service-overview), utilisez un point de terminaison privé avec une adresse IP issue de l’espace d’adressage de votre réseau virtuel Azure. Le [point de terminaison privé Azure](/azure/private-link/private-endpoint-overview) utilise une adresse IP privée de votre réseau virtuel pour vous connecter de manière privée et sécurisée à Azure Data Explorer. Vous devez également reconfigurer la [configuration DNS](/azure/private-link/private-endpoint-dns) sur votre cluster pour vous connecter à l’aide de votre point de terminaison privé. Avec cette configuration, le trafic réseau entre un client de votre réseau privé et le cluster Azure Data Explorer traverse le réseau virtuel et une [liaison privée](/azure/private-link/) sur le réseau principal Microsoft, ce qui élimine toute exposition sur le réseau Internet public. Cet article explique comment créer et configurer un point de terminaison privé dans votre cluster pour la requête (moteur) et l’ingestion (gestion des données).
 
 ## <a name="prerequisites"></a>Prérequis
 
-* Créez un [cluster Azure Data Explorer dans votre réseau virtuel](https://docs.microsoft.com/azure/data-explorer/vnet-create-cluster-portal).
+* Créez un [cluster Azure Data Explorer dans votre réseau virtuel](./vnet-create-cluster-portal.md).
 * Désactivez les stratégies réseau :
-  * Dans le réseau virtuel du cluster Azure Data Explorer, désactivez la [stratégie du service Private Link](https://docs.microsoft.com/azure/private-link/disable-private-link-service-network-policy).
-  * Dans le réseau virtuel du point de terminaison privé, qui peut être le même que le réseau virtuel du cluster Azure Data Explorer, désactivez la [stratégie de point de terminaison privé](https://docs.microsoft.com/azure/private-link/disable-private-endpoint-network-policy).
+  * Dans le réseau virtuel du cluster Azure Data Explorer, désactivez la [stratégie du service Private Link](/azure/private-link/disable-private-link-service-network-policy).
+  * Dans le réseau virtuel du point de terminaison privé, qui peut être le même que le réseau virtuel du cluster Azure Data Explorer, désactivez la [stratégie de point de terminaison privé](/azure/private-link/disable-private-endpoint-network-policy).
 
 ## <a name="create-private-link-service"></a>Créer un service de liaison privée
 
-Pour établir une liaison sécurisée à tous les services dans votre cluster, vous devez créer le [service de liaison privée](https://docs.microsoft.com/azure/private-link/private-link-service-overview) deux fois : une fois pour la requête (moteur) et une fois pour l’ingestion (gestion des données).
+Pour établir une liaison sécurisée à tous les services dans votre cluster, vous devez créer le [service de liaison privée](/azure/private-link/private-link-service-overview) deux fois : une fois pour la requête (moteur) et une fois pour l’ingestion (gestion des données).
 
 1. Sélectionnez le bouton **+ Créer une ressource** dans le coin supérieur gauche du portail.
-1. Recherchez *Service de liaison privée*.
-1. Sous **Service de liaison privée**, sélectionnez **Créer**.
+1. Recherchez *Service de liaison privée* .
+1. Sous **Service de liaison privée** , sélectionnez **Créer** .
 
     :::image type="content" source="media/vnet-create-private-endpoint/create-service.gif" alt-text="Image GIF montrant les trois premières étapes de création d’un service de liaison privée dans le portail Azure Data Explorer":::
 
-1. Dans le volet **Créer un service de liaison privée**, renseignez les champs suivants :
+1. Dans le volet **Créer un service de liaison privée** , renseignez les champs suivants :
 
-    :::image type="content" source="media/vnet-create-private-endpoint/private-link-basics.png" alt-text="Onglet 1 dans Créer un service de liaison privée – Bases":::
+    :::image type="content" source="media/vnet-create-private-endpoint/private-link-basics.png" alt-text="Image GIF montrant les trois premières étapes de création d’un service de liaison privée dans le portail Azure Data Explorer":::
 
     **Paramètre** | **Valeur suggérée** | **Description du champ**
     |---|---|---|
@@ -48,9 +48,9 @@ Pour établir une liaison sécurisée à tous les services dans votre cluster, v
     | Nom | AzureDataExplorerPLS | Choisissez un nom qui identifie votre service de liaison privée dans le groupe de ressources. |
     | Région | Identique au réseau virtuel | Sélectionnez la région qui correspond à la région de votre réseau virtuel. |
 
-1. Dans le volet **Paramètres sortants**, renseignez les champs suivants :
+1. Dans le volet **Paramètres sortants** , renseignez les champs suivants :
 
-    :::image type="content" source="media/vnet-create-private-endpoint/private-link-outbound.png" alt-text="Onglet 2 de liaison privée – Paramètres sortants":::
+    :::image type="content" source="media/vnet-create-private-endpoint/private-link-outbound.png" alt-text="Image GIF montrant les trois premières étapes de création d’un service de liaison privée dans le portail Azure Data Explorer":::
 
     |**Paramètre** | **Valeur suggérée** | **Description du champ**
     |---|---|---|
@@ -58,20 +58,20 @@ Pour établir une liaison sécurisée à tous les services dans votre cluster, v
     | Adresse IP front-end de l’équilibreur de charge | Adresse IP publique de gestion de données ou de votre moteur. | Sélectionnez l’adresse IP publique de l’équilibreur de charge. |
     | Sous-réseau NAT source | Sous-réseau du cluster | Votre sous-réseau où le cluster est déployé.
     
-1. Dans le volet **Sécurité d’accès**, choisissez les utilisateurs qui peuvent demander l’accès à votre service de liaison privée.
+1. Dans le volet **Sécurité d’accès** , choisissez les utilisateurs qui peuvent demander l’accès à votre service de liaison privée.
 1. Sélectionnez **Vérifier + créer** pour passer en revue la configuration de votre service de liaison privée. Sélectionnez **Créer** pour créer le service de liaison privée.
-1. Une fois le service de liaison privée créé, ouvrez la ressource et enregistrez l’alias de liaison privée pour l’étape suivante, **Créer un point de terminaison privé**. L’exemple d’alias est : *AzureDataExplorerPLS.111-222-333.westus.azure.privatelinkservice*
+1. Une fois le service de liaison privée créé, ouvrez la ressource et enregistrez l’alias de liaison privée pour l’étape suivante, **Créer un point de terminaison privé** . L’exemple d’alias est : *AzureDataExplorerPLS.111-222-333.westus.azure.privatelinkservice*
 
 ## <a name="create-private-endpoint"></a>Créer un point de terminaison privé
 
-Pour établir une liaison sécurisée à tous les services dans votre cluster, vous devez créer le [point de terminaison privé](https://docs.microsoft.com/azure/private-link/private-endpoint-overview) deux fois : une fois pour la requête (moteur) et une fois pour l’ingestion (gestion des données).
+Pour établir une liaison sécurisée à tous les services dans votre cluster, vous devez créer le [point de terminaison privé](/azure/private-link/private-endpoint-overview) deux fois : une fois pour la requête (moteur) et une fois pour l’ingestion (gestion des données).
 
 1. Sélectionnez le bouton **+ Créer une ressource** dans le coin supérieur gauche du portail.
-1. Recherchez *Point de terminaison privé*.
-1. Sous **Point de terminaison privé**, sélectionnez **Créer**.
-1. Dans le volet **Créer un point de terminaison privé**, renseignez les champs suivants :
+1. Recherchez *Point de terminaison privé* .
+1. Sous **Point de terminaison privé** , sélectionnez **Créer** .
+1. Dans le volet **Créer un point de terminaison privé** , renseignez les champs suivants :
 
-    :::image type="content" source="media/vnet-create-private-endpoint/step-one-basics.png" alt-text="Étape 1 du formulaire de création d’un point de terminaison privé – Bases":::
+    :::image type="content" source="media/vnet-create-private-endpoint/step-one-basics.png" alt-text="Image GIF montrant les trois premières étapes de création d’un service de liaison privée dans le portail Azure Data Explorer":::
 
     **Paramètre** | **Valeur suggérée** | **Description du champ**
     |---|---|---|
@@ -80,9 +80,9 @@ Pour établir une liaison sécurisée à tous les services dans votre cluster, v
     | Nom | AzureDataExplorerPE | Choisissez un nom qui identifie votre réseau virtuel dans le groupe de ressources.
     | Région | *USA Ouest* | Sélectionnez la région qui répond le mieux à vos besoins.
     
-1. Dans le volet **Ressource**, renseignez les champs suivants :
+1. Dans le volet **Ressource** , renseignez les champs suivants :
 
-    :::image type="content" source="media/vnet-create-private-endpoint/step-two-resource.png" alt-text="Étape 2 du formulaire de création d’un réseau virtuel – Ressource":::
+    :::image type="content" source="media/vnet-create-private-endpoint/step-two-resource.png" alt-text="Image GIF montrant les trois premières étapes de création d’un service de liaison privée dans le portail Azure Data Explorer":::
 
     **Paramètre** | **Valeur**
     |---|---|
@@ -91,7 +91,7 @@ Pour établir une liaison sécurisée à tous les services dans votre cluster, v
     
 1. Sélectionnez **Vérifier + créer** pour passer en revue la configuration de votre point de terminaison privé et **créer** le service de point de terminaison privé.
 1. Pour créer le point de terminaison privé pour l’ingestion (gestion des données), suivez les mêmes instructions avec la modification suivante :
-    1. Dans le volet **Ressource**, choisissez l’alias de votre service de liaison privée d’ingestion (gestion des données).
+    1. Dans le volet **Ressource** , choisissez l’alias de votre service de liaison privée d’ingestion (gestion des données).
 
 > [!NOTE]
 > Vous pouvez vous connecter au service de liaison privée à partir de plusieurs points de terminaison privés.
@@ -102,29 +102,29 @@ Pour établir une liaison sécurisée à tous les services dans votre cluster, v
 > Si vous avez choisi l’option *approuver automatiquement* dans le volet **Sécurité d’accès** lors de la création du service de liaison privée, cette étape n’est pas obligatoire.
 
 1. Dans votre service de liaison privée, choisissez **Connexions de points de terminaison privés** sous les paramètres.
-1. Choisissez votre point de terminaison privé dans la liste des connexions et sélectionnez **Approuver**.
+1. Choisissez votre point de terminaison privé dans la liste des connexions et sélectionnez **Approuver** .
 
-:::image type="content" source="media/vnet-create-private-endpoint/private-link-approve.png" alt-text="Étape d’approbation pour créer un point de terminaison privé"::: 
+:::image type="content" source="media/vnet-create-private-endpoint/private-link-approve.png" alt-text="Image GIF montrant les trois premières étapes de création d’un service de liaison privée dans le portail Azure Data Explorer"::: 
 
 ## <a name="set-dns-configuration"></a>Définir la configuration DNS
 
-Lorsque vous déployez un cluster Azure Data Explorer dans votre réseau virtuel, nous mettons à jour l’[entrée DNS](https://docs.microsoft.com/azure/private-link/private-endpoint-dns) pour pointer vers le nom canonique avec *privatelink* entre le nom d’enregistrement et le nom d’hôte de la zone. Cette entrée est mise à jour à la fois pour le moteur et l’ingestion (gestion des données). 
+Lorsque vous déployez un cluster Azure Data Explorer dans votre réseau virtuel, nous mettons à jour l’ [entrée DNS](/azure/private-link/private-endpoint-dns) pour pointer vers le nom canonique avec *privatelink* entre le nom d’enregistrement et le nom d’hôte de la zone. Cette entrée est mise à jour à la fois pour le moteur et l’ingestion (gestion des données). 
 
 Par exemple, si le nom DNS de votre moteur est myadx.westus.kusto.windows.net, la résolution de noms est la suivante :
 
-* **nom** : myadx.westus.kusto.windows.net   <br> **type** : CNAME   <br> **valeur** : myadx.privatelink.westus.kusto.windows.net
-* **nom** : myadx.privatelink.westus.kusto.windows.net   <br> **type** : A   <br> **value** : 40.122.110.154
+* **nom**  : myadx.westus.kusto.windows.net   <br> **type** : CNAME   <br> **valeur**  : myadx.privatelink.westus.kusto.windows.net
+* **nom**  : myadx.privatelink.westus.kusto.windows.net   <br> **type** : A   <br> **value**  : 40.122.110.154
     > [!NOTE]
     > Cette valeur correspond à l’adresse IP publique de requête (moteur) que vous avez fournie quand vous avez créé le cluster.
 
 Configurez un serveur DNS privé ou une zone DNS privée Azure. À des fins de tests, vous pouvez modifier l’entrée d’hôte de votre ordinateur de test.
 
-Créez la zone DNS suivante : **privatelink.region.kusto.windows.net**. La zone DNS de cet exemple est : *privatelink.westus.kusto.windows.net*. Inscrivez l’enregistrement pour votre moteur avec un enregistrement A et l’adresse IP du point de terminaison privé.
+Créez la zone DNS suivante : **privatelink.region.kusto.windows.net** . La zone DNS de cet exemple est : *privatelink.westus.kusto.windows.net* . Inscrivez l’enregistrement pour votre moteur avec un enregistrement A et l’adresse IP du point de terminaison privé.
 
 Voici des exemples de résolution des noms :
 
-* **nom** : myadx.westus.kusto.windows.net   <br>**type**: CNAME   <br>**valeur** : myadx.privatelink.westus.kusto.windows.net
-* **nom** : myadx.privatelink.westus.kusto.windows.net   <br>**type** : A   <br>**value** : 10.3.0.9
+* **nom**  : myadx.westus.kusto.windows.net   <br>**type** : CNAME   <br>**valeur**  : myadx.privatelink.westus.kusto.windows.net
+* **nom**  : myadx.privatelink.westus.kusto.windows.net   <br>**type** : A   <br>**value**  : 10.3.0.9
     > [!NOTE]
     > Cette valeur est l’adresse IP de votre point de terminaison privé. Vous avez déjà connecté l’adresse IP au service de liaison privée de requête (moteur).
 

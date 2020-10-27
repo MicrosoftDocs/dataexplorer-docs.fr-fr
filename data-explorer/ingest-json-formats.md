@@ -7,16 +7,16 @@ ms.reviewer: kerend
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 05/19/2020
-ms.openlocfilehash: 711ea8d819fbf8fc66c792a51c0ddc3844647a5e
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: f599698f4b35075aaec4ff3789fa9036c40d8c17
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874747"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343230"
 ---
 # <a name="ingest-json-formatted-sample-data-into-azure-data-explorer"></a>Ingérer des exemples de données au format JSON dans Azure Data Explorer
 
-Cet article vous montre comment ingérer des données au format JSON dans une base de données Azure Data Explorer. Vous commencerez par des exemples simples de données JSON brutes et mappées, puis vous passerez à des données JSON multilignes, et enfin à des schémas JSON plus complexes contenant des tableaux et des dictionnaires.  Les exemples décrivent en détail le processus d’ingestion de données au format JSON en utilisant le langage de requête Kusto (KQL), C# ou Python. Les commandes de contrôle `ingest` du langage de requête Kusto sont exécutées directement sur le point de terminaison du moteur. Dans les scénarios de production, l’ingestion est exécutée vers le service Gestion des données à l’aide de bibliothèques clientes ou de connexions de données. Lisez [Ingérer des données à l’aide de la bibliothèque Python d’Azure Data Explorer](python-ingest-data.md) et [Ingérer des données à l’aide du Kit de développement logiciel (SDK) .NET Standard d’Azure Data Explorer](net-standard-ingest-data.md) pour obtenir une procédure pas à pas concernant l’ingestion de données avec ces bibliothèques clientes.
+Cet article vous montre comment ingérer des données au format JSON dans une base de données Azure Data Explorer. Vous commencerez par des exemples simples de données JSON brutes et mappées, puis vous passerez à des données JSON multilignes, et enfin à des schémas JSON plus complexes contenant des tableaux et des dictionnaires.  Les exemples décrivent en détail le processus d’ingestion de données au format JSON en utilisant le langage de requête Kusto (KQL), C# ou Python. Les commandes de contrôle `ingest` du langage de requête Kusto sont exécutées directement sur le point de terminaison du moteur. Dans les scénarios de production, l’ingestion est exécutée vers le service Gestion des données à l’aide de bibliothèques clientes ou de connexions de données. Lisez [Ingérer des données à l’aide de la bibliothèque Python d’Azure Data Explorer](python-ingest-data.md) et [Ingérer des données à l’aide du Kit de développement logiciel (SDK) .NET Standard d’Azure Data Explorer](./net-sdk-ingest-data.md) pour obtenir une procédure pas à pas concernant l’ingestion de données avec ces bibliothèques clientes.
 
 ## <a name="prerequisites"></a>Prérequis
 
@@ -56,9 +56,9 @@ Utilisez le langage de requête Kusto pour ingérer des données au format JSON 
 
 1. Connectez-vous à [https://dataexplorer.azure.com](https://dataexplorer.azure.com).
 
-1. Sélectionnez **Ajouter un cluster**.
+1. Sélectionnez **Ajouter un cluster** .
 
-1. Dans la boîte de dialogue **Ajouter un cluster**, entrez l’URL de votre cluster sous la forme `https://<ClusterName>.<Region>.kusto.windows.net/`, puis sélectionnez **Ajouter**.
+1. Dans la boîte de dialogue **Ajouter un cluster** , entrez l’URL de votre cluster sous la forme `https://<ClusterName>.<Region>.kusto.windows.net/`, puis sélectionnez **Ajouter** .
 
 1. Collez la commande suivante, puis sélectionnez **Exécuter** pour créer la table.
 

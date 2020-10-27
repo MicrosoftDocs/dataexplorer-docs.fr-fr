@@ -7,12 +7,12 @@ ms.reviewer: takamara
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/03/2019
-ms.openlocfilehash: b062b2da81662e89dc61720ebf6bb555f896a8ca
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 228722bab25dc19532860f92b8194c4fd2d79a38
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874781"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343094"
 ---
 # <a name="ingest-data-from-logstash-to-azure-data-explorer"></a>Ingérer des données depuis Logstash vers Azure Data Explorer
 
@@ -89,7 +89,7 @@ Cette configuration inclut également le plug-in d’entrée `stdin` qui vous pe
 
 ## <a name="configure-logstash-to-send-data-to-azure-data-explorer"></a>Configurer Logstash pour envoyer des données à Azure Data Explorer
 
-Collez les paramètres suivants dans le même fichier config que celui utilisé à l’étape précédente. Remplacez tous les espaces réservés par les valeurs appropriées à votre configuration. Pour plus d’informations, consultez [Création d’une application AAD](kusto/management/access-control/how-to-provision-aad-app.md). 
+Collez les paramètres suivants dans le même fichier config que celui utilisé à l’étape précédente. Remplacez tous les espaces réservés par les valeurs appropriées à votre configuration. Pour plus d’informations, consultez [Création d’une application AAD](./provision-azure-ad-app.md). 
 
 ```ruby
 output {
@@ -110,7 +110,7 @@ output {
 | --- | --- |
 | **path** | Le plug-in Logstash écrit des événements dans des fichiers temporaires avant de les envoyer à Azure Data Explorer. Ce paramètre inclut un chemin indiquant l’emplacement auquel les fichiers doivent être écrits, ainsi qu’une expression temporelle de rotation de fichiers qui déclenche un chargement vers le service Azure Data Explorer.|
 | **ingest_url** | Point de terminaison Kusto pour la communication liée à l’ingestion.|
-| **app_id**, **app_key** et **app_tenant**| Informations d’identification nécessaires pour la connexion à Azure Data Explorer. Veillez à utiliser une application dotée de privilèges d’ingestion. |
+| **app_id** , **app_key** et **app_tenant**| Informations d’identification nécessaires pour la connexion à Azure Data Explorer. Veillez à utiliser une application dotée de privilèges d’ingestion. |
 | **database**| Nom de la base de données où placer des événements. |
 | **table** | Nom de la table cible où placer des événements. |
 | **mapping** | Le mappage est utilisé pour mapper une chaîne json d’événement entrant sur le format de ligne approprié (il définit quelle propriété va dans quelle colonne). |

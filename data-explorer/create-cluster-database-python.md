@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/03/2019
-ms.openlocfilehash: 8dfb0fb6637214d77df5bed436649bb10f808a47
-ms.sourcegitcommit: 95527c793eb873f0135c4f0e9a2f661ca55305e3
+ms.openlocfilehash: a274577da1fb93b78b56250c1176fb0e9bda8eed
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90533964"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343077"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-by-using-python"></a>Créer un cluster et une base de données Azure Data Explorer en utilisant Python
 
@@ -32,7 +32,7 @@ Dans cet article, vous allez créer un cluster et une base de données Azure Dat
 
 * [Python 3.4+](https://www.python.org/downloads/).
 
-* [Une application Azure AD et un principal de service ayant accès aux ressources](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal). Obtenez les valeurs de `Directory (tenant) ID`, `Application ID` et `Client Secret`.
+* [Une application Azure AD et un principal de service ayant accès aux ressources](/azure/active-directory/develop/howto-create-service-principal-portal). Obtenez les valeurs de `Directory (tenant) ID`, `Application ID` et `Client Secret`.
 
 ## <a name="install-python-package"></a>Installer le package Python
 
@@ -43,7 +43,7 @@ pip install azure-common
 pip install azure-mgmt-kusto
 ```
 ## <a name="authentication"></a>Authentication
-Pour exécuter les exemples de cet article, nous avons besoin d’une application Azure AD et d’un principal de service pouvant accéder aux ressources. Consultez [Créer une application Azure AD](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal) pour créer une application Azure AD gratuite et ajouter une attribution de rôle à l’étendue de l’abonnement. Cela montre également comment obtenir `Directory (tenant) ID`, `Application ID` et `Client Secret`.
+Pour exécuter les exemples de cet article, nous avons besoin d’une application Azure AD et d’un principal de service pouvant accéder aux ressources. Consultez [Créer une application Azure AD](/azure/active-directory/develop/howto-create-service-principal-portal) pour créer une application Azure AD gratuite et ajouter une attribution de rôle à l’étendue de l’abonnement. Cela montre également comment obtenir `Directory (tenant) ID`, `Application ID` et `Client Secret`.
 
 ## <a name="create-the-azure-data-explorer-cluster"></a>Créer le cluster Azure Data Explorer
 

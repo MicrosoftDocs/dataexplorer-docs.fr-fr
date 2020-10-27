@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/03/2019
-ms.openlocfilehash: d0eb0ab52fdbab9efc0e3a1305e3424ba5d66427
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 444704ae7ff7554186f357de526a5dc11e79165d
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88872112"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343111"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-by-using-c"></a>Créer un cluster et une base de données Azure Data Explorer en utilisant C#
 
@@ -34,7 +34,7 @@ Azure Data Explorer est un service d’analytique données rapide et complèteme
 [!INCLUDE [data-explorer-data-connection-install-nuget-csharp](includes/data-explorer-data-connection-install-nuget-csharp.md)]
 
 ## <a name="authentication"></a>Authentication
-Pour exécuter les exemples de cet article, nous avons besoin d’une application Azure AD et d’un principal de service pouvant accéder aux ressources. Consultez [Créer une application Azure AD](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal) pour créer une application Azure AD gratuite et ajouter une attribution de rôle à l’étendue de l’abonnement. Cela montre également comment obtenir `Directory (tenant) ID`, `Application ID` et `Client Secret`.
+Pour exécuter les exemples de cet article, nous avons besoin d’une application Azure AD et d’un principal de service pouvant accéder aux ressources. Consultez [Créer une application Azure AD](/azure/active-directory/develop/howto-create-service-principal-portal) pour créer une application Azure AD gratuite et ajouter une attribution de rôle à l’étendue de l’abonnement. Cela montre également comment obtenir `Directory (tenant) ID`, `Application ID` et `Client Secret`.
 
 ## <a name="create-the-azure-data-explorer-cluster"></a>Créer le cluster Azure Data Explorer
 
@@ -129,4 +129,4 @@ Vous disposez maintenant d’un cluster et d’une base de données.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Ingérer des données à l’aide du kit SDK .NET Standard Azure Data Explorer (préversion)](net-standard-ingest-data.md)
+* [Ingérer des données à l’aide du kit SDK .NET Standard Azure Data Explorer (préversion)](./net-sdk-ingest-data.md)

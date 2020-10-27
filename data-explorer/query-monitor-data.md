@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 01/28/2020
-ms.openlocfilehash: 334d2bc27709c78c53bd57c92c8c3b3364bbe3bb
-ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
+ms.openlocfilehash: 2a0dfeb769e4dc40cb988bab3cb4650ebcfcc9e4
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/29/2020
-ms.locfileid: "91452904"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342635"
 ---
 # <a name="query-data-in-azure-monitor-using-azure-data-explorer-preview"></a>Interroger des données dans Azure Monitor avec Azure Data Explorer (préversion)
 
@@ -30,18 +30,18 @@ Le flux de proxy Azure Data Explorer :
 
 ## <a name="connect-to-the-proxy"></a>Se connecter au proxy
 
-1. Vérifiez que votre cluster natif Azure Data Explorer (comme le cluster *d’aide*) apparaît dans le menu de gauche avant de vous connecter à votre cluster Log Analytics ou Application Insights.
+1. Vérifiez que votre cluster natif Azure Data Explorer (comme le cluster *d’aide* ) apparaît dans le menu de gauche avant de vous connecter à votre cluster Log Analytics ou Application Insights.
 
     ![Cluster natif ADX](media/adx-proxy/web-ui-help-cluster.png)
 
-1. Dans l’interface utilisateur d’Azure Data Explorer https://dataexplorer.azure.com/clusters), sélectionnez **Ajouter un cluster**.
+1. Dans l’interface utilisateur d’Azure Data Explorer https://dataexplorer.azure.com/clusters), sélectionnez **Ajouter un cluster** .
 
-1. Dans la fenêtre **Ajouter un cluster**, ajoutez l’URL au cluster LA ou AI. 
+1. Dans la fenêtre **Ajouter un cluster** , ajoutez l’URL au cluster LA ou AI. 
     
     * Pour LA : `https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.operationalinsights/workspaces/<workspace-name>`
     * Pour AI : `https://ade.applicationinsights.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.insights/components/<ai-app-name>`
 
-    * Sélectionnez **Ajouter**.
+    * Sélectionnez **Ajouter** .
 
     ![Ajouter un cluster](media/adx-proxy/add-cluster.png)
 
@@ -102,9 +102,9 @@ Les requêtes interlocataires ne sont pas prises en charge par le proxy ADX. Vou
 
 Si la ressource Azure Data Explorer est dans le locataire « A » et que l’espace de travail LA est dans le locataire « B », utilisez l’une des deux méthodes suivantes :
 
-1. Azure Data Explorer vous permet d’ajouter des rôles pour les principaux dans différents locataires. Ajoutez votre ID d’utilisateur dans le locataire « B » en tant qu’utilisateur autorisé sur le cluster Azure Data Explorer. Validez la propriété *['TrustedExternalTenant'](https://docs.microsoft.com/powershell/module/az.kusto/update-azkustocluster)* sur le cluster Azure Data Explorer qui contient le locataire « B ». Exécutez la requête croisée intégralement dans le locataire « B ».
+1. Azure Data Explorer vous permet d’ajouter des rôles pour les principaux dans différents locataires. Ajoutez votre ID d’utilisateur dans le locataire « B » en tant qu’utilisateur autorisé sur le cluster Azure Data Explorer. Validez la propriété *['TrustedExternalTenant'](/powershell/module/az.kusto/update-azkustocluster)* sur le cluster Azure Data Explorer qui contient le locataire « B ». Exécutez la requête croisée intégralement dans le locataire « B ».
 
-2. Utilisez [Lighthouse](https://docs.microsoft.com/azure/lighthouse/) pour projeter la ressource Azure Monitor dans le locataire « A ».
+2. Utilisez [Lighthouse](/azure/lighthouse/) pour projeter la ressource Azure Monitor dans le locataire « A ».
 
 ### <a name="connect-to-azure-data-explorer-clusters-from-different-tenants"></a>Se connecter à des clusters Azure Data Explorer à partir de différents locataires
 
@@ -132,7 +132,7 @@ Les options de syntaxe suivantes sont disponibles lors de l’appel des clusters
 
 |Description de la syntaxe  |Application Insights  |Log Analytics  |
 |----------------|---------|---------|
-| Base de données dans un cluster qui contient uniquement la ressource définie dans cet abonnement (**recommandé pour les requêtes entre clusters**) |   cluster(`https://ade.applicationinsights.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.insights/components/<ai-app-name>').database('<ai-app-name>`) | cluster(`https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.operationalinsights/workspaces/<workspace-name>').database('<workspace-name>`)     |
+| Base de données dans un cluster qui contient uniquement la ressource définie dans cet abonnement ( **recommandé pour les requêtes entre clusters** ) |   cluster(`https://ade.applicationinsights.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.insights/components/<ai-app-name>').database('<ai-app-name>`) | cluster(`https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.operationalinsights/workspaces/<workspace-name>').database('<workspace-name>`)     |
 | Cluster contenant l’ensemble des applications/espaces de travail de cet abonnement    |     cluster(`https://ade.applicationinsights.io/subscriptions/<subscription-id>`)    |    cluster(`https://ade.loganalytics.io/subscriptions/<subscription-id>`)     |
 |Cluster qui contient l’ensemble des applications/espaces de travail de l’abonnement et qui sont membres de ce groupe de ressources    |   cluster(`https://ade.applicationinsights.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>`)      |    cluster(`https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>`)      |
 |Cluster qui contient uniquement la ressource définie dans cet abonnement      |    cluster(`https://ade.applicationinsights.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.insights/components/<ai-app-name>`)    |  cluster(`https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.operationalinsights/workspaces/<workspace-name>`)     |

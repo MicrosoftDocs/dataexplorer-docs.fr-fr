@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/07/2019
-ms.openlocfilehash: c2cfe861898c2fa68960636b3c4bb4a2dc9b3075
-ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
+ms.openlocfilehash: b4098fe52eb4632ba8145d2d5491f21c5af805d8
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/07/2020
-ms.locfileid: "89502447"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343026"
 ---
 # <a name="create-an-event-hub-data-connection-for-azure-data-explorer-by-using-c"></a>Créer une connexion de données au hub d’événements pour Azure Data Explorer à l’aide de C#
 
@@ -30,7 +30,7 @@ Dans cet article, vous créez une connexion de données au hub d’événements 
 * Si vous n’avez pas encore installé Visual Studio 2019, vous pouvez télécharger et utiliser la version **gratuite** [Visual Studio 2019 Community Edition](https://www.visualstudio.com/downloads/). Veillez à activer **le développement Azure** lors de l’installation de Visual Studio.
 * Si vous n’avez pas d’abonnement Azure, créez un [compte Azure gratuit](https://azure.microsoft.com/free/) avant de commencer.
 * Créez [un cluster et une base de données](create-cluster-database-csharp.md).
-* Créez [une table et un mappage de colonnes](net-standard-ingest-data.md#create-a-table-on-your-test-cluster).
+* Créez [une table et un mappage de colonnes](./net-sdk-ingest-data.md#create-a-table-on-your-test-cluster).
 * Définissez [des stratégies de base de données et de table](database-table-policies-csharp.md) (facultatif).
 * Créez [un hub d’événements avec des données pour l’ingestion](ingest-data-event-hub.md#create-an-event-hub). 
 

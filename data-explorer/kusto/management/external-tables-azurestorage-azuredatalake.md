@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 0532219b8efc1cab7508d1838882b6fa48f5048f
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 1d0625c949fe563084caeec936e3433c9ee70f5e
+ms.sourcegitcommit: ef3d919dee27c030842abf7c45c9e82e6e8350ee
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92343264"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92630107"
 ---
 # <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Créer et modifier des tables externes dans Stockage Azure ou Azure Data Lake
 
@@ -28,7 +28,7 @@ Pour obtenir une présentation de la fonctionnalité de tables de stockage Azure
 ( `.create`  |  `.alter`  |  `.create-or-alter` ) `external` `table` *[TableName](#table-name)* `(` *[Schéma](#schema)* TableName`)`  
 `kind` `=` (`blob` | `adl`)  
 [ `partition` `by` `(` *[Partitions](#partitions)* `)` [ `pathformat` `=` `(` *[PathFormat](#path-format)* `)` ]]  
-`dataformat``=` * [Format](#format)*  
+`dataformat``=` *[Format](#format)*  
 `(`*[StorageConnectionString](#connection-string)* [ `,` ...]`)`   
 [ `with` `(` *[PropertyName](#properties)* `=` *[Valeur](#properties)* NomPropriété `,` ... `)` ]  
 
@@ -74,7 +74,7 @@ La liste partitions est toute combinaison de colonnes de partition, spécifiée 
 
   *PartitionName* `:` `string` `=` *ColumnName*
 
-* Partition, en fonction d’un [hachage](../query/hashfunction.md)de valeur de colonne de chaîne, *numéro*modulo.
+* Partition, en fonction d’un [hachage](../query/hashfunction.md)de valeur de colonne de chaîne, *numéro* modulo.
 
   *PartitionName* `:` `long` `=` `hash` `(` *ColumnName* `,` *Nombre* de ColumnName`)`
 
@@ -90,9 +90,9 @@ Pour vérifier l’exactitude de la définition de partitionnement, utilisez la 
 
 Format de chemin d’accès au fichier d’URI de données externes, qui peut être spécifié en plus des partitions. Le format du chemin d’accès est une séquence d’éléments de partition et de séparateurs de texte :
 
-&nbsp;&nbsp;[*StringSeparator*] *Partition* [*StringSeparator*] [*partition* [*StringSeparator*]...]  
+&nbsp;&nbsp;[ *StringSeparator* ] *Partition* [ *StringSeparator* ] [ *partition* [ *StringSeparator* ]...]  
 
-où *partition* fait référence à une partition déclarée dans la `partition` `by` clause, et *StringSeparator* est un texte placé entre guillemets. Les éléments de partition consécutifs doivent être séparés à l’aide de *StringSeparator*.
+où *partition* fait référence à une partition déclarée dans la `partition` `by` clause, et *StringSeparator* est un texte placé entre guillemets. Les éléments de partition consécutifs doivent être séparés à l’aide de *StringSeparator* .
 
 Le préfixe du chemin d’accès au fichier d’origine peut être construit à l’aide d’éléments de partition rendus sous forme de chaînes et séparés par des séparateurs de texte Pour spécifier le format utilisé pour le rendu d’une valeur de partition DateTime, vous pouvez utiliser la macro suivante :
 
@@ -248,7 +248,7 @@ dataformat=parquet
 
 Lors de l’interrogation d’une table externe, le moteur de requête améliore les performances en filtrant les fichiers de stockage externe inutiles. Le processus d’itération sur les fichiers et de détermination de la nécessité de traiter un fichier est décrit ci-dessous.
 
-1. Générez un modèle d’URI qui représente un emplacement où les fichiers sont trouvés. Initialement, le modèle d’URI est égal à une chaîne de connexion fournie dans le cadre de la définition de la table externe. Si des partitions sont définies, elles sont rendues à l’aide de *[PathFormat](#path-format)*, puis ajoutées au modèle d’URI.
+1. Générez un modèle d’URI qui représente un emplacement où les fichiers sont trouvés. Initialement, le modèle d’URI est égal à une chaîne de connexion fournie dans le cadre de la définition de la table externe. Si des partitions sont définies, elles sont rendues à l’aide de *[PathFormat](#path-format)* , puis ajoutées au modèle d’URI.
 
 2. Pour tous les fichiers trouvés sous le ou les modèles d’URI créés, activez la case à cocher :
 
@@ -270,7 +270,7 @@ Retourne une liste de tous les fichiers qui seront traités lors de l’interrog
 
 **Syntaxe :** 
 
-`.show``external` `table` *TableName* `artifacts` [ `limit` *MaxResults*]
+`.show``external` `table` *TableName* `artifacts` [ `limit` *MaxResults* ]
 
 où *MaxResults* est un paramètre facultatif, qui peut être défini pour limiter le nombre de résultats.
 
@@ -321,7 +321,7 @@ Crée un nouveau mappage. Pour plus d’informations, consultez [mappages de don
 
 **Exemple de sortie**
 
-| Name     | Type | Mappage                                                           |
+| Nom     | Kind | Mappage                                                           |
 |----------|------|-------------------------------------------------------------------|
 | mapping1 | JSON | [{"ColumnName" : "RowNumber", "Properties" : {"path" : "$. RowNumber"}}, {"ColumnName" : "rowguid", "Properties" : {"path" : "$. rowguid"}}] |
 
@@ -339,7 +339,7 @@ Modifie un mappage existant.
 
 **Exemple de sortie**
 
-| Name     | Type | Mappage                                                                |
+| Nom     | Kind | Mappage                                                                |
 |----------|------|------------------------------------------------------------------------|
 | mapping1 | JSON | [{"ColumnName" : "RowNumber", "Properties" : {"path" : "$. RowNumber"}}, {"ColumnName" : "rowguid", "Properties" : {"path" : "$. rowguid"}}] |
 
@@ -361,7 +361,7 @@ Affichez les mappages (tout ou partie spécifiés par nom).
 
 **Exemple de sortie**
 
-| Name     | Type | Mappage                                                                         |
+| Nom     | Kind | Mappage                                                                         |
 |----------|------|---------------------------------------------------------------------------------|
 | mapping1 | JSON | [{"ColumnName" : "RowNumber", "Properties" : {"path" : "$. RowNumber"}}, {"ColumnName" : "rowguid", "Properties" : {"path" : "$. rowguid"}}] |
 
@@ -378,5 +378,6 @@ Supprime le mappage de la base de données.
 ```
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Commandes de contrôle générales de table externe](./external-table-commands.md)
-* [Créer et modifier des tables SQL externes](external-sql-tables.md)
+* [Interroger des tables externes](../../data-lake-query-data.md).
+* [Exporter des données vers une table externe](data-export/export-data-to-an-external-table.md).
+* [Exportation continue de données vers une table externe](data-export/continuous-data-export.md).

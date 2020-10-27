@@ -7,12 +7,12 @@ ms.reviewer: avneraa
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/12/2020
-ms.openlocfilehash: fb9cdfbef5b4d2aa7c7b98fdc58d2ec7fdccbd0c
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 962735c666fa94a0b86cfae8775f712ee42e6d33
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874237"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342839"
 ---
 # <a name="delete-data-from-azure-data-explorer"></a>Supprimer des données de l’Explorateur de données Azure
 
@@ -32,7 +32,7 @@ Prenons l’exemple d’une base de données ou d’une table qui est définie p
 
 ## <a name="delete-data-by-dropping-extents"></a>Supprimer des données en abandonnant des étendues
 
-Une [étendue (partition de données)](kusto/management/extents-overview.md) est la structure interne dans laquelle des données sont stockées. Chaque étendue peut contenir des millions d’enregistrements. Il est possible de supprimer des étendues individuellement ou en tant que groupe à l’aide de [commandes d’abandon d’étendue(s)](kusto/management/extents-commands.md#drop-extents). 
+Une [étendue (partition de données)](kusto/management/extents-overview.md) est la structure interne dans laquelle des données sont stockées. Chaque étendue peut contenir des millions d’enregistrements. Il est possible de supprimer des étendues individuellement ou en tant que groupe à l’aide de [commandes d’abandon d’étendue(s)](./kusto/management/drop-extents.md).
 
 ### <a name="examples"></a>Exemples
 
@@ -52,5 +52,4 @@ Vous pouvez supprimer toutes les lignes d’une table ou juste une étendue spé
 
 ## <a name="delete-individual-rows-using-purge"></a>Supprimer des lignes individuelles par vidage
 
-Vous pouvez utiliser un [vidage des données](kusto/concepts/data-purge.md) pour supprimer des lignes individuelles. La suppression n’est pas immédiate et nécessite des ressources système significatives. Par conséquent, un vidage n’est recommandé qu’à des fins de conformité.  
-
+Vous pouvez utiliser un [vidage des données](kusto/concepts/data-purge.md) pour supprimer des lignes individuelles. La suppression n’est pas immédiate et nécessite des ressources système significatives. Par conséquent, un vidage n’est recommandé qu’à des fins de conformité.

@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/07/2019
-ms.openlocfilehash: b52ab47f52e39fb47975e65aea1f076885826715
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: c031b97e620be5b3ed6e3e26f7c509cfd4359f20
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88873710"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343043"
 ---
 # <a name="create-an-event-grid-data-connection-for-azure-data-explorer-by-using-python"></a>Créer une connexion de données à Event Grid pour Azure Data Explorer à l’aide de Python
 
@@ -30,7 +30,7 @@ Dans cet article, vous créez une connexion de données à Event Grid pour Azure
 * Compte Azure avec un abonnement actif. [Créez-en un gratuitement](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio).
 * [Python 3.4+](https://www.python.org/downloads/).
 * [Un cluster et une base de données](create-cluster-database-python.md).
-* [Un mappage des tables et des colonnes](net-standard-ingest-data.md#create-a-table-on-your-test-cluster).
+* [Un mappage des tables et des colonnes](./net-sdk-ingest-data.md#create-a-table-on-your-test-cluster).
 * [Des stratégies de base de données et de table](database-table-policies-csharp.md) (facultatif).
 * [Un compte de stockage avec un abonnement Event Grid](ingest-data-event-grid.md).
 

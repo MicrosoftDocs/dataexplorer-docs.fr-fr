@@ -7,12 +7,12 @@ ms.reviewer: guregini
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/12/2020
-ms.openlocfilehash: 0d6695ddf6923dcbf44ac3466a2388edc7618551
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: d81ed37a7502e0795fc82f38a918719a5da8db8e
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874968"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342890"
 ---
 # <a name="visualize-data-from-azure-data-explorer-in-kibana-with-the-k2bridge-open-source-connector"></a>Visualiser des données à partir d’Azure Data Explorer dans Kibana avec le connecteur open source K2Bridge
 
@@ -40,7 +40,7 @@ Avant de pouvoir visualiser des données à partir d’Azure Data Explorer dans 
 
 * [Helm v3](https://github.com/helm/helm#install), qui est le gestionnaire de package de Kubernetes.
 
-* Cluster Azure Kubernetes Service (AKS) ou tout autre cluster Kubernetes. Les versions 1.14 à 1.16 ont été testées et vérifiées. Si vous avez besoin d’un cluster AKS, consultez la documentation indiquant comment déployer un cluster AKS avec [Azure CLI](https://docs.microsoft.com/azure/aks/kubernetes-walkthrough) ou avec le [portail Azure](https://docs.microsoft.com/azure/aks/kubernetes-walkthrough-portal).
+* Cluster Azure Kubernetes Service (AKS) ou tout autre cluster Kubernetes. Les versions 1.14 à 1.16 ont été testées et vérifiées. Si vous avez besoin d’un cluster AKS, consultez la documentation indiquant comment déployer un cluster AKS avec [Azure CLI](/azure/aks/kubernetes-walkthrough) ou avec le [portail Azure](/azure/aks/kubernetes-walkthrough-portal).
 
 * Un [cluster Azure Data Explorer](create-cluster-database-portal.md), y compris l’URL du cluster et le nom de la base de données.
 
@@ -48,7 +48,7 @@ Avant de pouvoir visualiser des données à partir d’Azure Data Explorer dans 
 
     Nous recommandons un principal de service avec autorisation d’affichage et déconseillons l’utilisation d’autorisations de niveau supérieur. [Définissez les autorisations d’affichage du cluster pour le principal de service Azure AD](manage-database-permissions.md#manage-permissions-in-the-azure-portal).
 
-    Pour plus d’informations sur le principal de service Azure AD, consultez [Créer un principal de service Azure AD](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal#create-an-azure-active-directory-application).
+    Pour plus d’informations sur le principal de service Azure AD, consultez [Créer un principal de service Azure AD](/azure/active-directory/develop/howto-create-service-principal-portal#create-an-azure-active-directory-application).
 
 ## <a name="run-k2bridge-on-azure-kubernetes-service-aks"></a>Exécuter K2Bridge sur Azure Kubernetes Service (AKS)
 
@@ -87,7 +87,7 @@ Par défaut, le chart Helm de K2Bridge référence une image disponible publique
         ADX_TENANT_ID=[SERVICE_PRINCIPAL_TENANT_ID]
         ```
 
-    1. Si vous le souhaitez, activez la télémétrie Azure Application Insights. Si vous utilisez Application Insights pour la première fois, [créez une ressource Application Insights](https://docs.microsoft.com/azure/azure-monitor/app/create-new-resource). [Copiez la clé d’instrumentation](https://docs.microsoft.com/azure/azure-monitor/app/create-new-resource#copy-the-instrumentation-key) dans une variable.
+    1. Si vous le souhaitez, activez la télémétrie Azure Application Insights. Si vous utilisez Application Insights pour la première fois, [créez une ressource Application Insights](/azure/azure-monitor/app/create-new-resource). [Copiez la clé d’instrumentation](/azure/azure-monitor/app/create-new-resource#copy-the-instrumentation-key) dans une variable.
 
         ```bash
         APPLICATION_INSIGHTS_KEY=[INSTRUMENTATION_KEY]
@@ -151,13 +151,13 @@ Par défaut, le chart Helm de K2Bridge référence une image disponible publique
 
 Quand Azure Data Explorer est configuré en tant que source de données pour Kibana, vous pouvez utiliser Kibana pour explorer les données.
 
-1. Dans Kibana, dans le menu le plus à gauche, sélectionnez l’onglet **Discover**.
+1. Dans Kibana, dans le menu le plus à gauche, sélectionnez l’onglet **Discover** .
 
 1. Dans la zone de liste déroulante la plus à gauche, sélectionnez un modèle d’index. Le modèle définit la source de données que vous souhaitez explorer. En l’occurrence, le modèle d’index est une table Azure Data Explorer.
 
    ![Sélection d’un modèle d’index](media/k2bridge/k2bridge-select-an-index-pattern.png)
 
-1. Si vos données comportent un champ de filtre d’heure, vous pouvez spécifier l’intervalle de temps. En haut à droite de la page **Discover**, sélectionnez un filtre de temps. Par défaut, la page affiche les données des 15 dernières minutes.
+1. Si vos données comportent un champ de filtre d’heure, vous pouvez spécifier l’intervalle de temps. En haut à droite de la page **Discover** , sélectionnez un filtre de temps. Par défaut, la page affiche les données des 15 dernières minutes.
 
    ![Sélection d’un filtre de temps](media/k2bridge/k2bridge-time-filter.png)
 
@@ -165,7 +165,7 @@ Quand Azure Data Explorer est configuré en tant que source de données pour Kib
 
    ![Enregistrement développé](media/k2bridge/k2bridge-expand-record.png)
 
-1. Par défaut, la table des résultats comprend la colonne **_source**. Elle comprend également la colonne **Time** si le champ d’heure existe. Vous pouvez ajouter des colonnes spécifiques à la table des résultats en sélectionnant **Add** (Ajouter) en regard du nom de champ dans le volet le plus à gauche.
+1. Par défaut, la table des résultats comprend la colonne **_source** . Elle comprend également la colonne **Time** si le champ d’heure existe. Vous pouvez ajouter des colonnes spécifiques à la table des résultats en sélectionnant **Add** (Ajouter) en regard du nom de champ dans le volet le plus à gauche.
 
    ![Colonnes spécifiques avec mise en évidence du bouton Add](media/k2bridge/k2bridge-specific-columns.png)
 
@@ -175,7 +175,7 @@ Quand Azure Data Explorer est configuré en tant que source de données pour Kib
     * Utilisant la syntaxe de requête Lucene. Par exemple :
         * Recherchez « error » (erreur) pour trouver tous les enregistrements qui contiennent cette valeur.
         * Recherchez « status : 200 » (état : 200) pour obtenir tous les enregistrements dont la valeur d’état est 200.
-    * Utilisant les opérateurs logiques **AND**, **OR** et **NOT**.
+    * Utilisant les opérateurs logiques **AND** , **OR** et **NOT** .
     * Utilisant les caractères génériques astérisque (\*) et point d’interrogation ( ?). Par exemple, la requête « destination_city: L* » récupère les enregistrements dont la valeur destination_city commence par « L » ou « l ». (K2Bridge ne respecte pas la casse.)
 
     ![Exécution d’une requête](media/k2bridge/k2bridge-run-query.png)

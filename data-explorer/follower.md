@@ -7,16 +7,16 @@ ms.reviewer: gabilehner
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/06/2020
-ms.openlocfilehash: d07dc282ba3996113903bd1b7c5ab08672d46543
-ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
+ms.openlocfilehash: 4d8574e0b68c234f1cef0ba49b37eb869e61c142
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/13/2020
-ms.locfileid: "92003058"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342601"
 ---
 # <a name="use-follower-database-to-attach-databases-in-azure-data-explorer"></a>Utiliser une base de données follower pour joindre des bases de données dans Azure Data Explorer
 
-La fonctionnalité de **base de données follower** vous permet de joindre une base de données située dans un cluster différent à votre cluster Azure Data Explorer. La **base de données follower** est jointe en mode *lecture seule*, ce qui permet d’afficher les données et d’exécuter des requêtes sur les données ingérées dans la **base de données leader**. La base de données follower synchronise les modifications apportées aux bases de données leader. En raison de la synchronisation, on constate un décalage de données de quelques secondes à quelques minutes au niveau de la disponibilité des données. La durée du décalage dépend de la taille globale des métadonnées de la base de données leader. Les bases de données leader et follower utilisent le même compte de stockage pour extraire les données. Le stockage appartient à la base de données leader. La base de données follower affiche les données sans qu’il soit nécessaire de les ingérer. Étant donné que la base de données jointe est une base de données en lecture seule, les données, les tables et les stratégies de la base de données ne peuvent pas être modifiées, à l’exception de la [stratégie de mise en cache](#configure-caching-policy), des [principaux](#manage-principals) et des [autorisations](#manage-permissions). Les bases de données jointes ne peuvent pas être supprimées. Elles doivent être détachées par le leader ou le follower avant de pouvoir être supprimées. 
+La fonctionnalité de **base de données follower** vous permet de joindre une base de données située dans un cluster différent à votre cluster Azure Data Explorer. La **base de données follower** est jointe en mode *lecture seule* , ce qui permet d’afficher les données et d’exécuter des requêtes sur les données ingérées dans la **base de données leader** . La base de données follower synchronise les modifications apportées aux bases de données leader. En raison de la synchronisation, on constate un décalage de données de quelques secondes à quelques minutes au niveau de la disponibilité des données. La durée du décalage dépend de la taille globale des métadonnées de la base de données leader. Les bases de données leader et follower utilisent le même compte de stockage pour extraire les données. Le stockage appartient à la base de données leader. La base de données follower affiche les données sans qu’il soit nécessaire de les ingérer. Étant donné que la base de données jointe est une base de données en lecture seule, les données, les tables et les stratégies de la base de données ne peuvent pas être modifiées, à l’exception de la [stratégie de mise en cache](#configure-caching-policy), des [principaux](#manage-principals) et des [autorisations](#manage-permissions). Les bases de données jointes ne peuvent pas être supprimées. Elles doivent être détachées par le leader ou le follower avant de pouvoir être supprimées. 
 
 L’attachement d’une base de données à un autre cluster à l’aide de la fonctionnalité de follower est utilisé en tant qu’infrastructure pour partager des données entre les organisations et les équipes. La fonctionnalité est utile pour séparer les ressources de calcul afin de protéger un environnement de production contre les cas d’utilisation hors production. Le follower peut également être utilisé pour associer le coût du cluster Azure Data Explorer au tiers qui exécute des requêtes sur les données.
 
@@ -30,7 +30,7 @@ L’attachement d’une base de données à un autre cluster à l’aide de la f
 
 1. Si vous ne disposez pas d’abonnement Azure, créez un [compte gratuit](https://azure.microsoft.com/free/) avant de commencer.
 1. [Créez un cluster et une base de données](create-cluster-database-portal.md) pour le leader et le follower.
-1. [Ingérez des données](ingest-sample-data.md) dans la base de données leader à l’aide de l’une des différentes méthodes présentées dans [Vue d’ensemble de l’ingestion](/azure/data-explorer/ingest-data-overview).
+1. [Ingérez des données](ingest-sample-data.md) dans la base de données leader à l’aide de l’une des différentes méthodes présentées dans [Vue d’ensemble de l’ingestion](./ingest-data-overview.md).
 
 ## <a name="attach-a-database"></a>Attacher une base de données
 
@@ -476,4 +476,3 @@ L’administrateur de base de données follower peut modifier la [stratégie de 
 ## <a name="next-steps"></a>Étapes suivantes
 
 * Pour plus d’informations sur la configuration du cluster follower, consultez [Commandes de contrôle pour la gestion d’un cluster follower](kusto/management/cluster-follower.md).
-

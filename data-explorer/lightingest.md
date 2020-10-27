@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/28/2020
-ms.openlocfilehash: f3925ed2b3012dffbd7e96ca6dd6a795b0499071
-ms.sourcegitcommit: 88923cfb2495dbf10b62774ab2370b59681578b9
+ms.openlocfilehash: 5e15983039209e2e0c62ebd761e416ebb3bd1076
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "92175695"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342618"
 ---
 # <a name="use-lightingest-to-ingest-data-to-azure-data-explorer"></a>Utiliser LightIngest pour ingérer des données dans Azure Data Explorer
  
@@ -40,7 +40,7 @@ LightIngest est particulièrement utile quand vous souhaitez ingérer une grande
     :::image type="content" source="media/lightingest/lightingest-locationbar.png" alt-text="Téléchargement de LightIngest":::
 
 
-1. Entrez `cmd`, puis appuyez sur **Entrée**.
+1. Entrez `cmd`, puis appuyez sur **Entrée** .
 1. À l’invite de commandes, saisissez `LightIngest.exe` suivi de l’argument de ligne de commande approprié.
 
     > [!Tip]
@@ -144,7 +144,7 @@ Quand vous chargez des données d’historique à partir d’un système existan
 
 Les valeurs d’argument doivent inclure :
 * Texte fixe précédant immédiatement le format de l’horodatage, placé entre guillemets simples (préfixe).
-* Format d’horodatage, en notation [.NET DateTime standard](https://docs.microsoft.com/dotnet/standard/base-types/custom-date-and-time-format-strings)
+* Format d’horodatage, en notation [.NET DateTime standard](/dotnet/standard/base-types/custom-date-and-time-format-strings)
 * Texte fixe qui suit immédiatement l’horodatage (suffixe).
 
 **Exemples** 

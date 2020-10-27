@@ -7,12 +7,12 @@ ms.reviewer: avnera
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/13/2020
-ms.openlocfilehash: 5381b558d54002ddcd50fbbec2e4fbef6d44fdbc
-ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
+ms.openlocfilehash: 44c115cd509b72d5f83b1c1109ae09dc050d1a74
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/13/2020
-ms.locfileid: "92003077"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92337446"
 ---
 # <a name="select-the-correct-compute-sku-for-your-azure-data-explorer-cluster"></a>Sélectionner la bonne référence SKU de calcul pour votre cluster Azure Data Explorer 
 
@@ -23,7 +23,7 @@ La taille et la référence SKU d’une machine virtuelle du cluster de gestion 
 Vous pouvez changer la référence SKU de calcul du cluster du moteur à tout moment en [effectuant un scale-up du cluster](manage-cluster-vertical-scaling.md). Il est préférable de commencer par la plus petite taille de référence SKU correspondant au scénario initial. Gardez à l’esprit que le scale-up du cluster entraîne un temps d’arrêt pouvant atteindre 30 minutes pendant que le cluster est recréé avec la nouvelle référence SKU. Vous pouvez aussi utiliser les [recommandations d’Azure Advisor](azure-advisor.md) pour optimiser votre référence SKU de calcul.
 
 > [!TIP]
-> Les [instances réservées de calcul](https://docs.microsoft.com/azure/virtual-machines/windows/prepay-reserved-vm-instances) sont applicables au cluster Azure Data Explorer.  
+> Les [instances réservées de calcul](/azure/virtual-machines/windows/prepay-reserved-vm-instances) sont applicables au cluster Azure Data Explorer.  
 
 Cet article décrit différentes options de référence SKU de calcul et fournit les détails techniques qui peuvent vous aider à faire le meilleur choix.
 
@@ -31,7 +31,7 @@ Cet article décrit différentes options de référence SKU de calcul et fournit
 
 Azure Data Explorer offre deux types de clusters :
 
-* **Production** : Les clusters de production contiennent deux nœuds pour les clusters de moteur et de gestion de données et sont utilisés conformément au [contrat de niveau de service (SLA)](https://azure.microsoft.com/support/legal/sla/data-explorer/v1_0/) Azure Data Explorer.
+* **Production**  : Les clusters de production contiennent deux nœuds pour les clusters de moteur et de gestion de données et sont utilisés conformément au [contrat de niveau de service (SLA)](https://azure.microsoft.com/support/legal/sla/data-explorer/v1_0/) Azure Data Explorer.
 
 * **Développement/test (aucun SLA)**  : Les clusters de développement/test ont un seul nœud pour le moteur et le cluster de gestion des données. Ce type de cluster représente la configuration la moins chère en raison de son faible nombre d’instances et de l’absence de frais de balisage moteur. Il n’existe pas de SLA pour cette configuration de cluster, car elle manque de redondance.
 
@@ -128,4 +128,3 @@ Les spécifications techniques des machines virtuelles du cluster Azure Data Exp
 * Vous pouvez [effectuer un scale-in ou un scale-out](manage-cluster-horizontal-scaling.md) de la taille du cluster moteur pour modifier la capacité, en fonction des demandes.
 
 * Utilisez les [recommandations d’Azure Advisor](azure-advisor.md) pour optimiser votre référence SKU de calcul.
-

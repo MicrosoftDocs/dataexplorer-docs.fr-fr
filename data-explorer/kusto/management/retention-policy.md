@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: ebbd9aa5544d97ef1e980bcb3a53f74dbde66547
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.openlocfilehash: 79cac49a553a2b906947b4c85948b67718641587
+ms.sourcegitcommit: ef3d919dee27c030842abf7c45c9e82e6e8350ee
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85967534"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92630073"
 ---
 # <a name="retention-policy-command"></a>Commande sur la stratégie de rétention
 
@@ -22,13 +22,13 @@ Cet article décrit les commandes de contrôle utilisées pour la création et l
 ## <a name="show-retention-policy"></a>Afficher la stratégie de rétention
 
 ```kusto
-.show <entity_type> <database_or_table> policy retention
+.show <entity_type> <database_or_table_or_materialized_view> policy retention
 
 .show <entity_type> *  policy retention
 ```
 
-* `entity_type`: table ou base de données
-* `database_or_table`: `database_name` ou `database_name.table_name` ou `table_name` (dans le contexte de base de données)
+* `entity_type` : table, vue matérialisée ou base de données
+* `database_or_table_or_materialized_view`: `database_name` ou `database_name.table_name` ou `table_name` (dans le contexte de base de données) ou `materialized_view_name`
 
 **Exemple**
 
@@ -45,11 +45,11 @@ La suppression de la stratégie de rétention des données est affectively param
 La suppression de la stratégie de rétention des données de la table entraîne la dérive de la stratégie de rétention du niveau de la base de données.
 
 ```kusto
-.delete <entity_type> <database_or_table> policy retention
+.delete <entity_type> <database_or_table_or_materialized_view> policy retention
 ```
 
-* `entity_type`: table ou base de données
-* `database_or_table`: `database_name` ou `database_name.table_name` ou `table_name` (dans le contexte de base de données)
+* `entity_type` : table, vue matérialisée ou base de données
+* `database_or_table_or_materialized_view`: `database_name` ou `database_name.table_name` ou `table_name` (dans le contexte de base de données) ou `materialized_view_name`
 
 **Exemple**
 
@@ -63,18 +63,18 @@ Supprimez la stratégie de rétention pour la table nommée `MyTable1` :
 ## <a name="alter-retention-policy"></a>Modifier la stratégie de rétention
 
 ```kusto
-.alter <entity_type> <database_or_table> policy retention <retention_policy>
+.alter <entity_type> <database_or_table_or_materialized_view> policy retention <retention_policy>
 
 .alter tables (<table_name> [, ...]) policy retention <retention_policy>
 
-.alter-merge <entity_type> <database_or_table> policy retention <retention_policy>
+.alter-merge <entity_type> <database_or_table_or_materialized_view> policy retention <retention_policy>
 
-.alter-merge <entity_type> <database_or_table_name> policy retention [softdelete = <timespan>] [recoverability = disabled|enabled]
+.alter-merge <entity_type> <database_or_table_or_materialized_view> policy retention [softdelete = <timespan>] [recoverability = disabled|enabled]
 ```
 
-* `entity_type`: table ou base de données
-* `database_or_table`: `database_name` ou `database_name.table_name` ou `table_name` (dans le contexte de base de données)
-* `table_name`: nom d’une table dans un contexte de base de données.  Caractère générique ( `*` est autorisé ici).
+* `entity_type` : table ou base de données ou vue matérialisée
+* `database_or_table_or_materialized_view`: `database_name` ou `database_name.table_name` ou `table_name` (dans le contexte de base de données) ou `materialized_view_name`
+* `table_name` : nom d’une table dans un contexte de base de données.  Caractère générique ( `*` est autorisé ici).
 * `retention_policy` :
 
 ```kusto
@@ -95,12 +95,16 @@ Définit une stratégie de rétention avec une période de suppression réversib
 
 ```kusto
 .alter-merge table Table1 policy retention softdelete = 10d recoverability = disabled
+
+.alter-merge materialized-view View1 policy retention softdelete = 10d recoverability = disabled
 ```
 
 Définit une stratégie de rétention avec une période de suppression réversible de 10 jours et une récupération des données activée :
 
 ```kusto
 .alter table Table1 policy retention "{\"SoftDeletePeriod\": \"10.00:00:00\", \"Recoverability\": \"Enabled\"}"
+
+.alter materialized-view View1 policy retention "{\"SoftDeletePeriod\": \"10.00:00:00\", \"Recoverability\": \"Enabled\"}"
 ```
 
 Définit la même stratégie de rétention comme indiqué ci-dessus, mais cette fois pour plusieurs tables (Table1, table2 et table3) :
