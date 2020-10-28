@@ -8,35 +8,35 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: c20e18a31105dca584ebe35198462e8755cf8dc4
-ms.sourcegitcommit: 88923cfb2495dbf10b62774ab2370b59681578b9
+ms.openlocfilehash: 05848ff0a76ed7a102e54ec08412c4bf16e77891
+ms.sourcegitcommit: 4f24d68f1ae4903a2885985aa45fd15948867175
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "92175720"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92558204"
 ---
-# <a name="create-a-connection-to-event-hub"></a>Créer une connexion à Event Hub
+# <a name="event-hub-data-connection"></a>Connexion de données Event Hub
 
-[Azure Event Hubs](https://docs.microsoft.com/azure/event-hubs/event-hubs-about) est une plateforme de streaming de Big Data et un service d’ingestion d’événements. Azure Data Explorer offre une ingestion continue à partir des hubs d’événements gérés par le client.
+[Azure Event Hubs](/azure/event-hubs/event-hubs-about) est une plateforme de streaming de Big Data et un service d’ingestion d’événements. Azure Data Explorer offre une ingestion continue à partir des hubs d’événements gérés par le client.
 
-Le pipeline d’ingestion Event Hub transfère les événements à Azure Data Explorer en plusieurs étapes. Commencez par créer un hub d’événements dans le portail Azure. Vous créez ensuite une table cible dans Azure Data Explorer, dans laquelle les [données d’un format particulier](#data-format) sont ingérées à l’aide des [propriétés d’ingestion](#set-ingestion-properties) indiquées. La connexion Event Hub doit connaître le [routage des événements](#set-events-routing). Les données sont incorporées avec les propriétés sélectionnées en fonction du [mappage des propriétés du système d’événements](#set-event-system-properties-mapping). [Créez une connexion](#create-event-hub-connection) à Event Hub pour [créer un hub d’événements](#create-an-event-hub) et [envoyer des événements](#send-events). Ce processus peut être géré par le biais du [portail Azure](ingest-data-event-hub.md), programmatiquement avec [C#](data-connection-event-hub-csharp.md) ou [Python](data-connection-event-hub-python.md), ou avec le [modèle Azure Resource Manager](data-connection-event-hub-resource-manager.md).
+Le pipeline d’ingestion Event Hub transfère les événements à Azure Data Explorer en plusieurs étapes. Commencez par créer un hub d’événements dans le portail Azure. Vous créez ensuite une table cible dans Azure Data Explorer, dans laquelle les [données d’un format particulier](#data-format) sont ingérées à l’aide des [propriétés d’ingestion](#ingestion-properties) indiquées. La connexion Event Hub doit connaître le [routage des événements](#events-routing). Les données sont incorporées avec les propriétés sélectionnées en fonction du [mappage des propriétés du système d’événements](#event-system-properties-mapping). [Créez une connexion](#event-hub-connection) à Event Hub pour [créer un hub d’événements](#create-an-event-hub) et [envoyer des événements](#send-events). Ce processus peut être géré par le biais du [portail Azure](ingest-data-event-hub.md), programmatiquement avec [C#](data-connection-event-hub-csharp.md) ou [Python](data-connection-event-hub-python.md), ou avec le [modèle Azure Resource Manager](data-connection-event-hub-resource-manager.md).
 
 Pour obtenir des informations générales sur l’ingestion de données dans Azure Data Explorer, consultez [Vue d’ensemble de l’ingestion des données dans Azure Data Explorer](ingest-data-overview.md).
 
 ## <a name="data-format"></a>Format de données
 
-* Les données sont lues à partir du hub d’événements sous forme d’objets [EventData](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata?view=azure-dotnet).
+* Les données sont lues à partir du hub d’événements sous forme d’objets [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata?view=azure-dotnet).
 * Examinez les [formats pris en charge](ingestion-supported-formats.md).
     > [!NOTE]
     > Event Hub ne prend pas en charge le format .raw.
 
-* Les données peuvent être compressées en utilisant l’algorithme de compression `GZip`. Spécifiez `Compression` dans les [propriétés d’ingestion](#set-ingestion-properties).
+* Les données peuvent être compressées en utilisant l’algorithme de compression `GZip`. Spécifiez `Compression` dans les [propriétés d’ingestion](#ingestion-properties).
    * La compression des données n’est pas prise en charge pour les formats compressés (Avro, Parquet, ORC).
-   * L’encodage personnalisé et les [propriétés système](#set-event-system-properties-mapping) incorporées ne sont pas pris en charge sur les données compressées.
+   * L’encodage personnalisé et les [propriétés système](#event-system-properties-mapping) incorporées ne sont pas pris en charge sur les données compressées.
   
-## <a name="set-ingestion-properties"></a>Définir les propriétés d’ingestion
+## <a name="ingestion-properties"></a>Propriétés d’ingestion
 
-Les propriétés d’ingestion déterminent le processus d’ingestion, où router les données et comment les traiter. Vous pouvez spécifier les [propriétés d’ingestion](ingestion-properties.md) de l’ingestion des événements avec [EventData.Properties](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties). Vous pouvez définir les propriétés suivantes :
+Les propriétés d’ingestion déterminent le processus d’ingestion, où router les données et comment les traiter. Vous pouvez spécifier les [propriétés d’ingestion](ingestion-properties.md) de l’ingestion des événements avec [EventData.Properties](/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties). Vous pouvez définir les propriétés suivantes :
 
 |Propriété |Description|
 |---|---|
@@ -44,16 +44,19 @@ Les propriétés d’ingestion déterminent le processus d’ingestion, où rout
 | Format | Format de données. Remplace le paramètre `Data format` défini dans le volet `Data Connection`. |
 | IngestionMappingReference | Nom du [mappage d’ingestion](kusto/management/create-ingestion-mapping-command.md) existant à utiliser. Remplace le paramètre `Column mapping` défini dans le volet `Data Connection`.|
 | Compression | Compression de données, `None` (par défaut) ou compression `GZip`.|
-| Encodage | Encodage des données, la valeur par défaut est UTF8. Il peut s’agir de l’un des [encodages pris en charge par .NET](https://docs.microsoft.com/dotnet/api/system.text.encoding?view=netframework-4.8#remarks). |
+| Encodage | Encodage des données, la valeur par défaut est UTF8. Il peut s’agir de l’un des [encodages pris en charge par .NET](/dotnet/api/system.text.encoding?view=netframework-4.8#remarks). |
 | Étiquettes (préversion) | Liste d’[étiquettes](kusto/management/extents-overview.md#extent-tagging) à associer aux données ingérées, sous forme de chaîne de tableau JSON. L’utilisation d’étiquettes a des [répercussions sur les performances](kusto/management/extents-overview.md#performance-notes-1). |
 
 <!--| Database | Name of the existing target database.|-->
-<!--| Tags | String representing [tags](https://docs.microsoft.com/azure/kusto/management/extents-overview#extent-tagging) that will be attached to resulting extent. |-->
+<!--| Tags | String representing [tags](/azure/kusto/management/extents-overview#extent-tagging) that will be attached to resulting extent. |-->
 
-## <a name="set-events-routing"></a>Définir le routage des événements
+> [!NOTE]
+> Seuls les événements mis en file d’attente après que vous avez créé la connexion de données sont ingérés.
+
+## <a name="events-routing"></a>Routage d’événements
 
 Lors de la configuration d’une connexion Event Hub au cluster Azure Data Explorer, vous spécifiez les propriétés de la table cible (nom de table, format de données, compression et mappage). Le routage par défaut pour vos données est également appelé `static routing`.
-Vous pouvez également spécifier des propriétés de la table cible pour chaque événement, à l’aide des propriétés d’événement. La connexion route dynamiquement les données comme spécifié dans [EventData.Properties](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties), en remplaçant les propriétés statiques de cet événement.
+Vous pouvez également spécifier des propriétés de la table cible pour chaque événement, à l’aide des propriétés d’événement. La connexion route dynamiquement les données comme spécifié dans [EventData.Properties](/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties), en remplaçant les propriétés statiques de cet événement.
 
 Dans l’exemple suivant, définissez les détails du hub d’événements et envoyez les données de métriques météorologiques à la table `WeatherMetrics`.
 Les données sont au format `json`. `mapping1` est prédéfini sur la table `WeatherMetrics`.
@@ -79,7 +82,7 @@ eventHubClient.Send(eventData);
 eventHubClient.Close();
 ```
 
-## <a name="set-event-system-properties-mapping"></a>Définir le mappage des propriétés du système d’événements
+## <a name="event-system-properties-mapping"></a>Mappage des propriétés du système d’événements
 
 Les propriétés système stockent les propriétés définies par le service Event Hubs, au moment de la mise en file d’attente de l’événement. La connexion Event Hub Azure Data Explorer incorpore les propriétés sélectionnées dans l’arrivage de données dans votre table.
 
@@ -104,14 +107,14 @@ Si vous avez sélectionné **Propriétés du système d’événements** dans la
 
 [!INCLUDE [data-explorer-container-system-properties](includes/data-explorer-container-system-properties.md)]
 
-## <a name="create-event-hub-connection"></a>Créer une connexion de hub d’événements
+## <a name="event-hub-connection"></a>Connexion au hub d’événements
 
 > [!Note]
 > Pour des performances optimales, créez toutes les ressources dans la même région que le cluster Azure Data Explorer.
 
 ### <a name="create-an-event-hub"></a>Créer un hub d’événements
 
-[Créez un hub d’événements](https://docs.microsoft.com/azure/event-hubs/event-hubs-create) si vous n’en avez pas déjà un. La connexion à Event Hub peut être gérée par le biais du [portail Azure](ingest-data-event-hub.md), programmatiquement avec [C#](data-connection-event-hub-csharp.md) ou [Python](data-connection-event-hub-python.md), ou avec le [modèle Azure Resource Manager](data-connection-event-hub-resource-manager.md).
+[Créez un hub d’événements](/azure/event-hubs/event-hubs-create) si vous n’en avez pas déjà un. La connexion à Event Hub peut être gérée par le biais du [portail Azure](ingest-data-event-hub.md), programmatiquement avec [C#](data-connection-event-hub-csharp.md) ou [Python](data-connection-event-hub-python.md), ou avec le [modèle Azure Resource Manager](data-connection-event-hub-resource-manager.md).
 
 
 > [!Note]

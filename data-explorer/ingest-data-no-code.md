@@ -7,12 +7,12 @@ ms.reviewer: kerend
 ms.service: data-explorer
 ms.topic: tutorial
 ms.date: 05/19/2020
-ms.openlocfilehash: 43b8e3f4d1adee7cf96cc7933aab8d8ef18d7638
-ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
+ms.openlocfilehash: fa4c47994ac96486fe6889e162fe917a5cef3f3e
+ms.sourcegitcommit: 88291fd9cebc26e5210463cb95be5540bf84eef8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88610591"
+ms.lasthandoff: 10/22/2020
+ms.locfileid: "92437472"
 ---
 # <a name="tutorial-ingest-and-query-monitoring-data-in-azure-data-explorer"></a>Tutoriel : Ingérer et interroger des données de supervision dans Azure Data Explorer 
 
@@ -33,7 +33,7 @@ Ce didacticiel vous montre comment effectuer les opérations suivantes :
 ## <a name="prerequisites"></a>Prérequis
 
 * Si vous n’avez pas d’abonnement Azure, créez un [compte Azure gratuit](https://azure.microsoft.com/free/) avant de commencer.
-* [Un cluster et une base de données Azure Data Explorer](create-cluster-database-portal.md). Dans ce tutoriel, le nom de la base de données est *TestDatabase*.
+* [Un cluster et une base de données Azure Data Explorer](create-cluster-database-portal.md). Dans ce tutoriel, le nom de la base de données est *TestDatabase* .
 
 ## <a name="azure-monitor-data-provider-diagnostic-metrics-and-logs-and-activity-logs"></a>Fournisseur de données Azure Monitor : métriques de diagnostic, journaux de diagnostic et journaux d’activité
 
@@ -200,7 +200,7 @@ La configuration d’un pipeline Azure Data Explorer implique plusieurs étapes,
 
 ### <a name="connect-to-the-azure-data-explorer-web-ui"></a>Se connecter à l’interface utilisateur web d’Azure Data Explorer
 
-Dans votre base de données Azure Data Explorer *TestDatabase*, sélectionnez **Requête** pour ouvrir l’interface utilisateur web d’Azure Data Explorer.
+Dans votre base de données Azure Data Explorer *TestDatabase* , sélectionnez **Requête** pour ouvrir l’interface utilisateur web d’Azure Data Explorer.
 
 ![Page de requête](media/ingest-data-no-code/query-database.png)
 
@@ -213,7 +213,7 @@ Utilisez l’interface utilisateur web d’Azure Data Explorer pour créer les t
 # <a name="diagnostic-metrics"></a>[Métriques de diagnostic](#tab/diagnostic-metrics)
 #### <a name="create-tables-for-the-diagnostic-metrics"></a>Créer des tables pour les métriques de diagnostic
 
-1. Dans la base de données *TestDatabase*, créez une table nommée *DiagnosticMetrics* pour stocker les enregistrements des métriques de diagnostic. Utilisez la commande de contrôle `.create table` suivante :
+1. Dans la base de données *TestDatabase* , créez une table nommée *DiagnosticMetrics* pour stocker les enregistrements des métriques de diagnostic. Utilisez la commande de contrôle `.create table` suivante :
 
     ```kusto
     .create table DiagnosticMetrics (Timestamp:datetime, ResourceId:string, MetricName:string, Count:int, Total:double, Minimum:double, Maximum:double, Average:double, TimeGrain:string)
@@ -238,7 +238,7 @@ Utilisez l’interface utilisateur web d’Azure Data Explorer pour créer les t
 # <a name="diagnostic-logs"></a>[Journaux de diagnostic](#tab/diagnostic-logs)
 #### <a name="create-tables-for-the-diagnostic-logs"></a>Créer des tables pour les journaux de diagnostic 
 
-1. Dans la base de données *TestDatabase*, créez une table nommée *DiagnosticLogs* pour stocker les enregistrements des journaux de diagnostic. Utilisez la commande de contrôle `.create table` suivante :
+1. Dans la base de données *TestDatabase* , créez une table nommée *DiagnosticLogs* pour stocker les enregistrements des journaux de diagnostic. Utilisez la commande de contrôle `.create table` suivante :
 
     ```kusto
     .create table DiagnosticLogs (Timestamp:datetime, ResourceId:string, OperationName:string, Result:string, OperationId:string, Database:string, Table:string, IngestionSourceId:string, IngestionSourcePath:string, RootActivityId:string, ErrorCode:string, FailureStatus:string, Details:string)
@@ -327,7 +327,7 @@ Pour mapper les données des journaux d’activité à la table, utilisez la req
     }
     ```
 
-2. Ajoutez la [stratégie de mise à jour](kusto/management/updatepolicy.md) à la table cible. Cette stratégie exécute automatiquement la requête sur toutes les nouvelles données ingérées dans la table de données intermédiaire *DiagnosticRawRecords*, et ingère ses résultats dans la table *DiagnosticMetrics* :
+2. Ajoutez la [stratégie de mise à jour](kusto/management/updatepolicy.md) à la table cible. Cette stratégie exécute automatiquement la requête sur toutes les nouvelles données ingérées dans la table de données intermédiaire *DiagnosticRawRecords* , et ingère ses résultats dans la table *DiagnosticMetrics*  :
 
     ```kusto
     .alter table DiagnosticMetrics policy update @'[{"Source": "DiagnosticRawRecords", "Query": "DiagnosticMetricsExpand()", "IsEnabled": "True", "IsTransactional": true}]'
@@ -360,7 +360,7 @@ Pour mapper les données des journaux d’activité à la table, utilisez la req
     }
     ```
 
-2. Ajoutez la [stratégie de mise à jour](kusto/management/updatepolicy.md) à la table cible. Cette stratégie exécute automatiquement la requête sur toutes les nouvelles données ingérées dans la table de données intermédiaire *DiagnosticRawRecords*, et ingère ses résultats dans la table *DiagnosticLogs* :
+2. Ajoutez la [stratégie de mise à jour](kusto/management/updatepolicy.md) à la table cible. Cette stratégie exécute automatiquement la requête sur toutes les nouvelles données ingérées dans la table de données intermédiaire *DiagnosticRawRecords* , et ingère ses résultats dans la table *DiagnosticLogs*  :
 
     ```kusto
     .alter table DiagnosticLogs policy update @'[{"Source": "DiagnosticRawRecords", "Query": "DiagnosticLogsExpand()", "IsEnabled": "True", "IsTransactional": true}]'
@@ -390,7 +390,7 @@ Pour mapper les données des journaux d’activité à la table, utilisez la req
     }
     ```
 
-2. Ajoutez la [stratégie de mise à jour](kusto/management/updatepolicy.md) à la table cible. Cette stratégie exécute automatiquement la requête sur toutes les données récemment ingérées dans la table de données intermédiaire *ActivityLogsRawRecords*, et ingère ses résultats dans la table *ActivityLogs* :
+2. Ajoutez la [stratégie de mise à jour](kusto/management/updatepolicy.md) à la table cible. Cette stratégie exécute automatiquement la requête sur toutes les données récemment ingérées dans la table de données intermédiaire *ActivityLogsRawRecords* , et ingère ses résultats dans la table *ActivityLogs*  :
 
     ```kusto
     .alter table ActivityLogs policy update @'[{"Source": "ActivityLogsRawRecords", "Query": "ActivityLogRecordsExpand()", "IsEnabled": "True", "IsTransactional": true}]'
@@ -401,7 +401,7 @@ Pour mapper les données des journaux d’activité à la table, utilisez la req
 
 Les paramètres de diagnostic Azure permettent d’exporter des métriques et des journaux vers un compte de stockage ou vers un hub d’événements. Dans ce tutoriel, nous allons router les métriques et les journaux par le biais d’un hub d’événements. Dans les étapes suivantes, vous allez créer un espace de noms Event Hubs ainsi qu’un hub d’événements pour les métriques et journaux de diagnostic. Azure Monitor va créer le hub d’événements *insights-operational-logs* pour les journaux d’activité.
 
-1. Créez un hub d’événements à l’aide d’un modèle Azure Resource Manager dans le portail Azure. Pour suivre le reste des étapes de l’article, cliquez avec le bouton droit sur le bouton **Déployer sur Azure**, puis sélectionnez **Ouvrir dans une nouvelle fenêtre**. Le bouton **Déployer sur Azure** vous permet d’accéder au Portail Azure.
+1. Créez un hub d’événements à l’aide d’un modèle Azure Resource Manager dans le portail Azure. Pour suivre le reste des étapes de l’article, cliquez avec le bouton droit sur le bouton **Déployer sur Azure** , puis sélectionnez **Ouvrir dans une nouvelle fenêtre** . Le bouton **Déployer sur Azure** vous permet d’accéder au Portail Azure.
 
     [![Bouton Déployer sur Azure](media/ingest-data-no-code/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-event-hubs-create-event-hub-and-consumer-group%2Fazuredeploy.json)
 
@@ -431,50 +431,55 @@ Vous devez maintenant connecter vos métriques et journaux de diagnostic et vos 
 Sélectionnez une ressource à partir de laquelle exporter les métriques. Plusieurs types de ressources prennent en charge l’exportation des données de diagnostic, notamment l’espace de noms Event Hubs, Azure Key Vault, Azure IoT Hub et les clusters Azure Data Explorer. Dans ce tutoriel, nous allons utiliser un cluster Azure Data Explorer comme ressource. Nous allons également examiner les métriques de performances des requêtes et les journaux de résultats de l’ingestion.
 
 1. Sélectionnez votre cluster Kusto dans le Portail Azure.
-1. Sélectionnez **Paramètres de diagnostic**, puis le lien **Activer les diagnostics**. 
+1. Sélectionnez **Paramètres de diagnostic** , puis le lien **Activer les diagnostics** . 
 
     ![Paramètres de diagnostic](media/ingest-data-no-code/diagnostic-settings.png)
 
 1. Le volet **Paramètres de diagnostic** s’ouvre. Procédez comme suit :
-   1. Donnez à vos données de journaux de diagnostic le nom *ADXExportedData*.
-   1. Sous **JOURNAL**, cochez les deux cases **SucceededIngestion** et **FailedIngestion**.
-   1. Sous **MÉTRIQUE**, cochez la case **Performances de requête**.
-   1. Cochez la case **Diffuser vers Event Hub**.
-   1. Sélectionnez **Configurer**.
+   1. Donnez à vos données de journaux de diagnostic le nom *ADXExportedData* .
+   1. Sous **JOURNAL** , cochez les deux cases **SucceededIngestion** et **FailedIngestion** .
+   1. Sous **MÉTRIQUE** , cochez la case **Performances de requête** .
+   1. Cochez la case **Diffuser vers Event Hub** .
+   1. Sélectionnez **Configurer** .
 
       ![Volet Paramètres de diagnostic](media/ingest-data-no-code/diagnostic-settings-window.png)
 
 1. Dans le volet **Sélectionner un hub d’événements** , configurez la façon d’exporter des données de journaux de diagnostic vers le hub d’événements que vous avez créé :
-    1. Dans la liste **Sélectionner l’espace de noms de Event Hub**, sélectionnez *AzureMonitoringData*.
-    1. Dans la liste **Sélectionner un nom d’Event Hub**, sélectionnez *DiagnosticData*.
-    1. Dans la liste **Sélectionner un nom de stratégie de hub d’événements**, sélectionnez **RootManagerSharedAccessKey**.
-    1. Sélectionnez **OK**.
+    1. Dans la liste **Sélectionner l’espace de noms de Event Hub** , sélectionnez *AzureMonitoringData* .
+    1. Dans la liste **Sélectionner un nom d’Event Hub** , sélectionnez *DiagnosticData* .
+    1. Dans la liste **Sélectionner un nom de stratégie de hub d’événements** , sélectionnez **RootManagerSharedAccessKey** .
+    1. Sélectionnez **OK** .
 
-1. Sélectionnez **Enregistrer**.
+1. Sélectionnez **Enregistrer** .
 
 # <a name="activity-logs"></a>[Journaux d’activité](#tab/activity-logs)
 ### <a name="connect-activity-logs-to-your-event-hub"></a>Connecter des journaux d’activité à votre hub d’événements
 
-1. Dans le menu de gauche du portail Azure, sélectionnez **Journal d’activité**.
-1. La fenêtre **Journal d’activité** s’ouvre. Sélectionnez **Exporter vers Event Hub**.
+1. Dans le menu de gauche du portail Azure, sélectionnez **Journal d’activité** .
+1. La fenêtre **Journal d’activité** s’ouvre. Sélectionnez **Paramètres de diagnostic** .
 
     ![Fenêtre Journal d’activité](media/ingest-data-no-code/activity-log.png)
 
-1. La fenêtre **Exporter le journal d’activité** s’ouvre :
- 
-    ![Fenêtre Exporter le journal d’activité](media/ingest-data-no-code/export-activity-log.png)
+1. La fenêtre **Paramètres de diagnostic** s’ouvre. Sélectionnez **+ Ajouter le paramètre de diagnostic** .
 
-1. Dans la fenêtre **Exporter le journal d’activité**, effectuez les étapes suivantes :
-      1. Sélectionnez votre abonnement.
-      1. Dans la liste **Régions**, choisissez **Sélectionner tout**.
-      1. Cochez la case **Exporter vers un hub d’événements**.
-      1. Choisissez **Sélectionnez un espace de noms Service Bus** pour ouvrir le volet **Sélectionner un hub d’événements**.
-      1. Dans le volet **Sélectionner un hub d’événements** , sélectionnez votre abonnement.
-      1. Dans la liste **Sélectionner l’espace de noms de Event Hub**, sélectionnez *AzureMonitoringData*.
-      1. Dans la liste **Sélectionner un nom de stratégie de hub d’événements**, sélectionnez le nom de stratégie de hub d’événements par défaut.
-      1. Sélectionnez **OK**.
-      1. Dans l’angle supérieur gauche de la fenêtre, sélectionnez **Enregistrer**.
-   Un hub d’événements nommé *insights-operational-logs* est créé.
+    :::image type="content" source="media/ingest-data-no-code/add-diagnosting-setting.png" alt-text="Ajouter un paramètre de diagnostic dans la fenêtre Paramètres de diagnostic, portail Azure Data Explorer":::
+
+1. Une nouvelle fenêtre **Paramètres de diagnostic** s’ouvre. 
+
+    :::image type="content" source="media/ingest-data-no-code/export-activity-log.PNG" alt-text="Ajouter un paramètre de diagnostic dans la fenêtre Paramètres de diagnostic, portail Azure Data Explorer":::
+
+    Procédez comme suit :
+    1. Entrez un nom dans le champ **Nom du paramètre de diagnostic** .  
+    1. Sur le côté gauche des cases à cocher, sélectionnez le ou les journaux de la plateforme que vous souhaitez collecter dans un abonnement.
+    1. Cochez la case **Diffuser vers Event Hub** .
+    1. Sélectionnez votre abonnement.
+    1. Dans la liste **Espace de noms Event Hub** , sélectionnez *AzureMonitoringData* .
+    1. Si vous le souhaitez, sélectionnez votre **nom Event Hub** .
+    1. Dans la liste **Nom de stratégie de hub d’événements** , sélectionnez le nom de stratégie de hub d’événements par défaut.
+    1. Dans l’angle supérieur gauche de la fenêtre, sélectionnez **Enregistrer** . Un hub d’événements portant le nom *insights-operational-logs* est créé (sauf si vous avez sélectionné un nom de hub d’événements ci-dessus).
+      
+    
+
 ---
 
 ### <a name="see-data-flowing-to-your-event-hubs"></a>Visualiser le flux des données vers vos hubs d’événements
@@ -493,17 +498,17 @@ Vous devez maintenant créer les connexions de données pour vos métriques et j
 
 ### <a name="create-the-data-connection-for-diagnostic-metrics-and-logs-and-activity-logs"></a>Créer les connexions de données pour les métriques et journaux de diagnostic et pour les journaux d’activité
 
-1. Dans votre cluster Azure Data Explorer nommé *kustodocs*, sélectionnez **Bases de données** dans le menu de gauche.
-1. Dans la fenêtre **Bases de données**, sélectionnez votre base de données *TestDatabase*.
-1. Dans le menu de gauche, sélectionnez **Ingestion des données**.
-1. Dans la fenêtre **Ingestion des données**, cliquez sur **+ Ajouter la connexion de données**.
-1. Dans la fenêtre **Connexion aux données**, entrez les informations suivantes :
+1. Dans votre cluster Azure Data Explorer nommé *kustodocs* , sélectionnez **Bases de données** dans le menu de gauche.
+1. Dans la fenêtre **Bases de données** , sélectionnez votre base de données *TestDatabase* .
+1. Dans le menu de gauche, sélectionnez **Ingestion des données** .
+1. Dans la fenêtre **Ingestion des données** , cliquez sur **+ Ajouter la connexion de données** .
+1. Dans la fenêtre **Connexion aux données** , entrez les informations suivantes :
 
     ![Connexion des données du hub d’événements](media/ingest-data-no-code/event-hub-data-connection.png)
 
 # <a name="diagnostic-metrics--diagnostic-logs"></a>[Métriques de diagnostic/Journaux de diagnostic](#tab/diagnostic-metrics+diagnostic-logs) 
 
-1. Utilisez les paramètres suivants dans la fenêtre **Connexion de données** :
+1. Utilisez les paramètres suivants dans la fenêtre **Connexion de données**  :
 
     Source de données :
 
@@ -517,20 +522,20 @@ Vous devez maintenant créer les connexions de données pour vos métriques et j
 
     Table cible :
 
-    Deux options sont disponibles pour le routage : *statique* et *dynamique*. Pour ce tutoriel, vous allez utiliser le routage statique (valeur par défaut), où vous spécifiez le nom de table, le format des données et le mappage. Ne sélectionnez pas **My data includes routing info** (Mes données incluent des informations de routage).
+    Deux options sont disponibles pour le routage : *statique* et *dynamique* . Pour ce tutoriel, vous allez utiliser le routage statique (valeur par défaut), où vous spécifiez le nom de table, le format des données et le mappage. Ne sélectionnez pas **My data includes routing info** (Mes données incluent des informations de routage).
 
      **Paramètre** | **Valeur suggérée** | **Description du champ**
     |---|---|---|
-    | **Table** | *DiagnosticRawRecords* | Table que vous avez créée dans la base de données *TestDatabase*. |
+    | **Table** | *DiagnosticRawRecords* | Table que vous avez créée dans la base de données *TestDatabase* . |
     | **Format de données** | *JSON* | Format utilisé dans la table. |
-    | **Mappage de colonnes** | *DiagnosticRawRecordsMapping* | Mappage que vous avez créé dans la base de données *TestDatabase*. Il mappe les données JSON entrantes aux noms de colonnes et aux types de données de la table *DiagnosticRawRecords*.|
+    | **Mappage de colonnes** | *DiagnosticRawRecordsMapping* | Mappage que vous avez créé dans la base de données *TestDatabase* . Il mappe les données JSON entrantes aux noms de colonnes et aux types de données de la table *DiagnosticRawRecords* .|
     | | |
 
-1. Sélectionnez **Create** (Créer).  
+1. Sélectionnez **Créer** .  
 
 # <a name="activity-logs"></a>[Journaux d’activité](#tab/activity-logs)
 
-1. Utilisez les paramètres suivants dans la fenêtre **Connexion de données** :
+1. Utilisez les paramètres suivants dans la fenêtre **Connexion de données**  :
 
     Source de données :
 
@@ -544,16 +549,16 @@ Vous devez maintenant créer les connexions de données pour vos métriques et j
 
     Table cible :
 
-    Deux options sont disponibles pour le routage : *statique* et *dynamique*. Pour ce tutoriel, vous allez utiliser le routage statique (valeur par défaut), où vous spécifiez le nom de table, le format des données et le mappage. Ne sélectionnez pas **My data includes routing info** (Mes données incluent des informations de routage).
+    Deux options sont disponibles pour le routage : *statique* et *dynamique* . Pour ce tutoriel, vous allez utiliser le routage statique (valeur par défaut), où vous spécifiez le nom de table, le format des données et le mappage. Ne sélectionnez pas **My data includes routing info** (Mes données incluent des informations de routage).
 
      **Paramètre** | **Valeur suggérée** | **Description du champ**
     |---|---|---|
-    | **Table** | *ActivityLogsRawRecords* | Table que vous avez créée dans la base de données *TestDatabase*. |
+    | **Table** | *ActivityLogsRawRecords* | Table que vous avez créée dans la base de données *TestDatabase* . |
     | **Format de données** | *JSON* | Format utilisé dans la table. |
-    | **Mappage de colonnes** | *ActivityLogsRawRecordsMapping* | Mappage que vous avez créé dans la base de données *TestDatabase*. Il mappe les données JSON entrantes aux noms de colonnes et aux types de données de la table *ActivityLogsRawRecords*.|
+    | **Mappage de colonnes** | *ActivityLogsRawRecordsMapping* | Mappage que vous avez créé dans la base de données *TestDatabase* . Il mappe les données JSON entrantes aux noms de colonnes et aux types de données de la table *ActivityLogsRawRecords* .|
     | | |
 
-1. Sélectionnez **Create** (Créer).  
+1. Sélectionnez **Créer** .  
 ---
 
 ## <a name="query-the-new-tables"></a>Interroger les nouvelles tables

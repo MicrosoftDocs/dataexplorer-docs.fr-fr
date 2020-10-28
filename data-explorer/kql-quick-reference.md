@@ -7,12 +7,12 @@ ms.reviewer: ''
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/19/2020
-ms.openlocfilehash: ff9b78af54141f2c7fdbbf7039aad59dca2312a0
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 2fa4cbd0b1cf7b034bc7ae3202afcde3866ca347
+ms.sourcegitcommit: ee904f45e3eb3feab046263aa9956cb7780a056d
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493985"
+ms.lasthandoff: 10/22/2020
+ms.locfileid: "92356586"
 ---
 # <a name="kql-quick-reference"></a>Aide-mémoire sur KQL
 
@@ -35,6 +35,9 @@ Cet article vous présente une liste de fonctions accompagnées de leur descript
 | [print](kusto/query/printoperator.md)                      | Génère une seule ligne avec une ou plusieurs expressions scalaires | `print [ColumnName =] ScalarExpression [',' ...]` |
 | [project](kusto/query/projectoperator.md)                  | Sélectionne les colonnes à inclure dans l’ordre spécifié | `T | project ColumnName [= Expression] [, ...]` <br> ou <br> `T | project [ColumnName | (ColumnName[,]) =] Expression [, ...]` |
 | [project-away](kusto/query/projectawayoperator.md)         | Sélectionne les colonnes à exclure de la sortie | `T | project-away ColumnNameOrPattern [, ...]` |
+| [project-keep](kusto/query/project-keep-operator.md)         | Sélectionne les colonnes à conserver dans la sortie | `T | project-keep ColumnNameOrPattern [, ...]` |
+| [project-rename](kusto/query/projectrenameoperator.md)     | Renomme les colonnes dans la sortie du résultat | `T | project-rename new_column_name = column_name` |
+| [project-reorder](kusto/query/projectreorderoperator.md)   | Réorganise les colonnes dans la sortie du résultat | `T | project-reorder Col2, Col1, Col* asc` |
 | [extend](kusto/query/extendoperator.md)                    | Crée une colonne calculée et l’ajoute au jeu de résultats | `T | extend [ColumnName | (ColumnName[, ...]) =] Expression [, ...]` |
 | **Trier et agréger un jeu de données**                 |**_Restructurer les données en les triant ou en les regroupant de façon logique_**|                  |
 | [sort](kusto/query/sortoperator.md)                        | Trie les lignes de la table d’entrée selon une ou plusieurs colonnes, dans l’ordre croissant ou décroissant | `T | sort by expression1 [asc|desc], expression2 [asc|desc], …` |
@@ -50,7 +53,7 @@ Cet article vous présente une liste de fonctions accompagnées de leur descript
 | [parse](kusto/query/parseoperator.md)                      | évalue une expression de chaîne et analyse sa valeur dans une ou plusieurs colonnes calculées. À utiliser pour structurer des données non structurées. | `T | parse [kind=regex  [flags=regex_flags] |simple|relaxed] Expression with * (StringConstant ColumnName [: ColumnType]) *...` |
 | [make-series](kusto/query/make-seriesoperator.md)          | Crée une série de valeurs agrégées spécifiées le long d’un axe spécifié | `T | make-series [MakeSeriesParamters] [Column =] Aggregation [default = DefaultValue] [, ...] on AxisColumn from start to end step step [by [Column =] GroupExpression [, ...]]` |
 | [let](kusto/query/letstatement.md)                         | Lie un nom à des expressions qui peuvent référencer sa valeur liée. Les valeurs peuvent être des expressions lambda permettant de créer des fonctions ad hoc dans le cadre de la requête. Utilisez `let` pour créer des expressions sur des tables dont les résultats ressemblent à une nouvelle table. | `let Name = ScalarExpression | TabularExpression | FunctionDefinitionExpression` |
-| **Généralités**                                     | **_Opérations et fonctions diverses_** | |
+| **Général**                                     | **_Opérations et fonctions diverses_** | |
 | [invoke](kusto/query/invokeoperator.md)                    | Exécute la fonction sur la table qu’elle reçoit comme entrée. | `T | invoke function([param1, param2])` |
 | [evaluate pluginName](kusto/query/evaluateoperator.md)     | Évalue les extensions de langage de requête (plug-ins) | `[T |] evaluate [ evaluateParameters ] PluginName ( [PluginArg1 [, PluginArg2]... )` |
 | **Visualisation**                               | **_Opérations qui affichent les données dans un format graphique_** | |
