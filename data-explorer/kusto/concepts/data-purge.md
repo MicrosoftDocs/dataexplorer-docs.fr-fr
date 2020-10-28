@@ -8,12 +8,12 @@ ms.reviewer: kedamari
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/12/2020
-ms.openlocfilehash: 053581b5109d0eeacd7b69fd0eda2b53f43ac701
-ms.sourcegitcommit: 468b4ad125657c5131e4c3c839f702ebb6e455a0
+ms.openlocfilehash: 77f0efffbefa8e6e2093f0f59e3d4f3701be61b0
+ms.sourcegitcommit: 8a7165b28ac6b40722186300c26002fb132e6e4a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/16/2020
-ms.locfileid: "92134742"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92749552"
 ---
 # <a name="data-purge"></a>Vidage des données
 
@@ -79,7 +79,7 @@ Pour réduire la durée d’exécution de vidage :
 > [!NOTE]
 > L’exécution de vidage est appelée en exécutant la commande [purger les enregistrements *TableName* de table](#purge-table-tablename-records-command) sur le point de terminaison gestion des données https://ingest- [YourClusterName]. [ Region]. Kusto. Windows. net.
 
-### <a name="purge-table-tablename-records-command"></a>Commande purger les enregistrements TableName de table
+### <a name="purge-table-tablename-records-command"></a>Commande purger les enregistrements *TableName* de table
 
 La commande de vidage peut être appelée de deux manières pour différents scénarios d’utilisation :
 
@@ -100,7 +100,7 @@ La commande de vidage peut être appelée de deux manières pour différents sc�
  > La première étape de l’appel en deux étapes requiert l’exécution d’une requête sur l’ensemble du jeu de données, afin d’identifier les enregistrements à purger.
  > Cette requête peut expirer ou échouer sur des tables volumineuses, en particulier avec une quantité importante de données de cache à froid. En cas de défaillance, validez le prédicat vous-même et, après avoir vérifié l’exactitude, utilisez la purge à une étape avec l' `noregrets` option.
 
-  **Syntaxe**
+**Syntaxe**
 
   ```kusto
      // Connect to the Data Management service
@@ -113,20 +113,20 @@ La commande de vidage peut être appelée de deux manières pour différents sc�
      .purge table [TableName] records in database [DatabaseName] with (verificationtoken='<verification token from step #1>') <| [Predicate]
   ```
     
-    | Paramètres  | Description  |
-    |---------|---------|
-    | `DatabaseName`   |   Nom de la base de données      |
-    | `TableName`     |     Nom de la table    |
-    | `Predicate`    |    Identifie les enregistrements à purger. Consultez Limitations des prédicats de vidage ci-dessous. | 
-    | `noregrets`    |     Si cette valeur est définie, déclenche une activation en une seule étape.    |
-    | `verificationtoken`     |  Dans le scénario d’activation en deux étapes (non `noregrets` défini), ce jeton peut être utilisé pour exécuter la deuxième étape et valider l’action. Si `verificationtoken` n’est pas spécifié, il déclenche la première étape de la commande. Les informations relatives à la purge sont retournées avec un jeton qui doit être repassé à la commande pour exécuter l’étape #2.   |
+| Paramètres  | Description  |
+|---------|---------|
+| `DatabaseName`   |   Nom de la base de données      |
+| `TableName`     |     Nom de la table    |
+| `Predicate`    |    Identifie les enregistrements à purger. Consultez Limitations des prédicats de vidage ci-dessous. | 
+| `noregrets`    |     Si cette valeur est définie, déclenche une activation en une seule étape.    |
+| `verificationtoken`     |  Dans le scénario d’activation en deux étapes (non `noregrets` défini), ce jeton peut être utilisé pour exécuter la deuxième étape et valider l’action. Si `verificationtoken` n’est pas spécifié, il déclenche la première étape de la commande. Les informations relatives à la purge sont retournées avec un jeton qui doit être repassé à la commande pour exécuter l’étape #2.   |
 
-    **Supprimer les limitations de prédicat**
+**Supprimer les limitations de prédicat**
 
-    * Le prédicat doit être une sélection simple (par exemple, *où [ColumnName] = = 'X'*  /  *Where [ColumnName] in ('X', 'Y', 'Z') et [OtherColumn] = = 'a'*).
-    * Plusieurs filtres doivent être combinés avec un’and', plutôt que des `where` clauses distinctes (par exemple, `where [ColumnName] == 'X' and  OtherColumn] == 'Y'` et non `where [ColumnName] == 'X' | where [OtherColumn] == 'Y'` ).
-    * Le prédicat ne peut pas référencer des tables autres que la table en cours de purge (*TableName*). Le prédicat ne peut inclure que l’instruction de sélection ( `where` ). Il ne peut pas projeter des colonnes spécifiques de la table (schéma de sortie lors de l’exécution de'* `table` | Le prédicat*'doit correspondre au schéma de table.
-    * Les fonctions système (telles que, `ingestion_time()` , `extent_id()` ) ne sont pas prises en charge.
+* Le prédicat doit être une sélection simple (par exemple, *où [ColumnName] = = 'X'*  /  *Where [ColumnName] in ('X', 'Y', 'Z') et [OtherColumn] = = 'a'* ).
+* Plusieurs filtres doivent être combinés avec un’and', plutôt que des `where` clauses distinctes (par exemple, `where [ColumnName] == 'X' and  OtherColumn] == 'Y'` et non `where [ColumnName] == 'X' | where [OtherColumn] == 'Y'` ).
+* Le prédicat ne peut pas référencer des tables autres que la table en cours de purge ( *TableName* ). Le prédicat ne peut inclure que l’instruction de sélection ( `where` ). Il ne peut pas projeter des colonnes spécifiques de la table (schéma de sortie lors de l’exécution de' *`table` | Le prédicat* 'doit correspondre au schéma de table.
+* Les fonctions système (telles que, `ingestion_time()` , `extent_id()` ) ne sont pas prises en charge.
 
 #### <a name="example-two-step-purge"></a>Exemple : vidage en deux étapes
 
@@ -199,7 +199,7 @@ Si nécessaire, vous pouvez annuler les demandes de vidage en attente.
 
 **Sortie**
 
-La sortie de cette commande est identique à la sortie de la commande’Show purges *OperationId*', indiquant l’État mis à jour de l’annulation de l’opération de vidage. Si la tentative réussit, l’état de l’opération est mis à jour avec la valeur `Abandoned` . Dans le cas contraire, l’état de l’opération n’est pas modifié. 
+La sortie de cette commande est identique à la sortie de la commande’Show purges *OperationId* ', indiquant l’État mis à jour de l’annulation de l’opération de vidage. Si la tentative réussit, l’état de l’opération est mis à jour avec la valeur `Abandoned` . Dans le cas contraire, l’état de l’opération n’est pas modifié. 
 
 |`OperationId` |`DatabaseName` |`TableName` |`ScheduledTime` |`Duration` |`LastUpdatedOn` |`EngineOperationId` |`State` |`StateDetails` |`EngineStartTime` |`EngineDuration` |`Retries` |`ClientRequestId` |`Principal`
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -247,7 +247,7 @@ Status = 'Completed’indique la réussite de la première phase de l’opérati
 
 |`OperationId` |`DatabaseName` |`TableName` |`ScheduledTime` |`Duration` |`LastUpdatedOn` |`EngineOperationId` |`State` |`StateDetails` |`EngineStartTime` |`EngineDuration` |`Retries` |`ClientRequestId` |`Principal`
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-|c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:33.6782130 |2019-01-20 11:42:34.6169153 |a0825d4d-6b0f-47f3-a499-54ac5681ab78 |Effectué |Purge terminée avec succès (artefacts de stockage en attente de suppression) |2019-01-20 11:41:34.6486506 |00:00:04.4687310 |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...
+|c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:33.6782130 |2019-01-20 11:42:34.6169153 |a0825d4d-6b0f-47f3-a499-54ac5681ab78 |Completed |Purge terminée avec succès (artefacts de stockage en attente de suppression) |2019-01-20 11:41:34.6486506 |00:00:04.4687310 |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...
 
 * `OperationId` : ID d’opération DM renvoyé lors de l’exécution de la purge. 
 * `DatabaseName`* *-nom de la base de données (sensible à la casse). 

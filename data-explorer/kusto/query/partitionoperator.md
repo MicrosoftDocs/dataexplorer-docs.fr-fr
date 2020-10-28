@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 8587995a6836a1f8a180eada19d450277709a6e7
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 31e4f1fc32f758164c3f232e758080213e6f428d
+ms.sourcegitcommit: 8a7165b28ac6b40722186300c26002fb132e6e4a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92248597"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92749523"
 ---
 # <a name="partition-operator"></a>partition, opérateur
 
@@ -27,37 +27,37 @@ T | partition by Col1 { U | where Col2=toscalar(Col1) }
 
 ## <a name="syntax"></a>Syntaxe
 
-*T* `|` `partition` [*PartitionParameters*] `by` *colonne* `(` *ContextualSubquery*`)`
+*T* `|` `partition` [ *PartitionParameters* ] `by` *colonne* `(` *ContextualSubquery*`)`
 
-*T* `|` `partition` [*PartitionParameters*] `by` *Column* `{` *sous-requête* de colonne`}`
+*T* `|` `partition` [ *PartitionParameters* ] `by` *Column* `{` *sous-requête* de colonne`}`
 
 ## <a name="arguments"></a>Arguments
 
-* *T*: source tabulaire dont les données doivent être traitées par l’opérateur.
+* *T* : source tabulaire dont les données doivent être traitées par l’opérateur.
 
-* *Colonne*: le nom d’une colonne dans *T* dont les valeurs déterminent la façon dont la table d’entrée doit être partitionnée. Consultez les **Remarques** ci-dessous.
+* *Colonne* : le nom d’une colonne dans *T* dont les valeurs déterminent la façon dont la table d’entrée doit être partitionnée. Consultez les **Remarques** ci-dessous.
 
-* *ContextualSubquery*: expression tabulaire, qui est la source de l' `partition` opérateur, définie pour une valeur de *clé* unique.
+* *ContextualSubquery* : expression tabulaire, qui est la source de l' `partition` opérateur, définie pour une valeur de *clé* unique.
 
-* *Sous-requête*: expression tabulaire sans source. La valeur de *clé* peut être obtenue via un `toscalar()` appel.
+* *Sous-requête* : expression tabulaire sans source. La valeur de *clé* peut être obtenue via un `toscalar()` appel.
 
-* *PartitionParameters*: zéro ou plusieurs paramètres (séparés par des espaces) sous la forme : *nom* `=` *valeur* qui contrôle le comportement de l’opérateur. Les paramètres suivants sont pris en charge :
+* *PartitionParameters* : zéro ou plusieurs paramètres (séparés par des espaces) sous la forme : *nom* `=` *valeur* qui contrôle le comportement de l’opérateur. Les paramètres suivants sont pris en charge :
 
   |Nom               |Valeurs         |Description|
   |-------------------|---------------|-----------|
   |`hint.materialized`|`true`,`false` |Si la valeur `true` est, la source de l’opérateur est matérialisée `partition` (valeur par défaut : `false` )|
-  |`hint.concurrency`|*Nombre*|Indique au système le nombre de sous-requêtes simultanées de l' `partition` opérateur qui doivent être exécutées en parallèle. *Valeur par défaut*: quantité de cœurs de processeur sur le nœud unique du cluster (2 à 16).|
-  |`hint.spread`|*Nombre*|Indique au système le nombre de nœuds qui doivent être utilisés par l’exécution simultanée des sous- `partition` requêtes. *Valeur par défaut*: 1.|
+  |`hint.concurrency`|*Nombre*|Indique au système le nombre de sous-requêtes simultanées de l' `partition` opérateur qui doivent être exécutées en parallèle. *Valeur par défaut* : quantité de cœurs de processeur sur le nœud unique du cluster (2 à 16).|
+  |`hint.spread`|*Nombre*|Indique au système le nombre de nœuds qui doivent être utilisés par l’exécution simultanée des sous- `partition` requêtes. *Valeur par défaut* : 1.|
 
 ## <a name="returns"></a>Retours
 
 L’opérateur retourne une Union des résultats de l’application de la sous-requête à chaque partition des données d’entrée.
 
-**Notes**
+**Remarques**
 
 * L’opérateur de partition est actuellement limité par le nombre de partitions.
   Jusqu’à 64 partitions distinctes peuvent être créées.
-  L’opérateur génère une erreur si la colonne de partition (*colonne*) a plus de 64 valeurs distinctes.
+  L’opérateur génère une erreur si la colonne de partition ( *colonne* ) a plus de 64 valeurs distinctes.
 
 * La sous-requête fait référence à la partition d’entrée de manière implicite (il n’y a pas de « nom » pour la partition dans la sous-requête). Pour référencer la partition d’entrée plusieurs fois dans la sous-requête, utilisez l' [opérateur as](asoperator.md), comme dans l' **exemple : partition-Reference** ci-dessous.
 
@@ -93,7 +93,7 @@ StormEvents
 
 **Exemple : interroger des partitions de données qui ne se chevauchent pas**
 
-Il est parfois utile (au niveau des performances) d’exécuter une sous-requête complexe sur des partitions de données qui ne se chevauchent pas dans un style de carte/réduction. L’exemple ci-dessous montre comment créer une répartition manuelle de l’agrégation sur 10 partitions.
+Il est parfois utile (en termes de performances) d’exécuter une sous-requête complexe sur des partitions de données qui ne se chevauchent pas dans un style de carte/réduction. L’exemple ci-dessous montre comment créer une répartition manuelle de l’agrégation sur 10 partitions.
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -107,11 +107,11 @@ StormEvents
 | top 5 by Count
 ```
 
-|Source|Nombre|
+|Source|Count|
 |---|---|
 |Observateur chevronné|12770|
 |Respect des lois|8570|
-|Publiques|6157|
+|Public|6157|
 |Gestionnaire des urgences|4900|
 |Observateur COOP|3039|
 
@@ -171,10 +171,10 @@ StormEvents
 | top 5 by Count
 ```
 
-|Source|Nombre|
+|Source|Count|
 |---|---|
 |Observateur chevronné|12770|
 |Respect des lois|8570|
-|Publiques|6157|
+|Public|6157|
 |Gestionnaire des urgences|4900|
 |Observateur COOP|3039|

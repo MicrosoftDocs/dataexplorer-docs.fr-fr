@@ -8,19 +8,20 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 4fad66141a31ac7ba72ab79dc0092b963417ae72
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 7c66647dcdebfc86990c9a63f7404681b000b915
+ms.sourcegitcommit: 8a7165b28ac6b40722186300c26002fb132e6e4a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92247568"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92749506"
 ---
 # <a name="dcount_intersect-plugin"></a>dcount_intersect, plug-in
 
 Calcule l’intersection entre N Jeux en fonction des `hll` valeurs (N dans la plage de [2.. 16]) et retourne n `dcount` valeurs.
 
 Jeux donnés S<sub>1</sub>, s<sub>2</sub>,.. S<sub>n</sub> -retourne des valeurs qui représenteront des nombres distincts de :  
-S<sub>1</sub>, s<sub>1</sub> ∩ s<sub>2</sub>,  
+S<sub>1</sub>,  
+S<sub>1</sub> ∩ s<sub>2</sub>,  
 S<sub>1</sub> ∩ s<sub>2</sub> ∩ s<sub>3</sub>,  
 ... ,  
 S<sub>1</sub> ∩ s<sub>2</sub> ∩... ∩ S<sub>n</sub>
@@ -31,12 +32,12 @@ T | evaluate dcount_intersect(hll_1, hll_2, hll_3)
 
 ## <a name="syntax"></a>Syntaxe
 
-*T* `| evaluate` `dcount_intersect(` *hll_1*, *hll_2*, [ `,` *hll_3* `,` ...]`)`
+*T* `| evaluate` `dcount_intersect(` *hll_1* , *hll_2* , [ `,` *hll_3* `,` ...]`)`
 
 ## <a name="arguments"></a>Arguments
 
-* *T*: expression tabulaire d’entrée.
-* *hll_i*: valeurs de Set S<sub>i</sub> calculées à l’aide de la [`hll()`](./hll-aggfunction.md) fonction.
+* *T* : expression tabulaire d’entrée.
+* *hll_i* : valeurs de Set S <sub>i</sub> calculées à l’aide de la [`hll()`](./hll-aggfunction.md) fonction.
 
 ## <a name="returns"></a>Retours
 

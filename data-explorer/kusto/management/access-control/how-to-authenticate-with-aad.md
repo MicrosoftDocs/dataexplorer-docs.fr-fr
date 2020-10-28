@@ -7,18 +7,18 @@ ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
-ms.custom: has-adal-ref
+ms.custom: has-adal-ref, devx-track-js
 ms.date: 09/13/2019
-ms.openlocfilehash: e1c2a6f5cbec90d59ed54f15147b912ffbc8fdd3
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 65e15fca7c7a69e1c9ba2d79f7dca531304ea91b
+ms.sourcegitcommit: 8a7165b28ac6b40722186300c26002fb132e6e4a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92343417"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92749478"
 ---
 # <a name="how-to-authenticate-with-aad-for-azure-data-explorer-access"></a>How-To s’authentifier auprès d’AAD pour l’accès Explorateur de données Azure
 
-La méthode recommandée pour accéder à Azure Explorateur de données consiste à s’authentifier auprès du service **Azure Active Directory** (parfois également appelé **Azure ad**ou simplement **AAD**). Cela garantit qu’Azure Explorateur de données ne voit jamais l’accès aux informations d’identification de l’annuaire du principal, à l’aide d’un processus en deux étapes :
+La méthode recommandée pour accéder à Azure Explorateur de données consiste à s’authentifier auprès du service **Azure Active Directory** (parfois également appelé **Azure ad** ou simplement **AAD** ). Cela garantit qu’Azure Explorateur de données ne voit jamais l’accès aux informations d’identification de l’annuaire du principal, à l’aide d’un processus en deux étapes :
 
 1. Dans la première étape, le client communique avec le service AAD, s’authentifie auprès de lui et demande un jeton d’accès émis spécifiquement pour le point de terminaison de Explorateur de données Azure spécifique auquel le client a l’intention d’accéder.
 2. Dans la deuxième étape, le client émet des demandes à Azure Explorateur de données, en fournissant le jeton d’accès acquis lors de la première étape comme preuve d’identité à Azure Explorateur de données.
@@ -31,15 +31,15 @@ Si ce n’est pas possible, consultez la rubrique pour plus d’informations sur
 
 Les principaux scénarios d’authentification sont les suivants :
 
-* **Application cliente authentifiant un utilisateur connecté**.
+* **Application cliente authentifiant un utilisateur connecté** .
   Dans ce scénario, une application interactive (client) déclenche une invite AAD à l’utilisateur pour les informations d’identification (telles que le nom d’utilisateur et le mot de passe).
   Voir [authentification utilisateur](#user-authentication),
 
-* **Une application « headless »**.
+* **Une application « headless »** .
   Dans ce scénario, une application s’exécute sans que l’utilisateur soit présent pour fournir les informations d’identification, et à la place, l’application s’authentifie comme « elle-même » sur AAD en utilisant des informations d’identification avec lesquelles elle a été configurée.
   Voir [authentification de l’application](#application-authentication).
 
-* **Pour le compte de l’authentification**.
+* **Pour le compte de l’authentification** .
   Dans ce scénario, parfois appelé « service Web » ou « application Web », l’application obtient un jeton d’accès AAD d’une autre application, puis la « convertit » en un autre jeton d’accès AAD qui peut être utilisé avec Azure Explorateur de données.
   En d’autres termes, l’application agit comme un médiateur entre l’utilisateur ou l’application qui a fourni les informations d’identification et le service Azure Explorateur de données.
   Consultez [l’authentification pour le compte de](#on-behalf-of-authentication).
@@ -56,7 +56,7 @@ https://help.kusto.windows.net
 
 ## <a name="specifying-the-aad-tenant-id"></a>Spécification de l’ID de locataire AAD
 
-AAD est un service multi-locataire, et chaque organisation peut créer un objet nommé **Directory** dans AAD. L’objet d’annuaire contient des objets liés à la sécurité tels que les comptes d’utilisateurs, les applications et les groupes. AAD fait souvent référence au répertoire en tant que **locataire**. Les locataires AAD sont identifiés par un GUID (**ID de locataire**). Dans de nombreux cas, les locataires AAD peuvent également être identifiés par le nom de domaine de l’organisation.
+AAD est un service multi-locataire, et chaque organisation peut créer un objet nommé **Directory** dans AAD. L’objet d’annuaire contient des objets liés à la sécurité tels que les comptes d’utilisateurs, les applications et les groupes. AAD fait souvent référence au répertoire en tant que **locataire** . Les locataires AAD sont identifiés par un GUID ( **ID de locataire** ). Dans de nombreux cas, les locataires AAD peuvent également être identifiés par le nom de domaine de l’organisation.
 
 Par exemple, une organisation appelée « Contoso » peut avoir l’ID `4da81d62-e0a8-4899-adad-4349ca6bfe24` de locataire et le nom de domaine `contoso.com` .
 
@@ -70,7 +70,7 @@ AAD possède un certain nombre de points de terminaison pour l’authentificatio
 * Lorsque le locataire qui héberge le principal en cours d’authentification n’est pas connu, le point de terminaison « commun » peut être utilisé en remplaçant la `{tenantId}` valeur ci-dessus par la valeur `common` .
 
 > [!NOTE]
-> Le point de terminaison AAD utilisé pour l’authentification est également appelé URL de l' **autorité AAD** ou simplement **autorité AAD**.
+> Le point de terminaison AAD utilisé pour l’authentification est également appelé URL de l' **autorité AAD** ou simplement **autorité AAD** .
 
 ## <a name="aad-token-cache"></a>Cache de jeton AAD
 
@@ -141,17 +141,17 @@ Elle nécessite généralement plusieurs étapes de configuration avec AAD, et d
 
 1. Ouvrez la [portail Azure](https://portal.azure.com/) et assurez-vous que vous êtes connecté au locataire approprié (voir le coin supérieur/droit de l’identité utilisée pour se connecter au portail).
 
-2. Dans le volet ressources, cliquez sur **Azure Active Directory**, puis **inscriptions d’applications**.
+2. Dans le volet ressources, cliquez sur **Azure Active Directory** , puis **inscriptions d’applications** .
 
 3. Localisez l’application qui utilise le Flow pour le compte de et ouvrez-la.
 
-4. Cliquez sur **autorisations d’API**, puis sur **Ajouter une autorisation**.
+4. Cliquez sur **autorisations d’API** , puis sur **Ajouter une autorisation** .
 
 5. Recherchez l’application nommée **Azure Explorateur de données** , puis sélectionnez-la.
 
-6. Sélectionnez **user_impersonation/accès Kusto**.
+6. Sélectionnez **user_impersonation/accès Kusto** .
 
-7. Cliquez sur **Ajouter une autorisation**.
+7. Cliquez sur **Ajouter une autorisation** .
 
 **Étape 2 : effectuer l’échange de jetons dans votre code serveur**
 
