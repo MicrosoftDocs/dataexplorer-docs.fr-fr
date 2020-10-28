@@ -1,20 +1,20 @@
 ---
-title: Utiliser Logic Apps pour exécuter automatiquement des requêtes Kusto
-description: Découvrez comment utiliser Logic Apps pour exécuter automatiquement des requêtes et des commandes Kusto et les planifier
+title: Utiliser Logic Apps pour exécuter automatiquement des requêtes Kusto dans Azure Explorateur de données
+description: Découvrez comment utiliser Logic Apps pour exécuter automatiquement des requêtes et des commandes Kusto et les planifier.
 author: orspod
 ms.author: orspodek
 ms.reviewer: docohe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 04/14/2020
-ms.openlocfilehash: 4c918c43f748f97b3bb3f6d0342c660775c1e5c8
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: a4f79fc367e2769dfe3bf51ed5ad035a7d233ea4
+ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92342652"
+ms.lasthandoff: 10/28/2020
+ms.locfileid: "92902682"
 ---
-# <a name="microsoft-logic-app-and-azure-data-explorer"></a>Application logique Microsoft et Explorateur de données Azure
+# <a name="microsoft-logic-app-and-azure-data-explorer-preview"></a>Application logique Microsoft et Explorateur de données Azure (version préliminaire)
 
 Le connecteur Azure Kusto Logic App vous permet d’exécuter automatiquement des requêtes et des commandes Kusto dans le cadre d’une tâche planifiée ou déclenchée, à l’aide du connecteur [Microsoft Logic App](/azure/logic-apps/logic-apps-what-are-logic-apps) .
 
@@ -27,7 +27,7 @@ L’application logique et l’automate sont basés sur le même connecteur. Par
 
     :::image type="content" source="./images/logicapps/logicapp-search.png" alt-text="Recherche d’une « application logique » dans le Portail Azure, Azure Explorateur de données" lightbox="./images/logicapps/logicapp-search.png#lightbox":::
 
-1. Sélectionnez **+Ajouter**.
+1. Sélectionnez **+Ajouter** .
 
     ![Ajouter une application logique](./Images/logicapps/logicapp-add.png)
 
@@ -36,13 +36,13 @@ L’application logique et l’automate sont basés sur le même connecteur. Par
     * Resource group
     * Nom de l’application logique
     * Région ou environnement de service d’intégration
-    * Location
+    * Emplacement
     * Analyse des journaux activée ou désactivée
-1. Sélectionnez **Revoir + créer**.
+1. Sélectionnez **Revoir + créer** .
 
     ![Créer une application logique](./Images/logicapps/logicapp-create-new.png)
 
-1. Lorsque l’application logique est créée, sélectionnez **modifier**.
+1. Lorsque l’application logique est créée, sélectionnez **modifier** .
 
     ![Modifier le concepteur d’applications logiques](./Images/logicapps/logicapp-editdesigner.png "logicapp-editdesigner")
 
@@ -50,7 +50,7 @@ L’application logique et l’automate sont basés sur le même connecteur. Par
 
     ![Modèle vide d’application logique](./Images/logicapps/logicapp-blanktemplate.png "logicapp-BlankTemplate")
 
-1. Ajoutez une action de périodicité et sélectionnez **Azure Kusto**.
+1. Ajoutez une action de périodicité et sélectionnez **Azure Kusto** .
 
     ![Connecteur de Flow Kusto Logic App](./Images/logicapps/logicapp-kustoconnector.png "logicapp-kustoconnector")
 
