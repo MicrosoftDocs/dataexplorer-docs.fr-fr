@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 57b7b6b4c67e0e8903903cef670a561b30b3904e
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: e341a6b9b51b082b16036e368c61fa4c903750da
+ms.sourcegitcommit: 64fdef912cc925c4bdcae98183eb8d7c7a6392d7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92252573"
+ms.lasthandoff: 10/29/2020
+ms.locfileid: "93027803"
 ---
 # <a name="cross-database-and-cross-cluster-queries"></a>Requêtes entre plusieurs bases de données et clusters
 
@@ -84,7 +84,7 @@ La commande ci-dessus limite l’accès aux requêtes aux entités suivantes :
 
 * Nom d’entité commençant par *My...* dans la base de données par défaut. 
 * Toutes les tables de toutes les bases de données nommées *MyOther...* du cluster actuel.
-* Toutes les tables de toutes les bases de données nommées *MY2...* dans le *OtherCluster.Kusto.Windows.net*du cluster.
+* Toutes les tables de toutes les bases de données nommées *MY2...* dans le *OtherCluster.Kusto.Windows.net* du cluster.
 
 ## <a name="functions-and-views"></a>Fonctions et vues
 
@@ -121,7 +121,7 @@ Les vues ou les fonctions tabulaires peuvent être référencées sur plusieurs 
 
 * La fonction distante doit retourner un schéma tabulaire. Les fonctions scalaires sont accessibles uniquement dans le même cluster.
 * La fonction distante ne peut accepter que des paramètres scalaires. Les fonctions qui obtiennent un ou plusieurs arguments de table sont accessibles uniquement dans le même cluster.
-* Le schéma de la fonction distante doit être connu et invariant de ses paramètres. Pour plus d’informations, consultez [requêtes entre clusters et modifications de schéma](../concepts/crossclusterandschemachanges.md).
+* Pour des raisons de performances, le schéma des entités distantes est mis en cache par le cluster appelant après l’appel initial. Par conséquent, les modifications apportées à l’entité distante peuvent aboutir à une incompatibilité avec les informations de schéma mises en cache, entraînant potentiellement des échecs de requête. Pour plus d’informations, consultez [requêtes entre clusters et modifications de schéma](../concepts/crossclusterandschemachanges.md).
 
 L’appel entre clusters suivant est valide.
 
