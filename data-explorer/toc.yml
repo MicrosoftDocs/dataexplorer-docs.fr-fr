@@ -206,7 +206,7 @@
               href: dashboard-customize-visuals.md
         - name: Power BI
           items:
-            - name: Meilleures pratiques
+            - name: "Bonnes pratiques pour Power\_BI"
               href: power-bi-best-practices.md
             - name: connecteur
               href: power-bi-connector.md
@@ -395,7 +395,7 @@
           href: ./kusto/query/tutorial.md
         - name: Exemples
           href: ./kusto/query/samples.md
-        - name: Meilleures pratiques
+        - name: Meilleures pratiques relatives aux requêtes
           href: ./kusto/query/best-practices.md
         - name: Requêtes entre plusieurs bases de données et clusters
           href: ./kusto/query/cross-cluster-or-database-queries.md
@@ -1323,8 +1323,8 @@
           href: ./kusto/management/index.md
         - name: schéma
           items:
-            - name: Bonnes pratiques pour la conception de schéma
-              href: ./kusto/management/best-practices.md
+            - name: Bonnes pratiques de gestion pour la conception de schéma
+              href: ./kusto/management/management-best-practices.md
             - name: Gestion des bases de données
               href: ./kusto/management/databases.md
               items:
@@ -1730,7 +1730,7 @@
                   href: ./kusto/api/netfx/kusto-ingest-client-errors.md
                 - name: État de l’opération
                   href: ./kusto/api/netfx/kusto-ingest-client-status.md
-                - name: Meilleures pratiques
+                - name: Bonnes pratiques pour Kusto.Ingest
                   href: ./kusto/api/netfx/kusto-ingest-best-practices.md
                 - name: Exemples de code
                   href: ./kusto/api/netfx/kusto-ingest-client-examples.md
