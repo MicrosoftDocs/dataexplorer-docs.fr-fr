@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/11/2020
-ms.openlocfilehash: f73cf5718a80528415c9aed201917c1bd52bb660
-ms.sourcegitcommit: 86636f80a12f47ea434f128fa04fe9fc09629730
+ms.openlocfilehash: 25ad7040b0318206a712a9a7fb8d3be58e0f47f3
+ms.sourcegitcommit: 0e2fbc26738371489491a96924f25553a8050d51
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/12/2020
-ms.locfileid: "91942631"
+ms.lasthandoff: 11/02/2020
+ms.locfileid: "93148437"
 ---
 # <a name="row_level_security-policy-command"></a>Commande de stratégie row_level_security
 
@@ -51,7 +51,7 @@ Cela est utile si vous souhaitez essayer différentes requêtes pour row_level_s
 > Les restrictions suivantes s’appliquent à `query` :
 >
 > * La requête doit produire exactement le même schéma que la table sur laquelle la stratégie est définie. Autrement dit, le résultat de la requête doit retourner exactement les mêmes colonnes que la table d’origine, dans le même ordre, avec les mêmes noms et types.
-> * La requête ne peut utiliser que les opérateurs suivants : `extend` , `where` , `project` ,,, `project-away` `project-rename` `project-reorder` `join` et `union` .
+> * La requête ne peut utiliser que les opérateurs suivants : `extend` , `where` , `project` , `project-away` , `project-keep` , `project-rename` , `project-reorder` `join` et `union` .
 > * La requête ne peut pas faire référence à d’autres tables sur lesquelles la sécurité au niveau des lignes est activée.
 > * La requête peut être l’une des suivantes, ou une combinaison des deux :
 >    * Requête (par exemple, `<table_name> | extend CreditCardNumber = "****"` )
@@ -77,7 +77,7 @@ Cela est utile si vous souhaitez essayer différentes requêtes pour row_level_s
 .alter table Customers policy row_level_security enable "TrimCreditCardNumbers"
 ```
 
-**Note de performance**: `UserCanSeeFullNumbers` sera évalué en premier, puis `AllData` ou `PartialData` sera évalué, mais pas les deux, ce qui correspond au résultat attendu.
+**Note de performance** : `UserCanSeeFullNumbers` sera évalué en premier, puis `AllData` ou `PartialData` sera évalué, mais pas les deux, ce qui correspond au résultat attendu.
 Vous pouvez en savoir plus sur l’impact sur les performances de la sécurité au niveau des lignes [ici](rowlevelsecuritypolicy.md#performance-impact-on-queries).
 
 ## <a name="deleting-the-policy"></a>Suppression de la stratégie
