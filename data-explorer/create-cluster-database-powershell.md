@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/03/2019
-ms.openlocfilehash: bb15bf9393ff6ae4a06fa97ade4070dfcd5e2ef8
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 9d2e50e54d4a33b0648760fc4df395c9686904e9
+ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92343134"
+ms.lasthandoff: 10/28/2020
+ms.locfileid: "92902558"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-by-using-powershell"></a>Créer un cluster et une base de données Azure Data Explorer à l’aide de PowerShell
 
@@ -22,11 +22,12 @@ ms.locfileid: "92343134"
 > * [PowerShell](create-cluster-database-powershell.md)
 > * [C#](create-cluster-database-csharp.md)
 > * [Python](create-cluster-database-python.md)
+> * [Go](create-cluster-database-go.md)
 > * [Modèle ARM](create-cluster-database-resource-manager.md)  
 
 Azure Data Explorer est un service d’analytique données rapide et complètement managé pour l’analyse en temps réel de gros volumes de données diffusées en continu par des applications, des sites web, des appareils IoT, etc. Pour utiliser Azure Data Explorer, créez tout d’abord un cluster et une ou plusieurs bases de données dans ce cluster. Ensuite, ingérez (chargez) des données dans une base de données pour pouvoir exécuter des requêtes dessus. Dans cet article, vous créez un cluster et une base de données en utilisant Powershell. Vous pouvez exécuter des scripts et des applets de commande PowerShell sur Windows, sur Linux ou dans [Azure Cloud Shell](/azure/cloud-shell/overview) avec [Az.Kusto](/powershell/module/az.kusto/?view=azps-1.4.0#kusto) pour créer et configurer des clusters et des bases de données Azure Data Explorer.
 
-## <a name="prerequisites"></a>Conditions préalables requises
+## <a name="prerequisites"></a>Prérequis
 
 [!INCLUDE [updated-for-az](includes/updated-for-az.md)]
 
@@ -67,7 +68,7 @@ Les étapes suivantes ne sont pas obligatoires si vous exécutez des commandes d
 
    |**Paramètre** | **Valeur suggérée** | **Description du champ**|
    |---|---|---|
-   | Name | *mykustocluster* | Nom souhaité de votre cluster.|
+   | Nom | *mykustocluster* | Nom souhaité de votre cluster.|
    | Sku | *D13_v2* | Référence SKU utilisée pour votre cluster. |
    | ResourceGroupName | *testrg* | Nom du groupe de ressources dans lequel sera créé le cluster. |
 
@@ -92,7 +93,7 @@ Si le résultat contient `provisioningState` avec la valeur `Succeeded`, alors l
    |**Paramètre** | **Valeur suggérée** | **Description du champ**|
    |---|---|---|
    | ClusterName | *mykustocluster* | Nom du cluster dans lequel la base de données est créée.|
-   | Name | *mykustodatabase* | Nom de votre base de données.|
+   | Nom | *mykustodatabase* | Nom de votre base de données.|
    | ResourceGroupName | *testrg* | Nom du groupe de ressources dans lequel sera créé le cluster. |
    | SoftDeletePeriod | *3650:00:00:00* | Durée pendant laquelle les données restent disponibles pour les requêtes. |
    | HotCachePeriod | *3650:00:00:00* | Durée pendant laquelle les données sont conservées dans le cache. |
@@ -117,4 +118,4 @@ Vous disposez maintenant d’un cluster et d’une base de données.
 ## <a name="next-steps"></a>Étapes suivantes
 
 * [Commandes Az.Kusto supplémentaires](/powershell/module/az.kusto/?view=azps-1.7.0#kusto)
-* [Ingérer des données à l'aide du SDK .NET Standard d'Azure Data Explorer (préversion)](./net-sdk-ingest-data.md)
+* [Ingérer des données à l’aide du kit SDK .NET Standard Azure Data Explorer (préversion)](./net-sdk-ingest-data.md)

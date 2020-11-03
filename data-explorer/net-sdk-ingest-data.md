@@ -7,12 +7,12 @@ ms.reviewer: vladikb
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 07/07/2020
-ms.openlocfilehash: 56fd2d253cac80f097caa9206cd3b7c2a9d3c118
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 4ab82b593367a3b9fe466c2ddbd6fbee70ad628f
+ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92343502"
+ms.lasthandoff: 10/28/2020
+ms.locfileid: "92902614"
 ---
 # <a name="ingest-data-using-the-azure-data-explorer-net-sdk"></a>Ingérer des données à l’aide du SDK .NET Azure Data Explorer 
 
@@ -21,6 +21,7 @@ ms.locfileid: "92343502"
 > * [Python](python-ingest-data.md)
 > * [Nœud](node-ingest-data.md)
 > * [Go](go-ingest-data.md)
+> * [Java](java-ingest-data.md)
 
 L’Explorateur de données Azure est un service d’exploration de données rapide et hautement évolutive pour les données des journaux et les données de télémétrie. Il fournit deux bibliothèques de client pour .NET : une [bibliothèque d’ingestion](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Ingest/) et une [bibliothèque de données](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Data/). Pour plus d’informations sur le SDK .NET, consultez [À propos du SDK .NET](./kusto/api/netfx/about-the-sdk.md).
 Ces bibliothèques vous permettent d’ingérer (charger) des données dans un cluster et d’interroger les données de votre code. Dans cet article, vous allez d’abord créer une table et un mappage de données dans un cluster de test. Ensuite, vous allez mettre en file d’attente l’ingestion sur le cluster et valider les résultats.

@@ -7,12 +7,12 @@ ms.reviewer: abhishgu
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/10/2020
-ms.openlocfilehash: c133c3cf1185e7ffdb959ed6ea127af7502820c4
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 5fc25c64eabfb9fa27b66b47d0443178e19b4e57
+ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92342567"
+ms.lasthandoff: 10/28/2020
+ms.locfileid: "92902490"
 ---
 # <a name="ingest-data-using-the-azure-data-explorer-go-sdk"></a>Ingérer des données à l’aide du kit de développement logiciel (SDK) Go Azure Data Explorer 
 
@@ -21,6 +21,7 @@ ms.locfileid: "92342567"
 > * [Python](python-ingest-data.md)
 > * [Nœud](node-ingest-data.md)
 > * [Go](go-ingest-data.md)
+> * [Java](java-ingest-data.md)
 
 L’Explorateur de données Azure est un service d’exploration de données rapide et hautement évolutive pour les données des journaux et les données de télémétrie. Il fournit une [bibliothèque de client de kit de développement logiciel (SDK) Go](kusto/api/golang/kusto-golang-client-library.md) à des fins d’interaction avec le service Azure Data Explorer. Vous pouvez utiliser le [kit de développement logiciel (SDK) Go](https://github.com/Azure/azure-kusto-go) pour ingérer, contrôler et interroger les données des clusters Azure Data Explorer. 
 

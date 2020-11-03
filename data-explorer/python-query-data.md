@@ -7,20 +7,18 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/05/2019
-ms.openlocfilehash: 50e949d7ef15948dd46f5553fad8d10dad5faa96
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: fcb1cf067263b5e6a0aaf7b45605d4e93be1d8cc
+ms.sourcegitcommit: 46ae22f0f1eda2a21ac01de8d0c2fa2f57de0ad3
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88875053"
+ms.lasthandoff: 11/03/2020
+ms.locfileid: "93238265"
 ---
 # <a name="query-data-using-the-azure-data-explorer-python-library"></a>Interroger des données à l’aide de la bibliothèque Python d’Azure Data Explorer
 
 Dans cet article, vous allez interroger des données en utilisant Azure Data Explorer. L’Explorateur de données Azure est un service d’exploration de données rapide et hautement évolutive pour les données des journaux et les données de télémétrie.
 
 L’Explorateur de données Azure fournit une [bibliothèque cliente de données pour Python](https://github.com/Azure/azure-kusto-python/tree/master/azure-kusto-data). Cette bibliothèque vous permet d’interroger les données de votre code. Connectez-vous à une table du *cluster d’aide* que nous avons configuré pour faciliter l’apprentissage. Vous pouvez interroger une table de ce cluster, puis retourner les résultats.
-
-Cet article est également disponible dans [Azure Notebook](https://notebooks.azure.com/ManojRaheja/libraries/KustoPythonSamples/html/QueryKusto.ipynb).
 
 ## <a name="prerequisites"></a>Conditions préalables requises
 
@@ -30,7 +28,7 @@ Cet article est également disponible dans [Azure Notebook](https://notebooks.az
 
 ## <a name="install-the-data-library"></a>Installer la bibliothèque de données
 
-Installez *azure-kusto-data*.
+Installez *azure-kusto-data* .
 
 ```
 pip install azure-kusto-data
@@ -38,7 +36,7 @@ pip install azure-kusto-data
 
 ## <a name="add-import-statements-and-constants"></a>Ajouter les constantes et les instructions d’importation
 
-Importez des classes de la bibliothèque ainsi que *pandas*, bibliothèque d’analyse de données.
+Importez des classes de la bibliothèque ainsi que *pandas* , bibliothèque d’analyse de données.
 
 ```python
 from azure.kusto.data import KustoClient, KustoConnectionStringBuilder
@@ -53,7 +51,7 @@ Pour authentifier une application, l’Explorateur de données Azure utilise vot
 https://login.windows.net/<YourDomain>/.well-known/openid-configuration/
 ```
 
-Par exemple, si votre domaine est *contoso.com*, l’URL est : [https://login.windows.net/contoso.com/.well-known/openid-configuration/](https://login.windows.net/contoso.com/.well-known/openid-configuration/). Cliquez sur cette URL pour voir les résultats. La première ligne est la suivante.
+Par exemple, si votre domaine est *contoso.com* , l’URL est : [https://login.windows.net/contoso.com/.well-known/openid-configuration/](https://login.windows.net/contoso.com/.well-known/openid-configuration/). Cliquez sur cette URL pour voir les résultats. La première ligne est la suivante.
 
 ```
 "authorization_endpoint":"https://login.windows.net/6babcaad-604b-40ac-a9d7-9fd97c0b779f/oauth2/authorize"
@@ -77,7 +75,7 @@ KCSB.authority_id = AAD_TENANT_ID
 
 ## <a name="connect-to-azure-data-explorer-and-execute-a-query"></a>Se connecter à l’Explorateur de données Azure et exécuter une requête
 
-Exécutez une requête sur le cluster et stockez le résultat dans un dataframe. Lorsque ce code s’exécute, il retourne un message similaire au suivant : *Pour vous connecter, utilisez un navigateur web pour ouvrir la page https://microsoft.com/devicelogin et entrez le code F3W4VWZDM pour l’authentification*. Suivez les étapes pour vous connecter, puis revenez pour exécuter le bloc de code suivant.
+Exécutez une requête sur le cluster et stockez le résultat dans un dataframe. Lorsque ce code s’exécute, il retourne un message similaire au suivant : *Pour vous connecter, utilisez un navigateur web pour ouvrir la page https://microsoft.com/devicelogin et entrez le code F3W4VWZDM pour l’authentification* . Suivez les étapes pour vous connecter, puis revenez pour exécuter le bloc de code suivant.
 
 ```python
 KUSTO_CLIENT = KustoClient(KCSB)

@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/26/2019
-ms.openlocfilehash: 46ccf006c6f2cf167953c64bcaa2f3de0fbaf4b6
-ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
+ms.openlocfilehash: 40cd53d1bff6b33b81878c85c6c22c3fb85655ee
+ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/11/2020
-ms.locfileid: "91942214"
+ms.lasthandoff: 10/28/2020
+ms.locfileid: "92902577"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-by-using-an-azure-resource-manager-template"></a>Créer un cluster et une base de données Azure Data Explorer avec un modèle Azure Resource Manager
 
@@ -22,6 +22,7 @@ ms.locfileid: "91942214"
 > * [PowerShell](create-cluster-database-powershell.md)
 > * [C#](create-cluster-database-csharp.md)
 > * [Python](create-cluster-database-python.md)
+> * [Go](create-cluster-database-go.md)
 > * [Modèle Azure Resource Manager](create-cluster-database-resource-manager.md)
 
 L’Explorateur de données Azure est un service d’exploration de données rapide et hautement évolutive pour les données des journaux et les données de télémétrie. Pour utiliser Azure Data Explorer, créez tout d’abord un cluster et une ou plusieurs bases de données dans ce cluster. Ensuite, ingérez (chargez) des données dans une base de données pour pouvoir exécuter des requêtes dessus. 
@@ -112,7 +113,7 @@ Vous pouvez déployer le modèle Azure Resource Manager [à l’aide du portail 
 
     Vous pouvez [modifier et déployer le modèle dans le portail Azure](/azure/azure-resource-manager/resource-manager-quickstart-create-templates-use-the-portal#edit-and-deploy-the-template) en utilisant le formulaire.
 
-1. Complétez les sections **INFORMATIONS DE BASE** et **PARAMÈTRES**. Sélectionnez des noms de cluster et de base de données uniques.
+1. Complétez les sections **INFORMATIONS DE BASE** et **PARAMÈTRES** . Sélectionnez des noms de cluster et de base de données uniques.
 La création d’un cluster et d’une base de données Azure Data Explorer prend quelques minutes.
 
 1. Pour vérifier le déploiement, ouvrez le groupe de ressources dans le [portail Azure](https://portal.azure.com) pour rechercher votre nouveau cluster et votre nouvelle base de données. 
@@ -137,7 +138,7 @@ La création d’un cluster et d’une base de données Azure Data Explorer pren
     ```
 
 1. Sélectionnez **Copier** pour copier le script PowerShell.
-1. Cliquez avec le bouton droit sur la console d’interpréteur de commandes, puis sélectionnez **Coller**.
+1. Cliquez avec le bouton droit sur la console d’interpréteur de commandes, puis sélectionnez **Coller** .
 La création d’un cluster et d’une base de données Azure Data Explorer prend quelques minutes.
 
 #### <a name="verify-the-deployment-using-powershell"></a>Vérifier le déploiement à l’aide de PowerShell
