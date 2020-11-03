@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/03/2019
-ms.openlocfilehash: c20897b0bf3d02e1dfac7e791b4c15189090703c
-ms.sourcegitcommit: 97404e9ed4a28cd497d2acbde07d00149836d026
+ms.openlocfilehash: 4d47dfb17935cbb6c26e1da4c690d24801066015
+ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/21/2020
-ms.locfileid: "90832584"
+ms.lasthandoff: 10/28/2020
+ms.locfileid: "92902642"
 ---
 # <a name="ingest-data-using-the-azure-data-explorer-python-library"></a>Ingérer des données à l’aide de la bibliothèque Python de l’Explorateur de données Azure
 
@@ -21,6 +21,7 @@ ms.locfileid: "90832584"
 > * [Python](python-ingest-data.md)
 > * [Nœud](node-ingest-data.md)
 > * [Go](go-ingest-data.md)
+> * [Java](java-ingest-data.md)
 
 Dans cet article, vous allez ingérer des données à l’aide de la bibliothèque Python d’Azure Data Explorer. L’Explorateur de données Azure est un service d’exploration de données rapide et hautement évolutive pour les données des journaux et les données de télémétrie. L’Explorateur de données Azure fournit deux bibliothèques clientes pour Python : une [bibliothèque d’ingestion](https://github.com/Azure/azure-kusto-python/tree/master/azure-kusto-ingest) et une [bibliothèque de données](https://github.com/Azure/azure-kusto-python/tree/master/azure-kusto-data). Ces bibliothèques vous permettent d’ingérer (charger) des données dans un cluster et d’interroger les données à partir de votre code.
 
@@ -55,13 +56,13 @@ from azure.kusto.data.exceptions import KustoServiceError
 from azure.kusto.data.helpers import dataframe_from_result_table
 ```
 
-Pour authentifier une application, l’Explorateur de données Azure utilise votre ID de locataire AAD. Pour trouver votre ID de locataire, utilisez l’URL suivante en remplaçant *YourDomain* par votre domaine.
+Pour authentifier une application, l’Explorateur de données Azure utilise votre ID de locataire Azure Active Directory. Pour trouver votre ID de locataire, utilisez l’URL suivante en remplaçant *YourDomain* par votre domaine.
 
 ```http
 https://login.windows.net/<YourDomain>/.well-known/openid-configuration/
 ```
 
-Par exemple, si votre domaine est *contoso.com*, l’URL est : [https://login.windows.net/contoso.com/.well-known/openid-configuration/](https://login.windows.net/contoso.com/.well-known/openid-configuration/). Cliquez sur cette URL pour voir les résultats. La première ligne est la suivante. 
+Par exemple, si votre domaine est *contoso.com* , l’URL est : [https://login.windows.net/contoso.com/.well-known/openid-configuration/](https://login.windows.net/contoso.com/.well-known/openid-configuration/). Cliquez sur cette URL pour voir les résultats. La première ligne est la suivante. 
 
 ```console
 "authorization_endpoint":"https://login.windows.net/6babcaad-604b-40ac-a9d7-9fd97c0b779f/oauth2/authorize"
@@ -76,7 +77,7 @@ KUSTO_INGEST_URI = "https://ingest-<ClusterName>.<Region>.kusto.windows.net:443/
 KUSTO_DATABASE = "<DatabaseName>"
 ```
 
-Maintenant, créez la chaîne de connexion. Cet exemple utilise l’authentification de l’appareil pour accéder au cluster. Vous pouvez également utiliser un [certificat d’application AAD](https://github.com/Azure/azure-kusto-python/blob/master/azure-kusto-data/tests/sample.py#L24), une [clé d’application AAD](https://github.com/Azure/azure-kusto-python/blob/master/azure-kusto-data/tests/sample.py#L20) et un [utilisateur et un mot de passe AAD](https://github.com/Azure/azure-kusto-python/blob/master/azure-kusto-data/tests/sample.py#L34).
+Maintenant, créez la chaîne de connexion. Cet exemple utilise l’authentification de l’appareil pour accéder au cluster. Vous pouvez également utiliser un [certificat d’application Azure Active Directory](https://github.com/Azure/azure-kusto-python/blob/master/azure-kusto-data/tests/sample.py#L24), une [clé d’application Azure Active Directory](https://github.com/Azure/azure-kusto-python/blob/master/azure-kusto-data/tests/sample.py#L20) et un [utilisateur et mot de passe Azure Active Directory](https://github.com/Azure/azure-kusto-python/blob/master/azure-kusto-data/tests/sample.py#L34).
 
 Vous allez créer la table de destination et le mappage dans une étape ultérieure.
 
@@ -110,7 +111,7 @@ BLOB_PATH = "https://" + ACCOUNT_NAME + ".blob.core.windows.net/" + \
 
 ## <a name="create-a-table-on-your-cluster"></a>Créer une table sur votre cluster
 
-Créez une table qui correspond au schéma des données du fichier StormEvents.csv. Lorsque ce code s’exécute, il retourne un message similaire au suivant : *Pour vous connecter, utilisez un navigateur web pour ouvrir la page https://microsoft.com/devicelogin et entrez le code F3W4VWZDM pour l’authentification*. Suivez les étapes pour vous connecter, puis revenez pour exécuter le bloc de code suivant. Les blocs de code suivants qui établissent une connexion vous demandent de vous reconnecter.
+Créez une table qui correspond au schéma des données du fichier StormEvents.csv. Lorsque ce code s’exécute, il retourne un message semblable au suivant : *Pour vous connecter, utilisez un navigateur web afin d'ouvrir la page https://microsoft.com/devicelogin et entrez le code F3W4VWZDM pour vous authentifier*. Suivez les étapes pour vous connecter, puis revenez pour exécuter le bloc de code suivant. Les blocs de code suivants qui établissent une connexion vous demandent de vous reconnecter.
 
 ```python
 KUSTO_CLIENT = KustoClient(KCSB_DATA)
@@ -153,7 +154,7 @@ print('Done queuing up ingestion with Azure Data Explorer')
 
 ## <a name="query-data-that-was-ingested-into-the-table"></a>Interroger les données ingérées dans la table
 
-Attendez cinq à dix minutes avant que l’ingestion en file d’attente planifie l’ingestion et charge les données dans l’Explorateur de données Azure. Ensuite, exécutez le code suivant pour obtenir le nombre d’enregistrements de la table StormEvents.
+Attendez cinq à dix minutes avant que l’ingestion en file d’attente planifie l’ingestion et charge les données dans Azure Data Explorer. Ensuite, exécutez le code suivant pour obtenir le nombre d’enregistrements de la table StormEvents.
 
 ```python
 QUERY = "StormEvents | count"

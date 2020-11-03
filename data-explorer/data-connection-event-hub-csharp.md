@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/07/2019
-ms.openlocfilehash: b4098fe52eb4632ba8145d2d5491f21c5af805d8
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: c98c2a9781f167848989d1b55c70d1d9bda8e239
+ms.sourcegitcommit: 64fdef912cc925c4bdcae98183eb8d7c7a6392d7
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92343026"
+ms.lasthandoff: 10/29/2020
+ms.locfileid: "93027786"
 ---
 # <a name="create-an-event-hub-data-connection-for-azure-data-explorer-by-using-c"></a>Créer une connexion de données au hub d’événements pour Azure Data Explorer à l’aide de C#
 
@@ -71,8 +71,9 @@ var location = "Central US";
 var tableName = "StormEvents";
 var mappingRuleName = "StormEvents_CSV_Mapping";
 var dataFormat = DataFormat.CSV;
+var compression = "None";
 await kustoManagementClient.DataConnections.CreateOrUpdateAsync(resourceGroupName, clusterName, databaseName, dataConnectionName, 
-    new EventHubDataConnection(eventHubResourceId, consumerGroup, location: location, tableName: tableName, mappingRuleName: mappingRuleName, dataFormat: dataFormat));
+    new EventHubDataConnection(eventHubResourceId, consumerGroup, location: location, tableName: tableName, mappingRuleName: mappingRuleName, dataFormat: dataFormat, compression: compression));
 ```
 
 |**Paramètre** | **Valeur suggérée** | **Description du champ**|
@@ -91,6 +92,7 @@ await kustoManagementClient.DataConnections.CreateOrUpdateAsync(resourceGroupNam
 | eventHubResourceId | *ID de ressource* | ID de ressource de votre hub d’événements qui contient les données à des fins d’ingestion. |
 | consumerGroup | *$Default* | Groupe de consommateurs de votre hub d’événements.|
 | location | *USA Centre* | Emplacement de la ressource de connexion de données.|
+| compression | *Gzip* ou *Aucune* | Type de compression de données. |
 
 ## <a name="generate-data"></a>Générer les données
 
