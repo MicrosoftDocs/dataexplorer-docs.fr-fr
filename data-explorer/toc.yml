@@ -39,6 +39,7 @@
         - name: Propriétés d’ingestion de données
           href: ingestion-properties.md
         - name: Formats de l’ingestion de données
+          displayName: supported data formats
           href: ingestion-supported-formats.md
     - name: Langage de requête Kusto
       items:
