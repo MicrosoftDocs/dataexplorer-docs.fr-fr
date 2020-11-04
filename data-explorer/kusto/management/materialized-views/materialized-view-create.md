@@ -8,12 +8,12 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/30/2020
-ms.openlocfilehash: 95f8ce19c6edb419de4fb5053a79c243e3e332c4
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 383d1ab5d948a5fbcfb3ab2aad0ff8e5ed675075
+ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92252839"
+ms.lasthandoff: 11/04/2020
+ms.locfileid: "93349441"
 ---
 # <a name="create-materialized-view"></a>.create materialized-view
 
@@ -47,9 +47,9 @@ L’opération de création requiert des autorisations d' [administrateur de bas
 
 |Argument|Type|Description
 |----------------|-------|---|
-|NomVue|String|Nom de la vue matérialisée. Le nom de la vue ne peut pas être en conflit avec des noms de table ou de fonction dans la même base de données et doit respecter les [règles d’attribution](../../query/schema-entities/entity-names.md#identifier-naming-rules)de noms d’identificateur. |
-|SourceTableName|String|Nom de la table source sur laquelle la vue est définie.|
-|Requête|String|Requête de vue matérialisée. Pour plus d’informations, consultez [query](#query-argument).|
+|NomVue|Chaîne|Nom de la vue matérialisée. Le nom de la vue ne peut pas être en conflit avec des noms de table ou de fonction dans la même base de données et doit respecter les [règles d’attribution](../../query/schema-entities/entity-names.md#identifier-naming-rules)de noms d’identificateur. |
+|SourceTableName|Chaîne|Nom de la table source sur laquelle la vue est définie.|
+|Requête|Chaîne|Requête de vue matérialisée. Pour plus d’informations, consultez [query](#query-argument).|
 
 ### <a name="query-argument"></a>Argument de requête
 
@@ -72,7 +72,7 @@ La requête utilisée dans l’argument de vue matérialisée est limitée par l
 
     * Les enregistrements de la table source de la vue (table de faits) sont matérialisés une seule fois. Une latence d’ingestion différente entre la table de faits et la table de dimension peut avoir un impact sur les résultats de la vue.
 
-    * **Exemple**: une définition de vue comprend une jointure interne avec une table de dimension. Au moment de la matérialisation, l’enregistrement de dimension n’a pas été entièrement ingéré, mais il a déjà été ingéré dans la table de faits. Cet enregistrement est supprimé de la vue et n’est plus retraité. 
+    * **Exemple** : une définition de vue comprend une jointure interne avec une table de dimension. Au moment de la matérialisation, l’enregistrement de dimension n’a pas été entièrement ingéré, mais il a déjà été ingéré dans la table de faits. Cet enregistrement est supprimé de la vue et n’est plus retraité. 
 
         De même, si la jointure est une jointure externe, l’enregistrement de la table de faits est traité et ajouté à la vue avec une valeur null pour les colonnes de la table de dimension. Les enregistrements qui ont déjà été ajoutés (avec des valeurs null) à la vue ne seront pas traités à nouveau. Leurs valeurs, dans les colonnes de la table de dimension, restent null.
 
@@ -202,7 +202,7 @@ Les fonctions d’agrégation suivantes sont prises en charge :
 
 * Les filtres de requête de vue matérialisée sont optimisés lorsqu’ils sont filtrés par une des dimensions de vue matérialisée (agrégation par clause). Si vous savez que votre modèle de requête est souvent filtré par une colonne, qui peut être une dimension de la vue matérialisée, incluez-la dans la vue. Par exemple : pour une vue matérialisée qui expose un `arg_max` par `ResourceId` qui sera souvent filtré par `SubscriptionId` , la recommandation est la suivante :
 
-    **Procédez**comme suit :
+    **Procédez** comme suit :
     
     ```kusto
     .create materialized-view ArgMaxResourceId on table FactResources
@@ -211,7 +211,7 @@ Les fonctions d’agrégation suivantes sont prises en charge :
     }
     ``` 
     
-    **Ne pas faire**:
+    **Ne pas faire** :
     
     ```kusto
     .create materialized-view ArgMaxResourceId on table FactResources
@@ -222,7 +222,7 @@ Les fonctions d’agrégation suivantes sont prises en charge :
 
 * N’incluez pas les transformations, les normalisations et d’autres calculs lourds qui peuvent être déplacés vers une [stratégie de mise à jour](../updatepolicy.md) dans le cadre de la définition de la vue matérialisée. Au lieu de cela, effectuez tous ces processus dans une stratégie de mise à jour et effectuez l’agrégation uniquement dans la vue matérialisée. Utilisez ce processus pour la recherche dans les tables de dimension, le cas échéant.
 
-    **Procédez**comme suit :
+    **Procédez** comme suit :
     
     * Stratégie de mise à jour :
     
@@ -241,19 +241,19 @@ Les fonctions d’agrégation suivantes sont prises en charge :
     ```kusto
     .create materialized-view Usage on table Events
     {
-    &nbsp;     Target 
-    &nbsp;     | summarize count() by ResourceId 
+        Target 
+        | summarize count() by ResourceId 
     }
     ```
     
-    **Ne pas faire**:
+    **Ne pas faire** :
     
     ```kusto
     .create materialized-view Usage on table SourceTable
     {
-    &nbsp;     SourceTable 
-    &nbsp;     | extend ResourceId = strcat('subscriptions/', toupper(SubscriptionId), '/', resourceId)
-    &nbsp;     | summarize count() by ResourceId
+        SourceTable 
+        | extend ResourceId = strcat('subscriptions/', toupper(SubscriptionId), '/', resourceId)
+        | summarize count() by ResourceId
     }
     ```
 
@@ -291,14 +291,14 @@ Le processus de création ne peut pas être abandonné immédiatement. La comman
 
 |Propriété|Type|Description
 |----------------|-------|---|
-|operationId|Guid|L’ID d’opération retourné par la commande CREATE MATERIALIZED-VIEW.|
+|operationId|GUID|L’ID d’opération retourné par la commande CREATE MATERIALIZED-VIEW.|
 
 ### <a name="output"></a>Output
 
 |Paramètre de sortie |Type |Description
 |---|---|---
-|OperationId|Guid|ID d’opération de la commande créer une vue matérialisée.
-|Opération|String|Type d’opération.
+|OperationId|GUID|ID d’opération de la commande créer une vue matérialisée.
+|Opération|Chaîne|Type d’opération.
 |StartedOn|DATETIME|Heure de début de l’opération de création.
 |CancellationState|string|Un de- `Cancelled successfully` (la création a été annulée), ( `Cancellation failed` attente de l’annulation expirée), `Unknown` (la création de la vue n’est plus exécutée, mais n’a pas été annulée par cette opération).
 |ReasonPhrase|string|Raison pour laquelle l’annulation n’a pas réussi.

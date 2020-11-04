@@ -7,14 +7,14 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/13/2020
-ms.openlocfilehash: 365ce1e4c8e5dd2157a7975095b9e30dfd1e3722
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 6e460ddaab7d58e4dac104db511119933c531506
+ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92342703"
+ms.lasthandoff: 11/04/2020
+ms.locfileid: "93349424"
 ---
-# <a name="troubleshooting"></a>Dépannage
+# <a name="troubleshooting"></a>Résolution des problèmes
 
 Ce document présente les difficultés courantes liées à l’exécution et à l’utilisation de Kusto. Explorer, et propose des solutions. Ce document décrit également [Comment réinitialiser Kusto. Explorer](#reset-kustoexplorer).
 
@@ -127,7 +127,7 @@ Following errors were detected during this operation.
 #### <a name="enabling-clickonce-verbose-logging"></a>Activation de la journalisation détaillée ClickOnce
 
 1. Si l’application ne démarre toujours pas :
-    1. [Activez la journalisation ClickOnce détaillée](https://docs.microsoft.com/visualstudio/deployment/how-to-specify-verbose-log-files-for-clickonce-deployments) en créant une valeur de chaîne LogVerbosityLevel de 1 sous :
+    1. [Activez la journalisation ClickOnce détaillée](/visualstudio/deployment/how-to-specify-verbose-log-files-for-clickonce-deployments) en créant une valeur de chaîne LogVerbosityLevel de 1 sous :
 
         ```kusto
         HKEY_CURRENT_USER\Software\Classes\Software\Microsoft\Windows\CurrentVersion\Deployment
@@ -163,7 +163,7 @@ Les données stockées par l’application Kusto. Explorer se trouvent ici : `C
 
 Si nécessaire, vous pouvez réinitialiser complètement Kusto. Explorer. La procédure suivante décrit comment réinitialiser Kusto. Explorer de manière progressive, jusqu’à ce qu’il soit supprimé de votre ordinateur et qu’il soit nécessaire de l’installer à partir de zéro.
 
-1. Dans Windows, ouvrez **modifier ou supprimer un programme** (également appelé **programmes et fonctionnalités**).
+1. Dans Windows, ouvrez **modifier ou supprimer un programme** (également appelé **programmes et fonctionnalités** ).
 1. Sélectionnez chaque élément qui commence par `Kusto.Explorer` .
 1. Sélectionner **Désinstaller**.
 
@@ -175,7 +175,7 @@ Si nécessaire, vous pouvez réinitialiser complètement Kusto. Explorer. La pro
 
 Il est également possible de revenir à une version spécifique de Kusto. Explorer :
 
-1. Exécutez `appwiz.cpl`.
+1. Exécuter `appwiz.cpl`.
 1. Sélectionnez **Kusto. Explorer** et sélectionnez **Désinstaller/Modifier**.
 1. Sélectionnez **restaurer l’application à son état précédent**.
 
