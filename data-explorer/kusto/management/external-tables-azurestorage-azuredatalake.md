@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 1d0625c949fe563084caeec936e3433c9ee70f5e
-ms.sourcegitcommit: ef3d919dee27c030842abf7c45c9e82e6e8350ee
+ms.openlocfilehash: df38761d7ffebdf5e36c14ea25b0d02377bfa128
+ms.sourcegitcommit: fdc1f917621e9b7286bba23903101298cccc4c95
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92630107"
+ms.lasthandoff: 11/05/2020
+ms.locfileid: "93364120"
 ---
 # <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Créer et modifier des tables externes dans Stockage Azure ou Azure Data Lake
 
@@ -92,7 +92,7 @@ Format de chemin d’accès au fichier d’URI de données externes, qui peut ê
 
 &nbsp;&nbsp;[ *StringSeparator* ] *Partition* [ *StringSeparator* ] [ *partition* [ *StringSeparator* ]...]  
 
-où *partition* fait référence à une partition déclarée dans la `partition` `by` clause, et *StringSeparator* est un texte placé entre guillemets. Les éléments de partition consécutifs doivent être séparés à l’aide de *StringSeparator* .
+où *partition* fait référence à une partition déclarée dans la `partition` `by` clause, et *StringSeparator* est un texte placé entre guillemets. Les éléments de partition consécutifs doivent être séparés à l’aide de *StringSeparator*.
 
 Le préfixe du chemin d’accès au fichier d’origine peut être construit à l’aide d’éléments de partition rendus sous forme de chaînes et séparés par des séparateurs de texte Pour spécifier le format utilisé pour le rendu d’une valeur de partition DateTime, vous pouvez utiliser la macro suivante :
 
@@ -219,6 +219,14 @@ dataformat=csv
 with (fileExtension = ".txt")
 ```
 
+Pour filtrer par colonne de partition dans une requête, spécifiez le nom de colonne d’origine dans le prédicat de requête :
+
+```kusto
+external_table("ExternalTable")
+ | where Timestamp between (datetime(2020-01-01) .. datetime(2020-02-01))
+ | where CustomerName in ("John.Doe", "Ivan.Ivanov")
+```
+
 **Exemple de sortie**
 
 |TableName|TableType|Dossier|DocString|Propriétés|ConnectionStrings|Partitions|PathFormat|
@@ -241,6 +249,14 @@ dataformat=parquet
 ( 
    h@'https://storageaccount.blob.core.windows.net/container1;secretKey'
 )
+```
+
+Pour filtrer par colonnes virtuelles dans une requête, spécifiez les noms des partitions dans le prédicat de requête :
+
+```kusto
+external_table("ExternalTable")
+ | where Date between (datetime(2020-01-01) .. datetime(2020-02-01))
+ | where CustomerName in ("John.Doe", "Ivan.Ivanov")
 ```
 
 <a name="file-filtering"></a>
