@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: cb8e9d5afea956ee42fe3b444c564059e34b9a24
-ms.sourcegitcommit: d9569989283f4e98846725e2bc4c96149bd01281
+ms.openlocfilehash: 5732d0fa9773d0c8fe5420026cb855d1040b8706
+ms.sourcegitcommit: 42cc7d11f41a5bfa9e021764b044dcd68d99a258
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/17/2020
-ms.locfileid: "92155408"
+ms.lasthandoff: 11/05/2020
+ms.locfileid: "93403763"
 ---
 # <a name="sandboxes"></a>Bacs à sable
 
@@ -43,7 +43,7 @@ Les flux qui s’exécutent dans les bacs à sable ne sont pas isolés. Ils sont
   * Une fois qu’un bac à sable (sandbox) est utilisé, un nouveau sandbox est automatiquement mis à la disposition du remplacement.
 * Si aucun bac à sable (sandbox) pré-alloué n’est disponible pour servir d’opérateur de requête, il sera limité jusqu’à ce que de nouveaux bacs à sable soient disponibles. Pour plus d’informations, consultez [Erreurs](#errors). La nouvelle allocation du bac à sable (sandbox) peut prendre jusqu’à 10-15 secondes par bac à sable (sandbox), en fonction de la référence et des ressources disponibles sur le nœud de données.
 
-## <a name="limitations"></a>Limites
+## <a name="limitations"></a>Limitations
 
 Certaines des limitations peuvent être contrôlées à l’aide d’une [stratégie de bac à sable (sandbox](../management/sandboxpolicy.md)) au niveau du cluster, pour chaque type de bac à sable.
 
@@ -69,4 +69,4 @@ Certaines des limitations peuvent être contrôlées à l’aide d’une [strat�
 |--------------------------|---------------------------|---------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
 |E_SB_QUERY_THROTTLED_ERROR|TooManyRequests (429)      |La requête bac à sable (sandbox) a été abandonnée en raison de la limitation. Une nouvelle tentative peut être effectuée après un certain intervalle   |Il n’y a aucun bac à sable (sandbox) disponible sur le nœud cible. De nouveaux bacs à sable doivent être disponibles en quelques secondes         |
 |E_SB_QUERY_THROTTLED_ERROR|TooManyRequests (429)      |Les bacs à sable (sandbox) de type « {Kind} » n’ont pas encore été initialisés                                            |La stratégie du bac à sable (sandbox) a récemment changé. Les nouveaux bacs à sable qui obéissent à la nouvelle stratégie sont disponibles en quelques secondes.|
-|                          |InternalServiceError (520) |La requête bac à sable (sandbox) a été abandonnée en raison d’un échec lors de l’initialisation des bacs à sable                         |Une défaillance inattendue de l’infrastructure. Si le problème persiste, ouvrez une demande de support                         |
+|                          |InternalServiceError (520) |La requête bac à sable (sandbox) a été abandonnée en raison d’un échec lors de l’initialisation des bacs à sable                         |Une défaillance inattendue de l’infrastructure.                         |

@@ -1,6 +1,6 @@
 ---
-title: Fonctions définies par l’utilisateur-Azure Explorateur de données | Microsoft Docs
-description: Cet article décrit les fonctions définies par l’utilisateur dans Azure Explorateur de données.
+title: Fonctions de User-Defined-Azure Explorateur de données | Microsoft Docs
+description: Cet article décrit les fonctions de User-Defined dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: 769ebc16da0780f1d1832dcbf49bad516c47abd3
-ms.sourcegitcommit: 2764e739b4ad51398f4f0d3a9742d7168c4f5fd7
+ms.openlocfilehash: e611bfb1d5dbf0122553b223a200400c526c975f
+ms.sourcegitcommit: 42cc7d11f41a5bfa9e021764b044dcd68d99a258
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/05/2020
-ms.locfileid: "91712015"
+ms.lasthandoff: 11/05/2020
+ms.locfileid: "93403746"
 ---
 # <a name="user-defined-functions"></a>Fonctions définies par l’utilisateur
 
-Les **fonctions définies par l’utilisateur** sont des sous-requêtes réutilisables qui peuvent être définies dans le cadre de la requête elle-même (**fonctions ad hoc**) ou conservées dans le cadre des métadonnées de la base de données (**fonctions stockées**). Les fonctions définies par l’utilisateur sont appelées à l’aide d’un **nom**, sont fournies avec zéro, un ou plusieurs **arguments d’entrée** (qui peuvent être scalaires ou tabulaires) et produisent une seule valeur (qui peut être scalaire ou tabulaire) en fonction du **corps**de la fonction.
+Les **fonctions définies par l’utilisateur** sont des sous-requêtes réutilisables qui peuvent être définies dans le cadre de la requête elle-même ( **fonctions ad hoc** ) ou conservées dans le cadre des métadonnées de la base de données ( **fonctions stockées** ). Les fonctions définies par l’utilisateur sont appelées à l’aide d’un **nom** , sont fournies avec zéro, un ou plusieurs **arguments d’entrée** (qui peuvent être scalaires ou tabulaires) et produisent une seule valeur (qui peut être scalaire ou tabulaire) en fonction du **corps** de la fonction.
 
 Une fonction définie par l’utilisateur appartient à l’une des deux catégories suivantes :
 
@@ -44,6 +44,9 @@ Les arguments d’entrée et la sortie de la fonction déterminent s’il s’ag
 Les noms de fonctions définies par l’utilisateur valides doivent respecter les mêmes [règles d’affectation](../schema-entities/entity-names.md#identifier-naming-rules) de noms que les autres entités.
 
 Le nom doit également être unique dans son étendue de définition.
+
+> [!NOTE]
+> Si une fonction stockée et une table ont toutes les deux le même nom, la fonction stockée est substituée lors de l’interrogation du nom de table/fonction.
 
 ## <a name="input-arguments"></a>Arguments d’entrée
 
