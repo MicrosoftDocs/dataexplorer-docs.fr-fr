@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/16/2019
-ms.openlocfilehash: d02d030a6deb468a4804c68965466e1917858be9
-ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
+ms.openlocfilehash: 1e7cbbb62c58b83690dd8eb272395aacffd3eda2
+ms.sourcegitcommit: 4b061374c5b175262d256e82e3ff4c0cbb779a7b
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83382333"
+ms.lasthandoff: 11/09/2020
+ms.locfileid: "94373746"
 ---
 # <a name="kusto-ingest-client-library---best-practices"></a>Bibliothèque cliente de réception Kusto-meilleures pratiques
 
@@ -33,7 +33,7 @@ Le suivi de l’état de l' [opération de réception](kusto-ingest-client-statu
 
 L’ingestion fonctionne mieux si elle est effectuée dans de grands segments. 
 * Il consomme le moins de ressources
-* Il produit le partitions de données le plus performant et optimisé, et produit les meilleures transactions de données.
+* Il produit le partitions de données le plus coûteux (coût des marchandises vendues) et donne les meilleures transactions de données.
 
 Nous recommandons aux clients qui envoient des données avec la bibliothèque Kusto. ingestion ou directement dans le moteur, d’envoyer des données par lots de **100 Mo** à **1 Go (non compressés)**
 * La limite supérieure est importante lorsque vous travaillez directement avec le moteur, afin de réduire la quantité de mémoire utilisée par le processus d’ingestion 
@@ -56,7 +56,7 @@ Plusieurs facteurs peuvent affecter le débit de réception. Lorsque vous planif
 
 ## <a name="optimizing-for-cogs"></a>Optimisation pour les COGS
 
-L’utilisation de bibliothèques clientes Kusto pour la réception de données dans Azure Explorateur de données reste la solution la plus économique et la plus robuste. Nous recommandons à nos clients de passer en revue leurs méthodes d’ingestion et de tirer parti de la tarification Azure Storage qui rendra les transactions BLOB beaucoup plus rentables.
+L’utilisation de bibliothèques clientes Kusto pour la réception de données dans Azure Explorateur de données reste la solution la plus économique et la plus robuste. Nous vous recommandons vivement aux clients de passer en revue leurs méthodes d’ingestion afin d’optimiser les coûts des marchandises vendues et de tirer parti de la tarification du stockage Azure qui rendra les transactions BLOB beaucoup plus rentables.
 
 * **Limitez le nombre de segments de données ingérés**.
     Pour mieux contrôler vos coûts d’ingestion d’Azure Explorateur de données et réduire votre facture mensuelle, limitez le nombre de segments de données ingérés (fichiers/objets BLOB/flux).
@@ -68,5 +68,5 @@ L’utilisation de bibliothèques clientes Kusto pour la réception de données 
 * **Évitez** d’envoyer des données pour l’ingestion avec l' `FlushImmediately` indicateur défini sur `true` . Évitez également d’envoyer de petits segments avec des `ingest-by` / `drop-by` balises définies. Si vous utilisez ces méthodes, elles :
      * empêcher le service d’agréger correctement les données pendant l’ingestion
      * entraîner des transactions de stockage inutiles après l’ingestion
-     * affecter les COGS
+     * affecter les COGS 
      * entraîner une dégradation des performances d’ingestion ou de requête de votre cluster, s’il est utilisé de façon excessive

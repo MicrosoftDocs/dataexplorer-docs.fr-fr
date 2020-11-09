@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/27/2020
-ms.openlocfilehash: 02271e3b282dd632a94631c09fca11b8b06db3cf
-ms.sourcegitcommit: 62476f682b7812cd9cff7e6958ace5636ee46755
+ms.openlocfilehash: 08e6ee9aaff1273438be80ca9ce342de91ba9459
+ms.sourcegitcommit: 4b061374c5b175262d256e82e3ff4c0cbb779a7b
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "92169572"
+ms.lasthandoff: 11/09/2020
+ms.locfileid: "94373882"
 ---
 # <a name="scalar-function-types"></a>Types de fonction scalaire
 
@@ -84,13 +84,14 @@ ms.locfileid: "92169572"
 |[array_iif()](arrayifffunction.md)|Applique la fonction IIF au niveau des éléments sur les tableaux.|
 |[array_index_of()](arrayindexoffunction.md)|Recherche l’élément spécifié dans le tableau et retourne sa position.|
 |[array_length()](arraylengthfunction.md)|Calcule le nombre d’éléments dans un tableau dynamique.|
+|[array_reverse ()](array-reverse-function.md)|Inverse l’ordre des éléments dans un tableau dynamique.|
 |[array_rotate_left()](array_rotate_leftfunction.md)|Fait pivoter les valeurs à l’intérieur d’un tableau dynamique vers la gauche.|
 |[array_rotate_right()](array_rotate_rightfunction.md)|Fait pivoter les valeurs à l’intérieur d’un tableau dynamique vers la droite.|
 |[array_shift_left()](array_shift_leftfunction.md)|Déplace les valeurs à l’intérieur d’un tableau dynamique vers la gauche.|
 |[array_shift_right()](array_shift_rightfunction.md)|Déplace les valeurs à l’intérieur d’un tableau dynamique vers la droite.|
 |[array_slice()](arrayslicefunction.md)|Extrait un segment d’un tableau dynamique.|
-|[array_sort_asc ()](arraysortascfunction.md)|Trie une collection de tableaux dans l’ordre croissant.|
-|[array_sort_desc ()](arraysortdescfunction.md)|Trie une collection de tableaux dans l’ordre décroissant.|
+|[array_sort_asc()](arraysortascfunction.md)|Trie une collection de tableaux dans l’ordre croissant.|
+|[array_sort_desc()](arraysortdescfunction.md)|Trie une collection de tableaux dans l’ordre décroissant.|
 |[array_split()](arraysplitfunction.md)|Génère un tableau de tableaux fractionnés à partir du tableau d’entrée.|
 |[bag_keys()](bagkeysfunction.md)|Énumère toutes les clés racines dans un objet de jeu de propriétés dynamique.|
 |[bag_merge()](bag-merge-function.md)|Fusionne des conteneurs de propriétés dynamiques dans un conteneur de propriétés dynamique avec toutes les propriétés fusionnées.|
@@ -110,7 +111,7 @@ ms.locfileid: "92169572"
 
 |Nom de fonction     |Description                                          |
 |-------------------------|--------------------------------------------------------|
-|[next()](nextfunction.md)|Pour l’ensemble de lignes sérialisé, retourne une valeur d’une colonne spécifiée à partir de la ligne ultérieure en fonction de l’offset.|
+|[suivant ()](nextfunction.md)|Pour l’ensemble de lignes sérialisé, retourne une valeur d’une colonne spécifiée à partir de la ligne ultérieure en fonction de l’offset.|
 |[prev()](prevfunction.md)|Pour l’ensemble de lignes sérialisé, retourne une valeur d’une colonne spécifiée à partir de la ligne précédente en fonction de l’offset.|
 |[row_cumsum()](rowcumsumfunction.md)|Calcule la somme cumulée d’une colonne.|
 |[row_number()](rownumberfunction.md)|Retourne le nombre d’une ligne dans le jeu de lignes sérialisées, nombres consécutifs à partir d’un index donné ou à partir de 1 par défaut.|
@@ -143,7 +144,7 @@ ms.locfileid: "92169572"
 |[isfinite()](isfinitefunction.md)|Retourne une valeur indiquant si l’entrée est une valeur finie (n’est pas infinie ou NaN).|
 |[isinf()](isinffunction.md)|Retourne une valeur indiquant si l’entrée est une valeur infinie (positive ou négative).|
 |[isnan()](isnanfunction.md)|Retourne une valeur indiquant si l’entrée n’est pas un nombre (NaN).|
-|[log ()](log-function.md)|Retourne la fonction de logarithme népérien.|
+|[log()](log-function.md)|Retourne la fonction de logarithme népérien.|
 |[log10()](log10-function.md)|Retourne la fonction de logarithme (base 10) courant.|
 |[log2()](log2-function.md)|Retourne la fonction de logarithme en base 2.|
 |[loggamma()](loggammafunction.md)|Calcule le journal de la valeur absolue de la fonction gamma.|
@@ -152,7 +153,7 @@ ms.locfileid: "92169572"
 |[pow()](powfunction.md)|Retourne un résultat de l’élévation à Power.|
 |[radians()](radiansfunction.md)|Convertit la valeur d’angle en degrés en radians, à l’aide de la formule radians = (PI/180) * angle-in-degrees.|
 |[rand()](randfunction.md)|Retourne un nombre aléatoire.|
-|[Plage ()](rangefunction.md)|Génère un tableau dynamique contenant une série de valeurs uniformément espacées.|
+|[range()](rangefunction.md)|Génère un tableau dynamique contenant une série de valeurs uniformément espacées.|
 |[round()](roundfunction.md)|Retourne la source arrondie à la précision spécifiée.|
 |[sign()](signfunction.md)|Signe d’une expression numérique.|
 |[sin()](sinfunction.md)|Retourne la fonction sinus.|
@@ -174,7 +175,7 @@ ms.locfileid: "92169572"
 |[estimate_data_size()](estimate-data-sizefunction.md)|Retourne une estimation de la taille des données des colonnes sélectionnées de l’expression tabulaire.|
 |[extent_id()](extentidfunction.md)|Retourne un identificateur unique qui identifie le partition de données (« Extent ») dans lequel réside l’enregistrement en cours.|
 |[extent_tags()](extenttagsfunction.md)|Retourne un tableau dynamique avec les balises du partition de données (« Extent ») dans lequel réside l’enregistrement en cours.|
-|[ingestion_time ()](ingestiontimefunction.md)|Récupère les $IngestionTime colonne DateTime masquée de l’enregistrement, ou null.|
+|[ingestion_time()](ingestiontimefunction.md)|Récupère les $IngestionTime colonne DateTime masquée de l’enregistrement, ou null.|
 
 ## <a name="rounding-functions"></a>Arrondir les fonctions
 
@@ -264,7 +265,7 @@ ms.locfileid: "92169572"
 |[parse_url()](parseurlfunction.md)|Analyse une chaîne d’URL absolue et retourne un objet dynamique qui contient toutes les parties de l’URL.|
 |[parse_urlquery()](parseurlqueryfunction.md)|Analyse une chaîne de requête d’URL et retourne un objet dynamique contenant les paramètres de requête.|
 |[parse_version()](parse-versionfunction.md)|Convertit la représentation sous forme de chaîne d’entrée d’une version en nombre décimal comparable.|
-|[remplacer ()](replacefunction.md)|Remplace toutes les correspondances d’expression régulière par une autre chaîne.|
+|[replace()](replacefunction.md)|Remplace toutes les correspondances d’expression régulière par une autre chaîne.|
 |[reverse()](reversefunction.md)|La fonction effectue l’inversion de la chaîne d’entrée.|
 |[split()](splitfunction.md)|Fractionne une chaîne donnée en fonction d’un délimiteur donné et retourne un tableau de chaînes avec les sous-chaînes contenues.|
 |[strcat()](strcatfunction.md)|Concatène entre 1 et 64 arguments.|

@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 03/18/2020
-ms.openlocfilehash: a79c815202e65fa32f62a76c700d808d0fda86ea
-ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
+ms.openlocfilehash: 33d3515a8465a1e9c3397e675a51c95aa3f00d42
+ms.sourcegitcommit: 4b061374c5b175262d256e82e3ff4c0cbb779a7b
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/11/2020
-ms.locfileid: "91941993"
+ms.lasthandoff: 11/09/2020
+ms.locfileid: "94373831"
 ---
 # <a name="kusto-ingest-client-library"></a>Bibliothèque cliente de réception Kusto 
 
@@ -53,7 +53,7 @@ Le mode d’ingestion directe, défini par IKustoDirectIngestClient, force l’i
 
 Le diagramme suivant présente l’interaction du client d’ingestion directe avec Kusto :
 
-:::image type="content" source="../images/about-kusto-ingest/direct-ingest.png" alt-text="Diagramme montrant comment la bibliothèque Kusto. deréception envoie des requêtes au service Kusto en mode ingestion interrogé.":::
+:::image type="content" source="../images/about-kusto-ingest/direct-ingest.png" alt-text="Diagramme montrant comment la bibliothèque Kusto. deréception envoie des requêtes au service Kusto en mode ingestion directe.":::
 
 > [!NOTE]
 > Le mode direct n’est pas recommandé pour les solutions d’ingestion des niveaux de production.
@@ -71,7 +71,7 @@ Le diagramme suivant présente l’interaction du client d’ingestion directe a
 
 ## <a name="ingestion-best-practices"></a>Méthodes recommandées d’ingestion
 
-Les [meilleures pratiques](kusto-ingest-best-practices.md) d’ingestion fournissent le PDV et le débit PDV sur l’ingestion.
+Les [pratiques recommandées en matière](kusto-ingest-best-practices.md) d’ingestion fournissent le coût des marchandises vendues et le débit PDV en cas d’ingestion.
 
 * **Sécurité des threads-** Les implémentations du client de réception Kusto sont thread-safe et doivent être réutilisées. Il n’est pas nécessaire de créer une instance de `KustoQueuedIngestClient` classe pour chaque opération d’ingestion. Une seule instance de `KustoQueuedIngestClient` est requise par cluster Kusto cible par processus utilisateur. L’exécution de plusieurs instances est une opération de compteur de productivité et peut entraîner des dénis de service sur le cluster Gestion des données.
 

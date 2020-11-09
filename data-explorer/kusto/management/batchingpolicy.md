@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 27c92b9081844df0e8f8d4dc207ba5d2a8a2e2f3
-ms.sourcegitcommit: a10e7c6ba96bdb94d95ef23f5d1506eb8fda0041
+ms.openlocfilehash: 0a493c4e808a43d04714487ada17964ab048de6f
+ms.sourcegitcommit: 4b061374c5b175262d256e82e3ff4c0cbb779a7b
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92058663"
+ms.lasthandoff: 11/09/2020
+ms.locfileid: "94373763"
 ---
 # <a name="ingestionbatching-policy"></a>Stratégie IngestionBatching
 
@@ -38,7 +38,7 @@ Actuellement, la taille est d’environ 1 Go de données non compressées. L’i
 La `IngestionBatching` stratégie peut être définie sur des bases de données ou des tables. Par défaut, si aucune stratégie n’est définie, Kusto utilise une valeur par défaut de **5 minutes** comme délai maximal, **1000** éléments, taille totale de **1g** pour le traitement par lot.
 
 > [!WARNING]
-> L’impact de la définition de cette stratégie sur une valeur très faible est une augmentation du COGS du cluster et une baisse des performances. En outre, dans la limite, la réduction de cette valeur peut en effet entraîner une latence d’ingestion de bout en bout **accrue** , en raison de la surcharge liée à la gestion de plusieurs processus d’ingestion en parallèle.
+> L’impact de la définition de cette stratégie sur une valeur très faible est une augmentation du coût des marchandises vendues (coût des biens vendus) du cluster et des performances réduites. En outre, dans la limite, la réduction de cette valeur peut en effet entraîner une latence d’ingestion de bout en bout **accrue** , en raison de la surcharge liée à la gestion de plusieurs processus d’ingestion en parallèle.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 

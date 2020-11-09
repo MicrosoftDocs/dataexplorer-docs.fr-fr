@@ -8,12 +8,12 @@ ms.reviewer: kedamari
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/12/2020
-ms.openlocfilehash: 77f0efffbefa8e6e2093f0f59e3d4f3701be61b0
-ms.sourcegitcommit: 8a7165b28ac6b40722186300c26002fb132e6e4a
+ms.openlocfilehash: 0da372ff40975e5536883236453d1fadc52673da
+ms.sourcegitcommit: 4b061374c5b175262d256e82e3ff4c0cbb779a7b
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92749552"
+ms.lasthandoff: 11/09/2020
+ms.locfileid: "94373814"
 ---
 # <a name="data-purge"></a>Vidage des données
 
@@ -45,7 +45,7 @@ Le processus de purge sélective des données à partir d’Azure Explorateur de
      * Plusieurs autres facteurs la durée de la phase 2 peuvent varier de quelques secondes à plusieurs heures.
 1. Phase 3 : (suppression définitive) restaurez tous les artefacts de stockage qui peuvent avoir des données « incohérentes », puis supprimez-les du stockage. Cette phase est effectuée au moins cinq jours après la fin de la phase précédente, mais pas plus de 30 jours après la commande initiale. Ces chronologies sont définies pour respecter les exigences de confidentialité des données.
 
-L’émission d’une `.purge` commande déclenche ce processus, qui prend quelques jours. Si la densité des enregistrements auxquels s’applique le prédicat est suffisamment grande, le processus va effectivement obtenir toutes les données de la table. Cette réacquisition a un impact significatif sur les performances et les COGS.
+L’émission d’une `.purge` commande déclenche ce processus, qui prend quelques jours. Si la densité des enregistrements auxquels s’applique le prédicat est suffisamment grande, le processus va effectivement obtenir toutes les données de la table. Cette réacquisition a un impact significatif sur les performances et les COGS (coût des marchandises vendues).
 
 ## <a name="purge-limitations-and-considerations"></a>Limitations et considérations relatives à la purge
 
@@ -159,7 +159,7 @@ Pour effectuer une purge dans un scénario d’activation en deux étapes, utili
 
 | `OperationId` | `DatabaseName` | `TableName`|`ScheduledTime` | `Duration` | `LastUpdatedOn` |`EngineOperationId` | `State` | `StateDetails` |`EngineStartTime` | `EngineDuration` | `Retries` |`ClientRequestId` | `Principal`|
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:00.1406211 |2019-01-20 11:41:05.4391686 | |Planifié | | | |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...|
+| c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:00.1406211 |2019-01-20 11:41:05.4391686 | |Planifiée | | | |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...|
 
 #### <a name="example-single-step-purge"></a>Exemple : vidage en une seule étape
 
@@ -176,7 +176,7 @@ Pour déclencher une purge dans un scénario d’activation en une seule étape,
 
 | `OperationId` |`DatabaseName` |`TableName` |`ScheduledTime` |`Duration` |`LastUpdatedOn` |`EngineOperationId` |`State` |`StateDetails` |`EngineStartTime` |`EngineDuration` |`Retries` |`ClientRequestId` |`Principal`|
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:00.1406211 |2019-01-20 11:41:05.4391686 | |Planifié | | | |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...|
+| c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:00.1406211 |2019-01-20 11:41:05.4391686 | |Planifiée | | | |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...|
 
 ### <a name="cancel-purge-operation-command"></a>Commande Cancel purge Operation
 
@@ -247,7 +247,7 @@ Status = 'Completed’indique la réussite de la première phase de l’opérati
 
 |`OperationId` |`DatabaseName` |`TableName` |`ScheduledTime` |`Duration` |`LastUpdatedOn` |`EngineOperationId` |`State` |`StateDetails` |`EngineStartTime` |`EngineDuration` |`Retries` |`ClientRequestId` |`Principal`
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-|c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:33.6782130 |2019-01-20 11:42:34.6169153 |a0825d4d-6b0f-47f3-a499-54ac5681ab78 |Completed |Purge terminée avec succès (artefacts de stockage en attente de suppression) |2019-01-20 11:41:34.6486506 |00:00:04.4687310 |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...
+|c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:33.6782130 |2019-01-20 11:42:34.6169153 |a0825d4d-6b0f-47f3-a499-54ac5681ab78 |Effectué |Purge terminée avec succès (artefacts de stockage en attente de suppression) |2019-01-20 11:41:34.6486506 |00:00:04.4687310 |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...
 
 * `OperationId` : ID d’opération DM renvoyé lors de l’exécution de la purge. 
 * `DatabaseName`* *-nom de la base de données (sensible à la casse). 
