@@ -10,32 +10,33 @@ ms.topic: reference
 ms.date: 02/24/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 1a6349547d5cf1eb3af5a21f6e8c504573f15e52
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: a8a0aae8732104ee64630c1fddb4d563cb542351
+ms.sourcegitcommit: 25c0440cb0390b9629b819611844f1375de00a66
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92241772"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94417555"
 ---
 # <a name="sql_request-plugin"></a>sql_request, plug-in
 
 ::: zone pivot="azuredataexplorer"
 
 Le `sql_request` plug-in envoie une requête SQL à un point de terminaison de réseau SQL Server et retourne le premier ensemble de lignes dans les résultats.
+La requête peut retourner plus d’un ensemble de lignes, mais seul le premier ensemble de lignes est rendu disponible pour le reste de la requête Kusto.
 
 ## <a name="syntax"></a>Syntaxe
 
-  `evaluate``sql_request` `(` *ConnectionString* `,` *SqlQuery* [ `,` *SqlParameters* [ `,` *options*]]`)`
+  `evaluate``sql_request` `(` *ConnectionString* `,` *SqlQuery* [ `,` *SqlParameters* [ `,` *options* ]]`)`
 
 ## <a name="arguments"></a>Arguments
 
-* *ConnectionString*: `string` littéral indiquant la chaîne de connexion qui pointe vers le point de terminaison du réseau SQL Server. Consultez [méthodes d’authentification valides](#authentication) et comment spécifier le [point de terminaison réseau](#specify-the-network-endpoint).
+* *ConnectionString* : `string` littéral indiquant la chaîne de connexion qui pointe vers le point de terminaison du réseau SQL Server. Consultez [méthodes d’authentification valides](#authentication) et comment spécifier le [point de terminaison réseau](#specify-the-network-endpoint).
 
-* *SqlQuery*: `string` littéral indiquant la requête à exécuter sur le point de terminaison SQL. Doit retourner un ou plusieurs ensembles de lignes, mais seul le premier est rendu disponible pour le reste de la requête Kusto.
+* *SqlQuery* : `string` littéral indiquant la requête à exécuter sur le point de terminaison SQL. Doit retourner un ou plusieurs ensembles de lignes, mais seul le premier est rendu disponible pour le reste de la requête Kusto.
 
-* *SqlParameters*: valeur constante de type `dynamic` qui contient des paires clé-valeur à passer comme paramètres avec la requête. facultatif.
+* *SqlParameters* : valeur constante de type `dynamic` qui contient des paires clé-valeur à passer comme paramètres avec la requête. facultatif.
   
-* *Options*: valeur constante de type `dynamic` qui contient des paramètres plus avancés en tant que paires clé-valeur. Actuellement, seul `token` peut être défini, pour transmettre un jeton d’accès Azure ad fourni par l’appelant, qui est transféré au point de terminaison SQL pour l’authentification. facultatif.
+* *Options* : valeur constante de type `dynamic` qui contient des paramètres plus avancés en tant que paires clé-valeur. Actuellement, seul `token` peut être défini, pour transmettre un jeton d’accès Azure ad fourni par l’appelant, qui est transféré au point de terminaison SQL pour l’authentification. facultatif.
 
 ## <a name="examples"></a>Exemples
 
@@ -121,7 +122,7 @@ Par conséquent, le SQL Server doit être configuré avec un certificat de serve
 La spécification du point de terminaison de réseau SQL dans le cadre de la chaîne de connexion est obligatoire.
 La syntaxe appropriée est :
 
-`Server``=` `tcp:` *Nom de domaine complet* [ `,` *port*]
+`Server``=` `tcp:` *Nom de domaine complet* [ `,` *port* ]
 
 Où :
 

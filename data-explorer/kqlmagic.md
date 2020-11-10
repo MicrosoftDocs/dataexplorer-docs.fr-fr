@@ -7,12 +7,12 @@ ms.reviewer: maraheja
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/20/2020
-ms.openlocfilehash: 3af348677bf520d1ccd78388bb6a7a30506e572d
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 857c654c70a2170a42902514718a52fbf7b02944
+ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92249992"
+ms.lasthandoff: 11/04/2020
+ms.locfileid: "93349458"
 ---
 # <a name="use-a-jupyter-notebook-and-kqlmagic-extension-to-analyze-data-in-azure-data-explorer"></a>Utiliser un notebook Jupyter et l’extension kqlmagic pour analyser des données dans Azure Data Explorer
 
@@ -22,7 +22,7 @@ Jupyter Notebook est une application web open source qui vous permet de créer e
 ## <a name="prerequisites"></a>Prérequis
 
 - Un compte e-mail professionnel qui est membre d’Azure Active Directory (Azure AD).
-- Jupyter Notebook installé sur votre ordinateur local ou utiliser [Azure Data Studio](https://docs.microsoft.com/sql/azure-data-studio/notebooks/notebooks-kqlmagic?view=sql-server-ver15)
+- Jupyter Notebook installé sur votre ordinateur local ou utiliser [Azure Data Studio](/sql/azure-data-studio/notebooks/notebooks-kqlmagic?view=sql-server-ver15)
 
 ## <a name="install-kqlmagic-library"></a>Installer la bibliothèque kqlmagic
 
@@ -42,7 +42,7 @@ Jupyter Notebook est une application web open source qui vous permet de créer e
     
 ## <a name="connect-to-the-azure-data-explorer-help-cluster"></a>Se connecter au cluster d’aide d’Azure Data Explorer
 
-Utilisez la commande suivante pour vous connecter aux *exemples* de base de données hébergés sur le cluster d’ *aide* . Pour les utilisateurs Azure AD non-Microsoft, remplacez le nom de locataire `Microsoft.com` par votre locataire Azure AD.
+Utilisez la commande suivante pour vous connecter aux *exemples* de base de données hébergés sur le cluster d’ *aide*. Pour les utilisateurs Azure AD non-Microsoft, remplacez le nom de locataire `Microsoft.com` par votre locataire Azure AD.
 
 ```python
 %kql AzureDataExplorer://tenant="Microsoft.com";code;cluster='help';database='Samples'

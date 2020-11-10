@@ -10,14 +10,14 @@ ms.topic: reference
 ms.date: 09/11/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 035705e0a15ab686af16b9e8b2a00268db21d6a2
-ms.sourcegitcommit: c140bc3bc984f861df0b85e672d2e685e6659a54
+ms.openlocfilehash: 7c95f7676ecdc88deefeae5db3f904dd5048a5ba
+ms.sourcegitcommit: 25c0440cb0390b9629b819611844f1375de00a66
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90109981"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94417589"
 ---
-# <a name="cosmosdb_sql_request-plugin"></a>plug-in cosmosdb_sql_request
+# <a name="cosmosdb_sql_request-plugin"></a>cosmosdb_sql_request, plug-in
 
 ::: zone pivot="azuredataexplorer"
 
@@ -25,13 +25,13 @@ Le `cosmosdb_sql_request` plug-in envoie une requête SQL à un point de termina
 
 ## <a name="syntax"></a>Syntaxe
 
-`evaluate``cosmosdb_sql_request` `(` *ConnectionString* `,` *SqlQuery* [ `,` *SqlParameters* [ `,` *options*]]`)`
+`evaluate``cosmosdb_sql_request` `(` *ConnectionString* `,` *SqlQuery* [ `,` *SqlParameters* [ `,` *options* ]]`)`
 
 ## <a name="arguments"></a>Arguments
 
 |Nom de l’argument | Description | Obligatoire ou facultatif | 
 |---|---|---|
-| *ConnectionString* | `string`Littéral indiquant la chaîne de connexion qui pointe vers la collection de Cosmos dB à interroger. Il doit inclure *AccountEndpoint*, *Database*et *collection*. Elle peut inclure *AccountKey* si une clé principale est utilisée pour l’authentification. <br> **Exemple :** `'AccountEndpoint=https://cosmosdbacc.documents.azure.com:443/ ;Database=MyDatabase;Collection=MyCollection;AccountKey=' h'R8PM...;'`| Obligatoire |
+| *ConnectionString* | `string`Littéral indiquant la chaîne de connexion qui pointe vers la collection de Cosmos dB à interroger. Il doit inclure *AccountEndpoint* , *Database* et *collection*. Elle peut inclure *AccountKey* si une clé principale est utilisée pour l’authentification. <br> **Exemple :** `'AccountEndpoint=https://cosmosdbacc.documents.azure.com:443/ ;Database=MyDatabase;Collection=MyCollection;AccountKey=' h'R8PM...;'`| Obligatoire |
 | *SqlQuery*| `string`Littéral indiquant la requête à exécuter. | Obligatoire |
 | *SqlParameters* | Valeur constante de type `dynamic` qui contient des paires clé-valeur à passer comme paramètres avec la requête. Les noms de paramètres doivent commencer par `@` . | Facultatif |
 | *Options* | Valeur constante de type `dynamic` qui contient des paramètres plus avancés en tant que paires clé-valeur. | Facultatif |
@@ -42,7 +42,7 @@ Le `cosmosdb_sql_request` plug-in envoie une requête SQL à un point de termina
 
 ## <a name="set-callout-policy"></a>Définir la stratégie de légende
 
-Le plug-in fait des légendes sur le Cosmos DB. Assurez-vous que la [stratégie de légende](../management/calloutpolicy.md) du cluster autorise les appels de type `cosmosdb` au *CosmosDbUri*cible.
+Le plug-in fait des légendes sur le Cosmos DB. Assurez-vous que la [stratégie de légende](../management/calloutpolicy.md) du cluster autorise les appels de type `cosmosdb` au *CosmosDbUri* cible.
 
 L’exemple suivant montre comment définir la stratégie de légende pour Cosmos DB. Il est recommandé de le limiter à des points de terminaison spécifiques ( `my_endpoint1` , `my_endpoint2` ).
 
@@ -50,12 +50,12 @@ L’exemple suivant montre comment définir la stratégie de légende pour Cosmo
 [
   {
     "CalloutType": "CosmosDB",
-    "CalloutUriRegex": "my_endpoint1.documents.azure.com",
+    "CalloutUriRegex": "my_endpoint1\\.documents\\.azure\\.com",
     "CanCall": true
   },
   {
     "CalloutType": "CosmosDB",
-    "CalloutUriRegex": "my_endpoint2.documents.azure.com",
+    "CalloutUriRegex": "my_endpoint2\\.documents\\.azure\\.com",
     "CanCall": true
   }
 ]
