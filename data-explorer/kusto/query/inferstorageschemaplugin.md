@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 3c3aa61bdb804d2a1bd6735ea4a22e06e1f1878e
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 895f12799f4c44346af2b6b9be43bf98b7cf870e
+ms.sourcegitcommit: e820a59191d2ca4394e233d51df7a0584fa4494d
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92249002"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94446206"
 ---
 # <a name="infer_storage_schema-plugin"></a>infer_storage_schema, plug-in
 
@@ -60,7 +60,7 @@ Le `infer_storage_schema` plug-in retourne une table de résultats unique conten
 ```kusto
 let options = dynamic({
   'StorageContainers': [
-    h@'https://storageaccount.blob.core.windows.net/MovileEvents/2015;secretKey'
+    h@'https://storageaccount.blob.core.windows.net/MovileEvents;secretKey'
   ],
   'FileExtension': '.parquet',
   'FileNamePrefix': 'part-',
@@ -74,3 +74,18 @@ evaluate infer_storage_schema(options)
 |CslSchema|
 |---|
 |app_id : String, user_id : long, event_time : DateTime, Country : String, ville : String, device_type : String, device_vendor : String, ad_network : String, Campaign : String, site_id : String, event_type : String, event_name : String, organique : String, days_from_install : int, revenue : Real|
+
+Utilisez le schéma retourné dans la définition de la table externe :
+
+```kusto
+.create external table MobileEvents(
+    app_id:string, user_id:long, event_time:datetime, country:string, city:string, device_type:string, device_vendor:string, ad_network:string, campaign:string, site_id:string, event_type:string, event_name:string, organic:string, days_from_install:int, revenue:real
+)
+kind=blob
+partition by (dt:datetime = bin(event_time, 1d), app:string = app_id)
+pathformat = ('app=' app '/dt=' datetime_pattern('yyyyMMdd', dt))
+dataformat = parquet
+(
+    h@'https://storageaccount.blob.core.windows.net/MovileEvents;secretKey'
+)
+```

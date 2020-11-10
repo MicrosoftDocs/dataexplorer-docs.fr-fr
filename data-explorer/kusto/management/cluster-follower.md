@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/18/2020
-ms.openlocfilehash: 73b65cc59ff98bc658c542d690812ccf5ad3895a
-ms.sourcegitcommit: e1e35431374f2e8b515bbe2a50cd916462741f49
+ms.openlocfilehash: 26412683be35825a38f959de62292f3735e7a894
+ms.sourcegitcommit: e820a59191d2ca4394e233d51df7a0584fa4494d
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82108454"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94446223"
 ---
 # <a name="cluster-follower-commands"></a>Commandes du suiveur de cluster
 
@@ -27,12 +27,11 @@ Les commandes de suivi incluent des commandes [au niveau de la base de données]
 
 Affiche une base de données (ou des bases de données) suivie d’un autre cluster leader, avec un ou plusieurs remplacements de niveau base de données configurés.
 
-
 **Syntaxe**
 
-`.show``follower` *DatabaseName* DatabaseName `database`
+`.show``follower` `database` *DatabaseName*
 
-`.show``follower` `,`DatabaseName1... *DatabaseName1* `databases` `(` `,` *DatabaseNameN*`)`
+`.show``follower` `databases` `(` *DatabaseName1* `,` ...`,` *DatabaseNameN*`)`
 
 **Sortie** 
 
@@ -42,8 +41,8 @@ Affiche une base de données (ou des bases de données) suivie d’un autre clus
 | LeaderClusterMetadataPath            | String  | Chemin d’accès au conteneur de métadonnées du cluster de leader.                                                               |
 | CachingPolicyOverride                | String  | Une stratégie de mise en cache de substitution pour la base de données, sérialisée au format JSON ou null.                                         |
 | AuthorizedPrincipalsOverride         | String  | Collection de substitution des principaux autorisés pour la base de données, sérialisée au format JSON ou null.                    |
-| AuthorizedPrincipalsModificationKind | String  | Type de modification à appliquer à l’aide`none`de `union` AuthorizedPrincipalsOverride `replace`(, ou).                  |
-| CachingPoliciesModificationKind      | String  | Le type de modification à appliquer à l’aide de la base de données ou de la`none`stratégie `union` de `replace`mise en cache au niveau de la table remplace (, ou). |
+| AuthorizedPrincipalsModificationKind | String  | Type de modification à appliquer à l’aide de AuthorizedPrincipalsOverride ( `none` , `union` ou `replace` ).                  |
+| CachingPoliciesModificationKind      | String  | Le type de modification à appliquer à l’aide de la base de données ou de la stratégie de mise en cache au niveau de la table remplace ( `none` , `union` ou `replace` ). |
 | IsAutoPrefetchEnabled                | Boolean | Si les nouvelles données sont préalablement extraites à chaque actualisation du schéma.        |
 | TableMetadataOverrides               | String  | Sérialisation JSON des substitutions de propriété au niveau de la table (si elles sont définies).                                      |
 
@@ -51,12 +50,10 @@ Affiche une base de données (ou des bases de données) suivie d’un autre clus
 
 Modifie une stratégie de mise en cache de la base de données, afin de remplacer celle définie sur la base de données source dans le cluster leader. Il nécessite des [autorisations DatabaseAdmin](../management/access-control/role-based-authorization.md).
 
-
-
 **Remarques**
 
-* La valeur `modification kind` par défaut pour les `union`stratégies de mise en cache est. Pour modifier le `modification kind` , utilisez la commande [. Alter suiveur Database Caching-Policies-modification-Kind](#alter-follower-database-caching-policies-modification-kind) .
-* L’affichage de la stratégie ou des stratégies effectives après la modification peut `.show` être effectué à l’aide des commandes suivantes :
+* La valeur par défaut `modification kind` pour les stratégies de mise en cache est `union` . Pour modifier le, `modification kind` Utilisez la commande [. Alter suiveur Database Caching-Policies-modification-Kind](#alter-follower-database-caching-policies-modification-kind) .
+* L’affichage de la stratégie ou des stratégies effectives après la modification peut être effectué à l’aide des `.show` commandes suivantes :
     * [. afficher la conservation de la stratégie de base de données](../management/retention-policy.md#show-retention-policy)
     * [. afficher les détails de la base de données](../management/show-databases.md)
     * [.show table details](show-tables-command.md)
@@ -64,13 +61,9 @@ Modifie une stratégie de mise en cache de la base de données, afin de remplace
 
 **Syntaxe**
 
-`.alter``follower` `=` *HotDataSpan* *DatabaseName* HotDataSpan DatabaseName `policy` `caching` `hot` `database`
-
-
+`.alter``follower` `database` *DatabaseName* `policy` `caching` `hot` `=` *HotDataSpan* DatabaseName
 
 **Exemple**
-
-
 
 ```kusto
 .alter follower database MyDb policy caching hot = 7d
@@ -83,7 +76,7 @@ Il nécessite des [autorisations DatabaseAdmin](../management/access-control/rol
 
 **Remarques**
 
-* L’affichage de la stratégie ou des stratégies effectives après la modification peut `.show` être effectué à l’aide des commandes suivantes :
+* L’affichage de la stratégie ou des stratégies effectives après la modification peut être effectué à l’aide des `.show` commandes suivantes :
     * [. afficher la conservation de la stratégie de base de données](../management/retention-policy.md#show-retention-policy)
     * [. afficher les détails de la base de données](../management/show-databases.md)
     * [.show table details](show-tables-command.md)
@@ -91,7 +84,7 @@ Il nécessite des [autorisations DatabaseAdmin](../management/access-control/rol
 
 **Syntaxe**
 
-`.delete``follower` `policy` *DatabaseName* DatabaseName `database``caching`
+`.delete``follower` `database` *DatabaseName* DatabaseName `policy``caching`
 
 **Exemple**
 
@@ -103,31 +96,22 @@ Il nécessite des [autorisations DatabaseAdmin](../management/access-control/rol
 
 Ajoute le ou les principaux autorisés à la collection de bases de données de la base de données principale des principaux autorisés de remplacement. Elle requiert l' [autorisation DatabaseAdmin](../management/access-control/role-based-authorization.md).
 
-
-
 **Remarques**
 
-* La valeur `modification kind` par défaut pour ces principaux autorisés `none`est. Pour modifier l' `modification kind` [instruction USE ALTER suivra Database principals-modification-genre](#alter-follower-database-principals-modification-kind).
-* L’affichage de la collection effective des principaux après la modification peut être effectué à `.show` l’aide des commandes suivantes :
+* La valeur par défaut `modification kind` pour ces principaux autorisés est `none` . Pour modifier l' `modification kind`  [instruction USE ALTER suivra Database principals-modification-genre](#alter-follower-database-principals-modification-kind).
+* L’affichage de la collection effective des principaux après la modification peut être effectué à l’aide des `.show` commandes suivantes :
     * [. afficher les principaux de la base de données](../management/security-roles.md#managing-database-security-roles)
     * [. afficher les détails de la base de données](../management/show-databases.md)
 * L’affichage des paramètres de remplacement sur la base de données du suiveur après la modification peut être effectué à l’aide [de. afficher la base de données du suiveur](#show-follower-database)
 
 **Syntaxe**
 
-`.add``follower` `admins` |  *DatabaseName* *principal1*Principal1 rôle DatabaseName (`users` | ) | ..`monitors``viewers` `(` `database` `,` `,` *principaln* `)` [`'`*notes*remarques`'`]
-
-
-
+`.add``follower` `database` *DatabaseName* `admins`  |  `users`  |  `viewers`  |  `monitors` Principal1 rôle DatabaseName () `(` *principal1* `,` ... `,` *principaln* `)` [ `'` *Remarques* `'` ]
 
 **Exemple**
 
 ```kusto
 .add follower database MyDB viewers ('aadgroup=mygroup@microsoft.com') 'My Group'
-```
-
-```kusto
-
 ```
 
 ### <a name="drop-follower-database-principals"></a>. supprimer les principaux principaux de la base de données
@@ -137,14 +121,14 @@ Il nécessite des [autorisations DatabaseAdmin](../management/access-control/rol
 
 **Remarques**
 
-* L’affichage de la collection effective des principaux après la modification peut être effectué à `.show` l’aide des commandes suivantes :
+* L’affichage de la collection effective des principaux après la modification peut être effectué à l’aide des `.show` commandes suivantes :
     * [. afficher les principaux de la base de données](../management/security-roles.md#managing-database-security-roles)
     * [. afficher les détails de la base de données](../management/show-databases.md)
 * L’affichage des paramètres de remplacement sur la base de données du suiveur après la modification peut être effectué à l’aide [de. afficher la base de données du suiveur](#show-follower-database)
 
 **Syntaxe**
 
-`.drop``follower` `monitors` *DatabaseName* `(` *principal1*DatabaseName (`admins` | `users`) principal1`,`. | .. `database` `viewers` |  `,` *principaln*`)`
+`.drop``follower` `database` *DatabaseName* ( `admins`  |  `users`  |  `viewers`  |  `monitors` ) `(` *principal1* `,` ... `,` *principaln*`)`
 
 **Exemple**
 
@@ -158,17 +142,15 @@ Modifie le type de modification du principal de la base de données. Il nécessi
 
 **Remarques**
 
-* L’affichage de la collection effective des principaux après la modification peut être effectué à `.show` l’aide des commandes suivantes :
+* L’affichage de la collection effective des principaux après la modification peut être effectué à l’aide des `.show` commandes suivantes :
     * [. afficher les principaux de la base de données](../management/security-roles.md#managing-database-security-roles)
     * [. afficher les détails de la base de données](../management/show-databases.md)
 * L’affichage des paramètres de remplacement sur la base de données du suiveur après la modification peut être effectué à l’aide [de. afficher la base de données du suiveur](#show-follower-database)
 
 **Syntaxe**
 
-`.alter``follower`  |  *DatabaseName*  | DatabaseName`replace`= (`none`) `database` 
- `principals-modification-kind` `union`
-
-
+`.alter``follower` `database` *DatabaseName* 
+ `principals-modification-kind` = ( `none`  |  `union`  |  `replace` )
 
 **Exemple**
 
@@ -182,16 +164,14 @@ Modifie le type de modification de la base de données et des stratégies de mis
 
 **Remarques**
 
-* L’affichage de la collection efficace de stratégies de mise en cache au niveau de la table ou de la base `.show` de données après la modification peut être effectué à l’aide des commandes standard :
+* L’affichage de la collection efficace de stratégies de mise en cache au niveau de la table ou de la base de données après la modification peut être effectué à l’aide des `.show` commandes standard :
     * [. afficher les détails des tables](show-tables-command.md)
     * [. afficher les détails de la base de données](../management/show-databases.md)
 * L’affichage des paramètres de remplacement sur la base de données du suiveur après la modification peut être effectué à l’aide [de. afficher la base de données du suiveur](#show-follower-database)
 
 **Syntaxe**
 
-`.alter``follower` `union` *DatabaseName* `replace`DatabaseName = ()`none` |  `database` `caching-policies-modification-kind`  | 
-
-
+`.alter``follower` `database` *DatabaseName* `caching-policies-modification-kind` = ( `none`  |  `union`  |  `replace` )
 
 **Exemple**
 
@@ -199,7 +179,29 @@ Modifie le type de modification de la base de données et des stratégies de mis
 .alter follower database MyDB caching-policies-modification-kind = union
 ```
 
+### <a name="alter-follower-database-prefetch-extents"></a>. Alter de la base de données du suiveur-étendues
 
+Il est possible que le cluster de suivi ne fasse pas de nouvelles requêtes de données avant d’être extrait du stockage sous-jacent vers le disque SSD (cache) des nœuds.
+
+La commande suivante modifie la configuration de la base de données de suivi pour la pré-récupération de nouvelles étendues à chaque actualisation du schéma. Il nécessite des [autorisations DatabaseAdmin](../management/access-control/role-based-authorization.md).
+
+> [!WARNING]
+> * L’activation de ce paramètre peut potentiellement dégrader l’actualisation des données dans la base de données de suivi.
+> * La configuration par défaut est `false` et il est recommandé de conserver cette valeur par défaut.
+> * Lorsque vous choisissez de modifier le paramètre `true` , il est recommandé d’évaluer attentivement l’impact sur l’actualisation d’une période après la modification de la configuration.
+
+**Syntaxe**
+
+`.alter``follower` `database` *DatabaseName* `prefetch-extents` = ( `true`  |  `false` )
+
+`.alter``follower` `database` *DatabaseName* [ `from` `h@'` *chemin vers le conteneur de métadonnées du cluster de leader* `'` ] `prefetch-extents` = ( `true`  |  `false` )
+
+**Exemple**
+
+<!-- csl -->
+```
+.alter follower database MyDB prefetch-extents = false
+```
 
 ## <a name="table-level-commands"></a>Commandes au niveau de la table
 
@@ -208,11 +210,9 @@ Modifie le type de modification de la base de données et des stratégies de mis
 Modifie une stratégie de mise en cache au niveau de la table sur la base de données de suivi, pour remplacer la stratégie définie sur la base de données source dans le cluster leader.
 Il nécessite des [autorisations DatabaseAdmin](../management/access-control/role-based-authorization.md). 
 
-
-
 **Remarques**
 
-* L’affichage de la stratégie ou des stratégies effectives après la modification peut `.show` être effectué à l’aide des commandes suivantes :
+* L’affichage de la stratégie ou des stratégies effectives après la modification peut être effectué à l’aide des `.show` commandes suivantes :
     * [. afficher la conservation de la stratégie de base de données](../management/retention-policy.md#show-retention-policy)
     * [. afficher les détails de la base de données](../management/show-databases.md)
     * [.show table details](show-tables-command.md)
@@ -220,17 +220,11 @@ Il nécessite des [autorisations DatabaseAdmin](../management/access-control/rol
 
 **Syntaxe**
 
+`.alter``follower` `database` *DatabaseName* table *TableName* `policy` `caching` `hot` `=` *HotDataSpan*
 
-
-
-
-`.alter``follower` `=` *HotDataSpan* *DatabaseName* `caching` *TableName* DatabaseName table TableName `policy` HotDataSpan `database` `hot`
-
-`.alter``follower` `(` *DatabaseName* `,`Tables DatabaseName *TableName1*. `database` .. `,` *TableNameN* TableNameN`)` *HotDataSpan* HotDataSpan `policy` `caching` `hot` `=`
+`.alter``follower` `database` *DatabaseName* Tables DatabaseName `(` *TableName1* `,` ... `,` *TableNameN* `)` `policy` `caching` `hot` `=` *HotDataSpan*
 
 **Exemple**
-
-
 
 ```kusto
 .alter follower database MyDb tables (Table1, Table2) policy caching hot = 7d
@@ -242,7 +236,7 @@ Supprime une stratégie de mise en cache au niveau de la table de substitution s
 
 **Remarques**
 
-* L’affichage de la stratégie ou des stratégies effectives après la modification peut `.show` être effectué à l’aide des commandes suivantes :
+* L’affichage de la stratégie ou des stratégies effectives après la modification peut être effectué à l’aide des `.show` commandes suivantes :
     * [. afficher la conservation de la stratégie de base de données](../management/retention-policy.md#show-retention-policy)
     * [. afficher les détails de la base de données](../management/show-databases.md)
     * [.show table details](show-tables-command.md)
@@ -250,9 +244,9 @@ Supprime une stratégie de mise en cache au niveau de la table de substitution s
 
 **Syntaxe**
 
-`.delete``follower` `table` *TableName* *DatabaseName* DatabaseName, `policy` table `database``caching`
+`.delete``follower` `database` *DatabaseName* , `table` *TableName* table `policy``caching`
 
-`.delete``follower` `,` *DatabaseName* *TableName1*TableName1 DatabaseName `tables` . `(`.. `database` `,``)` *TableNameN* TableNameN `policy``caching`
+`.delete``follower` `database` *DatabaseName* `tables` `(` *TableName1* DatabaseName `,` ... `,` *TableNameN* `)` `policy``caching`
 
 **Exemple**
 
@@ -266,47 +260,47 @@ Voici quelques exemples de procédure de configuration d’une base de données 
 
 Dans cet exemple :
 
-* Notre cluster de suivi, `MyFollowerCluster` sera suivi de la `MyDatabase` base de données du cluster `MyLeaderCluster`leader,.
-    * `MyDatabase`contient `N` des tables `MyTable1`: `MyTable2`, `MyTable3`,,... `MyTableN` (`N` > 3).
+* Notre cluster de suivi, `MyFollowerCluster` sera suivi de la base de données `MyDatabase` du cluster leader, `MyLeaderCluster` .
+    * `MyDatabase` contient `N` des tables : `MyTable1` , `MyTable2` , `MyTable3` ,... `MyTableN` ( `N` > 3).
     * Sur `MyLeaderCluster`:
     
-    | `MyTable1`stratégie de mise en cache | `MyTable2`stratégie de mise en cache | `MyTable3`... `MyTableN` stratégie de mise en cache   | `MyDatabase`Principaux autorisés                                                    |
+    | `MyTable1` stratégie de mise en cache | `MyTable2` stratégie de mise en cache | `MyTable3`...`MyTableN` stratégie de mise en cache   | `MyDatabase` Principaux autorisés                                                    |
     |---------------------------|---------------------------|------------------------------------------|---------------------------------------------------------------------------------------|
-    | étendue de données à chaud =`7d`      | étendue de données à chaud =`30d`     | étendue de données à chaud =`365d`                   | *Visionneuses* = `aadgroup=scubadivers@contoso.com`; *Administrateurs* = `aaduser=jack@contoso.com` |
+    | étendue de données à chaud = `7d`      | étendue de données à chaud = `30d`     | étendue de données à chaud = `365d`                   | *Visionneuses*  =  `aadgroup=scubadivers@contoso.com` ; *Administrateurs* = `aaduser=jack@contoso.com` |
      
     * Sur `MyFollowerCluster` nous voulons :
     
-    | `MyTable1`stratégie de mise en cache | `MyTable2`stratégie de mise en cache | `MyTable3`... `MyTableN` stratégie de mise en cache   | `MyDatabase`Principaux autorisés                                                    |
+    | `MyTable1` stratégie de mise en cache | `MyTable2` stratégie de mise en cache | `MyTable3`...`MyTableN` stratégie de mise en cache   | `MyDatabase` Principaux autorisés                                                    |
     |---------------------------|---------------------------|------------------------------------------|---------------------------------------------------------------------------------------|
-    | étendue de données à chaud =`1d`      | étendue de données à chaud =`3d`      | étendue de données à `0d` chaud = (rien n’est mis en cache) | *Admins* = Administrateurs`aaduser=jack@contoso.com`, *visionneuses* = `aaduser=jill@contoso.com`         |
+    | étendue de données à chaud = `1d`      | étendue de données à chaud = `3d`      | étendue de données à chaud = `0d` (rien n’est mis en cache) | *Administrateurs*  =  `aaduser=jack@contoso.com` , *visionneuses* = `aaduser=jill@contoso.com`         |
 
 > [!IMPORTANT] 
-> `MyFollowerCluster` Et `MyLeaderCluster` doivent se trouver dans la même région.
+> `MyFollowerCluster`Et `MyLeaderCluster` doivent se trouver dans la même région.
 
 ### <a name="steps-to-execute"></a>Étapes à exécuter
 
-*Condition préalable :* Configurer le `MyFollowerCluster` cluster pour suivre `MyDatabase` la base `MyLeaderCluster`de données du cluster.
+*Condition préalable :* Configurer le cluster `MyFollowerCluster` pour suivre la base de données `MyDatabase` du cluster `MyLeaderCluster` .
 
 > [!NOTE]
-> Le principal qui exécute les commandes de contrôle est censé être `DatabaseAdmin` un sur `MyDatabase`la base de données.
+> Le principal qui exécute les commandes de contrôle est censé être un `DatabaseAdmin` sur la base de données `MyDatabase` .
 
 #### <a name="show-the-current-configuration"></a>Afficher la configuration actuelle
 
-Consultez la configuration actuelle en fonction de `MyDatabase` laquelle est suivi `MyFollowerCluster`:
+Consultez la configuration actuelle en fonction de laquelle `MyDatabase` est suivi `MyFollowerCluster` :
 
 ```kusto
 .show follower database MyDatabase
 | evaluate narrow() // just for presentation purposes
 ```
 
-| Colonne                              | Value                                                    |
+| Colonne                              | Valeur                                                    |
 |-------------------------------------|----------------------------------------------------------|
 |nom_base_de_données                         | Mabdd                                               |
 |LeaderClusterMetadataPath            | `https://storageaccountname.blob.core.windows.net/cluster` |
 |CachingPolicyOverride                | null                                                     |
 |AuthorizedPrincipalsOverride         | []                                                       |
-|AuthorizedPrincipalsModificationKind | None                                                     |
-|IsAutoPrefetchEnabled                | False                                                    |
+|AuthorizedPrincipalsModificationKind | Aucun                                                     |
+|IsAutoPrefetchEnabled                | Faux                                                    |
 |TableMetadataOverrides               |                                                          |
 |CachingPoliciesModificationKind      | Union                                                    |                                                                                                                      |
 
@@ -322,16 +316,16 @@ Remplacez la collection de principaux autorisés pour `MyDatabase` on `MyFollowe
 .alter follower database MyDatabase principals-modification-kind = replace
 ```
 
-Seuls les deux principaux spécifiques sont autorisés à accéder `MyDatabase` à sur`MyFollowerCluster`
+Seuls les deux principaux spécifiques sont autorisés à accéder à `MyDatabase` sur `MyFollowerCluster`
 
 ```kusto
 .show database MyDatabase principals
 ```
 
-| Rôle                       | PrincipalType | PrincipalDisplayName                        | PrincipalObjectId                    | PrincipalFQN                                                                      | Notes |
+| Role                       | PrincipalType | PrincipalDisplayName                        | PrincipalObjectId                    | PrincipalFQN                                                                      | Notes |
 |----------------------------|---------------|---------------------------------------------|--------------------------------------|-----------------------------------------------------------------------------------|-------|
-| Administration de base de données MyDatabase  | Utilisateur AAD      | Kusto Jack (UPN : jack@contoso.com)       | 12345678-ABCD-efef-1234-350bf486087b | aaduser = 87654321-ABCD-efef-1234-350bf486087b ; 55555555-4444-3333-2222-2d7cd011db47 |       |
-| Visionneuse de base de données mabdd | Utilisateur AAD      | Jill Kusto (UPN : jack@contoso.com)       | abcdefab-abcd-efef-1234-350bf486087b | aaduser = 54321789-ABCD-efef-1234-350bf486087b ; 55555555-4444-3333-2222-2d7cd011db47 |       |
+| Administration de base de données MyDatabase  | Utilisateur AAD      | Kusto Jack (UPN : jack@contoso.com )       | 12345678-ABCD-efef-1234-350bf486087b | aaduser = 87654321-ABCD-efef-1234-350bf486087b ; 55555555-4444-3333-2222-2d7cd011db47 |       |
+| Visionneuse de base de données mabdd | Utilisateur AAD      | Jill Kusto (UPN : jack@contoso.com )       | abcdefab-abcd-efef-1234-350bf486087b | aaduser = 54321789-ABCD-efef-1234-350bf486087b ; 55555555-4444-3333-2222-2d7cd011db47 |       |
 
 ```kusto
 .show follower database MyDatabase
@@ -346,7 +340,7 @@ Seuls les deux principaux spécifiques sont autorisés à accéder `MyDatabase` 
 
 #### <a name="override-caching-policies"></a>Remplacer les stratégies de mise en cache
 
-Remplacez la collection de stratégies de base de données et de mise `MyDatabase` en `MyFollowerCluster` cache au niveau de la table pour on en définissant toutes les tables de sorte que `MyTable1`leurs `MyTable2` données *ne soient pas* mises en cache, à l’exception de `3d`deux tables spécifiques,-dont les données seront mises en cache pour les périodes de `1d` et, respectivement :
+Remplacez la collection de stratégies de base de données et de mise en cache au niveau de la table pour `MyDatabase` on `MyFollowerCluster` en définissant toutes les tables de sorte que leurs données *ne soient pas* mises en cache, à l’exception de deux tables spécifiques `MyTable1` , `MyTable2` -dont les données seront mises en cache pour les périodes de `1d` et `3d` , respectivement :
 
 ```kusto
 .alter follower database MyDatabase policy caching hot = 0d
@@ -358,7 +352,7 @@ Remplacez la collection de stratégies de base de données et de mise `MyDatabas
 .alter follower database MyDatabase caching-policies-modification-kind = replace
 ```
 
-Seules ces deux tables spécifiques ont des données mises en cache, et les autres tables ont une période de données à `0d`chaud de :
+Seules ces deux tables spécifiques ont des données mises en cache, et les autres tables ont une période de données à chaud de `0d` :
 
 ```kusto
 .show tables details
@@ -383,20 +377,20 @@ Seules ces deux tables spécifiques ont des données mises en cache, et les autr
 
 #### <a name="summary"></a>Résumé
 
-Consultez la configuration actuelle où `MyDatabase` est suivi `MyFollowerCluster`:
+Consultez la configuration actuelle où `MyDatabase` est suivi `MyFollowerCluster` :
 
 ```kusto
 .show follower database MyDatabase
 | evaluate narrow() // just for presentation purposes
 ```
 
-| Colonne                              | Value                                                                                                                                                                           |
+| Colonne                              | Valeur                                                                                                                                                                           |
 |-------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |nom_base_de_données                         | Mabdd                                                                                                                                                                      |
 |LeaderClusterMetadataPath            | `https://storageaccountname.blob.core.windows.net/cluster`                                                                                                                        |
 |CachingPolicyOverride                | {"DataHotSpan" : {"value" : "00:00:00"}, "IndexHotSpan" : {"value" : "00:00:00"}}                                                                                                        |
 |AuthorizedPrincipalsOverride         | [{"Principal" : {"FullyQualifiedName" : "aaduser = 87654321-ABCD-efef-1234-350bf486087b",...}, {"principal" : {"FullyQualifiedName" : "aaduser = 54321789-ABCD-efef-1234-350bf486087b",...}] |
 |AuthorizedPrincipalsModificationKind | Replace                                                                                                                                                                         |
-|IsAutoPrefetchEnabled                | False                                                                                                                                                                           |
+|IsAutoPrefetchEnabled                | Faux                                                                                                                                                                           |
 |TableMetadataOverrides               | {"MyTargetTable" : {"CachingPolicyOverride" : {"DataHotSpan" : {"value" : "3.00:00:00"}...}, "MySourceTable" : {"CachingPolicyOverride" : {"DataHotSpan" : {"value" : "1.00:00:00"},...}}}       |
 |CachingPoliciesModificationKind      | Replace                                                                                                                                                                         |
