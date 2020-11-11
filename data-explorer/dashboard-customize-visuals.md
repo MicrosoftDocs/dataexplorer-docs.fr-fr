@@ -8,12 +8,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/25/2020
-ms.openlocfilehash: 22463307df0358228469fe480f5578222bed52bf
-ms.sourcegitcommit: a4779e31a52d058b07b472870ecd2b8b8ae16e95
+ms.openlocfilehash: 630b57dc12b3ed0fac797dcc57f3b38c13a0e476
+ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/02/2020
-ms.locfileid: "89379732"
+ms.lasthandoff: 11/04/2020
+ms.locfileid: "93349514"
 ---
 # <a name="customize-azure-data-explorer-dashboard-visuals"></a>Personnaliser les visuels du tableau de bord Azure Data Explorer
 
@@ -66,6 +66,12 @@ Le visuel de graphique en courbes est le type de graphique le plus élémentaire
 
 Le visuel stat montre un seul élément. Si la sortie contient plusieurs colonnes et lignes, le visuel stat montre le premier élément de la première colonne. Des cartes stat sont utiles pour mettre en évidence les indicateurs de performance clés sur le tableau de bord.
 
+### <a name="multi-stat"></a>Statistiques multiples
+
+:::image type="content" source="media/dashboard-customize-visuals/multistat.png" alt-text="type de visuel à statistiques multiples":::
+
+Le visuel à statistiques multiples présente plusieurs cartes de statistique dans un groupe à l’aide d’un résultat de requête unique. Deux colonnes sont nécessaires : une pour l’étiquette et l’autre pour la valeur. Les utilisateurs peuvent utiliser une option de mise en forme visuelle pour personnaliser la disposition de la sortie à afficher en sélectionnant le nombre de lignes et de colonnes. En plus d’être plus pratique, cette option de mise en forme permet de réduire la charge du cluster lorsque les clients utilisent des requêtes similaires pour générer plusieurs statistiques.
+
 ### <a name="pie-chart"></a>Graphique en secteurs
 
 :::image type="content" source="media/dashboard-customize-visuals/pie-chart.png" alt-text="type de visuel de graphique en secteurs":::
@@ -105,7 +111,7 @@ Les cartes sont utiles pour visualiser les données avec des coordonnées géogr
 ## <a name="customize-visuals"></a>Personnaliser les visuels
 
 1. Sélectionnez **Modifier** dans le menu du tableau de bord pour passer en mode d’édition.
-1. Pour accéder à la boîte de dialogue de personnalisation des visuels sur une carte, cliquez sur le menu déroulant > **Modifier la carte**. Lorsque vous créez une carte avec **Ajouter une requête**, vous pouvez également sélectionner **Modifier la carte**.
+1. Pour accéder à la boîte de dialogue de personnalisation des visuels sur une carte, cliquez sur le menu déroulant > **Modifier la carte**. Lorsque vous créez une carte avec **Ajouter une requête** , vous pouvez également sélectionner **Modifier la carte**.
 
 :::image type="content" source="media/dashboard-customize-visuals/edit-card.png" alt-text="modifier la carte pour la personnalisation des visuels":::
 
@@ -120,8 +126,10 @@ Utilisez les propriétés suivantes pour personnaliser les visuels.
 |**Général**    |    Sélectionnez le format de graphique **empilé** ou **non empilé**.  | Graphiques à barres, histogrammes et graphiques en aires |
 |**Données**    |   Sélectionnez les **colonnes Y et X** pour votre visuel. Conservez la sélection **Infer** pour que la plateforme sélectionne automatiquement une colonne en fonction du résultat de la requête.    |Graphiques à barres, histogrammes, graphiques à nuages de points et graphiques d’anomalies|
 |**Légende**    |   Activez ou désactivez pour afficher ou masquer l’affichage des légendes sur vos visuels.   |Graphiques à barres, histogrammes, graphiques en aires, graphiques en courbes, graphiques à nuages de points, graphiques d’anomalies et graphiques temporels |
-|**Axe Y**     |   Permet la personnalisation des propriétés de l’axe des ordonnées (y) : <ul><li>**Étiquette** : Texte pour une étiquette personnalisée. </li><li>**Valeur maximale** : Modifiez la valeur maximale de l’axe des ordonnées (y).  </li><li>**Valeur minimale** : Modifiez la valeur minimale de l’axe des ordonnées (y).  </li></ul>      |Graphiques à barres, histogrammes, graphiques en aires, graphiques en courbes, graphiques à nuages de points, graphiques d’anomalies et graphiques temporels |
-|**Axe des abscisses (x)**     |    Permet la personnalisation des propriétés de l’axe des abscisses (x) : <ul><li>**Étiquette** : Texte pour une étiquette personnalisée. </li>     | Graphiques à barres, histogrammes, graphiques en aires, graphiques en courbes, graphiques à nuages de points, graphiques d’anomalies et graphiques temporels|
+|**Axe Y**     |   Permet la personnalisation des propriétés de l’axe des ordonnées (y) : <ul><li>**Étiquette**  : Texte pour une étiquette personnalisée. </li><li>**Valeur maximale**  : Modifiez la valeur maximale de l’axe des ordonnées (y).  </li><li>**Valeur minimale**  : Modifiez la valeur minimale de l’axe des ordonnées (y).  </li></ul>      |Graphiques à barres, histogrammes, graphiques en aires, graphiques en courbes, graphiques à nuages de points, graphiques d’anomalies et graphiques temporels |
+|**Axe des abscisses (x)**     |    Permet la personnalisation des propriétés de l’axe des abscisses (x). <li>**Étiquette**  : Texte pour une étiquette personnalisée. </li>     | Graphiques à barres, histogrammes, graphiques en aires, graphiques en courbes, graphiques à nuages de points, graphiques d’anomalies et graphiques temporels|
+|**Afficher les liens**     |    Permet d’activer les liens commençant par « https:// » dans les tables. <li>**Appliquer sur les colonnes**  : Sélectionnez les colonnes contenant l’URL. </li>     | Table de charge de travail|
+|**Disposition**     |    Sélectionnez la configuration de la disposition pour un visuel à statistiques multiples. <li>**Appliquer sur les colonnes**  : Sélectionnez les colonnes contenant l’URL. </li>     | Statistiques multiples|
 
 ## <a name="next-steps"></a>Étapes suivantes
 

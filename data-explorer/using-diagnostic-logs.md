@@ -7,12 +7,12 @@ ms.reviewer: guregini
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/16/2020
-ms.openlocfilehash: 5446337177d0e261bd86fbd18119c34b861b89e4
-ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
+ms.openlocfilehash: 606ae915e822cf4f2c02ac590a5bb05bdb17f28a
+ms.sourcegitcommit: 4b061374c5b175262d256e82e3ff4c0cbb779a7b
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/11/2020
-ms.locfileid: "91942384"
+ms.lasthandoff: 11/09/2020
+ms.locfileid: "94373899"
 ---
 # <a name="monitor-azure-data-explorer-ingestion-commands-and-queries-using-diagnostic-logs"></a>Superviser l’ingestion, les commandes et les requêtes Azure Data Explorer à l’aide des journaux de diagnostic
 
@@ -33,13 +33,18 @@ Vous pouvez utiliser les journaux de diagnostic pour configurer la collecte des 
 
 # <a name="ingestion"></a>[Ingestion](#tab/ingestion)
 
-* **Opérations d’ingestion réussies** : Ces journaux contiennent des informations sur les opérations d’ingestion terminées avec succès.
-* **Opérations d’ingestion ayant échoué** : Ces journaux contiennent des informations détaillées sur les échecs d’opérations d’ingestion, notamment les détails des erreurs. 
+> [!NOTE]
+> Les journaux d’ingestion sont pris en charge pour l’ingestion en file d’attente sur le point de terminaison d’ingestion à l’aide de kits SDK, de connexions de données et de connecteurs.
+>
+> Les journaux d’ingestion ne sont pas pris en charge pour l’ingestion en streaming, l’ingestion directe vers le moteur, l’ingestion à partir d’une requête ou les commandes set-or-append.
+
+* **Opérations d’ingestion réussies**  : Ces journaux contiennent des informations sur les opérations d’ingestion terminées avec succès.
+* **Opérations d’ingestion ayant échoué**  : Ces journaux contiennent des informations détaillées sur les échecs d’opérations d’ingestion, notamment les détails des erreurs. 
 
 # <a name="commands-and-queries"></a>[Commandes et requêtes](#tab/commands-and-queries)
 
-* **Commandes** : ces journaux contiennent des informations sur les commandes d’administration qui ont atteint un état final.
-* **Requêtes** : ces journaux contiennent des informations détaillées sur les requêtes qui ont atteint un état final. 
+* **Commandes**  : ces journaux contiennent des informations sur les commandes d’administration qui ont atteint un état final.
+* **Requêtes**  : ces journaux contiennent des informations détaillées sur les requêtes qui ont atteint un état final. 
 
     > [!NOTE]
     > Les données des journaux de requêtes ne contiennent pas le texte de la requête.
@@ -53,12 +58,12 @@ Les données sont ensuite archivées dans un compte de stockage, envoyées en st
 Les journaux de diagnostic sont désactivés par défaut. Pour activer les journaux de diagnostic, effectuez les étapes suivantes :
 
 1. Dans le [portail Azure](https://portal.azure.com), sélectionnez la ressource de cluster Azure Data Explorer à superviser.
-1. Sous **Supervision**, sélectionnez **Paramètres de diagnostic**.
+1. Sous **Supervision** , sélectionnez **Paramètres de diagnostic**.
   
     ![Ajouter des journaux de diagnostic](media/using-diagnostic-logs/add-diagnostic-logs.png)
 
 1. Sélectionnez **Ajouter le paramètre de diagnostic**.
-1. Dans la fenêtre **Paramètres de diagnostic** :
+1. Dans la fenêtre **Paramètres de diagnostic**  :
 
     :::image type="content" source="media/using-diagnostic-logs/configure-diagnostics-settings.png" alt-text="Configurer les paramètres de diagnostic":::
 

@@ -7,12 +7,12 @@ ms.reviewer: kedamari
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 05/12/2020
-ms.openlocfilehash: 6bf447a845954bde58a0308a03bee45f98f16111
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 68b8ca90898335a971113c1929eea49f4c0cbc5d
+ms.sourcegitcommit: 4b061374c5b175262d256e82e3ff4c0cbb779a7b
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88873231"
+ms.lasthandoff: 11/09/2020
+ms.locfileid: "94373865"
 ---
 # <a name="enable-data-purge-on-your-azure-data-explorer-cluster"></a>Activer le vidage des données dans votre cluster Azure Data Explorer
 
@@ -43,8 +43,8 @@ Azure Data Explorer (Kusto) prend en charge la suppression individuelle des enre
 > * Passez en revue les [limitations](#limitations) avant d’activer le vidage des données.
 
 1. Dans le portail Azure, accédez à votre cluster Azure Data Explorer. 
-1. Dans **Paramètres**, sélectionnez **Configurations**. 
-1. Dans le volet **Configurations**, sélectionnez **Activé** pour activer l’option **Activer le vidage**.
+1. Dans **Paramètres** , sélectionnez **Configurations**. 
+1. Dans le volet **Configurations** , sélectionnez **Activé** pour activer l’option **Activer le vidage**.
 1. Sélectionnez **Enregistrer**.
  
     ![Option Activer le vidage activée](media/data-purge-portal/enable-purge-on.png)
@@ -52,8 +52,8 @@ Azure Data Explorer (Kusto) prend en charge la suppression individuelle des enre
 ## <a name="disable-data-purge-on-your-cluster"></a>Désactiver le vidage des données sur votre cluster
 
 1. Dans le portail Azure, accédez à votre cluster Azure Data Explorer. 
-1. Dans **Paramètres**, sélectionnez **Configurations**. 
-1. Dans le volet **Configurations**, sélectionnez **Désactivé** pour désactiver l’option **Activer le vidage**.
+1. Dans **Paramètres** , sélectionnez **Configurations**. 
+1. Dans le volet **Configurations** , sélectionnez **Désactivé** pour désactiver l’option **Activer le vidage**.
 1. Sélectionnez **Enregistrer**.
 
     ![Option Activer le vidage désactivée](media/data-purge-portal/enable-purge-off.png)

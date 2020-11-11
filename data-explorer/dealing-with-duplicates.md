@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 12/19/2018
-ms.openlocfilehash: ef71c978681c9e355e82791d4df3ad7da8db66f7
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: fd277cd46a183606e35219f733dbf86b094d62f8
+ms.sourcegitcommit: 4b061374c5b175262d256e82e3ff4c0cbb779a7b
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874696"
+ms.lasthandoff: 11/09/2020
+ms.locfileid: "94373797"
 ---
 # <a name="handle-duplicate-data-in-azure-data-explorer"></a>Traiter des données en double dans Azure Data Explorer
 
@@ -70,7 +70,7 @@ DeviceEventsAll
 
 ### <a name="solution-3-filter-duplicates-during-the-ingestion-process"></a>Solution 3 : Filtrer les doublons lors du processus d’ingestion
 
-Une autre solution consiste à filtrer les doublons pendant le processus d’ingestion. Le système ignore les données en double lors de l’ingestion dans les tables Kusto. Les données sont ingérées dans une table intermédiaire, puis copiées dans une autre table après la suppression des lignes en double. L’avantage de cette solution est que les performances des requêtes sont considérablement meilleures par rapport à la solution précédente. Les inconvénients sont des temps d’ingestion accrus et des coûts supplémentaires de stockage des données. En plus, cette solution ne fonctionne que si les doublons ne sont pas ingérés simultanément. S’il existe plusieurs ingestions simultanées contenant des enregistrements en double, elles peuvent toutes être ingérées, car le processus de déduplication ne trouvera pas d’enregistrements correspondants existant dans la table.    
+Une autre solution consiste à filtrer les doublons pendant le processus d’ingestion. Le système ignore les données en double lors de l’ingestion dans les tables Kusto. Les données sont ingérées dans une table intermédiaire, puis copiées dans une autre table après la suppression des lignes en double. L’avantage de cette solution est que les performances des requêtes sont considérablement meilleures par rapport à la solution précédente. Les inconvénients sont des temps d’ingestion accrus et des coûts supplémentaires de stockage des données. Par ailleurs, cette solution ne fonctionne que si les doublons ne sont pas ingérés simultanément. S’il existe plusieurs ingestions simultanées contenant des enregistrements en double, elles peuvent toutes être ingérées, car le processus de déduplication ne trouvera pas d’enregistrements correspondants existant dans la table.    
 
 L’exemple suivant décrit cette méthode :
 
@@ -109,7 +109,7 @@ L’exemple suivant décrit cette méthode :
     > [!NOTE]
     > La stratégie de mise à jour allonge la durée de l’ingestion, dans la mesure où les données sont filtrées lors de l’ingestion, puis ingérées deux fois (dans la table `DeviceEventsAll` et dans la table `DeviceEventsUnique`).
 
-1. (Facultatif) Définissez une durée de conservation des données inférieure sur la table `DeviceEventsAll` afin d’éviter de stocker des copies des données. Choisissez le nombre de jours en fonction du volume de données et de la durée pendant laquelle vous voulez conserver les données pour résoudre d’éventuels problèmes. Vous pouvez la définir sur `0d` jours de conservation pour réduire les coûts et améliorer les performances, car les données ne sont pas chargées dans le stockage.
+1. (Facultatif) Définissez une durée de conservation des données inférieure sur la table `DeviceEventsAll` afin d’éviter de stocker des copies des données. Choisissez le nombre de jours en fonction du volume de données et de la durée pendant laquelle vous voulez conserver les données pour résoudre d’éventuels problèmes. Vous pouvez la définir sur `0d` jours de conservation pour réduire le coût des marchandises vendues et améliorer les performances, car les données ne sont pas chargées dans le stockage.
 
     ```kusto
     .alter-merge table DeviceEventsAll policy retention softdelete = 1d
