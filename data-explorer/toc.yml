@@ -555,6 +555,8 @@
               href: ./kusto/query/diffpatterns-textplugin.md
             - name: 'infer_storage_schema, plug-in'
               href: ./kusto/query/inferstorageschemaplugin.md
+            - name: 'mysql_request, plug-in'
+              href: ./kusto/query/mysqlrequest-plugin.md
             - name: 'narrow, plug-in'
               href: ./kusto/query/narrowplugin.md
             - name: 'pivot, plug-in'
@@ -719,6 +721,8 @@
           href: ./kusto/query/arrayindexoffunction.md
         - name: array_length()
           href: ./kusto/query/arraylengthfunction.md
+        - name: array_reverse()
+          href: ./kusto/query/array-reverse-function.md
         - name: array_rotate_left()
           href: ./kusto/query/array_rotate_leftfunction.md
         - name: array_rotate_right()
@@ -1644,6 +1648,14 @@
                   href: ./kusto/management/data-export/show-continuous-failures.md
         - name: Curseurs de base de données
           href: ./kusto/management/databasecursor.md
+        - name: Commandes de plug-in
+          items:
+            - name: .show plugins
+              href: ./kusto/management/show-plugins.md
+            - name: .enable plugin
+              href: ./kusto/management/enable-plugin.md
+            - name: .disable plugin
+              href: ./kusto/management/disable-plugin.md
         - name: Cache des résultats de requête
           href: ./kusto/management/query-results-cache-commands.md
           items:
