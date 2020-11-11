@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: e341a6b9b51b082b16036e368c61fa4c903750da
-ms.sourcegitcommit: 64fdef912cc925c4bdcae98183eb8d7c7a6392d7
+ms.openlocfilehash: dbab2bda9ee24c79e4b62427a7da5bd7db3f0077
+ms.sourcegitcommit: b6f0f112b6ddf402e97c011a902bd70ba408e897
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/29/2020
-ms.locfileid: "93027803"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94497443"
 ---
 # <a name="cross-database-and-cross-cluster-queries"></a>Requêtes entre plusieurs bases de données et clusters
 
@@ -183,6 +183,6 @@ Pour afficher les données sous forme graphique, utilisez l' [opérateur Render]
 
 ::: zone pivot="azuremonitor"
 
-Les requêtes de bases de données croisées et entre clusters ne sont pas prises en charge dans Azure Monitor.
+Les requêtes de bases de données croisées et entre clusters ne sont pas prises en charge dans Azure Monitor. Consultez [requêtes Cross Workspace dans Azure Monitor](/azure/azure-monitor/log-query/cross-workspace-query) pour obtenir des requêtes sur plusieurs espaces de travail et applications.
 
 ::: zone-end
