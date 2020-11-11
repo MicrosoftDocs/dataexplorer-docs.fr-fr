@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/18/2020
-ms.openlocfilehash: 26412683be35825a38f959de62292f3735e7a894
-ms.sourcegitcommit: e820a59191d2ca4394e233d51df7a0584fa4494d
+ms.openlocfilehash: 2ca15e1970ab785bfd5da8623f3dcc569576f1d9
+ms.sourcegitcommit: 2ee2901cb82e1655b7f0d960d3427da084230731
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94446223"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94520562"
 ---
 # <a name="cluster-follower-commands"></a>Commandes du suiveur de cluster
 
@@ -181,14 +181,14 @@ Modifie le type de modification de la base de données et des stratégies de mis
 
 ### <a name="alter-follower-database-prefetch-extents"></a>. Alter de la base de données du suiveur-étendues
 
-Il est possible que le cluster de suivi ne fasse pas de nouvelles requêtes de données avant d’être extrait du stockage sous-jacent vers le disque SSD (cache) des nœuds.
+Le cluster de suivi peut attendre que les nouvelles données soient extraites du stockage sous-jacent vers le disque SSD (cache) des nœuds avant de rendre ces données interrogeables.
 
-La commande suivante modifie la configuration de la base de données de suivi pour la pré-récupération de nouvelles étendues à chaque actualisation du schéma. Il nécessite des [autorisations DatabaseAdmin](../management/access-control/role-based-authorization.md).
+La commande suivante modifie la configuration de la base de données de suivi pour la pré-récupération de nouvelles étendues à chaque actualisation du schéma. Cette commande requiert des [autorisations DatabaseAdmin](../management/access-control/role-based-authorization.md).
 
 > [!WARNING]
-> * L’activation de ce paramètre peut potentiellement dégrader l’actualisation des données dans la base de données de suivi.
-> * La configuration par défaut est `false` et il est recommandé de conserver cette valeur par défaut.
-> * Lorsque vous choisissez de modifier le paramètre `true` , il est recommandé d’évaluer attentivement l’impact sur l’actualisation d’une période après la modification de la configuration.
+> * Ce paramètre peut dégrader l’actualisation des données dans la base de données de suivi.
+> * La configuration par défaut est `false` , et il est recommandé d’utiliser la valeur par défaut.
+> * Lorsque vous choisissez de modifier le paramètre `true` , évaluez attentivement l’impact sur l’actualisation d’une période après la modification de la configuration.
 
 **Syntaxe**
 
@@ -300,7 +300,7 @@ Consultez la configuration actuelle en fonction de laquelle `MyDatabase` est sui
 |CachingPolicyOverride                | null                                                     |
 |AuthorizedPrincipalsOverride         | []                                                       |
 |AuthorizedPrincipalsModificationKind | Aucun                                                     |
-|IsAutoPrefetchEnabled                | Faux                                                    |
+|IsAutoPrefetchEnabled                | False                                                    |
 |TableMetadataOverrides               |                                                          |
 |CachingPoliciesModificationKind      | Union                                                    |                                                                                                                      |
 
@@ -391,6 +391,6 @@ Consultez la configuration actuelle où `MyDatabase` est suivi `MyFollowerCluste
 |CachingPolicyOverride                | {"DataHotSpan" : {"value" : "00:00:00"}, "IndexHotSpan" : {"value" : "00:00:00"}}                                                                                                        |
 |AuthorizedPrincipalsOverride         | [{"Principal" : {"FullyQualifiedName" : "aaduser = 87654321-ABCD-efef-1234-350bf486087b",...}, {"principal" : {"FullyQualifiedName" : "aaduser = 54321789-ABCD-efef-1234-350bf486087b",...}] |
 |AuthorizedPrincipalsModificationKind | Replace                                                                                                                                                                         |
-|IsAutoPrefetchEnabled                | Faux                                                                                                                                                                           |
+|IsAutoPrefetchEnabled                | False                                                                                                                                                                           |
 |TableMetadataOverrides               | {"MyTargetTable" : {"CachingPolicyOverride" : {"DataHotSpan" : {"value" : "3.00:00:00"}...}, "MySourceTable" : {"CachingPolicyOverride" : {"DataHotSpan" : {"value" : "1.00:00:00"},...}}}       |
 |CachingPoliciesModificationKind      | Replace                                                                                                                                                                         |
