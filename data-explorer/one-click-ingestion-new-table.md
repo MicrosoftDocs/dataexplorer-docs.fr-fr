@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/29/2020
-ms.openlocfilehash: 9427692d0533550967bfe84a35fd833a4c03b39e
-ms.sourcegitcommit: 811cf98edefd919b412d80201400919eedcab5cd
+ms.openlocfilehash: 9c066b47e69fd36052ae6e6e8d7599ebc17b3ff7
+ms.sourcegitcommit: f71801764fdccb061f3cf1e3cfe43ec1557e4e0f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/01/2020
-ms.locfileid: "89274793"
+ms.lasthandoff: 11/03/2020
+ms.locfileid: "93293195"
 ---
 # <a name="use-one-click-ingestion-to-ingest-csv-data-from-a-container-to-a-new-table-in-azure-data-explorer"></a>Utiliser l’ingestion en un clic pour ingérer des données CSV à partir d’un conteneur dans une nouvelle table d’Azure Data Explorer
 
@@ -29,11 +29,11 @@ Pour plus d’informations sur l’ingestion de données dans une table existant
 
 ## <a name="ingest-new-data"></a>Ingérer de nouvelles données
 
-1. Dans le menu de gauche de l’interface utilisateur web, cliquez avec le bouton droit sur une *base de données*, puis sélectionnez **Ingérer de nouvelles données (préversion)** .
+1. Dans le menu de gauche de l’interface utilisateur web, cliquez avec le bouton droit sur une *base de données* , puis sélectionnez **Ingérer de nouvelles données**.
 
     :::image type="content" source="media/one-click-ingestion-new-table/one-click-ingestion-in-web-ui.png" alt-text="Ingérer de nouvelles données":::
 
-1. Dans la fenêtre **Ingérer de nouvelles données (préversion)** , l’onglet **Source** est sélectionné. 
+1. Dans la fenêtre **Ingérer de nouvelles données** , l’onglet **Source** est sélectionné. 
 
 1. Sélectionnez **Créer une table** et entrez un nom pour la nouvelle table. Vous pouvez utiliser des caractères alphanumériques, des traits d’union et des traits de soulignement. Les caractères spéciaux ne sont pas pris en charge.
 
@@ -44,15 +44,15 @@ Pour plus d’informations sur l’ingestion de données dans une table existant
 
 ## <a name="select-an-ingestion-type"></a>Sélectionner un type d’ingestion
 
-Sous **Type d’ingestion**, effectuez les étapes suivantes :
+Sous **Type d’ingestion** , effectuez les étapes suivantes :
    
   1. Sélectionnez **à partir d’un conteneur**. 
-  1. Dans le champ **Lien vers le stockage**, ajoutez l’[URL SAS](/azure/vs-azure-tools-storage-explorer-blobs#get-the-sas-for-a-blob-container) du conteneur, puis entrez éventuellement la taille de l’échantillon.
+  1. Dans le champ **Lien vers le stockage** , ajoutez l’ [URL SAS](/azure/vs-azure-tools-storage-explorer-blobs#get-the-sas-for-a-blob-container) du conteneur, puis entrez éventuellement la taille de l’échantillon.
 
       :::image type="content" source="media/one-click-ingestion-new-table/from-container.png" alt-text="Ingestion en un clic à partir d’un conteneur":::
 
      > [!TIP] 
-     > Pour effectuer une ingestion **à partir d’un fichier**, consultez [Utiliser l’ingestion en un clic pour ingérer des données JSON à partir d’un fichier local dans une table existante d’Azure Data Explorer](one-click-ingestion-existing-table.md#select-an-ingestion-type).
+     > Pour effectuer une ingestion **à partir d’un fichier** , consultez [Utiliser l’ingestion en un clic pour ingérer des données JSON à partir d’un fichier local dans une table existante d’Azure Data Explorer](one-click-ingestion-existing-table.md#select-an-ingestion-type).
 
 Un échantillon des données s’affiche. Si vous le souhaitez, filtrez les données pour ingérer uniquement les fichiers qui commencent ou finissent par des caractères spécifiques. Quand vous ajustez les filtres, l’aperçu est mis à jour automatiquement.
 
@@ -64,20 +64,20 @@ Par exemple, filtrez tous les fichiers qui commencent par le mot d’extension *
 
 Sélectionnez **Modifier le schéma** pour afficher et modifier la configuration de colonne de votre table. Le système sélectionne un des objets blob au hasard, et le schéma est généré en fonction de cet objet blob. En examinant le nom de la source, le service identifie automatiquement s’il est compressé ou non.
 
-Sous l’onglet **Schéma** :
+Sous l’onglet **Schéma**  :
 
    1. Sélectionnez **Format de données**.
 
         Dans ce cas, le format de données est **CSV**.
 
         > [!TIP]
-        > Si vous souhaitez utiliser des fichiers **JSON**, consultez [Utiliser l’ingestion en un clic pour ingérer des données JSON à partir d’un fichier local dans une table existante d’Azure Data Explorer](one-click-ingestion-existing-table.md#edit-the-schema).
+        > Si vous souhaitez utiliser des fichiers **JSON** , consultez [Utiliser l’ingestion en un clic pour ingérer des données JSON à partir d’un fichier local dans une table existante d’Azure Data Explorer](one-click-ingestion-existing-table.md#edit-the-schema).
 
    1. Vous pouvez cocher la case **Inclure les noms des colonnes** pour ignorer la ligne d’en-tête du fichier.
 
         :::image type="content" source="media/one-click-ingestion-new-table/non-json-format.png" alt-text="Sélectionner Inclure les noms des colonnes":::
 
-Dans le champ **Nom du mappage**, entrez un nom de mappage. Vous pouvez utiliser des caractères alphanumériques et des traits de soulignement. Les espaces, les caractères spéciaux et les traits d’Union ne sont pas pris en charge.
+Dans le champ **Nom du mappage** , entrez un nom de mappage. Vous pouvez utiliser des caractères alphanumériques et des traits de soulignement. Les espaces, les caractères spéciaux et les traits d’Union ne sont pas pris en charge.
 
 :::image type="content" source="media/one-click-ingestion-new-table/table-mapping.png" alt-text="Nom du mappage de table - Ingestion en un clic":::
 
@@ -104,7 +104,7 @@ Sélectionnez **Démarrer l’ingestion** pour créer une table et un mappage et
 
 ## <a name="complete-data-ingestion"></a>Terminer l’ingestion des données
 
-Dans la fenêtre **Ingestion de données terminée**, les trois étapes sont signalées par des coches vertes quand l’ingestion des données s’est terminée avec succès.
+Dans la fenêtre **Ingestion de données terminée** , les trois étapes sont signalées par des coches vertes quand l’ingestion des données s’est terminée avec succès.
 
 :::image type="content" source="media/one-click-ingestion-new-table/one-click-data-ingestion-complete.png" alt-text="Ingestion en un clic terminée"::: 
 
