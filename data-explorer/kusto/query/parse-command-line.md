@@ -8,12 +8,12 @@ ms.reviewer: slneimer
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/28/2020
-ms.openlocfilehash: a13e3def33ea7098a48db7ffefa4406097863c2a
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: da8fe0bfedf5766f4599509e83fa1c7c050d069f
+ms.sourcegitcommit: 88f8ad67711a4f614d65d745af699d013d01af32
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92342720"
+ms.lasthandoff: 11/16/2020
+ms.locfileid: "94638986"
 ---
 # <a name="parse_command_line"></a>parse_command_line()
 
@@ -21,12 +21,12 @@ Analyse une chaîne de ligne de commande Unicode et retourne un tableau dynamiqu
 
 ## <a name="syntax"></a>Syntax
 
-`parse_command_line(`*COMMAND_LINE*,*parser_type*`)`
+`parse_command_line(`*COMMAND_LINE* , *parser_type*`)`
 
 ## <a name="arguments"></a>Arguments
 
-* *COMMAND_LINE*: ligne de commande à analyser.
-* *parser_type*: la seule valeur actuellement prise en charge est `"Windows"` , qui analyse la ligne de commande de la même façon que [CommandLineToArgvW](/windows/win32/api/shellapi/nf-shellapi-commandlinetoargvw).
+* *COMMAND_LINE* : ligne de commande à analyser.
+* *parser_type* : la seule valeur actuellement prise en charge est `"windows"` , qui analyse la ligne de commande de la même façon que [CommandLineToArgvW](/windows/win32/api/shellapi/nf-shellapi-commandlinetoargvw).
 
 ## <a name="returns"></a>Retours
 
@@ -39,6 +39,6 @@ Tableau dynamique des arguments de ligne de commande.
 print parse_command_line("echo \"hello world!\"", "windows")
 ```
 
-|Résultat|
+|Résultats|
 |---|
 |[« ECHO », « Hello World ! »]|
