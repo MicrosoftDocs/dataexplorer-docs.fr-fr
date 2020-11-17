@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/16/2020
-ms.openlocfilehash: bf595e27d7b4881dca7b5e2a370c90a8407a8c78
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 14895e17d77e3bbf1d98d2d68221930d3f291774
+ms.sourcegitcommit: f7bebd245081a5cdc08e88fa4f9a769c18e13e5d
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92252585"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94644618"
 ---
 # <a name="count-operator"></a>opérateur count
 
@@ -37,3 +37,7 @@ Cette fonction retourne une table contenant un seul enregistrement et une colonn
 ```kusto
 StormEvents | count
 ```
+
+## <a name="see-also"></a>Voir aussi
+
+Pour plus d’informations sur la fonction d’agrégation Count (), consultez [Count () (fonction d’agrégation)](count-aggfunction.md).

@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/28/2020
-ms.openlocfilehash: 5e15983039209e2e0c62ebd761e416ebb3bd1076
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: f72d2b7f2036c7c63bfc5a37e2ab944acc60bbf8
+ms.sourcegitcommit: 2ee2901cb82e1655b7f0d960d3427da084230731
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92342618"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94520579"
 ---
 # <a name="use-lightingest-to-ingest-data-to-azure-data-explorer"></a>Utiliser LightIngest pour ingérer des données dans Azure Data Explorer
  
@@ -37,16 +37,16 @@ LightIngest est particulièrement utile quand vous souhaitez ingérer une grande
 1. Accédez au répertoire *tools* extrait sur votre ordinateur.
 1. Supprimez les informations d’emplacement existantes de la barre d’emplacement.
 
-    :::image type="content" source="media/lightingest/lightingest-locationbar.png" alt-text="Téléchargement de LightIngest":::
+    :::image type="content" source="media/lightingest/lightingest-locationbar.png" alt-text="Supprimer les informations d’emplacement existantes pour LightIngest dans Azure Data Explorer":::
 
 
-1. Entrez `cmd`, puis appuyez sur **Entrée** .
+1. Entrez `cmd`, puis appuyez sur **Entrée**.
 1. À l’invite de commandes, saisissez `LightIngest.exe` suivi de l’argument de ligne de commande approprié.
 
     > [!Tip]
     > Pour obtenir la liste des arguments de ligne de commande pris en charge, saisissez `LightIngest.exe /help`.
     >
-    > :::image type="content" source="media/lightingest/lightingest-cmd-line-help.png" alt-text="Téléchargement de LightIngest":::
+    > :::image type="content" source="media/lightingest/lightingest-cmd-line-help.png" alt-text="Aide relative à la ligne de commande pour LightIngest":::
 
 1. Saisissez `ingest-` suivi de la chaîne de connexion au cluster Azure Data Explorer qui gérera l’ingestion.
     Mettez la chaîne de connexion entre guillemets doubles et suivez la [Spécification des chaînes de connexion Kusto](kusto/api/connection-strings/kusto.md).
@@ -155,7 +155,7 @@ Les valeurs d’argument doivent inclure :
 
     ```kusto
     ingest-{Cluster name and region}.kusto.windows.net;AAD Federated Security=True -db:{Database} -table:Trips -source:"https://{Account}.blob.core.windows.net/{ROOT_CONTAINER};{StorageAccountKey}" -creationTimePattern:"'historicalvalues'yyyyMMdd'.parquet'"
-     -pattern:"*.csv.gz" -format:csv -limit:2 -ignoreFirst:true -cr:10.0 -dontWait:true
+     -pattern:"*.parquet" -format:parquet -limit:2 -cr:10.0 -dontWait:true
     ```
 
 * URI d’objet blob qui fait référence à une structure hiérarchique de dossiers, comme `https://storageaccount/container/folder/2002/12/01/blobname.extension`. 

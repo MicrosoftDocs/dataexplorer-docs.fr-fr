@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/26/2019
-ms.openlocfilehash: 442185ed0afd977c103d0b571472c0f5e742908c
-ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
+ms.openlocfilehash: 47a18e8b8a2ec34207acacfd508114955f28953f
+ms.sourcegitcommit: 88f8ad67711a4f614d65d745af699d013d01af32
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/04/2020
-ms.locfileid: "93349475"
+ms.lasthandoff: 11/16/2020
+ms.locfileid: "94639003"
 ---
 # <a name="best-practices-for-using-power-bi-to-query-and-visualize-azure-data-explorer-data"></a>Bonnes pratiques relatives à l’utilisation de Power BI pour interroger et visualiser des données Azure Data Explorer
 
@@ -22,23 +22,23 @@ L’Explorateur de données Azure est un service d’exploration de données rap
 
 Quand vous travaillez avec plusieurs téraoctets de données brutes actualisées, suivez ces instructions pour maintenir les tableaux de bord et rapports Power BI élégants et à jour :
 
-* **Voyagez léger**  : n’apportez dans Power BI que les données dont vous avez besoin pour vos rapports. Pour une analyse interactive approfondie, utilisez l’[interface utilisateur Azure Data Explorer](web-query-data.md) qui est optimisée pour l’exploration ad hoc avec le langage de requête Kusto.
+* **Voyagez léger** : n’apportez dans Power BI que les données dont vous avez besoin pour vos rapports. Pour une analyse interactive approfondie, utilisez l’[interface utilisateur Azure Data Explorer](web-query-data.md) qui est optimisée pour l’exploration ad hoc avec le langage de requête Kusto.
 
-* **Modèle composite**  : utilisez un [modèle composite](/power-bi/desktop-composite-models) pour combiner des données agrégées pour les tableaux de bord de premier niveau avec des données brutes opérationnelles filtrées. Vous pouvez définir clairement quand utiliser des données brutes et quand utiliser une vue agrégée. 
+* **Modèle composite** : utilisez un [modèle composite](/power-bi/desktop-composite-models) pour combiner des données agrégées pour les tableaux de bord de premier niveau avec des données brutes opérationnelles filtrées. Vous pouvez définir clairement quand utiliser des données brutes et quand utiliser une vue agrégée. 
 
-* **Mode Import et mode DirectQuery**  : utiliser le mode **Import** pour l’interaction de petits jeux de données. Utilisez le mode **DirectQuery** pour les jeux de données volumineux et fréquemment mis à jour. Par exemple, créez des tables de dimension à l’aide du mode **Import** car elles sont peu volumineuses et ne changent pas souvent. Définissez l’intervalle d’actualisation en fonction de la fréquence attendue des mises à jour des données. Créez des tables de faits à l’aide du mode **DirectQuery** car ces tables sont volumineuses et contiennent des données brutes. Utilisez ces tables pour présenter des données filtrées à l’aide de l’[extraction](/power-bi/desktop-drillthrough) Power BI.
+* **Mode Import et mode DirectQuery** : utiliser le mode **Import** pour l’interaction de petits jeux de données. Utilisez le mode **DirectQuery** pour les jeux de données volumineux et fréquemment mis à jour. Par exemple, créez des tables de dimension à l’aide du mode **Import** car elles sont peu volumineuses et ne changent pas souvent. Définissez l’intervalle d’actualisation en fonction de la fréquence attendue des mises à jour des données. Créez des tables de faits à l’aide du mode **DirectQuery** car ces tables sont volumineuses et contiennent des données brutes. Utilisez ces tables pour présenter des données filtrées à l’aide de l’[extraction](/power-bi/desktop-drillthrough) Power BI.
 
-* **Parallélisme**  – Azure Data Explorer est une plateforme de données linéairement scalable. Par conséquent, vous pouvez améliorer les performances du rendu des tableaux de bord en augmentant le parallélisme du flux de bout en bout comme suit :
+* **Parallélisme** – Azure Data Explorer est une plateforme de données linéairement scalable. Par conséquent, vous pouvez améliorer les performances du rendu des tableaux de bord en augmentant le parallélisme du flux de bout en bout comme suit :
 
   * Augmentez le nombre de [connexions simultanées en mode DirectQuery dans Power BI](/power-bi/desktop-directquery-about#maximum-number-of-connections-option-for-directquery).
 
   * Utilisez une [cohérence faible pour améliorer le parallélisme](kusto/concepts/queryconsistency.md). Cela peut avoir un impact sur l’actualisation des données.
 
-* **Segments effectifs**  – Utilisez des [segments synchronisés](/power-bi/visuals/power-bi-visualization-slicers#sync-and-use-slicers-on-other-pages) pour empêcher les rapports de charger des données avant que vous soyez prêt. Après avoir structuré le jeu de données, placé tous les visuels et marqué tous les segments, vous pouvez sélectionner le segment synchronisé pour charger uniquement les données nécessaires.
+* **Segments effectifs** – Utilisez des [segments synchronisés](/power-bi/visuals/power-bi-visualization-slicers#sync-and-use-slicers-on-other-pages) pour empêcher les rapports de charger des données avant que vous soyez prêt. Après avoir structuré le jeu de données, placé tous les visuels et marqué tous les segments, vous pouvez sélectionner le segment synchronisé pour charger uniquement les données nécessaires.
 
-* **Utilisez des filtres**  : utilisez autant de filtres Power BI que possible pour concentrer la recherche d’Azure Data Explorer sur les partitions de données appropriées.
+* **Utilisez des filtres** : utilisez autant de filtres Power BI que possible pour concentrer la recherche d’Azure Data Explorer sur les partitions de données appropriées.
 
-* **Visuels efficaces**  : sélectionnez les visuels les plus performants pour vos données.
+* **Visuels efficaces** : sélectionnez les visuels les plus performants pour vos données.
 
 
 ## <a name="tips-for-using-the-azure-data-explorer-connector-for-power-bi-to-query-data"></a>Conseils d’interrogation de données à l’aide du connecteur Azure Data Explorer pour Power BI
@@ -51,7 +51,7 @@ Les requêtes complexes sont exprimées plus facilement dans Kusto que dans Powe
 
 ### <a name="how-to-simulate-a-relative-date-time-operator"></a>Comment simuler un opérateur date-heure relatif
 
-Power BI ne contient pas d’opérateur date-heure *relatif* , comme `ago()`.
+Power BI ne contient pas d’opérateur date-heure *relatif*, comme `ago()`.
 Pour simuler `ago()`, utilisez une combinaison des fonctions Power BI `DateTime.FixedLocalNow()` et `#duration`.
 
 Au lieu de cette requête qui utilise l’opérateur `ago()` :
@@ -91,6 +91,7 @@ Vous pouvez utiliser l’une des options suivantes dans votre requête M :
 | NoTruncate | `[NoTruncate=true]` | Ajoute l’instruction définie `notruncation` à votre requête. Permet de supprimer la troncation des résultats de la requête retournés à l’appelant.
 | AdditionalSetStatements | `[AdditionalSetStatements="set query_datascope=hotcache"]` | Ajoute les instructions définies fournies à votre requête. Ces instructions sont utilisées pour définir des options de requête pour la durée de la requête. Les options de requête contrôlent la manière dont une requête s’exécute et retourne les résultats.
 | CaseInsensitive | `[CaseInsensitive=true]` | Fait en sorte que le connecteur génère des requêtes qui sont insensibles à la casse : les requêtes utiliseront l’opérateur `=~` au lieu de l’opérateur `==` lors de la comparaison des valeurs.
+| ForceUseContains | `[ForceUseContains=true]` | Fait en sorte que le connecteur génère des requêtes qui utilisent `contains` au lieu du `has` par défaut lors de l’utilisation de champs de texte. Même si `has` est bien plus performant, il ne gère pas les sous-chaînes. Pour plus d’informations sur les différences entre les deux opérateurs, consultez [Opérateurs de chaîne](./kusto/query/datatypes-string-operators.md).
 | Délai d'expiration | `[Timeout=#duration(0,10,0,0)]` | Configure le délai d’expiration du client et du serveur de la requête sur la durée indiquée.
 
 > [!NOTE]
@@ -128,7 +129,7 @@ Vous pouvez utiliser des [paramètres de requête](kusto/query/queryparametersst
 
 Utilisez un paramètre de requête pour filtrer les informations contenues dans la requête et optimiser les performances de celle-ci.
  
-Dans la fenêtre **Modifier les requêtes** , **Accueil** > **Éditeur avancé**
+Dans la fenêtre **Modifier les requêtes**, **Accueil** > **Éditeur avancé**
 
 1. Recherchez la section suivante de la requête :
 
@@ -156,7 +157,7 @@ Dans la fenêtre **Modifier les requêtes** , **Accueil** > **Éditeur avancé**
    "StormEvents | where State == "ALABAMA" | take 100"
    ```
 
-   s’affiche dans l’ **Éditeur avancé** comme suit avec deux guillemets :
+   s’affiche dans l’**Éditeur avancé** comme suit avec deux guillemets :
 
    ```kusto
     "StormEvents | where State == ""ALABAMA"" | take 100"
