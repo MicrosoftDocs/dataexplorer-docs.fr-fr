@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/19/2020
-ms.openlocfilehash: 61ed36d5d1657957b38ea78f0d2e09faa3a3f4e9
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 1c394d9125bd354cab21d3087c273f983627a0d6
+ms.sourcegitcommit: c351c2c8ab6e184827c4702eb0ec8bf783c7bbd3
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92247785"
+ms.lasthandoff: 11/18/2020
+ms.locfileid: "94874778"
 ---
 # <a name="string-operators"></a>Opérateurs de chaîne
 
@@ -40,6 +40,8 @@ Kusto crée un index de terme composé de tous les termes qui contiennent *quatr
 > Les abréviations suivantes sont utilisées dans le tableau ci-dessous :
 > * RHS = partie droite de l’expression
 > * LHS = côté gauche de l’expression
+> 
+> Les opérateurs avec un `_cs` suffixe respectent la casse.
 
 Opérateur        |Description                                                       |Respecte la casse|Exemple (génère `true`)
 ----------------|------------------------------------------------------------------|--------------|-----------------------
