@@ -110,6 +110,9 @@
             - name: Portail Azure
               displayName: 'Event Hub, ingest, data connection'
               href: ingest-data-event-hub.md
+            - name: En un clic
+              displayName: 'Event Hub, ingest, data connection'
+              href: one-click-event-hub.md
             - name: C#
               displayName: 'Event Hub, ingest, data connection'
               href: data-connection-event-hub-csharp.md
