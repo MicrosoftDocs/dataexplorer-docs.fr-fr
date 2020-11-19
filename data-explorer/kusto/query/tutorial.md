@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 10/08/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: c3a099dbe431087fd6b79d78ad2b8ec10d5a5a37
-ms.sourcegitcommit: b6f0f112b6ddf402e97c011a902bd70ba408e897
+ms.openlocfilehash: c87979b788c83a819f9e65658b5e44e40e53ad1d
+ms.sourcegitcommit: 0820454feb02ae489f3a86b688690422ae29d788
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94497736"
+ms.lasthandoff: 11/19/2020
+ms.locfileid: "94932733"
 ---
 # <a name="tutorial"></a>Didacticiel
 
@@ -68,7 +68,7 @@ StormEvents
 | project StartTime, EndTime , State , EventType , EpisodeNarrative
 ```
 
-|StartTime|EndTime|State|Type d’événement|EpisodeNarrative|
+|StartTime|EndTime|State (État)|Type d’événement|EpisodeNarrative|
 |---|---|---|---|---|
 |2007-02-19 00:00:00.0000000|2007-02-19 08:00:00.0000000|France|Crue|Un système frontal qui évolue à travers le sud de la Joaquin de la vallée A introduit de courtes périodes de pluie lourde dans le comté de crénage occidental au cours des premières heures du 19. Une saturation mineure a été signalée sur l’autoroute d’État 166 près de Taft.|
 
@@ -83,7 +83,7 @@ StormEvents
 | project  StartTime, EndTime, EventType, State, EventNarrative  
 ```
 
-|StartTime|EndTime|Type d’événement|State|EventNarrative|
+|StartTime|EndTime|Type d’événement|State (État)|EventNarrative|
 |---|---|---|---|---|
 |2007-09-18 20:00:00.0000000|2007-09-19 18:00:00.0000000|Pluie lourde|Floride|Jusqu’à 9 pouces de pluie chutaient sur une période de 24 heures sur des parties du comté Volusia côtier.|
 |2007-09-20 21:57:00.0000000|2007-09-20 22:05:00.0000000|Tornade|Floride|Tornade évoqué dans la ville de Eustis, à la fin du Nord de l’ouest du lac. La tornade s’est rapidement intensifiée sur la force EF1 à mesure qu’elle a été déplacée Nord-Nord-Ouest à Eustis. La piste se trouvait juste à moins de deux kilomètres et avait une largeur maximale de 300 mètres.  La tornade a détruit 7 maisons. Vingt sept maisons ont reçu des dommages majeurs et 81 maisons signalaient des dommages mineurs. Il n’y avait pas de blessures graves et les dommages liés aux propriétés ont été définis à $6,2 millions.|
@@ -108,7 +108,7 @@ StormEvents
 | project  StartTime, EndTime, EventType, State, EventNarrative  
 ```
 
-|StartTime|EndTime|Type d’événement|State|EventNarrative|
+|StartTime|EndTime|Type d’événement|State (État)|EventNarrative|
 |---|---|---|---|---|
 |2007-12-31 22:30:00.0000000|2007-12-31 23:59:00.0000000|Tempête d’hiver|MICHIGAN|Cet événement lourd a continué au début des heures du matin le jour de la nouvelle année.|
 |2007-12-31 22:30:00.0000000|2007-12-31 23:59:00.0000000|Tempête d’hiver|MICHIGAN|Cet événement lourd a continué au début des heures du matin le jour de la nouvelle année.|
@@ -138,7 +138,7 @@ StormEvents
 | project StartTime, EndTime, Duration, EventType, State
 ```
 
-|StartTime|EndTime|Duration|Type d’événement|State|
+|StartTime|EndTime|Duration|Type d’événement|State (État)|
 |---|---|---|---|---|
 |2007-09-18 20:00:00.0000000|2007-09-19 18:00:00.0000000|22:00:00|Pluie lourde|Floride|
 |2007-09-20 21:57:00.0000000|2007-09-20 22:05:00.0000000|00:08:00|Tornade|Floride|
@@ -147,7 +147,7 @@ StormEvents
 |2007-12-30 16:00:00.0000000|2007-12-30 16:05:00.0000000|00:05:00|Vent d’orage|Géorgie|
 
 Il est possible de réutiliser le nom de colonne et d’assigner le résultat de calcul à la même colonne.
-Exemple :
+Par exemple :
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -184,7 +184,7 @@ StormEvents
 | top 5 by StormCount desc
 ```
 
-|State|StormCount|TypeOfStorms|
+|State (État)|StormCount|TypeOfStorms|
 |---|---|---|
 |TEXAS|4701|27|
 |KANSAS|3166|21|
@@ -499,7 +499,7 @@ Logs | join cluster("TelemetryCluster").database("Telemetry").Metrics on Request
 
 La meilleure façon de se familiariser avec le langage de requête Kusto consiste à examiner des requêtes simples pour obtenir le « sentiment » du langage. Ces requêtes sont similaires à celles utilisées dans le didacticiel Azure Explorateur de données, mais elles utilisent des données de tables communes dans un espace de travail Log Analytics. 
 
-Exécutez ces requêtes à l’aide de Log Analytics, qui est un outil du Portail Azure pour écrire des requêtes de journal en utilisant des données de journal dans Azure Monitor et évaluer leurs résultats. Si vous n’êtes pas familiarisé avec Log Analytics, vous pouvez suivre un didacticiel dans [log Analytics didacticiel](/azure/azure-monitor/log-query/log-analytics-tutorial.md).
+Exécutez ces requêtes à l’aide de Log Analytics, qui est un outil du Portail Azure pour écrire des requêtes de journal en utilisant des données de journal dans Azure Monitor et évaluer leurs résultats. Si vous n’êtes pas familiarisé avec Log Analytics, vous pouvez suivre un didacticiel dans [log Analytics didacticiel](/azure/azure-monitor/log-query/log-analytics-tutorial).
 
 Toutes les requêtes ici utilisent l' [environnement de démonstration log Analytics](https://ms.portal.azure.com/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade). Vous pouvez utiliser votre propre environnement, mais vous ne disposez peut-être pas de certaines des tables utilisées ici. Dans la mesure où les données de l’environnement de démonstration ne sont pas statiques, les résultats de vos requêtes peuvent varier légèrement de ceux indiqués ici.
 
