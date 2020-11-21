@@ -8,14 +8,14 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/03/2020
-ms.openlocfilehash: 7f9465df4847a24a4877c8b1cb637ba1d7542db3
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: be16f33c649640ef92ed971665d4c7610c5501bf
+ms.sourcegitcommit: c815c6ccf33864e21e1d3daff26a4f077dff88f7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92342533"
+ms.lasthandoff: 11/21/2020
+ms.locfileid: "95012191"
 ---
-# <a name="continuous-data-export-overview"></a>Vue d’ensemble de l’exportation continue de données
+# <a name="continuous-data-export-overview"></a>Vue d’ensemble de l’exportation de données continue
 
 Cet article décrit l’exportation continue de données de Kusto vers une [table externe](../external-table-commands.md) avec une requête exécutée périodiquement. Les résultats sont stockés dans la table externe, qui définit la destination, comme le stockage d’objets BLOB Azure, et le schéma des données exportées. Ce processus garantit que tous les enregistrements sont exportés « exactement une fois », à quelques [exceptions près](#exactly-once-export). 
 
@@ -38,9 +38,9 @@ Pour activer l’exportation continue des données, [créez une table externe](.
   * Utilisez `single` (ou `distributed` = `false` ) pour désactiver complètement la distribution. Ce paramètre peut considérablement ralentir le processus d’exportation continue et avoir un impact sur le nombre de fichiers créés lors de chaque itération d’exportation continue. 
 * **Nombre de fichiers**:
   * Le nombre de fichiers exportés dans chaque itération d’exportation continue dépend de la façon dont la table externe est partitionnée. Pour plus d’informations, consultez [commande exporter vers une table externe](export-data-to-an-external-table.md#number-of-files). Chaque itération d’exportation continue écrit toujours dans de nouveaux fichiers et n’est jamais ajoutée à des fichiers existants. Par conséquent, le nombre de fichiers exportés dépend également de la fréquence d’exécution de l’exportation continue. Le paramètre Frequency est `intervalBetweenRuns` .
-* **Emplacement** :
+* **Comptes de stockage de table externe**:
   * Pour de meilleures performances, le cluster Azure Explorateur de données et le ou les comptes de stockage doivent être colocalisés dans la même région Azure.
-  * Si le volume de données exporté est important, il est recommandé de configurer plusieurs comptes de stockage pour la table externe, afin d’éviter la limitation du stockage. Consultez [exporter des données vers le stockage](export-data-to-storage.md#known-issues).
+  * Si le volume de données exporté est important, il est recommandé de configurer plusieurs comptes de stockage pour la table externe, afin d’éviter la limitation du stockage. Pour plus d’informations, consultez [échecs de stockage pendant les commandes d’exportation](export-data-to-storage.md#failures-during-export-commands) .
 
 ## <a name="exactly-once-export"></a>Exportation exacte
 
@@ -48,7 +48,7 @@ Pour garantir une exportation « exactement une fois », l’exportation conti
 
 La garantie d’exportation « exactement une fois » concerne uniquement les fichiers signalés dans la [commande Afficher les artefacts exportés](show-continuous-artifacts.md). L’exportation continue ne garantit pas que chaque enregistrement sera écrit une seule fois dans la table externe. Si une défaillance se produit après le début de l’exportation et que certains des artefacts ont déjà été écrits dans la table externe, la table externe peut contenir des doublons. Si une opération d’écriture a été abandonnée avant la fin, la table externe peut contenir des fichiers endommagés. Dans ce cas, les artefacts ne sont pas supprimés de la table externe, mais ils ne sont pas signalés dans la [commande Afficher les artefacts exportés](show-continuous-artifacts.md). La consommation des fichiers exportés à l’aide de `show exported artifacts command` ne garantit aucune duplication et aucune altération.
 
-## <a name="export-to-fact-and-dimension-tables"></a>Exporter vers les tables de faits et de dimension
+## <a name="export-from-fact-and-dimension-tables"></a>Exporter à partir des tables de faits et de dimension
 
 Par défaut, toutes les tables référencées dans la requête d’exportation sont supposées être des [tables de faits](../../concepts/fact-and-dimension-tables.md). Par conséquent, ils sont étendus au curseur de base de données. La syntaxe déclare explicitement quelles tables sont étendues (fait) et qui ne sont pas délimitées (dimension). `over`Pour plus d’informations, consultez le paramètre dans la [commande CREATE](create-alter-continuous.md) .
 
@@ -63,7 +63,7 @@ L’exportation continue commence à exporter des données uniquement à partir 
 
 Les données d’historique peuvent être trop volumineuses pour être exportées dans une seule commande d’exportation. Si nécessaire, partitionnez la requête en plusieurs lots plus petits. 
 
-Pour éviter les doublons avec les données exportées par l’exportation continue, utilisez `StartCursor` retournée par la [commande afficher l’exportation continue](show-continuous-export.md) et Export enregistre uniquement `where cursor_before_or_at` la valeur de curseur. Par exemple :
+Pour éviter les doublons avec les données exportées par l’exportation continue, utilisez `StartCursor` retournée par la [commande afficher l’exportation continue](show-continuous-export.md) et Export enregistre uniquement `where cursor_before_or_at` la valeur de curseur. Exemple :
 
 ```kusto
 .show continuous-export MyExport | project StartCursor

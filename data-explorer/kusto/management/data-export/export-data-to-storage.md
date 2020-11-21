@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: b470d017937ed6f2687016ab8a7cf53fed7b51ab
-ms.sourcegitcommit: 993bc7b69096ab5516d3c650b9df97a1f419457b
+ms.openlocfilehash: bd7482abb9c13130d863e9abb73819d9409109ea
+ms.sourcegitcommit: c815c6ccf33864e21e1d3daff26a4f077dff88f7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89614479"
+ms.lasthandoff: 11/21/2020
+ms.locfileid: "95012171"
 ---
 # <a name="export-data-to-storage"></a>Exporter des données dans le stockage
 
@@ -59,7 +59,7 @@ Exécute une requête et écrit le premier jeu de résultats dans un stockage ex
 La commande retourne une table qui décrit les artefacts de stockage générés.
 Chaque enregistrement décrit un artefact unique et inclut le chemin d’accès de stockage à l’artefact et le nombre d’enregistrements de données qu’il contient.
 
-|Chemin d’accès|NumRecords|
+|Path|NumRecords|
 |---|---|
 |http://storage1.blob.core.windows.net/containerName/export_1_d08afcae2f044c1092b279412dcb571b.csv|10|
 |http://storage1.blob.core.windows.net/containerName/export_2_454c0f1359e24795b6529da8a0101330.csv|15|
@@ -98,10 +98,36 @@ Les étiquettes de nom de colonne sont ajoutées en tant que première ligne pou
   <| myLogs | where id == "moshe" | limit 10000
 ```
 
-#### <a name="known-issues"></a>Problèmes connus
+## <a name="failures-during-export-commands"></a>Échecs lors des commandes d’exportation
 
-**Échecs lors de la commande d’exportation**
+Les commandes d’exportation peuvent échouer momentanément au cours de l’exécution. L' [exportation continue](continuous-data-export.md) réessaiera automatiquement la commande. Les commandes d’exportation standard ([Exporter vers le stockage](export-data-to-storage.md), [Exporter vers une table externe](export-data-to-an-external-table.md)) n’effectuent pas de nouvelles tentatives.
 
-* La commande d’exportation peut échouer momentanément pendant l’exécution. Lorsque la commande d’exportation échoue, les artefacts déjà écrits dans le stockage ne sont pas supprimés. Ces artefacts sont conservés dans le stockage. Si la commande échoue, supposez que l’exportation est incomplète, même si certains artefacts ont été écrits. La meilleure façon d’effectuer le suivi de l’exécution de la commande et des artefacts exportés en cas de réussite de l’opération consiste à utiliser les commandes [. afficher les opérations](../operations.md#show-operations) et [. afficher les détails](../operations.md#show-operation-details) de l’opération.
+*  Lorsque la commande d’exportation échoue, les artefacts déjà écrits dans le stockage ne sont pas supprimés. Ces artefacts sont conservés dans le stockage. Si la commande échoue, supposez que l’exportation est incomplète, même si certains artefacts ont été écrits. 
+* La meilleure façon d’effectuer le suivi de l’exécution de la commande et des artefacts exportés en cas de réussite de l’opération consiste à utiliser les commandes [. afficher les opérations](../operations.md#show-operations) et [. afficher les détails](../operations.md#show-operation-details) de l’opération.
 
-* Par défaut, la commande d’exportation est distribuée de telle sorte que toutes les [étendues](../extents-overview.md) contiennent des données à exporter simultanément dans le stockage. Sur les exportations volumineuses, lorsque le nombre d’étendues est élevé, cela peut entraîner une charge élevée sur le stockage qui entraîne une limitation du stockage, ou des erreurs de stockage temporaire. Dans ce cas, il est recommandé d’essayer d’améliorer le nombre de comptes de stockage fournis à la commande d’exportation (la charge sera distribuée entre les comptes) et/ou de réduire la concurrence en définissant l’indicateur de distribution sur `per_node` (voir Propriétés de la commande). La désactivation complète de la distribution est également possible, mais cela peut avoir un impact significatif sur les performances de la commande.
+### <a name="storage-failures"></a>Échecs de stockage
+
+Par défaut, les commandes d’exportation sont distribuées de telle sorte qu’il peut y avoir de nombreuses écritures simultanées dans le stockage. Le niveau de distribution dépend du type de commande d’exportation :
+* La distribution par défaut de la `.export` commande normale est `per_shard` , ce qui signifie que toutes les [étendues](../extents-overview.md) contiennent des données à exporter simultanément dans le stockage. 
+* La distribution par défaut des commandes [Exporter vers une table externe](export-data-to-an-external-table.md) est `per_node` , ce qui signifie que la concurrence est le nombre de nœuds dans le cluster.
+
+Lorsque le nombre d’étendues/de nœuds est élevé, cela peut entraîner une charge élevée sur le stockage qui entraîne une limitation du stockage, ou des erreurs de stockage temporaire. Les suggestions suivantes peuvent résoudre ces erreurs (par ordre de priorité) :
+
+* Augmentez le nombre de comptes de stockage fournis à la commande d’exportation ou à la définition de la [table externe](../external-tables-azurestorage-azuredatalake.md) (la charge sera distribuée uniformément entre les comptes).
+* Réduisez la concurrence en affectant à l’indicateur de distribution la valeur `per_node` (consultez Propriétés de la commande).
+* Réduisez la concurrence du nombre de nœuds exportés en affectant à la [propriété de demande du client](../../api/netfx/request-properties.md) `query_fanout_nodes_percent` la concurrence souhaitée (pourcentage de nœuds). La propriété peut être définie dans le cadre de la requête d’exportation. Par exemple, la commande suivante limite le nombre de nœuds écrivant simultanément au stockage sur 50% des nœuds de cluster :
+
+    ```kusto
+    .export async  to csv
+        ( h@"https://storage1.blob.core.windows.net/containerName;secretKey" ) 
+        with
+        (
+            distribuion="per_node"
+        ) 
+        <| 
+        set query_fanout_nodes_percent = 50;
+        ExportQuery
+    ```
+
+* En cas d’exportation vers une table externe partitionnée, la définition des `spread` / `concurrency` Propriétés peut réduire la concurrence (voir les détails dans les [Propriétés](export-data-to-an-external-table.md#syntax)de la commande.
+* Si aucun des éléments ci-dessus ne fonctionne, est également possible de désactiver complètement la distribution en affectant `distributed` à la propriété la valeur false, mais cela n’est pas recommandé, car cela peut avoir un impact significatif sur les performances de la commande.
