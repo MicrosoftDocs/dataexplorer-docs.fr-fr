@@ -8,12 +8,12 @@ ms.reviewer: kedamari
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/12/2020
-ms.openlocfilehash: 0da372ff40975e5536883236453d1fadc52673da
-ms.sourcegitcommit: 4b061374c5b175262d256e82e3ff4c0cbb779a7b
+ms.openlocfilehash: b4e65fd2ca01f5a2de0a8f703e1b91f0d3722f92
+ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/09/2020
-ms.locfileid: "94373814"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95324716"
 ---
 # <a name="data-purge"></a>Vidage des données
 
@@ -42,7 +42,9 @@ Le processus de purge sélective des données à partir d’Azure Explorateur de
      * Enregistrer la distribution dans les étendues de données du cluster 
      * Nombre de nœuds dans le cluster  
      * Capacité de rechange pour les opérations de vidage
-     * Plusieurs autres facteurs la durée de la phase 2 peuvent varier de quelques secondes à plusieurs heures.
+     * Plusieurs autres facteurs
+     
+    La durée de la phase 2 peut varier de quelques secondes à plusieurs heures.
 1. Phase 3 : (suppression définitive) restaurez tous les artefacts de stockage qui peuvent avoir des données « incohérentes », puis supprimez-les du stockage. Cette phase est effectuée au moins cinq jours après la fin de la phase précédente, mais pas plus de 30 jours après la commande initiale. Ces chronologies sont définies pour respecter les exigences de confidentialité des données.
 
 L’émission d’une `.purge` commande déclenche ce processus, qui prend quelques jours. Si la densité des enregistrements auxquels s’applique le prédicat est suffisamment grande, le processus va effectivement obtenir toutes les données de la table. Cette réacquisition a un impact significatif sur les performances et les COGS (coût des marchandises vendues).
@@ -123,9 +125,9 @@ La commande de vidage peut être appelée de deux manières pour différents sc�
 
 **Supprimer les limitations de prédicat**
 
-* Le prédicat doit être une sélection simple (par exemple, *où [ColumnName] = = 'X'*  /  *Where [ColumnName] in ('X', 'Y', 'Z') et [OtherColumn] = = 'a'* ).
+* Le prédicat doit être une sélection simple (par exemple, *où [ColumnName] = = 'X'*  /  *Where [ColumnName] in ('X', 'Y', 'Z') et [OtherColumn] = = 'a'*).
 * Plusieurs filtres doivent être combinés avec un’and', plutôt que des `where` clauses distinctes (par exemple, `where [ColumnName] == 'X' and  OtherColumn] == 'Y'` et non `where [ColumnName] == 'X' | where [OtherColumn] == 'Y'` ).
-* Le prédicat ne peut pas référencer des tables autres que la table en cours de purge ( *TableName* ). Le prédicat ne peut inclure que l’instruction de sélection ( `where` ). Il ne peut pas projeter des colonnes spécifiques de la table (schéma de sortie lors de l’exécution de' *`table` | Le prédicat* 'doit correspondre au schéma de table.
+* Le prédicat ne peut pas référencer des tables autres que la table en cours de purge (*TableName*). Le prédicat ne peut inclure que l’instruction de sélection ( `where` ). Il ne peut pas projeter des colonnes spécifiques de la table (schéma de sortie lors de l’exécution de'*`table` | Le prédicat*'doit correspondre au schéma de table.
 * Les fonctions système (telles que, `ingestion_time()` , `extent_id()` ) ne sont pas prises en charge.
 
 #### <a name="example-two-step-purge"></a>Exemple : vidage en deux étapes
@@ -199,7 +201,7 @@ Si nécessaire, vous pouvez annuler les demandes de vidage en attente.
 
 **Sortie**
 
-La sortie de cette commande est identique à la sortie de la commande’Show purges *OperationId* ', indiquant l’État mis à jour de l’annulation de l’opération de vidage. Si la tentative réussit, l’état de l’opération est mis à jour avec la valeur `Abandoned` . Dans le cas contraire, l’état de l’opération n’est pas modifié. 
+La sortie de cette commande est identique à la sortie de la commande’Show purges *OperationId*', indiquant l’État mis à jour de l’annulation de l’opération de vidage. Si la tentative réussit, l’état de l’opération est mis à jour avec la valeur `Abandoned` . Dans le cas contraire, l’état de l’opération n’est pas modifié. 
 
 |`OperationId` |`DatabaseName` |`TableName` |`ScheduledTime` |`Duration` |`LastUpdatedOn` |`EngineOperationId` |`State` |`StateDetails` |`EngineStartTime` |`EngineDuration` |`Retries` |`ClientRequestId` |`Principal`
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -247,7 +249,7 @@ Status = 'Completed’indique la réussite de la première phase de l’opérati
 
 |`OperationId` |`DatabaseName` |`TableName` |`ScheduledTime` |`Duration` |`LastUpdatedOn` |`EngineOperationId` |`State` |`StateDetails` |`EngineStartTime` |`EngineDuration` |`Retries` |`ClientRequestId` |`Principal`
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-|c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:33.6782130 |2019-01-20 11:42:34.6169153 |a0825d4d-6b0f-47f3-a499-54ac5681ab78 |Effectué |Purge terminée avec succès (artefacts de stockage en attente de suppression) |2019-01-20 11:41:34.6486506 |00:00:04.4687310 |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...
+|c9651d74-3b80-4183-90bb-bbe9e42eadc4 |Mabdd |MyTable |2019-01-20 11:41:05.4391686 |00:00:33.6782130 |2019-01-20 11:42:34.6169153 |a0825d4d-6b0f-47f3-a499-54ac5681ab78 |Completed |Purge terminée avec succès (artefacts de stockage en attente de suppression) |2019-01-20 11:41:34.6486506 |00:00:04.4687310 |0 |KE. RunCommand ; 1d0ad28b-F791-4f5a-A60F-0e32318367b7 |ID d’application AAD =...
 
 * `OperationId` : ID d’opération DM renvoyé lors de l’exécution de la purge. 
 * `DatabaseName`* *-nom de la base de données (sensible à la casse). 

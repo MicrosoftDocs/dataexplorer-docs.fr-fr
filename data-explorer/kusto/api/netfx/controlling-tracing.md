@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 10/23/2018
-ms.openlocfilehash: 8ef966cb2be70ddca6fb5ab10813abe12cb5bce1
-ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
+ms.openlocfilehash: 2224fe28c7f0088ac1a16cdee4d452e354ff0800
+ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83382350"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95324752"
 ---
 # <a name="controlling-and-suppressing-kusto-sdk-client-side-tracing"></a>Contrôle et suppression du suivi côté client du kit de développement logiciel (SDK) Kusto
 
@@ -39,12 +39,12 @@ Kusto.Cloud.Platform.Utils.TraceSourceManager.SetTraceVerbosityForAll(
 Pour supprimer le suivi des bibliothèques clientes Kusto via un fichier de configuration, modifiez le fichier `Kusto.Cloud.Platform.dll.tweaks` (qui est inclus dans la `Kusto.Data` bibliothèque).
 
 ```xml
-    <!-- Overrides the default trace verbosity level -->
+    //Overrides the default trace verbosity level
     <add key="Kusto.Cloud.Platform.Utils.Tracing.OverrideTraceVerbosityLevel" value="0" />
 ```
 
 > [!NOTE]
-> Pour que la modification prenne effet, il ne doit pas y avoir de signe moins dans la valeur de`key`
+> Pour que la modification prenne effet, il ne doit pas y avoir de signe moins dans la valeur de `key`
 
 Une alternative est :
 
@@ -57,7 +57,7 @@ Kusto.Cloud.Platform.Utils.Anchor.Tweaks.SetProgrammaticAppSwitch(
 
 ## <a name="enable-the-kusto-client-libraries-tracing"></a>Activer le suivi des bibliothèques clientes Kusto
 
-Pour activer le traçage à partir des bibliothèques clientes Kusto, activez le traçage .NET dans le *fichier app. config*de votre application. Par exemple, supposons que l’application `MyApp.exe` utilise la bibliothèque cliente Kusto. Data. La modification du fichier *MyApp. exe. config* pour inclure les éléments suivants active le `Kusto.Data` suivi lors du démarrage suivant de l’application.
+Pour activer le traçage à partir des bibliothèques clientes Kusto, activez le traçage .NET dans le *fichierapp.config* de votre application. Par exemple, supposons que l’application `MyApp.exe` utilise la bibliothèque cliente Kusto. Data. La modification du *MyApp.exe.config* de fichiers pour inclure les éléments suivants active le `Kusto.Data` traçage au démarrage suivant de l’application.
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>

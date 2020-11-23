@@ -10,17 +10,17 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: c493431fcfa22ad0419659a5b6e036205f3bf299
-ms.sourcegitcommit: 194453a8eb11c3ccb54c473e887c84cb8e91b939
+ms.openlocfilehash: ac8852adb5138bffe10a4726470b1c53d74cec1b
+ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/31/2020
-ms.locfileid: "87473970"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95324378"
 ---
 # <a name="null-values"></a>Valeurs Null
 
 Tous les types de données scalaires dans Kusto ont une valeur spéciale qui représente une valeur manquante.
-Cette valeur est appelée **valeur null**ou simplement **null**.
+Cette valeur est appelée **valeur null** ou simplement **null**.
 
 ## <a name="null-literals"></a>Littéraux Null
 
@@ -68,6 +68,12 @@ Ensuite :
 
 * Si vous exécutez la requête ci-dessus dans Kusto. Explorer, toutes les `true` valeurs s’affichent sous la forme `1` , et toutes les `false` valeurs s’affichent sous la forme `0` .
 
+* Kusto n’offre aucun moyen de contraindre la colonne d’une table à avoir des valeurs null (en d’autres termes, il n’y a pas d’équivalent à la contrainte de SQL `NOT NULL` ).
+
 ::: zone-end
 
+::: zone pivot="azuremonitor"
+
 * Kusto n’offre aucun moyen de contraindre la colonne d’une table à avoir des valeurs null (en d’autres termes, il n’y a pas d’équivalent à la contrainte de SQL `NOT NULL` ).
+
+::: zone-end

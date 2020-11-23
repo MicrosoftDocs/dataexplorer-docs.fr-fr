@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: ee36823bb3f730a12f7ad2d1febe91439d4a2aad
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 3b857e0e16c212c2f12d43f9709a9278526a7344
+ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92343281"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95324684"
 ---
 # <a name="query-limits"></a>Limites de requête
 
@@ -60,7 +60,7 @@ Les méthodes de réduction de la taille du jeu de résultats produite par la re
 Vous pouvez désactiver la troncation des résultats à l’aide de l' `notruncation` option de demande.
 Nous vous recommandons de mettre en place une certaine forme de limitation.
 
-Par exemple :
+Exemple :
 
 ```kusto
 set notruncation;
@@ -154,7 +154,7 @@ Le délai d’expiration des requêtes en cours d’exécution (requêtes et com
 
 Par défaut, le délai d’attente est défini sur quatre minutes pour les requêtes et sur 10 minutes pour les commandes de contrôle. Cette valeur peut être augmentée si nécessaire (limité à une heure).
 
-* Si vous interrogez à l’aide de Kusto. Explorer, utilisez options des **Outils** &gt; **Options**_ &gt; _*connexions* *  &gt; **requête du serveur**.
+* Si vous interrogez à l’aide de Kusto. Explorer, utilisez options des **Outils** &gt; **Options** _ &gt; _ *connexions* *  &gt; **requête du serveur**.
 * Par programmation, définissez la `servertimeout` propriété demande du client, une valeur de type `System.TimeSpan` , jusqu’à une heure.
 
 **Remarques sur les délais d’expiration**
@@ -162,11 +162,6 @@ Par défaut, le délai d’attente est défini sur quatre minutes pour les requ�
 * Côté client, le délai d’attente est appliqué à partir de la demande en cours de création jusqu’au moment où la réponse commence à arriver au client. Le temps nécessaire à la lecture de la charge utile sur le client n’est pas traité dans le cadre du délai d’attente. Cela dépend de la vitesse à laquelle l’appelant extrait les données du flux.
 * De même, côté client, la valeur de délai d’expiration réelle utilisée est légèrement supérieure à la valeur de délai d’attente du serveur demandée par l’utilisateur. Cette différence, consiste à autoriser les latences du réseau.
 * Pour utiliser automatiquement le délai d’expiration maximal des demandes autorisées, affectez à la propriété demande du client la valeur `norequesttimeout` `true` .
-
-<!--
-  Request timeout can also be set using a set statement, but we don't mention
-  it here since it shouldn't be used in production scenarios.
--->
 
 ## <a name="limit-on-query-cpu-resource-usage"></a>Limite sur l’utilisation des ressources processeur des requêtes
 
@@ -182,7 +177,7 @@ La première, *query_fanout_threads_percent*, contrôle le facteur de Fanout pou
 
 Pendant l’exécution de la requête, le texte de la requête est transformé en une arborescence d’opérateurs relationnels représentant la requête.
 Si la profondeur de l’arborescence dépasse un seuil interne de plusieurs milliers de niveaux, la requête est considérée comme trop complexe pour le traitement et échoue avec un code d’erreur. L’échec indique que l’arborescence des opérateurs relationnels dépasse ses limites.
-Les limites sont dépassées en raison de requêtes avec de longues listes d’opérateurs binaires chaînés ensemble. Par exemple :
+Les limites sont dépassées en raison de requêtes avec de longues listes d’opérateurs binaires chaînés ensemble. Exemple :
 
 ```kusto
 T 

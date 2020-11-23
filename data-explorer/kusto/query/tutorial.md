@@ -10,27 +10,18 @@ ms.topic: reference
 ms.date: 10/08/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: c87979b788c83a819f9e65658b5e44e40e53ad1d
-ms.sourcegitcommit: 0820454feb02ae489f3a86b688690422ae29d788
+ms.openlocfilehash: 8a3c0b058b2c1cf5023ce0069a7dd938fce5caec
+ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/19/2020
-ms.locfileid: "94932733"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95324735"
 ---
 # <a name="tutorial"></a>Didacticiel
 
 ::: zone pivot="azuredataexplorer"
 
 La meilleure façon de se familiariser avec le langage de requête Kusto consiste à examiner des requêtes simples pour obtenir le « sentiment » du langage à l’aide d’une [base de données avec des exemples de données](https://help.kusto.windows.net/Samples). Les requêtes illustrées dans cet article doivent s’exécuter sur cette base de données. La `StormEvents` table de cet exemple de base de données fournit des informations sur les tempêtes qui se sont produites aux États-Unis.
-
-<!--
-  TODO: Provide link to reference data we used originally in StormEvents
--->
-
-<!--
-  TODO: A few samples below reference non-existent tables, such as Events and Logs.
-        We need to add these tables.
--->
 
 ## <a name="count-rows"></a>Compter les lignes
 
@@ -147,7 +138,7 @@ StormEvents
 |2007-12-30 16:00:00.0000000|2007-12-30 16:05:00.0000000|00:05:00|Vent d’orage|Géorgie|
 
 Il est possible de réutiliser le nom de colonne et d’assigner le résultat de calcul à la même colonne.
-Par exemple :
+Exemple :
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
