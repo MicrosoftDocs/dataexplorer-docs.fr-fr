@@ -7,12 +7,12 @@ ms.reviewer: abhishgu
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/28/2020
-ms.openlocfilehash: 51f44d1a3cd29121a99e442f4033176b00b9e09f
-ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
+ms.openlocfilehash: 05f0055e5faf99d14864338db7f6ad6a4c99946e
+ms.sourcegitcommit: 0820454feb02ae489f3a86b688690422ae29d788
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/04/2020
-ms.locfileid: "93349390"
+ms.lasthandoff: 11/19/2020
+ms.locfileid: "94932699"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-using-go"></a>Créer un cluster et une base de données Azure Data Explorer à l’aide de Go
 
@@ -43,7 +43,7 @@ Cette section est facultative. Si vous souhaitez savoir comment le code fonction
 
 Le programme doit s’authentifier auprès d’Azure Data Explorer avant d’exécuter des opérations. Le [type d’authentification des informations d’identification du client](/azure/developer/go/azure-sdk-authorization#use-environment-based-authentication) est utilisé par [auth.NewAuthorizerFromEnvironment](https://pkg.go.dev/github.com/Azure/go-autorest/autorest/azure/auth?tab=doc#NewAuthorizerFromEnvironment), qui recherche les variables d’environnement prédéfinies suivantes : `AZURE_CLIENT_ID`, `AZURE_CLIENT_SECRET`, `AZURE_TENANT_ID`.
 
-L’exemple suivant montre comment un [kusto.ClustersClient](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v0.0.0-20200513030755-ac906323d9fe/services/kusto/mgmt/2020-02-15/kusto?tab=doc#ClustersClient) est créé à l’aide de cette technique :
+L’exemple suivant montre comment un [kusto.ClustersClient](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v48.2.0+incompatible/services/kusto/mgmt/2020-02-15/kusto) est créé à l’aide de cette technique :
 
 ```go
 func getClustersClient(subscription string) kusto.ClustersClient {

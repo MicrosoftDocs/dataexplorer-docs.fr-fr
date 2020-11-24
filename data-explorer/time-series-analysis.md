@@ -7,12 +7,13 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 04/07/2019
-ms.openlocfilehash: 8c1ad74af063fe0380fec24b2717d4fdafe319df
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.localizationpriority: high
+ms.openlocfilehash: d7046b8767413889bc77240032a2292deb7c89a3
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88875308"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512993"
 ---
 # <a name="time-series-analysis-in-azure-data-explorer"></a>Analyse des séries chronologiques dans Azure Data Explorer
 

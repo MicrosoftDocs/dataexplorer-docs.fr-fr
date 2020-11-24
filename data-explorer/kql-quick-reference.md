@@ -7,12 +7,13 @@ ms.reviewer: ''
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/19/2020
-ms.openlocfilehash: 2fa4cbd0b1cf7b034bc7ae3202afcde3866ca347
-ms.sourcegitcommit: ee904f45e3eb3feab046263aa9956cb7780a056d
+ms.localizationpriority: high
+ms.openlocfilehash: 3b007d1688130449c597ef99281ed89b55d880eb
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/22/2020
-ms.locfileid: "92356586"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95511922"
 ---
 # <a name="kql-quick-reference"></a>Aide-mémoire sur KQL
 

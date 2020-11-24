@@ -7,12 +7,13 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 05/26/2020
-ms.openlocfilehash: 114e3b00b35ff6dd30241cd6afc4666fdedf6f62
-ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
+ms.localizationpriority: high
+ms.openlocfilehash: 23bd17b54a1910633baabf2b78a1015f31eead5a
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/04/2020
-ms.locfileid: "93349492"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512772"
 ---
 # <a name="visualize-data-with-azure-data-explorer-dashboardspreview"></a>Visualiser des données avec des tableaux de bord Azure Data Explorer (préversion)
 
@@ -33,7 +34,7 @@ L’image suivante représente un tableau de bord Azure Data Explorer.
 
 ## <a name="create-a-dashboard"></a>Création d’un tableau de bord
 
-1. Dans la barre de navigation, sélectionnez **Tableaux de bord** , puis **Nouveau tableau de bord**.
+1. Dans la barre de navigation, sélectionnez **Tableaux de bord**, puis **Nouveau tableau de bord**.
 
     :::image type="content" source="media/adx-dashboards/new-dashboard.png" alt-text="Nouveau tableau de bord":::
 
@@ -49,8 +50,8 @@ Ajoutez les sources de données nécessaires pour générer les tableaux de bord
 
     :::image type="content" source="media/adx-dashboards/data-source.png" alt-text="Source de données":::
 
-1. Dans le volet **Créer une nouvelle source de données**  :
-    1. Entrez l’ **URI du cluster** ou un nom partiel (région incluse), puis sélectionnez **Se connecter**. 
+1. Dans le volet **Créer une nouvelle source de données** :
+    1. Entrez l’**URI du cluster** ou un nom partiel (région incluse), puis sélectionnez **Se connecter**. 
     1. Sélectionnez la **Base de données** dans la liste déroulante.
     1. Utilisez la valeur par défaut ou modifiez le **Nom de la source de données** si nécessaire. 
     1. Sélectionnez **Appliquer**.
@@ -72,11 +73,11 @@ Les paramètres permettent d’utiliser des filtres de tableau de bord. Les para
 |Champ  |Description |
 |---------|---------|
 |**Nom complet du paramètre**    |   Nom du paramètre affiché sur le tableau de bord ou la carte de modification.      |
-|**Type de paramètre**    |Celui-ci peut avoir l'une des valeurs suivantes :<ul><li>**Sélection unique**  : une seule valeur peut être sélectionnée dans le filtre comme entrée du paramètre.</li><li>**Sélection multiple**  : une ou plusieurs valeurs peuvent être sélectionnées dans le filtre comme entrées du paramètre.</li><li>**Intervalle de temps**  : permet de créer des paramètres supplémentaires pour filtrer les requêtes et les tableaux de bord en fonction de l’heure. Chaque tableau de bord a un sélecteur de plage horaire par défaut.</li></ul>    |
+|**Type de paramètre**    |Celui-ci peut avoir l'une des valeurs suivantes :<ul><li>**Sélection unique** : une seule valeur peut être sélectionnée dans le filtre comme entrée du paramètre.</li><li>**Sélection multiple** : une ou plusieurs valeurs peuvent être sélectionnées dans le filtre comme entrées du paramètre.</li><li>**Intervalle de temps** : permet de créer des paramètres supplémentaires pour filtrer les requêtes et les tableaux de bord en fonction de l’heure. Chaque tableau de bord a un sélecteur de plage horaire par défaut.</li></ul>    |
 |**Nom de la variable**     |   Nom du paramètre à utiliser dans la requête.      |
 |**Type de données**    |    Type de données des valeurs de paramètre.     |
 |**Épingler comme filtre de tableau de bord**   |   Épingle le filtre basé sur le paramètre au tableau de bord ou le désépingle.       |
-|**Source**     |    Source des valeurs de paramètre : <ul><li>**Valeurs fixes**  : Valeurs de filtre statiques introduites manuellement. </li><li>**Requête** : Valeurs introduites dynamiquement à l’aide d’une requête KQL.  </li></ul>    |
+|**Source**     |    Source des valeurs de paramètre : <ul><li>**Valeurs fixes** : Valeurs de filtre statiques introduites manuellement. </li><li>**Requête** : Valeurs introduites dynamiquement à l’aide d’une requête KQL.  </li></ul>    |
 |**Ajouter une valeur « Tout sélectionner »**    |   S’applique uniquement aux types de paramètres Sélection unique et Sélection multiple. Permet de récupérer les données pour toutes les valeurs du paramètre.      |
 
 ## <a name="add-query"></a>Ajouter une requête
@@ -87,14 +88,14 @@ Les paramètres permettent d’utiliser des filtres de tableau de bord. Les para
 
     :::image type="content" source="media/adx-dashboards/empty-dashboard-new-query.png" alt-text="Nouvelle requête":::
 
-1. Dans le volet **Requête**  : 
+1. Dans le volet **Requête** : 
     1. Sélectionnez la source de données partagée dans la liste déroulante.
     1. Tapez la requête, puis sélectionnez **Exécuter**. 
     1. Sélectionnez **+ Ajouter un visuel**.
 
     :::image type="content" source="media/adx-dashboards/initial-query.png" alt-text="Exécuter la requête":::
 
-1. Dans le volet **Mise en forme du visuel** , sélectionnez **Type de graphique** pour choisir le type de visuel. 
+1. Dans le volet **Mise en forme du visuel**, sélectionnez **Type de graphique** pour choisir le type de visuel. 
 1. Nommez le visuel et sélectionnez **Appliquer les modifications** pour épingler le visuel au tableau de bord.
 
     :::image type="content" source="media/adx-dashboards/add-visual.png" alt-text="Ajouter un visuel à la requête":::
@@ -120,23 +121,23 @@ Utilisez le menu Partager pour [accorder des autorisations](#grant-permissions) 
 
 ### <a name="grant-permissions"></a>Accorder des autorisations
 
-Pour accorder des autorisations à un utilisateur dans le volet **Autorisations du tableau de bord**  :
+Pour accorder des autorisations à un utilisateur dans le volet **Autorisations du tableau de bord** :
 1. Écrivez le nom ou l’adresse e-mail de l’utilisateur dans la zone **Ajouter de nouveaux membres**.
-1. Sélectionnez le niveau d’ **autorisation** **Affichage** ou **Modification** , puis cliquez sur **Ajouter**.
+1. Sélectionnez le niveau d’**autorisation** **Affichage** ou **Modification**, puis cliquez sur **Ajouter**.
 
 :::image type="content" source="media/adx-dashboards/dashboard-permissions.png" alt-text="Gérer les autorisations du tableau de bord":::
 
 ### <a name="change-a-user-permission-level"></a>Changer le niveau d’autorisation d’un utilisateur
 
-Pour changer le niveau d’autorisation d’un utilisateur dans le volet **Autorisations du tableau de bord**  :
+Pour changer le niveau d’autorisation d’un utilisateur dans le volet **Autorisations du tableau de bord** :
 1. Utilisez la zone de recherche ou faites défiler la liste des utilisateurs pour trouver l’utilisateur.
-1. Changez le niveau d’ **autorisation** en fonction des besoins.
+1. Changez le niveau d’**autorisation** en fonction des besoins.
 
 ### <a name="share-the-dashboard-link"></a>Partager le lien du tableau de bord
 
 Pour partager le lien du tableau de bord :
-* Sélectionnez la liste déroulante **Partager** , puis sélectionnez **Copier le lien** , ou
-* Dans la fenêtre **Autorisations du tableau de bord** , sélectionnez **Copier le lien**. 
+* Sélectionnez la liste déroulante **Partager**, puis sélectionnez **Copier le lien**, ou
+* Dans la fenêtre **Autorisations du tableau de bord**, sélectionnez **Copier le lien**. 
 
 ## <a name="enable-auto-refresh"></a>Activer l’actualisation automatique 
 
@@ -156,7 +157,7 @@ Pour partager le lien du tableau de bord :
 > * Sélectionnez l’intervalle de temps minimal le plus petit pour réduire la charge inutile sur le cluster. 
 > * Un afficheur de tableau de bord : 
 >    * Peut modifier les intervalles de temps minimum pour un usage personnel uniquement. 
->    * Ne peut pas sélectionner une valeur inférieure à l’ **intervalle de temps minimal** spécifié par l’éditeur.
+>    * Ne peut pas sélectionner une valeur inférieure à l’**intervalle de temps minimal** spécifié par l’éditeur.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

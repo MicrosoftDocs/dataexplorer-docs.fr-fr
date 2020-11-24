@@ -7,12 +7,13 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: quickstart
 ms.date: 07/22/2019
-ms.openlocfilehash: cf2673d92cb5a543baed01b91bdd828cc5862aee
-ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
+ms.localizationpriority: high
+ms.openlocfilehash: 44c2a5adf46d8c136675aa70a45dc89ed60c4cc8
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/28/2020
-ms.locfileid: "92902540"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512738"
 ---
 # <a name="quickstart-create-an-azure-data-explorer-cluster-and-database"></a>Démarrage rapide : Créer un cluster et une base de données Azure Data Explorer
 
@@ -40,11 +41,11 @@ Créez un cluster Azure Data Explorer avec un ensemble défini de ressources de 
 
 1. Sélectionnez le bouton **+ Créer une ressource** dans le coin supérieur gauche du portail.
 
-1. Recherchez *Azure Data Explorer* .
+1. Recherchez *Azure Data Explorer*.
 
    ![Rechercher des ressources](media/create-cluster-database-portal/search-resources.png)
 
-1. Sous **Azure Data Explorer** , en bas de l’écran, sélectionnez **Créer** .
+1. Sous **Azure Data Explorer**, en bas de l’écran, sélectionnez **Créer**.
 
 1. Remplissez les détails du cluster de base avec les informations suivantes.
 
@@ -56,13 +57,13 @@ Créez un cluster Azure Data Explorer avec un ensemble défini de ressources de 
     | Resource group | Votre groupe de ressources | Utilisez un groupe de ressources existant ou créez-en un. |
     | Nom du cluster | Nom de cluster unique | Choisissez un nom unique qui identifie votre cluster. Le nom de domaine *[Région].kusto.windows.net* est ajouté au nom de cluster que vous fournissez. Le nom doit être uniquement composé de lettres minuscules et de chiffres. Il doit comprendre entre 4 et 22 caractères.
     | Région | *USA Ouest* ou *USA Ouest 2* | Sélectionnez *USA Ouest* ou *USA Ouest 2* (si vous utilisez des zones de disponibilité) pour ce guide de démarrage rapide. Pour un système de production, sélectionnez la région qui répond le mieux à vos besoins.
-    | Zones de disponibilité | *1* , *2* et/ou *3* | Placez les instances de cluster dans différentes zones de disponibilité de la même région (facultatif). Les [zones de disponibilité Azure](/azure/availability-zones/az-overview) sont des emplacements physiques uniques au sein de la même région Azure. Elles protègent un cluster et des données Azure Data Explorer contre la défaillance partielle d’une région. Les nœuds de cluster sont créés, par défaut, dans le même centre de données. Le fait de sélectionner plusieurs zones de disponibilité vous permet d’éliminer un point de défaillance unique et de garantir une haute disponibilité. Le déploiement dans les zones de disponibilité est possible uniquement au moment de la création du cluster et ne peut pas être modifié plus tard.
+    | Zones de disponibilité | *1*, *2* et/ou *3* | Placez les instances de cluster dans différentes zones de disponibilité de la même région (facultatif). Les [zones de disponibilité Azure](/azure/availability-zones/az-overview) sont des emplacements physiques uniques au sein de la même région Azure. Elles protègent un cluster et des données Azure Data Explorer contre la défaillance partielle d’une région. Les nœuds de cluster sont créés, par défaut, dans le même centre de données. Le fait de sélectionner plusieurs zones de disponibilité vous permet d’éliminer un point de défaillance unique et de garantir une haute disponibilité. Le déploiement dans les zones de disponibilité est possible uniquement au moment de la création du cluster et ne peut pas être modifié plus tard.
     | Spécifications de calcul | *D13_v2* | Sélectionnez la spécification du prix le plus bas pour ce guide de démarrage rapide. Pour un système de production, sélectionnez la spécification qui répond le mieux à vos besoins.
     | | | |
 
 1. Sélectionnez **Vérifier + créer** pour passer en revue les détails de votre cluster, puis **Créer** pour le provisionner. Le provisionnement prend généralement environ 10 minutes.
 
-1. Une fois le déploiement terminé, sélectionnez **Accéder à la ressource** .
+1. Une fois le déploiement terminé, sélectionnez **Accéder à la ressource**.
 
     ![Accéder à la ressource](media/create-cluster-database-portal/notification-resource.png)
 
@@ -70,7 +71,7 @@ Créez un cluster Azure Data Explorer avec un ensemble défini de ressources de 
 
 Vous êtes maintenant prêt pour la deuxième étape du processus : la création de la base de données.
 
-1. Sous l’onglet **Vue d’ensemble** , sélectionnez **Créer une base de données** .
+1. Sous l’onglet **Vue d’ensemble**, sélectionnez **Créer une base de données**.
 
     ![Étape 2 : créer une base de données](media/create-cluster-database-portal/database-creation.png)
 
@@ -91,13 +92,13 @@ Vous êtes maintenant prêt pour la deuxième étape du processus : la créatio
 
 Maintenant que vous avez un cluster et une base de données, vous pouvez exécuter des requêtes et des commandes. Vous n’avez encore pas encore de données dans la base de données, mais vous pouvez quand même voir comment les outils fonctionnent.
 
-1. Sous votre cluster, sélectionnez **Requête** . Collez la commande `.show databases` dans la fenêtre de requête, puis sélectionnez **Exécuter** .
+1. Sous votre cluster, sélectionnez **Requête**. Collez la commande `.show databases` dans la fenêtre de requête, puis sélectionnez **Exécuter**.
 
     ![Afficher la commande databases](media/create-cluster-database-portal/show-databases.png)
 
-    Le jeu de résultats montre **TestDatabase** , la seule base de données du cluster.
+    Le jeu de résultats montre **TestDatabase**, la seule base de données du cluster.
 
-1. Collez la commande `.show tables` dans la fenêtre de requête et sélectionnez **Exécuter** .
+1. Collez la commande `.show tables` dans la fenêtre de requête et sélectionnez **Exécuter**.
 
     Cette commande retourne un jeu de résultats vide parce que vous n’avez pas encore de table. Vous ajoutez une table dans l’article suivant de cette série.
 
@@ -105,14 +106,14 @@ Maintenant que vous avez un cluster et une base de données, vous pouvez exécut
 
 Vous pouvez arrêter et redémarrer un cluster en fonction des besoins métier.
 
-1. Pour arrêter le cluster, en haut de l’onglet **Vue d’ensemble** , sélectionnez **Arrêter** .
+1. Pour arrêter le cluster, en haut de l’onglet **Vue d’ensemble**, sélectionnez **Arrêter**.
 
     :::image type="content" source="media/create-cluster-database-portal/stop-button.png" alt-text="Bouton Arrêter":::
 
     > [!NOTE]
     > Lorsque le cluster est arrêté, les données ne sont pas disponibles pour les requêtes et vous ne pouvez pas ingérer de nouvelles données.
 
-1. Pour redémarrer le cluster, en haut de l’onglet **Vue d’ensemble** , sélectionnez **Démarrer** .
+1. Pour redémarrer le cluster, en haut de l’onglet **Vue d’ensemble**, sélectionnez **Démarrer**.
 
     Quand le cluster est redémarré, il faut compter environ 10 minutes avant qu’il ne soit disponible (comme quand il a été provisionné la première fois). Comptez aussi du temps pour charger les données dans le cache à chaud.  
 

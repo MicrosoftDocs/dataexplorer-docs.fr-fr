@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/29/2020
-ms.openlocfilehash: 4ef7e15e3009b3ccd098136d9c5013dbe31813b7
-ms.sourcegitcommit: f71801764fdccb061f3cf1e3cfe43ec1557e4e0f
+ms.openlocfilehash: bf6dced9b0df0b90b0b1ff87389c9dab31ebe7c0
+ms.sourcegitcommit: f7bebd245081a5cdc08e88fa4f9a769c18e13e5d
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/03/2020
-ms.locfileid: "93293137"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94644635"
 ---
 # <a name="what-is-one-click-ingestion"></a>Présentation de l’ingestion en un clic
 
@@ -40,15 +40,15 @@ L’ingestion en un clic est particulièrement utile lorsque vous procédez à l
 
 L’Assistant Ingestion en un clic vous guide tout au long du processus d’ingestion en un clic.
 
-* Pour accéder à l’Assistant Ingestion en un clic à partir de l’écran d’accueil **Bienvenue dans Azure Data Explorer** de votre cluster, effectuez les deux premières étapes ( [création de cluster et création de base de données](#prerequisites)), puis sélectionnez **Ingérer de nouvelles données**.
+* Pour accéder à l’Assistant Ingestion en un clic à partir de l’écran d’accueil **Bienvenue dans Azure Data Explorer** de votre cluster, effectuez les deux premières étapes ([création de cluster et création de base de données](#prerequisites)), puis sélectionnez **Ingérer de nouvelles données**.
 
     :::image type="content" source="media/ingest-data-one-click/welcome-ingestion.png" alt-text="Ingérer de nouvelles données à partir de l’écran de bienvenue dans Azure Data Explorer":::
 
-* Pour accéder à l’Assistant à partir de l’ [interface utilisateur web d’Azure Data Explorer](https://dataexplorer.azure.com/), dans le menu de gauche, cliquez avec le bouton droit sur la ligne de **base de données** ou de **table** , puis sélectionnez **Ingérer de nouvelles données**.
+* Pour accéder à l’Assistant à partir de l’[interface utilisateur web d’Azure Data Explorer](https://dataexplorer.azure.com/), dans le menu de gauche, cliquez avec le bouton droit sur la ligne de **base de données** ou de **table**, puis sélectionnez **Ingérer de nouvelles données**.
 
     :::image type="content" source="media/ingest-data-one-click/one-click-ingestion-in-webui.png" alt-text="Sélectionner l’ingestion en un clic dans l’interface utilisateur web":::
 
-* Pour accéder à l’Assistant à partir du portail Azure, sélectionnez **Requête** dans le menu gauche, cliquez avec le bouton droit sur la **base de données** ou la **table** , puis sélectionnez **Ingérer de nouvelles données**.
+* Pour accéder à l’Assistant à partir du portail Azure, sélectionnez **Requête** dans le menu gauche, cliquez avec le bouton droit sur la **base de données** ou la **table**, puis sélectionnez **Ingérer de nouvelles données**.
 
     :::image type="content" source="media/ingest-data-one-click/access-from-portal.png" alt-text="Accéder à l’Assistant Ingestion en un clic à partir du portail Azure":::
 
@@ -74,7 +74,7 @@ L’Assistant vous guide dans les options suivantes :
 
 Le service génère automatiquement les propriétés de schéma et d’ingestion, que vous pouvez changer. Vous pouvez utiliser une structure de mappage existante ou en créer une, selon que l’ingestion est destinée à une table existante ou nouvelle.
 
-Sous l’onglet **Schéma** , effectuez les actions suivantes :
+Sous l’onglet **Schéma**, effectuez les actions suivantes :
    * Vérifier le type de compression généré automatiquement
    * Choisir le [format de vos données](#file-formats) Les formats différents vous permettront d’apporter des modifications supplémentaires.
 
@@ -84,7 +84,7 @@ L’ingestion en un clic prend en charge l’ingestion à partir de données sou
 
 ### <a name="editor-window"></a>Fenêtre Éditeur
 
-Dans la fenêtre **Éditeur** , vous pouvez ajuster les colonnes de la table de données, si nécessaire. 
+Dans la fenêtre **Éditeur**, vous pouvez ajuster les colonnes de la table de données, si nécessaire. 
 
 |Type de la table  |Ajustements de colonne disponibles  |
 |---------|---------|
@@ -92,7 +92,7 @@ Dans la fenêtre **Éditeur** , vous pouvez ajuster les colonnes de la table de 
 |Existing     | Nouvelle colonne, Mettre à jour la colonne, Tri croissant, Tri décroissant  |
 
 >[!NOTE]
-> À tout moment, vous pouvez ouvrir l’ [éditeur de commande](one-click-ingestion-new-table.md#command-editor) au-dessus du volet **Éditeur**. Dans l’éditeur de commande, vous pouvez afficher et copier les commandes automatiques générées à partir de vos entrées.
+> À tout moment, vous pouvez ouvrir l’[éditeur de commande](one-click-ingestion-new-table.md#command-editor) au-dessus du volet **Éditeur**. Dans l’éditeur de commande, vous pouvez afficher et copier les commandes automatiques générées à partir de vos entrées.
 
 #### <a name="mapping-transformations"></a>Mappage des transformations
 
@@ -110,16 +110,17 @@ Pour plus d'informations, consultez [Transformations de mappage](kusto/managemen
 
 Une fois que vous avez terminé le mappage de schéma et les manipulations de colonnes, l’Assistant Ingestion démarre le processus d’ingestion de données. 
 
-* Quand l’ingestion de données provient de sources **autres que des conteneurs** , l’ingestion prend effet immédiatement.
+* Quand l’ingestion de données provient de sources **autres que des conteneurs**, l’ingestion prend effet immédiatement.
 
-* Si la source de données est un **conteneur**  :
+* Si la source de données est un **conteneur** :
     * La [stratégie de traitement par lot](kusto/management/batchingpolicy.md) d’Azure Data Explorer agrège vos données. 
     * Après l’ingestion, vous pouvez télécharger le rapport d’ingestion et passer en revue les performances de chaque objet blob qui a été traité. 
-    * Vous pouvez sélectionner **Créer une ingestion continue** et configurer l’ [ingestion continue à l’aide d’Event Grid](one-click-ingestion-new-table.md#create-continuous-ingestion-for-container).
+    * Vous pouvez sélectionner **Créer une ingestion continue** et configurer l’[ingestion continue à l’aide d’Event Grid](one-click-ingestion-new-table.md#create-continuous-ingestion-for-container).
  
 ### <a name="initial-data-exploration"></a>Exploration initiale des données
    
 Une fois l’ingestion terminée, vous pouvez effectuer une exploration initiale de vos données à l’aide des **[commandes rapides](one-click-ingestion-existing-table.md#explore-quick-queries-and-tools)** que l’Assistant met à votre disposition.
+
 
 ## <a name="next-steps"></a>Étapes suivantes
 

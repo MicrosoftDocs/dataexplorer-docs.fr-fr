@@ -7,12 +7,13 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 09/24/2018
-ms.openlocfilehash: 10192cca4e03aa92ec018f7875e457d4cf109f72
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.localizationpriority: high
+ms.openlocfilehash: 2af4aff9667ecc53794c63010a723494e85126fa
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92342924"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512823"
 ---
 # <a name="what-is-azure-data-explorer"></a>Qu’est-ce que l’Explorateur de données Azure ?
 
@@ -44,7 +45,7 @@ Le diagramme suivant montre les différents aspects de l’utilisation de l’Ex
 
 L’utilisation de l’Explorateur de données Azure suit généralement ce schéma :
 
-1. **Créer une base de données :** Créez un *cluster* , puis une ou plusieurs *bases de données* dans ce cluster. [Démarrage rapide : Créer un cluster et une base de données pour l’Explorateur de données Azure](create-cluster-database-portal.md)
+1. **Créer une base de données :** Créez un *cluster*, puis une ou plusieurs *bases de données* dans ce cluster. [Démarrage rapide : Créer un cluster et une base de données pour l’Explorateur de données Azure](create-cluster-database-portal.md)
 
 1. **Ingérer des données :** Chargez des données dans des tables de base de données pour pouvoir exécuter des requêtes dessus. [Démarrage rapide : Ingérer des données Event Hub dans l’Explorateur de données Azure](ingest-data-event-hub.md)
 

@@ -7,12 +7,13 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: tutorial
 ms.date: 04/07/2019
-ms.openlocfilehash: f6d993383ecf6c25bf144228e77f02f944bc02d8
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.localizationpriority: high
+ms.openlocfilehash: 22a22f1050a366a79017904550854365dc2ef43c
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92343332"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513282"
 ---
 # <a name="write-queries-for-azure-data-explorer"></a>Rédiger des requêtes pour l’Explorateur de données Azure
 
@@ -67,7 +68,7 @@ Pour exécuter des requêtes sur votre propre cluster :
 
 1. Copiez chaque requête dans l’application de requête web, puis sélectionnez la requête ou placez votre curseur dans la requête.
 
-1. En haut de l’application, sélectionnez **Exécuter** .
+1. En haut de l’application, sélectionnez **Exécuter**.
 
 ### <a name="count"></a>count
 
@@ -85,7 +86,7 @@ StormEvents | count
 
 [**take**](kusto/query/takeoperator.md) : retourne au maximum le nombre spécifié de lignes de données.
 
-La requête suivante retourne cinq lignes de la table StormEvents. Le mot clé *limit* est un alias pour *take* .
+La requête suivante retourne cinq lignes de la table StormEvents. Le mot clé *limit* est un alias pour *take*.
 
 **\[** [**Cliquer pour exécuter la requête**](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAEAAsuyS%2fKdS1LzSspVqhRKEnMTlUwBQDEz2b8FAAAAA%3d%3d) **\]**
 
@@ -190,7 +191,7 @@ StormEvents
 | summarize event_count = count() by State
 ```
 
-L’opérateur **summarize** regroupe des lignes qui ont les mêmes valeurs dans la clause **by** , puis utilise la fonction d’agrégation (telle que **count** ) pour combiner chaque groupe en une seule ligne. Par conséquent, dans ce cas, il existe une ligne pour chaque état et une colonne pour le nombre de lignes dans cet état.
+L’opérateur **summarize** regroupe des lignes qui ont les mêmes valeurs dans la clause **by**, puis utilise la fonction d’agrégation (telle que **count**) pour combiner chaque groupe en une seule ligne. Par conséquent, dans ce cas, il existe une ligne pour chaque état et une colonne pour le nombre de lignes dans cet état.
 
 Il existe une gamme de fonctions d’agrégation et vous pouvez utiliser plusieurs d’entre elles dans un opérateur **summarize** afin de produire plusieurs colonnes calculées. Par exemple, vous pouvez obtenir le nombre de tempêtes dans chaque état et le nombre unique de tempêtes par état, puis utiliser **top** pour obtenir les états les plus touchés par les tempêtes.
 
@@ -284,7 +285,7 @@ StormEvents
 
 ### <a name="case"></a>case()
 
-[**case()**](kusto/query/casefunction.md) : évalue une liste de prédicats et retourne la première expression de résultat dont le prédicat est satisfait ou la dernière expression **else** . Vous pouvez utiliser cet opérateur pour catégoriser ou regrouper les données :
+[**case()**](kusto/query/casefunction.md) : évalue une liste de prédicats et retourne la première expression de résultat dont le prédicat est satisfait ou la dernière expression **else**. Vous pouvez utiliser cet opérateur pour catégoriser ou regrouper les données :
 
 La requête suivante retourne une nouvelle colonne `deaths_bucket` et regroupe les décès selon le nombre.
 
@@ -315,7 +316,7 @@ MyData
 | extend Duration = extract("Duration=([0-9.]+)", 1, Trace, typeof(real)) * time(1s)
 ```
 
-Cette requête utilise une instruction **let** , qui lie un nom (dans ce cas `MyData`) à une expression. Pour le reste de la portée dans laquelle l’instruction **let** apparaît (portée globale ou portée du corps de la fonction), le nom peut être utilisé pour faire référence à sa valeur liée.
+Cette requête utilise une instruction **let**, qui lie un nom (dans ce cas `MyData`) à une expression. Pour le reste de la portée dans laquelle l’instruction **let** apparaît (portée globale ou portée du corps de la fonction), le nom peut être utilisé pour faire référence à sa valeur liée.
 
 ### <a name="parse_json"></a>parse_json()
 
@@ -384,7 +385,7 @@ range offset from -1 to 1 step 1
 | project weekStart = startofweek(now(), offset),offset
 ```
 
-Cette requête utilise l’opérateur **range** , qui génère une table de valeurs à une seule colonne. Voir aussi : [**startofday()**](kusto/query/startofdayfunction.md), [**startofweek()**](kusto/query/startofweekfunction.md), [**startofyear()**](kusto/query/startofyearfunction.md)), [**startofmonth()**](kusto/query/startofmonthfunction.md), [**endofday()**](kusto/query/endofdayfunction.md), [**endofweek()**](kusto/query/endofweekfunction.md), [**endofmonth()**](kusto/query/endofmonthfunction.md) et [**endofyear()**](kusto/query/endofyearfunction.md).
+Cette requête utilise l’opérateur **range**, qui génère une table de valeurs à une seule colonne. Voir aussi : [**startofday()**](kusto/query/startofdayfunction.md), [**startofweek()**](kusto/query/startofweekfunction.md), [**startofyear()**](kusto/query/startofyearfunction.md)), [**startofmonth()**](kusto/query/startofmonthfunction.md), [**endofday()**](kusto/query/endofdayfunction.md), [**endofweek()**](kusto/query/endofweekfunction.md), [**endofmonth()**](kusto/query/endofmonthfunction.md) et [**endofyear()**](kusto/query/endofyearfunction.md).
 
 ### <a name="between"></a>between()
 
@@ -412,7 +413,7 @@ StormEvents
 
 ## <a name="tabular-operators"></a>Opérateurs tabulaires
 
-Kusto comporte de nombreux opérateurs tabulaires, certains d’entre eux sont couverts dans d’autres sections de cet article. Ici, nous allons nous concentrer sur **parse** . 
+Kusto comporte de nombreux opérateurs tabulaires, certains d’entre eux sont couverts dans d’autres sections de cet article. Ici, nous allons nous concentrer sur **parse**. 
 
 ### <a name="parse"></a>parse
 
@@ -505,7 +506,7 @@ Pour plus d’informations, consultez la liste complète des [fonctions de séri
 
 ## <a name="advanced-aggregations"></a>Agrégations avancées
 
-Nous avons abordé les agrégations de base, comme **count** et **summarize** , plus haut dans cet article. Cette section présente des options plus avancées.
+Nous avons abordé les agrégations de base, comme **count** et **summarize**, plus haut dans cet article. Cette section présente des options plus avancées.
 
 ### <a name="top-nested"></a>top-nested
 
@@ -616,7 +617,7 @@ StormEvents
 
 [**mv-expand**](kusto/query/mvexpandoperator.md) : Développe des collections multivaleurs à partir d’une colonne de type dynamique afin que chaque valeur de la collection obtienne une ligne distincte. Toutes les autres colonnes d’une ligne développée sont dupliquées. Il s’agit de l’opposé de makelist.
 
-La requête suivante génère des exemples de données en créant un ensemble, puis en l’utilisant afin d’illustrer les fonctionnalités **mv-expand** .
+La requête suivante génère des exemples de données en créant un ensemble, puis en l’utilisant afin d’illustrer les fonctionnalités **mv-expand**.
 
 **\[** [**Cliquer pour exécuter la requête**](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAEAFWOQQ6CQAxF9yTcoWGliTcws1MPIFygyk9EKTPpVBTj4Z2BjSz%2f738v7WF06r1vD2xcp%2bCoNq9yHDFYLIsvvW5Q0JybKYCco2omqnyNTxHW7oPFckbwajFZhB%2bIsE1trNZ0gi1dpuRmQ%2baC%2bjuuthS7Fbwvi%2f%2bP8lpGvAMP7Wr3A6BceSu7AAAA) **\]**
 
@@ -684,7 +685,7 @@ LightningStorms
 
 ### <a name="join"></a>join
 
-[**join**](kusto/query/joinoperator.md) : fusionne les lignes de deux tables pour former une nouvelle table en mettant en correspondance les valeurs des colonnes spécifiées de chaque table. Kusto prend en charge une gamme complète de types de jointures : **fullouter** , **inner** , **innerunique** , **leftanti** , **leftantisemi** , **leftouter** , **leftsemi** , **rightanti** , **rightantisemi** , **rightouter** , **rightsemi** .
+[**join**](kusto/query/joinoperator.md) : fusionne les lignes de deux tables pour former une nouvelle table en mettant en correspondance les valeurs des colonnes spécifiées de chaque table. Kusto prend en charge une gamme complète de types de jointures : **fullouter**, **inner**, **innerunique**, **leftanti**, **leftantisemi**, **leftouter**, **leftsemi**, **rightanti**, **rightantisemi**, **rightouter**, **rightsemi**.
 
 L’exemple suivant joint deux tables avec une jointure interne.
 
@@ -727,7 +728,7 @@ StormEvents
 | extend row_number = row_number()
 ```
 
-L’ensemble de lignes est également considéré comme sérialisé s’il s’agit d’un résultat des opérateurs **sort** , **top** ou **range** , suivis éventuellement des opérateurs **project** , **project-away** , **extend** , **where** , **parse** , **mv-expand** ou **take** .
+L’ensemble de lignes est également considéré comme sérialisé s’il s’agit d’un résultat des opérateurs **sort**, **top** ou **range**, suivis éventuellement des opérateurs **project**, **project-away**, **extend**, **where**, **parse**, **mv-expand** ou **take**.
 
 **\[** [**Cliquer pour exécuter la requête**](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAEAAsuyS%2fKdS1LzSsp5uWqUSguzc1NLMqsSlVIzi%2fNK9HQVEiqVAguSSxJBcvmF5XABRQSi5NBgqkVJal5KQpF%2beXxeaW5SalFCrZIHA1NAEGimf5iAAAA) **\]**
 

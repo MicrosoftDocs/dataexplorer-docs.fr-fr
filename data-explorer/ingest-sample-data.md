@@ -7,12 +7,13 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: quickstart
 ms.date: 08/12/2019
-ms.openlocfilehash: 3b5958740460bf1c6439544ac095849064216fbb
-ms.sourcegitcommit: 626a0e8695d2655e724283cfc4bdbe8e1d371de4
+ms.localizationpriority: high
+ms.openlocfilehash: d5cff511a67e122af6b71740bbeaec6b7a3048e4
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/05/2020
-ms.locfileid: "89493621"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512755"
 ---
 # <a name="quickstart-ingest-sample-data-into-azure-data-explorer"></a>Démarrage rapide : Ingérer des exemples de données dans l’Explorateur de données Azure
 

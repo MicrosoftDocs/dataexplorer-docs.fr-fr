@@ -7,17 +7,19 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: 69438457dfcbfc4e29805d5d193c227538910e45
-ms.sourcegitcommit: 97404e9ed4a28cd497d2acbde07d00149836d026
+ms.localizationpriority: high
+ms.openlocfilehash: 798a8b201ee87d5c43aeb31d6af515d41c516bef
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/21/2020
-ms.locfileid: "90832640"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512211"
 ---
 # <a name="ingest-data-from-event-hub-into-azure-data-explorer"></a>Ingérer des données Event Hub dans Azure Data Explorer
 
 > [!div class="op_single_selector"]
 > * [Portail](ingest-data-event-hub.md)
+> * [En un clic](one-click-event-hub.md)
 > * [C#](data-connection-event-hub-csharp.md)
 > * [Python](data-connection-event-hub-python.md)
 > * [Modèle Azure Resource Manager](data-connection-event-hub-resource-manager.md)
@@ -156,7 +158,6 @@ Deux options sont disponibles pour le routage des données ingérées : *statiq
 > * Pour un mappage `csv`, des propriétés sont ajoutées au début de l’enregistrement. Pour un mappage `json`, des propriétés sont ajoutées en fonction du nom qui s’affiche dans la liste déroulante.
 
 Si vous avez sélectionné **Propriétés du système d’événements** dans la section **Source de données** de la table, vous devez inclure des [propriétés système](ingest-data-event-hub-overview.md#system-properties) dans le schéma et le mappage de table.
-
 
 ## <a name="copy-the-connection-string"></a>Copier la chaîne de connexion
 

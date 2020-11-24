@@ -8,12 +8,13 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 01/28/2020
-ms.openlocfilehash: 2a0dfeb769e4dc40cb988bab3cb4650ebcfcc9e4
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.localizationpriority: high
+ms.openlocfilehash: cd0bc28a2d2b282c50a85c87dbf8f4989c7b4057
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92342635"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513214"
 ---
 # <a name="query-data-in-azure-monitor-using-azure-data-explorer-preview"></a>Interroger des données dans Azure Monitor avec Azure Data Explorer (préversion)
 
@@ -30,18 +31,18 @@ Le flux de proxy Azure Data Explorer :
 
 ## <a name="connect-to-the-proxy"></a>Se connecter au proxy
 
-1. Vérifiez que votre cluster natif Azure Data Explorer (comme le cluster *d’aide* ) apparaît dans le menu de gauche avant de vous connecter à votre cluster Log Analytics ou Application Insights.
+1. Vérifiez que votre cluster natif Azure Data Explorer (comme le cluster *d’aide*) apparaît dans le menu de gauche avant de vous connecter à votre cluster Log Analytics ou Application Insights.
 
     ![Cluster natif ADX](media/adx-proxy/web-ui-help-cluster.png)
 
-1. Dans l’interface utilisateur d’Azure Data Explorer https://dataexplorer.azure.com/clusters), sélectionnez **Ajouter un cluster** .
+1. Dans l’interface utilisateur d’Azure Data Explorer https://dataexplorer.azure.com/clusters), sélectionnez **Ajouter un cluster**.
 
-1. Dans la fenêtre **Ajouter un cluster** , ajoutez l’URL au cluster LA ou AI. 
+1. Dans la fenêtre **Ajouter un cluster**, ajoutez l’URL au cluster LA ou AI. 
     
     * Pour LA : `https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.operationalinsights/workspaces/<workspace-name>`
     * Pour AI : `https://ade.applicationinsights.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.insights/components/<ai-app-name>`
 
-    * Sélectionnez **Ajouter** .
+    * Sélectionnez **Ajouter**.
 
     ![Ajouter un cluster](media/adx-proxy/add-cluster.png)
 
@@ -132,7 +133,7 @@ Les options de syntaxe suivantes sont disponibles lors de l’appel des clusters
 
 |Description de la syntaxe  |Application Insights  |Log Analytics  |
 |----------------|---------|---------|
-| Base de données dans un cluster qui contient uniquement la ressource définie dans cet abonnement ( **recommandé pour les requêtes entre clusters** ) |   cluster(`https://ade.applicationinsights.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.insights/components/<ai-app-name>').database('<ai-app-name>`) | cluster(`https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.operationalinsights/workspaces/<workspace-name>').database('<workspace-name>`)     |
+| Base de données dans un cluster qui contient uniquement la ressource définie dans cet abonnement (**recommandé pour les requêtes entre clusters**) |   cluster(`https://ade.applicationinsights.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.insights/components/<ai-app-name>').database('<ai-app-name>`) | cluster(`https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.operationalinsights/workspaces/<workspace-name>').database('<workspace-name>`)     |
 | Cluster contenant l’ensemble des applications/espaces de travail de cet abonnement    |     cluster(`https://ade.applicationinsights.io/subscriptions/<subscription-id>`)    |    cluster(`https://ade.loganalytics.io/subscriptions/<subscription-id>`)     |
 |Cluster qui contient l’ensemble des applications/espaces de travail de l’abonnement et qui sont membres de ce groupe de ressources    |   cluster(`https://ade.applicationinsights.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>`)      |    cluster(`https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>`)      |
 |Cluster qui contient uniquement la ressource définie dans cet abonnement      |    cluster(`https://ade.applicationinsights.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.insights/components/<ai-app-name>`)    |  cluster(`https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.operationalinsights/workspaces/<workspace-name>`)     |

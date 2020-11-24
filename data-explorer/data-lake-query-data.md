@@ -7,12 +7,13 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/17/2020
-ms.openlocfilehash: 058a42cc21c6af9642d91231e6b1620315f94f55
-ms.sourcegitcommit: 313a91d2a34383b5a6e39add6c8b7fabb4f8d39a
+ms.localizationpriority: high
+ms.openlocfilehash: ec62c1d0dfe439ac77d7fce9e69af8e5c8a7a8a0
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/16/2020
-ms.locfileid: "90680698"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512789"
 ---
 # <a name="query-data-in-azure-data-lake-using-azure-data-explorer"></a>Interroger des données dans Azure Data Lake à l'aide d'Azure Data Explorer
 
@@ -142,7 +143,7 @@ Utilisez le cluster de test appelé *help* pour tester différentes fonctionnali
 
 ### <a name="create-external-table-taxirides"></a>Créer une table externe *TaxiRides* 
 
-Cette section présente la requête utilisée pour créer la table externe *TaxiRides* du cluster *help*. Cette table ayant déjà été créée, vous pouvez ignorer cette section et [interroger*directement les données de la table externe*TaxiRides](#query-taxirides-external-table-data).
+Cette section présente la requête utilisée pour créer la table externe *TaxiRides* du cluster *help*. Cette table ayant déjà été créée, vous pouvez ignorer cette section et [interroger *directement les données de la table externe* TaxiRides](#query-taxirides-external-table-data).
 
 ```kusto
 .create external table TaxiRides

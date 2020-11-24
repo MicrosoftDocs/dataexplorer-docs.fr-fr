@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/28/2020
-ms.openlocfilehash: f72d2b7f2036c7c63bfc5a37e2ab944acc60bbf8
-ms.sourcegitcommit: 2ee2901cb82e1655b7f0d960d3427da084230731
+ms.openlocfilehash: 7f218abffbdbe9cfc4949a87b61f08e92d915bde
+ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94520579"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95324599"
 ---
 # <a name="use-lightingest-to-ingest-data-to-azure-data-explorer"></a>Utiliser LightIngest pour ingérer des données dans Azure Data Explorer
  
@@ -103,40 +103,6 @@ Lorsqu’il est utilisé avec des blobs Azure, LightIngest utilise certaines pro
 |`kustoCreationTime`, `kustoCreationTimeUtc`  | Interprété comme un horodatage UTC. Si cette valeur est définie, elle est utilisée pour remplacer l’heure de création dans Kusto. Utile pour les scénarios de renvoi |
 
 ## <a name="usage-examples"></a>Exemples d'utilisation
-
-<!-- Waiting for Tzvia or Vladik to rewrite the instructions for this example before publishing it
-
-### Ingesting a specific number of blobs in JSON format
-
-* Ingest two blobs under a specified storage account {Account}, in `JSON` format matching the pattern `.json`
-* Destination is the database {Database}, the table `SampleData`
-* Indicate that your data is compressed with the approximate ratio of 10.0
-* LightIngest won't wait for the ingestion to be completed
-
-To use the LightIngest command below:
-1. Create a table command and enter the table name into the LightIngest command, replacing `SampleData`.
-1. Create a mapping command and enter the IngestionMappingRef command, replacing `SampleData_mapping`.
-1. Copy your cluster name and enter it into the LightIngest command, replacing `{ClusterandRegion}`.
-1. Enter the database name into the LightIngest command, replacing `{Database name}`.
-1. Replace `{Account}` with your account name and replace `{ROOT_CONTAINER}?{SAS token}` with the appropriate information.
-
-    ```
-    LightIngest.exe "https://ingest-{ClusterAndRegion}.kusto.windows.net;Fed=True"  
-        -db:{Database name} 
-        -table:SampleData 
-        -source:"https://{Account}.blob.core.windows.net/{ROOT_CONTAINER}?{SAS token}" 
-        -IngestionMappingRef:SampleData_mapping 
-        -pattern:"*.json" 
-        -format:JSON 
-        -limit:2 
-        -cr:10.0 
-        -dontWait:true
-    ```
-     
-1. In Azure Data Explorer, open query count.
-
-    ![Ingestion result in Azure Data Explorer](media/lightingest/lightingest-show-failure-count.png)
--->
 
 ### <a name="how-to-ingest-data-using-creationtime"></a>Comment ingérer des données à l’aide de CreationTime
 
