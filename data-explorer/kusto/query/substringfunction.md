@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 3780aac9ad2675e901ffff63a89177b478d461ea
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.localizationpriority: high
+ms.openlocfilehash: 7b2f2dc18fe12f4bd07b638b6c3ca32d95a10618
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92251391"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512041"
 ---
 # <a name="substring"></a>substring()
 
@@ -35,7 +36,7 @@ substring("abcdefg", 1, 2) == "bc"
 * *startingIndex*: position de caractère de départ de base zéro de la sous-chaîne demandée.
 * *Length*: paramètre facultatif qui peut être utilisé pour spécifier le nombre de caractères demandé dans la sous-chaîne. 
 
-**Notes**
+**Remarques**
 
 *startingIndex* peut être un nombre négatif, auquel cas la sous-chaîne sera récupérée à partir de la fin de la chaîne source.
 

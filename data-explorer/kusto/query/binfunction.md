@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 9bafeee9cec5ac81034b879f054e445d8b118dcf
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.localizationpriority: high
+ms.openlocfilehash: 6fc2e55b43e7c7c2dc2bb537730f8f627e3e4a66
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92243421"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513112"
 ---
 # <a name="bin"></a>bin()
 
@@ -45,7 +46,7 @@ Multiple le plus proche de *roundTo*, inférieur à *value*.
 
 ## <a name="examples"></a>Exemples
 
-Expression | Résultat
+Expression | Résultats
 ---|---
 `bin(4.5, 1)` | `4.0`
 `bin(time(16d), 7d)` | `14d`

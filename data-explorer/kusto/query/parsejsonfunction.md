@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 0f49ee6763d4afadf12e9e008bd7ea8e61c49acc
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.localizationpriority: high
+ms.openlocfilehash: 3125a51733f6672d041e6c1522ea755e5677cb0c
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92246096"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512857"
 ---
 # <a name="parse_json"></a>parse_json()
 
@@ -56,7 +57,7 @@ T
 | extend duration_value=d.duration.value, duration_min=d["duration"]["min"]
 ```
 
-**Notes**
+**Remarques**
 
 Il est courant d’avoir une chaîne JSON qui décrit un conteneur de propriétés dans lequel l’un des « emplacements » est une autre chaîne JSON. 
 

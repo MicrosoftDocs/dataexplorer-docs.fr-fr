@@ -8,14 +8,15 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/08/2020
+ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: b2b304d012ea541f6855091874be8ea5483fae63
-ms.sourcegitcommit: b6f0f112b6ddf402e97c011a902bd70ba408e897
+ms.openlocfilehash: b448f4249c777d9b9d61e58dad993f3da1817fda
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94497554"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512466"
 ---
 # <a name="samples"></a>Exemples
 
@@ -498,7 +499,7 @@ Résultat :
 
 ## <a name="create-and-use-query-time-dimension-tables"></a>Créer et utiliser des tables de dimension de temps de requête
 
-Vous souhaiterez souvent joindre les résultats d’une requête avec une table de dimension ad hoc qui n’est pas stockée dans la base de données. Il est possible de définir une expression dont le résultat est une table dont l’étendue est limitée à une seule requête. Exemple :
+Vous souhaiterez souvent joindre les résultats d’une requête avec une table de dimension ad hoc qui n’est pas stockée dans la base de données. Il est possible de définir une expression dont le résultat est une table dont l’étendue est limitée à une seule requête. Par exemple :
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -544,7 +545,7 @@ Supposons que vous disposiez d’une table qui comprend les éléments suivants�
 
 Une requête qui retourne les deux derniers enregistrements pour chaque valeur de la `ID` colonne, où « latest » est défini comme « ayant la valeur la plus élevée `timestamp` », peut être créé avec l' [opérateur de niveau supérieur](topnestedoperator.md).
 
-Exemple :
+Par exemple :
 
 ```kusto
 datatable(id:string, timestamp:datetime, bla:string)           // #1
@@ -685,7 +686,7 @@ La numérotation détaillée ci-dessous fait référence aux nombres de l’exem
 ## <a name="find-preceding-event"></a>Rechercher l’événement précédent
 L’exemple suivant montre comment rechercher un événement précédent entre deux jeux de données.  
 
-*Objectif :* : il existe deux jeux de données, a et B. Pour chaque enregistrement dans B, recherchez son événement précédent dans un (autrement dit, l’enregistrement arg_max dans un qui est toujours « plus ancien » que B). Voici la sortie attendue pour les exemples de jeux de données suivants. 
+*Objectif :*: il existe deux jeux de données, a et B. Pour chaque enregistrement dans B, recherchez son événement précédent dans un (autrement dit, l’enregistrement arg_max dans un qui est toujours « plus ancien » que B). Voici la sortie attendue pour les exemples de jeux de données suivants. 
 
 ```kusto
 let A = datatable(Timestamp:datetime, ID:string, EventA:string)
@@ -931,8 +932,8 @@ print Duration_seconds =  extract("Duration=([0-9.]+)", 1, Trace, typeof(real)) 
 
 ### <a name="isempty-isnotempty-notempty"></a>isempty, isnotempty, notempty
 
-- *isempty* retourne true si l’argument est une chaîne vide ou null (voir aussi *isnull* ).
-- *isnotempty* retourne true si l’argument n’est pas une chaîne vide ou null (voir aussi *isnotnull* ). alias : *notempty*.
+- *isempty* retourne true si l’argument est une chaîne vide ou null (voir aussi *isnull*).
+- *isnotempty* retourne true si l’argument n’est pas une chaîne vide ou null (voir aussi *isnotnull*). alias : *notempty*.
 
 
 ```Kusto
@@ -1229,7 +1230,7 @@ Event
 Les sections suivantes donnent des exemples d’agrégation des résultats d’une requête dans le langage de requête Kusto.
 
 ### <a name="count"></a>count
-Comptez le nombre de lignes du jeu de résultats une fois que tous les filtres sont appliqués. L’exemple suivant retourne le nombre total de lignes dans la table _Perf_ au cours des 30 dernières minutes. Le résultat est retourné dans une colonne nommée *count_* , sauf si vous lui attribuez un nom spécifique :
+Comptez le nombre de lignes du jeu de résultats une fois que tous les filtres sont appliqués. L’exemple suivant retourne le nombre total de lignes dans la table _Perf_ au cours des 30 dernières minutes. Le résultat est retourné dans une colonne nommée *count_*, sauf si vous lui attribuez un nom spécifique :
 
 
 ```Kusto
@@ -1515,7 +1516,7 @@ SecurityEvent
 | top 10 by Duration desc
 ```
 
-Dans cet exemple, le premier jeu de données filtre tous les événements de connexion. Un deuxième jeu de données se joint au premier, qui filtre tous les événements de déconnexion. Les colonnes projetées sont _Computer_ , _Account_ , _TargetLogonId_ et _TimeGenerated_. Les jeux de données sont corrélés par une colonne partagée, _TargetLogonId_. La sortie est un seul enregistrement par corrélation, avec à la fois l’heure de connexion et de déconnexion.
+Dans cet exemple, le premier jeu de données filtre tous les événements de connexion. Un deuxième jeu de données se joint au premier, qui filtre tous les événements de déconnexion. Les colonnes projetées sont _Computer_, _Account_, _TargetLogonId_ et _TimeGenerated_. Les jeux de données sont corrélés par une colonne partagée, _TargetLogonId_. La sortie est un seul enregistrement par corrélation, avec à la fois l’heure de connexion et de déconnexion.
 
 Si les deux jeux de données ont des colonnes portant le même nom, les colonnes du jeu de données de droite reçoivent un numéro d’index. Ainsi, les résultats dans cet exemple affichent _TargetLogonId_ avec les valeurs de la table de gauche et _TargetLogonId1_ avec les valeurs de la table de droite. Dans ce cas, la deuxième colonne _TargetLogonId1_ a été supprimée à l’aide de l’opérateur `project-away`.
 
@@ -1677,9 +1678,9 @@ Par défaut, les résultats sont affichés sous forme de table :
 
 ![Table de charge de travail](images/samples/table-display.png)
 
-Pour obtenir un meilleur affichage, sélectionnez **Graphique** , puis choisissez l’option **Secteurs** pour visualiser les résultats :
+Pour obtenir un meilleur affichage, sélectionnez **Graphique**, puis choisissez l’option **Secteurs** pour visualiser les résultats :
 
-![Graphique en secteurs](images/samples/charts-and-diagrams-pie.png)
+![Graphique à secteurs](images/samples/charts-and-diagrams-pie.png)
 
 
 ### <a name="timecharts"></a>Graphiques temporels
@@ -1800,7 +1801,7 @@ Cet exemple génère la sortie suivante.
 :::image type="content" source="images/samples/cohorts.png" alt-text="Sortie d’analyse de cohorte":::
 
 ### <a name="rolling-monthly-active-users-and-user-stickiness"></a>Cumul des utilisateurs actifs mensuels et de l’adhérence utilisateur
-Les exemples suivants utilisent l’analyse de série chronologique avec la fonction [series_fir](/azure/kusto/query/series-firfunction), qui vous permet d’effectuer des calculs de fenêtre glissante. L’exemple d’application supervisée est un magasin en ligne qui assure le suivi de l’activité des utilisateurs par le biais d’événements personnalisés. La requête effectue le suivi de deux types d’activités de l’utilisateur, _AddToCart_ et _Checkout_ , et définit les _utilisateurs actifs_ comme ceux ayant effectué un paiement au moins une fois durant un jour donné.
+Les exemples suivants utilisent l’analyse de série chronologique avec la fonction [series_fir](/azure/kusto/query/series-firfunction), qui vous permet d’effectuer des calculs de fenêtre glissante. L’exemple d’application supervisée est un magasin en ligne qui assure le suivi de l’activité des utilisateurs par le biais d’événements personnalisés. La requête effectue le suivi de deux types d’activités de l’utilisateur, _AddToCart_ et _Checkout_, et définit les _utilisateurs actifs_ comme ceux ayant effectué un paiement au moins une fois durant un jour donné.
 
 
 

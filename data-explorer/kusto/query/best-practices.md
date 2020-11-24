@@ -8,18 +8,19 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/03/2020
-ms.openlocfilehash: b5d5ef5ba3b29bf1bc468a64baa159106b164604
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.localizationpriority: high
+ms.openlocfilehash: 762c3075c162ba35bdba539d0e86460c78f3297e
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92249373"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95511786"
 ---
 # <a name="query-best-practices"></a>Meilleures pratiques relatives aux requêtes
 
 Voici plusieurs bonnes pratiques à suivre pour accélérer l’exécution de votre requête.
 
-|Action  |Utilisez  |N’utilisez pas  |Notes  |
+|Action  |Utilisation  |N’utilisez pas  |Notes  |
 |---------|---------|---------|---------|
 | **Filtres de temps** | Utiliser les filtres de temps en premier. ||Kusto est hautement optimisé pour utiliser des filtres de temps.| 
 |**Opérateurs de chaîne**      | Utiliser l' `has` opérateur     | N’utilisez pas `contains`     | Lorsque vous recherchez des jetons complets, `has` fonctionne mieux, car il ne recherche pas de sous-chaînes.   |

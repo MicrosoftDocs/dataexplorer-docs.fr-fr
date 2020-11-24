@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/09/2020
-ms.openlocfilehash: e909754a040308d752b19155e1e69a10097ab219
-ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
+ms.localizationpriority: high
+ms.openlocfilehash: 582683a9261d84fa24d819b5234e58effaf90a97
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86280509"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512024"
 ---
 # <a name="the-dynamic-data-type"></a>Le type de données Dynamic
 
@@ -61,10 +62,10 @@ print d=dynamic({"a": datetime(1970-05-11)})
 Pour analyser une `string` valeur qui suit les règles d’encodage JSON dans une `dynamic` valeur, utilisez la `parse_json` fonction. Par exemple :
 
 * `parse_json('[43, 21, 65]')` : tableau de nombres
-* `parse_json('{"name":"Alan", "age":21, "address":{"street":432,"postcode":"JLK32P"}}')`-dictionnaire
+* `parse_json('{"name":"Alan", "age":21, "address":{"street":432,"postcode":"JLK32P"}}')` -dictionnaire
 * `parse_json('21')` : valeur unique de type dynamique qui contient un nombre
 * `parse_json('"21"')` : valeur unique de type dynamique qui contient une chaîne
-* `parse_json('{"a":123, "b":"hello", "c":[1,2,3], "d":{}}')`-donne la même valeur que `o` dans l’exemple ci-dessus.
+* `parse_json('{"a":123, "b":"hello", "c":[1,2,3], "d":{}}')` -donne la même valeur que `o` dans l’exemple ci-dessus.
 
 > [!NOTE]
 > Contrairement à JavaScript, JSON impose l’utilisation de caractères guillemets doubles ( `"` ) autour des chaînes et des noms de propriété de jeu de propriétés.
@@ -110,7 +111,7 @@ Dans les exemples ci-dessous `dict` et `arr` sont des colonnes de type dynamique
 |arr [(-1)]                         | Index d’entité             | Récupère la dernière valeur dans le tableau                                                |                                               |
 |arr [ToInt ((indexAsString)]         | Appel de fonction            | Effectue un cast des valeurs de column `indexAsString` en int et les utilise pour indicer un tableau |                                               |
 |dict [['WHERE']]                   | Mot clé utilisé comme nom d’entité (colonne) | Indice un dictionnaire à l’aide des valeurs de `where` la colonne comme clé    | Les noms d’entité identiques à certains mots clés de langage de requête doivent être placés entre guillemets. | 
-|dict. ['WHERE'] ou dict ['WHERE']   | Constant                 | Indice un dictionnaire à l’aide d’une `where` chaîne comme clé                              |                                               |
+|dict. ['WHERE'] ou dict ['WHERE']   | Constante                 | Indice un dictionnaire à l’aide d’une `where` chaîne comme clé                              |                                               |
 
 **Astuce sur les performances :** Préférer utiliser des indices constants lorsque cela est possible
 
@@ -173,11 +174,11 @@ En outre, il existe plusieurs fonctions d’agrégation qui créent des `dynamic
 |[`extractjson(`chemin d’accès, objet`)`](../extractjsonfunction.md)|Utilise le chemin pour accéder à l’objet.
 |[`parse_json(`code`)`](../parsejsonfunction.md)| Convertit une chaîne JSON en un objet dynamique.
 |[`range(`de, à, étape`)`](../rangefunction.md)| Tableau de valeurs
-|[`mv-expand`listColumn](../mvexpandoperator.md) | Réplique une ligne pour chaque valeur d’une liste dans une cellule spécifiée.
-|[`summarize buildschema(`column`)`](../buildschema-aggfunction.md) |Déduit le schéma du type à partir du contenu de la colonne
-|[`summarize make_bag(`column`)`](../make-bag-aggfunction.md) | Fusionne les valeurs du conteneur de propriétés (dictionnaire) de la colonne dans un jeu de propriétés, sans duplication de clé.
+|[`mv-expand` listColumn](../mvexpandoperator.md) | Réplique une ligne pour chaque valeur d’une liste dans une cellule spécifiée.
+|[`summarize buildschema(`chronique`)`](../buildschema-aggfunction.md) |Déduit le schéma du type à partir du contenu de la colonne
+|[`summarize make_bag(`chronique`)`](../make-bag-aggfunction.md) | Fusionne les valeurs du conteneur de propriétés (dictionnaire) de la colonne dans un jeu de propriétés, sans duplication de clé.
 |[`summarize make_bag_if(`colonne, prédicat`)`](../make-bag-if-aggfunction.md) | Fusionne les valeurs du conteneur de propriétés (dictionnaire) de la colonne en un seul conteneur de propriétés, sans duplication de clé (avec prédicat).
 |[`summarize make_list(`colonne `)`](../makelist-aggfunction.md)| Aplatit des groupes de lignes et place les valeurs de la colonne dans un tableau.
 |[`summarize make_list_if(`colonne, prédicat `)`](../makelistif-aggfunction.md)| Aplatit des groupes de lignes et place les valeurs de la colonne dans un tableau (avec un prédicat).
 |[`summarize make_list_with_nulls(`colonne `)`](../make-list-with-nulls-aggfunction.md)| Aplatit des groupes de lignes et place les valeurs de la colonne dans un tableau, y compris les valeurs NULL.
-|[`summarize make_set(`column`)`](../makeset-aggfunction.md) | Aplatit des groupes de lignes et place les valeurs de la colonne dans un tableau, sans duplication.
+|[`summarize make_set(`chronique`)`](../makeset-aggfunction.md) | Aplatit des groupes de lignes et place les valeurs de la colonne dans un tableau, sans duplication.

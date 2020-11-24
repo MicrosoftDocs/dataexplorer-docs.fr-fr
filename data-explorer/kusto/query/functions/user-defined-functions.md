@@ -8,16 +8,17 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: e611bfb1d5dbf0122553b223a200400c526c975f
-ms.sourcegitcommit: 42cc7d11f41a5bfa9e021764b044dcd68d99a258
+ms.localizationpriority: high
+ms.openlocfilehash: 92627b3325a7a2ba8e2e4d58a82ebf6db3977221
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/05/2020
-ms.locfileid: "93403746"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512874"
 ---
 # <a name="user-defined-functions"></a>Fonctions définies par l’utilisateur
 
-Les **fonctions définies par l’utilisateur** sont des sous-requêtes réutilisables qui peuvent être définies dans le cadre de la requête elle-même ( **fonctions ad hoc** ) ou conservées dans le cadre des métadonnées de la base de données ( **fonctions stockées** ). Les fonctions définies par l’utilisateur sont appelées à l’aide d’un **nom** , sont fournies avec zéro, un ou plusieurs **arguments d’entrée** (qui peuvent être scalaires ou tabulaires) et produisent une seule valeur (qui peut être scalaire ou tabulaire) en fonction du **corps** de la fonction.
+Les **fonctions définies par l’utilisateur** sont des sous-requêtes réutilisables qui peuvent être définies dans le cadre de la requête elle-même (**fonctions ad hoc**) ou conservées dans le cadre des métadonnées de la base de données (**fonctions stockées**). Les fonctions définies par l’utilisateur sont appelées à l’aide d’un **nom**, sont fournies avec zéro, un ou plusieurs **arguments d’entrée** (qui peuvent être scalaires ou tabulaires) et produisent une seule valeur (qui peut être scalaire ou tabulaire) en fonction du **corps** de la fonction.
 
 Une fonction définie par l’utilisateur appartient à l’une des deux catégories suivantes :
 
@@ -282,7 +283,7 @@ union T*
 
 ## <a name="restrictions"></a>Restrictions
 
-Les restrictions suivantes s’appliquent :
+Les restrictions suivantes s’appliquent :
 
 * Les fonctions définies par l’utilisateur ne peuvent pas passer dans les informations d’appel [toscalar ()](../toscalarfunction.md) qui dépendent du contexte de ligne dans lequel la fonction est appelée.
 * Les fonctions définies par l’utilisateur qui retournent une expression tabulaire ne peuvent pas être appelées avec un argument qui varie en fonction du contexte de ligne.

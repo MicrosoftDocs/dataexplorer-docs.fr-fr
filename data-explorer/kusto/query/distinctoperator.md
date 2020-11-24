@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: ad90d9765b7ff708f7b40b65564b3944de5c84df
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.localizationpriority: high
+ms.openlocfilehash: 86b8617698f3708edcebbc1c2c4bd1732054600f
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92245187"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513163"
 ---
 # <a name="distinct-operator"></a>opérateur distinct
 
@@ -39,7 +40,7 @@ Table | distinct fruit, price
 
 :::image type="content" source="images/distinctoperator/distinct.PNG" alt-text="Deux tables. L’un possède des fournisseurs, des types de fruit et des prix, avec des combinaisons de prix de fruit répétées. La deuxième table répertorie uniquement les combinaisons uniques.":::
 
-**Notes**
+**Remarques**
 
 * Contrairement `summarize by ...` à, l' `distinct` opérateur prend en charge l’utilisation d’un astérisque ( `*` ) comme clé de groupe, ce qui facilite son utilisation pour les tables larges.
 * Si les clés Group by sont de hautes cardinales, l’utilisation `summarize by ...` de avec la [stratégie de lecture aléatoire](shufflequery.md) peut être utile.

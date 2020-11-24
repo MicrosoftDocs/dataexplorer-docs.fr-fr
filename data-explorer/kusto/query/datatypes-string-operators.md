@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/19/2020
-ms.openlocfilehash: 1c394d9125bd354cab21d3087c273f983627a0d6
-ms.sourcegitcommit: c351c2c8ab6e184827c4702eb0ec8bf783c7bbd3
+ms.localizationpriority: high
+ms.openlocfilehash: d7c975dcf3fb00ed1108f55957a35f494310203e
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/18/2020
-ms.locfileid: "94874778"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513231"
 ---
 # <a name="string-operators"></a>Opérateurs de chaîne
 

@@ -8,14 +8,15 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/29/2020
+ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 069733d2215257106ede58f4fd6e4f2a923a8982
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: bc083cadbae44723c85c0a119b90ab5b43aba388
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92243123"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512840"
 ---
 # <a name="render-operator"></a>render, opérateur
 
@@ -110,7 +111,7 @@ Où :
 ::: zone-end
 
 Certaines visualisations peuvent être élaborées plus en détail en fournissant la `kind` propriété.
-Ces règles sont les suivantes :
+Celles-ci sont les suivantes :
 
 |*Visualisation*|`kind`             |Description                        |
 |---------------|-------------------|-----------------------------------|

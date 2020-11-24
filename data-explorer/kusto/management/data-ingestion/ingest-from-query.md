@@ -8,12 +8,13 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 5248b9d986845ff7f35085cef0100cf3ab4b90da
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.localizationpriority: high
+ms.openlocfilehash: 18959e2387a1a0faf92261dc3c35eca0db44c158
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264468"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512891"
 ---
 # <a name="ingest-from-query-set-append-set-or-append-set-or-replace"></a>Réception à partir de la requête (. Set,. Append,. set-or-Append,. set-or-Replace)
 
@@ -60,7 +61,7 @@ Ces commandes exécutent une requête ou une commande de contrôle et ingèrent 
 
 |Propriété        |Type    |Description|
 |----------------|--------|-----------------------------------------------------------------------------------------------------------------------------|
-|`distributed`   |`bool`  |Indique que la commande est ingérée à partir de tous les nœuds exécutant la requête en parallèle. La valeur par défaut est « false ».  Consultez les notes ci-dessous.|
+|`distributed`   |`bool`  |Indique que la commande est ingérée à partir de tous les nœuds exécutant la requête en parallèle. La valeur par défaut est « false ».  Consultez la section Notes ci-dessous.|
 
 * *QueryOrCommand*: texte d’une requête ou d’une commande de contrôle dont les résultats seront utilisés comme données à ingérer.
 
@@ -69,7 +70,7 @@ Ces commandes exécutent une requête ou une commande de contrôle et ingèrent 
 
 **Remarques**
 
-* `.set-or-replace`remplace les données de la table si elle existe. Il supprime le partitions de données existant ou crée la table cible, si elle n’existe pas déjà.
+* `.set-or-replace` remplace les données de la table si elle existe. Il supprime le partitions de données existant ou crée la table cible, si elle n’existe pas déjà.
   Le schéma de la table est préservé, sauf si l’une des propriétés d’ingestion `extend_schema` ou `recreate_schema` est définie sur « true ». Si le schéma est modifié, il se produit avant l’ingestion réelle des données dans sa propre transaction. L’échec de la réception des données ne signifie pas que le schéma n’a pas été modifié.
 * `.set-or-append``.append`les commandes et conservent le schéma, sauf si la propriété ingestion `extend_schema` est définie sur « true ». Si le schéma est modifié, il se produit avant l’ingestion réelle des données dans sa propre transaction. L’échec de la réception des données ne signifie pas que le schéma n’a pas été modifié.
 * Nous vous recommandons de limiter les données pour l’ingestion à moins de 1 Go par opération d’ingestion. Plusieurs commandes d’ingestion peuvent être utilisées, si nécessaire.
@@ -80,7 +81,7 @@ Ces commandes exécutent une requête ou une commande de contrôle et ingèrent 
 
 **Exemples** 
 
-Créez une nouvelle table appelée « RecentErrors » dans la base de données qui a le même schéma que « LogsTable » et qui contient tous les enregistrements d’erreurs de la dernière heure.
+Créez une nouvelle table appelée :::no-loc text="RecentErrors"::: dans la base de données qui a le même schéma que :::no-loc text="LogsTable"::: et qui contient tous les enregistrements d’erreur de la dernière heure.
 
 ```kusto
 .set RecentErrors <|

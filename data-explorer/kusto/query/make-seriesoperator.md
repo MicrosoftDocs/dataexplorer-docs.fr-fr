@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/16/2020
-ms.openlocfilehash: 1e39e71aa9406815338974b2da03d05315054b65
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.localizationpriority: high
+ms.openlocfilehash: 6357afeb0a5673584e27b84a231e3c65f897b8fc
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92247365"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512364"
 ---
 # <a name="make-series-operator"></a>opérateur make-series
 
@@ -33,7 +34,7 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
 * *DefaultValue :* Valeur par défaut qui sera utilisée à la place des valeurs absentes. S’il n’y a pas de ligne avec des valeurs spécifiques de *AxisColumn* et *GroupExpression*, alors dans, les résultats de l’élément correspondant du tableau sont affectés à une valeur *DefaultValue*. Si *DefaultValue* est omis, 0 est utilisé par défaut. 
 * *Agrégation :* Appel à une [fonction d’agrégation](make-seriesoperator.md#list-of-aggregation-functions) telle que `count()` ou `avg()` , avec les noms de colonnes comme arguments. Voir la [liste des fonctions d’agrégation](make-seriesoperator.md#list-of-aggregation-functions). Seules les fonctions d’agrégation qui retournent des résultats numériques peuvent être utilisées avec l' `make-series` opérateur.
 * *AxisColumn :* Colonne sur laquelle la série sera classée. Elle peut être considérée comme une chronologie, mais en plus `datetime` des types numériques acceptés.
-* *Start*: (facultatif) la valeur de la limite inférieure de *AxisColumn* pour chacune des séries à générer. les instructions *Start*, *end*et *Step* sont utilisées pour générer un tableau de valeurs *AxisColumn* dans une plage donnée et à l’aide de l' *étape*spécifiée. Toutes les valeurs d' *agrégation* sont classées respectivement dans ce tableau. Ce tableau *AxisColumn* est également la dernière colonne de sortie de la sortie qui porte le même nom que *AxisColumn*. Si aucune valeur de *départ* n’est spécifiée, le début est le premier emplacement (étape) qui contient des données dans chaque série.
+* *Start*: (facultatif) la valeur de la limite inférieure de *AxisColumn* pour chacune des séries à générer. les instructions *Start*, *end* et *Step* sont utilisées pour générer un tableau de valeurs *AxisColumn* dans une plage donnée et à l’aide de l' *étape* spécifiée. Toutes les valeurs d' *agrégation* sont classées respectivement dans ce tableau. Ce tableau *AxisColumn* est également la dernière colonne de sortie de la sortie qui porte le même nom que *AxisColumn*. Si aucune valeur de *départ* n’est spécifiée, le début est le premier emplacement (étape) qui contient des données dans chaque série.
 * *end*: (facultatif) valeur de la limite supérieure (non inclusive) de *AxisColumn*. Le dernier index de la série chronologique est plus petit que cette valeur (et sera de *début* plus entier multiple de l' *étape* qui est plus petit que la *fin*). Si la valeur de *fin* n’est pas fournie, il s’agit de la limite supérieure du dernier compartiment (étape) qui contient des données par série.
 * *Step*: différence entre deux éléments consécutifs du tableau *AxisColumn* (autrement dit, la taille de l’emplacement).
 * *GroupExpression :* Expression sur les colonnes qui fournit un ensemble de valeurs distinctes. En règle générale, il s’agit d’un nom de colonne qui fournit déjà un ensemble limité de valeurs. 
@@ -45,9 +46,9 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
 
 ## <a name="returns"></a>Retours
 
-Les lignes d’entrée sont organisées en groupes ayant les mêmes valeurs d' `by` expressions et l' `bin_at(` *AxisColumn* `, ` expression de début d'*étape*AxisColumn `, ` *start* `)` . Ensuite, les fonctions d’agrégation spécifiées sont calculées sur chaque groupe, générant une ligne pour chaque groupe. Le résultat contient les `by` colonnes, la colonne *AxisColumn* et également au moins une colonne pour chaque agrégat calculé. (L’agrégation qui ne prend pas en charge les colonnes multiples ou les résultats non numériques).
+Les lignes d’entrée sont organisées en groupes ayant les mêmes valeurs d' `by` expressions et l' `bin_at(` *AxisColumn* `, ` expression de début d'*étape* AxisColumn `, ` *start* `)` . Ensuite, les fonctions d’agrégation spécifiées sont calculées sur chaque groupe, générant une ligne pour chaque groupe. Le résultat contient les `by` colonnes, la colonne *AxisColumn* et également au moins une colonne pour chaque agrégat calculé. (L’agrégation qui ne prend pas en charge les colonnes multiples ou les résultats non numériques).
 
-Ce résultat intermédiaire contient autant de lignes qu’il y a de combinaisons distinctes de `by` valeurs de `bin_at(` *AxisColumn* `, ` début d'*étape*AxisColumn et `, ` *start* `)` .
+Ce résultat intermédiaire contient autant de lignes qu’il y a de combinaisons distinctes de `by` valeurs de `bin_at(` *AxisColumn* `, ` début d'*étape* AxisColumn et `, ` *start* `)` .
 
 Enfin, les lignes du résultat intermédiaire organisées en groupes ayant les mêmes valeurs des `by` expressions et toutes les valeurs agrégées sont organisées en tableaux (valeurs de `dynamic` type). Pour chaque agrégation, il existe une colonne contenant son tableau portant le même nom. Dernière colonne dans la sortie de la fonction Range avec toutes les valeurs *AxisColumn* . Sa valeur est répétée pour toutes les lignes. 
 
@@ -75,8 +76,8 @@ Il est recommandé d’utiliser la syntaxe principale de make-Series et non la s
 
 |Fonction|Description|
 |--------|-----------|
-|[any()](any-aggfunction.md)|Retourne une valeur non vide aléatoire pour le groupe|
-|[avg()](avg-aggfunction.md)|Retourne une valeur moyenne dans le groupe|
+|[Any ()](any-aggfunction.md)|Retourne une valeur non vide aléatoire pour le groupe|
+|[Moy ()](avg-aggfunction.md)|Retourne une valeur moyenne dans le groupe|
 |[avgif()](avgif-aggfunction.md)|Retourne une moyenne avec le prédicat du groupe.|
 |[Count ()](count-aggfunction.md)|Retourne le nombre de groupes|
 |[countif()](countif-aggfunction.md)|Retourne un nombre avec le prédicat du groupe.|
@@ -86,8 +87,8 @@ Il est recommandé d’utiliser la syntaxe principale de make-Series et non la s
 |[maxif()](maxif-aggfunction.md)|Retourne la valeur maximale avec le prédicat du groupe.|
 |[min()](min-aggfunction.md)|Retourne la valeur minimale dans l'ensemble du groupe|
 |[minif()](minif-aggfunction.md)|Retourne la valeur minimale avec le prédicat du groupe.|
-|[stdev()](stdev-aggfunction.md)|Retourne l’écart type de l’ensemble du groupe|
-|[sum()](sum-aggfunction.md)|Retourne la somme des éléments dans le groupe|
+|[ECARTYPE ()](stdev-aggfunction.md)|Retourne l’écart type de l’ensemble du groupe|
+|[Sum ()](sum-aggfunction.md)|Retourne la somme des éléments dans le groupe|
 |[sumif()](sumif-aggfunction.md)|Retourne la somme des éléments avec le prédicat du groupe.|
 |[variance()](variance-aggfunction.md)|Retourne la variance dans le groupe|
 
@@ -190,7 +191,7 @@ data
 | count 
 ```
 
-|Nombre|
+|Count|
 |---|
 |0|
 

@@ -8,14 +8,15 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
+ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: b3b7d571662d8a9ed0fd592547f32a131d26e277
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: b8ad39e8c1233acc2df6c30059a6926cea85f37a
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92245746"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512806"
 ---
 # <a name="union-operator"></a>opérateur union
 
@@ -79,7 +80,7 @@ La valeur par défaut est `isfuzzy=false`.
 
 Une table contenant autant de lignes que dans l’ensemble des tables d’entrée.
 
-**Notes**
+**Remarques**
 
 ::: zone pivot="azuredataexplorer"
 
@@ -144,7 +145,7 @@ union isfuzzy=true
 | count 
 ```
 
-|Nombre|
+|Count|
 |---|
 |2|
 
@@ -159,7 +160,7 @@ union isfuzzy=true View*, SomeView*, OtherView*
 | count 
 ```
 
-|Nombre|
+|Count|
 |---|
 |3|
 

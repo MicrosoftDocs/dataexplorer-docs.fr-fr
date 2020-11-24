@@ -8,14 +8,15 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
+ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 8324d0c6537d6d22a2814a7aa80625278dc36aec
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: b90e5f1c95ec75a946490cd75b5dd89ad2cb1aba
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92241509"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513333"
 ---
 # <a name="join-operator"></a>opérateur join
 
@@ -141,7 +142,7 @@ La version exacte de l’opérateur de jointure est spécifiée avec le mot clé
 |[`rightouter`](#right-outer-join-flavor)|Jointure externe droite|
 |[`fullouter`](#full-outer-join-flavor)|Jointure externe entière|
 |[`leftanti`](#left-anti-join-flavor), [`anti`](#left-anti-join-flavor) ou [`leftantisemi`](#left-anti-join-flavor)|Jointure anti gauche|
-|[`rightanti`](#right-anti-join-flavor) ni [`rightantisemi`](#right-anti-join-flavor)|Anti-jointure Right|
+|[`rightanti`](#right-anti-join-flavor) ni [`rightantisemi`](#right-anti-join-flavor)|Jointure anti droite|
 |[`leftsemi`](#left-semi-join-flavor)|Semi-jointure gauche|
 |[`rightsemi`](#right-semi-join-flavor)|Semi-jointure droite|
 

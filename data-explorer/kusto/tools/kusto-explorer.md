@@ -7,12 +7,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/19/2020
-ms.openlocfilehash: a424e34561792287d6e761f8d5b0747fbf8c7100
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.localizationpriority: high
+ms.openlocfilehash: 0086fb9f649d7bb3b7031521812c1dff0ca532f7
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92342788"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513061"
 ---
 # <a name="kustoexplorer-installation-and-user-interface"></a>Installation et interface utilisateur de Kusto.Explorer
 
@@ -65,7 +66,7 @@ Le panneau de menu Kusto.Explorer comprend les onglets suivants :
 
 ### <a name="home-tab"></a>Onglet Dossier de base
 
-:::image type="content" source="images/kusto-explorer/home-tab.png" alt-text="Démarrage de Kusto Explorer":::
+:::image type="content" source="images/kusto-explorer/home-tab.png" alt-text="Onglet Dossier de base de Kusto.Explorer":::
 
 L’onglet Dossier de base affiche les fonctions les plus récemment utilisées, divisées en sections :
 
@@ -77,7 +78,7 @@ L’onglet Dossier de base affiche les fonctions les plus récemment utilisées,
 
 ### <a name="query-section"></a>Section Requête
 
-:::image type="content" source="images/kusto-explorer/home-query-menu.png" alt-text="Démarrage de Kusto Explorer":::
+:::image type="content" source="images/kusto-explorer/home-query-menu.png" alt-text="Menu Requête de Kusto.Explorer":::
 
 |Menu|    Comportement|
 |----|----------|
@@ -86,7 +87,7 @@ L’onglet Dossier de base affiche les fonctions les plus récemment utilisées,
 
 ### <a name="share-section"></a>Partager la section
 
-:::image type="content" source="images/kusto-explorer/home-share-menu.png" alt-text="Démarrage de Kusto Explorer":::
+:::image type="content" source="images/kusto-explorer/home-share-menu.png" alt-text="Menu de partage de Kusto.Explorer":::
 
 |Menu|    Comportement|
 |----|----------|
@@ -96,7 +97,7 @@ L’onglet Dossier de base affiche les fonctions les plus récemment utilisées,
 
 ### <a name="visualizations-section"></a>Section Visualisations
 
-:::image type="content" source="images/kusto-explorer/home-visualizations-menu.png" alt-text="Démarrage de Kusto Explorer":::
+:::image type="content" source="images/kusto-explorer/home-visualizations-menu.png" alt-text="Visualisations du menu Kusto Explorer":::
 
 |Menu         | Comportement|
 |-------------|---------|
@@ -120,7 +121,7 @@ L’onglet Dossier de base affiche les fonctions les plus récemment utilisées,
 
 ### <a name="view-section"></a>Section d’affichage
 
-:::image type="content" source="images/kusto-explorer/home-view-menu.png" alt-text="Démarrage de Kusto Explorer":::
+:::image type="content" source="images/kusto-explorer/home-view-menu.png" alt-text="Menu d’affichage Kusto.Explorer":::
 
 |Menu           | Comportement|
 |---------------|---------|
@@ -138,7 +139,7 @@ L’onglet Dossier de base affiche les fonctions les plus récemment utilisées,
 
 ## <a name="file-tab"></a>Onglet Fichier
 
-:::image type="content" source="images/kusto-explorer/file-tab.png" alt-text="Démarrage de Kusto Explorer":::
+:::image type="content" source="images/kusto-explorer/file-tab.png" alt-text="Onglet Fichier de Kusto.Explorer":::
 
 |Menu| Comportement|
 |---------------|---------|
@@ -166,7 +167,7 @@ L’onglet Dossier de base affiche les fonctions les plus récemment utilisées,
 
 ## <a name="connections-tab"></a>Onglet Connexions
 
-:::image type="content" source="images/kusto-explorer/connections-tab.png" alt-text="Démarrage de Kusto Explorer":::
+:::image type="content" source="images/kusto-explorer/connections-tab.png" alt-text="Onglet Connexions de Kusto.Explorer":::
 
 |Menu|Comportement|
 |----|----------|
@@ -191,7 +192,7 @@ L’onglet Dossier de base affiche les fonctions les plus récemment utilisées,
 
 ## <a name="view-tab"></a>Onglet Affichage
 
-:::image type="content" source="images/kusto-explorer/view-tab.png" alt-text="Démarrage de Kusto Explorer":::
+:::image type="content" source="images/kusto-explorer/view-tab.png" alt-text="Onglet d’affichage Kusto.Explorer":::
 
 |Menu|Comportement|
 |----|----------|
@@ -220,7 +221,7 @@ L’onglet Dossier de base affiche les fonctions les plus récemment utilisées,
 
 ## <a name="tools-tab"></a>Onglet Outils
 
-:::image type="content" source="images/kusto-explorer/tools-tab.png" alt-text="Démarrage de Kusto Explorer":::
+:::image type="content" source="images/kusto-explorer/tools-tab.png" alt-text="Onglet Outils de Kusto.Explorer":::
 
 |Menu|Comportement|
 |----|----------|
@@ -240,7 +241,7 @@ L’onglet Dossier de base affiche les fonctions les plus récemment utilisées,
 
 ## <a name="monitoring-tab"></a>Onglet Analyse
 
-:::image type="content" source="images/kusto-explorer/monitoring-tab.png" alt-text="Démarrage de Kusto Explorer":::
+:::image type="content" source="images/kusto-explorer/monitoring-tab.png" alt-text="Onglet de supervision de Kusto.Explorer":::
 
 |Menu             | Comportement|
 |-----------------|---------| 
@@ -251,7 +252,7 @@ L’onglet Dossier de base affiche les fonctions les plus récemment utilisées,
 
 ## <a name="management-tab"></a>Onglet Gestion
 
-:::image type="content" source="images/kusto-explorer/management-tab.png" alt-text="Démarrage de Kusto Explorer":::
+:::image type="content" source="images/kusto-explorer/management-tab.png" alt-text="Onglet Gestion de Kusto.Explorer":::
 
 |Menu             | Comportement|
 |-----------------|---------|
@@ -263,7 +264,7 @@ L’onglet Dossier de base affiche les fonctions les plus récemment utilisées,
 
 ## <a name="help-tab"></a>Onglet Aide
 
-:::image type="content" source="images/kusto-explorer/help-tab.png" alt-text="Démarrage de Kusto Explorer":::
+:::image type="content" source="images/kusto-explorer/help-tab.png" alt-text="Onglet Aide de Kusto Explorer":::
 
 |Menu             | Comportement|
 |-----------------|---------|
@@ -276,7 +277,7 @@ L’onglet Dossier de base affiche les fonctions les plus récemment utilisées,
 
 ## <a name="connections-panel"></a>Panneau Connexions
 
-:::image type="content" source="images/kusto-explorer/connections-panel.png" alt-text="Démarrage de Kusto Explorer":::
+:::image type="content" source="images/kusto-explorer/connections-panel.png" alt-text="Panneau Connexions de Kusto Explorer":::
 
 Le volet Connexions affiche toutes les connexions de cluster configurées. Pour chaque cluster, les bases de données, les tables et les attributs (colonnes) stockés sont affichés. Sélectionnez les éléments (définissant un contexte implicite pour la recherche/requête dans le volet principal) ou double-cliquez sur les éléments pour copier le nom dans le panneau de recherche/requête.
 
@@ -311,7 +312,7 @@ Data Source=https://CLUSTER_NAME.kusto.windows.net;Initial Catalog=DATABASE_NAME
 >[!NOTE]
 > Le nom de domaine de l’utilisateur n’est pas nécessairement le même que celui du locataire qui héberge le cluster.
 
-:::image type="content" source="images/kusto-explorer/advanced-connection-string.png" alt-text="Démarrage de Kusto Explorer":::
+:::image type="content" source="images/kusto-explorer/advanced-connection-string.png" alt-text="Chaîne de connexion avancée Kusto.Explorer":::
 
 ## <a name="keyboard-shortcuts"></a>Raccourcis clavier
 
@@ -323,7 +324,7 @@ Kusto.Explorer tente d’interpréter le niveau de gravité ou de détail de cha
 
 Pour modifier le modèle de couleurs de résultat ou désactiver ce comportement, dans le menu **Outils**, sélectionnez **Options** > **Visionneuse des résultats** > **Modèle de couleurs de gravité**.
 
-:::image type="content" source="images/kusto-explorer/ke-color-scheme.png" alt-text="Démarrage de Kusto Explorer":::
+:::image type="content" source="images/kusto-explorer/ke-color-scheme.png" alt-text="Modification du modèle de couleurs Kusto.Explorer":::
 
 ## <a name="next-steps"></a>Étapes suivantes
 

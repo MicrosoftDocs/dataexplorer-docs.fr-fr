@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: 3b857e0e16c212c2f12d43f9709a9278526a7344
-ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
+ms.localizationpriority: high
+ms.openlocfilehash: cbdebe75713bb7cd786941e7546ab477df497c20
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/23/2020
-ms.locfileid: "95324684"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512908"
 ---
 # <a name="query-limits"></a>Limites de requête
 
@@ -60,7 +61,7 @@ Les méthodes de réduction de la taille du jeu de résultats produite par la re
 Vous pouvez désactiver la troncation des résultats à l’aide de l' `notruncation` option de demande.
 Nous vous recommandons de mettre en place une certaine forme de limitation.
 
-Exemple :
+Par exemple :
 
 ```kusto
 set notruncation;
@@ -177,7 +178,7 @@ La première, *query_fanout_threads_percent*, contrôle le facteur de Fanout pou
 
 Pendant l’exécution de la requête, le texte de la requête est transformé en une arborescence d’opérateurs relationnels représentant la requête.
 Si la profondeur de l’arborescence dépasse un seuil interne de plusieurs milliers de niveaux, la requête est considérée comme trop complexe pour le traitement et échoue avec un code d’erreur. L’échec indique que l’arborescence des opérateurs relationnels dépasse ses limites.
-Les limites sont dépassées en raison de requêtes avec de longues listes d’opérateurs binaires chaînés ensemble. Exemple :
+Les limites sont dépassées en raison de requêtes avec de longues listes d’opérateurs binaires chaînés ensemble. Par exemple :
 
 ```kusto
 T 

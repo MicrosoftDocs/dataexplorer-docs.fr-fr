@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 0398efc3f97e9af1f994b16b91a9888fb4fcfa0b
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.localizationpriority: high
+ms.openlocfilehash: 7ead6313128b99357dd61f18f55c5d5543943a05
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92243323"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513350"
 ---
 # <a name="extend-operator"></a>opérateur extend
 
@@ -30,7 +31,7 @@ T | extend duration = endTime - startTime
 ## <a name="arguments"></a>Arguments
 
 * *T*: jeu de résultats tabulaire d’entrée.
-* *ColumnName :* Facultatif. Nom de la colonne à ajouter ou mettre à jour. En cas d’omission, le nom est généré. Si l' *expression* retourne plusieurs colonnes, une liste de noms de colonnes peut être spécifiée entre parenthèses. Dans ce cas, les colonnes de sortie de l' *expression*reçoivent les noms spécifiés, en supprimant le reste des colonnes de sortie, le cas échéant. Si une liste de noms de colonnes n’est pas spécifiée, toutes les colonnes de sortie de l' *expression*avec des noms générés sont ajoutées à la sortie.
+* *ColumnName :* Facultatif. Nom de la colonne à ajouter ou mettre à jour. En cas d’omission, le nom est généré. Si l' *expression* retourne plusieurs colonnes, une liste de noms de colonnes peut être spécifiée entre parenthèses. Dans ce cas, les colonnes de sortie de l' *expression* reçoivent les noms spécifiés, en supprimant le reste des colonnes de sortie, le cas échéant. Si une liste de noms de colonnes n’est pas spécifiée, toutes les colonnes de sortie de l' *expression* avec des noms générés sont ajoutées à la sortie.
 * *Expression :* Calcul sur les colonnes de l’entrée.
 
 ## <a name="returns"></a>Retours

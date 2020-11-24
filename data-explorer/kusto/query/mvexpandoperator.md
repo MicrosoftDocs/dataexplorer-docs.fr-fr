@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2019
-ms.openlocfilehash: a9f5517baf0963b4857759fc18158cfa0eee0bb1
-ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
+ms.localizationpriority: high
+ms.openlocfilehash: 3324cfe658b2eb29c54ff8a3d44ed660ec13ead5
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/25/2020
-ms.locfileid: "88793891"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512721"
 ---
 # <a name="mv-expand-operator"></a>mv-expand, opérateur
 

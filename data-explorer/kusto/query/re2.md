@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/09/2019
-ms.openlocfilehash: 1923b46aa7ec7176d2a41181326d32a2214f00c4
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.localizationpriority: high
+ms.openlocfilehash: e4dda7ca499ac9fc9f90f6576758797d3f62a299
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92244828"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513078"
 ---
 # <a name="re2-syntax"></a>Syntaxe RE2
 
@@ -21,12 +22,12 @@ La syntaxe d’expression régulière RE2 décrit la syntaxe de la bibliothèque
 Certaines fonctions de Kusto effectuent la correspondance, la sélection et l’extraction de chaînes à l’aide d’une expression régulière
 
 - [countof()](countoffunction.md)
-- [Extract ()](extractfunction.md)
+- [extract()](extractfunction.md)
 - [extract_all()](extractallfunction.md)
 - [matches regex](datatypes-string-operators.md)
 - [opérateur parse](parseoperator.md)
 - [remplacer ()](replacefunction.md)
-- [trim()](trimfunction.md)
+- [Trim ()](trimfunction.md)
 - [TrimEnd ()](trimendfunction.md)
 - [TrimStart ()](trimstartfunction.md)
 

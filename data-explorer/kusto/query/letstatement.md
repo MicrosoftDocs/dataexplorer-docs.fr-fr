@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/09/2020
-ms.openlocfilehash: 879b858904ac9f024f70dfef6096141a9ff81bd7
-ms.sourcegitcommit: b8415e01464ca2ac9cd9939dc47e4c97b86bd07a
+ms.localizationpriority: high
+ms.openlocfilehash: c102637adfa1fd0340d28a67b52354956b511ada
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88028474"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513310"
 ---
 # <a name="let-statement"></a>Let, instruction
 
@@ -31,7 +32,7 @@ Les expressions liées par les instructions Let peuvent être :
 * Types tabulaires
 * Fonctions définies par l’utilisateur (lambdas)
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>Syntaxe
 
 `let`*Nom* `=` *ScalarExpression*  |  *TabularExpression*  |  *FunctionDefinitionExpression*
 
@@ -47,31 +48,31 @@ Les expressions liées par les instructions Let peuvent être :
 
 [ `view` ] `(` [*TabularArguments*] [ `,` ] [*ScalarArguments*] `)` `{` *FunctionBody*`}`
 
-`TabularArguments`-[*TabularArgName* `:` `(` [*AtrName* `:` *AtrType*] [ `,` ...] `)` ] [`,` ... ] [`,`]
+`TabularArguments` -[*TabularArgName* `:` `(` [*AtrName* `:` *AtrType*] [ `,` ...] `)` ] [`,` ... ] [`,`]
 
  ou :
 
  [*TabularArgName* `:` `(` `*` `)`]
 
-`ScalarArguments`-[*ArgName* `:` *ArgType*] [ `,` ...]
+`ScalarArguments` -[*ArgName* `:` *ArgType*] [ `,` ...]
 
 
 |Champ  |Définition  |Exemple  |
 |---------|---------|---------|
-| **vue** | Peut apparaître uniquement dans une expression lambda sans paramètre, qui n’a pas d’arguments. Elle indique que le nom lié sera inclus lorsque « toutes les tables » sont des requêtes. | Par exemple, lors de l’utilisation de `union *` .|
-| ***TabularArguments*** | Liste des arguments d’expression tabulaires formels. 
+| **affichage** | Peut apparaître uniquement dans une expression lambda sans paramètre, qui n’a pas d’arguments. Elle indique que le nom lié sera inclus lorsque « toutes les tables » sont des requêtes. | Par exemple, lors de l’utilisation de `union *` .|
+| ***TabularArguments** _ _ | Liste des arguments d’expression tabulaires formels. 
 | Chaque argument tabulaire a :||
-|<ul><li> *TabularArgName*</li></ul> | Nom de l’argument tabulaire formel. Le nom peut apparaître dans le *FunctionBody* et être lié à une valeur particulière lorsque l’expression lambda est appelée. ||
+|<ul><li> _TabularArgName *</li></ul> | Nom de l’argument tabulaire formel. Le nom peut apparaître dans le *FunctionBody* et être lié à une valeur particulière lorsque l’expression lambda est appelée. ||
 |<ul><li>Définition de schéma de table </li></ul> | Liste d’attributs avec leurs types| AtrName : AtrType|
-| ***ScalarArguments*** | Liste des arguments scalaires formels. 
+| ***ScalarArguments** _ _ | Liste des arguments scalaires formels. 
 |Chaque argument scalaire a :||
-|<ul><li>*ArgName*</li></ul> | Nom de l’argument scalaire formel. Le nom peut apparaître dans le *FunctionBody* et être lié à une valeur particulière lorsque l’expression lambda est appelée.  |
+|<ul><li>_ArgName *</li></ul> | Nom de l’argument scalaire formel. Le nom peut apparaître dans le *FunctionBody* et être lié à une valeur particulière lorsque l’expression lambda est appelée.  |
 | <ul><li>*ArgType* </li></ul>| Type de l’argument scalaire formel. | Actuellement, seuls les types suivants sont pris en charge en tant que type d’argument lambda : `bool` ,,,, `string` `long` `datetime` `timespan` , `real` et `dynamic` (et les alias de ces types).
 
 > [!NOTE]
 >L’expression tabulaire utilisée dans l’appel lambda doit inclure (sans s’y limiter) tous les attributs avec les types correspondants.
 >
->`(*)`peut être utilisé en tant qu’expression tabulaire. 
+>`(*)` peut être utilisé en tant qu’expression tabulaire. 
 >
 > Toute expression tabulaire peut être utilisée dans l’appel lambda et aucune de ses colonnes n’est accessible dans l’expression lambda. 
 >

@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/18/2019
-ms.openlocfilehash: 52e26bb5564079de56817e75a203a400ef7f1a50
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.localizationpriority: high
+ms.openlocfilehash: ffb24abe744bfbe3f7f95336edf0263becfa7ec9
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92248983"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513248"
 ---
 # <a name="in-and-in-operators"></a>in et !in, opérateurs
 
@@ -69,7 +70,7 @@ StormEvents
 | count
 ```
 
-|Nombre|
+|Count|
 |---|
 |4775|  
 
@@ -82,7 +83,7 @@ StormEvents
 | count
 ```
 
-|Nombre|
+|Count|
 |---|
 |4775|  
 
@@ -95,7 +96,7 @@ StormEvents
 | count
 ```
 
-|Nombre|
+|Count|
 |---|
 |54291|  
 
@@ -110,7 +111,7 @@ StormEvents
 | count
 ```
 
-|Nombre|
+|Count|
 |---|
 |3218|
 
@@ -142,7 +143,7 @@ StormEvents
 | count
 ```
 
-|Nombre|
+|Count|
 |---|
 |14242|  
 
@@ -157,14 +158,14 @@ Lightning_By_State
 | summarize sum(lightning_events) by State 
 ```
 
-| State     | sum_lightning_events |
+| État     | sum_lightning_events |
 |-----------|----------------------|
 | ALABAMA   | 29                   |
 | WISCONSIN | 31                   |
 | TEXAS     | 55                   |
 | Floride   | 85 %                   |
 | Géorgie   | 106                  |
-| Autres     | 415                  |
+| Autre     | 415                  |
 
 ### <a name="use-a-static-list-returned-by-a-function"></a>Utiliser une liste statique retournée par une fonction
 
@@ -174,7 +175,7 @@ StormEvents | where State in (InterestingStates()) | count
 
 ```
 
-|Nombre|
+|Count|
 |---|
 |4775|  
 

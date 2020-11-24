@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/21/2020
-ms.openlocfilehash: a5f5f554373331d66a08e7166249e8e24c4fbd7c
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.localizationpriority: high
+ms.openlocfilehash: e45510b893d6e84f029764aa9fdac0d326a96f94
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348783"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513095"
 ---
 # <a name="count-aggregation-function"></a>Count () (fonction d’agrégation)
 
@@ -24,7 +25,7 @@ Retourne le nombre d’enregistrements par groupe de synthèse (ou au total, si 
 
 ## <a name="syntax"></a>Syntaxe
 
-résumer`count()`
+résumer `count()`
 
 ## <a name="returns"></a>Retours
 
@@ -41,7 +42,7 @@ StormEvents
 | summarize Count=count() by State
 ```
 
-|State|Count|
+|État|Count|
 |---|---|
 |WEST VIRGINIA|757|
 |WYOMING|396|

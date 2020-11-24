@@ -8,14 +8,15 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/08/2020
+ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 8a3c0b058b2c1cf5023ce0069a7dd938fce5caec
-ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
+ms.openlocfilehash: cae5a3abd7a633bf143d1233db459a98ca53daaf
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/23/2020
-ms.locfileid: "95324735"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513010"
 ---
 # <a name="tutorial"></a>Didacticiel
 
@@ -59,7 +60,7 @@ StormEvents
 | project StartTime, EndTime , State , EventType , EpisodeNarrative
 ```
 
-|StartTime|EndTime|State (État)|Type d’événement|EpisodeNarrative|
+|StartTime|EndTime|État|Type d’événement|EpisodeNarrative|
 |---|---|---|---|---|
 |2007-02-19 00:00:00.0000000|2007-02-19 08:00:00.0000000|France|Crue|Un système frontal qui évolue à travers le sud de la Joaquin de la vallée A introduit de courtes périodes de pluie lourde dans le comté de crénage occidental au cours des premières heures du 19. Une saturation mineure a été signalée sur l’autoroute d’État 166 près de Taft.|
 
@@ -74,7 +75,7 @@ StormEvents
 | project  StartTime, EndTime, EventType, State, EventNarrative  
 ```
 
-|StartTime|EndTime|Type d’événement|State (État)|EventNarrative|
+|StartTime|EndTime|Type d’événement|État|EventNarrative|
 |---|---|---|---|---|
 |2007-09-18 20:00:00.0000000|2007-09-19 18:00:00.0000000|Pluie lourde|Floride|Jusqu’à 9 pouces de pluie chutaient sur une période de 24 heures sur des parties du comté Volusia côtier.|
 |2007-09-20 21:57:00.0000000|2007-09-20 22:05:00.0000000|Tornade|Floride|Tornade évoqué dans la ville de Eustis, à la fin du Nord de l’ouest du lac. La tornade s’est rapidement intensifiée sur la force EF1 à mesure qu’elle a été déplacée Nord-Nord-Ouest à Eustis. La piste se trouvait juste à moins de deux kilomètres et avait une largeur maximale de 300 mètres.  La tornade a détruit 7 maisons. Vingt sept maisons ont reçu des dommages majeurs et 81 maisons signalaient des dommages mineurs. Il n’y avait pas de blessures graves et les dommages liés aux propriétés ont été définis à $6,2 millions.|
@@ -99,7 +100,7 @@ StormEvents
 | project  StartTime, EndTime, EventType, State, EventNarrative  
 ```
 
-|StartTime|EndTime|Type d’événement|State (État)|EventNarrative|
+|StartTime|EndTime|Type d’événement|État|EventNarrative|
 |---|---|---|---|---|
 |2007-12-31 22:30:00.0000000|2007-12-31 23:59:00.0000000|Tempête d’hiver|MICHIGAN|Cet événement lourd a continué au début des heures du matin le jour de la nouvelle année.|
 |2007-12-31 22:30:00.0000000|2007-12-31 23:59:00.0000000|Tempête d’hiver|MICHIGAN|Cet événement lourd a continué au début des heures du matin le jour de la nouvelle année.|
@@ -129,7 +130,7 @@ StormEvents
 | project StartTime, EndTime, Duration, EventType, State
 ```
 
-|StartTime|EndTime|Duration|Type d’événement|State (État)|
+|StartTime|EndTime|Duration|Type d’événement|État|
 |---|---|---|---|---|
 |2007-09-18 20:00:00.0000000|2007-09-19 18:00:00.0000000|22:00:00|Pluie lourde|Floride|
 |2007-09-20 21:57:00.0000000|2007-09-20 22:05:00.0000000|00:08:00|Tornade|Floride|
@@ -138,7 +139,7 @@ StormEvents
 |2007-12-30 16:00:00.0000000|2007-12-30 16:05:00.0000000|00:05:00|Vent d’orage|Géorgie|
 
 Il est possible de réutiliser le nom de colonne et d’assigner le résultat de calcul à la même colonne.
-Exemple :
+Par exemple :
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -175,7 +176,7 @@ StormEvents
 | top 5 by StormCount desc
 ```
 
-|State (État)|StormCount|TypeOfStorms|
+|État|StormCount|TypeOfStorms|
 |---|---|---|
 |TEXAS|4701|27|
 |KANSAS|3166|21|
