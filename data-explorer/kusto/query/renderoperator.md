@@ -11,12 +11,12 @@ ms.date: 03/29/2020
 ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: bc083cadbae44723c85c0a119b90ab5b43aba388
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
+ms.openlocfilehash: 5670f3f9c7aa8b3d6b10f88433d19246e2daf6d6
+ms.sourcegitcommit: faa747df81c49b96d173dbd5a28d2ca4f3a2db5f
 ms.translationtype: MT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 11/24/2020
-ms.locfileid: "95512840"
+ms.locfileid: "95783333"
 ---
 # <a name="render-operator"></a>render, opérateur
 
@@ -31,7 +31,7 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 > * L’opérateur Render ne modifie pas les données. Elle injecte une annotation (« visualisation ») dans les propriétés étendues du résultat. L’annotation contient les informations fournies par l’opérateur dans la requête.
 > * L’interprétation des informations de visualisation est effectuée par l’agent utilisateur. Différents agents (tels que Kusto. Explorer, Kusto. webexplorer) peuvent prendre en charge différentes visualisations.
 
-## <a name="syntax"></a>Syntaxe
+## <a name="syntax"></a>Syntax
 
 *T* `|` `render` *Visualization* [ `with` `(` *PropertyName* `=` *PropertyValue* [ `,` ...] `)` ]
 
@@ -43,7 +43,7 @@ Où :
 
 |*Visualisation*     |Description|
 |--------------------|-|
-| `anomalychart`     | Semblable à graphique temporel, mais [met en évidence les anomalies](./samples.md#get-more-out-of-your-data-in-kusto-with-machine-learning) à l’aide de [series_decompose_anomalies](./series-decompose-anomaliesfunction.md) fonction. |
+| `anomalychart`     | Semblable à graphique temporel, mais [met en évidence les anomalies](./samples.md#get-more-from-your-data-by-using-kusto-with-machine-learning) à l’aide de [series_decompose_anomalies](./series-decompose-anomaliesfunction.md) fonction. |
 | `areachart`        | Graphique en aires. La première colonne est l’axe des abscisses (x) et doit être une colonne numérique. Les autres colonnes numériques correspondent aux axes y. |
 | `barchart`         | La première colonne est l’axe des abscisses (x) et peut être de type text, DateTime ou numeric. Les autres colonnes sont numériques, affichées sous forme de bandes horizontales.|
 | `card`             | Le premier enregistrement de résultat est traité comme un ensemble de valeurs scalaires et s’affiche sous la forme d’une carte. |
@@ -169,8 +169,8 @@ range x from -2 to 2 step 0.1
 
 ::: zone pivot="azuredataexplorer"
 
-[Exemples de rendu dans le didacticiel](./tutorial.md#render-display-a-chart-or-table).
+[Exemples de rendu dans le didacticiel](./tutorial.md#displaychartortable)
 
-[Détection des anomalies](./samples.md#get-more-out-of-your-data-in-kusto-with-machine-learning)
+[Détection des anomalies](./samples.md#get-more-from-your-data-by-using-kusto-with-machine-learning)
 
 ::: zone-end
