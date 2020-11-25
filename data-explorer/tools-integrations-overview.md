@@ -8,12 +8,12 @@ ms.reviewer: olgolden
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 07/08/2020
-ms.openlocfilehash: 71f00cf921609432860a94061be7411e484fd0c9
-ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
+ms.openlocfilehash: f996c3e6abbd145e963765f8aa1457f7ddddeb7e
+ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/04/2020
-ms.locfileid: "93349322"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95324769"
 ---
 # <a name="azure-data-explorer-tools-and-integrations-overview"></a>Vue d’ensemble des outils et des intégrations Azure Data Explorer
 
@@ -57,6 +57,13 @@ Plusieurs outils sont disponibles pour exécuter des requêtes dans Azure Data E
 * [Interface utilisateur web](web-query-data.md)
 * [Kusto.Cli](kusto/tools/kusto-cli.md)
 
+### <a name="query-open-source-repositories"></a>Interroger des référentiels open source
+
+Les référentiels open source suivants contiennent le code source de l’analyseur et de l’éditeur KQL (langage de requête Kusto) :
+
+* [Analyseur KQL](https://github.com/microsoft/Kusto-Query-Language) : Référentiel .NET Core pour l’analyseur KQL et l’arborescence sémantique.
+* [Plug-in KQL pour l’éditeur Monaco](https://github.com/Azure/monaco-kusto) : Éditeur KQL qui peut être incorporé dans les applications web et les applications Electron. 
+
 ### <a name="query-integrations"></a>Intégrations de requête
 
 * [Azure Monitor](query-monitor-data.md)
@@ -93,4 +100,3 @@ La [vue d’ensemble de la visualisation](viz-overview.md) détaille la visualis
 * [Azure Pipelines](devops.md) 
 * [Synchroniser Kusto](kusto/tools/synckusto.md) 
 
-<!--Open Source Tools-->

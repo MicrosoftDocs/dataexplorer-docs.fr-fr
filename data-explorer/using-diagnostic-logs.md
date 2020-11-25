@@ -7,12 +7,12 @@ ms.reviewer: guregini
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/16/2020
-ms.openlocfilehash: 606ae915e822cf4f2c02ac590a5bb05bdb17f28a
-ms.sourcegitcommit: 4b061374c5b175262d256e82e3ff4c0cbb779a7b
+ms.openlocfilehash: fed4027d946792448f2c564d8daa019c991b50d2
+ms.sourcegitcommit: 3af95ea6a6746441ac71b1a217bbb02ee23d5f28
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/09/2020
-ms.locfileid: "94373899"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95473576"
 ---
 # <a name="monitor-azure-data-explorer-ingestion-commands-and-queries-using-diagnostic-logs"></a>Superviser l’ingestion, les commandes et les requêtes Azure Data Explorer à l’aide des journaux de diagnostic
 
@@ -38,13 +38,14 @@ Vous pouvez utiliser les journaux de diagnostic pour configurer la collecte des 
 >
 > Les journaux d’ingestion ne sont pas pris en charge pour l’ingestion en streaming, l’ingestion directe vers le moteur, l’ingestion à partir d’une requête ou les commandes set-or-append.
 
-* **Opérations d’ingestion réussies**  : Ces journaux contiennent des informations sur les opérations d’ingestion terminées avec succès.
-* **Opérations d’ingestion ayant échoué**  : Ces journaux contiennent des informations détaillées sur les échecs d’opérations d’ingestion, notamment les détails des erreurs. 
+* **Opérations d’ingestion réussies** : Ces journaux contiennent des informations sur les opérations d’ingestion terminées avec succès.
+* **Opérations d’ingestion ayant échoué** : Ces journaux contiennent des informations détaillées sur les échecs d’opérations d’ingestion, notamment les détails des erreurs. 
+* **Opérations de traitement par lot de l’ingestion** : Ces journaux comprennent des statistiques détaillées sur les lots prêts à être ingérés (durée, taille du lot et nombre d’objets blob).
 
 # <a name="commands-and-queries"></a>[Commandes et requêtes](#tab/commands-and-queries)
 
-* **Commandes**  : ces journaux contiennent des informations sur les commandes d’administration qui ont atteint un état final.
-* **Requêtes**  : ces journaux contiennent des informations détaillées sur les requêtes qui ont atteint un état final. 
+* **Commandes** : ces journaux contiennent des informations sur les commandes d’administration qui ont atteint un état final.
+* **Requêtes** : ces journaux contiennent des informations détaillées sur les requêtes qui ont atteint un état final. 
 
     > [!NOTE]
     > Les données des journaux de requêtes ne contiennent pas le texte de la requête.
@@ -58,25 +59,25 @@ Les données sont ensuite archivées dans un compte de stockage, envoyées en st
 Les journaux de diagnostic sont désactivés par défaut. Pour activer les journaux de diagnostic, effectuez les étapes suivantes :
 
 1. Dans le [portail Azure](https://portal.azure.com), sélectionnez la ressource de cluster Azure Data Explorer à superviser.
-1. Sous **Supervision** , sélectionnez **Paramètres de diagnostic**.
+1. Sous **Supervision**, sélectionnez **Paramètres de diagnostic**.
   
     ![Ajouter des journaux de diagnostic](media/using-diagnostic-logs/add-diagnostic-logs.png)
 
 1. Sélectionnez **Ajouter le paramètre de diagnostic**.
-1. Dans la fenêtre **Paramètres de diagnostic**  :
+1. Dans la fenêtre **Paramètres de diagnostic** :
 
     :::image type="content" source="media/using-diagnostic-logs/configure-diagnostics-settings.png" alt-text="Configurer les paramètres de diagnostic":::
 
-    1. Indiquez le **Nom** de votre paramètre de diagnostic.
-    1. Sélectionnez une ou plusieurs cibles : compte de stockage, Event Hub ou Log Analytics.
-    1. Sélectionnez les journaux à collecter : `SucceededIngestion`, `FailedIngestion`, `Command` ou `Query`.
+    1. Entrez un nom dans **Nom du paramètre de diagnostic**.
+    1. Sélectionnez une ou plusieurs cibles : un espace de travail Log Analytics, un compte de stockage ou un hub d’événements.
+    1. Sélectionnez les journaux à collecter : `SucceededIngestion`, `FailedIngestion`, `Command`, `Query`, `TableUsageStatistics` ou `TableDetails`.
     1. Sélectionnez les [métriques](using-metrics.md#supported-azure-data-explorer-metrics) à collecter (facultatif).  
     1. Sélectionnez **Enregistrer** pour enregistrer les nouveaux paramètres et métriques des journaux de diagnostic.
 
 Les nouveaux paramètres sont définis en quelques minutes. Les journaux apparaissent alors dans la cible d’archivage configurée (compte de stockage, Event Hub ou Log Analytics). 
 
 > [!NOTE]
-> Si vous envoyez des journaux à Log Analytics, les journaux `SucceededIngestion`, `FailedIngestion`, `Command` et `Query` seront stockés dans des tables Log Analytics appelées `SucceededIngestion`, `FailedIngestion`, `ADXCommand`, `ADXQuery`, respectivement.
+> Si vous envoyez des journaux à Log Analytics, les journaux `SucceededIngestion`, `FailedIngestion`, `Command` et `Query` seront stockés dans des tables Log Analytics appelées `SucceededIngestion`, `FailedIngestion`, `ADXIngestionBatching`, `ADXCommand`, `ADXQuery`, respectivement.
 
 ## <a name="diagnostic-logs-schema"></a>Schéma des journaux de diagnostic
 
@@ -94,7 +95,7 @@ Les chaînes JSON des journaux incluent les éléments listés dans le tableau s
 |resourceId         |ID de ressource Azure Resource Manager
 |operationName      |Nom de l’opération : 'MICROSOFT.KUSTO/CLUSTERS/INGEST/ACTION'
 |operationVersion   |Version du schéma : '1.0' 
-|catégorie           |Catégorie de l’opération. `SucceededIngestion` ou `FailedIngestion`. Les propriétés sont différentes pour une [opération réussie](#successful-ingestion-operation-log) ou pour une [opération ayant échoué](#failed-ingestion-operation-log).
+|catégorie           |Catégorie de l’opération. `SucceededIngestion`, `FailedIngestion` ou `IngestionBatching`. Les propriétés sont différentes pour une [opération réussie](#successful-ingestion-operation-log), une [opération ayant échoué](#failed-ingestion-operation-log) et une [opération de traitement par lot](#ingestion-batching-operation-log).
 |properties         |Informations détaillées sur l’opération.
 
 #### <a name="successful-ingestion-operation-log"></a>Journal des opérations d’ingestion réussies
@@ -110,13 +111,13 @@ Les chaînes JSON des journaux incluent les éléments listés dans le tableau s
     "category": "SucceededIngestion",
     "properties":
     {
-        "succeededOn": "2019-05-27 07:55:05.3693628",
-        "operationId": "b446c48f-6e2f-4884-b723-92eb6dc99cc9",
-        "database": "Samples",
-        "table": "StormEvents",
-        "ingestionSourceId": "66a2959e-80de-4952-975d-b65072fc571d",
-        "ingestionSourcePath": "https://kustoingestionlogs.blob.core.windows.net/sampledata/events8347293.json",
-        "rootActivityId": "d0bd5dd3-c564-4647-953e-05670e22a81d"
+        "SucceededOn": "2019-05-27 07:55:05.3693628",
+        "OperationId": "b446c48f-6e2f-4884-b723-92eb6dc99cc9",
+        "Database": "Samples",
+        "Table": "StormEvents",
+        "IngestionSourceId": "66a2959e-80de-4952-975d-b65072fc571d",
+        "IngestionSourcePath": "https://kustoingestionlogs.blob.core.windows.net/sampledata/events8347293.json",
+        "RootActivityId": "d0bd5dd3-c564-4647-953e-05670e22a81d"
     }
 }
 ```
@@ -124,13 +125,13 @@ Les chaînes JSON des journaux incluent les éléments listés dans le tableau s
 
 |Nom               |Description
 |---                |---
-|succeededOn        |Heure d’achèvement de l’ingestion
-|operationId        |ID d’opération de l’ingestion Azure Data Explorer
-|database           |Nom de la base de données cible
-|table              |Nom de la table cible
-|ingestionSourceId  |ID de la source de données d’ingestion
-|ingestionSourcePath|Chemin de l’URI d’objet blob ou de la source de données d’ingestion
-|rootActivityId     |ID d’activité
+|SucceededOn        |Heure d’achèvement de l’ingestion
+|OperationId        |ID d’opération de l’ingestion Azure Data Explorer
+|Base de données           |Nom de la base de données cible
+|Table de charge de travail              |Nom de la table cible
+|IngestionSourceId  |ID de la source de données d’ingestion
+|IngestionSourcePath|Chemin de l’URI d’objet blob ou de la source de données d’ingestion
+|RootActivityId     |ID d’activité
 
 #### <a name="failed-ingestion-operation-log"></a>Journal des opérations d’ingestion ayant échoué
 
@@ -165,18 +166,58 @@ Les chaînes JSON des journaux incluent les éléments listés dans le tableau s
 
 |Nom               |Description
 |---                |---
-|failedOn           |Heure d’achèvement de l’ingestion
-|operationId        |ID d’opération de l’ingestion Azure Data Explorer
-|database           |Nom de la base de données cible
-|table              |Nom de la table cible
-|ingestionSourceId  |ID de la source de données d’ingestion
-|ingestionSourcePath|Chemin de l’URI d’objet blob ou de la source de données d’ingestion
-|rootActivityId     |ID d’activité
-|details            |Description détaillée de l’échec et du message d’erreur
-|errorCode          |Code d'erreur 
-|failureStatus      |`Permanent` ou `Transient`. Une nouvelle tentative après un échec passager peut réussir.
-|originatesFromUpdatePolicy|True si l’échec provient d’une stratégie de mise à jour
-|shouldRetry        |True si une nouvelle tentative peut réussir
+|FailedOn           |Heure d’achèvement de l’ingestion
+|OperationId        |ID d’opération de l’ingestion Azure Data Explorer
+|Base de données           |Nom de la base de données cible
+|Table de charge de travail              |Nom de la table cible
+|IngestionSourceId  |ID de la source de données d’ingestion
+|IngestionSourcePath|Chemin de l’URI d’objet blob ou de la source de données d’ingestion
+|RootActivityId     |ID d’activité
+|Détails            |Description détaillée de l’échec et du message d’erreur
+|ErrorCode          |Code d'erreur 
+|FailureStatus      |`Permanent` ou `Transient`. Une nouvelle tentative après un échec passager peut réussir.
+|OriginatesFromUpdatePolicy|True si l’échec provient d’une stratégie de mise à jour
+|ShouldRetry        |True si une nouvelle tentative peut réussir
+
+#### <a name="ingestion-batching-operation-log"></a>Journal des opérations de traitement par lot de l’ingestion
+
+**Exemple :**
+
+```json
+{
+  "resourceId": "/SUBSCRIPTIONS/12534EB3-8109-4D84-83AD-576C0D5E1D06/RESOURCEGROUPS/KEREN/PROVIDERS/MICROSOFT.KUSTO/CLUSTERS/KERENEUS",
+  "time": "2020-05-27T07:55:05.3693628Z",
+  "operationVersion": "1.0",
+  "operationName": "MICROSOFT.KUSTO/CLUSTERS/INGESTIONBATCHING/ACTION",
+  "category": "IngestionBatching",
+  "correlationId": "2bb51038-c7dc-4ebd-9d7f-b34ece4cb735",
+  "properties": {
+    "Database": "Samples",
+    "Table": "StormEvents",
+    "BatchingType": "Size",
+    "SourceCreationTime": "2020-05-27 07:52:04.9623640",
+    "BatchTimeSeconds": 215.5,
+    "BatchSizeBytes": 2356425,
+    "DataSourcesInBatch": 4,
+    "RootActivityId": "2bb51038-c7dc-4ebd-9d7f-b34ece4cb735"
+  }
+}
+
+```
+**Propriétés du journal de diagnostic des opérations de traitement par lot d’une ingestion**
+
+|Name               |Description
+|---                   |---
+| TimeGenerated        | Heure (UTC) à laquelle cet événement a été généré |
+| Base de données             | Nom de la base de données contenant la table cible |
+| Table de charge de travail                | Nom de la table cible dans laquelle les données sont ingérées |
+| BatchingType         | Type de traitement par lot : indique si le lot a atteint la limite concernant le temps de traitement par lot, la taille des données ou le nombre de fichiers qui est définie par la stratégie de traitement par lot |
+| SourceCreationTime   | Heure minimale (UTC) à laquelle les objets blob de ce lot ont été créés |
+| BatchTimeSeconds     | Temps total de traitement de ce lot (en secondes) |
+| BatchSizeBytes       | Taille totale des données de ce lot, après décompression (en octets) |
+| DataSourcesInBatch   | Nombre de sources de données de ce lot |
+| RootActivityId       | ID d’activité de l’opération |
+
 
 # <a name="commands-and-queries"></a>[Commandes et requêtes](#tab/commands-and-queries)
 

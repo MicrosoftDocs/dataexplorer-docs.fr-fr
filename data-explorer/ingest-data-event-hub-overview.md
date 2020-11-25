@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: 05848ff0a76ed7a102e54ec08412c4bf16e77891
-ms.sourcegitcommit: 4f24d68f1ae4903a2885985aa45fd15948867175
+ms.openlocfilehash: b8ba6199d5353ffd34081483c2ffbbd73e88a60c
+ms.sourcegitcommit: 3af95ea6a6746441ac71b1a217bbb02ee23d5f28
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92558204"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95473520"
 ---
 # <a name="event-hub-data-connection"></a>Connexion de données Event Hub
 
@@ -45,10 +45,7 @@ Les propriétés d’ingestion déterminent le processus d’ingestion, où rout
 | IngestionMappingReference | Nom du [mappage d’ingestion](kusto/management/create-ingestion-mapping-command.md) existant à utiliser. Remplace le paramètre `Column mapping` défini dans le volet `Data Connection`.|
 | Compression | Compression de données, `None` (par défaut) ou compression `GZip`.|
 | Encodage | Encodage des données, la valeur par défaut est UTF8. Il peut s’agir de l’un des [encodages pris en charge par .NET](/dotnet/api/system.text.encoding?view=netframework-4.8#remarks). |
-| Étiquettes (préversion) | Liste d’[étiquettes](kusto/management/extents-overview.md#extent-tagging) à associer aux données ingérées, sous forme de chaîne de tableau JSON. L’utilisation d’étiquettes a des [répercussions sur les performances](kusto/management/extents-overview.md#performance-notes-1). |
-
-<!--| Database | Name of the existing target database.|-->
-<!--| Tags | String representing [tags](/azure/kusto/management/extents-overview#extent-tagging) that will be attached to resulting extent. |-->
+| Étiquettes | Liste d’[étiquettes](kusto/management/extents-overview.md#extent-tagging) à associer aux données ingérées, sous forme de chaîne de tableau JSON. L’utilisation d’étiquettes a des [répercussions sur les performances](kusto/management/extents-overview.md#performance-notes-1). |
 
 > [!NOTE]
 > Seuls les événements mis en file d’attente après que vous avez créé la connexion de données sont ingérés.
@@ -126,6 +123,13 @@ Si vous avez sélectionné **Propriétés du système d’événements** dans la
 Consultez l’[exemple d’application](https://github.com/Azure-Samples/event-hubs-dotnet-ingest) qui génère des données et les envoie à un hub d’événements.
 
 Pour obtenir un exemple illustrant la façon de générer des exemples de données, consultez [Ingérer des données Event Hub dans Azure Data Explorer](ingest-data-event-hub.md#generate-sample-data).
+
+## <a name="set-up-geo-disaster-recovery-solution"></a>Configurer une solution de géo-reprise d’activité après sinistre
+
+Event Hub propose une solution de [géo-reprise d’activité après sinistre](/azure/event-hubs/event-hubs-geo-dr). Azure Data Explorer ne prend pas en charge les espaces de noms Event Hub de type `Alias`. Pour implémenter la géo-reprise d’activité après sinistre dans votre solution, créez deux connexions de données Event Hub : une pour l’espace de noms principal et une pour l’espace de noms secondaire. Azure Data Explorer écoutera les deux connexions Event Hub.
+
+> [!NOTE]
+> Il est de la responsabilité de l’utilisateur d’implémenter un basculement entre l’espace de noms principal et l’espace de noms secondaire.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
