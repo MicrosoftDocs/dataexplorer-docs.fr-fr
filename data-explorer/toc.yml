@@ -699,15 +699,18 @@
         - name: Opérateurs numériques
           href: ./kusto/query/numoperators.md
         - name: Opérateurs de chaîne
-          href: ./kusto/query/datatypes-string-operators.md
+          items:
+            - name: Vue d’ensemble des opérateurs de chaîne
+              displayName: 'has, contains'
+              href: ./kusto/query/datatypes-string-operators.md
+            - name: 'in et !in, opérateurs'
+              href: ./kusto/query/inoperator.md
+            - name: 'has_any, opérateur'
+              href: ./kusto/query/has-anyoperator.md
         - name: 'between, opérateur'
           href: ./kusto/query/betweenoperator.md
         - name: 'not-between, opérateur (!between)'
           href: ./kusto/query/notbetweenoperator.md
-        - name: 'in et !in, opérateurs'
-          href: ./kusto/query/inoperator.md
-        - name: 'has_any, opérateur'
-          href: ./kusto/query/has-anyoperator.md
     - name: Fonctions scalaires
       items:
         - name: Types de fonction scalaire
