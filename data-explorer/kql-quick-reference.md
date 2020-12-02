@@ -9,10 +9,10 @@ ms.topic: conceptual
 ms.date: 01/19/2020
 ms.localizationpriority: high
 ms.openlocfilehash: 3b007d1688130449c597ef99281ed89b55d880eb
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95511922"
 ---
 # <a name="kql-quick-reference"></a>Aide-mémoire sur KQL

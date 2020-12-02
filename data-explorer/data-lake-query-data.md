@@ -9,10 +9,10 @@ ms.topic: how-to
 ms.date: 06/17/2020
 ms.localizationpriority: high
 ms.openlocfilehash: ec62c1d0dfe439ac77d7fce9e69af8e5c8a7a8a0
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95512789"
 ---
 # <a name="query-data-in-azure-data-lake-using-azure-data-explorer"></a>Interroger des données dans Azure Data Lake à l'aide d'Azure Data Explorer

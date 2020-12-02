@@ -9,10 +9,10 @@ ms.topic: how-to
 ms.date: 04/07/2019
 ms.localizationpriority: high
 ms.openlocfilehash: d7046b8767413889bc77240032a2292deb7c89a3
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95512993"
 ---
 # <a name="time-series-analysis-in-azure-data-explorer"></a>Analyse des séries chronologiques dans Azure Data Explorer

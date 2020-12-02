@@ -10,10 +10,10 @@ ms.topic: how-to
 ms.date: 01/28/2020
 ms.localizationpriority: high
 ms.openlocfilehash: cd0bc28a2d2b282c50a85c87dbf8f4989c7b4057
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95513214"
 ---
 # <a name="query-data-in-azure-monitor-using-azure-data-explorer-preview"></a>Interroger des données dans Azure Monitor avec Azure Data Explorer (préversion)
