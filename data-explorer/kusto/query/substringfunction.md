@@ -1,6 +1,6 @@
 ---
-title: Substring ()-Azure Explorateur de données | Microsoft Docs
-description: Cet article décrit Substring () dans Azure Explorateur de données.
+title: substring() - Azure Data Explorer | Microsoft Docs
+description: Cet article décrit substring() dans Azure Data Explorer.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,15 +10,15 @@ ms.topic: reference
 ms.date: 02/13/2020
 ms.localizationpriority: high
 ms.openlocfilehash: 7b2f2dc18fe12f4bd07b638b6c3ca32d95a10618
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
-ms.translationtype: MT
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95512041"
 ---
 # <a name="substring"></a>substring()
 
-Extrait une sous-chaîne d’une chaîne source à partir d’un index jusqu’à la fin de la chaîne.
+Extrait une sous-chaîne d’une chaîne source, en commençant à un certain index, jusqu’à la fin de la chaîne.
 
 Éventuellement, la longueur de la sous-chaîne demandée peut être spécifiée.
 
@@ -28,17 +28,17 @@ substring("abcdefg", 1, 2) == "bc"
 
 ## <a name="syntax"></a>Syntaxe
 
-`substring(`*source* `,` *startingIndex* [ `,` *longueur*]`)`
+`substring(`*source*`,` *startingIndex* [`,` *length*]`)`
 
 ## <a name="arguments"></a>Arguments
 
-* *source*: chaîne source à partir de laquelle la sous-chaîne sera extraite.
-* *startingIndex*: position de caractère de départ de base zéro de la sous-chaîne demandée.
-* *Length*: paramètre facultatif qui peut être utilisé pour spécifier le nombre de caractères demandé dans la sous-chaîne. 
+* *source* : chaîne source dont la sous-chaîne est extraite.
+* *startingIndex* : position du caractère de départ (base zéro) de la sous-chaîne demandée.
+* *length* : paramètre facultatif qui permet de spécifier le nombre de caractères demandés dans la sous-chaîne. 
 
 **Remarques**
 
-*startingIndex* peut être un nombre négatif, auquel cas la sous-chaîne sera récupérée à partir de la fin de la chaîne source.
+*startingIndex* peut être un nombre négatif, auquel cas la sous-chaîne est récupérée à partir de la fin de la chaîne source.
 
 ## <a name="returns"></a>Retours
 

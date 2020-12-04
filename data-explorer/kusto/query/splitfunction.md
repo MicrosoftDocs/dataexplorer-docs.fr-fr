@@ -1,6 +1,6 @@
 ---
-title: Split ()-Azure Explorateur de données | Microsoft Docs
-description: Cet article décrit Split () dans Azure Explorateur de données.
+title: split() - Azure Data Explorer | Microsoft Docs
+description: Cet article décrit split() dans Azure Data Explorer.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,10 +10,10 @@ ms.topic: reference
 ms.date: 02/13/2020
 ms.localizationpriority: high
 ms.openlocfilehash: 4baae5bee8dd1e85a304be7fb4eae988acc404d8
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
-ms.translationtype: MT
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95512942"
 ---
 # <a name="split"></a>split()
@@ -28,11 +28,11 @@ split("aaa_bbb_ccc", "_") == ["aaa","bbb","ccc"]
 
 ## <a name="syntax"></a>Syntaxe
 
-`split(`*source* `,` *délimiteur* [ `,` *requestedIndex*]`)`
+`split(`*source*`,` *delimiter* [`,` *requestedIndex*]`)`
 
 ## <a name="arguments"></a>Arguments
 
-* *source*: chaîne source qui sera fractionnée en fonction du délimiteur donné.
+* *source* : chaîne source à fractionner en fonction du délimiteur donné.
 * *delimiter*: délimiteur utilisé pour fractionner la chaîne source.
 * *requestedIndex* : index de base zéro facultatif `int`. S’il est fourni, le tableau de chaînes retourné contient la sous-chaîne demandée si elle existe. 
 
