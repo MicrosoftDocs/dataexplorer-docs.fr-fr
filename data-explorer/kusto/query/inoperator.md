@@ -1,6 +1,6 @@
 ---
-title: opérateurs in et NOTIN-Azure Explorateur de données
-description: Cet article décrit les opérateurs in et NOTIN dans Azure Explorateur de données.
+title: Opérateurs in et notin - Azure Data Explorer
+description: Cet article décrit les opérateurs in et notin dans Azure Data Explorer.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,10 +10,10 @@ ms.topic: reference
 ms.date: 03/18/2019
 ms.localizationpriority: high
 ms.openlocfilehash: ffb24abe744bfbe3f7f95336edf0263becfa7ec9
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
-ms.translationtype: MT
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95513248"
 ---
 # <a name="in-and-in-operators"></a>in et !in, opérateurs
@@ -25,7 +25,7 @@ Table1 | where col in ('value1', 'value2')
 ```
 
 > [!NOTE]
-> * L’ajout de' ~ 'à l’opérateur rend les valeurs’recherche non sensible à la casse : `x in~ (expression)` ou `x !in~ (expression)` .
+> * Lorsque vous ajoutez « ~ » à l’opérateur, la recherche de valeurs devient insensible à la casse : `x in~ (expression)` ou `x !in~ (expression)`.
 > * Dans les expressions tabulaires, la première colonne du jeu de résultats est sélectionnée.
 > * La liste d’expressions peut produire jusqu’à `1,000,000` valeurs.
 > * Les tableaux imbriqués sont aplatis en une seule liste de valeurs. Par exemple, `x in (dynamic([1,[2,3]]))` devient `x in (1,2,3)`.
@@ -34,34 +34,34 @@ Table1 | where col in ('value1', 'value2')
 
 ### <a name="case-sensitive-syntax"></a>Syntaxe respectant la casse
 
-*T* `|` `where` *col* `in` `(` *Liste de colonnes T d’expressions scalaires*`)`   
-*T* `|` `where` *col* `in` `(` *Expression tabulaire* T col`)`   
+*T* `|` `where` *col* `in` `(`*liste d’expressions scalaires*`)`   
+*T* `|` `where` *col* `in` `(`*expression tabulaire*`)`   
  
-*T* `|` `where` *col* `!in` `(` *Liste de colonnes T d’expressions scalaires*`)`  
-*T* `|` `where` *col* `!in` `(` *Expression tabulaire* T col`)`   
+*T* `|` `where` *col* `!in` `(`*liste d’expressions scalaires*`)`  
+*T* `|` `where` *col* `!in` `(`*expression tabulaire*`)`   
 
-### <a name="case-insensitive-syntax"></a>Syntaxe ne respectant pas la casse
+### <a name="case-insensitive-syntax"></a>Syntaxe non sensible à la casse
 
-*T* `|` `where` *col* `in~` `(` *Liste de colonnes T d’expressions scalaires*`)`   
-*T* `|` `where` *col* `in~` `(` *Expression tabulaire* T col`)`   
+*T* `|` `where` *col* `in~` `(`*liste d’expressions scalaires*`)`   
+*T* `|` `where` *col* `in~` `(`*expression tabulaire*`)`   
  
-*T* `|` `where` *col* `!in~` `(` *Liste de colonnes T d’expressions scalaires*`)`  
-*T* `|` `where` *col* `!in~` `(` *Expression tabulaire* T col`)`   
+*T* `|` `where` *col* `!in~` `(`*liste d’expressions scalaires*`)`  
+*T* `|` `where` *col* `!in~` `(`*expression tabulaire*`)`   
 
 ## <a name="arguments"></a>Arguments
 
-* *T* -entrée tabulaire dont les enregistrements doivent être filtrés.
-* *col* : colonne à filtrer.
-* *liste d’expressions* : liste séparée par des virgules d’expressions tabulaires, scalaires ou littérales.
-* *expression tabulaire* : expression tabulaire qui possède un ensemble de valeurs. Si l’expression contient plusieurs colonnes, la première colonne est utilisée.
+* *T* : entrée tabulaire dont les enregistrements doivent être filtrés.
+* *col* : colonne à filtrer.
+* *liste d’expressions* : liste d’expressions tabulaires, scalaires ou littérales, séparées par des virgules.
+* *expression tabulaire* : expression tabulaire qui possède un ensemble de valeurs. Si l’expression contient plusieurs colonnes, la première colonne est utilisée.
 
 ## <a name="returns"></a>Retours
 
-Lignes dans *T* pour lesquelles le prédicat est `true` .
+Lignes dans *T* dont le prédicat est défini sur `true`.
 
 ## <a name="examples"></a>Exemples  
 
-### <a name="use-in-operator"></a>Utiliser l’opérateur « in »
+### <a name="use-in-operator"></a>Utiliser l’opérateur in
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -70,11 +70,11 @@ StormEvents
 | count
 ```
 
-|Count|
+|Nombre|
 |---|
 |4775|  
 
-### <a name="use-in-operator"></a>Utiliser l’opérateur « in ~ »  
+### <a name="use-in-operator"></a>Utiliser l’opérateur in~  
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -83,11 +83,11 @@ StormEvents
 | count
 ```
 
-|Count|
+|Nombre|
 |---|
 |4775|  
 
-### <a name="use-in-operator"></a>Utiliser l’opérateur' ! in'
+### <a name="use-in-operator"></a>Utiliser l’opérateur !in
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -96,7 +96,7 @@ StormEvents
 | count
 ```
 
-|Count|
+|Nombre|
 |---|
 |54291|  
 
@@ -111,7 +111,7 @@ StormEvents
 | count
 ```
 
-|Count|
+|Nombre|
 |---|
 |3218|
 
@@ -143,7 +143,7 @@ StormEvents
 | count
 ```
 
-|Count|
+|Nombre|
 |---|
 |14242|  
 
@@ -163,9 +163,9 @@ Lightning_By_State
 | ALABAMA   | 29                   |
 | WISCONSIN | 31                   |
 | TEXAS     | 55                   |
-| Floride   | 85 %                   |
-| Géorgie   | 106                  |
-| Autre     | 415                  |
+| FLORIDA   | 85 %                   |
+| GEORGIA   | 106                  |
+| Autres     | 415                  |
 
 ### <a name="use-a-static-list-returned-by-a-function"></a>Utiliser une liste statique retournée par une fonction
 
@@ -175,17 +175,17 @@ StormEvents | where State in (InterestingStates()) | count
 
 ```
 
-|Count|
+|Nombre|
 |---|
 |4775|  
 
-Définition de la fonction.
+Définition de fonction.
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 .show function InterestingStates
 ```
 
-|Nom|Paramètres|body|Dossier|DocString|
+|Nom|Paramètres|Corps|Dossier|DocString|
 |---|---|---|---|---|
-|InterestingStates|()|{Dynamic (["WASHINGTON", "Floride", "GEORGIA", "NEW YORK"])}
+|InterestingStates|()|{ dynamic(["WASHINGTON", "FLORIDA", "GEORGIA", "NEW YORK"]) }
