@@ -1,6 +1,6 @@
 ---
-title: parse_json ()-Azure Explorateur de données
-description: Cet article décrit parse_json () dans Azure Explorateur de données.
+title: parse_json() - Azure Data Explorer
+description: Cet article décrit parse_json() dans Azure Data Explorer.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,17 +10,17 @@ ms.topic: reference
 ms.date: 02/13/2020
 ms.localizationpriority: high
 ms.openlocfilehash: 3125a51733f6672d041e6c1522ea755e5677cb0c
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
-ms.translationtype: MT
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95512857"
 ---
 # <a name="parse_json"></a>parse_json()
 
-Interprète un `string` comme une valeur JSON et retourne la valeur sous la forme `dynamic` .
+Interprète une `string` comme une valeur JSON et retourne la valeur en tant que `dynamic`.
 
-Cette fonction est préférable à la [fonction extractjson ()](./extractjsonfunction.md) lorsque vous devez extraire plus d’un élément d’un objet composé JSON.
+Cette fonction est une meilleure option que la [fonction extractjson()](./extractjsonfunction.md) si vous devez extraire plusieurs éléments d’un objet composite JSON.
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -32,14 +32,14 @@ Alias :
 
 ## <a name="arguments"></a>Arguments
 
-* *JSON*: expression de type `string` . Il représente une [valeur au format JSON](https://json.org/), ou une expression de type [Dynamic](./scalar-data-types/dynamic.md), représentant la `dynamic` valeur réelle.
+* *json* : expression de type `string`. Elle représente une [valeur au format JSON](https://json.org/) ou une expression de type [dynamique](./scalar-data-types/dynamic.md), représentant la valeur `dynamic` réelle.
 
 ## <a name="returns"></a>Retours
 
-Objet de type `dynamic` qui est déterminé par la valeur de *JSON*:
-* Si *JSON* est de type `dynamic` , sa valeur est utilisée telle quelle.
-* Si *JSON* est de type `string` et qu’il s’agit d’une [chaîne JSON correctement mise en forme](https://json.org/), la chaîne est analysée et la valeur produite est retournée.
-* Si *JSON* est de type `string` , mais qu’il ne s’agit pas d’une [chaîne JSON correctement mise en forme](https://json.org/), la valeur retournée est un objet de type `dynamic` qui contient la valeur d’origine `string` .
+Objet de type `dynamic` déterminé par la valeur de *json* :
+* Si *json* est de type `dynamic`, sa valeur est utilisée telle quelle.
+* Si *json* est de type `string`et qu’il s’agit d’une [chaîne JSON correctement mise en forme](https://json.org/), la chaîne est analysée et la valeur produite est retournée.
+* Si *json* est de type `string`, mais qu’il ne s’agit pas d’une [chaîne JSON correctement mise en forme](https://json.org/), la valeur retournée est un objet de type `dynamic` qui contient la valeur `string` d’origine.
 
 ## <a name="example"></a>Exemple
 
@@ -49,7 +49,7 @@ Dans l’exemple suivant, quand `context_custom_metrics` est un élément `strin
 {"duration":{"value":118.0,"count":5.0,"min":100.0,"max":150.0,"stdDev":0.0,"sampledValue":118.0,"sum":118.0}}
 ```
 
-Ensuite, le fragment CSL suivant récupère la valeur de l' `duration` emplacement dans l’objet et, à partir de là, il récupère deux emplacements, `duration.value` et `duration.min` ( `118.0` `110.0` respectivement).
+Le fragment CSL suivant récupère la valeur de l’emplacement `duration` dans l’objet et, grâce à cette valeur, récupère deux emplacements, `duration.value` et `duration.min` (`118.0` et `110.0`, respectivement).
 
 ```kusto
 T
@@ -68,7 +68,7 @@ let d='{"a":123, "b":"{\\"c\\":456}"}';
 print d
 ```
 
-Dans ce cas, il n’est pas nécessaire d’appeler `parse_json` deux fois, mais également de s’assurer que dans le deuxième appel, `tostring` est utilisé. Dans le cas contraire, le deuxième appel à `parse_json` passera simplement l’entrée à la sortie telle quelle, car son type déclaré est `dynamic` .
+Dans ce cas, il est nécessaire d’appeler `parse_json` deux fois, et également de s’assurer que dans le deuxième appel, `tostring` est utilisé. Sinon, le deuxième appel à `parse_json` passe simplement l’entrée à la sortie telle quelle, car son type déclaré est `dynamic`.
 
 ```kusto
 let d='{"a":123, "b":"{\\"c\\":456}"}';
