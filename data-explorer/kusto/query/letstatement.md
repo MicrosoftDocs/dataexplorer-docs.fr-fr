@@ -1,6 +1,6 @@
 ---
-title: Instruction Let-Azure Explorateur de données
-description: Cet article décrit l’instruction Let dans Azure Explorateur de données.
+title: Instruction Let - Azure Data Explorer
+description: Cet article décrit l’instruction Let dans Azure Data Explorer.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,19 +10,19 @@ ms.topic: reference
 ms.date: 08/09/2020
 ms.localizationpriority: high
 ms.openlocfilehash: c102637adfa1fd0340d28a67b52354956b511ada
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
-ms.translationtype: MT
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95513310"
 ---
 # <a name="let-statement"></a>Let, instruction
 
-Les instructions Let lient des noms à des expressions. Pour le reste de l’étendue, où l’instruction Let apparaît, le nom peut être utilisé pour faire référence à sa valeur liée. L’instruction Let peut figurer dans une portée globale ou une portée de corps de fonction.
-Si ce nom a déjà été lié à une autre valeur, la liaison d’instruction Let « la plus profonde » est utilisée.
+Les instructions Let lient des noms à des expressions. Pour le reste de la portée dans laquelle l’instruction Let apparaît, le nom peut être utilisé pour faire référence à sa valeur liée. L’instruction Let peut figurer dans une portée globale ou une portée de corps de fonction.
+Si ce nom a déjà été lié à une autre valeur, la liaison d’instruction Let « la plus intérieure » est utilisée.
 
 Les instructions Let améliorent la modularité et la réutilisation, car elles vous permettent de décomposer une expression potentiellement complexe en plusieurs parties.
-Chaque composant est lié à un nom via l’instruction Let, et ensemble, ils composent l’ensemble. Elles peuvent également être utilisées pour créer des fonctions et des vues définies par l’utilisateur. Les vues sont des expressions de tables dont les résultats ressemblent à une nouvelle table.
+Chaque composant est lié à un nom via l’instruction Let, et ensemble, ils composent l’ensemble. Elles peuvent également être utilisées pour créer des fonctions et des vues définies par l’utilisateur. Les vues sont des expressions sur des tables dont les résultats ressemblent à une nouvelle table.
 
 > [!NOTE]
 > Les noms liés par les instructions Let doivent être des noms d’entité valides.
@@ -34,11 +34,11 @@ Les expressions liées par les instructions Let peuvent être :
 
 ## <a name="syntax"></a>Syntaxe
 
-`let`*Nom* `=` *ScalarExpression*  |  *TabularExpression*  |  *FunctionDefinitionExpression*
+`let` *Name* `=` *ScalarExpression* | *TabularExpression* | *FunctionDefinitionExpression*
 
 |Champ  |Définition  |Exemple  |
 |---------|---------|---------|
-|*Nom*   | Nom à lier. Le nom doit être un nom d’entité valide.    |L’échappement du nom d’entité, tel que `["Name with spaces"]` , est autorisé.      |
+|*Nom*   | Nom à lier. Le nom doit être un nom d’entité valide.    |L’échappement du nom d’entité, par exemple `["Name with spaces"]`, est autorisé.      |
 |*ScalarExpression*     |  Expression avec un résultat scalaire dont la valeur est liée au nom.  | `let one=1;`  |
 |*TabularExpression*    | Expression avec un résultat tabulaire dont la valeur est liée au nom.   | `Logs | where Timestamp > ago(1h)`    |
 |*FunctionDefinitionExpression*   | Expression qui produit une expression lambda, une déclaration de fonction anonyme qui doit être liée au nom.   |  `let f=(a:int, b:string) { strcat(b, ":", a) }`  |
@@ -46,28 +46,28 @@ Les expressions liées par les instructions Let peuvent être :
 
 ### <a name="lambda-expressions-syntax"></a>Syntaxe des expressions lambda
 
-[ `view` ] `(` [*TabularArguments*] [ `,` ] [*ScalarArguments*] `)` `{` *FunctionBody*`}`
+[`view`] `(`[*TabularArguments*][`,`][*ScalarArguments*]`)` `{` *FunctionBody* `}`
 
-`TabularArguments` -[*TabularArgName* `:` `(` [*AtrName* `:` *AtrType*] [ `,` ...] `)` ] [`,` ... ] [`,`]
+`TabularArguments` - [*TabularArgName* `:` `(`[*AtrName* `:` *AtrType*] [`,` ... ]`)`] [`,` ... ][`,`]
 
  ou :
 
  [*TabularArgName* `:` `(` `*` `)`]
 
-`ScalarArguments` -[*ArgName* `:` *ArgType*] [ `,` ...]
+`ScalarArguments` - [*ArgName* `:` *ArgType*] [`,` ... ]
 
 
 |Champ  |Définition  |Exemple  |
 |---------|---------|---------|
-| **affichage** | Peut apparaître uniquement dans une expression lambda sans paramètre, qui n’a pas d’arguments. Elle indique que le nom lié sera inclus lorsque « toutes les tables » sont des requêtes. | Par exemple, lors de l’utilisation de `union *` .|
-| ***TabularArguments** _ _ | Liste des arguments d’expression tabulaires formels. 
+| **view** | Peut apparaître uniquement dans une expression lambda sans paramètre, qui n’a pas d’arguments. Elle indique que le nom lié sera inclus lorsque « toutes les tables » sont des requêtes. | Par exemple, lors de l’utilisation de `union *`.|
+| ***TabularArguments** _ | Liste des arguments d’expressions tabulaires formels. 
 | Chaque argument tabulaire a :||
-|<ul><li> _TabularArgName *</li></ul> | Nom de l’argument tabulaire formel. Le nom peut apparaître dans le *FunctionBody* et être lié à une valeur particulière lorsque l’expression lambda est appelée. ||
+|<ul><li> _TabularArgName*</li></ul> | Nom de l’argument tabulaire formel. Le nom peut apparaître dans *FunctionBody* et est lié à une valeur particulière lorsque l’expression lambda est appelée. ||
 |<ul><li>Définition de schéma de table </li></ul> | Liste d’attributs avec leurs types| AtrName : AtrType|
-| ***ScalarArguments** _ _ | Liste des arguments scalaires formels. 
+| ***ScalarArguments** _ | Liste des arguments scalaires formels. 
 |Chaque argument scalaire a :||
-|<ul><li>_ArgName *</li></ul> | Nom de l’argument scalaire formel. Le nom peut apparaître dans le *FunctionBody* et être lié à une valeur particulière lorsque l’expression lambda est appelée.  |
-| <ul><li>*ArgType* </li></ul>| Type de l’argument scalaire formel. | Actuellement, seuls les types suivants sont pris en charge en tant que type d’argument lambda : `bool` ,,,, `string` `long` `datetime` `timespan` , `real` et `dynamic` (et les alias de ces types).
+|<ul><li>_ArgName*</li></ul> | Nom de l’argument scalaire formel. Le nom peut apparaître dans *FunctionBody* et est lié à une valeur particulière lorsque l’expression lambda est appelée.  |
+| <ul><li>*ArgType* </li></ul>| Type de l’argument scalaire formel. | Actuellement, seuls les types suivants sont pris en charge comme type d’argument lambda : `bool`, `string`, `long`, `datetime`, `timespan`, `real` et `dynamic` (et les alias de ces types).
 
 > [!NOTE]
 >L’expression tabulaire utilisée dans l’appel lambda doit inclure (sans s’y limiter) tous les attributs avec les types correspondants.
@@ -80,7 +80,7 @@ Les expressions liées par les instructions Let peuvent être :
 
 ## <a name="multiple-and-nested-let-statements"></a>Instructions Let multiples et imbriquées
 
-Plusieurs instructions Let peuvent être utilisées avec le point-virgule, `;` , délimiteur entre elles, comme dans l’exemple suivant.
+Plusieurs instructions Let peuvent être utilisées avec le point-virgule (`;`) servant de délimiteur, comme dans l’exemple suivant.
 
 > [!NOTE]
 > La dernière instruction doit être une expression de requête valide. 
@@ -92,7 +92,7 @@ T | where Time > start and Time < start + period | ...
 ```
 
 Les instructions Let imbriquées sont autorisées et peuvent être utilisées dans une expression lambda.
-Les instructions et les arguments Let sont visibles dans l’étendue actuelle et intérieure du corps de la fonction.
+Les instructions et les arguments Let sont visibles dans la portée actuelle et intérieure du corps de la fonction.
 
 ```kusto
 let start_time = ago(5h); 
@@ -104,14 +104,14 @@ T | where Time > start_time and Time < end_time | ...
 
 ### <a name="use-let-function-to-define-constants"></a>Utiliser la fonction Let pour définir des constantes
 
-L’exemple suivant lie le nom `x` au littéral scalaire, puis l' `1` utilise dans une instruction d’expression tabulaire.
+L’exemple suivant lie le nom `x` au littéral scalaire `1`, puis l’utilise dans une instruction d’expression tabulaire.
 
 ```kusto
 let x = 1;
 range y from x to x step x
 ```
 
-Cet exemple est similaire au précédent, mais seul le nom de l’instruction Let est fourni à l’aide de la `['name']` notion.
+Cet exemple est similaire au précédent, mais seul le nom de l’instruction Let est fourni à l’aide de la notion `['name']`.
 
 ```kusto
 let ['x'] = 1;
@@ -132,7 +132,7 @@ Events
 
 ### <a name="use-let-statement-with-arguments-for-scalar-calculation"></a>Utiliser l’instruction Let avec des arguments pour le calcul scalaire
 
-L’exemple suivant utilise l’instruction Let avec des arguments pour le calcul scalaire. La requête définit la fonction `MultiplyByN` pour multiplier deux nombres.
+L’exemple suivant utilise l’instruction Let avec des arguments pour le calcul scalaire. La requête définit la fonction `MultiplyByN` pour la multiplication de deux nombres.
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -149,7 +149,7 @@ range x from 1 to 5 step 1
 |4|20|
 |5|25|
 
-L’exemple suivant supprime les éléments de début et de fin ( `1` ) de l’entrée.
+L’exemple suivant supprime les éléments de début et de fin (`1`) de l’entrée.
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -170,7 +170,7 @@ range x from 10 to 15 step 1
 
 ### <a name="use-multiple-let-statements"></a>Utiliser plusieurs instructions Let
 
-Cet exemple définit deux instructions Let où une instruction ( `foo2` ) utilise une autre ( `foo1` ).
+Cet exemple définit deux instructions Let où une instruction (`foo2`) en utilise une autre (`foo1`).
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -180,9 +180,9 @@ foo2(2) | count
 // Result: 50
 ```
 
-### <a name="use-the-view-keyword-in-a-let-statement"></a>Utiliser le `view` mot clé dans une instruction Let
+### <a name="use-the-view-keyword-in-a-let-statement"></a>Utiliser le mot clé `view` dans une instruction Let
 
-Cet exemple montre comment utiliser l’instruction Let avec le `view` mot clé.
+Cet exemple montre comment utiliser l’instruction Let avec le mot clé `view`.
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -191,15 +191,15 @@ let Range20 = view () { range MyColumn from 1 to 20 step 1 };
 search MyColumn == 5
 ```
 
-|$table|Colonne|
+|$table|MyColumn|
 |---|---|
 |Range10|5|
 |Range20|5|
 
 
-### <a name="use-materialize-function"></a>Utiliser la fonction matérialiser
+### <a name="use-materialize-function"></a>Utiliser la fonction materialize
 
-La [`materialize`](materializefunction.md) fonction vous permet de mettre en cache les résultats de la sous-requête au moment de l’exécution de la requête. 
+La fonction [`materialize`](materializefunction.md) vous permet de mettre en cache les résultats de la sous-requête au moment de l’exécution de la requête. 
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -227,6 +227,6 @@ on $left.Day1 == $right.Day
 
 |Jour1|Jour2|Pourcentage|
 |---|---|---|
-|2016-05-01 00:00:00.0000000|2016-05-02 00:00:00.0000000|34.0645725975255|
-|2016-05-01 00:00:00.0000000|2016-05-03 00:00:00.0000000|16.618368960101|
-|2016-05-02 00:00:00.0000000|2016-05-03 00:00:00.0000000|14.6291376489636|
+|2016-05-01 00:00:00.0000000|2016-05-02 00:00:00.0000000|34,0645725975255|
+|2016-05-01 00:00:00.0000000|2016-05-03 00:00:00.0000000|16,618368960101|
+|2016-05-02 00:00:00.0000000|2016-05-03 00:00:00.0000000|14,6291376489636|
