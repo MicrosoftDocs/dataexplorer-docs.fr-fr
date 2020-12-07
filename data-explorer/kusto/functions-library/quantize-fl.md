@@ -7,12 +7,12 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/08/2020
-ms.openlocfilehash: 38d353caf1e0352688ee91edfe7f1d2cef94d18a
-ms.sourcegitcommit: 5aba5f694420ade57ef24b96699d9b026cdae582
+ms.openlocfilehash: 77524f22be72e977f73e0ac606db00d5d4b0c51d
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90998940"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321894"
 ---
 # <a name="quantize_fl"></a>quantize_fl()
 
@@ -32,9 +32,9 @@ Les `quantize_fl()` colonnes de métriques des emplacements de fonction. Il quan
 * *num_bins*: nombre requis d’emplacements.
 * *in_cols*: tableau dynamique contenant les noms des colonnes à quantifier.
 * *out_cols*: tableau dynamique contenant les noms des colonnes de sortie respectives pour les valeurs Binned (.
-* *étiquettes*: tableau dynamique contenant les noms d’étiquette. Ce paramètre est optionnel. Si les *étiquettes* ne sont pas fournies, les plages de l’emplacement sont utilisées.
+* *étiquettes*: tableau dynamique contenant les noms d’étiquette. Ce paramètre est facultatif. Si les *étiquettes* ne sont pas fournies, les plages de l’emplacement sont utilisées.
 
-## <a name="usage"></a>Usage
+## <a name="usage"></a>Utilisation
 
 `quantize_fl()` est une [fonction tabulaire](../query/functions/user-defined-functions.md#tabular-function)définie par l’utilisateur, à appliquer à l’aide de l' [opérateur Invoke](../query/invokeoperator.md). Vous pouvez incorporer son code dans votre requête ou l’installer dans votre base de données. Il existe deux options d’utilisation : une utilisation ad hoc et une utilisation permanente. Consultez les onglets ci-dessous pour obtenir des exemples.
 
@@ -83,7 +83,7 @@ union
 
 # <a name="persistent"></a>[Persistent](#tab/persistent)
 
-Pour une utilisation permanente, utilisez la [fonction. Create](../management/create-function.md). La création d’une fonction nécessite l' [autorisation de l’utilisateur de base de données](../management/access-control/role-based-authorization.md).
+Pour une utilisation permanente, utilisez [`.create function`](../management/create-function.md) . La création d’une fonction nécessite l' [autorisation de l’utilisateur de base de données](../management/access-control/role-based-authorization.md).
 
 ### <a name="one-time-installation"></a>Installation unique
 
@@ -119,7 +119,7 @@ quantize_fl(tbl:(*), num_bins:int, in_cols:dynamic, out_cols:dynamic, labels:dyn
 }
 ```
 
-### <a name="usage"></a>Usage
+### <a name="usage"></a>Utilisation
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

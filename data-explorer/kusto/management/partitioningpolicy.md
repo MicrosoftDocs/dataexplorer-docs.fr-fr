@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/10/2020
-ms.openlocfilehash: 1d2960e4fa8274d9e39aba935a49fd8d14d166e9
-ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
+ms.openlocfilehash: 30929e63c39be10d066815333ba6b277c0aeb5c9
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/28/2020
-ms.locfileid: "92902672"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321282"
 ---
 # <a name="partitioning-policy"></a>Stratégie de partitionnement
 
@@ -28,10 +28,10 @@ L’objectif principal de la stratégie est d’améliorer les performances des 
 
 Les types de clés de partition suivants sont pris en charge.
 
-|Kind                                                   |Type de colonne |Propriétés de la partition                    |Valeur de partition                                        |
-|-------------------------------------------------------|------------|----------------------------------------|----------------------|
-|[Code de hachage](#hash-partition-key)                            |`string`    |`Function`, `MaxPartitionCount`, `Seed` | `Function`(`ColumnName`, `MaxPartitionCount`, `Seed`) |
-|[Plage uniforme](#uniform-range-datetime-partition-key) |`datetime`  |`RangeSize`, `Reference`                | `bin_at`(`ColumnName`, `RangeSize`, `Reference`)      |
+|Kind                                                   |Type de colonne |Propriétés de la partition                                               |Valeur de partition                                        |
+|-------------------------------------------------------|------------|-------------------------------------------------------------------|-------------------------------------------------------|
+|[Hachage](#hash-partition-key)                            |`string`    |`Function`, `MaxPartitionCount`, `Seed`, `PartitionAssignmentMode` | `Function`(`ColumnName`, `MaxPartitionCount`, `Seed`) |
+|[Plage uniforme](#uniform-range-datetime-partition-key) |`datetime`  |`RangeSize`, `Reference`, `OverrideCreationTime`                   | `bin_at`(`ColumnName`, `RangeSize`, `Reference`)      |
 
 ### <a name="hash-partition-key"></a>Clé de partition de hachage
 
@@ -83,15 +83,16 @@ La fonction de partition utilisée est [bin_at ()](../query/binatfunction.md) et
 
 #### <a name="partition-properties"></a>Propriétés de la partition
 
-|Propriété | Description | Valeur recommandée |
-|---|---|---|---|
-| `RangeSize` | `timespan`Constante scalaire qui indique la taille de chaque partition DateTime. | Commencez par la valeur `1.00:00:00` (un jour). Ne définissez pas une valeur plus courte, car elle peut entraîner un grand nombre de petites extensions qui ne peuvent pas être fusionnées dans la table.
-| `Reference` | `datetime`Constante scalaire qui indique un point fixe dans le temps, selon lequel les partitions DateTime sont alignées. | Commencez par `1970-01-01 00:00:00`. S’il existe des enregistrements dans lesquels la clé de partition DateTime a des `null` valeurs, leur valeur de partition est définie sur la valeur de `Reference` . |
+|Propriété                | Description                                                                                                                                                     | Valeur recommandée                                                                                                                                                                                                                                                            |
+|------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `RangeSize`            | `timespan`Constante scalaire qui indique la taille de chaque partition DateTime.                                                                                | Commencez par la valeur `1.00:00:00` (un jour). Ne définissez pas une valeur plus courte, car elle peut entraîner un grand nombre de petites extensions qui ne peuvent pas être fusionnées dans la table.                                                                                                      |
+| `Reference`            | `datetime`Constante scalaire qui indique un point fixe dans le temps, selon lequel les partitions DateTime sont alignées.                                          | Commencez par `1970-01-01 00:00:00`. S’il existe des enregistrements dans lesquels la clé de partition DateTime a des `null` valeurs, leur valeur de partition est définie sur la valeur de `Reference` .                                                                                                      |
+| `OverrideCreationTime` | Valeur `bool` qui indique si les heures de création minimale et maximale de l’étendue du résultat doivent être remplacées par la plage des valeurs de la clé de partition. | La valeur par défaut est `false`. Affectez `true` la valeur si les données ne sont pas ingérées au moment de l’arrivée (par exemple, un fichier source unique peut inclure des valeurs DateTime qui sont très éloignées) et/ou si vous souhaitez forcer la rétention/la mise en cache en fonction des valeurs DateTime, et non le moment de l’ingestion. |
 
 #### <a name="uniform-range-datetime-partition-example"></a>Exemple de partition DateTime de plage uniforme
 
 L’extrait de code montre une clé de partition de plage DateTime uniforme sur une `datetime` colonne typée nommée `timestamp` .
-Il utilise `datetime(1970-01-01)` comme point de référence, avec une taille de `1d` pour chaque partition.
+Il utilise `datetime(1970-01-01)` comme point de référence, avec une taille de `1d` pour chaque partition et ne remplace pas les durées de création des extensions.
 
 ```json
 {
@@ -99,7 +100,8 @@ Il utilise `datetime(1970-01-01)` comme point de référence, avec une taille de
   "Kind": "UniformRange",
   "Properties": {
     "Reference": "1970-01-01T00:00:00",
-    "RangeSize": "1.00:00:00"
+    "RangeSize": "1.00:00:00",
+    "OverrideCreationTime": false
   }
 }
 ```
@@ -110,7 +112,7 @@ Par défaut, la stratégie de partitionnement des données d’une table est `nu
 
 La stratégie de partitionnement des données comporte les propriétés principales suivantes :
 
-* **PartitionKeys** :
+* **PartitionKeys**:
   * Collection de [clés de partition](#partition-keys) qui définissent la façon dont les données doivent être partitionnées dans la table.
   * Une table peut avoir jusqu’à des `2` clés de partition, avec l’une des options suivantes :
     * Une [clé de partition de hachage](#hash-partition-key).
@@ -121,7 +123,7 @@ La stratégie de partitionnement des données comporte les propriétés principa
     * `Kind`: `string` -Type de partitionnement des données à appliquer ( `Hash` ou `UniformRange` ).
     * `Properties`: `property bag` Définit les paramètres en fonction du partitionnement effectué.
 
-* **EffectiveDateTime** :
+* **EffectiveDateTime**:
   * DateTime UTC à partir de laquelle la stratégie est effective.
   * Cette propriété est facultative. Si elle n’est pas spécifiée, la stratégie prend effet sur les données ingérées après l’application de la stratégie.
   * Les extensions non homogènes (non partitionnées) qui peuvent être supprimées en raison de la rétention sont ignorées par le processus de partitionnement. Les étendues sont ignorées, car leur durée de création précède 90% de la période de suppression logicielle effective de la table.
@@ -154,7 +156,8 @@ Objet de stratégie de partitionnement de données avec deux clés de partition.
       "Kind": "UniformRange",
       "Properties": {
         "Reference": "1970-01-01T00:00:00",
-        "RangeSize": "1.00:00:00"
+        "RangeSize": "1.00:00:00",
+        "OverrideCreationTime": false
       }
     }
   ]
@@ -179,7 +182,7 @@ Les propriétés suivantes peuvent être définies dans le cadre de la stratégi
 
 ## <a name="monitor-partitioning"></a>Surveiller le partitionnement
 
-Utilisez la commande [. afficher les diagnostics](../management/diagnostics.md#show-diagnostics) pour surveiller la progression ou l’état du partitionnement dans un cluster.
+Utilisez la [`.show diagnostics`](../management/diagnostics.md#show-diagnostics) commande pour surveiller la progression ou l’état du partitionnement dans un cluster.
 
 ```kusto
 .show diagnostics
@@ -192,7 +195,7 @@ La sortie comprend les éléments suivants :
     * Si ce pourcentage reste constamment inférieur à 90%, évaluez la [capacité](partitioningpolicy.md#partition-capacity)de partitionnement du cluster.
   * `TableWithMinPartitioningPercentage`: Nom qualifié complet de la table dont le pourcentage de partitionnement est indiqué ci-dessus.
 
-Utilisez les [commandes. Show](commands.md) pour surveiller les commandes de partitionnement et leur utilisation des ressources. Par exemple :
+Utilisez [`.show commands`](commands.md) pour surveiller les commandes de partitionnement et leur utilisation des ressources. Par exemple :
 
 ```kusto
 .show commands 

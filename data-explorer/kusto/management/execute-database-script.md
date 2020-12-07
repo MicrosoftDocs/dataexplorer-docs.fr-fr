@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/14/2020
-ms.openlocfilehash: c8fa3a000de67559c83745c598da40797e31f9b9
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 667fcc87a1e301bdcceb227bb99ad70d62f46153
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92248340"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320823"
 ---
 # <a name="execute-database-script"></a>.execute database script
 
@@ -46,7 +46,7 @@ Chaque commande figurant dans le script est signalée comme un enregistrement di
 |OperationId  |Guid |Identificateur de la commande.
 |CommandType  |String |Type de la commande.
 |CommandText  |String |Texte de la commande spécifique.
-|Résultat|String|Résultat de l’exécution de la commande spécifique.
+|Résultats|String|Résultat de l’exécution de la commande spécifique.
 |Motif|String|Informations détaillées sur le résultat de l’exécution de la commande.
 
 >[!NOTE]
@@ -54,9 +54,9 @@ Chaque commande figurant dans le script est signalée comme un enregistrement di
 >* Les commandes sont exécutées de manière séquentielle, dans l’ordre dans lequel elles apparaissent dans le script d’entrée.
 >* L’exécution du script n’est pas transactionnelle et aucune restauration n’est effectuée en cas d’erreur. Il est recommandé d’utiliser la forme idempotent de commandes lors de l’utilisation de `.execute database script` .
 >* Le comportement par défaut de la commande-échoue sur la première erreur, il peut être modifié à l’aide de l’argument de propriété.
->* Les commandes de contrôle en lecture seule (. Show Commands) ne sont pas exécutées et sont signalées par l’état `Skipped` .
+>* Les commandes de contrôle en lecture seule ( `.show` commandes) ne sont pas exécutées et sont signalées avec l’état `Skipped` .
 
-## <a name="example"></a>Exemple
+## <a name="example"></a> Exemple
 
 ```kusto
 .execute database script <|
@@ -75,8 +75,8 @@ Chaque commande figurant dans le script est signalée comme un enregistrement di
 }
 ```
 
-|OperationId|CommandType|CommandText|Résultat|Motif|
+|OperationId|CommandType|CommandText|Résultats|Motif|
 |---|---|---|---|---|
-|1d28531b-58c8-4023-a5d3-16fa73c06cfa|TableCreate|. Create-Merge table T (a :String, b :String)|Completed||
-|67d0ea69-baa4-419a-93d3-234c03834360|RetentionPolicyAlter|. Alter-Merge table T Retention de la stratégie SoftDelete = 10D|Completed||
-|0b0e8769-d4e8-4ff9-adae-071e52a650c7|FunctionCreateOrAlter|.create-or-alter function<br>with (SkipValidation = "true")<br>SampleT1 (myLimit : long) {<br>T1 \| limite MyLimit<br>}|Completed||
+|1d28531b-58c8-4023-a5d3-16fa73c06cfa|TableCreate|. Create-Merge table T (a :String, b :String)|Effectué||
+|67d0ea69-baa4-419a-93d3-234c03834360|RetentionPolicyAlter|. Alter-Merge table T Retention de la stratégie SoftDelete = 10D|Effectué||
+|0b0e8769-d4e8-4ff9-adae-071e52a650c7|FunctionCreateOrAlter|.create-or-alter function<br>with (SkipValidation = "true")<br>SampleT1 (myLimit : long) {<br>T1 \| limite MyLimit<br>}|Effectué||

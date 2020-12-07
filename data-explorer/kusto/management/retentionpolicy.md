@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 871ad751105ba6a3f6ce5dcba55b3a0fd1c17789
-ms.sourcegitcommit: 21dee76964bf284ad7c2505a7b0b6896bca182cc
+ms.openlocfilehash: 37d82807751a604d88eda7de75fb4978efc0ce1b
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91056983"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321265"
 ---
 # <a name="retention-policy"></a>Stratégie de rétention
 
@@ -49,13 +49,13 @@ Une stratégie de rétention comprend les propriétés suivantes :
 
 ## <a name="control-commands"></a>Commandes de contrôle
 
-* Utilisez [. afficher la rétention](../management/retention-policy.md) de la stratégie pour afficher la stratégie de rétention actuelle pour une base de données, une table ou une [vue matérialisée](materialized-views/materialized-view-overview.md).
-* Utilisez la [rétention](../management/retention-policy.md) de la stratégie pour modifier la stratégie de rétention actuelle d’une base de données, d’une table ou d’une [vue matérialisée](materialized-views/materialized-view-overview.md).
+* Permet [`.show policy retention`](../management/retention-policy.md) d’afficher la stratégie de rétention actuelle pour une base de données, une table ou une [vue matérialisée](materialized-views/materialized-view-overview.md).
+* Utilisez [`.alter policy retention`](../management/retention-policy.md) pour modifier la stratégie de rétention actuelle d’une base de données, d’une table ou d’une [vue matérialisée](materialized-views/materialized-view-overview.md).
 
 ## <a name="defaults"></a>Valeurs par défaut
 
 Par défaut, lorsqu’une base de données ou une table est créée, aucune stratégie de rétention n’est définie. Normalement, la base de données est créée et sa stratégie de rétention est immédiatement définie par son créateur conformément aux exigences connues.
-Quand vous exécutez une [commande show](../management/retention-policy.md) pour la stratégie de rétention d’une base de données ou d’une table dont la stratégie n’a pas été définie, `Policy` s’affiche sous la forme `null` .
+Quand vous exécutez une [ `.show` commande](../management/retention-policy.md) pour la stratégie de rétention d’une base de données ou d’une table dont la stratégie n’a pas été définie, `Policy` s’affiche sous la forme `null` .
 
 La stratégie de rétention par défaut, avec les valeurs par défaut mentionnées ci-dessus, peut être appliquée à l’aide de la commande suivante.
 

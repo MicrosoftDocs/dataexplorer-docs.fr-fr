@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/18/2020
-ms.openlocfilehash: 9a670e2dead3e3cd5a2d881974678fcb44eaff29
-ms.sourcegitcommit: 3eabd78305d32cd9b8a6bd1d76877ddc19d8ac63
+ms.openlocfilehash: e05f8204ba1e81b9391b6b63f190b81e1db73338
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94548901"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321044"
 ---
 # <a name="cluster-follower-commands"></a>Commandes du suiveur de cluster
 
@@ -29,7 +29,7 @@ Affiche une base de données (ou des bases de données) suivie d’un autre clus
 
 **Syntaxe**
 
-`.show``follower` `database` *DatabaseName*
+`.show` `follower` `database` *nom_base_de_données*
 
 `.show``follower` `databases` `(` *DatabaseName1* `,` ...`,` *DatabaseNameN*`)`
 
@@ -52,12 +52,12 @@ Modifie une stratégie de mise en cache de la base de données, afin de remplace
 
 **Remarques**
 
-* La valeur par défaut `modification kind` pour les stratégies de mise en cache est `union` . Pour modifier le, `modification kind` Utilisez la commande [. Alter suiveur Database Caching-Policies-modification-Kind](#alter-follower-database-caching-policies-modification-kind) .
+* La valeur par défaut `modification kind` pour les stratégies de mise en cache est `union` . Pour modifier le `modification kind` , utilisez la [`.alter follower database caching-policies-modification-kind`](#alter-follower-database-caching-policies-modification-kind) commande.
 * L’affichage de la stratégie ou des stratégies effectives après la modification peut être effectué à l’aide des `.show` commandes suivantes :
-    * [. afficher la conservation de la stratégie de base de données](../management/retention-policy.md#show-retention-policy)
-    * [. afficher les détails de la base de données](../management/show-databases.md)
-    * [.show table details](show-tables-command.md)
-* L’affichage des paramètres de remplacement sur la base de données du suiveur une fois la modification effectuée peut être effectué à l’aide [de. afficher la base de données du suiveur](#show-follower-database)
+    * [`.show database policy retention`](../management/retention-policy.md#show-retention-policy)
+    * [`.show database details`](../management/show-databases.md)
+    * [`.show table details`](show-tables-command.md)
+* L’affichage des paramètres de remplacement sur la base de données du suiveur une fois la modification effectuée peut être effectué à l’aide de [`.show follower database`](#show-follower-database)
 
 **Syntaxe**
 
@@ -77,14 +77,14 @@ Il nécessite des [autorisations DatabaseAdmin](../management/access-control/rol
 **Remarques**
 
 * L’affichage de la stratégie ou des stratégies effectives après la modification peut être effectué à l’aide des `.show` commandes suivantes :
-    * [. afficher la conservation de la stratégie de base de données](../management/retention-policy.md#show-retention-policy)
-    * [. afficher les détails de la base de données](../management/show-databases.md)
-    * [.show table details](show-tables-command.md)
-* L’affichage des paramètres de remplacement sur la base de données du suiveur après la modification peut être effectué à l’aide [de. afficher la base de données du suiveur](#show-follower-database)
+    * [`.show database policy retention`](../management/retention-policy.md#show-retention-policy)
+    * [`.show database details`](../management/show-databases.md)
+    * [`.show table details`](show-tables-command.md)
+* L’affichage des paramètres de remplacement sur la base de données du suiveur après la modification peut être effectué à l’aide de [`.show follower database`](#show-follower-database)
 
 **Syntaxe**
 
-`.delete``follower` `database` *DatabaseName* DatabaseName `policy``caching`
+`.delete` `follower` `database` *nom_base_de_données* `policy` `caching`
 
 **Exemple**
 
@@ -100,8 +100,8 @@ Ajoute le ou les principaux autorisés à la collection de bases de données de 
 
 * La valeur par défaut `modification kind` pour ces principaux autorisés est `none` . Pour modifier l' `modification kind`  [instruction USE ALTER suivra Database principals-modification-genre](#alter-follower-database-principals-modification-kind).
 * L’affichage de la collection effective des principaux après la modification peut être effectué à l’aide des `.show` commandes suivantes :
-    * [. afficher les principaux de la base de données](../management/security-roles.md#managing-database-security-roles)
-    * [. afficher les détails de la base de données](../management/show-databases.md)
+    * [`.show database principals`](../management/security-roles.md#managing-database-security-roles)
+    * [`.show database details`](../management/show-databases.md)
 * L’affichage des paramètres de remplacement sur la base de données du suiveur après la modification peut être effectué à l’aide [de. afficher la base de données du suiveur](#show-follower-database)
 
 **Syntaxe**
@@ -122,9 +122,9 @@ Il nécessite des [autorisations DatabaseAdmin](../management/access-control/rol
 **Remarques**
 
 * L’affichage de la collection effective des principaux après la modification peut être effectué à l’aide des `.show` commandes suivantes :
-    * [. afficher les principaux de la base de données](../management/security-roles.md#managing-database-security-roles)
-    * [. afficher les détails de la base de données](../management/show-databases.md)
-* L’affichage des paramètres de remplacement sur la base de données du suiveur après la modification peut être effectué à l’aide [de. afficher la base de données du suiveur](#show-follower-database)
+    * [`.show database principals`](../management/security-roles.md#managing-database-security-roles)
+    * [`.show database details`](../management/show-databases.md)
+* L’affichage des paramètres de remplacement sur la base de données du suiveur après la modification peut être effectué à l’aide de [`.show follower database`](#show-follower-database)
 
 **Syntaxe**
 
@@ -143,8 +143,8 @@ Modifie le type de modification du principal de la base de données. Il nécessi
 **Remarques**
 
 * L’affichage de la collection effective des principaux après la modification peut être effectué à l’aide des `.show` commandes suivantes :
-    * [. afficher les principaux de la base de données](../management/security-roles.md#managing-database-security-roles)
-    * [. afficher les détails de la base de données](../management/show-databases.md)
+    * [`.show database principals`](../management/security-roles.md#managing-database-security-roles)
+    * [`.show database details`](../management/show-databases.md)
 * L’affichage des paramètres de remplacement sur la base de données du suiveur après la modification peut être effectué à l’aide [de. afficher la base de données du suiveur](#show-follower-database)
 
 **Syntaxe**
@@ -165,9 +165,9 @@ Modifie le type de modification de la base de données et des stratégies de mis
 **Remarques**
 
 * L’affichage de la collection efficace de stratégies de mise en cache au niveau de la table ou de la base de données après la modification peut être effectué à l’aide des `.show` commandes standard :
-    * [. afficher les détails des tables](show-tables-command.md)
-    * [. afficher les détails de la base de données](../management/show-databases.md)
-* L’affichage des paramètres de remplacement sur la base de données du suiveur après la modification peut être effectué à l’aide [de. afficher la base de données du suiveur](#show-follower-database)
+    * [`.show tables details`](show-tables-command.md)
+    * [`.show database details`](../management/show-databases.md)
+* L’affichage des paramètres de remplacement sur la base de données du suiveur après la modification peut être effectué à l’aide de [`.show follower database`](#show-follower-database)
 
 **Syntaxe**
 
@@ -211,10 +211,10 @@ Il nécessite des [autorisations DatabaseAdmin](../management/access-control/rol
 **Remarques**
 
 * L’affichage de la stratégie ou des stratégies effectives après la modification peut être effectué à l’aide des `.show` commandes suivantes :
-    * [. afficher la conservation de la stratégie de base de données](../management/retention-policy.md#show-retention-policy)
-    * [. afficher les détails de la base de données](../management/show-databases.md)
-    * [.show table details](show-tables-command.md)
-* L’affichage des paramètres de remplacement sur la base de données du suiveur après la modification peut être effectué à l’aide [de. afficher la base de données du suiveur](#show-follower-database)
+    * [`.show database policy retention`](../management/retention-policy.md#show-retention-policy)
+    * [`.show database details`](../management/show-databases.md)
+    * [`.show table details`](show-tables-command.md)
+* L’affichage des paramètres de remplacement sur la base de données du suiveur après la modification peut être effectué à l’aide de [`.show follower database`](#show-follower-database)
 
 **Syntaxe**
 
@@ -235,10 +235,10 @@ Supprime une stratégie de mise en cache au niveau de la table de substitution s
 **Remarques**
 
 * L’affichage de la stratégie ou des stratégies effectives après la modification peut être effectué à l’aide des `.show` commandes suivantes :
-    * [. afficher la conservation de la stratégie de base de données](../management/retention-policy.md#show-retention-policy)
-    * [. afficher les détails de la base de données](../management/show-databases.md)
-    * [.show table details](show-tables-command.md)
-* L’affichage des paramètres de remplacement sur la base de données du suiveur après la modification peut être effectué à l’aide [de. afficher la base de données du suiveur](#show-follower-database)
+    * [`.show database policy retention`](../management/retention-policy.md#show-retention-policy)
+    * [`.show database details`](../management/show-databases.md)
+    * [`.show table details`](show-tables-command.md)
+* L’affichage des paramètres de remplacement sur la base de données du suiveur après la modification peut être effectué à l’aide de [`.show follower database`](#show-follower-database)
 
 **Syntaxe**
 
@@ -320,7 +320,7 @@ Seuls les deux principaux spécifiques sont autorisés à accéder à `MyDatabas
 .show database MyDatabase principals
 ```
 
-| Role                       | PrincipalType | PrincipalDisplayName                        | PrincipalObjectId                    | PrincipalFQN                                                                      | Notes |
+| Rôle                       | PrincipalType | PrincipalDisplayName                        | PrincipalObjectId                    | PrincipalFQN                                                                      | Notes |
 |----------------------------|---------------|---------------------------------------------|--------------------------------------|-----------------------------------------------------------------------------------|-------|
 | Administration de base de données MyDatabase  | Utilisateur AAD      | Kusto Jack (UPN : jack@contoso.com )       | 12345678-ABCD-efef-1234-350bf486087b | aaduser = 87654321-ABCD-efef-1234-350bf486087b ; 55555555-4444-3333-2222-2d7cd011db47 |       |
 | Visionneuse de base de données mabdd | Utilisateur AAD      | Jill Kusto (UPN : jack@contoso.com )       | abcdefab-abcd-efef-1234-350bf486087b | aaduser = 54321789-ABCD-efef-1234-350bf486087b ; 55555555-4444-3333-2222-2d7cd011db47 |       |

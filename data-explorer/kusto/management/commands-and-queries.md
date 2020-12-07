@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/19/2019
-ms.openlocfilehash: c7f692739071496ce492d168c6036a2c2adac8fd
-ms.sourcegitcommit: f7101c6b41ec250d05f4cb6092e2939958b37b40
+ms.openlocfilehash: 222d04939560342bd849c15f249b1a8a582316a2
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/03/2020
-ms.locfileid: "84329042"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321027"
 ---
 # <a name="commands-and-queries-management"></a>Gestion des commandes et des requêtes
 
@@ -21,7 +21,7 @@ ms.locfileid: "84329042"
 
 `.show``commands-and-queries`retourne une table avec des commandes d’administration et des requêtes qui ont atteint un état final. Ces commandes et requêtes sont disponibles pendant 30 jours.
 
-Les informations présentées dans la sortie de la commande sont similaires à [. Show Commands](commands.md) et [. Show Queries](queries.md), mais elle vous permet essentiellement de joindre les deux jeux de résultats de manière simple.
+Les informations présentées dans la sortie de la commande sont similaires aux [ `.show` commandes](commands.md) et aux [ `.show` requêtes](queries.md), mais elles vous permettent essentiellement de joindre les deux jeux de résultats de manière simple.
 
 **Syntaxe**
 

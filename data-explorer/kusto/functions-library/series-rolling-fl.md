@@ -7,12 +7,12 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/08/2020
-ms.openlocfilehash: 218ef000869e4cea0f237137a0481a9b4d72d65e
-ms.sourcegitcommit: 5aba5f694420ade57ef24b96699d9b026cdae582
+ms.openlocfilehash: fe9ea2556346edaf0327e0d9ce50d4d4519d4bb3
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90998991"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321792"
 ---
 # <a name="series_rolling_fl"></a>series_rolling_fl()
 
@@ -62,7 +62,7 @@ Cette fonction prend en charge n’importe quelle fonction d’agrégation de [n
 * [`tstd`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.tstd.html)
 * [`iqr` (intervalle entre quantile)](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.iqr.html) 
 
-## <a name="usage"></a>Usage
+## <a name="usage"></a>Utilisation
 
 `series_rolling_fl()` est une [fonction tabulaire](../query/functions/user-defined-functions.md#tabular-function)définie par l’utilisateur, à appliquer à l’aide de l' [opérateur Invoke](../query/invokeoperator.md). Vous pouvez incorporer son code dans votre requête ou l’installer dans votre base de données. Il existe deux options d’utilisation : une utilisation ad hoc et une utilisation permanente. Consultez les onglets ci-dessous pour obtenir des exemples.
 
@@ -108,7 +108,7 @@ demo_make_series1
 
 # <a name="persistent"></a>[Persistent](#tab/persistent)
 
-Pour une utilisation permanente, utilisez la [fonction. Create](../management/create-function.md). La création d’une fonction nécessite l' [autorisation de l’utilisateur de base de données](../management/access-control/role-based-authorization.md).
+Pour une utilisation permanente, utilisez [`.create function`](../management/create-function.md) . La création d’une fonction nécessite l' [autorisation de l’utilisateur de base de données](../management/access-control/role-based-authorization.md).
 
 ### <a name="one-time-installation"></a>Installation unique
 
@@ -140,7 +140,7 @@ series_rolling_fl(tbl:(*), y_series:string, y_rolling_series:string, n:int, aggr
 }
 ```
 
-### <a name="usage"></a>Usage
+### <a name="usage"></a>Utilisation
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

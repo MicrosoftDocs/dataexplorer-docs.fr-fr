@@ -8,18 +8,18 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/23/2020
-ms.openlocfilehash: 8f5494c9d54d2950ba82da8de0b0094b2d17f798
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 6e57f22dae1abef3838ed6f7065759c4a203e389
+ms.sourcegitcommit: 1bdbfdc04c4eac405f3931059bbeee2dedd87004
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92246412"
+ms.lasthandoff: 11/27/2020
+ms.locfileid: "96303304"
 ---
 # <a name="make_set-aggregation-function"></a>make_set () (fonction d’agrégation)
 
 Retourne un tableau (JSON) `dynamic` du jeu de valeurs distinctes prises par *Expr* dans le groupe.
 
-* Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
+* Peut être utilisé uniquement dans un contexte d’agrégation à l’intérieur de l’opérateur [summarize](summarizeoperator.md).
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -31,7 +31,7 @@ Retourne un tableau (JSON) `dynamic` du jeu de valeurs distinctes prises par *Ex
 * *MaxSize* est une limite d’entier facultative sur le nombre maximal d’éléments retournés (la valeur par défaut est *1048576*). La valeur MaxSize ne peut pas dépasser 1048576.
 
 > [!NOTE]
-> Une variante héritée et obsolète de cette fonction : `makeset()` a une limite par défaut de *MaxSize* = 128.
+> `makeset()` est une version héritée et obsolète de la fonction `make_set` . La version héritée a une limite par défaut de *MaxSize* = 128.
 
 ## <a name="returns"></a>Retours
 
@@ -41,7 +41,7 @@ L’ordre de tri du tableau n’est pas défini.
 > [!TIP]
 > Pour compter uniquement des valeurs distinctes, utilisez [DCount ()](dcount-aggfunction.md)
 
-## <a name="example"></a>Exemple
+## <a name="example"></a> Exemple
 
 ```kusto
 PageViewLog 

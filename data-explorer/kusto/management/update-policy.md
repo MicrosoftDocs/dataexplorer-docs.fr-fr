@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/04/2020
-ms.openlocfilehash: c9ef5b2a205665c692c383654f3d050c4658c0f1
-ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
+ms.openlocfilehash: 5d346e5b7932437322cb8a41210a6f375cd6d6f0
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/13/2020
-ms.locfileid: "92002992"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321112"
 ---
 # <a name="update-policy-commands"></a>commandes de stratégie de mise à jour
 
@@ -25,7 +25,7 @@ Cette commande renvoie la stratégie de mise à jour de la table spécifiée ou 
 
 ### <a name="syntax"></a>Syntaxe
 
-* `.show``table` *TableName* TableName `policy``update`
+* `.show` `table` *TableName* `policy` `update`
 * `.show``table` *DatabaseName*, `.` *TableName* table `policy``update`
 * `.show` `table` `*` `policy` `update`
 
@@ -38,7 +38,7 @@ Cette commande retourne une table qui comporte un enregistrement par table.
 |EntityName|`string`|Nom de l’entité sur laquelle la stratégie de mise à jour est définie                                                                                                                |
 |Stratégies  |`string`|Tableau JSON qui indique toutes les stratégies de mise à jour définies pour l’entité, mises en forme en tant qu' [objet de stratégie de mise à jour](updatepolicy.md#the-update-policy-object)|
 
-### <a name="example"></a>Exemple
+### <a name="example"></a> Exemple
 
 ```kusto
 .show table DerivedTableX policy update 
@@ -74,9 +74,9 @@ Cette commande définit la stratégie de mise à jour de la table spécifiée.
 
 ### <a name="returns"></a>Retours
 
-La commande définit l’objet de stratégie de mise à jour de la table, en remplaçant toute stratégie actuelle, puis retourne la sortie de la commande correspondante [. afficher la stratégie de mise à jour de table](#show-update-policy) .
+La commande définit l’objet de stratégie de mise à jour de la table, en remplaçant toute stratégie actuelle, puis retourne la sortie de la [`.show table update policy`](#show-update-policy) commande correspondante.
 
-### <a name="example"></a>Exemple
+### <a name="example"></a> Exemple
 
 ```kusto
 // Create a function that will be used for update
@@ -133,7 +133,7 @@ Cette commande modifie la stratégie de mise à jour de la table spécifiée.
 
 **Retourne**
 
-La commande ajoute à l’objet de stratégie de mise à jour de la table, en remplaçant toute stratégie actuelle, puis retourne la sortie de la commande de [mise à jour de la table *TableName* correspondante.](#show-update-policy)
+La commande ajoute à l’objet de stratégie de mise à jour de la table, en remplaçant toute stratégie actuelle, puis retourne la sortie de la [`.show table *TableName* update policy`](#show-update-policy) commande correspondante.
 
 **Exemple**
 
@@ -148,12 +148,12 @@ Supprime la stratégie de mise à jour de la table spécifiée.
 
 **Syntaxe**
 
-* `.delete``table` *TableName* TableName `policy``update`
+* `.delete` `table` *TableName* `policy` `update`
 * `.delete``table` *DatabaseName*, `.` *TableName* table `policy``update`
 
 **Retourne**
 
-La commande supprime l’objet de stratégie de mise à jour de la table, puis retourne la sortie de la commande correspondante [. afficher la stratégie de mise à jour de table *TableName* ](#show-update-policy) .
+La commande supprime l’objet de stratégie de mise à jour de la table, puis retourne la sortie de la [`.show table *TableName* update policy`](#show-update-policy) commande correspondante.
 
 **Exemple**
 

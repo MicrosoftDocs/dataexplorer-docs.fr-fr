@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: 6b0c1247c0d161caae3301dc674a701bd1019ad3
-ms.sourcegitcommit: 21dee76964bf284ad7c2505a7b0b6896bca182cc
+ms.openlocfilehash: 6d85b5cbf6752924bbaa03d2b81732cd69be6239
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91056932"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321622"
 ---
 # <a name="capacity-policy"></a>Stratégie de capacité 
 
@@ -46,7 +46,7 @@ La stratégie de capacité est composée des éléments suivants :
 |MinimumConcurrentOperationsPerNode |long    |Valeur minimale pour le nombre d’opérations de fusion/régénération d’étendues simultanées sur un nœud unique. La valeur par défaut est 1 |
 |MaximumConcurrentOperationsPerNode |long    |Valeur maximale pour le nombre d’opérations de fusion/régénération d’étendues simultanées sur un nœud unique. La valeur par défaut est 3 |
 
-La capacité de fusion totale des étendues du cluster, comme indiqué par la fonction [. afficher la capacité](../management/diagnostics.md#show-capacity), est calculée par :
+La capacité de fusion totale des étendues du cluster, comme indiqué par [`.show capacity`](../management/diagnostics.md#show-capacity) , est calculée par :
 
 `Number of nodes in cluster` x `Concurrent operations per node`
 
@@ -61,7 +61,7 @@ La valeur effective de `Concurrent operations per node` est automatiquement ajus
 |-----------------------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------|
 |MaximumConcurrentOperationsPerNode |long    |Valeur maximale pour le nombre d’extensions de régénération simultanées pour les opérations de vidage sur un nœud unique |
 
-Les étendues totales du cluster purgent la capacité de reconstruction (comme indiqué par [. afficher la capacité](../management/diagnostics.md#show-capacity)) est calculée par :
+Les étendues totales de vidage de la capacité de reconstruction du cluster (comme indiqué par [`.show capacity`](../management/diagnostics.md#show-capacity) ) sont calculées par :
 
 `Number of nodes in cluster` x `MaximumConcurrentOperationsPerNode`
 
@@ -75,7 +75,7 @@ Les étendues totales du cluster purgent la capacité de reconstruction (comme i
 |ClusterMaximumConcurrentOperations |long    |Valeur maximale pour le nombre d’opérations d’exportation simultanées dans un cluster.                                           |
 |CoreUtilizationCoefficient         |double  |Coefficient pour le pourcentage de cœurs à utiliser lors du calcul de la capacité d’exportation. Le résultat du calcul sera toujours normalisé par `ClusterMaximumConcurrentOperations` . |
 
-La capacité d’exportation totale du cluster, comme indiqué par [. afficher la capacité](../management/diagnostics.md#show-capacity), est calculée par :
+La capacité d’exportation totale du cluster, comme indiqué par [`.show capacity`](../management/diagnostics.md#show-capacity) , est calculée par :
 
 Minimum ( `ClusterMaximumConcurrentOperations` , `Number of nodes in cluster` * maximum (1, `Core count per node`  *  `CoreUtilizationCoefficient` ))
 
@@ -89,7 +89,7 @@ Minimum ( `ClusterMaximumConcurrentOperations` , `Number of nodes in cluster` * 
 |ClusterMinimumConcurrentOperations |long    |Valeur minimale pour le nombre d’opérations de partition d’étendues simultanées dans un cluster. Valeur par défaut : 1  |
 |ClusterMaximumConcurrentOperations |long    |Valeur maximale pour le nombre d’opérations de partition d’étendues simultanées dans un cluster. Valeur par défaut : 16 |
 
-Les étendues totales de la partition du cluster (comme indiqué par [. Affichez la capacité](../management/diagnostics.md#show-capacity)).
+La capacité de la partition totale du cluster (comme indiqué par [`.show capacity`](../management/diagnostics.md#show-capacity) ).
 
 La valeur effective de `Concurrent operations` est automatiquement ajustée par le système dans la plage [ `ClusterMinimumConcurrentOperations` , `ClusterMaximumConcurrentOperations` ], tant que le taux de réussite des opérations de partitionnement est supérieur à 90%.
 
@@ -168,9 +168,9 @@ La stratégie de capacité par défaut a la représentation JSON suivante :
 > [!WARNING]
 > Consultez l’équipe de Explorateur de données Azure avant de modifier une stratégie de capacité.
 
-* Utilisez la fonctionnalité [. afficher la capacité](capacity-policy.md#show-cluster-policy-capacity) de la stratégie de cluster pour afficher la stratégie de capacité actuelle du cluster.
+* Utilisez [`.show cluster policy capacity`](capacity-policy.md#show-cluster-policy-capacity) pour afficher la stratégie de capacité actuelle du cluster.
 
-* Utilisez la capacité de la [stratégie de cluster ALTER](capacity-policy.md#alter-cluster-policy-capacity) pour modifier la stratégie de capacité du cluster.
+* Utilisez [`.alter cluster policy capacity`](capacity-policy.md#alter-cluster-policy-capacity) pour modifier la stratégie de capacité du cluster.
 
 ## <a name="throttling"></a>Limitation
 

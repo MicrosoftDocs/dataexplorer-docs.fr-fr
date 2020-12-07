@@ -8,14 +8,14 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 11/02/2020
-ms.openlocfilehash: a44ebec6774374f4d38dfda3babe42f2f5e07ac6
-ms.sourcegitcommit: 25c0440cb0390b9629b819611844f1375de00a66
+ms.openlocfilehash: a4da3848fa459cf5fae8a7a73f8b1f318ce7e858
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94422070"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321469"
 ---
-# <a name="enable-plugin"></a>. activer le plug-in
+# <a name="enable-plugin"></a>.enable plugin
 
 Active un plug-in.
 
@@ -25,7 +25,7 @@ Cette commande requiert une `All Databases admin` autorisation.
 
 `.enable``plugin` *PluginName*
 
-## <a name="example"></a>Exemple
+## <a name="example"></a> Exemple
 
 <!-- csl -->
 ```kusto
@@ -34,6 +34,6 @@ Cette commande requiert une `All Databases admin` autorisation.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [. désactiver le plug-in](disable-plugin.md)
-* [. afficher les plug-ins](show-plugins.md)
+* [`.disable plugin`](disable-plugin.md)
+* [`.show plugins`](show-plugins.md)
 

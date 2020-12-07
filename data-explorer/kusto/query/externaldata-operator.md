@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 5b17b69fd49e937b672da07dd0b5c8abae9100fb
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 4b54b7e1c16bce07c5ae97b57f0ebdb6c96a7ad7
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92253058"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320608"
 ---
 # <a name="externaldata-operator"></a>externaldata, opérateur
 
@@ -28,7 +28,7 @@ L' `externaldata` opérateur retourne une table dont le schéma est défini dans
 ## <a name="arguments"></a>Arguments
 
 * *ColumnName*, *ColumnType*: les arguments définissent le schéma de la table.
-  La syntaxe est la même que celle utilisée lors de la définition d’une table dans [. Create table](../management/create-table-command.md).
+  La syntaxe est la même que celle utilisée lors de la définition d’une table dans [`.create table`](../management/create-table-command.md) .
 
 * *StorageConnectionString*: [chaînes de connexion de stockage](../api/connection-strings/storage.md) qui décrivent les artefacts de stockage contenant les données à retourner.
 

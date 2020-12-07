@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/05/2020
-ms.openlocfilehash: 19dc7db9e344a516b5c92917dccbf8362b1ca858
-ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
+ms.openlocfilehash: 554f6ed623b5a3be12a360fab0b1d5aa6eb4c084
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91102872"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320959"
 ---
 # <a name="create-merge-table"></a>.create-merge table
 
@@ -27,9 +27,9 @@ Nécessite l' [autorisation de l’utilisateur de base de données](../managemen
 
 `.create-merge``table` *TableName* ([ColumnName : ColumnType],...)  [ `with` `(` [ `docstring` `=` *Documentation*] [ `,` `folder` `=` *NomDossier*] `)` ]
 
-Si la table n’existe pas, fonctionne exactement comme une commande « . Create table ».
+Si la table n’existe pas, fonctionne exactement comme une `.create table` commande.
 
-Si la table T existe et que vous envoyez une commande « . Create-Merge table T ( <columns specification> ) », procédez comme suit :
+Si la table T existe et que vous envoyez une `.create-merge table T (<columns specification>)` commande, procédez comme suit :
 
 * Toute colonne dans <columns specification> qui n’existait pas précédemment dans t sera ajoutée à la fin du schéma de t.
 * Toute colonne dans T qui ne se trouve pas dans <columns specification> ne sera pas supprimée de t.
@@ -37,5 +37,5 @@ Si la table T existe et que vous envoyez une commande « . Create-Merge table T
 
 ## <a name="see-also"></a>Voir aussi
 
-* [.create-merge tables](create-merge-tables-command.md)
-* [. Create table](create-table-command.md)
+* [`.create-merge tables`](create-merge-tables-command.md)
+* [`.create table`](create-table-command.md)

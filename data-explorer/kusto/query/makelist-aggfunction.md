@@ -8,18 +8,18 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/23/2020
-ms.openlocfilehash: f5a4c16f1f259de457ef963f2a400d6c9fd79727
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: bd923724a391cfc1638057fec654a1bd74b78479
+ms.sourcegitcommit: 1bdbfdc04c4eac405f3931059bbeee2dedd87004
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92246391"
+ms.lasthandoff: 11/27/2020
+ms.locfileid: "96303371"
 ---
 # <a name="make_list-aggregation-function"></a>make_list () (fonction d’agrégation)
 
 Retourne un tableau (JSON) `dynamic` de toutes les valeurs de *Expr* dans le groupe.
 
-* Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
+* Peut être utilisé uniquement dans un contexte d’agrégation à l’intérieur de l’opérateur [summarize](summarizeoperator.md).
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -31,7 +31,7 @@ Retourne un tableau (JSON) `dynamic` de toutes les valeurs de *Expr* dans le gro
 * *MaxSize* est une limite d’entier facultative sur le nombre maximal d’éléments retournés (la valeur par défaut est *1048576*). La valeur MaxSize ne peut pas dépasser 1048576.
 
 > [!NOTE]
-> Une variante héritée et obsolète de cette fonction : `makelist()` a une limite par défaut de *MaxSize* = 128.
+> `makelist()` est une version héritée et obsolète de la `make_list` fonction. La version héritée a une limite par défaut de *MaxSize* = 128.
 
 ## <a name="returns"></a>Retours
 

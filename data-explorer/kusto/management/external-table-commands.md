@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/26/2020
-ms.openlocfilehash: 8e419d471419a291b3680c4b91d3e6908b2e7f2e
-ms.sourcegitcommit: 83202ec6fec0ce98fdf993bbb72adc985d6d9c78
+ms.openlocfilehash: 7646f86c9a521ab45cf83d7704084f3a5df6b256
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87877331"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321384"
 ---
 # <a name="external-table-general-control-commands"></a>Commandes de contrôle générales de table externe
 
@@ -28,7 +28,7 @@ Pour obtenir une vue d’ensemble des tables externes, consultez [tables externe
 
 `.show` `external` `tables`
 
-`.show``external` `table` *TableName*
+`.show` `external` `table` *TableName*
 
 **Sortie**
 
@@ -50,7 +50,7 @@ Pour obtenir une vue d’ensemble des tables externes, consultez [tables externe
 
 | TableName | TableType | Dossier         | DocString | Propriétés |
 |-----------|-----------|----------------|-----------|------------|
-| T         | Blob      | ExternalTables | Docs      | {}         |
+| T         | Objet blob      | ExternalTables | Docs      | {}         |
 
 
 ## <a name="show-external-table-schema"></a>. afficher le schéma de la table externe
@@ -62,7 +62,7 @@ Pour obtenir une vue d’ensemble des tables externes, consultez [tables externe
 
 `.show``external` `table` *TableName* `schema` `as` ( `json`  |  `csl` )
 
-`.show``external` `table` *TableName*`cslschema`
+`.show` `external` `table` *TableName* `cslschema`
 
 **Sortie**
 
@@ -112,7 +112,7 @@ Pour obtenir une vue d’ensemble des tables externes, consultez [tables externe
 
 **Sortie**
 
-Retourne les propriétés de la table supprimée. Pour plus d’informations, consultez [. afficher les tables externes](#show-external-tables).
+Retourne les propriétés de la table supprimée. Pour plus d’informations, consultez [`.show external tables`](#show-external-tables).
 
 **Exemples :**
 
@@ -122,7 +122,7 @@ Retourne les propriétés de la table supprimée. Pour plus d’informations, co
 
 | TableName | TableType | Dossier         | DocString | schéma       | Propriétés |
 |-----------|-----------|----------------|-----------|-----------------------------------------------------|------------|
-| T         | Blob      | ExternalTables | Docs      | [{"Name" : "x", "CslType" : "long"},<br> {"Name" : "s", "CslType" : "String"}] | {}         |
+| T         | Objet blob      | ExternalTables | Docs      | [{"Name" : "x", "CslType" : "long"},<br> {"Name" : "s", "CslType" : "String"}] | {}         |
 
 ## <a name="next-steps"></a>Étapes suivantes
 

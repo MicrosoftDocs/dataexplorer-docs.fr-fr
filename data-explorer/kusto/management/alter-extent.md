@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/02/2020
-ms.openlocfilehash: 00c4cfbb4b6415afcd68e8e41864ca4a68cc097e
-ms.sourcegitcommit: d6f35df833d5b4f2829a8924fffac1d0b49ce1c2
+ms.openlocfilehash: 61dba69c3ec40ec13960e9ddf266e47fe88ef3c6
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86060615"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321741"
 ---
 # <a name="alter-extent-tags"></a>. Alter, balises d’étendue
 
@@ -31,10 +31,10 @@ Nécessite une [autorisation d’administrateur de table](../management/access-c
 
 `.alter`[ `async` ] `extent` `tags` `(` '*: Étiquette1*' [ `,` '*tag2*' `,` ... `,` ' *TagN*'] `)`  <|  *requête*
 
-`async`(facultatif) : exécutez la commande de façon asynchrone.
+`async` (facultatif) : exécutez la commande de façon asynchrone.
    * Un ID d’opération (Guid) est retourné. 
-   * L’état de l’opération peut être surveillé. Utilisez la commande [. Show Operations](operations.md#show-operations) .
-   * Vous pouvez récupérer les résultats d’une exécution réussie. Utilisez la commande [. afficher les détails](operations.md#show-operation-details) de l’opération.
+   * L’état de l’opération peut être surveillé. Utilisez la [`.show operations`](operations.md#show-operations) commande.
+   * Vous pouvez récupérer les résultats d’une exécution réussie. Utilisez la [`.show operation details`](operations.md#show-operation-details) commande.
 
 ## <a name="restrictions"></a>Restrictions
 
@@ -53,7 +53,7 @@ Toutes les étendues doivent être dans la base de données de contexte et doive
 
 ### <a name="alter-tags"></a>Modifier les balises 
 
-Modifier les balises de toutes les étendues de la table `MyTable` en`MyTag`
+Modifier les balises de toutes les étendues de la table `MyTable` en `MyTag`
 
 ```kusto
 .alter extent tags ('MyTag') <| .show table MyTable extents
@@ -61,7 +61,7 @@ Modifier les balises de toutes les étendues de la table `MyTable` en`MyTag`
 
 ### <a name="alter-tags-of-all-extents"></a>Modifier les balises de toutes les étendues
 
-Modifier les balises de toutes les étendues de la table `MyTable` , balisées avec `drop-by:MyTag` `drop-by:MyNewTag` et`MyOtherNewTag`
+Modifier les balises de toutes les étendues de la table `MyTable` , balisées avec `drop-by:MyTag` `drop-by:MyNewTag` et `MyOtherNewTag`
 
 ```kusto
 .alter extent tags ('drop-by:MyNewTag','MyOtherNewTag') <| .show table MyTable extents where tags has 'drop-by:MyTag'

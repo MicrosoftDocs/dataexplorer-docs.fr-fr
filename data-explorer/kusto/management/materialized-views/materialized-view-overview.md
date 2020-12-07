@@ -8,12 +8,12 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/30/2020
-ms.openlocfilehash: f19104111d8db615c82eff2e399fb4857f27c841
-ms.sourcegitcommit: 463ee13337ed6d6b4f21eaf93cf58885d04bccaa
+ms.openlocfilehash: 407db347d4d21450d5648fe8716e2d82553a9669
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/30/2020
-ms.locfileid: "91572157"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320653"
 ---
 # <a name="materialized-views-preview"></a>Vues matérialisées (préversion)
 
@@ -23,11 +23,11 @@ Les [vues matérialisées](../../query/materialized-view-function.md) exposent u
 > Les vues matérialisées présentent des [limitations](materialized-view-create.md#limitations-on-creating-materialized-views)et ne sont pas assurées de fonctionner correctement pour tous les scénarios. Passez en revue les [considérations relatives aux performances](#performance-considerations) avant d’utiliser la fonctionnalité.
 
 Utilisez les commandes suivantes pour gérer les vues matérialisées :
-* [.create materialized-view](materialized-view-create.md)
-* [.alter materialized-view](materialized-view-alter.md)
-* [.drop materialized-view](materialized-view-drop.md)
-* [.disable | .enable materialized-view](materialized-view-enable-disable.md)
-* [. afficher les commandes matérialisées-views](materialized-view-show-commands.md)
+* [`.create materialized-view`](materialized-view-create.md)
+* [`.alter materialized-view`](materialized-view-alter.md)
+* [`.drop materialized-view`](materialized-view-drop.md)
+* [`.disable | .enable materialized-view`](materialized-view-enable-disable.md)
+* [`.show materialized-views commands`](materialized-view-show-commands.md)
 
 ## <a name="why-use-materialized-views"></a>Pourquoi utiliser des vues matérialisées ?
 
@@ -43,8 +43,8 @@ En investissant des ressources (stockage de données, cycles d’UC en arrière-
 
 Voici quelques scénarios courants qui peuvent être traités à l’aide d’une vue matérialisée :
 
-* Interroger le dernier enregistrement par entité à l’aide [de ARG_MAX () (fonction d’agrégation)](../../query/arg-max-aggfunction.md).
-* Dédupliquer les enregistrements d’une table à l’aide de [Any () (fonction d’agrégation)](../../query/any-aggfunction.md).
+* Interroger le dernier enregistrement par entité à l’aide [ `arg_max()` de (fonction d’agrégation)](../../query/arg-max-aggfunction.md).
+* Déduplication des enregistrements dans une table à l’aide de [ `any()` (fonction d’agrégation)](../../query/any-aggfunction.md).
 * Réduisez la résolution des données en calculant des statistiques périodiques sur les données brutes. Utilisez différentes [fonctions d’agrégation](materialized-view-create.md#supported-aggregation-functions) par période de temps.
     * Par exemple, utilisez `T | summarize dcount(User) by bin(Timestamp, 1d)` pour conserver un instantané à jour d’utilisateurs distincts par jour.
 
@@ -64,7 +64,7 @@ La section [surveillance](#materialized-views-monitoring) explique comment dépa
 
 Le principal moyen d’interroger une vue matérialisée est son nom, par exemple l’interrogation d’une référence de table. Lorsque la vue matérialisée est interrogée, elle combine la partie matérialisée de la vue avec les enregistrements de la table source qui n’ont pas encore été matérialisés. L’interrogation de la vue matérialisée renverra toujours les résultats les plus récents, en fonction de tous les enregistrements ingérés dans la table source. Pour plus d’informations sur la répartition des parties de vue matérialisée, consultez [fonctionnement des vues matérialisées](#how-materialized-views-work). 
 
-Vous pouvez également interroger la vue à l’aide de la [fonction materialized_view ()](../../query/materialized-view-function.md). Cette option prend en charge l’interrogation de la partie matérialisée de la vue, tout en spécifiant la latence maximale que l’utilisateur est disposé à tolérer. Cette option n’est pas garantie de retourner les enregistrements les plus récents, mais elle doit toujours être plus performante que l’interrogation de la vue entière. Cette fonction est utile pour les scénarios dans lesquels vous êtes disposé à sacrifier une actualisation des performances, par exemple pour les tableaux de bord de télémétrie.
+Vous pouvez également interroger la vue à l’aide de la [ `materialized_view()` fonction](../../query/materialized-view-function.md). Cette option prend en charge l’interrogation de la partie matérialisée de la vue, tout en spécifiant la latence maximale que l’utilisateur est disposé à tolérer. Cette option n’est pas garantie de retourner les enregistrements les plus récents, mais elle doit toujours être plus performante que l’interrogation de la vue entière. Cette fonction est utile pour les scénarios dans lesquels vous êtes disposé à sacrifier une actualisation des performances, par exemple pour les tableaux de bord de télémétrie.
 
 La vue peut participer à des requêtes entre des clusters ou des bases de données croisées, mais elles ne sont pas incluses dans les recherches ou les unions génériques.
 
@@ -116,15 +116,15 @@ La vue matérialisée dérive par défaut les stratégies de rétention et de mi
 Surveillez l’intégrité de la vue matérialisée de l’une des manières suivantes :
 
 * Surveiller les [métriques de vue matérialisée](../../../using-metrics.md#materialized-view-metrics) dans le portail Azure.
-* Surveillez la `IsHealthy` propriété retournée à partir de la [vue matérialisée-View](materialized-view-show-commands.md#show-materialized-view).
-* Vérifiez les échecs à l’aide de l’option [afficher les échecs de vue matérialisée](materialized-view-show-commands.md#show-materialized-view-failures).
+* Surveiller la `IsHealthy` propriété retournée par [`.show materialized-view`](materialized-view-show-commands.md#show-materialized-view) .
+* Vérifiez les échecs à l’aide de [`.show materialized-view failures`](materialized-view-show-commands.md#show-materialized-view-failures) .
 
 > [!NOTE]
 > La matérialisation n’ignore jamais les données, même en cas de défaillances constantes. La vue est toujours garantie pour retourner l’instantané le plus à jour de la requête, en fonction de tous les enregistrements de la table source. Les défaillances constantes dégradent considérablement les performances des requêtes, mais ne provoquent pas de résultats incorrects dans les requêtes de vue.
 
 ### <a name="track-resource-consumption"></a>Suivre la consommation des ressources
 
-**Vue matérialisée consommation des ressources :** les ressources consommées par le processus de matérialisation des vues matérialisées peuvent être suivies à l’aide de la commande [. Show Commands-and-Queries](../commands-and-queries.md#show-commands-and-queries) . Filtrez les enregistrements pour une vue spécifique à l’aide de la commande suivante (remplacez `DatabaseName` et `ViewName` ) :
+**Vue matérialisée consommation des ressources :** les ressources consommées par le processus de matérialisation des vues matérialisées peuvent être suivies à l’aide de la [`.show commands-and-queries`](../commands-and-queries.md#show-commands-and-queries) commande. Filtrez les enregistrements pour une vue spécifique à l’aide de la commande suivante (remplacez `DatabaseName` et `ViewName` ) :
 
 <!-- csl -->
 ```
@@ -160,6 +160,6 @@ En cas d’échec de la matérialisation, la `MaterializedViewResult` métrique 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [. créer une vue matérialisée](materialized-view-create.md)
-* [.alter materialized-view](materialized-view-alter.md)
+* [`.create materialized view`](materialized-view-create.md)
+* [`.alter materialized-view`](materialized-view-alter.md)
 * [Les vues matérialisées affichent les commandes](materialized-view-show-commands.md)

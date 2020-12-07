@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/06/2020
-ms.openlocfilehash: f03a2927d3f0a4fe7ee1719594f2d1f19e231d0f
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 8ba9eb06e07dd513d20cdade87322d9ef5f17d24
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618358"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321639"
 ---
 # <a name="alter-table-folder"></a>.alter table folder
 
@@ -24,7 +24,7 @@ Modifie la valeur de dossier d’une table existante.
 > [!NOTE]
 > * Nécessite une [autorisation d’administrateur de base de données](../management/access-control/role-based-authorization.md)
 > * L' [utilisateur de base de données](../management/access-control/role-based-authorization.md) qui a créé la table à l’origine est également autorisé à le modifier
-> * Si la table n’existe pas, une erreur est retournée. Pour créer une table, consultez [. Create table](create-table-command.md)
+> * Si la table n’existe pas, une erreur est retournée. Pour créer une nouvelle table, consultez [`.create table`](create-table-command.md)
 
 **Exemples** 
 

@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/24/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: c44935a98110cd47f2a40bb261659e12627860c0
-ms.sourcegitcommit: 25c0440cb0390b9629b819611844f1375de00a66
+ms.openlocfilehash: e20e266e6fbae55c308cf13b7601277b8b0f30b2
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94422083"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320738"
 ---
 # <a name="mysql_request-plugin-preview"></a>plug-in mysql_request (version préliminaire)
 
@@ -25,11 +25,11 @@ Le `mysql_request` plug-in envoie une requête SQL à un point de terminaison r�
 
 > [!IMPORTANT]
 > Le `mysql_request` plug-in est en mode Aperçu et est désactivé par défaut.
-> Pour activer le plug-in, exécutez la [ `.enable plugin mysql_request` commande](../management/enable-plugin.md). Pour voir quels plug-ins sont activés, utilisez [. afficher les commandes de gestion de plug-in](../management/show-plugins.md).
+> Pour activer le plug-in, exécutez la [ `.enable plugin mysql_request` commande](../management/enable-plugin.md). Pour voir quels plug-ins sont activés, utilisez les [ `.show plugin` commandes de gestion](../management/show-plugins.md).
 
 ## <a name="syntax"></a>Syntaxe
 
-`evaluate``mysql_request` `(` *ConnectionString* `,` *SqlQuery* [ `,` *SqlParameters* ]`)`
+`evaluate``mysql_request` `(` *ConnectionString* `,` *SqlQuery* [ `,` *SqlParameters*]`)`
 
 ## <a name="arguments"></a>Arguments
 
@@ -60,7 +60,7 @@ L’exemple suivant montre comment définir la stratégie de légende pour MySQL
 ]
 ```
 
-L’exemple suivant montre une commande de stratégie ALTER Callout pour `mysql` *CalloutType* :
+L’exemple suivant montre une commande de stratégie ALTER Callout pour `mysql` *CalloutType*:
 
 ```kusto
 .alter cluster policy callout @'[{"CalloutType": "mysql", "CalloutUriRegex": "\\.mysql\\.database\\.azure\\.com", "CanCall": true}]'
@@ -85,11 +85,11 @@ Pour des raisons de sécurité, `SslMode` est défini sans condition `Required` 
 
 Spécifiez le point de terminaison réseau SQL dans le cadre de la chaîne de connexion.
 
-**Syntaxe**  :
+**Syntaxe** :
 
-`Server``=` *Nom de domaine complet* [ `Port` `=` *port* ]
+`Server``=` *Nom de domaine complet* [ `Port` `=` *port*]
 
-Où :
+Où :
 
 * *FQDN* est le nom de domaine complet du point de terminaison.
 * *Port* est le port TCP du point de terminaison. Par défaut, `3306` est supposé.

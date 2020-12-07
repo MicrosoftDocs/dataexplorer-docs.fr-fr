@@ -7,14 +7,14 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 11/22/2020
-ms.openlocfilehash: 373dd34145a644fe14ea4c077a8c55ddf428ba6d
-ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
+ms.openlocfilehash: eabdb80852d2a81f996d3e722dda7df969a914be
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/23/2020
-ms.locfileid: "95324905"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321809"
 ---
-# <a name="series_exp_smoothing_fl"></a>series_exp_smoothing_fl ()
+# <a name="series_exp_smoothing_fl"></a>series_exp_smoothing_fl()
 
 Applique un filtre de lissage exponentiel de base sur une série.
 
@@ -56,7 +56,7 @@ range x from 1 to 50 step 1
 
 # <a name="persistent"></a>[Persistent](#tab/persistent)
 
-Pour une utilisation permanente, utilisez la [fonction. Create](../management/create-function.md). La création d’une fonction nécessite l' [autorisation de l’utilisateur de base de données](../management/access-control/role-based-authorization.md).
+Pour une utilisation permanente, utilisez [`.create function`](../management/create-function.md) . La création d’une fonction nécessite l' [autorisation de l’utilisateur de base de données](../management/access-control/role-based-authorization.md).
 
 ### <a name="one-time-installation"></a>Installation unique
 

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/04/2020
-ms.openlocfilehash: 28e88b71b5d7a2f8729e2f9eef416ee5804a2880
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 8f19606a75c388917a5195d0ac5cbb0ecf4335f9
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92337633"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321129"
 ---
 # <a name="update-policy-overview"></a>Présentation de la stratégie de mise à jour
 
@@ -66,10 +66,10 @@ Chaque objet de ce type est représenté sous la forme d’un conteneur de propr
 
 Les commandes de contrôle de la stratégie de mise à jour sont les suivantes :
 
-* [. afficher la table la mise à jour de la stratégie *TableName* ](update-policy.md#show-update-policy) affiche la stratégie de mise à jour actuelle d’une table.
-* [. Alter table *TableName* Policy Update](update-policy.md#alter-update-policy) définit la stratégie de mise à jour actuelle d’une table.
-* [. Alter-Merge table la mise à jour de la stratégie *TableName* ](update-policy.md#alter-merge-table-tablename-policy-update) ajoute à la stratégie de mise à jour actuelle d’une table.
-* [. supprimer la table *nom_table* la mise à jour](update-policy.md#delete-table-tablename-policy-update) de la stratégie ajoute à la stratégie de mise à jour actuelle d’une table.
+* [`.show table *TableName* policy update`](update-policy.md#show-update-policy) affiche la stratégie de mise à jour actuelle d’une table.
+* [`.alter table *TableName* policy update`](update-policy.md#alter-update-policy) définit la stratégie de mise à jour actuelle d’une table.
+* [`.alter-merge table *TableName* policy update`](update-policy.md#alter-merge-table-tablename-policy-update) ajoute à la stratégie de mise à jour actuelle d’une table.
+* [`.delete table *TableName* policy update`](update-policy.md#delete-table-tablename-policy-update) ajoute à la stratégie de mise à jour actuelle d’une table.
 
 ## <a name="update-policy-is-initiated-following-ingestion"></a>La stratégie de mise à jour est lancée après réception
 
@@ -106,7 +106,7 @@ Les stratégies de mise à jour peuvent affecter les performances d’un cluster
 
 ### <a name="evaluate-resource-usage"></a>Évaluer l’utilisation des ressources
 
-Utilisez les [requêtes. Show](../management/queries.md)pour évaluer l’utilisation des ressources (processeur, mémoire, etc.) dans le scénario suivant :
+Utilisez [`.show queries`](../management/queries.md) pour évaluer l’utilisation des ressources (processeur, mémoire, etc.) dans le scénario suivant :
 * Le nom de la table source (la `Source` propriété de la stratégie de mise à jour) est `MySourceTable` .
 * La `Query` propriété de la stratégie de mise à jour appelle une fonction nommée `MyFunction()` .
 
@@ -122,7 +122,7 @@ MyFunction()
 
 Par défaut, l’exécution de la stratégie de mise à jour n’affecte pas l’ingestion des données dans la table source. Toutefois, si la stratégie de mise à jour est définie comme `IsTransactional` suit : true, l’échec de l’exécution de la stratégie force l’ingestion des données dans la table source à échouer. Dans certains cas, l’ingestion des données dans la table source réussit, mais la stratégie de mise à jour échoue lors de l’ingestion de la table cible.
 
-Les défaillances qui se produisent pendant la mise à jour des stratégies peuvent être récupérées à l’aide de la [commande. afficher les échecs](../management/ingestionfailures.md)d’ingestion.
+Les échecs qui se produisent pendant la mise à jour des stratégies peuvent être récupérés à l’aide de la [ `.show ingestion failures` commande](../management/ingestionfailures.md).
  
 ```kusto
 .show ingestion failures 

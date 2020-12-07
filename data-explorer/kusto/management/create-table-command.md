@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/06/2020
-ms.openlocfilehash: b071c4af6bc25650d18b1b66130941f73af551ff
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.openlocfilehash: 8cfdbe1420745620fcaaf6af81e4f750ca25c1cd
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85967092"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321605"
 ---
 # <a name="create-table"></a>.create table
 
@@ -44,4 +44,4 @@ Retourne le schéma de la table au format JSON, comme suit :
 ```
 
 > [!NOTE]
-> Pour créer plusieurs tables, utilisez la commande [. Create tables](create-tables-command.md) pour améliorer les performances et réduire la charge sur le cluster.
+> Pour créer plusieurs tables, utilisez la [`.create tables`](create-tables-command.md) commande pour obtenir de meilleures performances et une charge inférieure sur le cluster.

@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/08/2020
-ms.openlocfilehash: cc4002d9af8b18841714ac9f91809fb18274782f
-ms.sourcegitcommit: be1bbd62040ef83c08e800215443ffee21cb4219
+ms.openlocfilehash: 1a58d44e7884fb198f04a9f12a71c77cf164331b
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84670512"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321690"
 ---
-# <a name="alter-merge-table"></a>. Alter-fusionner la table
+# <a name="alter-merge-table"></a>.alter-merge table
  
 `.alter-merge table`Commande :
 
@@ -28,7 +28,7 @@ ms.locfileid: "84670512"
 > L’utilisation `.alter-merge` incorrecte de la commande peut entraîner une perte de données.
 
 > [!TIP]
-> `.alter-merge`A un équivalent, la `.alter` commande de table qui a des fonctionnalités similaires. Pour plus d’informations, consultez [. Alter table](../management/alter-table-command.md)
+> `.alter-merge`A un équivalent, la `.alter` commande de table qui a des fonctionnalités similaires. Pour plus d’informations, consultez [`.alter table`](../management/alter-table-command.md)
 
 **Syntaxe**
 

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: bd7482abb9c13130d863e9abb73819d9409109ea
-ms.sourcegitcommit: c815c6ccf33864e21e1d3daff26a4f077dff88f7
+ms.openlocfilehash: fd0ac46aa0e2cf73cf0ee5a51359cd346bf1beda
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/21/2020
-ms.locfileid: "95012171"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321554"
 ---
 # <a name="export-data-to-storage"></a>Exporter des données dans le stockage
 
@@ -59,7 +59,7 @@ Exécute une requête et écrit le premier jeu de résultats dans un stockage ex
 La commande retourne une table qui décrit les artefacts de stockage générés.
 Chaque enregistrement décrit un artefact unique et inclut le chemin d’accès de stockage à l’artefact et le nombre d’enregistrements de données qu’il contient.
 
-|Path|NumRecords|
+|Chemin d’accès|NumRecords|
 |---|---|
 |http://storage1.blob.core.windows.net/containerName/export_1_d08afcae2f044c1092b279412dcb571b.csv|10|
 |http://storage1.blob.core.windows.net/containerName/export_2_454c0f1359e24795b6529da8a0101330.csv|15|
@@ -69,8 +69,8 @@ Chaque enregistrement décrit un artefact unique et inclut le chemin d’accès 
 Si l' `async` indicateur est spécifié, la commande s’exécute en mode asynchrone.
 Dans ce mode, la commande est retournée immédiatement avec un ID d’opération, et l’exportation des données se poursuit en arrière-plan jusqu’à la fin. L’ID d’opération retourné par la commande peut être utilisé pour suivre sa progression et enfin ses résultats à l’aide des commandes suivantes :
 
-* [. Show Operations](../operations.md#show-operations): suivre la progression.
-* [. afficher les détails](../operations.md#show-operation-details)de l’opération : obtenir les résultats de la saisie semi-automatique.
+* [`.show operations`](../operations.md#show-operations): Suivre la progression.
+* [`.show operation details`](../operations.md#show-operation-details): Obtenir les résultats de la saisie semi-automatique.
 
 Par exemple, une fois l’opération terminée, vous pouvez récupérer les résultats à l’aide de :
 
@@ -103,7 +103,7 @@ Les étiquettes de nom de colonne sont ajoutées en tant que première ligne pou
 Les commandes d’exportation peuvent échouer momentanément au cours de l’exécution. L' [exportation continue](continuous-data-export.md) réessaiera automatiquement la commande. Les commandes d’exportation standard ([Exporter vers le stockage](export-data-to-storage.md), [Exporter vers une table externe](export-data-to-an-external-table.md)) n’effectuent pas de nouvelles tentatives.
 
 *  Lorsque la commande d’exportation échoue, les artefacts déjà écrits dans le stockage ne sont pas supprimés. Ces artefacts sont conservés dans le stockage. Si la commande échoue, supposez que l’exportation est incomplète, même si certains artefacts ont été écrits. 
-* La meilleure façon d’effectuer le suivi de l’exécution de la commande et des artefacts exportés en cas de réussite de l’opération consiste à utiliser les commandes [. afficher les opérations](../operations.md#show-operations) et [. afficher les détails](../operations.md#show-operation-details) de l’opération.
+* La meilleure façon d’effectuer le suivi de l’exécution de la commande et des artefacts exportés en cas de réussite de l’opération consiste à utiliser les [`.show operations`](../operations.md#show-operations) [`.show operation details`](../operations.md#show-operation-details) commandes et.
 
 ### <a name="storage-failures"></a>Échecs de stockage
 

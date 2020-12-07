@@ -7,12 +7,12 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/08/2020
-ms.openlocfilehash: eff9a5cd8ed2d9ed7e518be9aade9ecf2aded7bf
-ms.sourcegitcommit: d0f8d71261f8f01e7676abc77283f87fc450c7b1
+ms.openlocfilehash: 454aa19c5b38eabce49fd319891772746335ceab
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91765476"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321826"
 ---
 # <a name="series_fit_poly_fl"></a>series_fit_poly_fl()
 
@@ -40,7 +40,7 @@ La fonction `series_fit_poly_fl()` applique une régression polynomiale sur une 
 * *x_series*: nom de la colonne contenant la [variable indépendante](https://en.wikipedia.org/wiki/Dependent_and_independent_variables), autrement dit, l’axe x ou l’axe de temps. Ce paramètre est facultatif et n’est nécessaire que pour les [séries espacées](https://en.wikipedia.org/wiki/Unevenly_spaced_time_series)de manière inégale. La valeur par défaut est une chaîne vide, car x est redondant pour la régression d’une série uniformément espacée.
 * *x_istime*: ce paramètre booléen est facultatif. Ce paramètre est nécessaire uniquement si *x_series* est spécifié et qu’il s’agit d’un vecteur de DateTime.
 
-## <a name="usage"></a>Usage
+## <a name="usage"></a>Utilisation
 
 `series_fit_poly_fl()`[fonction tabulaire](../query/functions/user-defined-functions.md#tabular-function)définie par l’utilisateur, à appliquer à l’aide de l' [opérateur Invoke](../query/invokeoperator.md). Vous pouvez incorporer son code dans votre requête ou l’installer dans votre base de données. Il existe deux options d’utilisation : une utilisation ad hoc et une utilisation permanente. Consultez les onglets ci-dessous pour obtenir des exemples.
 
@@ -99,7 +99,7 @@ demo_make_series1
 
 # <a name="persistent"></a>[Persistent](#tab/persistent)
 
-Pour une utilisation permanente, utilisez la [fonction. Create](../management/create-function.md).  La création d’une fonction nécessite l' [autorisation de l’utilisateur de base de données](../management/access-control/role-based-authorization.md).
+Pour une utilisation permanente, utilisez [`.create function`](../management/create-function.md) .  La création d’une fonction nécessite l' [autorisation de l’utilisateur de base de données](../management/access-control/role-based-authorization.md).
 
 ### <a name="one-time-installation"></a>Installation unique
 
@@ -144,7 +144,7 @@ series_fit_poly_fl(tbl:(*), y_series:string, y_fit_series:string, fit_coeff:stri
 }
 ```
 
-### <a name="usage"></a>Usage
+### <a name="usage"></a>Utilisation
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -183,7 +183,7 @@ Les exemples suivants supposent que la fonction est déjà installée :
     | render timechart with(ycolumns=num, fnum)
     ```
     
-    :::image type="content" source="images/series-fit-poly-fl/irregular-time-series.png" alt-text="Graphique représentant le cinquième ordre polynomial pour une série chronologique régulière" border="false":::
+    :::image type="content" source="images/series-fit-poly-fl/irregular-time-series.png" alt-text="Graphique représentant le huitième ordre polynomial pour une série chronologique irrégulière" border="false":::
 
 1. Cinquième ordre polynomial avec bruit sur les axes x & y
 
@@ -200,6 +200,6 @@ Les exemples suivants supposent que la fonction est déjà installée :
     | render linechart
     ```
         
-    :::image type="content" source="images/series-fit-poly-fl/fifth-order-noise.png" alt-text="Graphique représentant le cinquième ordre polynomial pour une série chronologique régulière":::
+    :::image type="content" source="images/series-fit-poly-fl/fifth-order-noise.png" alt-text="Graphique d’une taille de cinquième ordre polynomial avec un bruit sur les axes x & y":::
        
-    :::image type="content" source="images/series-fit-poly-fl/fifth-order-noise-table.png" alt-text="Graphique représentant le cinquième ordre polynomial pour une série chronologique régulière" border="false":::
+    :::image type="content" source="images/series-fit-poly-fl/fifth-order-noise-table.png" alt-text="Coefficients d’une taille de cinquième ordre polynomial avec un bruit" border="false":::

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: f51a68fc90237c4213c0135ade4724446800dea9
-ms.sourcegitcommit: ec191391f5ea6df8c591e6d747c67b2c46f98ac4
+ms.openlocfilehash: ff13ec8fcce49f4d92212e6a38797a97f9ea9dd6
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/16/2020
-ms.locfileid: "88259888"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321248"
 ---
 # <a name="streaming-ingestion-policy-command"></a>Commande de stratégie d’ingestion de streaming
 
@@ -101,7 +101,7 @@ La `.delete policy streamingingestion` commande supprime la stratégie streaming
 
 **Retourne**
 
-La commande supprime l’objet de stratégie de la table ou de la base de données streamingingestion, puis retourne la sortie de la commande correspondante [. afficher la stratégie streamingingestion](#display-the-policy) .
+La commande supprime l’objet de stratégie de la table ou de la base de données streamingingestion, puis retourne la sortie de la [`.show policy streamingingestion`](#display-the-policy) commande correspondante.
 
 **Exemples**
 

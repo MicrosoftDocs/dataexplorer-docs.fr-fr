@@ -1,6 +1,6 @@
 ---
-title: .afficher les bases de données des clusters - Azure Data Explorer (fr) Microsoft Docs
-description: Cet article décrit .show bases de données cluster dans Azure Data Explorer.
+title: . afficher les bases de données de cluster-Azure Explorateur de données
+description: Cet article décrit. afficher les bases de données de cluster dans Azure Explorateur de données.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f354862df1bc9bef352819832125cf6f82ba0ae4
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: c6d25380a44a2195f407c52a2224ee28fad9f8bb
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81519990"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320500"
 ---
-# <a name="show-cluster-databases"></a>.afficher les bases de données cluster
+# <a name="show-cluster-databases"></a>.show cluster databases
 
-Renvoie un tableau montrant toutes les bases de données attachées au cluster et auxquelles l’utilisateur invoquant la commande a accès. Si des noms de base de données spécifiques sont utilisés, seules ces bases de données seront incluses.
+Retourne une table qui affiche toutes les bases de données attachées au cluster et auxquelles l’utilisateur qui appelle la commande a accès. Si des noms de base de données spécifiques sont utilisés, seules ces bases de données sont incluses.
 
 **Syntaxe**
 
 `.show` `cluster` `databases` [`details` | `identity` | `policies` | `datastats`]
 
-`.show``cluster` `,` base de`,` données12 ... `databases` `(` databaseN`)`
+`.show``cluster` `databases` `(` Database1 `,` Database2 `,` ... base de données`)`
 
 **Sortie**
  
 |Paramètre de sortie |Type |Description 
 |---|---|---
-|nom_base_de_données  |String |Nom de la base de données. Les noms de base de données sont sensibles aux cas. 
-|PersistantStorage  |String |L’URI de stockage persistant dans lequel la base de données est stockée. (Ce champ est vide pour les bases de données éphémères.) 
-|Version  |String |Numéro de version de la base de données. Ce nombre est mis à jour pour chaque opération de modification dans la base de données (comme l’ajout de données et la modification du schéma). 
-|IsCurrent  |Boolean |Vrai si la base de données est celle que la connexion actuelle indique. 
-|Base de donnéesAccessMode  |String |Comment le cluster est attaché à la base de données. Par exemple, si la base de données est jointe en mode ReadOnly, le cluster échouera à toutes les demandes de modification de la base de données de quelque manière que ce soit. 
-|PrettyName (En) |String |La jolie base de données.
-|CurrentUserIsUnrestrictedViewer |Boolean | Précise si l’utilisateur actuel est un spectateur sans restriction sur la base de données.
-|DatabaseId |Guid |L’ID unique de la base de données.
+|nom_base_de_données  |String |Nom de la base de données. Les noms des bases de données respectent la casse. 
+|PersistentStorage  |String |URI de stockage persistant dans lequel la base de données est stockée. (Ce champ est vide pour les bases de données éphémères.) 
+|Version  |String |Numéro de version de la base de données. Ce nombre est mis à jour pour chaque opération de modification dans la base de données (par exemple, l’ajout de données et la modification du schéma). 
+|IsCurrent  |Boolean |True si la base de données est celle vers laquelle pointe la connexion active. 
+|DatabaseAccessMode  |String |Comment le cluster est attaché à la base de données. Par exemple, si la base de données est attachée en mode ReadOnly, le cluster échouera toutes les demandes de modification de la base de données de quelque manière que ce soit. 
+|PrettyName |String |Nom convivial de la base de données.
+|CurrentUserIsUnrestrictedViewer |Boolean | Spécifie si l’utilisateur actuel est une visionneuse non restreinte sur la base de données.
+|DatabaseId |Guid |ID unique de la base de données.

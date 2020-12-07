@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 75dc0aa0ff23bfb4f08be9fac84fa34cf9526508
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: 3a3deb388c5a57f3400eb5fbe24f77a31e48b69c
+ms.sourcegitcommit: 1bdbfdc04c4eac405f3931059bbeee2dedd87004
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780624"
+ms.lasthandoff: 11/27/2020
+ms.locfileid: "96303309"
 ---
 # <a name="database-cursors"></a>Curseurs de base de données
 
@@ -38,7 +38,7 @@ Kusto fournit trois fonctions pour vous aider à implémenter les deux scénario
 
 * [cursor_after (RHS : String)](../query/cursorafterfunction.md): cette fonction spéciale peut être utilisée sur les enregistrements de table pour lesquels la [stratégie IngestionTime](ingestiontime-policy.md) est activée. Elle retourne une valeur scalaire de type `bool` indiquant si la valeur du `ingestion_time()` curseur de la base de données de l’enregistrement vient après la `rhs` valeur du curseur de la base de données.
 
-* [cursor_before_or_at (RHS : String)](../query/cursorbeforeoratfunction.md): cette fonction spéciale peut être utilisée sur les enregistrements de table pour lesquels la [stratégie IngestionTime](ingestiontime-policy.md) est activée. Elle retourne une valeur scalaire de type `bool` indiquant si la valeur du `ingestion_time()` curseur de la base de données de l’enregistrement vient après la `rhs` valeur du curseur de la base de données.
+* [cursor_before_or_at (RHS : String)](../query/cursorbeforeoratfunction.md): cette fonction spéciale peut être utilisée sur les enregistrements de table pour lesquels la [stratégie IngestionTime](ingestiontime-policy.md) est activée. Elle retourne une valeur scalaire de type `bool` indiquant si la valeur du `ingestion_time()` curseur de la base de données de l’enregistrement est antérieure ou au niveau `rhs` de la valeur du curseur de la base de données.
 
 Les deux fonctions spéciales ( `cursor_after` et `cursor_before_or_at` ) ont également un effet secondaire : quand elles sont utilisées, Kusto émet la **valeur actuelle du curseur de base de données** dans le `@ExtendedProperties` jeu de résultats de la requête. Le nom de la propriété pour le curseur est `Cursor` , et sa valeur est un unique `string` . 
 

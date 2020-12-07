@@ -8,18 +8,18 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 41eb9703f1718bb43b41927f9ec4d7cac52d67c4
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 936b8aedb4244836eff8c8618a53693395a0343c
+ms.sourcegitcommit: 1bdbfdc04c4eac405f3931059bbeee2dedd87004
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92249936"
+ms.lasthandoff: 11/27/2020
+ms.locfileid: "96303255"
 ---
 # <a name="make_bag-aggregation-function"></a>make_bag () (fonction d’agrégation)
 
 Retourne un `dynamic` conteneur de propriétés (JSON) (dictionnaire) de toutes les valeurs de *`Expr`* dans le groupe.
 
-* Peut être utilisé uniquement dans le contexte d’une agrégation à l’intérieur d’une [synthèse](summarizeoperator.md)
+* Peut être utilisé uniquement dans un contexte d’agrégation à l’intérieur de l’opérateur [summarize](summarizeoperator.md).
 
 ## <a name="syntax"></a>Syntaxe
 
@@ -30,9 +30,8 @@ Retourne un `dynamic` conteneur de propriétés (JSON) (dictionnaire) de toutes 
 * *Expr*: expression de type `dynamic` utilisée pour les calculs d’agrégation.
 * *MaxSize* est une limite d’entier facultative sur le nombre maximal d’éléments retournés. La valeur par défaut est *1048576*. La valeur MaxSize ne peut pas dépasser *1048576*.
 
-**Remarque**
-
-Une variante héritée et obsolète de la fonction `make_dictionary()` a une limite par défaut de *MaxSize* = 128.
+> [!NOTE]
+> `make_dictionary()` est une version héritée et obsolète de `make_bag()` . La version héritée a une limite par défaut de *MaxSize* = 128.
 
 ## <a name="returns"></a>Retours
 

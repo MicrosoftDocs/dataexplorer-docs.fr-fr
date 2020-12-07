@@ -8,12 +8,12 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/30/2020
-ms.openlocfilehash: eaa4e759f0987940a86c509788f5e8a58b2f9e75
-ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
+ms.openlocfilehash: 03d047d89abc3de3c80414564ec101f309bf69b0
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/29/2020
-ms.locfileid: "91452729"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320568"
 ---
 # <a name="alter-materialized-view"></a>.alter materialized-view
 
@@ -24,7 +24,7 @@ Requiert des autorisations d' [administrateur de base de données](../access-con
 > [!WARNING]
 > Soyez très prudent lors de la modification d’une vue matérialisée. Une utilisation incorrecte peut entraîner une perte de données.
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>Syntaxe
 
 `.alter` `materialized-view`  
 [ `with` `(` *PropertyName* `=` *PropertyValue* `,` ... `)` ]  
@@ -43,13 +43,13 @@ Requiert des autorisations d' [administrateur de base de données](../access-con
 
 ## <a name="properties"></a>Propriétés
 
-`dimensionTables`Est la seule propriété prise en charge dans la commande matérialisée-View ALTER. Cette propriété doit être utilisée au cas où la requête fait référence à des tables de dimension. Pour plus d’informations, consultez la commande [. Créez une vue matérialisée](materialized-view-create.md) .
+`dimensionTables`Est la seule propriété prise en charge dans la commande matérialisée-View ALTER. Cette propriété doit être utilisée au cas où la requête fait référence à des tables de dimension. Pour plus d’informations, consultez la [`.create materialized-view`](materialized-view-create.md) commande.
 
-## <a name="use-cases"></a>Cas d'utilisation
+## <a name="use-cases"></a>Cas d’usage
 
 * Ajoutez des agrégations à la vue, par exemple ajouter une `avg` agrégation à `T | summarize count(), min(Value) by Id` , en modifiant afficher la requête en `T | summarize count(), min(Value), avg(Value) by Id` .
 * Modifiez les opérateurs autres que l’opérateur de synthèse. Par exemple, filtrez certains enregistrements en modifiant  `T | summarize arg_max(Timestamp, *) by User` sur `T | where User != 'someone' | summarize arg_max(Timestamp, *) by User` .
-* ALTER sans modification de la requête en raison d’une modification dans la table source. Prenons l’exemple d’une vue de `T | summarize arg_max(Timestamp, *) by Id` , qui n’est pas définie sur `autoUpdateSchema` (voir. créer une commande de [vue matérialisée](materialized-view-create.md) ). Si une colonne est ajoutée ou supprimée de la table source de la vue, la vue est automatiquement désactivée. Exécutez la commande ALTER, avec la même requête, pour modifier le schéma de la vue matérialisée afin de l’aligner avec le nouveau schéma de la table. La vue doit toujours être activée explicitement après la modification, à l’aide de la commande [activer la vue matérialisée](materialized-view-enable-disable.md) .
+* ALTER sans modification de la requête en raison d’une modification dans la table source. Prenons l’exemple d’une vue de `T | summarize arg_max(Timestamp, *) by Id` , qui n’est pas définie sur `autoUpdateSchema` (consultez la [`.create materialized-view`](materialized-view-create.md) commande). Si une colonne est ajoutée ou supprimée de la table source de la vue, la vue est automatiquement désactivée. Exécutez la commande ALTER, avec la même requête, pour modifier le schéma de la vue matérialisée afin de l’aligner avec le nouveau schéma de la table. La vue doit toujours être activée explicitement après la modification, à l’aide de la commande [activer la vue matérialisée](materialized-view-enable-disable.md) .
 
 ## <a name="alter-materialized-view-limitations"></a>Modifier les limitations de vue matérialisée
 

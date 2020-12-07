@@ -8,21 +8,21 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 60d25403b230be9ef625a6d52d1fdb159f9fc4e3
-ms.sourcegitcommit: 313a91d2a34383b5a6e39add6c8b7fabb4f8d39a
+ms.openlocfilehash: d106d150ca7041c49b4d8eeaa703681c5f461fa8
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/16/2020
-ms.locfileid: "90680658"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321537"
 ---
 # <a name="diagnostic-information"></a>Informations de diagnostic
 
 Ces commandes peuvent être utilisées pour afficher des informations de diagnostic du système.
 
-* [. afficher le cluster](#show-cluster)
-* [. afficher les Diagnostics](#show-diagnostics)
-* [. afficher la capacité](#show-capacity)
-* [. afficher les opérations](#show-operations)
+* [`.show cluster`](#show-cluster)
+* [`.show diagnostics`](#show-diagnostics)
+* [`.show capacity`](#show-capacity)
+* [`.show operations`](#show-operations)
 
 ## <a name="show-cluster"></a>. afficher le cluster
 
@@ -40,7 +40,7 @@ Retourne un jeu qui contient un enregistrement pour chaque nœud actuellement ac
 |Adresse|String |Point de terminaison interne utilisé par le cluster pour les communications entre les nœuds
 |Nom |String |Nom interne du nœud. Le nom comprend le nom de l’ordinateur, le nom du processus et l’ID du processus.
 |StartTime |DateTime |Date/heure (au format UTC) de début de l’instanciation Kusto actuelle dans le nœud. Cette valeur peut être utilisée pour détecter si le nœud (ou Kusto en cours d’exécution sur le nœud) a été redémarré récemment.
-|IsAdmin |Booléen |Si ce nœud est actuellement le « responsable » du cluster 
+|IsAdmin |Boolean |Si ce nœud est actuellement le « responsable » du cluster 
 |MachineTotalMemory  |Int64 |Quantité de RAM du nœud.
 |MachineAvailableMemory  |Int64 |Quantité de mémoire vive (RAM) actuellement disponible pour une utilisation sur le nœud.
 |ProcessorCount  |Int32 |Nombre de processeurs sur le nœud.
@@ -54,10 +54,10 @@ Retourne un jeu qui contient un enregistrement pour chaque nœud actuellement ac
 
 ID|Adresse|Nom|StartTime|IsAdmin|MachineTotalMemory|MachineAvailableMemory|ProcessorCount|EnvironmentDescription
 ---|---|---|---|---|---|---|---|---
-Kusto. Azure. Svc_IN_1|NET. TCP://100.112.150.30:23107/|Kusto. Azure. Svc_IN_4/RD000D3AB1E9BD/WaWorkerHost/3820|2016-01-15 02:00:22.6522152|True|274877435904|247797796864|16|{"UpdateDomain" : 0, "FaultDomain" : 0}
-Kusto. Azure. Svc_IN_3|NET. TCP://100.112.154.34:23107/|Kusto. Azure. Svc_IN_3/RD000D3AB1E062/WaWorkerHost/2760|2016-01-15 05:52:52.1434683|False|274877435904|258740346880|16|{"UpdateDomain" : 1, "FaultDomain" : 1}
-Kusto. Azure. Svc_IN_2|NET. TCP://100.112.128.40:23107/|Kusto. Azure. Svc_IN_2/RD000D3AB1E054/WaWorkerHost/3776|2016-01-15 07:17:18.0699790|False|274877435904|244232339456|16|{"UpdateDomain" : 2, "FaultDomain" : 2}
-Kusto. Azure. Svc_IN_0|NET. TCP://100.112.138.15:23107/|Kusto. Azure. Svc_IN_0/RD000D3AB0D6C6/WaWorkerHost/3208|2016-01-15 09:46:36.9865016|False|274877435904|238414581760|16|{"UpdateDomain" : 3, "FaultDomain" : 3}
+Kusto.Azure.Svc_IN_1|NET. TCP://100.112.150.30:23107/|Kusto.Azure.Svc_IN_4/RD000D3AB1E9BD/WaWorkerHost/3820|2016-01-15 02:00:22.6522152|True|274877435904|247797796864|16|{"UpdateDomain" : 0, "FaultDomain" : 0}
+Kusto.Azure.Svc_IN_3|NET. TCP://100.112.154.34:23107/|Kusto.Azure.Svc_IN_3/RD000D3AB1E062/WaWorkerHost/2760|2016-01-15 05:52:52.1434683|False|274877435904|258740346880|16|{"UpdateDomain" : 1, "FaultDomain" : 1}
+Kusto.Azure.Svc_IN_2|NET. TCP://100.112.128.40:23107/|Kusto.Azure.Svc_IN_2/RD000D3AB1E054/WaWorkerHost/3776|2016-01-15 07:17:18.0699790|False|274877435904|244232339456|16|{"UpdateDomain" : 2, "FaultDomain" : 2}
+Kusto.Azure.Svc_IN_0|NET. TCP://100.112.138.15:23107/|Kusto.Azure.Svc_IN_0/RD000D3AB0D6C6/WaWorkerHost/3208|2016-01-15 09:46:36.9865016|False|274877435904|238414581760|16|{"UpdateDomain" : 3, "FaultDomain" : 3}
 
 
 ## <a name="show-diagnostics"></a>. afficher les Diagnostics
@@ -72,8 +72,8 @@ Retourne des informations sur l’état d’intégrité du cluster Kusto.
 
 |Paramètre de sortie |Type |Description|
 |-----------------|-----|-----------| 
-|IsHealthy|Booléen|Si le cluster est sain ou non
-|IsScaleOutRequired|Booléen|Si la taille du cluster doit être augmentée en ajoutant des nœuds de calcul supplémentaires
+|IsHealthy|Boolean|Si le cluster est sain ou non
+|IsScaleOutRequired|Boolean|Si la taille du cluster doit être augmentée en ajoutant des nœuds de calcul supplémentaires
 |MachinesTotal|Int64|Nombre d’ordinateurs dans le cluster
 |MachinesOffline|Int64|Nombre d’ordinateurs actuellement hors connexion
 |NodeLastRestartedOn|DateTime|Date/heure de la dernière redémarrage de tout nœud du cluster
@@ -92,11 +92,11 @@ Retourne des informations sur l’état d’intégrité du cluster Kusto.
 |BuildVersion|String|La version du logiciel Kusto déployée sur le cluster
 |BuildTime|DateTime|Date/heure de la version de build du logiciel Kusto.
 |ClusterDataCapacityFactor|Double|Pourcentage de la capacité de données du cluster utilisé. Le pourcentage est calculé comme étant SUM (Extent Size Data)/SUM (taille du cache SSD).
-|IsDataWarmingRequired|Booléen|Interne : si les requêtes de réchauffement du cluster doivent être exécutées, pour importer les données dans le cache SSD local 
+|IsDataWarmingRequired|Boolean|Interne : si les requêtes de réchauffement du cluster doivent être exécutées, pour importer les données dans le cache SSD local 
 |DataWarmingLastRunOn|DateTime|Date/heure de la dernière exécution des données. chaude sur le cluster
 |MergesSuccessRate|Double|Pourcentage d’opérations de fusion qui se sont terminées avec succès au cours des 10 dernières minutes.
 |NotHealthyReason|String|Spécifie la raison pour laquelle le cluster n’est pas sain 
-|IsAttentionRequired|Booléen|Si le cluster nécessite une attention de l’équipe chargée des opérations
+|IsAttentionRequired|Boolean|Si le cluster nécessite une attention de l’équipe chargée des opérations
 |AttentionRequiredReason|String|Spécifie la raison pour laquelle le cluster nécessite une attention
 |ProductVersion|String|Spécifie les informations sur le produit (branche, version, etc.)
 |FailedIngestOperations|Int64|Nombre d’opérations d’ingestion ayant échoué au cours des 10 dernières minutes
@@ -150,14 +150,14 @@ Cette commande retourne une table qui contient toutes les opérations d’admini
 |LastUpdatedOn |DateTime |Date/heure (au format UTC) de la dernière mise à jour de l’opération. L’opération peut être une étape à l’intérieur de l’opération ou une étape d’achèvement
 |Duration |DateTime |Intervalle de temps entre LastUpdateOn et StartedOn
 |État |String |État de la commande, avec les valeurs « en cours », « terminé » ou « échec »
-|Statut |String |Chaîne d’aide supplémentaire qui contient les erreurs pour les opérations ayant échoué
+|État |String |Chaîne d’aide supplémentaire qui contient les erreurs pour les opérations ayant échoué
  
 **Exemple**
  
-|id |Opération |ID du nœud |Démarré le |Dernière mise à jour le |Duration |État |Statut 
+|ID |Opération |ID du nœud |Démarré le |Dernière mise à jour le |Duration |État |État 
 |--|--|--|--|--|--|--|--
 |3827def6-0773-4f2a-859e-c02cf395deaf |SchemaShow | |2015-01-06 08:47:01.0000000 |2015-01-06 08:47:01.0000000 |0001-01-01 00:00:00.0000000 |Effectué | 
-|841fafa4-076a-4cba-9300-4836da0d9c75 |DataIngestPull |Kusto. Azure. Svc_IN_1 |2015-01-06 08:47:02.0000000 |2015-01-06 08:48:19.0000000 |0001-01-01 00:01:17.0000000 |Effectué | 
+|841fafa4-076a-4cba-9300-4836da0d9c75 |DataIngestPull |Kusto.Azure.Svc_IN_1 |2015-01-06 08:47:02.0000000 |2015-01-06 08:48:19.0000000 |0001-01-01 00:01:17.0000000 |Effectué | 
 |e198c519-5263-4629-a158-8d68f7a1022f |OperationsShow | |2015-01-06 08:47:18.0000000 |2015-01-06 08:47:18.0000000 |0001-01-01 00:00:00.0000000 |Effectué |
 |a9f287a1-f3e6-4154-ad18-b86438da0929 |ExtentsDrop | |2015-01-11 08:41:01.0000000 |0001-01-01 00:00:00.0000000 |0001-01-01 00:00:00.0000000 |InProgress |
-|9edb3ecc-f4b4-4738-87e1-648eed2bd998 |DataIngestPull | |2015-01-10 14:57:41.0000000 |2015-01-10 14:57:41.0000000 |0001-01-01 00:00:00.0000000 |Échec |La collection a été modifiée. L’opération d’énumération peut ne pas s’exécuter |
+|9edb3ecc-f4b4-4738-87e1-648eed2bd998 |DataIngestPull | |2015-01-10 14:57:41.0000000 |2015-01-10 14:57:41.0000000 |0001-01-01 00:00:00.0000000 |Failed |La collection a été modifiée. L’opération d’énumération peut ne pas s’exécuter |

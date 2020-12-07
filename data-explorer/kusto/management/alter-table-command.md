@@ -8,12 +8,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/08/2020
-ms.openlocfilehash: 29f0c65a635b6e4fe6ffe3288cc1dcdde702fc8a
-ms.sourcegitcommit: be1bbd62040ef83c08e800215443ffee21cb4219
+ms.openlocfilehash: ccefca3d3cbf1f97661fead54bbc3cfaf207ca1a
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84665025"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321673"
 ---
 # <a name="alter-table"></a>.alter table
  
@@ -28,7 +28,7 @@ ms.locfileid: "84665025"
 > L’utilisation `.alter` incorrecte de la commande peut entraîner une perte de données.
 
 > [!TIP]
-> `.alter`A un équivalent, la `.alter-merge` commande de table qui a des fonctionnalités similaires. Pour plus d’informations, consultez [. Alter-Merge table](../management/alter-merge-table-command.md)
+> `.alter`A un équivalent, la `.alter-merge` commande de table qui a des fonctionnalités similaires. Pour plus d’informations, consultez [`.alter-merge table`](../management/alter-merge-table-command.md)
 
 **Syntaxe**
 
@@ -38,7 +38,7 @@ ms.locfileid: "84665025"
  * La table aura exactement les mêmes colonnes, dans le même ordre que celui spécifié.
  Spécifiez les colonnes de la table :
  * Si des colonnes existantes ne sont pas spécifiées dans la commande, elles sont supprimées et les données qu’elles contiennent sont perdues, comme avec la `.drop column` commande.
- * Lorsque vous modifiez une table, la modification d’un type de colonne n’est pas prise en charge. Utilisez à la place la commande [. ALTER COLUMN](alter-column.md) .
+ * Lorsque vous modifiez une table, la modification d’un type de colonne n’est pas prise en charge. Utilisez la [`.alter column`](alter-column.md) commande à la place.
 
 > [!TIP]
 > Utilisez `.show table [TableName] cslschema` pour récupérer le schéma de colonne existant avant de le modifier.

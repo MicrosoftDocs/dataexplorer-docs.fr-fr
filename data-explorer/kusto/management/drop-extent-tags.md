@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/02/2020
-ms.openlocfilehash: 23784a1e3e00c242665a43dffcc528bfeff68896
-ms.sourcegitcommit: d6f35df833d5b4f2829a8924fffac1d0b49ce1c2
+ms.openlocfilehash: 45e7d0abf42e613a9d197371dcc374fe4ac11fed
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86060623"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321010"
 ---
 # <a name="drop-extent-tags"></a>.drop extent tags
 
@@ -30,14 +30,14 @@ Il existe deux façons de spécifier les balises à supprimer des extensions :
 
 ## <a name="syntax"></a>Syntaxe
 
-`.drop`[ `async` ] `extent` `tags` `from` `table` *TableName* `(` '*: étiquette1*' [ `,` '*tag2*' `,` ... `,` ' *TagN*']`)`
+`.drop` [ `async` ] `extent` `tags` `from` `table` *TableName* `(` '*: étiquette1*' [ `,` '*tag2*' `,` ... `,` ' *TagN*']`)`
 
 `.drop`[ `async` ] `extent` `tags`  <|  *requête*
 
-`async`(facultatif) : exécutez la commande de façon asynchrone.
+`async` (facultatif) : exécutez la commande de façon asynchrone.
    * Un ID d’opération (Guid) est retourné.
-   * L’état de l’opération peut être surveillé. Utilisez la commande [. Show Operations](operations.md#show-operations) .
-   * Utilisez la commande [. afficher les détails](operations.md#show-operation-details) de l’opération pour récupérer les résultats d’une exécution réussie.
+   * L’état de l’opération peut être surveillé. Utilisez la [`.show operations`](operations.md#show-operations) commande.
+   * Utilisez la [`.show operation details`](operations.md#show-operation-details) commande pour récupérer les résultats d’une exécution réussie.
 
 ## <a name="restrictions"></a>Restrictions
 

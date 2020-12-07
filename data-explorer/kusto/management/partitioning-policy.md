@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/04/2020
-ms.openlocfilehash: 4f5abfd5c7fffd126033baeb2bbb9243b4400f58
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.openlocfilehash: f34042af4578643f8b1b4120345cb37f66b71830
+ms.sourcegitcommit: a36981785765b85a961f275be24d297d38e498fd
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85967398"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96310015"
 ---
 # <a name="partitioning-policy-command"></a>Commande de stratégie de partitionnement
 
@@ -27,11 +27,11 @@ La stratégie de partitionnement des données est détaillée [ici](../managemen
 
 La `.show` commande affiche la stratégie de partitionnement appliquée à la table.
 
-### <a name="output"></a>Sortie
+### <a name="output"></a>Output
 
 |Nom de stratégie | Nom de l’entité | Stratégie | Entités enfants | Type d'entité
 |---|---|---|---|---
-|DataPartitioning | Nom du tableau | Sérialisation JSON de l’objet de stratégie | null | Table
+|DataPartitioning | Nom de la table | Sérialisation JSON de l’objet de stratégie | null | Table
 
 ## <a name="alter-and-alter-merge-policy"></a>stratégie ALTER et ALTER-Merge
 
@@ -77,6 +77,7 @@ La prise en compte des modifications apportées à la stratégie peut prendre ju
       '"Properties": {'
         '"Reference": "1970-01-01T00:00:00",'
         '"RangeSize": "1.00:00:00"'
+        '"OverrideCreationTime": false'
       '}'
     '}'
   ']'
@@ -102,6 +103,7 @@ La prise en compte des modifications apportées à la stratégie peut prendre ju
       '"Properties": {'
         '"Reference": "1970-01-01T00:00:00",'
         '"RangeSize": "1.00:00:00"'
+        '"OverrideCreationTime": false'
       '}'
     '}'
   ']'
