@@ -1,6 +1,6 @@
 ---
-title: opérateur Where dans le langage de requête Kusto-Azure Explorateur de données
-description: Cet article décrit l’opérateur Where dans Azure Explorateur de données.
+title: Opérateur where dans le langage de requête Kusto – Azure Data Explorer
+description: Cet article décrit l’opérateur where dans Azure Data Explorer.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,10 +10,10 @@ ms.topic: reference
 ms.date: 02/13/2020
 ms.localizationpriority: high
 ms.openlocfilehash: 6ac800cd4b38396e0f32f44976c4594c093747bb
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
-ms.translationtype: MT
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95512007"
 ---
 # <a name="where-operator"></a>opérateur where
@@ -28,26 +28,26 @@ T | where fruit=="apple"
 
 ## <a name="syntax"></a>Syntaxe
 
-*T* `| where` *Prédicat* T
+*T* `| where` *Prédicat*
 
 ## <a name="arguments"></a>Arguments
 
-* *T*: entrée tabulaire dont les enregistrements doivent être filtrés.
-* *Predicate*: `boolean` [expression](./scalar-data-types/bool.md) sur les colonnes de *T*. Elle est évaluée pour chaque ligne dans *T*.
+* *T* : entrée tabulaire dont les enregistrements doivent être filtrés.
+* *Prédicat* : [Expression](./scalar-data-types/bool.md) `boolean` sur les colonnes de *T*. Elle est évaluée pour chaque ligne dans *T*.
 
 ## <a name="returns"></a>Retours
 
 Les lignes de *T* dont *Predicate* est `true`.
 
-**Notes** Valeurs NULL : toutes les fonctions de filtrage retournent false en cas de comparaison avec les valeurs NULL. Vous pouvez utiliser des fonctions spéciales prenant en charge les valeurs NULL pour écrire des requêtes qui gèrent des valeurs NULL.
+**Notes** Valeurs null : toutes les fonctions de filtrage retournent false en cas de comparaison avec des valeurs null. Vous pouvez utiliser des fonctions spéciales prenant en compte les valeurs null pour écrire des requêtes qui gèrent des valeurs null.
 
-[IsNull ()](./isnullfunction.md), [IsNotNull ()](./isnotnullfunction.md), [IsEmpty ()](./isemptyfunction.md), [IsNotEmpty ()](./isnotemptyfunction.md). 
+[isnull()](./isnullfunction.md), [isnotnull()](./isnotnullfunction.md), [isempty()](./isemptyfunction.md), [isnotempty()](./isnotemptyfunction.md). 
 
 **Conseils**
 
 Pour obtenir des performances optimales :
 
-* **Utilisez des comparaisons simples** entre les noms de colonne et les constantes. ('Constant’signifie constante sur la table `now()` , et sont donc des `ago()` valeurs scalaires affectées à l’aide d’une [ `let` instruction](./letstatement.md).)
+* **Utilisez des comparaisons simples** entre les noms de colonne et les constantes. (« Constante » s’entend dans le sens de constante au fil de la table, de telle sorte que `now()` et `ago()` soient OK, tout comme les valeurs scalaires affectées à l’aide d’une [instruction `let`](./letstatement.md).)
 
     Par exemple, préférez `where Timestamp >= ago(1d)` à `where floor(Timestamp, 1d) == ago(1d)`.
 
@@ -55,7 +55,7 @@ Pour obtenir des performances optimales :
 
 Pour plus d’informations, consultez le résumé des [opérateurs de chaîne disponibles](./datatypes-string-operators.md) et le résumé des [opérateurs numériques disponibles](./numoperators.md).
 
-## <a name="example-simple-comparisons-first"></a>Exemple : premières comparaisons simples
+## <a name="example-simple-comparisons-first"></a>Exemple : Comparaisons simples en premier
 
 ```kusto
 Traces
@@ -64,11 +64,11 @@ Traces
     and ActivityId == SubActivityId 
 ```
 
-Cet exemple récupère les enregistrements qui ne sont pas antérieurs à 1 heure, proviennent d’une source appelée `MyCluster` et ont deux colonnes de la même valeur. 
+Cet exemple récupère les enregistrements remontant à moins d’une heure, provenant d’une source nommée `MyCluster` et ayant deux colonnes de la même valeur. 
 
-Notez que nous avons placé la comparaison entre deux colonnes en dernier, car elle ne peut pas utiliser l’index et force une analyse.
+Notez que nous plaçons la comparaison entre deux colonnes à la fin, car elle ne peut pas utiliser l’index et force une analyse.
 
-## <a name="example-columns-contain-string"></a>Exemple : les colonnes contiennent une chaîne
+## <a name="example-columns-contain-string"></a>Exemple : Les colonnes contiennent une chaîne
 
 ```kusto
 Traces | where * has "Kusto"

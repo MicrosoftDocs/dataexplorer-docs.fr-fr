@@ -1,6 +1,6 @@
 ---
-title: opérateur Union-Azure Explorateur de données | Microsoft Docs
-description: Cet article décrit l’opérateur Union dans Azure Explorateur de données.
+title: Opérateur union – Azure Data Explorer | Microsoft Docs
+description: Cet article décrit l’opérateur union dans Azure Data Explorer.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -12,10 +12,10 @@ ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
 ms.openlocfilehash: b8ad39e8c1233acc2df6c30059a6926cea85f37a
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
-ms.translationtype: MT
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95512806"
 ---
 # <a name="union-operator"></a>opérateur union
@@ -28,11 +28,11 @@ Table1 | union Table2, Table3
 
 ## <a name="syntax"></a>Syntaxe
 
-*T* `| union` [*UnionParameters*] [ `kind=` `inner` | `outer` ] [ `withsource=` *ColumnName*] [ `isfuzzy=` `true` | `false` ] *table* [ `,` *table*]...  
+*T* `| union` [*UnionParameters*] [`kind=` `inner`|`outer`] [`withsource=`*ColumnName*] [`isfuzzy=` `true`|`false`] *Table* [`,` *Table*]...  
 
-Formulaire de remplacement sans entrée dirigée :
+Autre forme sans entrée canalisée :
 
-`union`[*UnionParameters*] [ `kind=` `inner` | `outer` ] [ `withsource=` *ColumnName*] [ `isfuzzy=` `true` | `false` ] *table* [ `,` *table*]...  
+`union` [*UnionParameters*] [`kind=` `inner`|`outer`] [`withsource=`*ColumnName*] [`isfuzzy=` `true`|`false`] *Table* [`,` *Table*]...  
 
 ## <a name="arguments"></a>Arguments
 
@@ -40,38 +40,38 @@ Formulaire de remplacement sans entrée dirigée :
 
 * `Table`:
     *  Nom d’une table, tel que `Events`; ou
-    *  Expression de requête qui doit être placée entre parenthèses, telle que `(Events | where id==42)` ou `(cluster("https://help.kusto.windows.net:443").database("Samples").table("*"))` ; ou
-    *  Ensemble de tables spécifié par un caractère générique. Par exemple, `E*` formerait l’Union de toutes les tables de la base de données dont les noms commencent `E` .
+    *  Expression de requête qui doit être placée entre parenthèses, par exemple, `(Events | where id==42)` ou `(cluster("https://help.kusto.windows.net:443").database("Samples").table("*"))` ; ou
+    *  Ensemble de tables spécifié par un caractère générique. Par exemple, `E*` formerait l’union de toutes les tables de la base de données dont le nom commence par `E`.
 * `kind`: 
     * `inner` : le résultat comporte le sous-ensemble de colonnes qui sont communes à toutes les tables d’entrée.
-    * `outer` -(valeur par défaut). Le résultat contient toutes les colonnes qui se trouvent dans l’une des entrées. Les cellules qui n’ont pas été définies par une ligne d’entrée ont la valeur `null` .
-* `withsource`=*ColumnName*: si elle est spécifiée, la sortie inclut une colonne appelée *ColumnName* dont la valeur indique la table source qui a participé à chaque ligne.
-Si la requête (après correspondance avec caractère générique) fait référence à des tables de plusieurs bases de données (la base de données par défaut compte toujours), la valeur de cette colonne aura un nom de table qualifié avec la base de données.
-De même, les compétences __de cluster et de base de données__ sont présentes dans la valeur si plusieurs clusters sont référencés. 
-* `isfuzzy=``true`  |  `false` : Si `isfuzzy` a la valeur `true` -permet la résolution approximative des jambes d’Union. `Fuzzy` s’applique à l’ensemble de `union` sources. Cela signifie que lors de l’analyse de la requête et de la préparation de l’exécution, l’ensemble de sources d’Union est réduit à l’ensemble des références de table qui existent et sont accessibles à ce moment-là. Si au moins une table de ce type a été trouvée, tout échec de résolution génère un avertissement dans les résultats de l’état de la requête (un pour chaque référence manquante), mais n’empêche pas l’exécution de la requête. Si aucune résolution n’a réussi, la requête renverra une erreur.
+    * `outer` : (par défaut). Le résultat contient toutes les colonnes qui apparaissent dans les entrées. Les cellules qui n’ont pas été définies par une ligne d’entrée ont la valeur `null`.
+* `withsource`=*ColumnName* : si spécifié, la sortie contient une colonne nommée *ColumnName*, dont la valeur indique la table source de chaque ligne.
+Si la requête (après mise en correspondance de caractère générique) référence des tables de plusieurs bases de données (la base de données par défaut compte toujours), la valeur de cette colonne aura un nom de table qualifié avec la base de données.
+De même, des qualifications de __cluster et base de données__ seront présentes dans la valeur si plusieurs clusters sont référencés. 
+* `isfuzzy=` `true` | `false` : si `isfuzzy` est défini sur `true`, permet la résolution approximative des segments de l’union. `Fuzzy` s’applique à l’ensemble de sources de l’`union` . Cela signifie que, lors de l’analyse de la requête et de la préparation de l’exécution, l’ensemble des sources de l’union est réduit à l’ensemble des références de table qui existent et sont accessibles à ce moment-là. Si au moins une table de ce type a été trouvée, tout échec de résolution génère un avertissement dans les résultats d’état de la requête (un pour chaque référence manquante), mais n’empêche pas l’exécution de la requête. Si aucune résolution n’a réussi, la requête retourne une erreur.
 La valeur par défaut est `isfuzzy=` `false`.
-* *UnionParameters*: zéro ou plusieurs paramètres (séparés par des espaces) sous la forme d’une valeur de *nom* `=` *Value* qui contrôlent le comportement de l’opération de correspondance des lignes et du plan d’exécution. Les paramètres suivants sont pris en charge : 
+* *UnionParameters* : zéro ou plusieurs paramètres (séparés par des espaces) sous la forme *Nom* `=` *Valeur*, qui contrôlent le comportement de l’opération de correspondance des lignes et du plan d’exécution. Les paramètres suivants sont pris en charge : 
 
   |Nom           |Valeurs                                        |Description                                  |
   |---------------|----------------------------------------------|---------------------------------------------|
-  |`hint.concurrency`|*Nombre*|Indique au système le nombre de sous-requêtes simultanées de l' `union` opérateur qui doivent être exécutées en parallèle. *Valeur par défaut*: quantité de cœurs de processeur sur le nœud unique du cluster (2 à 16).|
-  |`hint.spread`|*Nombre*|Indique au système le nombre de nœuds qui doivent être utilisés par l’exécution simultanée des sous- `union` requêtes. *Valeur par défaut*: 1.|
+  |`hint.concurrency`|*Nombre*|Indique au système le nombre de sous-requêtes simultanées de l’opérateur `union` qui doivent être exécutées en parallèle. *Par défaut* : quantité de cœurs de processeur sur le nœud unique du cluster (2 à 16).|
+  |`hint.spread`|*Nombre*|Indique au système le nombre de nœuds que doit utiliser l’exécution de sous-requêtes `union` simultanées. *Par défaut* : 1.|
 
 ::: zone-end
 
 ::: zone pivot="azuremonitor"
 
 * `Table`:
-    *  Nom d’une table, tel que `Events`
+    *  Nom d’une table, par exemple, `Events`
     *  Expression de requête qui doit être placée entre parenthèses, par exemple `(Events | where id==42)`
-    *  Ensemble de tables spécifié par un caractère générique. Par exemple, `E*` formerait l’Union de toutes les tables de la base de données dont les noms commencent `E` .
+    *  Ensemble de tables spécifié par un caractère générique. Par exemple, `E*` formerait l’union de toutes les tables de la base de données dont le nom commence par `E`.
 * `kind`: 
     * `inner` : le résultat comporte le sous-ensemble de colonnes qui sont communes à toutes les tables d’entrée.
-    * `outer` -(valeur par défaut). Le résultat contient toutes les colonnes qui se trouvent dans l’une des entrées. Les cellules qui n’ont pas été définies par une ligne d’entrée ont la valeur `null` .
-* `withsource`=*ColumnName*: si elle est spécifiée, la sortie inclut une colonne appelée *ColumnName* dont la valeur indique la table source qui a apporté chaque ligne.
-Si la requête (après correspondance avec caractère générique) fait référence à des tables de plusieurs bases de données (la base de données par défaut compte toujours), la valeur de cette colonne aura un nom de table qualifié avec la base de données.
-De même, les compétences du __cluster et de la base de données__ sont présentes dans la valeur si plusieurs clusters sont référencés. 
-* `isfuzzy=``true`  |  `false` : Si `isfuzzy` a la valeur `true` -permet la résolution approximative des jambes d’Union. `Fuzzy` s’applique à l’ensemble de `union` sources. Cela signifie que lors de l’analyse de la requête et de la préparation de l’exécution, l’ensemble de sources d’Union est réduit à l’ensemble des références de table qui existent et sont accessibles à ce moment-là. Si au moins une table de ce type a été trouvée, tout échec de résolution génère un avertissement dans les résultats de l’état de la requête (un pour chaque référence manquante), mais n’empêche pas l’exécution de la requête. Si aucune résolution n’a réussi, la requête renverra une erreur.
+    * `outer` : (par défaut). Le résultat contient toutes les colonnes qui apparaissent dans les entrées. Les cellules qui n’ont pas été définies par une ligne d’entrée ont la valeur `null`.
+* `withsource`=*ColumnName* : si spécifié, la sortie contient une colonne nommée *ColumnName*, dont la valeur indique la table source de chaque ligne.
+Si la requête (après mise en correspondance de caractère générique) référence des tables de plusieurs bases de données (la base de données par défaut compte toujours), la valeur de cette colonne aura un nom de table qualifié avec la base de données.
+De même, les qualifications de __cluster et base de données__ seront présentes dans la valeur si plusieurs clusters sont référencés. 
+* `isfuzzy=` `true` | `false` : si `isfuzzy` est défini sur `true`, permet la résolution approximative des segments de l’union. `Fuzzy` s’applique à l’ensemble de sources de l’`union` . Cela signifie que, lors de l’analyse de la requête et de la préparation de l’exécution, l’ensemble des sources de l’union est réduit à l’ensemble des références de table qui existent et sont accessibles à ce moment-là. Si au moins une table de ce type a été trouvée, tout échec de résolution génère un avertissement dans les résultats d’état de la requête (un pour chaque référence manquante), mais n’empêche pas l’exécution de la requête. Si aucune résolution n’a réussi, la requête retourne une erreur.
 La valeur par défaut est `isfuzzy=false`.
 
 ::: zone-end
@@ -84,34 +84,34 @@ Une table contenant autant de lignes que dans l’ensemble des tables d’entré
 
 ::: zone pivot="azuredataexplorer"
 
-1. `union` l’étendue peut inclure des [instructions Let](./letstatement.md) si celles-ci sont attribuées avec le [mot clé View](./letstatement.md)
-2. `union` l’étendue n’inclut pas de [fonctions](../management/functions.md). Pour inclure une fonction dans l’étendue d’Union, définissez une [instruction Let](./letstatement.md) avec le [mot clé View](./letstatement.md)
-3. Si l' `union` entrée correspond à des [tables](../management/tables.md) (comme s’il s’opposent à des [expressions tabulaires](./tabularexpressionstatements.md)), et que le `union` est suivi d’un [opérateur WHERE](./whereoperator.md), pour de meilleures performances, envisagez de remplacer les deux par [Find](./findoperator.md). Notez le [schéma de sortie](./findoperator.md#output-schema) différent produit par l' `find` opérateur. 
-4. `isfuzzy=true` s’applique uniquement à la `union` phase de résolution des sources. Une fois l’ensemble des tables sources déterminé, les échecs de requête supplémentaires éventuels ne sont pas supprimés.
-5. Lorsque vous utilisez `outer union` , le résultat contient toutes les colonnes qui se trouvent dans l’une des entrées, une colonne pour chaque nom et des occurrences de type. Cela signifie que si une colonne apparaît dans plusieurs tables et a plusieurs types, elle aura une colonne correspondante pour chaque type dans le `union` résultat de. Ce nom de colonne sera accompagné d’un suffixe « _ » suivi du [type](./scalar-data-types/index.md)de colonne d’origine.
+1. L’étendue de l’`union` peut inclure des [instructions let](./letstatement.md) si celles-ci sont attribuées avec le [mot clé view](./letstatement.md)
+2. L’étendue de l’`union` n’inclut pas de [fonctions](../management/functions.md). Pour inclure une fonction dans l’étendue de l’union, définissez une [instruction let](./letstatement.md) avec le [mot clé view](./letstatement.md).
+3. Si l’entrée de l’`union` est constituée de [tables](../management/tables.md) (à l’opposé d’[expressions tabulaires](./tabularexpressionstatements.md)), et que l’`union` est suivie d’un [opérateur where](./whereoperator.md), pour améliorer les performances, envisagez de remplacer les deux par l’opérateur [find](./findoperator.md). Notez le [schéma de sortie](./findoperator.md#output-schema) différent produit par l’opérateur `find`. 
+4. `isfuzzy=true` s’applique uniquement à la phase de résolution des sources de l’`union`. Une fois l’ensemble des tables sources déterminé, les éventuels échecs de requête ne sont pas supprimés.
+5. Lors de l’utilisation de `outer union`, le résultat contient toutes les colonnes qui se trouvent dans l’une des entrées, une colonne pour chaque occurrence de nom et de type. Cela signifie que, si une colonne apparaît dans plusieurs tables et a plusieurs types, elle aura une colonne correspondante pour chaque type dans le résultat de l’`union`. Ce nom de colonne sera assorti du suffixe « _ », suivi de la colonne d’origine [type](./scalar-data-types/index.md).
 
 ::: zone-end
 
 ::: zone pivot="azuremonitor"
 
-1. `union` l’étendue peut inclure des [instructions Let](./letstatement.md) si celles-ci sont attribuées avec le [mot clé View](./letstatement.md)
-2. `union` l’étendue n’inclut pas de fonctions. Pour inclure la fonction dans l’étendue Union-définir une [instruction Let](./letstatement.md) avec le [mot clé View](./letstatement.md)
-3. Si l' `union` entrée correspond à des tables (comme s’il s’opposent à des [expressions tabulaires](./tabularexpressionstatements.md)), et que le `union` est suivi d’un [opérateur WHERE](./whereoperator.md), envisagez de remplacer les deux par [Find](./findoperator.md) pour obtenir de meilleures performances. Veuillez noter le [schéma de sortie](./findoperator.md#output-schema) différent produit par l' `find` opérateur. 
-4. `isfuzzy=``true`s’applique uniquement à la phase de la `union` résolution des sources. Une fois l’ensemble des tables sources déterminé, les échecs de requête supplémentaires éventuels ne sont pas supprimés.
-5. Lorsque vous utilisez `outer union` , le résultat contient toutes les colonnes qui se trouvent dans l’une des entrées, une colonne pour chaque nom et des occurrences de type. Cela signifie que si une colonne apparaît dans plusieurs tables et a plusieurs types, elle aura une colonne correspondante pour chaque type dans le `union` résultat de. Ce nom de colonne sera accompagné d’un suffixe « _ » suivi du [type](./scalar-data-types/index.md)de colonne d’origine.
+1. L’étendue de l’`union` peut inclure des [instructions let](./letstatement.md) si celles-ci sont attribuées avec le [mot clé view](./letstatement.md)
+2. L’étendue de l’`union` n’inclut pas de fonctions. Pour inclure une fonction dans l’étendue de l’union, définissez une [instruction let](./letstatement.md) avec le [mot clé view](./letstatement.md).
+3. Si l’entrée de l’`union` est constituée tables (à l’opposé d’[expressions tabulaires](./tabularexpressionstatements.md)), et que l’`union` est suivie d’un [opérateur where](./whereoperator.md), envisagez de remplacer les deux par l’opérateur [fin](./findoperator.md) pour améliorer les performances. Veuillez noter le [schéma de sortie](./findoperator.md#output-schema) différent produit par l’opérateur `find`. 
+4. `isfuzzy=` `true` s’applique uniquement à la phase de résolution des sources de l’`union`. Une fois l’ensemble des tables sources déterminé, les éventuels échecs de requête ne sont pas supprimés.
+5. Lors de l’utilisation de `outer union`, le résultat contient toutes les colonnes qui se trouvent dans l’une des entrées, une colonne pour chaque occurrence de nom et de type. Cela signifie que, si une colonne apparaît dans plusieurs tables et a plusieurs types, elle aura une colonne correspondante pour chaque type dans le résultat de l’`union`. Ce nom de colonne sera assorti du suffixe « _ », suivi de la colonne d’origine [type](./scalar-data-types/index.md).
 
 ::: zone-end
 
 
-## <a name="example-tables-with-string-in-name-or-column"></a>Exemple : tables avec chaîne dans le nom ou la colonne
+## <a name="example-tables-with-string-in-name-or-column"></a>Exemple : Tables avec une chaîne dans le nom ou la colonne
 
 ```kusto
 union K* | where * has "Kusto"
 ```
 
-Lignes de toutes les tables de la base de données dont le nom commence par `K` et dans laquelle toute colonne contient le mot `Kusto` .
+Lignes extraites de toutes les tables de la base de données dont le nom commence par `K` et dans lesquelles une colonne contient le mot `Kusto`.
 
-## <a name="example-distinct-count"></a>Exemple : compte distinct
+## <a name="example-distinct-count"></a>Exemple : Nombre distinct
 
 ```kusto
 union withsource=SourceTable kind=outer Query, Command
@@ -131,7 +131,7 @@ Query
 
 Cette version plus efficace génère le même résultat. Il filtre chaque table avant la création de l’union.
 
-**Exemple : utilisation `isfuzzy=true`**
+**Exemple : Utilisation de `isfuzzy=true`**
  
 ```kusto     
 // Using union isfuzzy=true to access non-existing view:                                     
@@ -145,11 +145,11 @@ union isfuzzy=true
 | count 
 ```
 
-|Count|
+|Nombre|
 |---|
 |2|
 
-Observation de l’état de la requête-l’avertissement suivant a été retourné : `Failed to resolve entity 'View_3'`
+Observation de l’état de la requête – l’avertissement suivant a été retourné : `Failed to resolve entity 'View_3'`
 
 ```kusto
 // Using union isfuzzy=true and wildcard access:
@@ -160,11 +160,11 @@ union isfuzzy=true View*, SomeView*, OtherView*
 | count 
 ```
 
-|Count|
+|Nombre|
 |---|
 |3|
 
-Observation de l’état de la requête-l’avertissement suivant a été retourné : `Failed to resolve entity 'SomeView*'`
+Observation de l’état de la requête – l’avertissement suivant a été retourné : `Failed to resolve entity 'SomeView*'`
 
 **Exemple : incompatibilité des types de colonnes sources**
  
@@ -192,4 +192,4 @@ union withsource=TableName View_1, View_2, View_3
 |View_2   |       |2     |      |
 |View_3   |       |      |3     |
 
-La colonne `x` de `View_1` a reçu le suffixe `_long` et, comme une colonne nommée `x_long` existe déjà dans le schéma de résultat, les noms de colonne ont été dédupliqués, produisant une nouvelle colonne- `x_long1`
+La colonne `x` de `View_1` a reçu le suffixe `_long`, et comme une colonne nommée `x_long` existe déjà dans le schéma de résultat, les noms de colonne ont été dédupliqués, ce qui génère une nouvelle colonne- `x_long1`

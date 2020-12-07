@@ -1,6 +1,6 @@
 ---
-title: Opérateurs de chaîne-Azure Explorateur de données
-description: Cet article décrit les opérateurs de chaîne dans Azure Explorateur de données.
+title: Opérateurs String - Azure Data Explorer
+description: Cet article décrit les opérateurs String dans Azure Data Explorer.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -9,40 +9,40 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/19/2020
 ms.localizationpriority: high
-ms.openlocfilehash: d7c975dcf3fb00ed1108f55957a35f494310203e
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
-ms.translationtype: MT
+ms.openlocfilehash: 845f0b5c9446f927fadf0141de4568cc28641c8d
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/24/2020
-ms.locfileid: "95513231"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96320687"
 ---
-# <a name="string-operators"></a>Opérateurs de chaîne
+# <a name="string-operators"></a>Opérateurs String
 
-Kusto offre un large éventail d’opérateurs de requête pour rechercher des types de données de chaîne. L’article suivant décrit comment les termes de chaîne sont indexés, répertorie les opérateurs de requête de chaîne et donne des conseils pour optimiser les performances.
+Kusto offre un large éventail d'opérateurs de requête pour rechercher des types de données String. L'article suivant explique comment les termes de type String sont indexés, répertorie les opérateurs de requête String, et donne des conseils pour optimiser les performances.
 
-## <a name="understanding-string-terms"></a>Comprendre les termes de chaîne
+## <a name="understanding-string-terms"></a>Présentation des termes de type String
 
-Kusto indexe toutes les colonnes, y compris les colonnes de type `string` . Plusieurs index sont générés pour ces colonnes, en fonction des données réelles. Ces index ne sont pas directement exposés, mais ils sont utilisés dans les requêtes avec les `string` opérateurs qui ont dans le `has` cadre de leur nom, par exemple,,, `has` `!has` `hasprefix` `!hasprefix` . La sémantique de ces opérateurs est dictée par la manière dont la colonne est encodée. Au lieu d’exécuter une correspondance de sous-chaîne « Plain », ces opérateurs correspondent aux *termes*.
+Kusto indexe toutes les colonnes, y compris les colonnes de type `string`. Des index multiples sont générés pour ces colonnes, en fonction des données réelles. Ces index ne sont pas directement exposés, mais ils sont utilisés dans les requêtes avec les opérateurs `string` qui comportent `has` dans leur nom, comme `has`, `!has`, `hasprefix`, `!hasprefix`. La sémantique de ces opérateurs est dictée par la manière dont la colonne est encodée. Au lieu d'établir une correspondance standard entre substrings, ces opérateurs font correspondre des *termes*.
 
-### <a name="what-is-a-term"></a>Qu’est-ce qu’un terme ? 
+### <a name="what-is-a-term"></a>Qu'est-ce qu'un terme ? 
 
-Par défaut, chaque `string` valeur est divisée en séquences maximales de caractères ASCII alphanumériques, et chacune de ces séquences est transformée en un terme.
-Par exemple, dans les cas suivants `string` , les termes sont `Kusto` , `WilliamGates3rd` et les sous-chaînes suivantes : `ad67d136` , `c1db` , `4f9f` , `88ef` , `d94f3b6b0b5a` .
+Par défaut, chaque valeur `string` se décompose en séquences maximales de caractères alphanumériques ASCII, et chacune de ces séquences est transformée en un terme.
+Par exemple, dans la `string` suivante, `Kusto`, `WilliamGates3rd` sont des termes, tandis que `ad67d136`, `c1db`, `4f9f`, `88ef`, `d94f3b6b0b5a` sont des substrings.
 
 ```
 Kusto:  ad67d136-c1db-4f9f-88ef-d94f3b6b0b5a;;WilliamGates3rd
 ```
 
-Kusto crée un index de terme composé de tous les termes qui contiennent *quatre caractères ou plus*, et cet index est utilisé par `has` , `!has` , et ainsi de suite. Si la requête recherche un terme d’une taille inférieure à quatre caractères, ou utilise un `contains` opérateur, Kusto rétablit l’analyse des valeurs de la colonne si elle ne peut pas déterminer de correspondance. Cette méthode est beaucoup plus lente que la recherche du terme dans l’index de terme.
+Kusto génère un index composé de tous les termes d'*au moins quatre caractères*, et cet index est utilisé par `has`, `!has`, etc. Si la requête recherche un terme de moins de quatre caractères ou utilise un opérateur `contains`, Kusto recommence à analyser les valeurs de la colonne s'il ne parvient pas à établir de correspondance. Cette méthode est beaucoup plus lente que la recherche du terme dans l'index des termes.
 
-## <a name="operators-on-strings"></a>Opérateurs sur les chaînes
+## <a name="operators-on-strings"></a>Opérateurs utilisés sur les chaînes
 
 > [!NOTE]
 > Les abréviations suivantes sont utilisées dans le tableau ci-dessous :
-> * RHS = partie droite de l’expression
-> * LHS = côté gauche de l’expression
+> * CD = côté droit de l'expression
+> * CG = côté gauche de l'expression
 > 
-> Les opérateurs avec un `_cs` suffixe respectent la casse.
+> Les opérateurs dotés du suffixe `_cs` respectent la casse.
 
 Opérateur        |Description                                                       |Respecte la casse|Exemple (génère `true`)
 ----------------|------------------------------------------------------------------|--------------|-----------------------
@@ -51,17 +51,18 @@ Opérateur        |Description                                                  
 `=~`            |Égal à                                                            |Non            |`"abc" =~ "ABC"`
 `!~`            |Non égal à                                                        |Non            |`"aBc" !~ "xyz"`
 `has`           |Le terme de droite est un terme entier dans le terme de gauche     |Non            |`"North America" has "america"`
-`!has`          |RHS n’est pas un terme complet dans LHS                                     |Non            |`"North America" !has "amer"` 
-`has_cs`        |RHS est un terme complet dans LHS                                        |Oui           |`"North America" has_cs "America"`
-`!has_cs`       |RHS n’est pas un terme complet dans LHS                                     |Oui           |`"North America" !has_cs "amer"` 
-`hasprefix`     |RHS est un préfixe de terme dans LHS                                       |Non            |`"North America" hasprefix "ame"`
-`!hasprefix`    |RHS n’est pas un préfixe de terme dans LHS                                   |Non            |`"North America" !hasprefix "mer"` 
-`hasprefix_cs`  |RHS est un préfixe de terme dans LHS                                       |Oui           |`"North America" hasprefix_cs "Ame"`
-`!hasprefix_cs` |RHS n’est pas un préfixe de terme dans LHS                                   |Oui           |`"North America" !hasprefix_cs "CA"` 
-`hassuffix`     |RHS est un suffixe de terme dans LHS                                       |Non            |`"North America" hassuffix "ica"`
-`!hassuffix`    |RHS n’est pas un suffixe de terme dans LHS                                   |Non            |`"North America" !hassuffix "americ"`
-`hassuffix_cs`  |RHS est un suffixe de terme dans LHS                                       |Oui           |`"North America" hassuffix_cs "ica"`
-`!hassuffix_cs` |RHS n’est pas un suffixe de terme dans LHS                                   |Oui           |`"North America" !hassuffix_cs "icA"`
+`!has`          |Le terme de droite n'est pas un terme entier à gauche                                     |Non            |`"North America" !has "amer"` 
+[`has_any`](has-anyoperator.md)       |Identique à `has` mais fonctionne sur tous les éléments                    |Non            |`"North America" has_any("south", "north")`
+`has_cs`        |Le terme de droite est un terme entier à gauche                                        |Oui           |`"North America" has_cs "America"`
+`!has_cs`       |Le terme de droite n'est pas un terme entier à gauche                                     |Oui           |`"North America" !has_cs "amer"` 
+`hasprefix`     |Le terme de droite est un préfixe à gauche                                       |Non            |`"North America" hasprefix "ame"`
+`!hasprefix`    |Le terme de droite n'est pas un préfixe à gauche                                   |Non            |`"North America" !hasprefix "mer"` 
+`hasprefix_cs`  |Le terme de droite est un préfixe à gauche                                       |Oui           |`"North America" hasprefix_cs "Ame"`
+`!hasprefix_cs` |Le terme de droite n'est pas un préfixe à gauche                                   |Oui           |`"North America" !hasprefix_cs "CA"` 
+`hassuffix`     |Le terme de droite est un suffixe à gauche                                       |Non            |`"North America" hassuffix "ica"`
+`!hassuffix`    |Le terme de droite n'est pas un suffixe à gauche                                   |Non            |`"North America" !hassuffix "americ"`
+`hassuffix_cs`  |Le terme de droite est un suffixe à gauche                                       |Oui           |`"North America" hassuffix_cs "ica"`
+`!hassuffix_cs` |Le terme de droite n'est pas un suffixe à gauche                                   |Oui           |`"North America" !hassuffix_cs "icA"`
 `contains`      |RHS apparaît comme une sous-séquence de LHS                                |Non            |`"FabriKam" contains "BRik"`
 `!contains`     |RHS ne figure pas dans LHS                                         |Non            |`"Fabrikam" !contains "xyz"`
 `contains_cs`   |RHS apparaît comme une sous-séquence de LHS                                |Oui           |`"FabriKam" contains_cs "Kam"`
@@ -75,28 +76,28 @@ Opérateur        |Description                                                  
 `endswith_cs`   |RHS est une sous-séquence fermante de LHS                               |Oui           |`"Fabrikam" endswith_cs "kam"`
 `!endswith_cs`  |RHS n’est pas une sous-séquence fermante de LHS                           |Oui           |`"Fabrikam" !endswith_cs "brik"`
 `matches regex` |LHS contient une correspondance pour RHS                                      |Oui           |`"Fabrikam" matches regex "b.*k"`
-`in`            |Égal à l’un des éléments                                     |Oui           |`"abc" in ("123", "345", "abc")`
-`!in`           |N’est égal à aucun des éléments                                 |Oui           |`"bca" !in ("123", "345", "abc")`
+[`in`](inoperator.md)            |Égal à l’un des éléments                                     |Oui           |`"abc" in ("123", "345", "abc")`
+[`!in`](inoperator.md)           |N’est égal à aucun des éléments                                 |Oui           |`"bca" !in ("123", "345", "abc")`
 `in~`           |Égal à l’un des éléments                                     |Non            |`"abc" in~ ("123", "345", "ABC")`
 `!in~`          |N’est égal à aucun des éléments                                 |Non            |`"bca" !in~ ("123", "345", "ABC")`
-`has_any`       |Identique à, `has` mais fonctionne sur l’un des éléments                    |Non            |`"North America" has_any("south", "north")`
+
 
 > [!TIP]
-> Tous les opérateurs qui contiennent `has` des recherches sur des *termes* indexés de quatre caractères ou plus, et non sur des correspondances de sous-chaînes. Un terme est créé en fractionnant la chaîne en séquences de caractères ASCII alphanumériques. Consultez [comprendre les termes de chaîne](#understanding-string-terms).
+> Tous les opérateurs qui contiennent `has` effectuent des recherches sur des *termes* indexés de quatre caractères ou plus, et non sur des correspondances de substrings. Un terme est créé en décomposant la chaîne en séquences de caractères alphanumériques ASCII. Voir [Présentation des termes de type String](#understanding-string-terms).
 
 ## <a name="performance-tips"></a>Conseils sur les performances
 
-Pour de meilleures performances, lorsque deux opérateurs effectuent la même tâche, utilisez la casse.
+Pour de meilleures performances, lorsque deux opérateurs effectuent la même tâche, utilisez celui qui respecte la casse.
 Par exemple :
 
-* au lieu de `=~` , utilisez `==`
-* au lieu de `in~` , utilisez `in`
-* au lieu de `contains` , utilisez `contains_cs`
+* au lieu de `=~`, utilisez `==`
+* au lieu de `in~`, utilisez `in`
+* au lieu de `contains`, utilisez `contains_cs`
 
-Pour accélérer les résultats, si vous testez la présence d’un symbole ou d’un mot alphanumérique lié par des caractères non alphanumériques, ou le début ou la fin d’un champ, utilisez `has` ou `in` . 
-`has` fonctionne plus rapidement que `contains` , `startswith` ou `endswith` .
+Pour des résultats plus rapides, si vous recherchez la présence d'un symbole ou d'un mot alphanumérique délimité par des caractères non alphanumériques, ou le début ou la fin d'un champ, utilisez `has` ou `in`. 
+`has` effectue la recherche plus rapidement que `contains`, `startswith` ou `endswith`.
 
-Par exemple, la première de ces requêtes s’exécutera plus rapidement :
+Par exemple, la première de ces requêtes sera plus rapide :
 
 ```kusto
 EventLog | where continent has "North" | count;

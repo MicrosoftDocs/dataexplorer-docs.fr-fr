@@ -1,6 +1,6 @@
 ---
-title: between, opérateur-Explorateur de données Azure
-description: Cet article décrit l’opérateur Between dans Azure Explorateur de données.
+title: Opérateur between – Azure Data Explorer
+description: Cet article décrit l’opérateur between dans Azure Data Explorer.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,10 +10,10 @@ ms.topic: reference
 ms.date: 10/23/2018
 ms.localizationpriority: high
 ms.openlocfilehash: 8bb2049c7bc7c81092eb137c820f650bf88abc4e
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
-ms.translationtype: MT
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95512976"
 ---
 # <a name="between-operator"></a>between, opérateur
@@ -25,30 +25,30 @@ Table1 | where Num1 between (1 .. 10)
 Table1 | where Time between (datetime(2017-01-01) .. datetime(2017-01-01))
 ```
 
-`between` peut fonctionner sur n’importe quelle expression numérique, DateTime ou TimeSpan.
+L’opérateur `between` peut fonctionner sur n’importe quelle expression numérique, datetime ou timespan.
  
 ## <a name="syntax"></a>Syntaxe
 
-*T* `|` `where` *expr* `between` `(` *leftRange* ` .. ` *rightRange*`)`   
+*T* `|` `where` *expr* `between` `(`*leftRange*` .. `*rightRange*`)`   
  
-Si l’expression *expr* est DateTime, une autre syntaxe de sucre syntaxique est fournie :
+Si l’expression *expr* est une valeur de datetime, une autre syntaxe de sucre syntaxique est fournie :
 
-*T* `|` `where` *expr* `between` `(` *leftRangeDateTime* ` .. ` *rightRangeTimespan*`)`   
+*T* `|` `where` *expr* `between` `(`*leftRangeDateTime*` .. `*rightRangeTimespan*`)`   
 
 ## <a name="arguments"></a>Arguments
 
-* *T* -l’entrée tabulaire dont les enregistrements doivent être mis en correspondance.
-* *expr* -l’expression à filtrer.
-* *leftRange* -expression de la plage gauche (inclusive).
-* *rightRange* -expression de la plage droite (inclusive).
+* *T* : entrée tabulaire dont les enregistrements doivent être mis en correspondance.
+* *Expr* : expression à filtrer.
+* *leftRange* : expression de la plage gauche (inclusive).
+* *rightRange* : expression de la plage droite (inclusive).
 
 ## <a name="returns"></a>Retours
 
-Les lignes dans *T* pour lesquelles le prédicat de (*expr*  >=  *leftRange* et *expr*  <=  *rightRange*) prend la valeur `true` .
+Lignes de *T* pour lesquelles le prédicat de (*expr* >= *leftRange* et *expr* <= *rightRange*) prend la valeur `true`.
 
 ## <a name="examples"></a>Exemples  
 
-**Filtrage des valeurs numériques à l’aide de l’opérateur’between'**  
+**Filtrage de valeurs numériques à l’aide de l’opérateur « between »**  
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -65,7 +65,7 @@ range x from 1 to 100 step 1
 |54|
 |55|
 
-**Filtrage de DateTime à l’aide de l’opérateur’between'**  
+**Filtrage de valeur de datetime à l’aide de l’opérateur « between »**  
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -74,7 +74,7 @@ StormEvents
 | count 
 ```
 
-|Count|
+|Nombre|
 |---|
 |476|
 
@@ -85,6 +85,6 @@ StormEvents
 | count 
 ```
 
-|Count|
+|Nombre|
 |---|
 |476|

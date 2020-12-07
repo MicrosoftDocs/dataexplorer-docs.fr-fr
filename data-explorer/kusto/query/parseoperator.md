@@ -1,6 +1,6 @@
 ---
-title: opérateur d’analyse-Azure Explorateur de données
-description: Cet article décrit l’opérateur d’analyse dans Azure Explorateur de données.
+title: Opérateur parse – Azure Data Explorer
+description: Cet article décrit l’opérateur parse dans Azure Data Explorer.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,16 +10,16 @@ ms.topic: reference
 ms.date: 02/13/2020
 ms.localizationpriority: high
 ms.openlocfilehash: 2b034719fa7c2f3714020c722b5717f5cf8590ff
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
-ms.translationtype: MT
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95512959"
 ---
 # <a name="parse-operator"></a>opérateur parse
 
-évalue une expression de chaîne et analyse sa valeur dans une ou plusieurs colonnes calculées. Les colonnes calculées auront des valeurs NULL, pour les chaînes analysées sans succès.
-Pour plus d’informations, consultez l' [opérateur parse-WHERE](parsewhereoperator.md).
+évalue une expression de chaîne et analyse sa valeur dans une ou plusieurs colonnes calculées. Les colonnes calculées contiendront des valeurs null pour les chaînes dont l’analyse a échoué.
+Pour plus d’informations, consultez [Opérateur parse-where](parsewhereoperator.md).
 
 ```kusto
 T | parse Text with "ActivityName=" name ", ActivityType=" type
@@ -27,67 +27,67 @@ T | parse Text with "ActivityName=" name ", ActivityType=" type
 
 ## <a name="syntax"></a>Syntaxe
 
-*T* `| parse` [ `kind=regex` [ `flags=regex_flags` ] | `simple` | `relaxed` ] *expression* `with` `*` (*StringConstant* *ColumnName* [ `:` *ColumnType*]) `*` ...
+*T* `| parse` [`kind=regex` [`flags=regex_flags`] |`simple`|`relaxed`] *Expression* `with` `*` (*StringConstant* *ColumnName* [`:` *ColumnType*]) `*`...
 
 ## <a name="arguments"></a>Arguments
 
-* *T*: table d’entrée.
-* espèces
+* *T* : table d’entrée.
+* kind :
 
     * simple (valeur par défaut) : StringConstant est une valeur de chaîne normale et la correspondance est stricte. Tous les délimiteurs de chaîne doivent apparaître dans la chaîne analysée, et toutes les colonnes étendues doivent correspondre aux types requis.
         
-    * Regex : StringConstant peut être une expression régulière et la correspondance est stricte. Tous les délimiteurs de chaînes, qui peuvent être une expression régulière pour ce mode, doivent apparaître dans la chaîne analysée, et toutes les colonnes étendues doivent correspondre aux types requis.
+    * regex : StringConstant peut être une expression régulière et la correspondance est stricte. Tous les délimiteurs de chaîne, qui peuvent être une expression régulière pour ce mode, doivent apparaître dans la chaîne analysée, et toutes les colonnes étendues doivent correspondre aux types requis.
     
-    * Flags : indicateurs à utiliser en mode Regex comme `U` (non gourmand), `m` (mode multiligne), (mettre en `s` correspondance une nouvelle ligne `\n` ), `i` (non-respect de la casse) dans les [indicateurs RE2](re2.md).
+    * flags : Indicateurs à utiliser en mode expression régulière comme `U` (non gourmand), `m` (mode multiligne) `s` (mettre en correspondance nouvelle ligne `\n`) et `i` (non-respect de la casse) dans les [indicateurs RE2](re2.md).
         
-    * souple : StringConstant est une valeur de chaîne normale et la correspondance est assouplie. Tous les délimiteurs de chaîne doivent apparaître dans la chaîne analysée, mais les colonnes étendues peuvent correspondre partiellement aux types requis. Les colonnes étendues qui ne correspondent pas aux types requis obtiendront la valeur null.
+    * relaxed : StringConstant est une valeur de chaîne normale et la correspondance est approximative. Tous les délimiteurs de chaîne doivent apparaître dans la chaîne analysée, mais les colonnes étendues peuvent correspondre partiellement aux types requis. Les colonnes étendues qui ne correspondent pas aux types requis obtiendront la valeur null.
 
-* *Expression*: expression qui prend la valeur d’une chaîne.
+* *Expression* : expression qui prend la valeur d’une chaîne.
 
-* *ColumnName :* Nom d’une colonne à laquelle une valeur doit être assignée, extraite de l’expression de chaîne. 
+* *ColumnName :* nom d’une colonne à laquelle attribuer une valeur extraite de l’expression de chaîne. 
   
-* *ColumnType :* Facultatif. Valeur scalaire qui indique le type vers lequel convertir la valeur. La valeur par défaut est le `string` type.
+* *ColumnType :* facultatif. Valeur scalaire indiquant le type vers lequel convertir la valeur. La valeur par défaut est le type `string`.
 
 ## <a name="returns"></a>Retours
 
-La table d’entrée, étendue selon la liste des colonnes fournies à l’opérateur.
+Table d’entrée, étendue conformément à la liste des colonnes fournies à l’opérateur.
 
 **Conseils**
 
-* Utilisez [`project`](projectoperator.md) si vous souhaitez également supprimer ou renommer certaines colonnes.
+* Utilisez [`project`](projectoperator.md) si vous souhaitez également supprimer ou renommer des colonnes.
 
-* Utilisez * dans le modèle pour ignorer les valeurs indésirables. 
+* Utilisez le signe * dans le modèle pour ignorer les valeurs indésirables. 
 
     > [!NOTE] 
-    > Le `*` ne peut pas être utilisé après une `string` colonne de type.
+    > Le signe `*` ne peut pas être utilisé après une colonne de type `string`.
 
-* Le modèle d’analyse peut commencer par *ColumnName* et non uniquement par *StringConstant*.
+* Le modèle d’analyse peut commencer par *ColumnName* et pas uniquement par *StringConstant*.
 
-* Si l' *expression* analysée n’est pas de type `string` , elle sera convertie en type `string` .
+* Si l’*Expression* analysée n’est pas de type `string`, elle sera convertie en type `string`.
 
-* Si le mode Regex est utilisé, il est possible d’ajouter des indicateurs Regex pour contrôler l’intégralité de l’expression régulière utilisée dans l’analyse.
+* Si le mode expression régulière est utilisé, il est possible d’ajouter des indicateurs d’expression régulière pour contrôler l’intégralité de l’expression régulière utilisée dans l’analyse.
 
-* En mode Regex, parse traduira le modèle en une expression régulière. Utilisez la [syntaxe RE2](re2.md) pour effectuer la correspondance et utilisez des groupes capturés numérotés qui sont gérés en interne.
+* En mode expression régulière, l’analyse traduira le modèle en une expression régulière. Utilisez la [syntaxe RE2](re2.md) pour la mise en correspondance, et utilisez des groupes capturés numérotés qui sont gérés en interne.
     Par exemple :
 
     ```kusto
     parse kind=regex Col with * <regex1> var1:string <regex2> var2:long
     ```
 
-    Dans l’instruction Parse, l’expression régulière générée en interne par l’analyse est `.*?<regex1>(.*?)<regex2>(\-\d+)` .
+    Dans l’instruction parse, l’expression régulière générée en interne par l’analyse est `.*?<regex1>(.*?)<regex2>(\-\d+)`.
         
-    * `*` a été traduit `.*?` .
+    * `*` a été traduit en `.*?`.
         
-    * `string` a été traduit `.*?` .
+    * `string` a été traduit en `.*?`.
         
-    * `long` a été traduit `\-\d+` .
+    * `long` a été traduit en `\-\d+`.
 
 ## <a name="examples"></a>Exemples
 
-L' `parse` opérateur fournit une méthode rationalisée à `extend` une table en utilisant plusieurs `extract` applications sur la même `string` expression. Ce résultat est utile lorsque la table comporte une `string` colonne qui contient plusieurs valeurs que vous souhaitez décomposer en colonnes individuelles. Par exemple, une colonne qui a été produite par une instruction de trace de développement (« `printf` »/«» `Console.WriteLine` ).
+L’opérateur `parse` offre un moyen simplifié d’étendre (`extend`) une table à l’aide de plusieurs applications `extract` sur la même expression `string`. Ce résultat est utile lorsque la table comporte une colonne `string` qui contient plusieurs valeurs que vous souhaitez décomposer en colonnes individuelles. Par exemple, une colonne qui a été produite par une instruction developer trace (« `printf` »/« `Console.WriteLine` »).
 
-Dans l’exemple ci-dessous, supposons que la colonne `EventText` de la table `Traces` contient des chaînes sous la forme `Event: NotifySliceRelease (resourceName={0}, totalSlices= {1}, sliceNumber={2}, lockTime={3}, releaseTime={4}, previousLockTime={5})` .
-L’opération va étendre la table avec six colonnes :,,,,,, `resourceName` `totalSlices` `sliceNumber` `lockTime ` `releaseTime` `previousLockTime` `Month` et `Day` . 
+Dans l’exemple ci-dessous, supposons que la colonne `EventText` de la table `Traces` contient des chaînes au format `Event: NotifySliceRelease (resourceName={0}, totalSlices= {1}, sliceNumber={2}, lockTime={3}, releaseTime={4}, previousLockTime={5})`.
+L’opération va étendre la table avec six colonnes : `resourceName`, `totalSlices`, `sliceNumber`, `lockTime `, `releaseTime`, `previousLockTime`, `Month` et `Day`. 
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -112,7 +112,7 @@ Traces
 |PipelineScheduler|27|16|02/17/2016 08:41:00|2016-02-17 08:41:00.0000000|2016-02-17 08:40:00.0000000|
 |PipelineScheduler|27|22|02/17/2016 08:41:01|2016-02-17 08:41:00.0000000|2016-02-17 08:40:01.0000000|
 
-**Pour le mode Regex**
+**Pour le mode expression régulière**
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -137,9 +137,9 @@ Traces
 |PipelineScheduler|16|02/17/2016 08:41:00, |02/17/2016 08:41:00, |2016-02-17 08:40:00.0000000|
 |PipelineScheduler|22|02/17/2016 08:41:01, |02/17/2016 08:41:00, |2016-02-17 08:40:01.0000000|
 
-**Pour le mode Regex à l’aide d’indicateurs Regex**
+**Pour le mode expression régulière utilisant des indicateurs d’expression régulière**
 
-Si vous souhaitez obtenir le resourceName uniquement, utilisez la requête suivante :
+Si vous souhaitez obtenir uniquement le resourceName, utilisez la requête suivante :
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -158,16 +158,16 @@ Traces
 
 |resourceName|
 |---|
-|PipelineScheduler, totalSlices = 27, sliceNumber = 23, lockTime = 02/17/2016 08:40:01, releaseTime = 02/17/2016 08:40:01|
-|PipelineScheduler, totalSlices = 27, sliceNumber = 15, lockTime = 02/17/2016 08:40:00, releaseTime = 02/17/2016 08:40:00|
-|PipelineScheduler, totalSlices = 27, sliceNumber = 20, lockTime = 02/17/2016 08:40:01, releaseTime = 02/17/2016 08:40:01|
-|PipelineScheduler, totalSlices = 27, sliceNumber = 22, lockTime = 02/17/2016 08:41:01, releaseTime = 02/17/2016 08:41:00|
-|PipelineScheduler, totalSlices = 27, sliceNumber = 16, lockTime = 02/17/2016 08:41:00, releaseTime = 02/17/2016 08:41:00|
+|PipelineScheduler, totalSlices=27, sliceNumber=23, lockTime=02/17/2016 08:40:01, releaseTime=02/17/2016 08:40:01|
+|PipelineScheduler, totalSlices=27, sliceNumber=15, lockTime=02/17/2016 08:40:00, releaseTime=02/17/2016 08:40:00|
+|PipelineScheduler, totalSlices=27, sliceNumber=20, lockTime=02/17/2016 08:40:01, releaseTime=02/17/2016 08:40:01|
+|PipelineScheduler, totalSlices=27, sliceNumber=22, lockTime=02/17/2016 08:41:01, releaseTime=02/17/2016 08:41:00|
+|PipelineScheduler, totalSlices=27, sliceNumber=16, lockTime=02/17/2016 08:41:00, releaseTime=02/17/2016 08:41:00|
 
 Vous n’obtiendrez pas les résultats attendus, car le mode par défaut est gourmand.
-Si vous avez des enregistrements où le *resourceName*  apparaît parfois en minuscules et parfois en majuscules, vous pouvez obtenir des valeurs NULL pour certaines valeurs.
+Si vous avez quelques enregistrements où le *resourceName* apparaît parfois en minuscules et parfois en majuscules, vous pouvez obtenir des valeurs null pour certaines valeurs.
 
-Pour obtenir le résultat souhaité, exécutez la requête avec le non gourmand `U` et désactivez les indicateurs Regex respectant la casse `i` .
+Pour obtenir le résultat souhaité, exécutez la requête avec les indicateurs d’expression régulière `U` (non gourmand ) et `i` (non-respect de la casse).
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -217,16 +217,16 @@ Traces
 |PipelineScheduler<br>|27|2016-02-17 08:41:00.0000000|2016-02-17 08:41:00.0000000|2016-02-17 08:40:00.0000000|
 |PipelineScheduler<br>|27|2016-02-17 08:41:01.0000000|2016-02-17 08:41:00.0000000|2016-02-17 08:40:01.0000000|
 
-**Mode souple**
+**Mode approximatif**
 
-Dans cet exemple pour le mode souple, la colonne étendue *totalSlices* doit être de type `long` . Toutefois, dans la chaîne analysée, elle a la valeur *nonValidLongValue*.
-Dans la colonne étendue *releaseTime* , la valeur *nonValidDateTime* ne peut pas être analysée comme *DateTime*.
-Ces deux colonnes étendues obtiennent la valeur null tandis que d’autres, telles que *sliceNumber*, obtiennent toujours les valeurs correctes.
+Dans cet exemple pour le mode approximatif, la colonne étendue *totalSlices* doit être de type `long`. Toutefois, dans la chaîne analysée, elle a la valeur *nonValidLongValue*.
+Dans la colonne étendue *releaseTime*, la valeur *nonValidDateTime* ne peut pas être analysée en tant que *datetime*.
+Ces deux colonnes étendues obtiennent la valeur null, tandis que les autres, telles que *sliceNumber*, obtiennent toujours les valeurs correctes.
 
-Si vous utilisez option *genre = simple* pour la même requête ci-dessous, vous obtenez la valeur null pour toutes les colonnes étendues. Cette option est stricte sur les colonnes étendues et est la différence entre le mode souple et le mode simple.
+Si vous utilisez l’option *kind = simple* pour la même requête ci-dessous, vous obtenez la valeur null pour toutes les colonnes étendues. Cette option est stricte sur les colonnes étendues, et est la différence entre le mode approximatif et le mode simple.
 
  > [!NOTE] 
- > En mode souple, les colonnes étendues peuvent être partiellement mises en correspondance.
+ > En mode approximatif, les colonnes étendues peuvent être mises en correspondance partiellement.
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

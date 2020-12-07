@@ -1,6 +1,6 @@
 ---
-title: Fonctions de User-Defined-Azure Explorateur de données | Microsoft Docs
-description: Cet article décrit les fonctions de User-Defined dans Azure Explorateur de données.
+title: Fonctions définies par l'utilisateur - Azure Data Explorer | Microsoft Docs
+description: Cet article décrit les fonctions définies par l'utilisateur dans Azure Data Explorer.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,72 +10,72 @@ ms.topic: reference
 ms.date: 03/12/2020
 ms.localizationpriority: high
 ms.openlocfilehash: 92627b3325a7a2ba8e2e4d58a82ebf6db3977221
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
-ms.translationtype: MT
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95512874"
 ---
 # <a name="user-defined-functions"></a>Fonctions définies par l’utilisateur
 
-Les **fonctions définies par l’utilisateur** sont des sous-requêtes réutilisables qui peuvent être définies dans le cadre de la requête elle-même (**fonctions ad hoc**) ou conservées dans le cadre des métadonnées de la base de données (**fonctions stockées**). Les fonctions définies par l’utilisateur sont appelées à l’aide d’un **nom**, sont fournies avec zéro, un ou plusieurs **arguments d’entrée** (qui peuvent être scalaires ou tabulaires) et produisent une seule valeur (qui peut être scalaire ou tabulaire) en fonction du **corps** de la fonction.
+Les **fonctions définies par l'utilisateur** sont des sous-requêtes réutilisables qui peuvent être définies dans le cadre de la requête elle-même (**fonctions ad hoc**) ou être conservées dans le cadre des métadonnées de la base de données (**fonctions stockées**). Les fonctions définies par l'utilisateur sont appelées via un **nom**, sont fournies avec zéro ou plusieurs **arguments d'entrée** (qui peuvent être scalaires ou tabulaires) et produisent une valeur unique (qui peut être scalaire ou tabulaire) basée sur le **corps** de la fonction.
 
-Une fonction définie par l’utilisateur appartient à l’une des deux catégories suivantes :
+Une fonction définie par l'utilisateur appartient à l'une des deux catégories suivantes :
 
 * Fonctions scalaires 
 * Fonctions tabulaires 
 
-Les arguments d’entrée et la sortie de la fonction déterminent s’il s’agit d’une valeur scalaire ou tabulaire, qui établit ensuite la manière dont il peut être utilisé. 
+Les arguments d'entrée et de sortie de la fonction déterminent si elle est scalaire ou tabulaire, ce qui indique ensuite comment elle peut être utilisée. 
 
 ## <a name="scalar-function"></a>Fonction scalaire
 
-* N’a aucun argument d’entrée, ou tous ses arguments d’entrée sont des valeurs scalaires
+* Ne comporte aucun argument d'entrée, ou tous ses arguments d'entrée sont des valeurs scalaires
 * Produit une valeur scalaire unique
-* Peut être utilisé partout où une expression scalaire est autorisée
-* Peut uniquement utiliser le contexte de ligne dans lequel il est défini
-* Peut uniquement faire référence à des tables (et des vues) qui se trouvent dans le schéma accessible
+* Peut être utilisée partout où une expression scalaire est autorisée
+* Peut uniquement utiliser le contexte de ligne dans lequel elle est définie
+* Peut uniquement faire référence à des tables (et vues) situées dans le schéma accessible
 
 ## <a name="tabular-function"></a>Fonction tabulaire
 
-* Accepte un ou plusieurs arguments d’entrée tabulaires et zéro, un ou plusieurs arguments d’entrée scalaires, et/ou :
+* Accepte un ou plusieurs arguments d'entrée tabulaires, et zéro ou plusieurs arguments d'entrée scalaires, et/ou :
 * Produit une valeur tabulaire unique
 
-## <a name="function-names"></a>Noms de fonction
+## <a name="function-names"></a>Noms des fonctions
 
-Les noms de fonctions définies par l’utilisateur valides doivent respecter les mêmes [règles d’affectation](../schema-entities/entity-names.md#identifier-naming-rules) de noms que les autres entités.
+Les noms des fonctions définies par l'utilisateur valides doivent suivre les [règles de nommage des identificateurs](../schema-entities/entity-names.md#identifier-naming-rules) des autres entités.
 
 Le nom doit également être unique dans son étendue de définition.
 
 > [!NOTE]
-> Si une fonction stockée et une table ont toutes les deux le même nom, la fonction stockée est substituée lors de l’interrogation du nom de table/fonction.
+> Si une fonction stockée et une table portent le même nom, la fonction stockée l'emporte lorsque le nom de la table/fonction est demandé.
 
 ## <a name="input-arguments"></a>Arguments d’entrée
 
-Les fonctions définies par l’utilisateur valides suivent les règles suivantes :
+Les fonctions définies par l'utilisateur valides suivent les règles suivantes :
 
-* Une fonction définie par l’utilisateur a une liste fortement typée de zéro ou plusieurs arguments d’entrée.
-* Un argument d’entrée a un nom, un type et (pour les arguments scalaires) une [valeur par défaut](#default-values).
-* Le nom d’un argument d’entrée est un identificateur.
-* Le type d’un argument d’entrée est l’un des types de données scalaires ou un schéma tabulaire.
+* Une fonction définie par l'utilisateur comporte une liste fortement typée de zéro ou plusieurs arguments d'entrée.
+* Un argument d'entrée comporte un nom, un type et (pour les arguments scalaires) une [valeur par défaut](#default-values).
+* Le nom d'un argument d'entrée est un identificateur.
+* Le type d'un argument d'entrée correspond à l'un des types de données scalaires ou à un schéma tabulaire.
 
-Syntaxiquement, la liste d’arguments d’entrée est une liste séparée par des virgules de définitions d’arguments, incluse entre parenthèses. Chaque définition d’argument est spécifiée en tant que
+Du point de vue syntaxique, la liste des arguments d'entrée est une liste de définitions d'arguments séparées par des virgules et entre parenthèses. Chaque définition d'argument est spécifiée en tant que
 
 ```
 ArgName:ArgType [= ArgDefaultValue]
 ```
- Pour les arguments tabulaires, *ArgType* a la même syntaxe que la définition de table (parenthèse et une liste de paires nom/type de colonne), avec la prise en charge supplémentaire d’un solitaires `(*)` indiquant « n’importe quel schéma tabulaire ».
+ Pour les arguments tabulaires, *ArgType* utilise la même syntaxe que la définition de table (parenthèses et liste de paires nom/type de colonne), avec le support supplémentaire d'un `(*)` solitaire indiquant « tout schéma tabulaire ».
 
 Par exemple :
 
-|Syntaxe                        |Description de la liste des arguments d’entrée                                 |
+|Syntaxe                        |Description de la liste des arguments d'entrée                                 |
 |------------------------------|-----------------------------------------------------------------|
 |`()`                          |Aucun argument|
-|`(s:string)`                  |Argument scalaire unique appelé `s` acceptant une valeur de type `string`|
+|`(s:string)`                  |Argument scalaire unique appelé `s` prenant une valeur de type `string`|
 |`(a:long, b:bool=true)`       |Deux arguments scalaires, le second ayant une valeur par défaut    |
 |`(T1:(*), T2(r:real), b:bool)`|Trois arguments (deux arguments tabulaires et un argument scalaire)  |
 
 > [!NOTE]
-> Lorsque vous utilisez des arguments d’entrée tabulaires et des arguments d’entrée scalaires, placez tous les arguments d’entrée tabulaires avant les arguments d’entrée scalaires.
+> Lorsque vous utilisez à la fois des arguments d'entrée tabulaires et des arguments d'entrée scalaires, placez tous les arguments d'entrée tabulaires avant les arguments d'entrée scalaires.
 
 ## <a name="examples"></a>Exemples
 
@@ -87,7 +87,7 @@ range x from 1 to 10 step 1
 | extend x_plus_7 = Add7(x), five_plus_seven = Add7()
 ```
 
-Fonction tabulaire ne acceptant aucun argument :
+Fonction tabulaire qui ne prend aucun argument :
 
 ```kusto
 let tenNumbers = () { range x from 1 to 10 step 1};
@@ -95,7 +95,7 @@ tenNumbers
 | extend x_plus_7 = x + 7
 ```
 
-Une fonction tabulaire acceptant une entrée tabulaire et une entrée scalaire :
+Fonction tabulaire qui prend à la fois une entrée tabulaire et une entrée scalaire :
 
 ```kusto
 let MyFilter = (T:(x:long), v:long) {
@@ -109,8 +109,8 @@ MyFilter((range x from 1 to 10 step 1), 9)
 |9|
 |10|
 
-Fonction tabulaire qui utilise une entrée tabulaire sans colonne spécifiée.
-Une table peut être transmise à une fonction, et aucune colonne de table ne peut être référencée à l’intérieur de la fonction.
+Fonction tabulaire qui utilise une entrée tabulaire sans qu'aucune colonne ne soit spécifiée.
+Une table peut être transmise à une fonction, et aucune colonne de table ne peut être référencée à l'intérieur de la fonction.
 
 ```kusto
 let MyDistinct = (T:(*)) {
@@ -125,20 +125,20 @@ MyDistinct((range x from 1 to 3 step 1))
 |2|
 |3|
 
-## <a name="declaring-user-defined-functions"></a>Déclaration de fonctions définies par l’utilisateur
+## <a name="declaring-user-defined-functions"></a>Déclaration de fonctions définies par l'utilisateur
 
-La déclaration d’une fonction définie par l’utilisateur fournit les éléments suivants :
+La déclaration d'une fonction définie par l'utilisateur fournit ce qui suit :
 
 * **Nom** de la fonction
-* **Schéma** de fonction (paramètres qu’il accepte, le cas échéant)
+* **Schéma** de la fonction (paramètres qu'elle accepte, le cas échéant)
 * **Corps** de la fonction
 
 > [!Note]
-> La surcharge des fonctions n’est pas prise en charge. Vous ne pouvez pas créer plusieurs fonctions avec le même nom et des schémas d’entrée différents.
+> La surcharge des fonctions n'est pas prise en charge. Vous ne pouvez pas créer plusieurs fonctions avec le même nom et des schémas d'entrée différents.
 
 > [!TIP]
-> Les fonctions lambda n’ont pas de nom et sont liées à un nom à l’aide d’une [instruction Let](../letstatement.md). Par conséquent, ils peuvent être considérés comme des fonctions stockées définies par l’utilisateur.
-> Exemple : déclaration pour une fonction lambda qui accepte deux arguments (une `string` appelée `s` et une `long` appelée `i` ). Elle retourne le produit de la première (après l’avoir convertie en nombre) et la seconde. Le lambda est lié au nom `f` :
+> Les fonctions lambda n'ont pas de nom, et sont liées à un nom au moyen d'une [instruction let](../letstatement.md). Elles peuvent donc être considérées comme des fonctions stockées définies par l'utilisateur.
+> Exemple : déclaration d'une fonction lambda qui accepte deux arguments (un argument `string` appelé `s` et un argument `long` appelé `i`). Elle renvoie le produit du premier (après l'avoir converti en nombre) et du second. La fonction lambda est liée au nom `f` :
 
 ```kusto
 let f=(s:string, i:long) {
@@ -146,20 +146,20 @@ let f=(s:string, i:long) {
 };
 ```
 
-Le **corps** de la fonction comprend les éléments suivants :
+Le **corps** de la fonction comprend ce qui suit :
 
-* Exactement une expression, qui fournit la valeur de retour de la fonction (valeur scalaire ou tabulaire).
-* Tout nombre (zéro ou plus) des [instructions Let](../letstatement.md), dont la portée est celle du corps de la fonction. S’il est spécifié, les instructions Let doivent précéder l’expression définissant la valeur de retour de la fonction.
-* Tout nombre (zéro ou plus) d' [instructions de paramètres de requête](../queryparametersstatement.md), qui déclarent des paramètres de requête utilisés par la fonction. S’ils sont spécifiés, ils doivent précéder l’expression définissant la valeur de retour de la fonction.
+* Une seule expression, qui fournit la valeur renvoyée de la fonction (valeur scalaire ou tabulaire).
+* Un certain nombre (zéro ou plus) d'[instructions let](../letstatement.md), dont l'étendue est celle du corps de la fonction. Le cas échéant, les instructions let doivent précéder l'expression définissant la valeur renvoyée de la fonction.
+* Un certain nombre (zéro ou plus) d'[instructions de déclaration des paramètres de requête](../queryparametersstatement.md), qui déclarent les paramètres de requête utilisés par la fonction. Le cas échéant, elles doivent précéder l'expression définissant la valeur renvoyée de la fonction.
 
 > [!NOTE]
-> D’autres types d' [instructions de requête](../statements.md) prises en charge au niveau supérieur de la requête ne sont pas pris en charge dans le corps d’une fonction.
+> D'autres types d'[instructions de requête](../statements.md) pris en charge au « niveau supérieur » de la requête ne sont pas pris en charge dans le corps d'une fonction.
 
-### <a name="examples-of-user-defined-functions"></a>Exemples de fonctions définies par l’utilisateur 
+### <a name="examples-of-user-defined-functions"></a>Exemples de fonctions définies par l'utilisateur 
 
-**Fonction définie par l’utilisateur qui utilise une instruction Let**
+**Fonction définie par l'utilisateur qui utilise une instruction let**
 
-L’exemple suivant lie le nom `Test` à une fonction définie par l’utilisateur (lambda) qui utilise trois instructions Let. La sortie est la `70` suivante :
+L'exemple suivant lie le nom `Test` à une fonction définie par l'utilisateur (lambda) qui utilise trois instructions let. La sortie est `70` :
 
 ```kusto
 let Test1 = (id: int) {
@@ -175,9 +175,9 @@ range x from 1 to Test1(10) step 1
 | count
 ```
 
-**Fonction définie par l’utilisateur qui définit une valeur par défaut pour un paramètre**
+**Fonction définie par l'utilisateur qui définit une valeur par défaut pour un paramètre**
 
-L’exemple suivant montre une fonction qui accepte trois arguments. Les deux derniers ont une valeur par défaut et ne doivent pas être présents sur le site d’appel.
+L'exemple suivant illustre une fonction qui accepte trois arguments. Les deux derniers comportent une valeur par défaut et ne doivent pas nécessairement être présents sur le site d'appel.
 
 ```kusto
 let f = (a:long, b:string = "b.default", c:long = 0) {
@@ -186,9 +186,9 @@ let f = (a:long, b:string = "b.default", c:long = 0) {
 print f(12, c=7) // Returns "12-b.default-7"
 ```
 
-## <a name="invoking-a-user-defined-function"></a>Appel d’une fonction définie par l’utilisateur
+## <a name="invoking-a-user-defined-function"></a>Appel d'une fonction définie par l'utilisateur
 
-Une fonction définie par l’utilisateur qui ne prend pas d’arguments peut être appelée par son nom ou par son nom et par une liste d’arguments vide entre parenthèses.
+Une fonction définie par l'utilisateur qui ne prend aucun argument peut être appelée soit par son nom, soit par son nom et une liste d'arguments vide entre parenthèses.
 
 Exemples :
 
@@ -215,7 +215,7 @@ let T=(){
 union T, (T())
 ```
 
-Une fonction définie par l’utilisateur qui accepte un ou plusieurs arguments scalaires peut être appelée à l’aide du nom de table et d’une liste d’arguments concrets entre parenthèses :
+Une fonction définie par l'utilisateur qui prend un ou plusieurs arguments scalaires peut être appelée en utilisant le nom de la table et une liste d'arguments concrets entre parenthèses :
 
 ```kusto
 let f=(a:string, b:string) {
@@ -224,7 +224,7 @@ let f=(a:string, b:string) {
 print f("hello", "world")
 ```
 
-Une fonction définie par l’utilisateur qui accepte un ou plusieurs arguments de table (et un nombre quelconque d’arguments scalaires) peut être appelée à l’aide du nom de table et d’une liste d’arguments concrets entre parenthèses :
+Une fonction définie par l'utilisateur qui prend un ou plusieurs arguments de table (et un nombre quelconque d'arguments scalaires) peut être appelée en utilisant le nom de la table et une liste d'arguments concrets entre parenthèses :
 
 ```kusto
 let MyFilter = (T:(x:long), v:long) {
@@ -233,7 +233,7 @@ let MyFilter = (T:(x:long), v:long) {
 MyFilter((range x from 1 to 10 step 1), 9)
 ```
 
-Vous pouvez également utiliser l’opérateur `invoke` pour appeler une fonction définie par l’utilisateur qui prend un ou plusieurs arguments de table et retourne une table. Cette fonction est utile lorsque le premier argument de table concret de la fonction est la source de l' `invoke` opérateur :
+Vous pouvez également utiliser l'opérateur `invoke` pour appeler une fonction définie par l'utilisateur qui prend un ou plusieurs arguments de table et renvoie une table. Cette fonction est utile lorsque le premier argument de table concret de la fonction est la source de l'opérateur `invoke` :
 
 ```kusto
 let append_to_column_a=(T:(a:string), what:string) {
@@ -247,14 +247,14 @@ datatable (a:string) ["sad", "really", "sad"]
 
 Les fonctions peuvent fournir des valeurs par défaut à certains de leurs paramètres dans les conditions suivantes :
 
-* Les valeurs par défaut peuvent être fournies uniquement pour les paramètres scalaires.
-* Les valeurs par défaut sont toujours des littéraux (constantes). Ils ne peuvent pas être des calculs arbitraires.
-* Les paramètres sans valeur par défaut précèdent toujours les paramètres qui ont une valeur par défaut.
-* Les appelants doivent fournir la valeur de tous les paramètres sans valeurs par défaut organisées dans le même ordre que la déclaration de la fonction.
-* Les appelants n’ont pas besoin de fournir la valeur des paramètres avec des valeurs par défaut, mais cela peut le faire.
-* Les appelants peuvent fournir des arguments dans un ordre qui ne correspond pas à l’ordre des paramètres. Dans ce cas, ils doivent nommer leurs arguments.
+* Des valeurs par défaut ne peuvent être fournies que pour les paramètres scalaires.
+* Les valeurs par défaut sont toujours des littéraux (constantes). Il ne peut pas s'agir de calculs arbitraires.
+* Les paramètres sans valeur par défaut précèdent toujours les paramètres qui en ont une.
+* Les appelants doivent fournir la valeur de tous les paramètres sans valeur par défaut, dans le même ordre que dans la déclaration de fonction.
+* Les appelants ne sont pas tenus de fournir la valeur des paramètres dotés d'une valeur par défaut, mais ils peuvent le faire.
+* Les appelants peuvent fournir des arguments dans un ordre qui ne correspond pas à celui des paramètres. Dans ce cas, ils doivent nommer leurs arguments.
 
-L’exemple suivant retourne une table avec deux enregistrements identiques. Dans le premier appel de `f` , les arguments sont complètement « brouillés », afin que chacun d’eux soit explicitement affecté d’un nom :
+L'exemple suivant renvoie une table comportant deux enregistrements identiques. Lors du premier appel de `f`, les arguments sont complètement « brouillés », de sorte que chacun reçoit explicitement un nom :
 
 ```kusto
 let f = (a:long, b:string = "b.default", c:long = 0) {
@@ -267,13 +267,13 @@ union
 
 |x|
 |---|
-|12-b. par défaut-7|
-|12-b. par défaut-7|
+|12-b.default-7|
+|12-b.default-7|
 
-## <a name="view-functions"></a>Afficher les fonctions
+## <a name="view-functions"></a>Fonctions View
 
-Une fonction définie par l’utilisateur qui ne prend pas d’arguments et retourne une expression tabulaire peut être marquée en tant que **vue**. Le marquage d’une fonction définie par l’utilisateur en tant que vue signifie que la fonction se comporte comme une table chaque fois que la résolution de noms de table de caractères génériques est effectuée.
-L’exemple suivant montre deux fonctions définies par l’utilisateur, `T_view` et `T_notview` , et montre comment seule la première est résolue par la référence de caractère générique dans le `union` :
+Une fonction définie par l'utilisateur qui ne prend aucun argument et renvoie une expression tabulaire peut être marquée comme **view**. Cela signifie que la fonction se comporte comme une table chaque fois que la résolution de noms de la table des caractères génériques est exécutée.
+L'exemple suivant illustre deux fonctions définies par l'utilisateur, `T_view` et `T_notview`, et montre que seule la première est résolue par le caractère générique dans `union` :
 
 ```kusto
 let T_view = view () { print x=1 };
@@ -285,12 +285,12 @@ union T*
 
 Les restrictions suivantes s’appliquent :
 
-* Les fonctions définies par l’utilisateur ne peuvent pas passer dans les informations d’appel [toscalar ()](../toscalarfunction.md) qui dépendent du contexte de ligne dans lequel la fonction est appelée.
-* Les fonctions définies par l’utilisateur qui retournent une expression tabulaire ne peuvent pas être appelées avec un argument qui varie en fonction du contexte de ligne.
-* Une fonction acceptant au moins une entrée tabulaire ne peut pas être appelée sur un cluster distant.
+* Les fonctions définies par l'utilisateur ne peuvent pas être transmises dans les informations d'appel [toscalar ()](../toscalarfunction.md) qui dépendent du contexte de ligne dans lequel la fonction est appelée.
+* Les fonctions définies par l'utilisateur qui renvoient une expression tabulaire ne peuvent pas être appelées avec un argument qui varie en fonction du contexte de ligne.
+* Une fonction prenant au moins une entrée tabulaire ne peut pas être appelée sur un cluster distant.
 * Une fonction scalaire ne peut pas être appelée sur un cluster distant.
 
-La seule place qu’une fonction définie par l’utilisateur peut être appelée avec un argument qui varie avec le contexte de ligne est lorsque la fonction définie par l’utilisateur est composée uniquement de fonctions scalaires et n’utilise pas `toscalar()` .
+Une fonction définie par l'utilisateur ne peut être appelée avec un argument qui varie selon le contexte de ligne que lorsqu'elle est uniquement composée de fonctions scalaires et n'utilise pas `toscalar()`.
 
 **Exemple de restriction 1**
 
@@ -331,10 +331,10 @@ let f = (hours:long) { range x from 1 to hours step 1 | summarize make_list(x) }
 Table2 | where Column != 123 | project d = f(Column)
 ```
 
-## <a name="features-that-are-currently-unsupported-by-user-defined-functions"></a>Fonctionnalités actuellement non prises en charge par les fonctions définies par l’utilisateur
+## <a name="features-that-are-currently-unsupported-by-user-defined-functions"></a>Fonctionnalités actuellement non prises en charge par les fonctions définies par l'utilisateur
 
-À des fins d’exhaustivité, voici quelques-unes des fonctionnalités couramment demandées pour les fonctions définies par l’utilisateur qui ne sont actuellement pas prises en charge :
+Pour être complet, voici quelques fonctionnalités couramment demandées pour les fonctions définies par l'utilisateur mais qui ne sont actuellement pas prises en charge :
 
-1.  Surcharge de fonction : il n’existe actuellement aucun moyen de surcharger une fonction (par exemple, créer plusieurs fonctions avec le même nom et un schéma d’entrée différent).
+1.  Surcharge de fonction : il est actuellement impossible de surcharger une fonction (c'est-à-dire de créer plusieurs fonctions avec le même nom et un schéma d'entrée différent).
 
-2.  Valeurs par défaut : la valeur par défaut d’un paramètre scalaire pour une fonction doit être un littéral scalaire (constante). En outre, les fonctions stockées ne peuvent pas avoir une valeur par défaut de type `dynamic` .
+2.  Valeurs par défaut : la valeur par défaut d'un paramètre scalaire relatif à une fonction doit être un littéral scalaire (constante). De plus, les fonctions stockées ne peuvent pas comporter de valeur par défaut de type `dynamic`.

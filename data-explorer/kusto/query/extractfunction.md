@@ -1,6 +1,6 @@
 ---
-title: Extract ()-Azure Explorateur de données | Microsoft Docs
-description: Cet article décrit Extract () dans Azure Explorateur de données.
+title: extract() – Azure Data Explorer | Microsoft Docs
+description: Cet article décrit la fonction extract() dans Azure Data Explorer.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,17 +10,17 @@ ms.topic: reference
 ms.date: 02/13/2020
 ms.localizationpriority: high
 ms.openlocfilehash: 483c926d60abef120de2a355a6fa040b9608cd7a
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
-ms.translationtype: MT
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95513044"
 ---
 # <a name="extract"></a>extract()
 
 Obtient une correspondance pour une [expression régulière](./re2.md) à partir d’une chaîne de texte. 
 
-Si vous le souhaitez, convertissez la sous-chaîne extraite dans le type indiqué.
+Éventuellement, convertit la sous-chaîne extraite dans le type indiqué.
 
 ```kusto
 extract("x=([0-9.]+)", 1, "hello x=45.6|wo") == "45.6"
@@ -28,14 +28,14 @@ extract("x=([0-9.]+)", 1, "hello x=45.6|wo") == "45.6"
 
 ## <a name="syntax"></a>Syntaxe
 
-`extract(`*expression régulière* `,` *captureGroup* `,` *texte* [ `,` *typeLiteral*]`)`
+`extract(`*regex*`,` *captureGroup*`,` *text* [`,` *typeLiteral*]`)`
 
 ## <a name="arguments"></a>Arguments
 
-* *Regex*: [expression régulière](./re2.md).
-* *captureGroup*: constante positive `int` indiquant le groupe de capture à extraire. Les valeurs sont 0 pour la correspondance entière, 1 pour la valeur mise en correspondance par la première '('parenthèse')' dans l’expression régulière, 2 ou plus pour les parenthèses suivantes.
-* *Text*: `string` à rechercher.
-* *typeLiteral*: littéral de type facultatif (par exemple, `typeof(long)` ). Si elle est fournie, la sous-chaîne extraite est convertie dans ce type. 
+* *regex* : [Expression régulière](./re2.md).
+* *captureGroup*: constante `int` positive identifiant le groupe de capture à extraire. Les valeurs sont 0 pour la correspondance entière, 1 pour la valeur mise en correspondance par la première '('parenthèse')' dans l’expression régulière, 2 ou plus pour les parenthèses suivantes.
+* *text* : `string` à rechercher.
+* *typeLiteral* : littéral de type facultatif (par exemple, `typeof(long)`). Si elle est fournie, la sous-chaîne extraite est convertie dans ce type. 
 
 ## <a name="returns"></a>Retours
 

@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: quickstart
 ms.date: 07/22/2019
 ms.localizationpriority: high
-ms.openlocfilehash: 44c2a5adf46d8c136675aa70a45dc89ed60c4cc8
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
+ms.openlocfilehash: 02e746a3ce929bab9883f1b4faafe7a6fb1ce953
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/24/2020
-ms.locfileid: "95512738"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "95783265"
 ---
 # <a name="quickstart-create-an-azure-data-explorer-cluster-and-database"></a>Démarrage rapide : Créer un cluster et une base de données Azure Data Explorer
 
@@ -66,6 +66,11 @@ Créez un cluster Azure Data Explorer avec un ensemble défini de ressources de 
 1. Une fois le déploiement terminé, sélectionnez **Accéder à la ressource**.
 
     ![Accéder à la ressource](media/create-cluster-database-portal/notification-resource.png)
+
+> [!NOTE]
+> Si le déploiement échoue avec l'erreur « SubscriptionNotRegistered », recommencez l'opération. 
+> 
+> Le déploiement échoue lorsque le fournisseur de ressources Kusto n'est pas inscrit à l'abonnement décrit dans [Fournisseurs et types de ressources Azure](/azure/azure-resource-manager/management/resource-providers-and-types). Lorsque le déploiement échoue, le fournisseur de ressources Kusto s'inscrit à l'abonnement ; la nouvelle tentative peut alors aboutir.
 
 ## <a name="create-a-database"></a>Création d'une base de données
 

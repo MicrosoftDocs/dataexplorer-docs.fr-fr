@@ -1,6 +1,6 @@
 ---
-title: opérateur de jointure-Azure Explorateur de données
-description: Cet article décrit l’opérateur de jointure dans Azure Explorateur de données.
+title: Opérateur de jointure - Azure Data Explorer
+description: Cet article décrit l'opérateur de jointure dans Azure Data Explorer.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -12,15 +12,15 @@ ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
 ms.openlocfilehash: b90e5f1c95ec75a946490cd75b5dd89ad2cb1aba
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
-ms.translationtype: MT
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95513333"
 ---
-# <a name="join-operator"></a>opérateur join
+# <a name="join-operator"></a>opérateur de jointure
 
-Fusionnez les lignes de deux tables pour former une nouvelle table en faisant correspondre les valeurs des colonnes spécifiées de chaque table.
+Fusionnez les lignes de deux tables pour former une nouvelle table en mettant en correspondance les valeurs des colonnes spécifiées de chaque table.
 
 ```kusto
 Table1 | join (Table2) on CommonColumn, $left.Col1 == $right.Col2
@@ -28,35 +28,35 @@ Table1 | join (Table2) on CommonColumn, $left.Col1 == $right.Col2
 
 ## <a name="syntax"></a>Syntaxe
 
-*LeftTable* `|` `join` [*JoinParameters*] `(` *RightTable* `)` `on` *attributs*
+*LeftTable* `|` `join` [*JoinParameters*] `(` *RightTable* `)` `on` *Attributes*
 
 ## <a name="arguments"></a>Arguments
 
-* *LeftTable*: table de **gauche** ou expression tabulaire, parfois appelée table **externe** , dont les lignes doivent être fusionnées. Désigné comme `$left` .
+* *LeftTable* : table ou expression tabulaire de **gauche**, parfois appelée table **externe**, dont les lignes doivent être fusionnées. Désignée sous la forme suivante : `$left`.
 
-* *RightTable*: table ou expression tabulaire **appropriée** , parfois appelée table **interne** , dont les lignes doivent être fusionnées. Désigné comme `$right` .
+* *RightTable* : table ou expression tabulaire de **droite**, parfois appelée table **interne**, dont les lignes doivent être fusionnées. Désignée sous la forme suivante : `$right`.
 
-* *Attributs*: une ou plusieurs **règles** séparées par des virgules qui décrivent comment les lignes de *LeftTable* sont mises en correspondance avec les lignes de *RightTable*. Plusieurs règles sont évaluées à l’aide de l' `and` opérateur logique.
+* *Attributes* : une ou plusieurs **règles** séparées par des virgules qui décrivent comment les lignes de *LeftTable* sont mises en correspondance avec les lignes de *RightTable*. Les règles multiples sont évaluées à l'aide de l'opérateur logique `and`.
 
-  Une **règle** peut être l’une des suivantes :
+  Une **règle** peut être d'un des types suivants :
 
   |Type de règle        |Syntaxe          |Predicate    |
   |-----------------|--------------|-------------------------|
-  |Égalité par nom |*ColumnName*    |`where`*LeftTable*. *ColumnName* `==` *RightTable*. *ColumnName*|
-  |Égalité par valeur|`$left.`*LeftColumn* `==` `$right.` *Rightcolumn*|`where``$left.` *LeftColumn* `==` LeftColumn `$right.` *Rightcolumn*       |
+  |Égalité par nom |*ColumnName*    |`where` *LeftTable*.*ColumnName* `==` *RightTable*.*ColumnName*|
+  |Égalité par valeur|`$left.`*LeftColumn* `==` `$right.`*RightColumn*|`where` `$left.`*LeftColumn* `==` `$right.`*RightColumn*       |
 
     > [!NOTE]
-    > Pour « égalité par valeur », les noms de colonnes *doivent* être qualifiés par la table de propriétaire applicable dénotée par les `$left` `$right` notations et.
+    > Pour l'égalité par valeur, les noms des colonnes *doivent* être qualifiés auprès de la table propriétaire applicable désignée par les notations `$left` et `$right`.
 
-* *JoinParameters*: zéro, un ou plusieurs paramètres séparés par des espaces sous la forme d’une valeur de *nom* `=` *Value* qui contrôlent le comportement de l’opération de correspondance de ligne et du plan d’exécution. Les paramètres suivants sont pris en charge :
+* *JoinParameters* : zéro ou plusieurs paramètres séparés par des espaces, qui se présentent sous la forme *Nom* `=` *Valeur* et qui contrôlent le comportement de l'opération de correspondance des lignes et du plan d'exécution. Les paramètres suivants sont pris en charge :
 
     ::: zone pivot="azuredataexplorer"
 
     |Nom des paramètres           |Valeurs                                        |Description                                  |
     |---------------|----------------------------------------------|---------------------------------------------|
-    |`kind`         |Variantes de jointure|Voir [jointure de versions](#join-flavors)|                                             |
-    |`hint.remote`  |`auto`, `left`, `local`, `right`              |Voir [jointure entre clusters](joincrosscluster.md)|
-    |`hint.strategy`|Indicateurs d’exécution                               |Voir les [indicateurs de jointure](#join-hints)                |
+    |`kind`         |Saveurs de jointure|Voir [Saveurs de jointure](#join-flavors)|                                             |
+    |`hint.remote`  |`auto`, `left`, `local`, `right`              |Voir [Jointure entre clusters](joincrosscluster.md)|
+    |`hint.strategy`|Indicateurs d'exécution                               |Voir [Indicateurs de jointure](#join-hints)                |
 
     ::: zone-end
 
@@ -64,47 +64,47 @@ Table1 | join (Table2) on CommonColumn, $left.Col1 == $right.Col2
 
     |Nom           |Valeurs                                        |Description                                  |
     |---------------|----------------------------------------------|---------------------------------------------|
-    |`kind`         |Variantes de jointure|Voir [jointure de versions](#join-flavors)|                                             |
+    |`kind`         |Saveurs de jointure|Voir [Saveurs de jointure](#join-flavors)|                                             |
     |`hint.remote`  |`auto`, `left`, `local`, `right`              |                                             |
-    |`hint.strategy`|Indicateurs d’exécution                               |Voir les [indicateurs de jointure](#join-hints)                |
+    |`hint.strategy`|Indicateurs d'exécution                               |Voir [Indicateurs de jointure](#join-hints)                |
 
     ::: zone-end
 
 > [!WARNING]
-> Si `kind` n’est pas spécifié, la version de jointure par défaut est `innerunique` . Cela diffère des autres produits d’analyse ayant `inner` comme version par défaut.  Consultez [jointure-versions](#join-flavors) pour comprendre les différences et vérifier que la requête produit les résultats souhaités.
+> Si `kind` n'est pas spécifié, la saveur de jointure par défaut est `innerunique`. Il s'agit d'une différence notable par rapport à certains autres produits d'analytique dont la saveur par défaut est `inner`.  Consultez [Saveurs de jointure](#join-flavors) pour identifier les différences et vérifier que la requête produit les résultats attendus.
 
 ## <a name="returns"></a>Retours
 
-**Le schéma de sortie dépend de la version de jointure :**
+**Le schéma de sortie dépend de la saveur de jointure :**
 
-| Version de jointure | Schéma de sortie |
+| Saveur de jointure | Schéma de sortie |
 |---|---|
-|`kind=leftanti`, `kind=leftsemi`| La table de résultats contient uniquement des colonnes du côté gauche.|
-| `kind=rightanti`, `kind=rightsemi` | La table de résultats contient uniquement des colonnes du côté droit.|
+|`kind=leftanti`, `kind=leftsemi`| La table des résultats contient uniquement les colonnes du côté gauche.|
+| `kind=rightanti`, `kind=rightsemi` | La table des résultats contient uniquement les colonnes du côté droit.|
 |  `kind=innerunique`, `kind=inner`, `kind=leftouter`, `kind=rightouter`, `kind=fullouter` |  Une colonne pour chaque colonne dans chacune des deux tables, y compris les clés correspondantes. Les colonnes du côté droit seront automatiquement renommées en cas de conflit de nom. |
    
-**Les enregistrements de sortie dépendent de la version de jointure :**
+**Les enregistrements de sortie dépendent de la saveur de jointure :**
 
    > [!NOTE]
    > Si plusieurs lignes comportent les mêmes valeurs pour ces champs, des lignes s’affichent pour toutes les combinaisons.
    > Une correspondance est une ligne sélectionnée dans une table, dont tous les champs `on` ont la même valeur qu’une ligne dans l’autre table.
 
-| Version de jointure | Enregistrements de sortie |
+| Saveur de jointure | Enregistrements de sortie |
 |---|---|
-|`kind=leftanti`, `kind=leftantisemi`| Retourne tous les enregistrements du côté gauche qui n’ont pas de correspondances de droite|
-| `kind=rightanti`, `kind=rightantisemi`| Retourne tous les enregistrements du côté droit qui n’ont pas de correspondances à partir de la gauche.|
-| `kind` non spécifié `kind=innerunique`| Une seule ligne du côté gauche correspond à chaque valeur de la clé `on` . La sortie contient une ligne pour chaque correspondance de cette ligne avec des lignes du côté droit.|
-| `kind=leftsemi`| Retourne tous les enregistrements du côté gauche qui ont des correspondances à partir de la droite. |
-| `kind=rightsemi`| Retourne tous les enregistrements du côté droit qui ont des correspondances à partir de la gauche. |
-|`kind=inner`| Contient une ligne dans la sortie pour chaque combinaison de lignes correspondantes, de gauche à droite. |
-| `kind=leftouter` (ou `kind=rightouter` ou `kind=fullouter`)| Contient une ligne pour chaque ligne à gauche et à droite, même si elle n’a pas de correspondance. Les cellules de sortie sans correspondance contiennent des valeurs NULL. |
+|`kind=leftanti`, `kind=leftantisemi`| Renvoie tous les enregistrements du côté gauche qui n'ont pas de correspondance du côté droit.|
+| `kind=rightanti`, `kind=rightantisemi`| Renvoie tous les enregistrements du côté droit qui n'ont pas de correspondance du côté gauche.|
+| `kind` non spécifié, `kind=innerunique`| Une seule ligne du côté gauche correspond à chaque valeur de la clé `on` . La sortie contient une ligne pour chaque correspondance de cette ligne avec des lignes du côté droit.|
+| `kind=leftsemi`| Renvoie tous les enregistrements du côté gauche qui ont des correspondances du côté droit. |
+| `kind=rightsemi`| Renvoie tous les enregistrements du côté droit qui ont des correspondances du côté gauche. |
+|`kind=inner`| Contient une ligne pour chaque combinaison de lignes correspondantes des côtés gauche et droit. |
+| `kind=leftouter` (ou `kind=rightouter` ou `kind=fullouter`)| Contient une ligne pour chaque ligne de gauche et de droite, même si elle n'a pas de correspondance. Les cellules de sortie sans correspondance contiennent des valeurs null. |
 
 > [!TIP]
-> Pour de meilleures performances, si une table est toujours plus petite que l’autre, utilisez-la comme côté gauche (dirigé) de la jointure.
+> Pour des performances optimales, si une table est toujours plus petite que l'autre, utilisez-la pour le côté gauche de la jointure.
 
 ## <a name="example"></a>Exemple
 
-Obtenez des activités étendues d’un `login` que certaines entrées marquent comme le début et la fin d’une activité.
+Obtenez des activités étendues à partir d'un `login` que certaines entrées marquent comme le début et la fin d'une activité.
 
 ```kusto
 let Events = MyLogTable | where type=="Event" ;
@@ -130,25 +130,25 @@ Events
 | project City, ActivityId, StartTime, StopTime, Duration = StopTime - StartTime
 ```
 
-## <a name="join-flavors"></a>Variantes de jointure
+## <a name="join-flavors"></a>Saveurs de jointure
 
-La version exacte de l’opérateur de jointure est spécifiée avec le mot clé *Kind* . Les versions suivantes de l’opérateur de jointure sont prises en charge :
+La saveur exacte de l'opérateur de jointure est spécifiée avec le mot clé *kind* (type). Les saveurs suivantes de l'opérateur de jointure sont prises en charge :
 
-|Type de jointure/version|Description|
+|Type/saveur de jointure|Description|
 |--|--|
-|[`innerunique`](#default-join-flavor) (ou vide par défaut)|Jointure interne avec déduplication côté gauche|
+|[`innerunique`](#default-join-flavor) (ou vide par défaut)|Jointure interne avec déduplication du côté gauche|
 |[`inner`](#inner-join-flavor)|Jointure interne standard|
 |[`leftouter`](#left-outer-join-flavor)|Jointure externe gauche|
 |[`rightouter`](#right-outer-join-flavor)|Jointure externe droite|
 |[`fullouter`](#full-outer-join-flavor)|Jointure externe entière|
 |[`leftanti`](#left-anti-join-flavor), [`anti`](#left-anti-join-flavor) ou [`leftantisemi`](#left-anti-join-flavor)|Jointure anti gauche|
-|[`rightanti`](#right-anti-join-flavor) ni [`rightantisemi`](#right-anti-join-flavor)|Jointure anti droite|
+|[`rightanti`](#right-anti-join-flavor) ou [`rightantisemi`](#right-anti-join-flavor)|Jointure anti droite|
 |[`leftsemi`](#left-semi-join-flavor)|Semi-jointure gauche|
 |[`rightsemi`](#right-semi-join-flavor)|Semi-jointure droite|
 
-### <a name="default-join-flavor"></a>Version de jointure par défaut
+### <a name="default-join-flavor"></a>Saveur de jointure par défaut
 
-La version de jointure par défaut est une jointure interne avec déduplication côté gauche. L’implémentation de la jointure par défaut est utile dans les scénarios d’analyse de journal/suivi typiques où vous souhaitez mettre en corrélation deux événements, chacun correspondant à un critère de filtrage, sous le même ID de corrélation. Vous souhaitez récupérer toutes les apparences du phénomène et ignorer les apparences multiples des enregistrements de suivi de contribution.
+La saveur de jointure par défaut est une jointure interne avec déduplication du côté gauche. L'implémentation de la jointure par défaut est utile dans les scénarios classiques d'analyse de journal/suivi dans lesquels vous souhaitez corréler deux événements, chacun correspondant à un critère de filtrage, sous le même ID de corrélation. Vous souhaitez récupérer toutes les apparitions du phénomène et ignorer les apparitions multiples des enregistrements de suivi contributifs.
 
 ``` 
 X | join Y on Key
@@ -156,7 +156,7 @@ X | join Y on Key
 X | join kind=innerunique Y on Key
 ```
 
-Les deux exemples de tables suivants sont utilisés pour expliquer le fonctionnement de la jointure.
+Les deux exemples de tables suivants expliquent le fonctionnement de la jointure.
 
 **Table X**
 
@@ -176,11 +176,11 @@ Les deux exemples de tables suivants sont utilisés pour expliquer le fonctionne
 |c |30
 |d |40
 
-La jointure par défaut effectue une jointure interne après la déduplication du côté gauche de la clé de jointure (la déduplication conserve le premier enregistrement).
+La jointure par défaut effectue une jointure interne après déduplication du côté gauche sur la clé de jointure (la déduplication conserve le premier enregistrement).
 
-À partir de cette instruction : `X | join Y on Key`
+Soit l'instruction suivante : `X | join Y on Key`
 
-le côté gauche effectif de la jointure, table X après déduplication, est le suivant :
+Le côté gauche de la jointure (table X après déduplication) serait :
 
 |Clé |Value1
 |---|---
@@ -208,18 +208,18 @@ let Y = datatable(Key:string, Value2:long)
 X | join Y on Key
 ```
 
-|Clé|Value1|Key1|Value2|
+|Clé|Value1|Clé1|Value2|
 |---|---|---|---|
 |b|2|b|10|
 |c|4|c|20|
 |c|4|c|30|
 
 > [!NOTE]
-> Les clés « a » et « d » n’apparaissent pas dans la sortie, car il n’y avait aucune clé correspondante sur les côtés gauche et droit.
+> Les clés « a » et « d » n'apparaissent pas dans la sortie, car elles ne figuraient pas à la fois du côté gauche et du côté droit.
 
-### <a name="inner-join-flavor"></a>Version de jointure interne
+### <a name="inner-join-flavor"></a>Saveur de jointure interne
 
-La fonction de jointure interne est semblable à la jointure interne standard à partir de l’environnement SQL. Un enregistrement de sortie est généré chaque fois qu’un enregistrement sur le côté gauche a la même clé de jointure que l’enregistrement situé à droite.
+La fonction inner-join est semblable à la fonction inner-join standard de l'environnement SQL. Un enregistrement de sortie est généré chaque fois qu'un enregistrement du côté gauche possède la même clé de jointure que l'enregistrement du côté droit.
 
 ```kusto
 let X = datatable(Key:string, Value1:long)
@@ -239,7 +239,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=inner Y on Key
 ```
 
-|Clé|Value1|Key1|Value2|
+|Clé|Value1|Clé1|Value2|
 |---|---|---|---|
 |b|3|b|10|
 |b|2|b|10|
@@ -247,17 +247,17 @@ X | join kind=inner Y on Key
 |c|4|c|30|
 
 > [!NOTE]
-> * (b, 10) du côté droit, a été joint deux fois : avec (b, 2) et (b, 3) sur la gauche.
-> * (c, 4) sur le côté gauche, a été joint deux fois : avec (c, 20) et (c, 30) à droite.
+> * (b,10) du côté droit, a été joint deux fois : avec (b,2) et (b,3) du côté gauche.
+> * (c,4) du côté gauche, a été joint deux fois : avec (c,20) et (c,30) du côté droit.
 
-### <a name="innerunique-join-flavor"></a>Innerunique : version de jointure
+### <a name="innerunique-join-flavor"></a>Saveur innerunique-join
  
-Utilisez la **version innerunique-Join** pour dédupliquer les clés du côté gauche. Le résultat sera une ligne dans la sortie de chaque combinaison de clés de gauche et de clé de droite dédupliquées.
+Utilisez la **saveur innerunique-join** pour dédupliquer des clés du côté gauche. Vous obtiendrez une ligne dans la sortie de chaque combinaison de clés gauches et droites dédupliquées.
 
 > [!NOTE]
-> la **version innerunique** peut générer deux sorties possibles et les deux sont correctes.
-Dans la première sortie, l’opérateur de jointure a sélectionné de façon aléatoire la première clé qui apparaît dans T1, avec la valeur « Val 1.1 » et le correspond aux clés T2.
-Dans la deuxième sortie, l’opérateur de jointure a sélectionné de manière aléatoire la deuxième clé qui apparaît dans T1, avec la valeur « Val 1.2 » et l’a mise en correspondance avec les clés T2.
+> La **saveur innerunique** peut générer deux sorties, et les deux sont correctes.
+Dans la première sortie, l'opérateur de jointure a sélectionné au hasard la première clé qui apparaît dans t1, avec la valeur « val1.1 », et l'a mise en correspondance avec les clés t2.
+Dans la deuxième sortie, l'opérateur de jointure a sélectionné au hasard la deuxième clé qui apparaît dans t1, avec la valeur « val1.2 », et l'a mise en correspondance avec les clés t2.
 
 ```kusto
 let t1 = datatable(key:long, value:string)  
@@ -278,8 +278,8 @@ on key
 
 |key|value|key1|valeur1|
 |---|---|---|---|
-|1|Val 1.1|1|Val 1.3|
-|1|Val 1.1|1|Val 1.4|
+|1|val1.1|1|val1.3|
+|1|val1.1|1|val1.4|
 
 ```kusto
 let t1 = datatable(key:long, value:string)  
@@ -300,14 +300,14 @@ on key
 
 |key|value|key1|valeur1|
 |---|---|---|---|
-|1|Val 1.2|1|Val 1.3|
-|1|Val 1.2|1|Val 1.4|
+|1|val1.2|1|val1.3|
+|1|val1.2|1|val1.4|
 
-* Kusto est optimisé pour pousser les filtres qui viennent après le `join` , vers le côté de jointure approprié, à gauche ou à droite, lorsque cela est possible.
+* Kusto est optimisé pour transmettre (push) les filtres qui suivent l'opérateur `join` vers le côté approprié de la jointure, à gauche ou à droite, lorsque cela est possible.
 
-* Parfois, la version utilisée est **innerunique** et le filtre est propagé sur le côté gauche de la jointure. La version est automatiquement propagée et les clés qui s’appliquent à ce filtre apparaissent toujours dans la sortie.
+* Parfois, la saveur utilisée est **innerunique** et le filtre est propagé vers le côté gauche de la jointure. La saveur est automatiquement propagée, et les clés qui s'appliquent à ce filtre apparaissent toujours dans la sortie.
     
-* Utilisez l’exemple ci-dessus et ajoutez un filtre `where value == "val1.2" ` . Il donne toujours le deuxième résultat et ne donne jamais le premier résultat pour les jeux de données :
+* Utilisez l'exemple ci-dessus et ajoutez un filtre `where value == "val1.2" `. Le deuxième résultat sera toujours fourni pour les jeux de données, mais jamais le premier :
 
 ```kusto
 let t1 = datatable(key:long, value:string)  
@@ -329,12 +329,12 @@ on key
 
 |key|value|key1|valeur1|
 |---|---|---|---|
-|1|Val 1.2|1|Val 1.3|
-|1|Val 1.2|1|Val 1.4|
+|1|val1.2|1|val1.3|
+|1|val1.2|1|val1.4|
 
-### <a name="left-outer-join-flavor"></a>Version Left externe-jointure
+### <a name="left-outer-join-flavor"></a>Saveur de jointure externe gauche
 
-Le résultat d’une jointure externe gauche pour les tables X et Y contient toujours tous les enregistrements de la table de gauche (X), même si la condition de jointure ne trouve pas d’enregistrement correspondant dans la table de droite (Y).
+Le résultat d'une jointure externe gauche pour les tables X et Y contient toujours l'ensemble des enregistrements de la table de gauche (X), même si la condition de jointure ne trouve pas d'enregistrements correspondants dans la table de droite (Y).
 
 ```kusto
 let X = datatable(Key:string, Value1:long)
@@ -354,7 +354,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=leftouter Y on Key
 ```
 
-|Clé|Value1|Key1|Value2|
+|Clé|Value1|Clé1|Value2|
 |---|---|---|---|
 |b|3|b|10|
 |b|2|b|10|
@@ -362,9 +362,9 @@ X | join kind=leftouter Y on Key
 |c|4|c|30|
 |a|1|||
 
-### <a name="right-outer-join-flavor"></a>Version de jointure externe droite
+### <a name="right-outer-join-flavor"></a>Saveur de jointure externe droite
 
-La version de jointure externe droite ressemble à la jointure externe gauche, mais le traitement des tables est inversé.
+La saveur de jointure externe droite est identique à celle de gauche, mais le traitement des tables est inversé.
 
 ```kusto
 let X = datatable(Key:string, Value1:long)
@@ -384,7 +384,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=rightouter Y on Key
 ```
 
-|Clé|Value1|Key1|Value2|
+|Clé|Value1|Clé1|Value2|
 |---|---|---|---|
 |b|3|b|10|
 |b|2|b|10|
@@ -392,9 +392,9 @@ X | join kind=rightouter Y on Key
 |c|4|c|30|
 |||d|40|
 
-### <a name="full-outer-join-flavor"></a>Version de jointure externe complète
+### <a name="full-outer-join-flavor"></a>Saveur de jointure externe complète
 
-Une jointure externe complète combine l’effet de l’application des jointures externes gauche et droite. Chaque fois que les enregistrements des tables jointes ne correspondent pas, le jeu de résultats contient des `null` valeurs pour chaque colonne de la table qui n’a pas de ligne correspondante. Pour les enregistrements qui ne correspondent pas, une seule ligne est produite dans le jeu de résultats, contenant les champs remplis par les deux tables.
+Une jointure externe complète combine l'effet de l'application de jointures externes gauche et droite. Lorsque les enregistrements des tables jointes ne correspondent pas, le jeu de résultats contient des valeurs `null` pour chaque colonne de la table à laquelle il manque une ligne correspondante. Pour les enregistrements qui correspondent, une seule ligne est générée dans le jeu de résultats, les champs étant renseignés à partir des deux tables.
 
 ```kusto
 let X = datatable(Key:string, Value1:long)
@@ -414,7 +414,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=fullouter Y on Key
 ```
 
-|Clé|Value1|Key1|Value2|
+|Clé|Value1|Clé1|Value2|
 |---|---|---|---|
 |b|3|b|10|
 |b|2|b|10|
@@ -423,9 +423,9 @@ X | join kind=fullouter Y on Key
 |||d|40|
 |a|1|||
 
-### <a name="left-anti-join-flavor"></a>Version anti-jointure gauche
+### <a name="left-anti-join-flavor"></a>Saveur de jointure anti gauche
 
-La fonction anti-jointure gauche retourne tous les enregistrements du côté gauche qui ne correspondent à aucun enregistrement du côté droit.
+Une jointure anti gauche renvoie tous les enregistrements du côté gauche qui ne correspondent à aucun enregistrement du côté droit.
 
 ```kusto
 let X = datatable(Key:string, Value1:long)
@@ -452,9 +452,9 @@ X | join kind=leftanti Y on Key
 > [!NOTE]
 > L’anti-jointure modélise la requête « NOT IN ».
 
-### <a name="right-anti-join-flavor"></a>Version anti-jointure droite
+### <a name="right-anti-join-flavor"></a>Saveur de jointure anti droite
 
-Right anti-Join retourne tous les enregistrements du côté droit qui ne correspondent à aucun enregistrement du côté gauche.
+Une jointure anti droite renvoie tous les enregistrements du côté droit qui ne correspondent à aucun enregistrement du côté gauche.
 
 ```kusto
 let X = datatable(Key:string, Value1:long)
@@ -481,9 +481,9 @@ X | join kind=rightanti Y on Key
 > [!NOTE]
 > L’anti-jointure modélise la requête « NOT IN ».
 
-### <a name="left-semi-join-flavor"></a>Version semi-jointure gauche
+### <a name="left-semi-join-flavor"></a>Saveur semi-jointure gauche
 
-La semi-jointure gauche retourne tous les enregistrements du côté gauche qui correspondent à un enregistrement du côté droit. Seules les colonnes du côté gauche sont retournées.
+Une semi-jointure gauche renvoie tous les enregistrements du côté gauche qui correspondent à un enregistrement du côté droit. Seules les colonnes du côté gauche sont renvoyées.
 
 ```kusto
 let X = datatable(Key:string, Value1:long)
@@ -509,9 +509,9 @@ X | join kind=leftsemi Y on Key
 |b|2|
 |c|4|
 
-### <a name="right-semi-join-flavor"></a>Version semi-jointure droite
+### <a name="right-semi-join-flavor"></a>Saveur semi-jointure droite
 
-La semi-jointure droite retourne tous les enregistrements du côté droit qui correspondent à un enregistrement du côté gauche. Seules les colonnes du côté droit sont retournées.
+Une semi-jointure droite renvoie tous les enregistrements du côté droit qui correspondent à un enregistrement du côté gauche. Seules les colonnes du côté droit sont renvoyées.
 
 ```kusto
 let X = datatable(Key:string, Value1:long)
@@ -539,18 +539,18 @@ X | join kind=rightsemi Y on Key
 
 ### <a name="cross-join"></a>Jointure croisée
 
-Kusto ne fournit pas en mode natif une version de jointure croisée. Vous ne pouvez pas marquer l’opérateur avec `kind=cross` .
-Pour simuler, utilisez une clé factice.
+Kusto ne fournit pas de saveur de jointure croisée en mode natif. Vous ne pouvez pas marquer l'opérateur avec `kind=cross`.
+Pour effectuer une simulation, utilisez une clé factice.
 
 `X | extend dummy=1 | join kind=inner (Y | extend dummy=1) on dummy`
 
 ## <a name="join-hints"></a>Indicateurs de jointure
 
-L' `join` opérateur prend en charge un certain nombre d’indicateurs qui contrôlent la façon dont une requête s’exécute.
-Ces indicateurs ne modifient pas la sémantique de `join` , mais peuvent affecter ses performances.
+L'opérateur `join` prend en charge un certain nombre d'indicateurs qui contrôlent la façon dont une requête s'exécute.
+Ces indicateurs ne modifient pas la sémantique de `join`, mais peuvent affecter ses performances.
 
-Les indicateurs de jointure sont expliqués dans les articles suivants :
+Les indicateurs de jointure sont décrits dans les articles suivants :
 
-* `hint.shufflekey=<key>`et `hint.strategy=shuffle`  -  [requête de lecture aléatoire](shufflequery.md)
+* `hint.shufflekey=<key>` et `hint.strategy=shuffle` - [lecture aléatoire](shufflequery.md)
 * `hint.strategy=broadcast` - [jonction de diffusion](broadcastjoin.md)
 * `hint.remote=<strategy>` - [jointure entre clusters](joincrosscluster.md)

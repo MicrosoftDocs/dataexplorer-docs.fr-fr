@@ -1489,6 +1489,9 @@
                   href: ./kusto/management/materialized-views/materialized-view-drop.md
                 - name: .disable | .enable materialized-view
                   href: ./kusto/management/materialized-views/materialized-view-enable-disable.md
+            - name: Résultats de requête stockés
+              displayName: '.set stored query, .show stored query, .drop stored query'
+              href: ./kusto/management/stored-query-results.md
             - name: Colonnes
               items:
                 - name: Gestion des colonnes
