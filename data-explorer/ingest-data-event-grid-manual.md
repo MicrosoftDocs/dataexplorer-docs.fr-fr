@@ -8,12 +8,12 @@ ms.reviewer: kedamari
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/05/2020
-ms.openlocfilehash: 51d5c48fbcd2373ed5cdd1973cc9e53abb26b2de
-ms.sourcegitcommit: 58588ba8d1fc5a6adebdce2b556db5bc542e38d8
+ms.openlocfilehash: e8ec0a07549a8db4027beab8d512f58e3ab6a780
+ms.sourcegitcommit: 4d5628b52b84f7564ea893f621bdf1a45113c137
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/15/2020
-ms.locfileid: "92099484"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96444159"
 ---
 # <a name="manually-create-resources-for-event-grid-ingestion"></a>Créer manuellement des ressources pour l’ingestion Event Grid
 
@@ -31,6 +31,7 @@ Dans cet article, vous découvrez comment créer manuellement les ressources né
 ## <a name="prerequisites"></a>Prérequis
 
 * Un abonnement Azure. Créez un [compte Azure gratuit](https://azure.microsoft.com/free/).
+* [Un cluster et une base de données](create-cluster-database-portal.md).
 * [Un compte de stockage](/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal).
     * L’abonnement aux notifications Event Grid peut être défini sur des comptes de stockage Azure pour `BlobStorage`, `StorageV2` ou [Data Lake Storage Gen2](/azure/storage/blobs/data-lake-storage-introduction).
 * [Un espace de noms Event Hub et un hub d’événements](/azure/event-hubs/event-hubs-create)
@@ -47,7 +48,7 @@ Dans cet article, vous découvrez comment créer manuellement les ressources né
 
 1. Dans la fenêtre **Créer un abonnement aux événements** sous l’onglet **De base**, spécifiez les valeurs suivantes :
 
-    :::image type="content" source="media/eventgrid/create-event-grid-subscription-2.png" alt-text="Créer un abonnement Event Grid":::
+    :::image type="content" source="media/eventgrid/create-event-grid-subscription-2.png" alt-text="Créer des valeurs d’abonnement à un événement à entrer":::
 
     |**Paramètre** | **Valeur suggérée** | **Description du champ**|
     |---|---|---|
@@ -60,13 +61,13 @@ Dans cet article, vous découvrez comment créer manuellement les ressources né
 
 1. Dans **DÉTAILS DES POINTS DE TERMINAISON**, sélectionnez **Event Hubs**.
 
-    :::image type="content" source="media/eventgrid/endpoint-details.png" alt-text="Créer un abonnement Event Grid":::
+    :::image type="content" source="media/eventgrid/endpoint-details.png" alt-text="Choisir un gestionnaire d’événements pour recevoir vos événements - Event Hub - Azure Data Explorer":::
 
 1. Cliquez sur **Sélectionner un point de terminaison** et spécifiez le hub d’événements que vous avez créé, par exemple *test-hub*.
     
 1. Sélectionnez l’onglet **Filtres** si vous voulez suivre des sujets spécifiques. Définissez les filtres pour les notifications comme suit :
    
-    :::image type="content" source="media/eventgrid/filters-tab.png" alt-text="Créer un abonnement Event Grid":::
+    :::image type="content" source="media/eventgrid/filters-tab.png" alt-text="Onglet Filtres - Grille d’événements":::
 
    1. Sélectionnez **Activer le filtrage d’objet**.
    1. Le champ **Le sujet commence par** est le préfixe *littéral* du sujet. Comme le modèle appliqué est *startswith*, il peut englober plusieurs conteneurs, dossiers ou objets blob. Les caractères génériques ne sont pas autorisés.

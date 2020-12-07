@@ -7,12 +7,12 @@ ms.reviewer: abhishgu
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/28/2020
-ms.openlocfilehash: 05f0055e5faf99d14864338db7f6ad6a4c99946e
-ms.sourcegitcommit: 0820454feb02ae489f3a86b688690422ae29d788
+ms.openlocfilehash: 833a801e6455fd4d88fbbbab83010aea1d406f02
+ms.sourcegitcommit: 7edce9d9d20f9c0505abda67bb8cc3d2ecd60d15
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/19/2020
-ms.locfileid: "94932699"
+ms.lasthandoff: 12/02/2020
+ms.locfileid: "96524247"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-using-go"></a>Créer un cluster et une base de données Azure Data Explorer à l’aide de Go
 
@@ -63,7 +63,7 @@ func getClustersClient(subscription string) kusto.ClustersClient {
 
 ### <a name="create-cluster"></a>Créer un cluster
 
-Utilisez la fonction [CreateOrUpdate](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v0.0.0-20200513030755-ac906323d9fe/services/kusto/mgmt/2020-02-15/kusto?tab=doc#ClustersClient.CreateOrUpdate) sur `kusto.ClustersClient` pour créer un cluster Azure Data Explorer. Attendez la fin du processus avant d’examiner les résultats.
+Utilisez la fonction [CreateOrUpdate](https://godoc.org/github.com/Azure/azure-sdk-for-go/services/preview/kusto/mgmt/2018-09-07-preview/kusto) sur `kusto.ClustersClient` pour créer un cluster Azure Data Explorer. Attendez la fin du processus avant d’examiner les résultats.
 
 ```go
 func createCluster(sub, name, location, rgName string) {
@@ -78,7 +78,7 @@ func createCluster(sub, name, location, rgName string) {
 
 ### <a name="list-clusters"></a>Lister les clusters
 
-Utilisez la fonction [ListByResourceGroup](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v0.0.0-20200513030755-ac906323d9fe/services/kusto/mgmt/2020-02-15/kusto?tab=doc#ClustersClient.ListByResourceGroup) sur `kusto.ClustersClient` pour obtenir un [kusto.ClusterListResult](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v0.0.0-20200513030755-ac906323d9fe/services/kusto/mgmt/2020-02-15/kusto?tab=doc#ClusterListResult) qui est ensuite itéré pour afficher la sortie dans un format tabulaire.
+Utilisez la fonction [ListByResourceGroup](https://godoc.org/github.com/Azure/azure-sdk-for-go/services/preview/kusto/mgmt/2018-09-07-preview/kusto#ClustersClient.ListByResourceGroup) sur `kusto.ClustersClient` pour obtenir un [kusto.ClusterListResult](https://godoc.org/github.com/Azure/azure-sdk-for-go/services/preview/kusto/mgmt/2018-09-07-preview/kusto#ClusterListResult) qui est ensuite itéré pour afficher la sortie dans un format tabulaire.
 
 
 ```go
@@ -95,7 +95,7 @@ func listClusters(sub, rgName string) {
 
 ### <a name="create-database"></a>Créer une base de données
 
-Utilisez la fonction [CreateOrUpdate](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v0.0.0-20200513030755-ac906323d9fe/services/kusto/mgmt/2020-02-15/kusto?tab=doc#DatabasesClient.CreateOrUpdate) sur [kusto.DatabasesClient](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v0.0.0-20200513030755-ac906323d9fe/services/kusto/mgmt/2020-02-15/kusto?tab=doc#DatabasesClient) pour créer une base de données Azure Data Explorer dans un cluster existant. Attendez la fin du processus avant d’examiner les résultats.
+Utilisez la fonction [CreateOrUpdate](https://godoc.org/github.com/Azure/azure-sdk-for-go/services/preview/kusto/mgmt/2018-09-07-preview/kusto#DatabasesClient.CreateOrUpdate) sur [kusto.DatabasesClient](https://godoc.org/github.com/Azure/azure-sdk-for-go/services/preview/kusto/mgmt/2018-09-07-preview/kusto#DatabasesClient) pour créer une base de données Azure Data Explorer dans un cluster existant. Attendez la fin du processus avant d’examiner les résultats.
 
 
 ```go
@@ -111,7 +111,7 @@ func createDatabase(sub, rgName, clusterName, location, dbName string) {
 
 ### <a name="list-databases"></a>Lister des bases de données
 
-Utilisez la fonction [ListByCluster](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v0.0.0-20200513030755-ac906323d9fe/services/kusto/mgmt/2020-02-15/kusto?tab=doc#DatabasesClient.ListByCluster) `kusto.DatabasesClient` pour obtenir [kusto.DatabaseListResult](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v0.0.0-20200513030755-ac906323d9fe/services/kusto/mgmt/2020-02-15/kusto?tab=doc#DatabaseListResult), qui est ensuite itéré pour afficher la sortie dans un format tabulaire.
+Utilisez la fonction [ListByCluster](https://godoc.org/github.com/Azure/azure-sdk-for-go/services/preview/kusto/mgmt/2018-09-07-preview/kusto#DatabasesClient.ListByCluster) `kusto.DatabasesClient` pour obtenir [kusto.DatabaseListResult](https://godoc.org/github.com/Azure/azure-sdk-for-go/services/preview/kusto/mgmt/2018-09-07-preview/kusto#DatabaseListResult), qui est ensuite itéré pour afficher la sortie dans un format tabulaire.
 
 
 ```go
@@ -127,7 +127,7 @@ func listDatabases(sub, rgName, clusterName string) {
 
 ### <a name="delete-database"></a>Supprimer la base de données
 
-Utilisez la fonction [Delete](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v0.0.0-20200513030755-ac906323d9fe/services/kusto/mgmt/2020-02-15/kusto?tab=doc#DatabasesClient.Delete) sur un `kusto.DatabasesClient` pour supprimer une base de données existante dans un cluster. Attendez la fin du processus avant d’examiner les résultats.
+Utilisez la fonction [Delete](https://godoc.org/github.com/Azure/azure-sdk-for-go/services/preview/kusto/mgmt/2018-09-07-preview/kusto#DatabasesClient.Delete) sur un `kusto.DatabasesClient` pour supprimer une base de données existante dans un cluster. Attendez la fin du processus avant d’examiner les résultats.
 
 ```go
 func deleteDatabase(sub, rgName, clusterName, dbName string) {
@@ -146,7 +146,7 @@ func deleteDatabase(sub, rgName, clusterName, dbName string) {
 
 ### <a name="delete-cluster"></a>Supprimer un cluster
 
-Utilisez la fonction [Delete](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v0.0.0-20200513030755-ac906323d9fe/services/kusto/mgmt/2020-02-15/kusto?tab=doc#ClustersClient.Delete) sur un `kusto.ClustersClient` pour supprimer un cluster. Attendez la fin du processus avant d’examiner les résultats.
+Utilisez la fonction [Delete](https://godoc.org/github.com/Azure/azure-sdk-for-go/services/preview/kusto/mgmt/2018-09-07-preview/kusto#ClustersClient.Delete) sur un `kusto.ClustersClient` pour supprimer un cluster. Attendez la fin du processus avant d’examiner les résultats.
 
 ```go
 func deleteCluster(sub, clusterName, rgName string) {

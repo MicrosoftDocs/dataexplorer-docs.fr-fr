@@ -8,43 +8,38 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/23/2019
-ms.openlocfilehash: 7dfb0da5d6a2e0d9349f68ea97fb371641e0d506
-ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
+ms.openlocfilehash: a7474dc04e85f439fc611c44213694041fedc1a4
+ms.sourcegitcommit: f134d51e52504d3ca722bdf6d33baee05118173a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/23/2020
-ms.locfileid: "95324702"
+ms.lasthandoff: 12/03/2020
+ms.locfileid: "96563289"
 ---
 # <a name="request-properties-and-clientrequestproperties"></a>Propriétés de la demande et ClientRequestProperties
 
 Quand une demande est effectuée à partir de Kusto via le kit de développement logiciel (SDK) .NET, fournissez :
 
 * Chaîne de connexion qui indique le point de terminaison de service auquel se connecter, les paramètres d’authentification et les informations similaires relatives à la connexion. Par programme, la chaîne de connexion est représentée par la `KustoConnectionStringBuilder` classe.
-
 * Nom de la base de données utilisée pour décrire l’étendue de la demande.
-
 * Texte de la requête (requête ou commande) elle-même.
+* Propriétés supplémentaires fournies par le client au service et appliquées à la demande. Par programmation, ces propriétés sont détenues par une classe appelée [`ClientRequestProperties`](#clientrequestproperties) .
 
-* Propriétés supplémentaires fournies par le client au service et appliquées à la demande. Par programmation, ces propriétés sont détenues par une classe appelée `ClientRequestProperties` .
+## <a name="clientrequestproperties"></a>ClientRequestProperties
 
-##   <a name="clientrequestproperties"></a>ClientRequestProperties
+Les propriétés des demandes clientes peuvent affecter les limites et les stratégies qui sont appliquées à la requête.
 
-Les propriétés de demande du client ont de nombreuses utilisations. 
-* Facilite le débogage. Par exemple, les propriétés peuvent fournir des chaînes de corrélation utilisées pour suivre les interactions entre le client et le service. 
-* Affecte les limites et les stratégies qui sont appliquées à la requête. 
-* les [paramètres de requête](../../query/queryparametersstatement.md) permettent aux applications clientes de paramétrer les requêtes Kusto en fonction de l’entrée utilisateur.
-[liste des propriétés prises en charge](#list-of-clientrequestproperties).
+La `Kusto.Data.Common.ClientRequestProperties` classe contient trois types de données :
 
-La `Kusto.Data.Common.ClientRequestProperties` classe contient trois types de données.
+* [Propriétés nommées](#named-properties) : ces propriétés facilitent le débogage. Par exemple, les propriétés peuvent fournir des chaînes de corrélation utilisées pour suivre les interactions entre le client et le service. 
+* [Options ClientRequestProperties](#clientrequestproperties-options) : mappage d’un nom d’option à une valeur d’option.
+* [Paramètres de requête](../../query/queryparametersstatement.md)  : mappage d’un nom de paramètre de requête à une valeur de paramètre de requête. Ces paramètres permettent aux applications clientes de paramétrer les requêtes Kusto en fonction de l’entrée utilisateur.
 
-* Propriétés nommées.
-* Options : mappage d’un nom d’option à une valeur d’option.
-* Parameters : mappage d’un nom de paramètre de requête à une valeur de paramètre de requête.
+## <a name="named-properties"></a>Propriétés nommées
 
 > [!NOTE]
 > Certaines propriétés nommées sont marquées « ne pas utiliser ». Ces propriétés ne doivent pas être spécifiées par les clients et n’ont aucun effet sur le service.
 
-## <a name="the-clientrequestid-x-ms-client-request-id-named-property"></a>Propriété nommée ClientRequestId (x-ms-client-Request-ID)
+### <a name="clientrequestid-x-ms-client-request-id"></a>ClientRequestId (x-ms-client-Request-ID)
 
 Cette propriété nommée a l’identité spécifiée par le client de la demande. Les clients doivent spécifier une valeur unique par demande pour chaque demande qu’ils envoient. Cette valeur rend les échecs de débogage plus faciles à effectuer, et est nécessaire dans certains scénarios, par exemple pour l’annulation de requête.
 
@@ -59,7 +54,7 @@ Toutefois, nous recommandons aux clients d’utiliser : *applicationName* `.` *
 * *ActivityName* identifie le type d’activité pour lequel l’application cliente émet la requête du client.
 * *UniqueID* identifie la requête spécifique.
 
-## <a name="the-application-x-ms-app-named-property"></a>La propriété application (x-ms-App) nommée
+### <a name="application-x-ms-app"></a>Application (x-ms-App)
 
 La propriété de l’application (x-ms-App) nommée a le nom de l’application cliente qui effectue la demande et est utilisée pour le suivi.
 
@@ -67,13 +62,17 @@ Le nom de programmation de cette propriété est `Application` , et il se tradui
 
 Cette propriété sera définie sur le nom du processus hébergeant le kit de développement logiciel (SDK) si le client ne spécifie pas sa propre valeur.
 
-## <a name="the-user-x-ms-user-named-property"></a>La propriété utilisateur (x-ms-User) nommée
+### <a name="user-x-ms-user"></a>Utilisateur (x-ms-User)
 
 La propriété de l’utilisateur (x-ms-User) nommé a l’identité de l’utilisateur qui effectue la demande et est utilisée pour le suivi.
 
 Le nom de programmation de cette propriété est `User` , et il se traduit par l’en-tête http `x-ms-user` . Il peut être spécifié dans la chaîne de connexion Kusto sous la forme `User Name for Tracing` .
 
-## <a name="controlling-request-properties-using-the-rest-api"></a>Contrôle des propriétés de la demande à l’aide de l’API REST
+## <a name="use-request-properties"></a>Utiliser les propriétés de la demande
+
+Utilisez les instructions suivantes pour contrôler les propriétés de la demande et fournir des valeurs pour le paramétrage de la requête. 
+
+### <a name="control-request-properties-using-the-rest-api"></a>Contrôler les propriétés de demande à l’aide de l’API REST
 
 Lors de l’émission d’une requête HTTP auprès du service Kusto, utilisez l' `properties` emplacement dans le document JSON qui est le corps de la demande de publication pour fournir les propriétés de la demande. 
 
@@ -81,7 +80,7 @@ Lors de l’émission d’une requête HTTP auprès du service Kusto, utilisez l
 > Certaines des propriétés (telles que l' « ID de demande client », qui est l’ID de corrélation fourni par le client au service pour identifier la demande) peuvent être fournies dans l’en-tête HTTP et peuvent également être définies si HTTP est utilisé.
 Pour plus d’informations, consultez [l’objet demande de l’API REST Kusto](../rest/request.md).
 
-## <a name="providing-values-for-query-parameterization-as-request-properties"></a>Fournir des valeurs pour le paramétrage de requête en tant que propriétés de demande
+### <a name="provide-values-for-query-parameterization-as-request-properties"></a>Fournir des valeurs pour le paramétrage de requête en tant que propriétés de la demande
 
 Les requêtes Kusto peuvent faire référence à des paramètres de requête à l’aide d’une instruction [Declare Statement-Parameters](../../query/queryparametersstatement.md) spécialisée dans le texte de la requête. Cette instruction permet aux applications clientes de paramétrer les requêtes Kusto en fonction de l’entrée de l’utilisateur, de manière sécurisée et sans crainte d’attaques par injection.
 
@@ -89,7 +88,9 @@ Par programme, définissez les valeurs des propriétés à l’aide des `ClearPa
 
 Dans l’API REST, les paramètres de requête s’affichent dans la même chaîne encodée au format JSON que les autres propriétés de la requête.
 
-## <a name="sample-client-code-for-using-request-properties"></a>Exemple de code client pour l’utilisation de propriétés de demande
+## <a name="example"></a> Exemple
+
+L’exemple suivant montre un exemple de code client pour l’utilisation des propriétés de la demande :
 
 ```csharp
 public static System.Data.IDataReader QueryKusto(
@@ -144,9 +145,10 @@ public static System.Data.IDataReader QueryKusto(
 }
 ```
 
-## <a name="list-of-clientrequestproperties"></a>Liste des ClientRequestProperties
+## <a name="clientrequestproperties-options"></a>Options de ClientRequestProperties
 
-<!-- The following text can be re-produced by running: Kusto.Cli.exe -focus "#crp -doc" -->
+<!-- The following is auto-generated by running  Kusto.Cli.exe -execute:"#crp -doc"           -->
+<!-- The following text can be re-produced by running the Kusto.Cli.exe directive '#crp -doc' -->
 
 * `deferpartialqueryfailures` (*OptionDeferPartialQueryFailures*) : si la valeur est true, désactive la création de rapports sur les échecs de requête partiels dans le cadre du jeu de résultats. Expression
 * `materialized_view_shuffle` (*OptionMaterializedViewShuffleQuery*) : Conseil permettant d’utiliser la stratégie de lecture aléatoire pour les vues matérialisées référencées dans la requête.
@@ -170,8 +172,8 @@ exemples : 'Dynamic ([{"Name" : "V1", "Keys" : ["K1", "K2"]}]) ' (lecture al�
 * `query_datetimescope_from` (*OptionQueryDateTimeScopeFrom*) : contrôle l’étendue DateTime de la requête (au plus tôt), utilisée comme filtre appliqué automatiquement sur query_datetimescope_column uniquement (si elle est définie). [DateTime]
 * `query_datetimescope_to` (*OptionQueryDateTimeScopeTo*) : contrôle l’étendue DateTime de la requête (dernière version), utilisée comme filtre appliqué automatiquement sur query_datetimescope_column uniquement (si elle est définie). [DateTime]
 * `query_distribution_nodes_span` (*OptionQueryDistributionNodesSpanSize*) : s’il est défini, contrôle le comportement de la fusion des sous-requêtes : le nœud en cours d’exécution introduira un niveau supplémentaire dans la hiérarchie des requêtes pour chaque sous-groupe de nœuds ; la taille du sous-groupe est définie par cette option. Tiers
-* `query_fanout_nodes_percent` (*OptionQueryFanoutNodesPercent*) : pourcentage de nœuds sur lesquels l’exécution sortante doit être exécutée. Tiers
-* `query_fanout_threads_percent` (*OptionQueryFanoutThreadsPercent*) : pourcentage de threads dans lequel défanout l’exécution. Tiers
+* `query_fanout_nodes_percent` (*OptionQueryFanoutNodesPercent*) : pourcentage de nœuds sur lesquels l’exécution doit être ventilée. Tiers
+* `query_fanout_threads_percent` (*OptionQueryFanoutThreadsPercent*) : pourcentage de threads à partir duquel l’exécution doit être ventilée. Tiers
 * `query_force_row_level_security` (*OptionQueryForceRowLevelSecurity*) : si ce paramètre est spécifié, force sécurité au niveau des lignes règles, même si row_level_security stratégie est désactivée [booléen]
 * `query_language` (*OptionQueryLanguage*) : contrôle la manière dont le texte de la requête doit être interprété. [« CSL », « kql » ou « SQL »]
 * `query_max_entities_in_union` (*OptionMaxEntitiesToUnion*) : remplace le nombre maximal par défaut de colonnes qu’une requête est autorisée à produire. Long
@@ -188,9 +190,9 @@ exemples : 'Dynamic ([{"Name" : "V1", "Keys" : ["K1", "K2"]}]) ' (lecture al�
 * `request_description` (*OptionRequestDescription*) : texte arbitraire que l’auteur de la demande souhaite inclure comme description de la demande. Chaîne
 * `request_external_table_disabled` (*OptionRequestExternalTableDisabled*) : s’il est spécifié, indique que la demande ne peut pas appeler de code dans le ExternalTable. Expression
 * `request_impersonation_disabled` (*OptionDoNotImpersonate*) : s’il est spécifié, indique que le service ne doit pas emprunter l’identité de l’appelant. Expression
-* `request_readonly` (*OptionRequestReadOnly*) : si spécifié, indique que la demande ne doit pas être en mesure d’écrire quoi que ce soit. Expression
+* `request_readonly` (*OptionRequestReadOnly*) : si spécifié, indique que la demande ne peut rien écrire. Expression
 * `request_remote_entities_disabled` (*OptionRequestRemoteEntitiesDisabled*) : si spécifié, indique que la demande ne peut pas accéder aux bases de données et aux clusters distants. Expression
-* `request_sandboxed_execution_disabled` (*OptionRequestSandboxedExecutionDisabled*) : s’il est spécifié, indique que la demande ne peut pas appeler de code dans le bac à sable (sandbox). Expression
+* `request_sandboxed_execution_disabled` (*OptionRequestSandboxedExecutionDisabled*) : si spécifié, indique que la demande ne peut pas appeler de code dans le bac à sable (sandbox). Expression
 * `results_progressive_enabled` (*OptionResultsProgressiveEnabled*) : s’il est défini, active le flux de requête progressif
 * `servertimeout` (*OptionServerTimeout*) : remplace le délai d’expiration de la demande par défaut. TimeSpan
 * `truncationmaxrecords` (*OptionTruncationMaxRecords*) : remplace le nombre maximal d’enregistrements par défaut qu’une requête est autorisée à renvoyer à l’appelant (troncation). Long

@@ -8,12 +8,12 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/30/2020
-ms.openlocfilehash: 383d1ab5d948a5fbcfb3ab2aad0ff8e5ed675075
-ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
+ms.openlocfilehash: 3cc5efa2d8b738c58d94d0db397218663fd76740
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/04/2020
-ms.locfileid: "93349441"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96470211"
 ---
 # <a name="create-materialized-view"></a>.create materialized-view
 
@@ -22,16 +22,15 @@ Une [vue matérialisée](materialized-view-overview.md) est une requête d’agr
 Il existe deux façons de créer une vue matérialisée, notée par l’option de *renvoi* dans la commande :
 
  * **Créez en fonction des enregistrements existants dans la table source :** 
-      * La création peut prendre un certain temps, en fonction du nombre d’enregistrements dans la table source. La vue ne sera pas disponible pour les requêtes jusqu’à ce qu’elle soit terminée.
+      * La création peut prendre un certain temps, en fonction du nombre d’enregistrements dans la table source. La vue ne sera pas disponible pour les requêtes tant que le renvoi n’est pas terminé.
       * Quand vous utilisez cette option, la commande CREATE doit être `async` et l’exécution peut être surveillée à l’aide de la commande [. Show Operations](../operations.md#show-operations) .
 
     * L’annulation du processus de renvoi est possible à l’aide de la commande [opération. Cancel](#cancel-materialized-view-creation) .
 
       > [!IMPORTANT]
-      > * L’utilisation de l’option de renvoi n’est pas prise en charge pour les données dans le cache à froid. Augmentez la période de cache à chaud, si nécessaire, pour la création de la vue. Cela peut nécessiter une montée en puissance parallèle.    
-      > * L’utilisation de l’option de renvoi peut prendre beaucoup de temps pour les tables sources volumineuses. Si ce processus échoue de façon transitoire lors de son exécution, il ne sera pas automatiquement retenté et une nouvelle exécution de la commande Create est nécessaire.
+      > L’utilisation de l’option de renvoi peut prendre beaucoup de temps pour les tables sources volumineuses. Si ce processus échoue de façon transitoire lors de son exécution, il ne sera pas automatiquement retenté et une nouvelle exécution de la commande Create est nécessaire. Pour plus d’informations, consultez la section [renvoi d’une vue matérialisée](#backfill-a-materialized-view) .
     
-* **Créez la vue matérialisée à partir de maintenant :** 
+* **Créez la vue matérialisée à partir de maintenant :**
     * La vue matérialisée est créée vide et n’inclut que les enregistrements ingérés après la création de la vue. La création de ce type est immédiatement retournée, ne nécessite pas `async` , et la vue est immédiatement disponible pour la requête.
 
 L’opération de création requiert des autorisations d' [administrateur de base de données](../access-control/role-based-authorization.md) . Le créateur de la vue matérialisée en devient l’administrateur.
@@ -47,9 +46,9 @@ L’opération de création requiert des autorisations d' [administrateur de bas
 
 |Argument|Type|Description
 |----------------|-------|---|
-|NomVue|Chaîne|Nom de la vue matérialisée. Le nom de la vue ne peut pas être en conflit avec des noms de table ou de fonction dans la même base de données et doit respecter les [règles d’attribution](../../query/schema-entities/entity-names.md#identifier-naming-rules)de noms d’identificateur. |
-|SourceTableName|Chaîne|Nom de la table source sur laquelle la vue est définie.|
-|Requête|Chaîne|Requête de vue matérialisée. Pour plus d’informations, consultez [query](#query-argument).|
+|NomVue|String|Nom de la vue matérialisée. Le nom de la vue ne peut pas être en conflit avec des noms de table ou de fonction dans la même base de données et doit respecter les [règles d’attribution](../../query/schema-entities/entity-names.md#identifier-naming-rules)de noms d’identificateur. |
+|SourceTableName|String|Nom de la table source sur laquelle la vue est définie.|
+|Requête|String|Requête de vue matérialisée. Pour plus d’informations, consultez [query](#query-argument).|
 
 ### <a name="query-argument"></a>Argument de requête
 
@@ -72,7 +71,7 @@ La requête utilisée dans l’argument de vue matérialisée est limitée par l
 
     * Les enregistrements de la table source de la vue (table de faits) sont matérialisés une seule fois. Une latence d’ingestion différente entre la table de faits et la table de dimension peut avoir un impact sur les résultats de la vue.
 
-    * **Exemple** : une définition de vue comprend une jointure interne avec une table de dimension. Au moment de la matérialisation, l’enregistrement de dimension n’a pas été entièrement ingéré, mais il a déjà été ingéré dans la table de faits. Cet enregistrement est supprimé de la vue et n’est plus retraité. 
+    * **Exemple**: une définition de vue comprend une jointure interne avec une table de dimension. Au moment de la matérialisation, l’enregistrement de dimension n’a pas été entièrement ingéré, mais il a déjà été ingéré dans la table de faits. Cet enregistrement est supprimé de la vue et n’est plus retraité. 
 
         De même, si la jointure est une jointure externe, l’enregistrement de la table de faits est traité et ajouté à la vue avec une valeur null pour les colonnes de la table de dimension. Les enregistrements qui ont déjà été ajoutés (avec des valeurs null) à la vue ne seront pas traités à nouveau. Leurs valeurs, dans les colonnes de la table de dimension, restent null.
 
@@ -132,6 +131,7 @@ Les éléments suivants sont pris en charge dans la `with(propertyName=propertyV
         | summarize count(), dcount(User), max(Duration) by Customer, Day
     } 
     ```
+
 1. Vue matérialisée qui déduplique la table source, en fonction de la colonne EventId :
 
     <!-- csl -->
@@ -211,7 +211,7 @@ Les fonctions d’agrégation suivantes sont prises en charge :
     }
     ``` 
     
-    **Ne pas faire** :
+    **Ne pas faire**:
     
     ```kusto
     .create materialized-view ArgMaxResourceId on table FactResources
@@ -220,7 +220,7 @@ Les fonctions d’agrégation suivantes sont prises en charge :
     }
     ```
 
-* N’incluez pas les transformations, les normalisations et d’autres calculs lourds qui peuvent être déplacés vers une [stratégie de mise à jour](../updatepolicy.md) dans le cadre de la définition de la vue matérialisée. Au lieu de cela, effectuez tous ces processus dans une stratégie de mise à jour et effectuez l’agrégation uniquement dans la vue matérialisée. Utilisez ce processus pour la recherche dans les tables de dimension, le cas échéant.
+* N’incluez pas les transformations, les normalisations, les recherches dans les tables de dimension et les autres calculs lourds qui peuvent être déplacés vers une [stratégie de mise à jour](../updatepolicy.md) dans le cadre de la définition de la vue matérialisée. Au lieu de cela, effectuez tous ces processus dans une stratégie de mise à jour et effectuez l’agrégation uniquement dans la vue matérialisée.
 
     **Procédez** comme suit :
     
@@ -233,6 +233,7 @@ Les fonctions d’agrégation suivantes sont prises en charge :
         "Query": 
             "SourceTable 
             | extend ResourceId = strcat('subscriptions/', toupper(SubscriptionId), '/', resourceId)", 
+            | lookup DimResources on ResourceId
         "IsTransactional": false}]'  
     ```
         
@@ -246,19 +247,51 @@ Les fonctions d’agrégation suivantes sont prises en charge :
     }
     ```
     
-    **Ne pas faire** :
+    **Ne pas faire**:
     
     ```kusto
     .create materialized-view Usage on table SourceTable
     {
-        SourceTable 
+        SourceTable
         | extend ResourceId = strcat('subscriptions/', toupper(SubscriptionId), '/', resourceId)
+        | lookup DimResources on ResourceId
         | summarize count() by ResourceId
     }
     ```
 
-> [!NOTE]
-> Si vous avez besoin des meilleures performances en matière de temps de requête, mais que vous pouvez sacrifier l’actualisation des données, utilisez la [fonction materialized_view ()](../../query/materialized-view-function.md).
+> [!TIP]
+> Si vous avez besoin des meilleures performances en matière de temps de requête, mais que vous pouvez tolérer une certaine latence des données, utilisez la [fonction materialized_view ()](../../query/materialized-view-function.md).
+
+## <a name="backfill-a-materialized-view"></a>Renvoi d’une vue matérialisée
+
+Lors de la création d’une vue matérialisée avec la `backfill` propriété, la vue matérialisée est créée en fonction des enregistrements disponibles dans la table source (ou d’un sous-ensemble de ces enregistrements, si `effectiveDateTime` est utilisé). Le renvoi peut prendre beaucoup de temps pour les tables sources volumineuses.
+
+* L’utilisation de l’option de renvoi n’est pas prise en charge pour les données dans le cache à froid. Augmentez la période de cache à chaud, si nécessaire, pour la durée de la création de la vue. Cela peut nécessiter une montée en puissance parallèle.
+
+* En arrière-plan, le processus de renvoi fractionne les données en renvoi à plusieurs lots et utilise plusieurs opérations de réception pour renvoyer la vue. Les échecs temporaires qui se produisent dans le cadre du processus de renvoi sont retentés, mais si toutes les nouvelles tentatives sont épuisées, une réexécution manuelle de la commande CREATE peut être nécessaire.
+
+* Vous pouvez essayer de modifier quelques propriétés si vous rencontrez des problèmes lors de la création de la vue :
+
+    * `MaxSourceRecordsForSingleIngest` -par défaut, le nombre d’enregistrements sources dans chaque opération de réception, pendant le renvoi, est de 2 millions enregistrements par nœud. Vous pouvez modifier ce paramètre par défaut en définissant cette propriété sur le nombre d’enregistrements souhaité (la valeur est le nombre _total_ d’enregistrements dans chaque opération de réception). La diminution de cette valeur peut être utile lorsque la création échoue sur les limites de la mémoire/les délais d’expiration des requêtes. L’amélioration de cette valeur peut accélérer la création d’une vue, en supposant que le cluster est en mesure d’exécuter la fonction d’agrégation sur plus d’enregistrements que la valeur par défaut.
+
+    * `Concurrency` -les opérations de réception, exécutées dans le cadre du processus de renvoi, s’exécutent simultanément. Par défaut, l’accès concurrentiel est `min(number_of_nodes * 2, 5)` . Vous pouvez définir cette propriété pour augmenter/réduire la concurrence. L’extension de cette valeur est recommandée uniquement si l’UC du cluster est faible, car cela peut avoir un impact significatif sur la consommation du processeur du cluster.
+
+  Par exemple, la commande suivante renverra la vue matérialisée de `2020-01-01` , avec un nombre maximal d’enregistrements dans chaque opération de réception des `3 million` enregistrements, et exécutera les opérations de réception avec concurrence `2` de : 
+    
+    <!-- csl -->
+    ```
+    .create async materialized-view with (
+            backfill=true,
+            effectiveDateTime=datetime(2019-01-01),
+            MaxSourceRecordsForSingleIngest=3000000,
+            Concurrency=2
+        )
+        CustomerUsage on table T
+    {
+        T
+        | summarize count(), dcount(User), max(Duration) by Customer, bin(Timestamp, 1d)
+    } 
+    ```
 
 ## <a name="limitations-on-creating-materialized-views"></a>Limitations relatives à la création de vues matérialisées
 
@@ -281,7 +314,7 @@ Annulez le processus de création d’une vue matérialisée lors de l’utilisa
 > [!WARNING]
 > La vue matérialisée ne peut pas être restaurée après l’exécution de cette commande.
 
-Le processus de création ne peut pas être abandonné immédiatement. La commande Cancel signale que la matérialisation est arrêtée et que la création vérifie régulièrement si l’annulation a été demandée. La commande Cancel attend une période maximale de 10 minutes jusqu’à ce que le processus de création de la vue matérialisée soit annulé et resignale si l’annulation a réussi. Même si l’annulation n’a pas réussi dans les 10 minutes, et que la commande Cancel signale un échec, la vue matérialisée s’abandonnera probablement plus tard dans le processus de création. La commande [. Show Operations](../operations.md#show-operations) indique si l’opération a été annulée. La `cancel operation` commande est uniquement prise en charge pour l’annulation de la création de vues matérialisées, et non pour l’annulation d’autres opérations.
+Le processus de création ne peut pas être abandonné immédiatement. La commande Cancel signale que la matérialisation est arrêtée et que la création vérifie régulièrement si l’annulation a été demandée. La commande Cancel attend une période maximale de 10 minutes jusqu’à ce que le processus de création de la vue matérialisée soit annulé et resignale si l’annulation a réussi. Même si l’annulation n’a pas réussi dans les 10 minutes, et que la commande Cancel signale un échec, la vue matérialisée s’abandonnera probablement plus tard dans le processus de création. La [`.show operations`](../operations.md#show-operations) commande indique si l’opération a été annulée. La `cancel operation` commande est uniquement prise en charge pour l’annulation de la création de vues matérialisées, et non pour l’annulation d’autres opérations.
 
 ### <a name="syntax"></a>Syntaxe
 
@@ -291,19 +324,19 @@ Le processus de création ne peut pas être abandonné immédiatement. La comman
 
 |Propriété|Type|Description
 |----------------|-------|---|
-|operationId|GUID|L’ID d’opération retourné par la commande CREATE MATERIALIZED-VIEW.|
+|operationId|Guid|L’ID d’opération retourné par la commande CREATE MATERIALIZED-VIEW.|
 
 ### <a name="output"></a>Output
 
 |Paramètre de sortie |Type |Description
 |---|---|---
-|OperationId|GUID|ID d’opération de la commande créer une vue matérialisée.
-|Opération|Chaîne|Type d’opération.
+|OperationId|Guid|ID d’opération de la commande créer une vue matérialisée.
+|Opération|String|Type d’opération.
 |StartedOn|DATETIME|Heure de début de l’opération de création.
 |CancellationState|string|Un de- `Cancelled successfully` (la création a été annulée), ( `Cancellation failed` attente de l’annulation expirée), `Unknown` (la création de la vue n’est plus exécutée, mais n’a pas été annulée par cette opération).
 |ReasonPhrase|string|Raison pour laquelle l’annulation n’a pas réussi.
 
-### <a name="example"></a>Exemple
+### <a name="example"></a> Exemple
 
 <!-- csl -->
 ```

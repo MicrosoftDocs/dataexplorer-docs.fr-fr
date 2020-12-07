@@ -7,12 +7,12 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/09/2020
-ms.openlocfilehash: 9cc70418b39ece5c33d6059c7fc90c47f3039ece
-ms.sourcegitcommit: 5aba5f694420ade57ef24b96699d9b026cdae582
+ms.openlocfilehash: f00f6cdc2a0c52ce0ad2a6832dafdf11bd02fce4
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90998974"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321877"
 ---
 # <a name="predict_onnx_fl"></a>predict_onnx_fl()
 
@@ -36,7 +36,7 @@ La fonction `predict_onnx_fl()` prédit à l’aide d’un modèle de machine le
 * *features_cols*: tableau dynamique contenant les noms des colonnes de fonctionnalités utilisées par le modèle pour la prédiction.
 * *pred_col*: nom de la colonne qui stocke les prédictions.
 
-## <a name="usage"></a>Usage
+## <a name="usage"></a>Utilisation
 
 `predict_onnx_fl()` est une [fonction tabulaire](../query/functions/user-defined-functions.md#tabular-function) définie par l’utilisateur à appliquer à l’aide de l' [opérateur Invoke](../query/invokeoperator.md). Vous pouvez incorporer son code dans votre requête ou l’installer dans votre base de données. Il existe deux options d’utilisation : une utilisation ad hoc et une utilisation permanente. Consultez les onglets ci-dessous pour obtenir des exemples.
 
@@ -92,7 +92,7 @@ OccupancyDetection
 
 # <a name="persistent"></a>[Persistent](#tab/persistent)
 
-Pour une utilisation permanente, utilisez la [fonction. Create](../management/create-function.md). La création d’une fonction nécessite l' [autorisation de l’utilisateur de base de données](../management/access-control/role-based-authorization.md).
+Pour une utilisation permanente, utilisez [`.create function`](../management/create-function.md) . La création d’une fonction nécessite l' [autorisation de l’utilisateur de base de données](../management/access-control/role-based-authorization.md).
 
 ### <a name="one-time-installation"></a>Installation unique
 
@@ -131,7 +131,7 @@ predict_onnx_fl(samples:(*), models_tbl:(name:string, timestamp:datetime, model:
 }
 ```
 
-### <a name="usage"></a>Usage
+### <a name="usage"></a>Utilisation
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

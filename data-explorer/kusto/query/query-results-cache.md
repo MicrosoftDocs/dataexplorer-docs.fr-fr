@@ -8,12 +8,12 @@ ms.reviewer: amitof
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/16/2020
-ms.openlocfilehash: d0942a949454bf12840626ff25d3703a23aed2cc
-ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
+ms.openlocfilehash: 24ab3cb3e423e3ab6b77f09f2c216feb07ae0d0f
+ms.sourcegitcommit: f134d51e52504d3ca722bdf6d33baee05118173a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/13/2020
-ms.locfileid: "92002939"
+ms.lasthandoff: 12/03/2020
+ms.locfileid: "96563306"
 ---
 # <a name="query-results-cache"></a>Cache des résultats de requête
 
@@ -41,9 +41,9 @@ Le cache des résultats de la requête retourne des résultats uniquement pour l
 * Les deux requêtes ont la même représentation (en tant que chaînes UTF-8).
 * Les deux requêtes sont faites à la même base de données.
 * Les deux requêtes partagent les mêmes [Propriétés de demande client](../api/netfx/request-properties.md). Les propriétés suivantes sont ignorées à des fins de mise en cache :
-   * [ClientRequestId](../api/netfx/request-properties.md#the-clientrequestid-x-ms-client-request-id-named-property)
-   * [Application](../api/netfx/request-properties.md#the-application-x-ms-app-named-property)
-   * [Utilisateur](../api/netfx/request-properties.md#the-user-x-ms-user-named-property)
+   * [ClientRequestId](../api/netfx/request-properties.md#clientrequestid-x-ms-client-request-id)
+   * [Application](../api/netfx/request-properties.md#application-x-ms-app)
+   * [Utilisateur](../api/netfx/request-properties.md#user-x-ms-user)
 
 ### <a name="incompatible-queries"></a>Requêtes incompatibles
 
@@ -72,7 +72,7 @@ Lors de la réponse à une requête, Kusto envoie une table de réponse [Extende
 Les résultats de requête mis en cache comporteront une ligne supplémentaire ajoutée à cette table :
 * La colonne de la ligne `Key` contient la chaîne `ServerCache`
 * La colonne de la ligne `Value` contient un conteneur de propriétés avec deux champs :
-   * `OriginalClientRequestId` -Spécifie le [ClientRequestId](../api/netfx/request-properties.md#the-clientrequestid-x-ms-client-request-id-named-property)de la demande d’origine.
+   * `OriginalClientRequestId` -Spécifie le [ClientRequestId](../api/netfx/request-properties.md#clientrequestid-x-ms-client-request-id)de la demande d’origine.
    * `OriginalStartedOn` -Spécifie l’heure de début d’exécution de la demande d’origine.
 
 ## <a name="distribution"></a>Distribution

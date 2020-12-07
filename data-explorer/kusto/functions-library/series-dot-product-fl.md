@@ -7,14 +7,14 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/18/2020
-ms.openlocfilehash: 9b1c6db6af651ae3665c07bda8598212883a8f6c
-ms.sourcegitcommit: 88923cfb2495dbf10b62774ab2370b59681578b9
+ms.openlocfilehash: 9065c6b86807ad27c588ebffe3334c450a1addcb
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "92184129"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321843"
 ---
-# <a name="series_dot_product_fl"></a>series_dot_product_fl ()
+# <a name="series_dot_product_fl"></a>series_dot_product_fl()
 
 Calcule le produit scalaire de deux vecteurs numériques.
 
@@ -32,7 +32,7 @@ La fonction `series_dot_product_fl()` prend une expression contenant deux tablea
 * *vec1*: cellule de tableau dynamique de valeurs numériques.
 * *vec2*: cellule de tableau dynamique de valeurs numériques, de même longueur que *vec1*.
 
-## <a name="usage"></a>Usage
+## <a name="usage"></a>Utilisation
 
 `series_dot_product_fl()` est une fonction définie par l’utilisateur. Vous pouvez incorporer son code dans votre requête ou l’installer dans votre base de données. Il existe deux options d’utilisation : une utilisation ad hoc et une utilisation permanente. Consultez les onglets ci-dessous pour obtenir des exemples.
 
@@ -57,7 +57,7 @@ union
 
 # <a name="persistent"></a>[Persistent](#tab/persistent)
 
-Pour une utilisation permanente, utilisez la [fonction. Create](../management/create-function.md). La création d’une fonction nécessite l' [autorisation de l’utilisateur de base de données](../management/access-control/role-based-authorization.md).
+Pour une utilisation permanente, utilisez [`.create function`](../management/create-function.md) . La création d’une fonction nécessite l' [autorisation de l’utilisateur de base de données](../management/access-control/role-based-authorization.md).
 
 ### <a name="one-time-installation"></a>Installation unique
 
@@ -72,7 +72,7 @@ series_dot_product_fl(vec1:dynamic, vec2:dynamic)
 }
 ```
 
-### <a name="usage"></a>Usage
+### <a name="usage"></a>Utilisation
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

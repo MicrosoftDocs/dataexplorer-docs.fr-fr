@@ -7,14 +7,14 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/18/2020
-ms.openlocfilehash: b56aefd94ed58b8731ea6237f131b4da74d4f7be
-ms.sourcegitcommit: 88923cfb2495dbf10b62774ab2370b59681578b9
+ms.openlocfilehash: 7d2482c36c0c55c34adbc664a6c24f64bdadf7a1
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "92184136"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321945"
 ---
-# <a name="kmeans_fl"></a>kmeans_fl ()
+# <a name="kmeans_fl"></a>kmeans_fl()
 
 La fonction `kmeans_fl()` clusterizes un DataSet à l’aide de l' [algorithme k-signifiant](https://en.wikipedia.org/wiki/K-means_clustering).
 
@@ -32,7 +32,7 @@ La fonction `kmeans_fl()` clusterizes un DataSet à l’aide de l' [algorithme k
 * *features_cols*: tableau dynamique contenant les noms des colonnes de fonctionnalités utilisées pour le clustering.
 * *cluster_col*: nom de la colonne qui stocke l’ID de cluster de sortie pour chaque enregistrement.
 
-## <a name="usage"></a>Usage
+## <a name="usage"></a>Utilisation
 
 `kmeans_fl()` est une [fonction tabulaire](../query/functions/user-defined-functions.md#tabular-function) définie par l’utilisateur à appliquer à l’aide de l' [opérateur Invoke](../query/invokeoperator.md). Vous pouvez incorporer son code dans votre requête ou l’installer dans votre base de données. Il existe deux options d’utilisation : une utilisation ad hoc et une utilisation permanente. Consultez les onglets ci-dessous pour obtenir des exemples.
 
@@ -76,7 +76,7 @@ OccupancyDetection
 
 # <a name="persistent"></a>[Persistent](#tab/persistent)
 
-Pour une utilisation permanente, utilisez la [fonction. Create](../management/create-function.md). La création d’une fonction nécessite l' [autorisation de l’utilisateur de base de données](../management/access-control/role-based-authorization.md).
+Pour une utilisation permanente, utilisez [`.create function`](../management/create-function.md) . La création d’une fonction nécessite l' [autorisation de l’utilisateur de base de données](../management/access-control/role-based-authorization.md).
 
 ### <a name="one-time-installation"></a>Installation unique
 
@@ -105,7 +105,7 @@ kmeans_fl(tbl:(*), k:int, features:dynamic, cluster_col:string)
 }
 ```
 
-### <a name="usage"></a>Usage
+### <a name="usage"></a>Utilisation
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

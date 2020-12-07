@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 5192bb2d752a5754ae36840611b9f7b0e84da256
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 569554379ffe672ed75fd15da127f03fea35f6d1
+ms.sourcegitcommit: 2804e3fe40f6cf8e65811b00b7eb6a4f59c88a99
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92250727"
+ms.lasthandoff: 12/07/2020
+ms.locfileid: "96748380"
 ---
 # <a name="take-operator"></a>opérateur take
 
@@ -36,17 +36,14 @@ Il n’existe aucune garantie quant aux enregistrements qui sont retournés, à 
 
 ( `take` et `limit` sont des synonymes).
 
-## <a name="does-kusto-support-paging-of-query-results"></a>Kusto prend-il en charge la pagination des résultats de la requête ?
+## <a name="paging-of-query-results"></a>Pagination des résultats de la requête
 
-Kusto ne fournit pas de mécanisme de pagination intégré.
+Les méthodes d’implémentation de la pagination sont les suivantes :
 
-Kusto est un service complexe qui optimise en permanence les données qu’il stocke pour fournir d’excellentes performances de requête sur les jeux de données volumineux. Tandis que la pagination est un mécanisme utile pour les clients sans état avec des ressources limitées, elle déplace la charge vers le service principal qui doit suivre les informations d’État du client. Par la suite, les performances et l’évolutivité du service principal sont fortement limitées.
+* Exportez le résultat d’une requête dans un stockage externe et en Paginant les données générées.
+* Écrivez une application de niveau intermédiaire qui fournit une API de pagination avec état en mettant en cache les résultats d’une requête Kusto.
+* Utilisez la pagination dans les résultats de la [requête stockée](../management/stored-query-results.md#pagination) .
 
-Pour la prise en charge de la pagination, implémentez l’une des fonctionnalités suivantes :
-
-* Exportation du résultat d’une requête vers un stockage externe et pagination des données générées.
-
-* Écriture d’une application de niveau intermédiaire qui fournit une API de pagination avec état en mettant en cache les résultats d’une requête Kusto.
 
 ## <a name="see-also"></a>Voir aussi
 

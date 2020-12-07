@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: e96bdb0e3b00152f287b705317f37bf984b95f26
-ms.sourcegitcommit: 4f24d68f1ae4903a2885985aa45fd15948867175
+ms.openlocfilehash: 99a35b03a171147d5bb511a9eab657903e917d01
+ms.sourcegitcommit: 4d5628b52b84f7564ea893f621bdf1a45113c137
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92558136"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96444130"
 ---
 # <a name="event-grid-data-connection"></a>Connexion de données Event Grid
 
@@ -28,6 +28,9 @@ Pour obtenir des informations générales sur l’ingestion de données dans Azu
 * Examinez les [formats pris en charge](ingestion-supported-formats.md).
 * Examinez les [compressions prises en charge](ingestion-supported-formats.md#supported-data-compression-formats).
     * La taille des données non compressées d’origine doit faire partie des métadonnées d’objets blob, sinon Azure Data Explorer l’estime. La limite de taille décompressée d’ingestion par fichier est de 4 Go.
+
+> [!NOTE]
+> L’abonnement aux notifications Event Grid peut être défini sur des comptes de stockage Azure pour `BlobStorage`, `StorageV2` ou [Data Lake Storage Gen2](/azure/storage/blobs/data-lake-storage-introduction).
 
 ## <a name="ingestion-properties"></a>Propriétés d’ingestion
 
@@ -68,7 +71,7 @@ Vous pouvez créer un objet blob à partir d’un fichier local, définir des pr
 > * Utilisez `BlockBlob` pour générer les données. `AppendBlob` n’est pas pris en charge.
 > * L’utilisation du SDK de stockage Azure Data Lake Gen2 requiert l’utilisation de `CreateFile` pour charger des fichiers et de `Flush` à la fin avec le paramètre de fermeture défini sur « true ».
 > Pour obtenir un exemple détaillé de l’utilisation correcte du SDK Data Lake Gen2, consultez [Charger un fichier en utilisant le kit SDK Azure Data Lake](data-connection-event-grid-csharp.md#upload-file-using-azure-data-lake-sdk).
-> * Quand le point de terminaison Event Hub n’accuse pas réception d’un événement, Azure Event Grid active un mécanisme de nouvelle tentative. Si cette nouvelle tentative de remise échoue, Event Grid peut délivrer les événements non remis à un compte de stockage en utilisant un processus de *mise en file d’attente de lettres mortes* . Pour plus d’informations, consultez la page [Distribution et nouvelle tentative de distribution de messages avec Event Grid](/azure/event-grid/delivery-and-retry#retry-schedule-and-duration).
+> * Quand le point de terminaison Event Hub n’accuse pas réception d’un événement, Azure Event Grid active un mécanisme de nouvelle tentative. Si cette nouvelle tentative de remise échoue, Event Grid peut délivrer les événements non remis à un compte de stockage en utilisant un processus de *mise en file d’attente de lettres mortes*. Pour plus d’informations, consultez la page [Distribution et nouvelle tentative de distribution de messages avec Event Grid](/azure/event-grid/delivery-and-retry#retry-schedule-and-duration).
 
 ## <a name="delete-blobs-using-storage-lifecycle"></a>Supprimer des objets blob à l’aide du cycle de vie du stockage
 
