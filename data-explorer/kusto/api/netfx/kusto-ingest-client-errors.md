@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: 61c183f11aa7658faba00c5dd3c4795f235e5467
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: a4da1c35d34a1677cc0608fdf70dcbdb5a3c7c73
+ms.sourcegitcommit: c6cb2b1071048daa872e2fe5a1ac7024762c180e
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92337480"
+ms.lasthandoff: 12/07/2020
+ms.locfileid: "96774603"
 ---
 # <a name="kustoingest-errors-and-exceptions"></a>Erreurs et exceptions Kusto. deréception
 Toute erreur au cours de la gestion de la réception côté client est indiquée par une exception C#.
@@ -67,40 +67,7 @@ Dans les `IngestFromDataReader` `IngestFromDataReaderAsync` méthodes et, l' `re
 
 Pour faciliter le traitement des échecs d’ingestion par programme, les informations d’échec sont enrichies avec un code d’erreur numérique ( `IngestionErrorCode enumeration` ).
 
-|ErrorCode                                      |Motif                                                        |
-|-----------------------------------------------|--------------------------------------------------------------|
-|Unknown                                        | Une erreur inconnue s'est produite|
-|Stream_LowMemoryCondition                      | La mémoire de l’opération est insuffisante|
-|Stream_WrongNumberOfFields                     | Le document CSV comporte un nombre incohérent de champs|
-|Stream_InputStreamTooLarge                     | Le document soumis pour réception a dépassé la taille autorisée|
-|Stream_NoDataToIngest                          | Aucun flux de données à ingérer|
-|Stream_DynamicPropertyBagTooLarge              | L’une des colonnes dynamiques dans les données ingérées contient un trop grand nombre de propriétés uniques|
-|Download_SourceNotFound                        | Échec du téléchargement de la source à partir du stockage Azure-source introuvable|
-|Download_AccessConditionNotSatisfied           | Échec du téléchargement de la source à partir du stockage Azure-accès refusé|
-|Download_Forbidden                             | Échec du téléchargement de la source à partir du stockage Azure-accès non autorisé|
-|Download_AccountNotFound                       | Échec du téléchargement de la source à partir du stockage Azure-compte introuvable|
-|Download_BadRequest                            | Échec du téléchargement de la source à partir du stockage Azure-demande incorrecte|
-|Download_NotTransient                          | Échec du téléchargement de la source à partir du stockage Azure-erreur non temporaire|
-|Download_UnknownError                          | Échec du téléchargement de la source à partir du stockage Azure-erreur inconnue|
-|UpdatePolicy_QuerySchemaDoesNotMatchTableSchema| Échec de l’appel de la stratégie de mise à jour. Le schéma de requête ne correspond pas au schéma de table|
-|UpdatePolicy_FailedDescendantTransaction       | Échec de l’appel de la stratégie de mise à jour. Échec de la stratégie de mise à jour transactionnelle descendante|
-|UpdatePolicy_IngestionError                    | Échec de l’appel de la stratégie de mise à jour. Une erreur d’ingestion s’est produite|
-|UpdatePolicy_UnknownError                      | Échec de l’appel de la stratégie de mise à jour. Une erreur inconnue s'est produite|
-|BadRequest_MissingJsonMappingtFailure          | Le modèle JSON n’est pas ingéré avec le paramètre jsonMapping|
-|BadRequest_InvalidBlob                         | Le moteur n’a pas pu ouvrir et lire un objet blob non-zip|
-|BadRequest_EmptyBlob                           | Objet BLOB vide|
-|BadRequest_EmptyArchive                        | Le fichier zip ne contient aucun élément archivé|
-|BadRequest_EmptyBlobUri                        | L’URI de l’objet BLOB spécifié est vide|
-|BadRequest_DatabaseNotExist                    | La base de données n’existe pas|
-|BadRequest_TableNotExist                       | La table n’existe pas|
-|BadRequest_InvalidKustoIdentityToken           | Jeton d’identité Kusto non valide|
-|BadRequest_UriMissingSas                       | Chemin d’accès d’objet BLOB sans SAS du stockage d’objets BLOB inconnu|
-|BadRequest_FileTooLarge                        | Tentative de réception d’un fichier trop volumineux|
-|BadRequest_NoValidResponseFromEngine           | Aucune réponse valide de la commande de réception|
-|BadRequest_TableAccessDenied                   | L’accès à la table est refusé|
-|BadRequest_MessageExhausted                    | Le message est épuisé|
-|General_BadRequest                             | Demande générale incorrecte. Indication de l’ingestion de la base de données/table inexistante|
-|General_InternalServerError                    | Une erreur interne du serveur s’est produite|
+Pour obtenir la liste complète des codes d’erreur de réception, consultez Codes d’erreur d’ingestion [dans Azure Explorateur de données](../../../error-codes.md).
 
 ## <a name="detailed-exceptions-reference"></a>Informations de référence sur les exceptions
 
@@ -112,7 +79,7 @@ Classe de base : [exception](/dotnet/api/system.exception)
 
 |Nom du champ |Type     |Signification
 |-----------|---------|------------------------------|
-|Erreur      | String  | Erreur qui s’est produite lors de la tentative de récupération des files d’attente à partir du DM
+|Error      | String  | Erreur qui s’est produite lors de la tentative de récupération des files d’attente à partir du DM
                             
 S’applique uniquement lors de l’utilisation du [client de réception en file d’attente Kusto](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient).
 Pendant le processus d’ingestion, plusieurs tentatives sont effectuées pour récupérer les files d’attente Azure liées au DM. Lorsque ces tentatives échouent, l’exception contenant la raison de l’échec est générée dans le champ « erreur ». Éventuellement, une exception interne dans le champ’InnerException’est également déclenchée.
@@ -150,7 +117,7 @@ Classe de base : [exception](/dotnet/api/system.exception)
 |Nom du champ   |Type     |Signification       
 |-------------|---------|---------------------------------|
 |QueueUri     | String  | URI de la file d’attente
-|Erreur        | String  | Message d’erreur qui a été généré lors de la tentative de publication dans la file d’attente
+|Error        | String  | Message d’erreur qui a été généré lors de la tentative de publication dans la file d’attente
                             
 S’applique uniquement lors de l’utilisation du [client de réception en file d’attente Kusto](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient).  
 Le client de réception mis en file d’attente ingère les données en téléchargeant un message dans la file d’attente Azure appropriée. En cas d’échec de publication, l’exception est levée. Elle contient l’URI de la file d’attente, la raison de l’échec dans le champ « erreur » et éventuellement une exception interne dans le champ « InnerException ».
@@ -225,6 +192,4 @@ Classe de base : [AggregateException](/dotnet/api/system.aggregateexception)
 |IngestionErrors | IList<IngestClientException>    | Les erreurs qui se produisent lors d’une tentative de réception et les sources associées
 |IsGlobalError   | bool                            | Indique si l’exception s’est produite pour toutes les sources
 
-## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations sur les erreurs en code natif, consultez [Erreurs dans le code natif](../../concepts/errorsinnativecode.md).
