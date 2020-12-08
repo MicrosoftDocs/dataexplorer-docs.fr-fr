@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2019
 ms.localizationpriority: high
-ms.openlocfilehash: d9d245da4acd43eb8d5e6a0eeadfa525cbd407a3
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: f14ec4fa24765053711d60f7d2365755b45adbab
+ms.sourcegitcommit: c6cb2b1071048daa872e2fe5a1ac7024762c180e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "96303338"
+ms.lasthandoff: 12/07/2020
+ms.locfileid: "96774637"
 ---
 # <a name="mv-expand-operator"></a>mv-expand, opérateur
 
@@ -49,8 +49,8 @@ Si plusieurs colonnes ou expressions sont spécifiées, elles sont développées
 La colonne développée est toujours de type dynamique. Utilisez une conversion telle que `todatetime()` ou `tolong()` si vous souhaitez calculer ou agréger des valeurs.
 
 Deux modes de développement de conteneurs de propriétés sont pris en charge :
-* `bagexpansion=bag`: les conteneurs de propriétés sont développés en conteneurs de propriétés à entrée unique. Ce mode est le développement par défaut.
-* `bagexpansion=array` : les conteneurs de propriétés sont développés en structures de tableau `[`*clé*`,`*valeur*`]` à deux éléments, permettant un accès uniforme aux clés et valeurs (également, par exemple, exécutant une agrégation de comptage distinct de noms de propriété). 
+* `bagexpansion=bag` ou `kind=bag` : Les conteneurs de propriétés sont développés en conteneurs de propriétés à entrée unique. Ce mode est le développement par défaut.
+* `bagexpansion=array` ou `kind=array` : les conteneurs de propriétés sont développés en structures de tableau `[`*clé*`,`*valeur*`]` à deux éléments, permettant un accès uniforme aux clés et valeurs (également, par exemple, exécutant une agrégation de comptage distinct de noms de propriété). 
 
 ## <a name="examples"></a>Exemples
 
