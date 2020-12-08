@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/26/2019
-ms.openlocfilehash: 40cd53d1bff6b33b81878c85c6c22c3fb85655ee
-ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
+ms.openlocfilehash: e083303d3d8270f0d673199c3547bff13001174e
+ms.sourcegitcommit: c6cb2b1071048daa872e2fe5a1ac7024762c180e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/28/2020
-ms.locfileid: "92902577"
+ms.lasthandoff: 12/07/2020
+ms.locfileid: "96774671"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-by-using-an-azure-resource-manager-template"></a>Créer un cluster et une base de données Azure Data Explorer avec un modèle Azure Resource Manager
 
@@ -76,6 +76,29 @@ Dans cet article, vous utilisez un [modèle de démarrage rapide existant](https
           "location": "[parameters('location')]",
           "tags": {
             "Created By": "GitHub quickstart template"
+          },
+          "properties": {
+              "trustedExternalTenants": [],
+              "optimizedAutoscale": {
+                  "version": 1,
+                  "isEnabled": true,
+                  "minimum": 2,
+                  "maximum": 10
+              },
+              "enableDiskEncryption": false,
+              "enableStreamingIngest": false,
+              "virtualNetworkConfiguration":{
+                  "subnetId": "<subnet resource id>",
+                  "enginePublicIpId": "<Engine service's public IP address resource id>",
+                  "dataManagementPublicIpId": "<Data management's service public IP address resource id>"
+              },
+              "keyVaultProperties":{
+                  "keyName": "<Key name>",
+                  "keyVaultUri": "<Key vault uri>"
+              },
+              "enablePurge": false,
+              "enableDoubleEncryption": false,
+              "engineType": "V3",
           }
       },
       {
@@ -113,7 +136,7 @@ Vous pouvez déployer le modèle Azure Resource Manager [à l’aide du portail 
 
     Vous pouvez [modifier et déployer le modèle dans le portail Azure](/azure/azure-resource-manager/resource-manager-quickstart-create-templates-use-the-portal#edit-and-deploy-the-template) en utilisant le formulaire.
 
-1. Complétez les sections **INFORMATIONS DE BASE** et **PARAMÈTRES** . Sélectionnez des noms de cluster et de base de données uniques.
+1. Complétez les sections **INFORMATIONS DE BASE** et **PARAMÈTRES**. Sélectionnez des noms de cluster et de base de données uniques.
 La création d’un cluster et d’une base de données Azure Data Explorer prend quelques minutes.
 
 1. Pour vérifier le déploiement, ouvrez le groupe de ressources dans le [portail Azure](https://portal.azure.com) pour rechercher votre nouveau cluster et votre nouvelle base de données. 
@@ -138,7 +161,7 @@ La création d’un cluster et d’une base de données Azure Data Explorer pren
     ```
 
 1. Sélectionnez **Copier** pour copier le script PowerShell.
-1. Cliquez avec le bouton droit sur la console d’interpréteur de commandes, puis sélectionnez **Coller** .
+1. Cliquez avec le bouton droit sur la console d’interpréteur de commandes, puis sélectionnez **Coller**.
 La création d’un cluster et d’une base de données Azure Data Explorer prend quelques minutes.
 
 #### <a name="verify-the-deployment-using-powershell"></a>Vérifier le déploiement à l’aide de PowerShell

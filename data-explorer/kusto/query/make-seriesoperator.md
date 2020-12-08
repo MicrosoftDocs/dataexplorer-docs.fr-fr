@@ -1,6 +1,6 @@
 ---
-title: opérateur make-Series-Azure Explorateur de données
-description: Cet article décrit l’opérateur make-Series dans Azure Explorateur de données.
+title: Opérateur make-series - Azure Data Explorer
+description: Cet article décrit l'opérateur make-series dans Azure Data Explorer.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,15 +10,15 @@ ms.topic: reference
 ms.date: 03/16/2020
 ms.localizationpriority: high
 ms.openlocfilehash: 6357afeb0a5673584e27b84a231e3c65f897b8fc
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
-ms.translationtype: MT
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95512364"
 ---
 # <a name="make-series-operator"></a>opérateur make-series
 
-Crée une série de valeurs agrégées spécifiées le long d’un axe spécifié.
+Créez une série de valeurs agrégées spécifiées le long d'un axe donné.
 
 ```kusto
 T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from datetime(2016-01-01) to datetime(2016-01-10) step 1d by fruit, supplier
@@ -26,109 +26,109 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
 
 ## <a name="syntax"></a>Syntaxe
 
-*T* `| make-series` [*MakeSeriesParamters*] [*Column* `=` ] *Aggregation* [ `default` `=` *DefaultValue*] [ `,` ...] `on` *AxisColumn* [ `from` *Start*] [ `to` *end*] `step` *étape* [ `by` [*Column* `=` ] *GroupExpression* [ `,` ...]]
+*T* `| make-series` [*MakeSeriesParamters*] [*Column* `=`] *Aggregation* [`default` `=` *DefaultValue*] [`,` ...] `on` *AxisColumn* [`from` *start*] [`to` *end*] `step` *step* [`by` [*Column* `=`] *GroupExpression* [`,` ...]]
 
 ## <a name="arguments"></a>Arguments
 
 * *Column :* nom facultatif d’une colonne de résultats. Prend par défaut un nom dérivé de l’expression.
-* *DefaultValue :* Valeur par défaut qui sera utilisée à la place des valeurs absentes. S’il n’y a pas de ligne avec des valeurs spécifiques de *AxisColumn* et *GroupExpression*, alors dans, les résultats de l’élément correspondant du tableau sont affectés à une valeur *DefaultValue*. Si *DefaultValue* est omis, 0 est utilisé par défaut. 
-* *Agrégation :* Appel à une [fonction d’agrégation](make-seriesoperator.md#list-of-aggregation-functions) telle que `count()` ou `avg()` , avec les noms de colonnes comme arguments. Voir la [liste des fonctions d’agrégation](make-seriesoperator.md#list-of-aggregation-functions). Seules les fonctions d’agrégation qui retournent des résultats numériques peuvent être utilisées avec l' `make-series` opérateur.
-* *AxisColumn :* Colonne sur laquelle la série sera classée. Elle peut être considérée comme une chronologie, mais en plus `datetime` des types numériques acceptés.
-* *Start*: (facultatif) la valeur de la limite inférieure de *AxisColumn* pour chacune des séries à générer. les instructions *Start*, *end* et *Step* sont utilisées pour générer un tableau de valeurs *AxisColumn* dans une plage donnée et à l’aide de l' *étape* spécifiée. Toutes les valeurs d' *agrégation* sont classées respectivement dans ce tableau. Ce tableau *AxisColumn* est également la dernière colonne de sortie de la sortie qui porte le même nom que *AxisColumn*. Si aucune valeur de *départ* n’est spécifiée, le début est le premier emplacement (étape) qui contient des données dans chaque série.
-* *end*: (facultatif) valeur de la limite supérieure (non inclusive) de *AxisColumn*. Le dernier index de la série chronologique est plus petit que cette valeur (et sera de *début* plus entier multiple de l' *étape* qui est plus petit que la *fin*). Si la valeur de *fin* n’est pas fournie, il s’agit de la limite supérieure du dernier compartiment (étape) qui contient des données par série.
-* *Step*: différence entre deux éléments consécutifs du tableau *AxisColumn* (autrement dit, la taille de l’emplacement).
-* *GroupExpression :* Expression sur les colonnes qui fournit un ensemble de valeurs distinctes. En règle générale, il s’agit d’un nom de colonne qui fournit déjà un ensemble limité de valeurs. 
-* *MakeSeriesParameters*: zéro, un ou plusieurs paramètres (séparés par des espaces) sous la forme d’une valeur de *nom* `=` *Value* qui contrôlent le comportement. Les paramètres suivants sont pris en charge : 
+* *DefaultValue :* valeur par défaut utilisée à la place des valeurs manquantes. En l'absence de ligne comportant des valeurs spécifiques pour *AxisColumn* et *GroupExpression*, une valeur par défaut (*DefaultValue*) est attribuée à l'élément correspondant du tableau dans les résultats. En l'absence de valeur *DefaultValue*, la valeur 0 est utilisée par défaut. 
+* *Agrégation :* appel d'une [fonction d'agrégation](make-seriesoperator.md#list-of-aggregation-functions) telle que `count()` ou `avg()`, avec des noms de colonne comme arguments. Voir la [liste des fonctions d’agrégation](make-seriesoperator.md#list-of-aggregation-functions). Seules les fonctions d'agrégation qui renvoient des résultats numériques peuvent être utilisées avec l'opérateur `make-series`.
+* *AxisColumn :* colonne à partir de laquelle la série est classée. Elle peut être considérée comme une chronologie, mais hormis `datetime` tous les types numériques sont acceptés.
+* *start* (facultatif) : valeur limite inférieure d'*AxisColumn* pour chacune des séries à générer. *start*, *end* et *step* sont utilisés pour créer un tableau de valeurs *AxisColumn* dans une plage donnée et en utilisant l'argument *step* spécifié. Toutes les valeurs *Aggregation* sont respectivement classées dans ce tableau. Ce tableau *AxisColumn* est également la dernière colonne de la sortie qui porte le même nom qu'*AxisColumn*. Si aucune valeur *start* n'est spécifiée, il s'agit de la première classe (step) qui contient des données dans chaque série.
+* *end*(facultatif) : valeur limite supérieure (non inclusive) d'*AxisColumn*. Le dernier index de la série chronologique est inférieur à cette valeur (et correspond à *start* plus un multiple entier de *step* inférieur à *end*). Si aucune valeur *end* n'est fournie, il s'agit de la limite supérieure de la dernière classe (step) qui contient des données pour chaque série.
+* *step* : différence entre deux éléments consécutifs du tableau *AxisColumn* (à savoir, la taille de la classe).
+* *GroupExpression :* expression sur les colonnes qui fournit un ensemble de valeurs distinctes. En règle générale, il s’agit d’un nom de colonne qui fournit déjà un ensemble limité de valeurs. 
+* *MakeSeriesParameters* : zéro ou plusieurs paramètres (séparés par des espaces), sous la forme *Nom* `=` *Valeur*, qui contrôlent le comportement. Les paramètres suivants sont pris en charge : 
   
   |Nom           |Valeurs                                        |Description                                                                                        |
   |---------------|-------------------------------------|------------------------------------------------------------------------------|
-  |`kind`          |`nonempty`                               |Produit un résultat par défaut lorsque l’entrée de l’opérateur de série make est vide|                                
+  |`kind`          |`nonempty`                               |Produit un résultat par défaut lorsque l'entrée de l'opérateur make-series est vide|                                
 
 ## <a name="returns"></a>Retours
 
-Les lignes d’entrée sont organisées en groupes ayant les mêmes valeurs d' `by` expressions et l' `bin_at(` *AxisColumn* `, ` expression de début d'*étape* AxisColumn `, ` *start* `)` . Ensuite, les fonctions d’agrégation spécifiées sont calculées sur chaque groupe, générant une ligne pour chaque groupe. Le résultat contient les `by` colonnes, la colonne *AxisColumn* et également au moins une colonne pour chaque agrégat calculé. (L’agrégation qui ne prend pas en charge les colonnes multiples ou les résultats non numériques).
+Les lignes d'entrée sont organisées en groupes qui ont les mêmes valeurs que les expressions `by` et que l'expression `bin_at(`*AxisColumn*`, `*step*`, `*start*`)`. Ensuite, les fonctions d’agrégation spécifiées sont calculées sur chaque groupe, générant une ligne pour chaque groupe. Le résultat contient les colonnes `by`, la colonne *AxisColumn* et au moins une colonne pour chaque agrégation calculée. (Agrégation qui ne prend pas en charge les colonnes multiples ou les résultats non numériques).
 
-Ce résultat intermédiaire contient autant de lignes qu’il y a de combinaisons distinctes de `by` valeurs de `bin_at(` *AxisColumn* `, ` début d'*étape* AxisColumn et `, ` *start* `)` .
+Ce résultat intermédiaire comporte autant de lignes qu'il y a de combinaisons distinctes de valeurs `by` et `bin_at(`*AxisColumn*`, `*step*`, `*start*`)`.
 
-Enfin, les lignes du résultat intermédiaire organisées en groupes ayant les mêmes valeurs des `by` expressions et toutes les valeurs agrégées sont organisées en tableaux (valeurs de `dynamic` type). Pour chaque agrégation, il existe une colonne contenant son tableau portant le même nom. Dernière colonne dans la sortie de la fonction Range avec toutes les valeurs *AxisColumn* . Sa valeur est répétée pour toutes les lignes. 
+Enfin, les lignes du résultat intermédiaire sont organisées en groupes qui ont les mêmes valeurs que les expressions `by`, et toutes les valeurs agrégées sont organisées en tableaux (valeurs de type `dynamic`). Pour chaque agrégation, il existe une colonne contenant le tableau correspondant du même nom. La dernière colonne de la sortie de la fonction range contient toutes les valeurs d'*AxisColumn*. Sa valeur est reportée sur toutes les lignes. 
 
-En raison de la valeur par défaut des emplacements de remplissage manquants, le tableau croisé dynamique résultant a le même nombre d’emplacements (c’est-à-dire, de valeurs agrégées) pour toutes les séries  
+En raison de la valeur par défaut des classes de remplissage manquantes, le tableau croisé dynamique qui en résulte comporte le même nombre de classes (c'est-à-dire, de valeurs agrégées) pour toutes les séries.  
 
 **Remarque**
 
-Bien que vous puissiez fournir des expressions arbitraires pour les expressions d’agrégation et de regroupement, il est plus efficace d’utiliser des noms de colonne simples.
+Bien que vous puissiez fournir des expressions arbitraires pour les expressions d'agrégation et de regroupement, il est plus efficace d'utiliser des noms de colonne simples.
 
-**Autre syntaxe**
+**Syntaxe alternative**
 
-*T* `| make-series` [*Column* `=` ] *Aggregation* [ `default` `=` *DefaultValue*] [ `,` ...] `on` *AxisColumn* `in` `range(` *Démarrer* l’étape d' `,` *arrêt* `,` *step* `)` [ `by` [*colonne* `=` ] *GroupExpression* [ `,` ...]]
+*T* `| make-series` [*Column* `=`] *Aggregation* [`default` `=` *DefaultValue*] [`,` ...] `on` *AxisColumn* `in` `range(`*start*`,` *stop*`,` *step*`)` [`by` [*Column* `=`] *GroupExpression* [`,` ...]]
 
-Les séries générées de la syntaxe alternative diffèrent de la syntaxe principale en deux aspects :
-* La valeur d' *arrêt* est inclusive.
-* Compartimentage l’axe d’index est généré avec bin () et non bin_at (), ce qui signifie que *Start* ne peut pas être inclus dans la série générée.
+Une série générée à partir de la syntaxe alternative diffère d'une série générée à partir de la syntaxe principale par deux aspects :
+* La valeur *stop* est inclusive.
+* Le binning de l'axe d'indexation est généré avec bin() et non bin_at(), ce qui signifie que *start* peut ne pas être inclus dans la série générée.
 
-Il est recommandé d’utiliser la syntaxe principale de make-Series et non la syntaxe alternative.
+Il est recommandé d'utiliser la syntaxe principale de make-series plutôt que la syntaxe alternative.
 
 **Distribution et lecture aléatoire**
 
-`make-series` prend en charge `summarize` les [indicateurs shufflekey](shufflequery.md) à l’aide de l’indicateur de syntaxe. shufflekey.
+`make-series` prend en charge les [indicateurs shufflekey](shufflequery.md) `summarize` avec la syntaxe hint.shufflekey.
 
-## <a name="list-of-aggregation-functions"></a>Liste des fonctions d’agrégation
+## <a name="list-of-aggregation-functions"></a>Liste des fonctions d'agrégation
 
 |Fonction|Description|
 |--------|-----------|
-|[Any ()](any-aggfunction.md)|Retourne une valeur non vide aléatoire pour le groupe|
-|[Moy ()](avg-aggfunction.md)|Retourne une valeur moyenne dans le groupe|
-|[avgif()](avgif-aggfunction.md)|Retourne une moyenne avec le prédicat du groupe.|
-|[Count ()](count-aggfunction.md)|Retourne le nombre de groupes|
-|[countif()](countif-aggfunction.md)|Retourne un nombre avec le prédicat du groupe.|
-|[dcount()](dcount-aggfunction.md)|Retourne un nombre approximatif distinct des éléments de groupe|
-|[dcountif()](dcountif-aggfunction.md)|Retourne un compte approximatif distinct avec le prédicat du groupe|
+|[any()](any-aggfunction.md)|Renvoie une valeur non vide aléatoire pour le groupe|
+|[avg()](avg-aggfunction.md)|Renvoie une valeur moyenne pour l'ensemble du groupe|
+|[avgif()](avgif-aggfunction.md)|Renvoie une moyenne avec le prédicat du groupe|
+|[count()](count-aggfunction.md)|Renvoie un nombre du groupe|
+|[countif()](countif-aggfunction.md)|Renvoie un nombre avec le prédicat du groupe|
+|[dcount()](dcount-aggfunction.md)|Renvoie un nombre approximatif distinct des éléments de groupe|
+|[dcountif()](dcountif-aggfunction.md)|Renvoie un compte distinct approximatif avec le prédicat du groupe|
 |[max()](max-aggfunction.md)|Retourne la valeur maximale dans l'ensemble du groupe|
-|[maxif()](maxif-aggfunction.md)|Retourne la valeur maximale avec le prédicat du groupe.|
+|[maxif()](maxif-aggfunction.md)|Renvoie la valeur maximale avec le prédicat du groupe|
 |[min()](min-aggfunction.md)|Retourne la valeur minimale dans l'ensemble du groupe|
-|[minif()](minif-aggfunction.md)|Retourne la valeur minimale avec le prédicat du groupe.|
-|[ECARTYPE ()](stdev-aggfunction.md)|Retourne l’écart type de l’ensemble du groupe|
-|[Sum ()](sum-aggfunction.md)|Retourne la somme des éléments dans le groupe|
-|[sumif()](sumif-aggfunction.md)|Retourne la somme des éléments avec le prédicat du groupe.|
-|[variance()](variance-aggfunction.md)|Retourne la variance dans le groupe|
+|[minif()](minif-aggfunction.md)|Renvoie la valeur minimale avec le prédicat du groupe|
+|[stdev()](stdev-aggfunction.md)|Renvoie l'écart type dans l'ensemble du groupe|
+|[sum()](sum-aggfunction.md)|Renvoie la somme des éléments du groupe|
+|[sumif()](sumif-aggfunction.md)|Renvoie la somme des éléments avec le prédicat du groupe|
+|[variance()](variance-aggfunction.md)|Renvoie la variance dans l'ensemble du groupe|
 
-## <a name="list-of-series-analysis-functions"></a>Liste des fonctions d’analyse de série
+## <a name="list-of-series-analysis-functions"></a>Liste des fonctions d'analyse de séries
 
 |Fonction|Description|
 |--------|-----------|
 |[series_fir()](series-firfunction.md)|Applique un filtre à [réponse impulsionnelle finie](https://en.wikipedia.org/wiki/Finite_impulse_response)|
 |[series_iir()](series-iirfunction.md)|Applique un filtre à [réponse impulsionnelle infinie](https://en.wikipedia.org/wiki/Infinite_impulse_response)|
-|[series_fit_line()](series-fit-linefunction.md)|Recherche une ligne droite qui est la meilleure approximation de l’entrée|
-|[series_fit_line_dynamic()](series-fit-line-dynamicfunction.md)|Recherche une ligne qui est la meilleure approximation de l’entrée, en retournant l’objet dynamique|
-|[series_fit_2lines()](series-fit-2linesfunction.md)|Recherche deux lignes qui représentent la meilleure approximation de l’entrée|
-|[series_fit_2lines_dynamic()](series-fit-2lines-dynamicfunction.md)|Recherche deux lignes qui représentent la meilleure approximation de l’entrée, en retournant l’objet dynamique|
-|[series_outliers()](series-outliersfunction.md)|Notation des points d’anomalies dans une série|
+|[series_fit_line()](series-fit-linefunction.md)|Recherche une ligne droite qui représente la meilleure approximation de l'entrée|
+|[series_fit_line_dynamic()](series-fit-line-dynamicfunction.md)|Recherche une ligne qui représente la meilleure approximation de l'entrée, en renvoyant l'objet dynamique|
+|[series_fit_2lines()](series-fit-2linesfunction.md)|Recherche deux lignes qui représentent la meilleure approximation de l'entrée|
+|[series_fit_2lines_dynamic()](series-fit-2lines-dynamicfunction.md)|Recherche deux lignes qui représentent la meilleure approximation de l'entrée, en renvoyant l'objet dynamique|
+|[series_outliers()](series-outliersfunction.md)|Note les points d'anomalie dans une série|
 |[series_periods_detect()](series-periods-detectfunction.md)|Recherche les périodes les plus significatives qui existent dans une série chronologique|
 |[series_periods_validate()](series-periods-validatefunction.md)|Vérifie si une série chronologique contient des modèles périodiques de longueurs données|
-|[series_stats_dynamic()](series-stats-dynamicfunction.md)|Retourner plusieurs colonnes avec les statistiques courantes (min/max/variance/ECARTYPE/moyenne)|
-|[series_stats()](series-statsfunction.md)|Génère une valeur dynamique avec les statistiques courantes (min/max/variance/ECARTYPE/moyenne)|
+|[series_stats_dynamic()](series-stats-dynamicfunction.md)|Renvoie plusieurs colonnes comportant les statistiques courantes (min/max/variance/stdev/average)|
+|[series_stats()](series-statsfunction.md)|Génère une valeur dynamique avec les statistiques courantes (min/max/variance/stdev/average)|
   
-## <a name="list-of-series-interpolation-functions"></a>Liste des fonctions d’interpolation de série
+## <a name="list-of-series-interpolation-functions"></a>Liste des fonctions d'interpolation des séries
 
 |Fonction|Description|
 |--------|-----------|
-|[series_fill_backward()](series-fill-backwardfunction.md)|Effectue l’interpolation de remplissage arrière des valeurs manquantes dans une série|
-|[series_fill_const()](series-fill-constfunction.md)|Remplace les valeurs manquantes dans une série par une valeur de constante spécifiée|
-|[series_fill_forward()](series-fill-forwardfunction.md)|Effectue l’interpolation de remplissage par progression des valeurs manquantes dans une série|
-|[series_fill_linear()](series-fill-linearfunction.md)|Effectue une interpolation linéaire des valeurs manquantes dans une série|
+|[series_fill_backward()](series-fill-backwardfunction.md)|Effectue une interpolation de remplissage vers l'arrière des valeurs manquantes d'une série|
+|[series_fill_const()](series-fill-constfunction.md)|Remplace les valeurs manquantes d'une série par une valeur constante spécifiée|
+|[series_fill_forward()](series-fill-forwardfunction.md)|Effectue une interpolation de remplissage vers l'avant des valeurs manquantes d'une série|
+|[series_fill_linear()](series-fill-linearfunction.md)|Effectue une interpolation linéaire des valeurs manquantes d'une série|
 
-* Remarque : les fonctions d’interpolation par défaut prennent `null` la valeur manquante. Par conséquent, spécifiez `default=` *double*( `null` ) dans `make-series` si vous envisagez d’utiliser des fonctions d’interpolation pour la série. 
+* Remarque : par défaut, les fonctions d'interpolation considèrent `null` comme une valeur manquante. Par conséquent, spécifiez `default=`*double*(`null`) dans `make-series` si vous envisagez d'utiliser des fonctions d'interpolation pour la série. 
 
 ## <a name="example"></a>Exemple
   
- Table qui affiche des tableaux des nombres et les prix moyens de chaque fruit de chaque fournisseur classé par horodatage avec la plage spécifiée. La sortie contient une ligne pour chaque combinaison de fruits et de fournisseurs. Les colonnes de sortie affichent les fruits, les fournisseurs et les tableaux de : Count, Average et la chronologie entière (de 2016-01-01 jusqu’à 2016-01-10). Tous les tableaux sont triés selon l’horodatage respectif et tous les espaces sont remplis avec des valeurs par défaut (0 dans cet exemple). Toutes les autres colonnes d’entrée sont supprimées.
+ Table présentant des nombres et des prix moyens par fruit et par fournisseur, classés en fonction du timestamp avec la plage spécifiée. La sortie contient une ligne pour chaque combinaison de fruits et de fournisseurs. Les colonnes de la sortie présentent les fruits, les fournisseurs et les tableaux : nombre, moyenne et ensemble de la chronologie (du 2016-01-01 au 2016-01-10). Tous les tableaux sont classés en fonction du timestamp, et tous les espaces vides sont remplis avec les valeurs par défaut (0 dans cet exemple). Toutes les autres colonnes d’entrée sont supprimées.
   
 ```kusto
 T | make-series PriceAvg=avg(Price) default=0
 on Purchase from datetime(2016-09-10) to datetime(2016-09-13) step 1d by Supplier, Fruit
 ```
 
-:::image type="content" source="images/make-seriesoperator/makeseries.png" alt-text="Trois tables. La première liste les données brutes, la seconde n’a que des combinaisons distinctes de la date des fournisseurs et la troisième contient les résultats de la série make.":::  
+:::image type="content" source="images/make-seriesoperator/makeseries.png" alt-text="Trois tables. La première répertorie les données brutes, la deuxième ne contient que des combinaisons distinctes de fournisseurs, de fruits et de dates, et le troisième contient les résultats de la fonction make-series.":::  
 
 <!-- csl: https://help.kusto.windows.net:443/Samples --> 
 ```kusto
@@ -158,10 +158,10 @@ data
   
 |avg_metric|timestamp|
 |---|---|
-|[4,0, 3,0, 5,0, 0,0, 10,5, 4,0, 3,0, 8,0, 6,5]|["2017-01-01T00:00:00.0000000 Z", "2017-01-02T00:00:00.0000000 Z", "2017-01-03T00:00:00.0000000 Z", "2017-01-04T00:00:00.0000000 Z", "2017-01-05T00:00:00.0000000 Z", "2017-01-06T00:00:00.0000000 Z", "2017-01-07T00:00:00.0000000 Z", "2017-01-08T00:00:00.0000000 Z", "2017-01-09T00:00:00.0000000 Z"]|  
+|[ 4.0, 3.0, 5.0, 0.0, 10.5, 4.0, 3.0, 8.0, 6.5 ]|[ "2017-01-01T00:00:00.0000000Z", "2017-01-02T00:00:00.0000000Z", "2017-01-03T00:00:00.0000000Z", "2017-01-04T00:00:00.0000000Z", "2017-01-05T00:00:00.0000000Z", "2017-01-06T00:00:00.0000000Z", "2017-01-07T00:00:00.0000000Z", "2017-01-08T00:00:00.0000000Z", "2017-01-09T00:00:00.0000000Z" ]|  
 
 
-Lorsque l’entrée de `make-series` est vide, le comportement par défaut de `make-series` produit également un résultat vide.
+Lorsque l'entrée de `make-series` est vide, le comportement par défaut de `make-series` produit également un résultat vide.
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -191,12 +191,12 @@ data
 | count 
 ```
 
-|Count|
+|Nombre|
 |---|
 |0|
 
 
-L’utilisation de dans produira `kind=nonempty` `make-series` un résultat non vide des valeurs par défaut :
+L'utilisation de `kind=nonempty` dans `make-series` produit un résultat non vide pour les valeurs par défaut :
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -227,4 +227,4 @@ data
 
 |avg_metric|timestamp|
 |---|---|
-|[<br>  1,0,<br>  1,0,<br>  1,0,<br>  1,0,<br>  1,0,<br>  1,0,<br>  1,0,<br>  1,0,<br>  1.0<br>]|[<br>  « 2017-01-01T00:00:00.0000000 Z »,<br>  « 2017-01-02T00:00:00.0000000 Z »,<br>  « 2017-01-03T00:00:00.0000000 Z »,<br>  « 2017-01-04T00:00:00.0000000 Z »,<br>  « 2017-01-05T00:00:00.0000000 Z »,<br>  « 2017-01-06T00:00:00.0000000 Z »,<br>  « 2017-01-07T00:00:00.0000000 Z »,<br>  « 2017-01-08T00:00:00.0000000 Z »,<br>  « 2017-01-09T00:00:00.0000000 Z »<br>]|
+|[<br>  1.0,<br>  1.0,<br>  1.0,<br>  1.0,<br>  1.0,<br>  1.0,<br>  1.0,<br>  1.0,<br>  1.0<br>]|[<br>  "2017-01-01T00:00:00.0000000Z",<br>  "2017-01-02T00:00:00.0000000Z",<br>  "2017-01-03T00:00:00.0000000Z",<br>  "2017-01-04T00:00:00.0000000Z",<br>  "2017-01-05T00:00:00.0000000Z",<br>  "2017-01-06T00:00:00.0000000Z",<br>  "2017-01-07T00:00:00.0000000Z",<br>  "2017-01-08T00:00:00.0000000Z",<br>  "2017-01-09T00:00:00.0000000Z"<br>]|

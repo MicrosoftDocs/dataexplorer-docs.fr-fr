@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: quickstart
 ms.date: 11/22/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 5ccae7e467b2ce41a36868cdad1b059aeec3ef9d
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 38b67a0843cc38c2cbce7d5a41a8eff85b25ebd5
+ms.sourcegitcommit: 7edce9d9d20f9c0505abda67bb8cc3d2ecd60d15
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95872479"
+ms.lasthandoff: 12/02/2020
+ms.locfileid: "96524298"
 ---
 # <a name="quickstart-query-data-in-azure-data-explorer-web-ui"></a>Démarrage rapide : Interroger des données dans l’interface utilisateur web Azure Data Explorer
 
@@ -55,7 +55,7 @@ Ajoutez maintenant le cluster de test que vous avez créé.
 
 1. Sélectionnez **Ajouter un cluster**.
 
-1. Dans la boîte de dialogue **Ajouter un cluster**, entrez l’URL de votre cluster de test sous la forme `https://<ClusterName>.<Region>.kusto.windows.net/`, puis sélectionnez **Ajouter**. Par exemple, https://mydataexplorercluster.westus.kusto.windows.net comme dans l’image suivante :
+1. Dans la boîte de dialogue **Ajouter un cluster**, entrez l’URL de votre cluster de test sous la forme `https://<ClusterName>.<Region>.kusto.windows.net/`, puis sélectionnez **Ajouter**. Par exemple, `https://mydataexplorercluster.westus.kusto.windows.net` comme dans l’image suivante :
 
     :::image type="content" source="media/web-query-data/server-uri.png" alt-text="Entrer l’URL du cluster de test":::
     
