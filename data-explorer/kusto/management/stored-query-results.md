@@ -8,12 +8,12 @@ ms.reviewer: mispecto
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/3/2020
-ms.openlocfilehash: fb998499205be7645f011fe727f5e37495ff3697
-ms.sourcegitcommit: 2804e3fe40f6cf8e65811b00b7eb6a4f59c88a99
+ms.openlocfilehash: 352f82bdb11847574807f81bc63236127900ae94
+ms.sourcegitcommit: 202357f866801aafd92e3e29a84bb312e17aebc7
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/07/2020
-ms.locfileid: "96749302"
+ms.lasthandoff: 12/09/2020
+ms.locfileid: "96933857"
 ---
 # <a name="stored-query-results-preview"></a>Résultats de la requête stockée (version préliminaire)
 
@@ -29,7 +29,7 @@ Les résultats de la requête stockée sont accessibles jusqu’à 24 heures apr
 
 Les résultats de la requête stockée se comportent comme des tables, en ce sens que l’ordre des enregistrements n’est pas préservé. Pour effectuer une pagination dans les résultats, il est recommandé que la requête contienne des colonnes d’ID uniques. Pour plus d’informations, consultez les [exemples](#examples). Si plusieurs jeux de résultats sont retournés par une requête, seul le premier jeu de résultats est stocké. 
 
-L’utilisation des résultats de la requête stockée requiert `Database User` ou un rôle d’accès supérieur.
+L’utilisation des résultats de la requête stockée requiert `Database Viewer` ou un rôle d’accès supérieur.
 
 ## <a name="store-the-results-of-a-query"></a>Stocker les résultats d’une requête
 
@@ -125,7 +125,7 @@ stored_query_result("DailyClicksByAdNetwork7Days")
 
 **Output:**
 
-| Num | Jour | AdNetwork | Nombre |
+| Num | Jour | AdNetwork | Count |
 |-----|-----|-----------|-------|
 | 100 | 2020-01-01 00:00:00.0000000 | CoolAds | 301 |
 | 101 | 2020-01-01 00:00:00.0000000 | DreamAds | 254 |
@@ -160,7 +160,7 @@ Supprime le résultat de la requête stockée active créée dans la base de don
 
 `.drop``stored_query_result` *StoredQueryResultName*
 
-`Database User` l’autorisation est requise pour appeler cette commande.
+`Database Viewer` l’autorisation est requise pour appeler cette commande.
 
 #### <a name="returns"></a>Retours
 
