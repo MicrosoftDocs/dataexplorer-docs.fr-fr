@@ -6,17 +6,17 @@ ms.author: orspodek
 ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: how-to
-ms.date: 09/24/2018
-ms.openlocfilehash: fdcc048c9abdbbc7b99ba938dd5f4ce3792fce41
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.date: 12/01/2020
+ms.openlocfilehash: 8b94a36bc2e5190770db424126a3461330c4245d
+ms.sourcegitcommit: 4d5628b52b84f7564ea893f621bdf1a45113c137
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88875359"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96444186"
 ---
 # <a name="troubleshoot-failure-to-create-or-delete-a-database-or-table-in-azure-data-explorer"></a>Résolution des problèmes : Échec de création ou de suppression d’une base de données ou d’une table dans l’Explorateur de données Azure
 
-Dans l’Explorateur de données Azure, vous utilisez régulièrement des bases de données et des tables. Cet article indique la procédure de résolution des problèmes qui peuvent se poser.
+Dans l’Explorateur de données Azure, vous utilisez régulièrement des bases de données et des tables. Cet article indique la procédure de résolution des problèmes qui peuvent se poser. 
 
 ## <a name="creating-a-database"></a>Création d’une base de données
 
@@ -28,7 +28,7 @@ Dans l’Explorateur de données Azure, vous utilisez régulièrement des bases 
 
 ## <a name="deleting-or-renaming-a-database"></a>Suppression ou renommage d’une base de données
 
-Veillez à disposer des autorisations appropriées. Pour supprimer ou renommer une base de données, vous devez être un membre du rôle *Collaborateur* ou *Propriétaire* pour l’abonnement Azure. Si nécessaire, demandez à l’administrateur de votre abonnement de vous ajouter au rôle approprié.
+Veillez à disposer des autorisations appropriées. Pour supprimer ou renommer une base de données, vous devez être un membre du rôle *Collaborateur* ou *Propriétaire* pour l’abonnement Azure. Si nécessaire, demandez à l’administrateur de votre abonnement de vous ajouter au rôle approprié. Vous pouvez aussi supprimer ou renommer une base de données si vous avez le rôle d’*administrateur de base de données*.
 
 ## <a name="creating-a-table"></a>Création d’une table
 
@@ -60,4 +60,5 @@ Pour plus d’informations sur les autorisations, consultez [Gérer des autorisa
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-[Vérifier l’intégrité des clusters](check-cluster-health.md)
+* [Vérifier l’intégrité des clusters](check-cluster-health.md)
+* [Gérer des autorisations de base de données](manage-database-permissions.md)

@@ -1366,8 +1366,6 @@
               href: ./kusto/concepts/runawayqueries.md
             - name: Dépassement de capacité
               href: ./kusto/concepts/overflow.md
-            - name: Erreurs dans le code natif
-              href: ./kusto/concepts/errorsinnativecode.md
     - name: Documentation de référence sur le langage de requête Kusto
       items:
         - name: Syntaxe RE2
@@ -1407,8 +1405,7 @@
           href: ./kusto/management/index.md
         - name: schéma
           items:
-            - name: Bonnes pratiques pour la conception de schéma
-              displayName: management
+            - name: Bonnes pratiques pour la gestion de schémas
               href: ./kusto/management/management-best-practices.md
             - name: Bases de données
               href: ./kusto/management/databases.md
@@ -1691,8 +1688,6 @@
               href: ./kusto/management/commands.md
             - name: Commandes et requêtes
               href: ./kusto/management/commands-and-queries.md
-            - name: Échecs d’ingestion
-              href: ./kusto/management/ingestionfailures.md
             - name: Opérations
               href: ./kusto/management/operations.md
         - name: Contrôle d’accès
@@ -1732,6 +1727,12 @@
               href: ./kusto/management/cluster-follower.md
             - name: Vidage des données
               href: ./kusto/concepts/data-purge.md
+        - name: Erreurs et défaillances
+          items:
+            - name: Codes d’erreur d’ingestion
+              href: error-codes.md
+            - name: Échecs d’ingestion
+              href: ./kusto/management/ingestionfailures.md
     - name: API
       items:
         - name: Présentation de l’API
@@ -1800,18 +1801,24 @@
                 - name: Vue d’ensemble de Kusto.Ingest
                   href: ./kusto/api/netfx/about-kusto-ingest.md
                 - name: Autorisations
+                  displayName: Kusto.Ingest
                   href: ./kusto/api/netfx/kusto-ingest-client-permissions.md
                 - name: Informations de référence sur le client
+                  displayName: Kusto.Ingest
                   href: ./kusto/api/netfx/kusto-ingest-client-reference.md
                 - name: Erreurs et exceptions
+                  displayName: Kusto.Ingest
                   href: ./kusto/api/netfx/kusto-ingest-client-errors.md
                 - name: État de l’opération
+                  displayName: Kusto.Ingest
                   href: ./kusto/api/netfx/kusto-ingest-client-status.md
                 - name: Bonnes pratiques pour Kusto.Ingest
                   href: ./kusto/api/netfx/kusto-ingest-best-practices.md
                 - name: Exemples de code
+                  displayName: Kusto.Ingest
                   href: ./kusto/api/netfx/kusto-ingest-client-examples.md
                 - name: Procédure d’ingestion des données avec l’API REST
+                  displayName: Kusto.Ingest
                   href: ./kusto/api/netfx/kusto-ingest-client-rest.md
         - name: Kit de développement logiciel (SDK) Python
           items:

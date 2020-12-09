@@ -6,19 +6,22 @@ ms.author: orspodek
 ms.reviewer: takamara
 ms.service: data-explorer
 ms.topic: how-to
-ms.date: 06/03/2019
-ms.openlocfilehash: 228722bab25dc19532860f92b8194c4fd2d79a38
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.date: 11/26/2020
+ms.openlocfilehash: 83d382de4f5bd683dff934267b5258ece475a8da
+ms.sourcegitcommit: 1bdbfdc04c4eac405f3931059bbeee2dedd87004
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92343094"
+ms.lasthandoff: 11/27/2020
+ms.locfileid: "96303356"
 ---
-# <a name="ingest-data-from-logstash-to-azure-data-explorer"></a>Ingérer des données depuis Logstash vers Azure Data Explorer
+# <a name="ingest-data-from-logstash-to-azure-data-explorer-preview"></a>Ingérer des données Logstash dans Azure Data Explorer (préversion)
 
 [Logstash](https://www.elastic.co/products/logstash) est un pipeline open source de traitement de données côté serveur qui ingère simultanément des données provenant de nombreuses sources, les transforme, puis les envoie à votre « remise » préférée. Dans cet article, vous allez envoyer ces données à Azure Data Explorer, c’est-à-dire à un service rapide et hautement scalable d’exploration de données de journal et de télémétrie. Vous allez commencer par créer une table et un mappage de données dans un cluster de test, puis vous allez demander à Logstash d’envoyer des données dans la table et valider les résultats.
 
-## <a name="prerequisites"></a>Conditions préalables requises
+> [!NOTE]
+> Ce connecteur prend actuellement en charge seulement le format de données JSON.
+
+## <a name="prerequisites"></a>Prérequis
 
 * Un abonnement Azure. Si vous n’en avez pas, créez un [compte Azure gratuit](https://azure.microsoft.com/free/) avant de commencer.
 * Un [cluster de test et une base de données](create-cluster-database-portal.md) Azure Data Explorer
@@ -110,7 +113,7 @@ output {
 | --- | --- |
 | **path** | Le plug-in Logstash écrit des événements dans des fichiers temporaires avant de les envoyer à Azure Data Explorer. Ce paramètre inclut un chemin indiquant l’emplacement auquel les fichiers doivent être écrits, ainsi qu’une expression temporelle de rotation de fichiers qui déclenche un chargement vers le service Azure Data Explorer.|
 | **ingest_url** | Point de terminaison Kusto pour la communication liée à l’ingestion.|
-| **app_id** , **app_key** et **app_tenant**| Informations d’identification nécessaires pour la connexion à Azure Data Explorer. Veillez à utiliser une application dotée de privilèges d’ingestion. |
+| **app_id**, **app_key** et **app_tenant**| Informations d’identification nécessaires pour la connexion à Azure Data Explorer. Veillez à utiliser une application dotée de privilèges d’ingestion. |
 | **database**| Nom de la base de données où placer des événements. |
 | **table** | Nom de la table cible où placer des événements. |
 | **mapping** | Le mappage est utilisé pour mapper une chaîne json d’événement entrant sur le format de ligne approprié (il définit quelle propriété va dans quelle colonne). |

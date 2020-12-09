@@ -8,12 +8,12 @@ ms.reviewer: jasonh
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 05/05/2019
-ms.openlocfilehash: a92e657bfc2f440deb20fd4b812169b1c2e32112
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 14ba0226efc5f38ef3d549f38b2a6224da7c201e
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92342907"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320721"
 ---
 # <a name="azure-devops-task-for-azure-data-explorer"></a>Azure DevOps Task pour Azure Data Explorer
 
@@ -37,33 +37,33 @@ Ce document décrit un exemple simple d’utilisation de la tâche **Azure Data 
 
 ## <a name="create-folders"></a>Créez les dossiers.
 
-Créez les dossiers exemples suivants ( *Fonctions* , *Stratégies* , *Tables* ) dans votre référentiel Git. Copiez les fichiers disponibles [ici](https://github.com/Azure/azure-kusto-docs-samples/tree/master/DevOps_release_pipeline) dans les dossiers respectifs, comme illustré ci-dessous, et validez les modifications. Les fichiers exemples sont fournis pour exécuter le workflow suivant.
+Créez les dossiers exemples suivants (*Fonctions*, *Stratégies*, *Tables*) dans votre référentiel Git. Copiez les fichiers disponibles [ici](https://github.com/Azure/azure-kusto-docs-samples/tree/master/DevOps_release_pipeline) dans les dossiers respectifs, comme illustré ci-dessous, et validez les modifications. Les fichiers exemples sont fournis pour exécuter le workflow suivant.
 
 ![Créez les dossiers.](media/devops/create-folders.png)
 
 > [!TIP]
-> Lorsque vous créez votre propre workflow, nous vous recommandons de rendre votre code idempotent. Par exemple, utilisez [.create-merge table](kusto/management/create-merge-table-command.md) plutôt que [.create table](kusto/management/create-table-command.md) et la fonction [.create-or-alter](kusto/management/create-alter-function.md) plutôt que [.create](kusto/management/create-function.md).
+> Lorsque vous créez votre propre workflow, nous vous recommandons de rendre votre code idempotent. Par exemple, utilisez [`.create-merge table`](kusto/management/create-merge-table-command.md) au lieu de [`.create table`](kusto/management/create-table-command.md), et utilisez la fonction [`.create-or-alter`](kusto/management/create-alter-function.md) au lieu de la fonction [`.create`](kusto/management/create-function.md).
 
 ## <a name="create-a-release-pipeline"></a>Créer un pipeline de mise en production
 
 1. Connectez-vous à votre [organisation Azure DevOps](https://dev.azure.com/).
-1. Sélectionnez **Pipelines** > **Mises en production** dans le menu de gauche, puis **Nouveau pipeline** .
+1. Sélectionnez **Pipelines** > **Mises en production** dans le menu de gauche, puis **Nouveau pipeline**.
 
     ![Nouveau pipeline](media/devops/new-pipeline.png)
 
-1. La fenêtre **Nouveau pipeline de mise en production** s'ouvre. Dans l'onglet **Pipelines** , sous le volet **Sélectionner un modèle** , sélectionnez **Projet vide** .
+1. La fenêtre **Nouveau pipeline de mise en production** s'ouvre. Dans l'onglet **Pipelines**, sous le volet **Sélectionner un modèle**, sélectionnez **Projet vide**.
 
      ![Sélectionner un modèle](media/devops/select-template.png)
 
-1. Sélectionnez le bouton **Phase** . Dans le volet **Phase** , ajoutez le **nom de la phase** . Sélectionnez **Enregistrer** pour enregistrer votre pipeline.
+1. Sélectionnez le bouton **Phase**. Dans le volet **Phase**, ajoutez le **nom de la phase**. Sélectionnez **Enregistrer** pour enregistrer votre pipeline.
 
     ![Nommer la phase](media/devops/stage-name.png)
 
-1. Sélectionnez le bouton **Ajouter un artefact** . Dans le volet **Ajouter un artefact** , sélectionnez le référentiel où se trouve votre code, renseignez les informations pertinentes, puis cliquez sur **Ajouter** . Sélectionnez **Enregistrer** pour enregistrer votre pipeline.
+1. Sélectionnez le bouton **Ajouter un artefact**. Dans le volet **Ajouter un artefact**, sélectionnez le référentiel où se trouve votre code, renseignez les informations pertinentes, puis cliquez sur **Ajouter**. Sélectionnez **Enregistrer** pour enregistrer votre pipeline.
 
     ![Ajouter un artefact](media/devops/add-artifact.png)
 
-1. Dans l'onglet **Variables** , sélectionnez **+ Ajouter** pour créer une variable pour l' **URL de point de terminaison** qui sera utilisée dans la tâche. Notez le **nom** et la **valeur** du point de terminaison. Sélectionnez **Enregistrer** pour enregistrer votre pipeline. 
+1. Dans l'onglet **Variables**, sélectionnez **+ Ajouter** pour créer une variable pour l'**URL de point de terminaison** qui sera utilisée dans la tâche. Notez le **nom** et la **valeur** du point de terminaison. Sélectionnez **Enregistrer** pour enregistrer votre pipeline. 
 
     ![Créer une variable](media/devops/create-variable.png)
 
@@ -73,25 +73,25 @@ Créez les dossiers exemples suivants ( *Fonctions* , *Stratégies* , *Tables* )
 
 ## <a name="create-tasks-to-deploy"></a>Créer des tâches de déploiement
 
-1. Dans l'onglet **Pipeline** , cliquez sur **1 travail, 0 tâche** pour ajouter des tâches. 
+1. Dans l'onglet **Pipeline**, cliquez sur **1 travail, 0 tâche** pour ajouter des tâches. 
 
     ![Ajouter des tâches](media/devops/add-task.png)
 
-1. Créez trois tâches à déployer **Tables** , **Fonctions** et **Stratégies** , dans cet ordre. 
+1. Créez trois tâches à déployer **Tables**, **Fonctions** et **Stratégies**, dans cet ordre. 
 
-1. Dans l'onglet **Tâches** , sélectionnez **+** par **Travail d'agent** . Recherchez **Azure Data Explorer** . Dans **Place de marché** , installez l'extension **Azure Data Explorer – Commandes d’administration** . Sélectionnez ensuite **Ajouter** dans **Exécuter la commande Azure Data Explorer** .
+1. Dans l'onglet **Tâches**, sélectionnez **+** par **Travail d'agent**. Recherchez **Azure Data Explorer**. Dans **Place de marché**, installez l'extension **Azure Data Explorer – Commandes d’administration**. Sélectionnez ensuite **Ajouter** dans **Exécuter la commande Azure Data Explorer**.
 
      ![Ajouter des commandes d’administration](media/devops/add-admin-commands.png)
 
 1. Cliquez sur **Commande Kusto** à gauche, puis mettez à jour la tâche avec les informations suivantes :
-    * **Nom d'affichage**  : Nom de la tâche
-    * **Chemin d'accès au fichier**  : Dans la tâche **Tables** , spécifiez */Tables/* .csl car les fichiers de création de table se trouvent dans le dossier *Table* .
-    * **URL de point de terminaison**  : entrez la variable `EndPoint URL` créée à l’étape précédente.
-    * Sélectionnez **Utiliser un point de terminaison de service** , puis **+ Nouveau** .
+    * **Nom d'affichage** : Nom de la tâche
+    * **Chemin d'accès au fichier** : Dans la tâche **Tables**, spécifiez */Tables/* .csl car les fichiers de création de table se trouvent dans le dossier *Table*.
+    * **URL de point de terminaison** : entrez la variable `EndPoint URL` créée à l’étape précédente.
+    * Sélectionnez **Utiliser un point de terminaison de service** , puis **+ Nouveau**.
 
     ![Mettre à jour la tâche de la commande Kusto](media/devops/kusto-command-task.png)
 
-1. Complétez les informations suivantes dans la fenêtre **Ajouter une connexion de service Azure Data Explorer**  :
+1. Complétez les informations suivantes dans la fenêtre **Ajouter une connexion de service Azure Data Explorer** :
 
     |Paramètre  |Valeur suggérée  |
     |---------|---------|
@@ -101,11 +101,11 @@ Créez les dossiers exemples suivants ( *Fonctions* , *Stratégies* , *Tables* )
     |**Clé d'application du principal de service**     |    Entrez la clé d’application AAD (créée en prérequis)    |
     |**ID de locataire AAD**    |      Entrez votre locataire AAD (par exemple, microsoft.com, contoso.com, etc.)    |
 
-    Sélectionnez **Autoriser tous les pipelines à utiliser cette connexion** . Sélectionnez **OK** .
+    Sélectionnez **Autoriser tous les pipelines à utiliser cette connexion**. Sélectionnez **OK**.
 
     ![Ajouter une connexion de service](media/devops/add-service-connection.png)
 
-1. Répétez les étapes 1 à 5 deux fois pour déployer les fichiers à partir des dossiers *Fonctions* et *Stratégies* . Sélectionnez **Enregistrer** . Dans l'onglet **Tâches** , consultez les trois tâches créées : **Déployer des tables** , **Déployer des fonctions** et **Déployer des stratégies** .
+1. Répétez les étapes 1 à 5 deux fois pour déployer les fichiers à partir des dossiers *Fonctions* et *Stratégies*. Sélectionnez **Enregistrer**. Dans l'onglet **Tâches**, consultez les trois tâches créées : **Déployer des tables**, **Déployer des fonctions** et **Déployer des stratégies**.
 
     ![Déployer tous les dossiers](media/devops/deploy-all-folders.png)
 
@@ -113,7 +113,7 @@ Créez les dossiers exemples suivants ( *Fonctions* , *Stratégies* , *Tables* )
 
     ![Créer une mise en production](media/devops/create-release.png)
 
-1. Dans l'onglet **Journaux** , vérifiez que le déploiement a réussi.
+1. Dans l'onglet **Journaux**, vérifiez que le déploiement a réussi.
 
     ![Le déploiement a réussi](media/devops/deployment-successful.png)
 

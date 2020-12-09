@@ -7,14 +7,14 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/06/2020
-ms.openlocfilehash: 3302e7cb94a2184be64664f3c3d8698b8bea7643
-ms.sourcegitcommit: 92b8057a36bd7daa16226f1526b29253bceb3602
+ms.openlocfilehash: 2f31d49e4612134cf4111e018eb5ab02c243427b
+ms.sourcegitcommit: faa747df81c49b96d173dbd5a28d2ca4f3a2db5f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/28/2020
-ms.locfileid: "91402738"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95783355"
 ---
-# <a name="create-a-table-in-azure-data-explorer-preview"></a>Créer une table cible dans Azure Data Explorer (préversion)
+# <a name="create-a-table-in-azure-data-explorer"></a>Créer une table dans Azure Data Explorer
 
 La création d’une table est une étape importante du processus d’[ingestion des données](ingest-data-overview.md) et d’[interrogation](write-queries.md) dans Azure Data Explorer. Une fois que vous avez [créé un cluster et une base de données dans Azure Data Explorer](create-cluster-database-portal.md), vous pouvez créer une table. L’article suivant montre comment créer une table et une mise en correspondance du schéma rapidement et facilement à l’aide de l’interface utilisateur web d’Azure Data Explorer. 
 
@@ -26,7 +26,7 @@ La création d’une table est une étape importante du processus d’[ingestion
 
 ## <a name="create-a-table"></a>Créer une table
 
-1. Dans le menu de gauche de l’interface utilisateur web, cliquez avec le bouton droit sur **ExampleDB** qui correspond au nom de votre base de données, puis sélectionnez **Créer une table (préversion)** .
+1. Dans le menu de gauche de l’interface utilisateur web, cliquez avec le bouton droit sur le nom de votre base de données, puis sélectionnez **Créer une table**.
 
     :::image type="content" source="./media/one-click-table/create-table.png" alt-text="Créer une table dans l’interface utilisateur web d’Azure Data Explorer":::
 

@@ -11,12 +11,12 @@ ms.date: 10/08/2020
 ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 8a47c51aa7924a28b27602056ea869bfd7a09936
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 0616c0d4dd2a44ba1d54ac83c699a1c0bac249b0
+ms.sourcegitcommit: f134d51e52504d3ca722bdf6d33baee05118173a
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95783720"
+ms.lasthandoff: 12/03/2020
+ms.locfileid: "96563357"
 ---
 # <a name="tutorial-use-kusto-queries-in-azure-data-explorer-and-azure-monitor"></a>Tutoriel : Utiliser des requêtes Kusto dans Azure Data Explorer et Azure Monitor
 
@@ -555,7 +555,7 @@ AzureActivity
 
 ## <a name="show-n-rows-take"></a>Afficher *n* lignes : *take*
 
-[NetworkMonitoring](/azure/azure-monitor/reference/tables/networkmonitoring) contient des données de surveillance pour des réseaux virtuels Azure. Utilisons l’opérateur [take](./takeoperator.md) pour examiner cinq lignes aléatoires dans cette table. L’opérateur [take](./takeoperator.md) affiche un certain nombre de lignes d’une table sans ordre particulier :
+[NetworkMonitoring](/azure/azure-monitor/reference/tables/networkmonitoring) contient des données de surveillance pour des réseaux virtuels Azure. Utilisons l’opérateur [take](./takeoperator.md) pour examiner dix lignes aléatoires de cette table. L’opérateur [take](./takeoperator.md) affiche un certain nombre de lignes d’une table sans ordre particulier :
 
 ```kusto
 NetworkMonitoring

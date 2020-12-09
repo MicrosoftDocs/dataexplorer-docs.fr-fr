@@ -7,12 +7,12 @@ ms.reviewer: ankhanol
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/05/2020
-ms.openlocfilehash: 39bddff724d30e19f240a25fe3a277fd2151d81e
-ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
+ms.openlocfilehash: 2dcb1fb83d592ff7fd81fcfc5f51cf6fc95254b7
+ms.sourcegitcommit: a36981785765b85a961f275be24d297d38e498fd
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/13/2020
-ms.locfileid: "88201345"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96310032"
 ---
 # <a name="business-continuity-and-disaster-recovery-overview"></a>Vue d’ensemble de la continuité d'activité et de la reprise d'activité
 
@@ -84,14 +84,14 @@ L’objectif de délai de récupération (RTO) fait référence au délai néces
 Les processus d’ingestion, de traitement et d’intégration nécessitent une conception diligente au moment de la planification de la récupération d’urgence. L’ingestion fait référence aux données intégrées à Azure Data Explorer à partir de différentes sources, le traitement fait référence à des transformations et activités similaires, l’intégration fait référence aux vues matérialisées, aux exportations vers le lac de données, et ainsi de suite.
 
 Voici quelques configurations de récupération d’urgence courantes. Chacune est décrite en détail ci-dessous.
-* [Configuration Always on](#always-on-configuration)
+* [Configuration Active-Active-Active (Always On)](#active-active-active-configuration)
 * [Configuration active-active](#active-active-configuration)
 * [Configuration de secours active](#active-hot-standby-configuration)
 * [Configuration de cluster de récupération de données à la demande](#on-demand-data-recovery-configuration)
 
-### <a name="always-on-configuration"></a>Configuration Always on
+### <a name="active-active-active-configuration"></a>Configuration Active-Active-Active
 
-Pour les déploiements d’applications critiques sans tolérance de panne, vous devez utiliser plusieurs clusters Azure Data Explorer dans des régions jumelées Azure. Configurez l’ingestion, le traitement et l’intégration en parallèle pour tous les clusters. La référence SKU du cluster doit être la même dans toutes les régions. Azure s’assure que les mises à jour sont déployées et échelonnées dans les régions jumelées Azure. Une panne de région Azure ne provoque pas de panne d’application. Vous pouvez cependant noter une dégradation de la latence ou des performances.
+Cette configuration est également appelée « Always On ». Pour les déploiements d’applications critiques sans tolérance de panne, vous devez utiliser plusieurs clusters Azure Data Explorer dans des régions jumelées Azure. Configurez l’ingestion, le traitement et l’intégration en parallèle pour tous les clusters. La référence SKU du cluster doit être la même dans toutes les régions. Azure s’assure que les mises à jour sont déployées et échelonnées dans les régions jumelées Azure. Une panne de région Azure ne provoque pas de panne d’application. Vous pouvez cependant noter une dégradation de la latence ou des performances.
 
 :::image type="content" source="media/business-continuity-overview/active-active-active-n.png" alt-text="Configuration active-active-active-n":::
 
@@ -101,7 +101,7 @@ Pour les déploiements d’applications critiques sans tolérance de panne, vous
 
 ### <a name="active-active-configuration"></a>Configuration active/active
 
-Cette configuration est identique à la [Configuration Always on ](#always-on-configuration), mais implique uniquement deux régions jumelées Azure. Configurez l’ingestion, le traitement et l’intégration en double. Les utilisateurs sont acheminés vers la région la plus proche. La référence SKU du cluster doit être la même dans toutes les régions.
+Cette configuration est identique à la [Configuration Active-Active-Active](#active-active-active-configuration), mais implique seulement deux régions jumelées Azure. Configurez l’ingestion, le traitement et l’intégration en double. Les utilisateurs sont acheminés vers la région la plus proche. La référence SKU du cluster doit être la même dans toutes les régions.
 
 :::image type="content" source="media/business-continuity-overview/active-active.png" alt-text="Configuration active/active":::
 
