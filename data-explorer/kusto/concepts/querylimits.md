@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
 ms.localizationpriority: high
-ms.openlocfilehash: cbdebe75713bb7cd786941e7546ab477df497c20
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 3b230ea0ed8bba80741e18f24cd96cf271224f25
+ms.sourcegitcommit: e278dae04f12658d0907f7b6ba46c6a34c53dcd7
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95512908"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96901101"
 ---
 # <a name="query-limits"></a>Limites de requête
 
@@ -83,6 +83,13 @@ Vous pouvez supprimer la limite de troncation des résultats à des fins d’exp
 Kusto fournit un certain nombre de bibliothèques clientes qui peuvent gérer des résultats « infiniment volumineux » en les diffusant à l’appelant. Utilisez l’une de ces bibliothèques et configurez-la en mode de streaming. Par exemple, utilisez le client .NET Framework (Microsoft.Azure.Kusto.Data) et définissez la propriété de streaming de la chaîne de connexion sur *true*, ou utilisez l’appel *ExecuteQueryV2Async()* qui transmet toujours les résultats.
 
 La troncation des résultats est appliquée par défaut, pas uniquement au flux de résultats retourné au client. Elle est également appliquée par défaut aux sous-requêtes qu’un cluster émet sur un autre cluster dans une requête entre clusters, avec des effets similaires.
+
+### <a name="setting-multiple-result-truncation-properties"></a>Définition de plusieurs propriétés de troncation de résultats
+
+Les éléments suivants s’appliquent lors de l’utilisation d’instructions `set` et/ou lors de la spécification d’indicateurs dans les [propriétés de demande du client](../api/netfx/request-properties.md).
+
+* Si `notruncation` est défini et que `truncationmaxsize`, `truncationmaxrecords` ou `query_take_max_records` est également défini, `notruncation` est ignoré.
+* Si `truncationmaxsize`, `truncationmaxrecords` et/ou `query_take_max_records` sont définis plusieurs fois, la valeur *inférieure* de chaque propriété s’applique.
 
 ## <a name="limit-on-memory-per-iterator"></a>Limite de mémoire par itérateur
 

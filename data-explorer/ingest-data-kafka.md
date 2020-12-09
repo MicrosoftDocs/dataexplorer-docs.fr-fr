@@ -7,12 +7,12 @@ ms.reviewer: ankhanol
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/22/2020
-ms.openlocfilehash: 8274cd04dc2ecf588bf4771c06e3f8a760cac74d
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: cc2f10570081fec3a5762ab3f2e23b9e22839063
+ms.sourcegitcommit: c6cb2b1071048daa872e2fe5a1ac7024762c180e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92343162"
+ms.lasthandoff: 12/07/2020
+ms.locfileid: "96774654"
 ---
 # <a name="ingest-data-from-apache-kafka-into-azure-data-explorer"></a>Ingérer des données Apache Kafka dans Azure Data Explorer
  
@@ -89,7 +89,7 @@ Ce principal de service sera l’identité exploitée par le connecteur pour éc
 1. Créez une stratégie d’ingestion par lot sur la table pour la latence d’ingestion configurable.
 
     > [!TIP]
-    > La [stratégie d’ingestion par lot](kusto/management/batchingpolicy.md) est un optimiseur de performances et comprend trois paramètres. Le premier paramètre rencontré déclenche l’ingestion dans la table Azure Data Explorer.
+    > La [stratégie d’ingestion par lot](kusto/management/batchingpolicy.md) est un optimiseur de performances et comprend trois paramètres. La premier conditions satisfaite déclenche l’ingestion dans la table Azure Data Explorer.
 
     ```kusto
     .alter table Storms policy ingestionbatching @'{"MaximumBatchingTimeSpan":"00:00:15", "MaximumNumberOfItems": 100, "MaximumRawDataSizeMB": 300}'
@@ -332,7 +332,7 @@ Le connecteur démarre la mise en file d’attente des processus d’ingestion d
     | render columnchart
     ```
     
-    :::image type="content" source="media/ingest-data-kafka/kusto-query.png" alt-text="Créer une table dans le portail Azure Data Explorer ":::
+    :::image type="content" source="media/ingest-data-kafka/kusto-query.png" alt-text="Résultats de l’histogramme de requête Kafka dans Azure Data Explorer":::
 
 Pour plus de conseils et d’exemples de requête, consultez [Écrire des requêtes pour Azure Data Explorer](write-queries.md) et la [Documentation sur le langage de requête Kusto](./kusto/query/index.md).
 

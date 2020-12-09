@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/19/2020
 ms.custom: contperfq1
-ms.openlocfilehash: 153b4265aade03e4059db0b38362d217cdad90df
-ms.sourcegitcommit: 2804e3fe40f6cf8e65811b00b7eb6a4f59c88a99
+ms.openlocfilehash: e92717e68794b21a0c991806aa7319e528433afb
+ms.sourcegitcommit: c6cb2b1071048daa872e2fe5a1ac7024762c180e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
 ms.lasthandoff: 12/07/2020
-ms.locfileid: "96748414"
+ms.locfileid: "96774518"
 ---
 # <a name="monitor-azure-data-explorer-performance-health-and-usage-with-metrics"></a>Superviser les performances, l’intégrité et l’utilisation d’Azure Data Explorer avec des métriques
 
@@ -101,7 +101,7 @@ Les métriques d’ingestion permettent d’effectuer le suivi de l’intégrit�
 | Latence de découverte | Secondes | Moy, Max, Min | Temps depuis l’empilement des données jusqu’à la découverte par la connexion de données. Ce temps n’est pas inclus dans la **durée totale d’ingestion d’Azure Data Explorer** ni dans **KustoEventAge (latence d’ingestion)** | Base de données, table, type de connexion de données, nom de connexion de données |
 | Événements traités (pour Event/IoT Hubs) | Count | Max, Min, Somme | Nombre total d’événements lus à partir de hubs d’événements et traités par le cluster. Les événements sont divisés en événements rejetés et en événements acceptés par le moteur de cluster. | EventStatus |
 | Latence d’ingestion | Secondes | Moy, Max, Min | Latence des données ingérées, depuis la réception des données dans le cluster jusqu’à ce qu’elles soient prêtes à être interrogées. La période de latence d’ingestion varie en fonction du scénario d’ingestion. | None |
-| Résultat de l’ingestion | Count | Count | Nombre total d’opérations d’ingestion ayant échoué et réussi. <br> <br> Utilisez **Appliquer la division** pour créer des compartiments de résultats de réussite et d’échec, et analyser les dimensions (**Valeur** > **État**).| IngestionResultDetails |
+| Résultat de l’ingestion | Count | Count | Nombre total d’opérations d’ingestion ayant échoué et réussi. <br> <br> Utilisez **Appliquer la division** pour créer des compartiments de résultats de réussite et d’échec, et analyser les dimensions (**Valeur** > **État**).| État |
 | Volume d’ingestion (en Mo) | Count | Max, Sum | Taille totale des données ingérées dans le cluster (en Mo) avant la compression. | Base de données |
 | Latence des étapes | Secondes | Moy, Max, Min | Temps nécessaire à un composant particulier pour traiter ce lot de données. La latence totale des étapes pour tous les composants d’un lot de données est égale à sa latence d’ingestion. | Base de données, type de connexion de données, nom de connexion de données|
 

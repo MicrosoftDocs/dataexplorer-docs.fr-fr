@@ -7,16 +7,16 @@ ms.author: orspodek
 ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 03/29/2020
+ms.date: 12/08/2020
 ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 5670f3f9c7aa8b3d6b10f88433d19246e2daf6d6
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 8370e69914b2bc5e141321a6bc6722bba6f1fd4d
+ms.sourcegitcommit: 79d923d7b7e8370726974e67a984183905f323ff
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95783333"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96868601"
 ---
 # <a name="render-operator"></a>render, opérateur
 
@@ -140,8 +140,6 @@ Certaines visualisations prennent en charge le fractionnement en plusieurs valeu
 |`axes`    |Un graphique unique s’affiche avec plusieurs axes y (un par série).|
 |`panels`  |Un graphique est rendu pour chaque valeur `ycolumn` (jusqu’à une certaine limite).|
 
-::: zone-end
-
 > [!NOTE]
 > Le modèle de données de l’opérateur render examine les données tabulaires comme s’il s’agissait de trois types de colonnes :
 >
@@ -167,10 +165,40 @@ range x from -2 to 2 step 0.1
 | render linechart with  (ycolumns = sin, cos, series = x_sign, sum_sign)
 ```
 
-::: zone pivot="azuredataexplorer"
-
 [Exemples de rendu dans le tutoriel](./tutorial.md#displaychartortable)
 
 [Détection des anomalies](./samples.md#get-more-from-your-data-by-using-kusto-with-machine-learning)
+
+::: zone-end
+
+::: zone pivot="azuremonitor"
+
+> [!NOTE]
+> Le modèle de données de l’opérateur render examine les données tabulaires comme s’il s’agissait de trois types de colonnes :
+>
+> * Colonne de l’axe des x (indiquée par la propriété `xcolumn`).
+> * Les colonnes de la série (n’importe quel nombre de colonnes indiqué par la propriété `series`.)
+> * Colonnes de l’axe y (n’importe quel nombre de colonnes indiquées par la propriété `ycolumns`).
+  Pour chaque enregistrement, la série comporte autant de mesures (« points » dans le graphique) qu’il y a de colonnes d’axe y.
+
+> [!TIP]
+> 
+> * Utilisez `where`, `summarize` et `top` pour limiter le volume que vous affichez.
+> * Triez les données pour définir l’ordre de l’axe x.
+> * Les agents utilisateurs sont libres de « deviner » la valeur des propriétés qui ne sont pas spécifiées par la requête. En particulier, les colonnes « sans intérêt » dans le schéma du résultat peuvent être traduites par des erreurs. Essayez d’exclure ces colonnes lorsque cela se produit. 
+
+## <a name="example"></a>Exemple
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
+```kusto
+InsightsMetrics
+| where Computer == "DC00.NA.contosohotels.com"
+| where Namespace  == "Processor" and Name == "UtilizationPercentage"
+| summarize avg(Val) by Computer, bin(TimeGenerated, 1h)
+| render timechart
+```
+
+[Exemples de rendu dans le tutoriel](./tutorial.md?pivots=azuremonitor#display-a-chart-or-table-render-1)
+
 
 ::: zone-end
