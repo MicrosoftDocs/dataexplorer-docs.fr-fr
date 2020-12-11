@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/10/2020
-ms.openlocfilehash: 30929e63c39be10d066815333ba6b277c0aeb5c9
-ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
+ms.openlocfilehash: fdf72c8c58ec8a9fb9c64ecea6219dcc3a736d18
+ms.sourcegitcommit: 2bdb904e6253c9ceb8f1eaa2da35fcf27e13a2cd
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/30/2020
-ms.locfileid: "96321282"
+ms.lasthandoff: 12/10/2020
+ms.locfileid: "97091349"
 ---
 # <a name="partitioning-policy"></a>Stratégie de partitionnement
 
@@ -128,7 +128,8 @@ La stratégie de partitionnement des données comporte les propriétés principa
   * Cette propriété est facultative. Si elle n’est pas spécifiée, la stratégie prend effet sur les données ingérées après l’application de la stratégie.
   * Les extensions non homogènes (non partitionnées) qui peuvent être supprimées en raison de la rétention sont ignorées par le processus de partitionnement. Les étendues sont ignorées, car leur durée de création précède 90% de la période de suppression logicielle effective de la table.
     > [!NOTE]
-    > Vous pouvez définir une valeur DateTime dans le passé et partitionner les données déjà ingérées. Toutefois, cette pratique peut augmenter considérablement les ressources utilisées dans le processus de partitionnement. 
+    > Vous pouvez définir une valeur DateTime dans le passé et partitionner les données déjà ingérées. Toutefois, cette pratique peut augmenter considérablement les ressources utilisées dans le processus de partitionnement.
+    > Envisagez de le faire progressivement, en définissant l' *EffectiveDateTime* à une `datetime` étape précédente dans les étapes suivantes, chaque fois que vous modifiez la stratégie.
 
 ### <a name="data-partitioning-example"></a>Exemple de partitionnement de données
 
@@ -211,7 +212,7 @@ Utilisez [`.show commands`](commands.md) pour surveiller les commandes de partit
 * Le processus de partitionnement des données entraîne la création d’extensions supplémentaires. Le cluster peut augmenter progressivement sa [capacité de fusion d’étendues](../management/capacitypolicy.md#extents-merge-capacity), afin que le processus de [fusion des extensions](../management/extents-overview.md) puisse suivre.
 * Si le débit d’ingestion est élevé, ou si un nombre suffisant de tables ont une stratégie de partitionnement définie, le cluster peut augmenter progressivement sa [capacité de partition](../management/capacitypolicy.md#extents-partition-capacity), afin que [le processus de partitionnement des étendues](#the-data-partitioning-process) puisse suivre.
 * Pour éviter de consommer trop de ressources, ces augmentations dynamiques sont limitées. Vous devrez peut-être les augmenter graduellement et de manière linéaire au-delà de la limite, s’ils sont entièrement utilisés.
-  * Si l’augmentation des capacités entraîne une augmentation significative de l’utilisation des ressources du cluster, vous pouvez mettre à l' [up](../../manage-cluster-vertical-scaling.md)échelle le cluster / [out](../../manage-cluster-horizontal-scaling.md), soit manuellement, soit en activant la mise à l’échelle automatique.
+  * Si l’augmentation des capacités entraîne une augmentation significative de l’utilisation des ressources du cluster, vous pouvez mettre à l' [](../../manage-cluster-vertical-scaling.md)échelle le cluster / [](../../manage-cluster-horizontal-scaling.md), soit manuellement, soit en activant la mise à l’échelle automatique.
 
 ## <a name="outliers-in-partitioned-columns"></a>Valeurs hors norme dans les colonnes partitionnées
 
