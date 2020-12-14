@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: df38761d7ffebdf5e36c14ea25b0d02377bfa128
-ms.sourcegitcommit: fdc1f917621e9b7286bba23903101298cccc4c95
+ms.openlocfilehash: 6af499d97e4733d0b8e099d02bec9573da6817d3
+ms.sourcegitcommit: fcaf3056db2481f0e3f4c2324c4ac956a4afef38
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/05/2020
-ms.locfileid: "93364120"
+ms.lasthandoff: 12/14/2020
+ms.locfileid: "97389019"
 ---
 # <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Créer et modifier des tables externes dans Stockage Azure ou Azure Data Lake
 
@@ -25,12 +25,12 @@ Pour obtenir une présentation de la fonctionnalité de tables de stockage Azure
 
 **Syntaxe**
 
-( `.create`  |  `.alter`  |  `.create-or-alter` ) `external` `table` *[TableName](#table-name)* `(` *[Schéma](#schema)* TableName`)`  
+( `.create`  |  `.alter`  |  `.create-or-alter` ) `external` `table` *[](#table-name)* `(` *[Schéma](#schema)* TableName`)`  
 `kind` `=` (`blob` | `adl`)  
 [ `partition` `by` `(` *[Partitions](#partitions)* `)` [ `pathformat` `=` `(` *[PathFormat](#path-format)* `)` ]]  
 `dataformat``=` *[Format](#format)*  
 `(`*[StorageConnectionString](#connection-string)* [ `,` ...]`)`   
-[ `with` `(` *[PropertyName](#properties)* `=` *[Valeur](#properties)* NomPropriété `,` ... `)` ]  
+[ `with` `(` *[](#properties)* `=` *[Valeur](#properties)* NomPropriété `,` ... `)` ]  
 
 Crée ou modifie une nouvelle table externe dans la base de données dans laquelle la commande est exécutée.
 
@@ -76,27 +76,27 @@ La liste partitions est toute combinaison de colonnes de partition, spécifiée 
 
 * Partition, en fonction d’un [hachage](../query/hashfunction.md)de valeur de colonne de chaîne, *numéro* modulo.
 
-  *PartitionName* `:` `long` `=` `hash` `(` *ColumnName* `,` *Nombre* de ColumnName`)`
+  *PartitionName* `:` `long` `=` `hash` `(`  `,` *Nombre* de ColumnName`)`
 
 * Partition, en fonction de la valeur tronquée d’une colonne DateTime. Consultez la documentation sur [STARTOFYEAR](../query/startofyearfunction.md), [StartOfMonth](../query/startofmonthfunction.md), [startOfWeek](../query/startofweekfunction.md), [startofday](../query/startofdayfunction.md) ou [bin](../query/binfunction.md) functions.
 
   *PartitionName* `:` `datetime` `=` ( `startofyear` \| `startofmonth` \| `startofweek` \| `startofday` ) `(` *ColumnName*`)`  
-  *PartitionName* `:` `datetime` `=` `bin` `(` *ColumnName* `,` *Intervalle* de ColumnName`)`
+  *PartitionName* `:` `datetime` `=` `bin` `(`  `,` *Intervalle* de ColumnName`)`
 
-Pour vérifier l’exactitude de la définition de partitionnement, utilisez la propriété lors de la `sampleUris` création d’une table externe.
+Pour vérifier que la définition de partitionnement est correcte, utilisez la propriété `sampleUris` ou lors de la `filesPreview` création d’une table externe.
 
 <a name="path-format"></a>
 *PathFormat*
 
 Format de chemin d’accès au fichier d’URI de données externes, qui peut être spécifié en plus des partitions. Le format du chemin d’accès est une séquence d’éléments de partition et de séparateurs de texte :
 
-&nbsp;&nbsp;[ *StringSeparator* ] *Partition* [ *StringSeparator* ] [ *partition* [ *StringSeparator* ]...]  
+&nbsp;&nbsp;[*StringSeparator*] *Partition* [*StringSeparator*] [*partition* [*StringSeparator*]...]  
 
 où *partition* fait référence à une partition déclarée dans la `partition` `by` clause, et *StringSeparator* est un texte placé entre guillemets. Les éléments de partition consécutifs doivent être séparés à l’aide de *StringSeparator*.
 
 Le préfixe du chemin d’accès au fichier d’origine peut être construit à l’aide d’éléments de partition rendus sous forme de chaînes et séparés par des séparateurs de texte Pour spécifier le format utilisé pour le rendu d’une valeur de partition DateTime, vous pouvez utiliser la macro suivante :
 
-&nbsp;&nbsp;`datetime_pattern``(` *DateTimeFormat* `,` *PartitionName* DateTimeFormat`)`  
+&nbsp;&nbsp;`datetime_pattern``(`  `,` *PartitionName* DateTimeFormat`)`  
 
 où *DateTimeFormat* adhère à la spécification de format .net, avec une extension qui permet de placer les spécificateurs de format entre accolades. Par exemple, les deux formats suivants sont équivalents :
 
@@ -147,8 +147,10 @@ Pour plus d’informations, consultez [chaînes de connexion de stockage](../api
 | `namePrefix`     | `string` | Si cette valeur est définie, indique le préfixe des fichiers. Lors des opérations d’écriture, tous les fichiers sont écrits avec ce préfixe. Sur les opérations de lecture, seuls les fichiers avec ce préfixe sont lus. |
 | `fileExtension`  | `string` | S’il est défini, indique les extensions de fichier des fichiers. Lors de l’écriture, les noms de fichiers se terminent par ce suffixe. Lors de la lecture, seuls les fichiers avec cette extension de fichier seront lus.           |
 | `encoding`       | `string` | Indique comment le texte est encodé : `UTF8NoBOM` (valeur par défaut) ou `UTF8BOM` .             |
-| `sampleUris`     | `bool`   | Si cette option est définie, le résultat de la commande fournit plusieurs exemples d’URI de fichiers de données externes tels qu’ils sont attendus par la définition de la table externe (les exemples sont retournés dans la deuxième table de résultats). Cette option permet de vérifier si les *[partitions](#partitions)* et les paramètres *[PathFormat](#path-format)* sont définis correctement. |
+| `sampleUris`     | `bool`   | Si cette option est définie, le résultat de la commande fournit plusieurs exemples d’URI de fichiers de données externes simulés, car ils sont attendus par la définition de la table externe. Cette option permet de vérifier si les *[partitions](#partitions)* et les paramètres *[PathFormat](#path-format)* sont définis correctement. |
+| `filesPreview`   | `bool`   | Si cette option est définie, l’une des tables des résultats de la commande contient un aperçu de la commande [. afficher les artefacts de table externe](#show-external-table-artifacts) . Comme `sampleUri` , l’option permet de valider les *[partitions](#partitions)* et les paramètres *[PathFormat](#path-format)* de la définition de table externe. |
 | `validateNotEmpty` | `bool`   | Si cette valeur est définie, les chaînes de connexion sont validées pour qu’elles contiennent du contenu. La commande échoue si l’emplacement d’URI spécifié n’existe pas ou s’il n’y a pas d’autorisations suffisantes pour y accéder. |
+| `dryRun` | `bool` | Si cette valeur est définie, la définition de la table externe n’est pas persistante. Cette option est utile pour valider la définition de table externe, en particulier conjointement avec le `filesPreview` `sampleUris` paramètre ou. |
 
 > [!TIP]
 > Pour en savoir plus sur le rôle `namePrefix` et les `fileExtension` Propriétés lus dans le filtrage des fichiers de données pendant la requête, consultez la section [logique de filtrage de fichiers](#file-filtering) .
@@ -264,7 +266,7 @@ external_table("ExternalTable")
 
 Lors de l’interrogation d’une table externe, le moteur de requête améliore les performances en filtrant les fichiers de stockage externe inutiles. Le processus d’itération sur les fichiers et de détermination de la nécessité de traiter un fichier est décrit ci-dessous.
 
-1. Générez un modèle d’URI qui représente un emplacement où les fichiers sont trouvés. Initialement, le modèle d’URI est égal à une chaîne de connexion fournie dans le cadre de la définition de la table externe. Si des partitions sont définies, elles sont rendues à l’aide de *[PathFormat](#path-format)* , puis ajoutées au modèle d’URI.
+1. Générez un modèle d’URI qui représente un emplacement où les fichiers sont trouvés. Initialement, le modèle d’URI est égal à une chaîne de connexion fournie dans le cadre de la définition de la table externe. Si des partitions sont définies, elles sont rendues à l’aide de *[PathFormat](#path-format)*, puis ajoutées au modèle d’URI.
 
 2. Pour tous les fichiers trouvés sous le ou les modèles d’URI créés, activez la case à cocher :
 
@@ -286,7 +288,7 @@ Retourne une liste de tous les fichiers qui seront traités lors de l’interrog
 
 **Syntaxe :** 
 
-`.show``external` `table` *TableName* `artifacts` [ `limit` *MaxResults* ]
+`.show``external` `table` *TableName* `artifacts` [ `limit` *MaxResults*]
 
 où *MaxResults* est un paramètre facultatif, qui peut être défini pour limiter le nombre de résultats.
 
@@ -325,14 +327,14 @@ Pour une table partitionnée, la `Partition` colonne contient des valeurs de par
 
 ## <a name="create-external-table-mapping"></a>. créer un mappage de table externe
 
-`.create``external` `table` *ExternalTableName* `json` `mapping` *MappingName* *MappingInJsonFormat*
+`.create``external` `table` *ExternalTableName* `mapping` *MappingName* *MappingInJsonFormat*
 
 Crée un nouveau mappage. Pour plus d’informations, consultez [mappages de données](./mappings.md#json-mapping).
 
 **Exemple** 
  
 ```kusto
-.create external table MyExternalTable json mapping "Mapping1" '[{"Column": "rownumber", "Properties": {"Path": "$.rownumber"}}, {"Column": "rowguid", "Properties": {"Path": "$.rowguid"}}]'
+.create external table MyExternalTable mapping "Mapping1" '[{"Column": "rownumber", "Properties": {"Path": "$.rownumber"}}, {"Column": "rowguid", "Properties": {"Path": "$.rowguid"}}]'
 ```
 
 **Exemple de sortie**
@@ -343,14 +345,14 @@ Crée un nouveau mappage. Pour plus d’informations, consultez [mappages de don
 
 ## <a name="alter-external-table-mapping"></a>. modification du mappage de tables externes
 
-`.alter``external` `table` *ExternalTableName* `json` `mapping` *MappingName* *MappingInJsonFormat*
+`.alter``external` `table` *ExternalTableName* `mapping` *MappingName* *MappingInJsonFormat*
 
 Modifie un mappage existant. 
  
 **Exemple** 
  
 ```kusto
-.alter external table MyExternalTable json mapping "Mapping1" '[{"Column": "rownumber", "Properties": {"Path": "$.rownumber"}}, {"Column": "rowguid", "Properties": {"Path": "$.rowguid"}}]'
+.alter external table MyExternalTable mapping "Mapping1" '[{"Column": "rownumber", "Properties": {"Path": "$.rownumber"}}, {"Column": "rowguid", "Properties": {"Path": "$.rowguid"}}]'
 ```
 
 **Exemple de sortie**
@@ -361,18 +363,18 @@ Modifie un mappage existant.
 
 ## <a name="show-external-table-mappings"></a>. afficher les mappages de tables externes
 
-`.show``external` `table` *ExternalTableName* `json` `mapping` *MappingName* 
+`.show``external` `table` *ExternalTableName* `mapping` *MappingName* 
 
-`.show``external` `table` *ExternalTableName* ExternalTableName `json``mappings`
+`.show``external` `table` *ExternalTableName*`mappings`
 
 Affichez les mappages (tout ou partie spécifiés par nom).
  
 **Exemple** 
  
 ```kusto
-.show external table MyExternalTable json mapping "Mapping1" 
+.show external table MyExternalTable mapping "Mapping1" 
 
-.show external table MyExternalTable json mappings 
+.show external table MyExternalTable mappings 
 ```
 
 **Exemple de sortie**
@@ -383,14 +385,14 @@ Affichez les mappages (tout ou partie spécifiés par nom).
 
 ## <a name="drop-external-table-mapping"></a>. supprimer le mappage de table externe
 
-`.drop``external` `table` *ExternalTableName* `json` `mapping` *MappingName* 
+`.drop``external` `table` *ExternalTableName* `mapping` *MappingName* 
 
 Supprime le mappage de la base de données.
  
 **Exemple** 
  
 ```kusto
-.drop external table MyExternalTable json mapping "Mapping1" 
+.drop external table MyExternalTable mapping "Mapping1" 
 ```
 ## <a name="next-steps"></a>Étapes suivantes
 

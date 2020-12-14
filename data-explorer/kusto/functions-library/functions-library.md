@@ -7,12 +7,12 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/08/2020
-ms.openlocfilehash: fb08edf4105c44a6be96cf6b2f314cf25887e69a
-ms.sourcegitcommit: 4d5628b52b84f7564ea893f621bdf1a45113c137
+ms.openlocfilehash: b7e066133817184664e37aec52a562525afa9504
+ms.sourcegitcommit: fcaf3056db2481f0e3f4c2324c4ac956a4afef38
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "96443994"
+ms.lasthandoff: 12/14/2020
+ms.locfileid: "97388951"
 ---
 # <a name="functions-library"></a>Bibliothèque de fonctions
 
@@ -27,6 +27,16 @@ Le code des fonctions définies par l’utilisateur est fourni dans les articles
 |[kmeans_fl()](kmeans-fl.md)|Clusterisation à l’aide de l’algorithme k-signifiant. |
 |[predict_fl()](predict-fl.md)|Prédiction à l’aide d’un modèle de Machine Learning formé existant. |
 |[predict_onnx_fl()](predict-onnx-fl.md)| Prédiction à l’aide d’un modèle de Machine Learning formé existant au format ONNX. |
+
+## <a name="promql-functions"></a>PromQL, fonctions
+
+La section suivante contient les fonctions [PromQL](https://prometheus.io/docs/prometheus/latest/querying/basics/) courantes. Ces fonctions peuvent être utilisées pour l’analyse des métriques gérées par Azure Explorateur de données par le système de surveillance [Prometheus](https://prometheus.io/) . Toutes les fonctions supposent que les métriques dans Azure Explorateur de données sont structurées à l’aide du [modèle de données Prometheus](https://prometheus.io/docs/concepts/data_model/).
+
+
+|Nom de fonction     |Description                                          |
+|-------------------------|--------------------------------------------------------|
+|[series_metric_fl ()](series-metric-fl.md)|Sélectionne et récupère les séries chronologiques stockées avec le modèle de données Prometheus. |
+|[series_rate_fl ()](series-rate-fl.md)|Calcule le taux moyen d’augmentation de la métrique du compteur par seconde. |
 
 ## <a name="series-processing-functions"></a>Fonctions de traitement des séries
 
