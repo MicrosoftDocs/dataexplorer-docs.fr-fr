@@ -7,12 +7,12 @@ ms.reviewer: gunjand
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/12/2020
-ms.openlocfilehash: 43f7705170228afa3d3f5e31086d40cea73c62db
-ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
+ms.openlocfilehash: a8e351dc04b77a41dd7ab793581a1f464f181f4e
+ms.sourcegitcommit: 724d3a3c817867b17a5a5853b6433818cbc97cf7
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/28/2020
-ms.locfileid: "92906192"
+ms.lasthandoff: 12/10/2020
+ms.locfileid: "97050516"
 ---
 # <a name="create-a-private-or-service-endpoint-to-event-hub-and-azure-storage"></a>Créer un point de terminaison privé ou de service vers Event Hub et Stockage Azure
 
@@ -64,7 +64,7 @@ Cette section montre comment utiliser le portail Azure pour ajouter un point de 
 1. Accédez au compte de stockage que vous voulez sécuriser.
 1. Dans le menu de gauche, sélectionnez **Pare-feux et réseaux virtuels**.
 1. Activez l’accès à partir de **Réseaux sélectionnés**.
-1. Sous **Réseaux virtuels** , sélectionnez **+ Ajouter un réseau virtuel existant**. 
+1. Sous **Réseaux virtuels**, sélectionnez **+ Ajouter un réseau virtuel existant**. 
 
     :::image type="content" source="media/vnet-private-link-storage-event-hub/storage-add-existing-vnet.png" alt-text="Ajouter une connexion de réseau virtuel existante Stockage Azure à Azure Data Explorer":::
 
@@ -72,7 +72,7 @@ Cette section montre comment utiliser le portail Azure pour ajouter un point de 
 
 :::image type="content" source="media/vnet-private-link-storage-event-hub/storage-add-networks.png" alt-text="Ajouter un réseau virtuel à un compte Stockage Azure pour se connecter à Azure Data Explorer":::
 
-1. Dans le volet de droite **Ajouter des réseaux** , sélectionnez votre abonnement Azure.
+1. Dans le volet de droite **Ajouter des réseaux**, sélectionnez votre abonnement Azure.
 
 1. Sélectionnez le réseau virtuel dans la liste des réseaux virtuels, puis choisissez le sous-réseau. 
 
@@ -98,14 +98,14 @@ Cette section montre comment utiliser le portail Azure pour ajouter un point de 
 
 ### <a name="add-a-virtual-network"></a>Ajouter un réseau virtuel
 
-1. Dans le portail Azure, accédez à l’ **Espace de noms Event Hubs** que vous souhaitez sécuriser.
+1. Dans le portail Azure, accédez à l’**Espace de noms Event Hubs** que vous souhaitez sécuriser.
 1. Dans le menu de gauche, sélectionnez **Réseau**. Cet onglet est visible uniquement dans un espace de noms **standard** ou **dédié**.
-1. Sélectionnez l’onglet **Pare-feux et réseaux virtuels**.
+1. Sélectionnez l’onglet **Pare-feux et réseaux virtuels**. 
 
     :::image type="content" source="media/vnet-private-link-storage-event-hub/networking.png" alt-text="Réseau dans Event Hub":::
 
 1. Activez l’accès à partir de **Réseaux sélectionnés**.
-1. Sous **Réseaux virtuels** , sélectionnez **+ Ajouter un réseau virtuel existant**. 
+1. Sous **Réseaux virtuels**, sélectionnez **+ Ajouter un réseau virtuel existant**. 
 
     :::image type="content" source="media/vnet-private-link-storage-event-hub/event-hub-add-existing-vnet.png" alt-text="Ajouter un réseau virtuel existant dans Azure Data Explorer":::
 
@@ -113,7 +113,7 @@ Cette section montre comment utiliser le portail Azure pour ajouter un point de 
 
 :::image type="content" source="media/vnet-private-link-storage-event-hub/add-networks.png" alt-text="Ajouter des champs de réseaux pour connecter un réseau virtuel à Azure Data Explorer":::  
 
-1. Dans le volet de droite **Ajouter des réseaux** , sélectionnez votre abonnement Azure.
+1. Dans le volet de droite **Ajouter des réseaux**, sélectionnez votre abonnement Azure.
 
 1. Sélectionnez le réseau virtuel dans la liste des réseaux virtuels, puis choisissez le sous-réseau. Vous devez activer le point de terminaison de service avant d’ajouter le réseau virtuel à la liste. 
     > [!NOTE]

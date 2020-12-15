@@ -7,12 +7,12 @@ ms.reviewer: abhishgu
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/10/2020
-ms.openlocfilehash: 5fc25c64eabfb9fa27b66b47d0443178e19b4e57
-ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
+ms.openlocfilehash: ae5cfcbc1011022da53933d4d3552fcd1007bd79
+ms.sourcegitcommit: 79d923d7b7e8370726974e67a984183905f323ff
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/28/2020
-ms.locfileid: "92902490"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96868618"
 ---
 # <a name="ingest-data-using-the-azure-data-explorer-go-sdk"></a>Ingérer des données à l’aide du kit de développement logiciel (SDK) Go Azure Data Explorer 
 
@@ -147,12 +147,12 @@ Le client [Ingestion](https://godoc.org/github.com/Azure/azure-kusto-go/kusto/in
 
     Lorsque vous exécutez l’exemple de code, les actions suivantes sont effectuées :
     
-    1. **Supprimer une table**  : la table `StormEvents` est supprimée (si elle existe).
-    1. **Création de la table**  : la table `StormEvents` est créée.
-    1. **Création du mappage**  : le mappage `StormEvents_CSV_Mapping` est créé.
-    1. **Ingestion de fichiers**  : un fichier CSV (dans le Stockage Blob Azure) est mis en file d’attente à des fins d’ingestion.
+    1. **Supprimer une table** : la table `StormEvents` est supprimée (si elle existe).
+    1. **Création de la table** : la table `StormEvents` est créée.
+    1. **Création du mappage** : le mappage `StormEvents_CSV_Mapping` est créé.
+    1. **Ingestion de fichiers** : un fichier CSV (dans le Stockage Blob Azure) est mis en file d’attente à des fins d’ingestion.
 
-1. Pour créer un principal de service pour l’authentification, utilisez Azure CLI avec la commande [az ad sp create-for-rbac](/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create-for-rbac). Définissez les informations du principal de service avec le point de terminaison du cluster et le nom de la base de données sous forme de variables d’environnement qui seront utilisées par le programme :
+1. Pour créer un principal de service pour l’authentification, utilisez Azure CLI avec la commande [az ad sp create-for-rbac](/cli/azure/ad/sp#az-ad-sp-create-for-rbac). Définissez les informations du principal de service avec le point de terminaison du cluster et le nom de la base de données sous forme de variables d’environnement qui seront utilisées par le programme :
 
     ```console
     export AZURE_SP_CLIENT_ID="<replace with appID>"

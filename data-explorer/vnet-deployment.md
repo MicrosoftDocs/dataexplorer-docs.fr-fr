@@ -7,12 +7,12 @@ ms.reviewer: basaba
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/31/2019
-ms.openlocfilehash: ac73abcf1355531a3b8d9917a6f5d9a0d3965c01
-ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
+ms.openlocfilehash: 196d1f5a72b0b99186f4739ce6b6a25c23b6c325
+ms.sourcegitcommit: 2bdb904e6253c9ceb8f1eaa2da35fcf27e13a2cd
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/28/2020
-ms.locfileid: "92902347"
+ms.lasthandoff: 12/10/2020
+ms.locfileid: "97091366"
 ---
 # <a name="deploy-azure-data-explorer-cluster-into-your-virtual-network"></a>Déployer un cluster Azure Data Explorer dans votre réseau virtuel
 
@@ -30,8 +30,8 @@ Azure Data Explorer prend en charge le déploiement d’un cluster dans un sous-
 
 Vous pouvez accéder à votre cluster Azure Data Explorer à l’aide des adresses IP suivantes pour chaque service (moteur et services de gestion des données) :
 
-* **IP privée**  : Utilisé pour accéder au cluster à l’intérieur du réseau virtuel.
-* **Adresse IP publique**  : Utilisé pour accéder au cluster à partir de l’extérieur du réseau virtuel pour la gestion et la surveillance et en tant qu’adresse source pour les connexions sortantes démarrées à partir du cluster.
+* **IP privée** : Utilisé pour accéder au cluster à l’intérieur du réseau virtuel.
+* **Adresse IP publique** : Utilisé pour accéder au cluster à partir de l’extérieur du réseau virtuel pour la gestion et la surveillance et en tant qu’adresse source pour les connexions sortantes démarrées à partir du cluster.
 
 Les enregistrements DNS suivants sont créés pour accéder au service : 
 
@@ -161,7 +161,7 @@ Les [groupes de sécurité réseau (NSG)](/azure/virtual-network/security-overvi
 | Sud-Australie Est | 191.239.160.47 |
 | Brésil Sud | 23.98.145.105 |
 | Centre du Canada | 168.61.212.201 |
-| Est du Canada | 168.61.212.201 |
+| Est du Canada | 168.61.212.201, 23.101.115.123 |
 | Inde centrale | 23.99.5.162 |
 | USA Centre | 168.61.212.201, 23.101.115.123 |
 | EUAP USA Centre | 168.61.212.201, 23.101.115.123 |
@@ -191,7 +191,7 @@ Les [groupes de sécurité réseau (NSG)](/azure/virtual-network/security-overvi
 | Gouvernement des États-Unis - Arizona | 52.244.48.35 |
 | Gouvernement des États-Unis - Texas | 52.238.116.34 |
 | USGov Virginia | 23.97.0.26 |
-| Centre-USA Ouest | 168.61.212.201 |
+| Centre-USA Ouest | 168.61.212.201, 23.101.115.123 |
 | Europe Ouest | 23.97.212.5, 213.199.136.176 |
 | Inde Ouest | 23.99.5.162 |
 | USA Ouest | 23.99.5.162, 13.88.13.50 |
@@ -246,11 +246,11 @@ crl3.digicert.com:80
 
 > [!NOTE]
 > Si vous utilisez le [pare-feu Azure](/azure/firewall/overview), ajoutez une **règle réseau** avec les propriétés suivantes : <br>
-> **Protocole** : TCP <br> **Type de source**  : Adresse IP <br> **Source**  : * <br> **Étiquettes de service**  : AzureMonitor <br> **Ports de destination**  : 443
+> **Protocole** : TCP <br> **Type de source** : Adresse IP <br> **Source** : * <br> **Étiquettes de service** : AzureMonitor <br> **Ports de destination** : 443
 
 Vous devez aussi définir la [table de route](/azure/virtual-network/virtual-networks-udr-overview) sur le sous-réseau avec les [adresses de gestion](#azure-data-explorer-management-ip-addresses) et les [adresses de surveillance de l’intégrité](#health-monitoring-addresses) avec le dernier tronçon *Internet* pour éviter des problèmes d’itinéraire asymétriques.
 
-Par exemple, pour la région **USA Ouest** , les UDR suivants doivent être définis :
+Par exemple, pour la région **USA Ouest**, les UDR suivants doivent être définis :
 
 | Nom | Préfixe d’adresse | Tronçon suivant |
 | --- | --- | --- |

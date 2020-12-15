@@ -7,12 +7,12 @@ ms.reviewer: abhishgu
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/28/2020
-ms.openlocfilehash: 833a801e6455fd4d88fbbbab83010aea1d406f02
-ms.sourcegitcommit: 7edce9d9d20f9c0505abda67bb8cc3d2ecd60d15
+ms.openlocfilehash: 3a8133c42ad87ec7eec693be3109ce5e7aea4935
+ms.sourcegitcommit: 79d923d7b7e8370726974e67a984183905f323ff
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/02/2020
-ms.locfileid: "96524247"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96868635"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-using-go"></a>Créer un cluster et une base de données Azure Data Explorer à l’aide de Go
 
@@ -195,7 +195,7 @@ Lorsque vous exécutez l’exemple de code tel quel, les actions suivantes sont 
     cd azure-data-explorer-go-cluster-management
     ```
 
-1. Le programme s’authentifie à l’aide d’informations d’identification du client. Utilisez la commande Azure CLI [az ad sp create-for-rbac](/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create-for-rbac) pour créer un principal de service. Enregistrez l’ID client, la clé secrète client et les informations sur l’ID de locataire pour les utiliser à l’étape suivante.
+1. Le programme s’authentifie à l’aide d’informations d’identification du client. Utilisez la commande Azure CLI [az ad sp create-for-rbac](/cli/azure/ad/sp#az-ad-sp-create-for-rbac) pour créer un principal de service. Enregistrez l’ID client, la clé secrète client et les informations sur l’ID de locataire pour les utiliser à l’étape suivante.
 
 1. Exportez les variables d’environnement requises, notamment les informations du principal de service. Entrez votre ID d’abonnement, le groupe de ressources et la région où vous souhaitez créer le cluster.
 
