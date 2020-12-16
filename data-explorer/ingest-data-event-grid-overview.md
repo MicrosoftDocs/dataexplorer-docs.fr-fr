@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: 99a35b03a171147d5bb511a9eab657903e917d01
-ms.sourcegitcommit: 4d5628b52b84f7564ea893f621bdf1a45113c137
+ms.openlocfilehash: fde0e79fbe8a8080fa6e21dde12434de5c92353f
+ms.sourcegitcommit: d9e203a54b048030eeb6d05b01a65902ebe4e0b8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "96444130"
+ms.lasthandoff: 12/14/2020
+ms.locfileid: "97371456"
 ---
 # <a name="event-grid-data-connection"></a>Connexion de données Event Grid
 
 L’ingestion Event Grid est un pipeline qui écoute le stockage Azure et met à jour Azure Data Explorer pour extraire des informations quand des événements associés à des abonnements se produisent. Azure Data Explorer offre une ingestion continue depuis Stockage Azure (Stockage Blob et ADLSv2) avec un abonnement [Azure Event Grid](/azure/event-grid/overview) pour des notifications d’objet blob créé ou renommé, et le streaming de ces notifications vers Azure Data Explorer via un hub d’événements.
 
-Le pipeline d’ingestion Event Grid passe par plusieurs étapes. Vous créez une table cible dans Azure Data Explorer dans laquelle les [données d’un format particulier](#data-format) sont ingérées. Vous créez ensuite une connexion de données Event Grid dans Azure Data Explorer. La connexion de données Event Grid doit connaître les informations de [routage des événements](#events-routing), telles que la table à laquelle envoyer les données et le mappage de table. Vous spécifiez également les [propriétés d’ingestion](#ingestion-properties), qui décrivent les données à ingérer, la table cible et le mappage. Vous pouvez générer des exemples de données et [charger des objets blob](#upload-blobs) pour tester votre connexion. [Supprimez des objets blob](#delete-blobs-using-storage-lifecycle) après ingestion. Ce processus peut être géré par le biais du [portail Azure](ingest-data-event-grid.md), programmatiquement avec [C#](data-connection-event-grid-csharp.md) ou [Python](data-connection-event-grid-python.md), ou avec le [modèle Azure Resource Manager](data-connection-event-grid-resource-manager.md).
+Le pipeline d’ingestion Event Grid passe par plusieurs étapes. Vous créez une table cible dans Azure Data Explorer dans laquelle les [données d’un format particulier](#data-format) sont ingérées. Vous créez ensuite une connexion de données Event Grid dans Azure Data Explorer. La connexion de données Event Grid doit connaître les informations de [routage des événements](#events-routing), telles que la table à laquelle envoyer les données et le mappage de table. Vous spécifiez également les [propriétés d’ingestion](#ingestion-properties), qui décrivent les données à ingérer, la table cible et le mappage. Vous pouvez générer des exemples de données et [charger des objets blob](#upload-blobs) pour tester votre connexion. [Supprimez des objets blob](#delete-blobs-using-storage-lifecycle) après ingestion. Ce processus peut être géré par le biais du [portail Azure](ingest-data-event-grid.md), à l’aide de l’[ingestion en un clic](one-click-ingestion-new-table.md), par programmation avec du code [C#](data-connection-event-grid-csharp.md) ou [Python](data-connection-event-grid-python.md), ou avec un [modèle Azure Resource Manager](data-connection-event-grid-resource-manager.md). 
 
 Pour obtenir des informations générales sur l’ingestion de données dans Azure Data Explorer, consultez [Vue d’ensemble de l’ingestion des données dans Azure Data Explorer](ingest-data-overview.md).
 

@@ -7,16 +7,16 @@ ms.reviewer: vladikbr
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 11/11/2020
-ms.openlocfilehash: aeef0c9295fbb22c225068fb240670fb7d637a98
-ms.sourcegitcommit: c6cb2b1071048daa872e2fe5a1ac7024762c180e
+ms.openlocfilehash: 18ac718edd50c804f71b9b82cbffb5b2b7bb2e24
+ms.sourcegitcommit: 202357f866801aafd92e3e29a84bb312e17aebc7
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/07/2020
-ms.locfileid: "96776551"
+ms.lasthandoff: 12/09/2020
+ms.locfileid: "96933773"
 ---
 # <a name="ingestion-error-codes-in-azure-data-explorer"></a>Codes d’erreur d’ingestion dans Azure Data Explorer
 
-La liste suivante contient les codes d’erreur que vous pouvez rencontrer pendant l’[ingestion](ingest-data-overview.md). Quand vous activez les [journaux de diagnostic](using-diagnostic-logs.md#ingestion-logs-schema) des échecs d’ingestion sur votre cluster, vous pouvez voir les codes d’erreur dans le journal des opérations d’**ingestion en échec**. Vous pouvez aussi superviser la [métrique](using-metrics.md#ingestion-metrics) de **résultat d’ingestion**  pour identifier la **catégorie** des erreurs d’ingestion, mais pas le code d’erreur spécifique. Les erreurs ci-dessous sont organisées par catégories. 
+La liste suivante contient les codes d’erreur que vous pouvez rencontrer pendant l’[ingestion](ingest-data-overview.md). Quand vous activez les [journaux de diagnostic](using-diagnostic-logs.md#ingestion-logs-schema) des échecs d’ingestion sur votre cluster, vous pouvez voir les codes d’erreur dans le journal des opérations d’**ingestion en échec**. Vous pouvez également superviser la [métrique](using-metrics.md#ingestion-metrics) **Résultat de l’ingestion** pour identifier la **Catégorie** des erreurs d’ingestion, mais pas le code d’erreur correspondant. Les erreurs ci-dessous sont organisées selon ces catégories. 
 
 > [!NOTE]
 > Si l’erreur est temporaire, une nouvelle tentative d’ingestion peut aboutir.

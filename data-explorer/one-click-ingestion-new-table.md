@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/29/2020
-ms.openlocfilehash: 25c0bb4071c74c299ab69432ffc18ad50408be46
-ms.sourcegitcommit: f7bebd245081a5cdc08e88fa4f9a769c18e13e5d
+ms.openlocfilehash: e2c84649653d6d3762a82c1e4aa3c98c9ef8119d
+ms.sourcegitcommit: d9e203a54b048030eeb6d05b01a65902ebe4e0b8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/17/2020
-ms.locfileid: "94644686"
+ms.lasthandoff: 12/14/2020
+ms.locfileid: "97371655"
 ---
 # <a name="use-one-click-ingestion-to-ingest-csv-data-from-a-container-to-a-new-table-in-azure-data-explorer"></a>Utiliser l’ingestion en un clic pour ingérer des données CSV à partir d’un conteneur dans une nouvelle table d’Azure Data Explorer
 
@@ -22,7 +22,7 @@ ms.locfileid: "94644686"
 
 L’[ingestion en un clic](ingest-data-one-click.md) vous permet d’ingérer rapidement dans une table des données au format JSON, CSV et dans d’autres formats et de créer facilement des structures de mappage. Les données peuvent être ingérées à partir du stockage, d’un fichier local ou d’un conteneur, en tant que processus d’ingestion unique ou continu.  
 
-Ce document décrit l’utilisation de l’Assistant intuitif Ingestion en un clic dans un cas d’usage spécifique pour ingérer des données **CSV** depuis un **conteneur** dans une **nouvelle table**. Vous pouvez utiliser le même processus avec de légères adaptations pour couvrir divers cas d’usage.
+Ce document décrit l’utilisation de l’Assistant intuitif Ingestion en un clic dans un cas d’usage spécifique pour ingérer des données **CSV** depuis un **conteneur** dans une **nouvelle table**. Après l’ingestion, vous pouvez [configurer un pipeline d’ingestion Event Grid](#create-continuous-ingestion-for-container) qui écoute les nouveaux fichiers du conteneur source et ingère les données éligibles dans votre nouvelle table. Vous pouvez utiliser le même processus avec de légères adaptations pour couvrir divers cas d’usage.
 
 Pour obtenir une vue d’ensemble de l’ingestion en un clic, et la liste des prérequis, consultez [Ingestion en un clic](ingest-data-one-click.md).
 Pour plus d’informations sur l’ingestion de données dans une table existante d’Azure Data Explorer, consultez [Ingestion en un clic dans une table existante](one-click-ingestion-existing-table.md).
@@ -46,7 +46,7 @@ Pour plus d’informations sur l’ingestion de données dans une table existant
 
 Sous **Type d’ingestion**, effectuez les étapes suivantes :
    
-  1. Sélectionnez **à partir d’un conteneur**. 
+  1. Sélectionnez **À partir du conteneur** (conteneur d’objets blob, conteneur ADLS Gen1, conteneur ADLS Gen2).
   1. Dans le champ **Lien vers le stockage**, ajoutez l’[URL SAS](/azure/vs-azure-tools-storage-explorer-blobs#get-the-sas-for-a-blob-container) du conteneur, puis entrez éventuellement la taille de l’échantillon. Pour ingérer les données d’un dossier dans ce conteneur, consultez [Ingérer les données d’un dossier dans un conteneur](#ingest-from-folder-in-a-container).
 
       :::image type="content" source="media/one-click-ingestion-new-table/from-container.png" alt-text="Ingestion en un clic à partir d’un conteneur":::
@@ -96,9 +96,11 @@ Par exemple, filtrez tous les fichiers qui commencent par le mot d’extension *
 
 :::image type="content" source="media/one-click-ingestion-new-table/from-container-with-filter.png" alt-text="Filtre de l’ingestion en un clic":::
 
+Le système sélectionne l’un des fichiers au hasard, et le schéma est généré en fonction du **fichier de définition du schéma**. Vous pouvez sélectionner un autre fichier.
+
 ## <a name="edit-the-schema"></a>Modifier le schéma
 
-Sélectionnez **Modifier le schéma** pour afficher et modifier la configuration de colonne de votre table. Le système sélectionne un des objets blob au hasard, et le schéma est généré en fonction de cet objet blob. En examinant le nom de la source, le service identifie automatiquement s’il est compressé ou non.
+Sélectionnez **Modifier le schéma** pour afficher et modifier la configuration de colonne de votre table.  En examinant le nom de la source, le service identifie automatiquement s’il est compressé ou non.
 
 Sous l’onglet **Schéma** :
 
@@ -121,14 +123,10 @@ Dans le champ **Nom du mappage**, entrez un nom de mappage. Vous pouvez utiliser
 
 Lors de l’ingestion dans une nouvelle table, modifiez les différents aspects de la table lors de la création de la table.
 
-Dans le tableau : 
- * Double-cliquez sur le nom de la nouvelle colonne à modifier.
- * Sélectionnez de nouveaux en-têtes de colonnes et effectuez une des actions suivantes :
+[!INCLUDE [data-explorer-one-click-column-table](includes/data-explorer-one-click-column-table.md)]
 
-    [!INCLUDE [data-explorer-one-click-column-table](includes/data-explorer-one-click-column-table.md)]
-
-  > [!NOTE]
-  > Pour les formats tabulaires, chaque colonne peut être ingérée dans une colonne dans Azure Data Explorer.
+> [!NOTE]
+> Pour les formats tabulaires, vous ne pouvez pas mapper deux fois une même colonne. Pour effectuer un mappage à une colonne existante, commencez par supprimer la nouvelle colonne.
 
 [!INCLUDE [data-explorer-one-click-command-editor](includes/data-explorer-one-click-command-editor.md)]
 
@@ -148,7 +146,7 @@ Dans la fenêtre **Ingestion de données terminée**, les trois étapes sont sig
 
 ## <a name="create-continuous-ingestion-for-container"></a>Créer une ingestion continue pour un conteneur
 
-L’ingestion continue vous permet de créer une grille d’événement qui recherche les nouveaux fichiers dans le conteneur source. Tout nouveau fichier qui répond aux critères des paramètres prédéfinis (préfixe, suffixe, etc.) est automatiquement ingéré dans la table de destination. 
+L’ingestion continue vous permet de créer une grille d’événement qui écoute les nouveaux fichiers dans le conteneur source. Tout nouveau fichier qui répond aux critères des paramètres prédéfinis (préfixe, suffixe, etc.) est automatiquement ingéré dans la table de destination. 
 
 1. Sélectionnez **Event Grid** dans la vignette **Ingestion continue** pour ouvrir le portail Azure. La page de connexion des données s’affiche avec le connecteur de données de la grille d’événement ouvert, et les paramètres source et cible déjà entrés (conteneur source, tables et mappages).
     

@@ -4,18 +4,22 @@ ms.service: data-explorer
 ms.topic: include
 ms.date: 06/11/2020
 ms.author: orspodek
-ms.openlocfilehash: 7663599c6304a6042513a03496c8a2934c42c653
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: 3d366a824ecfdf89c56b1049b70df664573cd7e0
+ms.sourcegitcommit: 4d5628b52b84f7564ea893f621bdf1a45113c137
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85265177"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "97371653"
 ---
-|Action         |Description                                  |
-|-----------------|-------------------------------------------|
-|Modifier le type de données |Changement du type de données en remplaçant celui que le service a sélectionné automatiquement par l’un des autres [types de données pris en charge](#edit-the-schema)|
-|Renommer une colonne    |Changement de nom de la colonne |
-|Nouvelle colonne       |Ajoutez une nouvelle colonne. Pour les formats tabulaires, chaque colonne peut être ingérée dans une colonne sur ADX. Une colonne peut être créée à partir d’un autre niveau JSON.|
-|Supprimer la colonne    |Suppression de la colonne sélectionnée|
-|Tri croissant   |Tri de la table en suivant la colonne sélectionnée, dans l’ordre croissant (colonnes existantes seulement) |
-|Tri décroissant  |Tri de la table en suivant la colonne sélectionnée, dans l’ordre décroissant (colonnes existantes seulement) |
+Les modifications que vous pouvez apporter dans une table dépendent des paramètres suivants :
+* Si le type de la **table** est nouveau ou existant
+* Si le type du **mappage** est nouveau ou existant
+
+Type de la table | Type de mappage | Ajustements disponibles|
+|---|---|---|
+|Nouvelle table   | Nouveau mappage |Modifier le type de données, Renommer la colonne, Nouvelle colonne, Supprimer la colonne, Mettre à jour la colonne, Trier par ordre croissant, Trier par ordre décroissant  |
+|Table existante  | Nouveau mappage | Nouvelle colonne (vous pourrez ensuite modifier le type de données, la renommer ou la mettre à jour) <br> Mettre à jour la colonne, Tri croissant, Tri décroissant  |
+| | Mappage existant | Tri croissant, Tri décroissant
+
+> [!NOTE]
+> Lorsque vous ajoutez une nouvelle colonne ou mettez à jour une colonne, vous pouvez modifier les transformations de mappage. Pour plus d’informations, consultez [Transformations de mappage](../ingest-data-one-click.md#mapping-transformations).

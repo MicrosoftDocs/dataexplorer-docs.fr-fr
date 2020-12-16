@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 3b230ea0ed8bba80741e18f24cd96cf271224f25
-ms.sourcegitcommit: e278dae04f12658d0907f7b6ba46c6a34c53dcd7
+ms.openlocfilehash: be8d6e9172364d4177e7421e524cc067e4d58d18
+ms.sourcegitcommit: 66577436bcd1106f10fc9c0f233ee17b94478323
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/08/2020
-ms.locfileid: "96901101"
+ms.lasthandoff: 12/16/2020
+ms.locfileid: "97532185"
 ---
 # <a name="query-limits"></a>Limites de requête
 
@@ -128,6 +128,9 @@ T | where rand() < 0.1 | ...
 T | where hash(UserId, 10) == 1 | ...
 ```
 
+Si `maxmemoryconsumptionperiterator` est défini plusieurs fois, par ex. dans les propriétés de demande client et en utilisant une instruction `set` - la valeur *inférieure* est appliquée.
+
+
 ## <a name="limit-on-memory-per-node"></a>Limite de mémoire par nœud
 
 La **mémoire maximale par requête par nœud** est une autre limite utilisée pour la protection contre les pertes de contrôle de requête. Cette limite, représentée par l’option de demande `max_memory_consumption_per_query_per_node`, définit une limite supérieure sur la quantité de mémoire qui peut être utilisée sur un seul nœud pour une requête spécifique.
@@ -136,6 +139,8 @@ La **mémoire maximale par requête par nœud** est une autre limite utilisée p
 set max_memory_consumption_per_query_per_node=68719476736;
 MyTable | ...
 ```
+
+Si `max_memory_consumption_per_query_per_node` est défini plusieurs fois, par ex. dans les propriétés de demande client et en utilisant une instruction `set` - la valeur *inférieure* est appliquée.
 
 ## <a name="limit-on-accumulated-string-sets"></a>Limite sur les ensembles de chaînes accumulés
 
@@ -176,10 +181,19 @@ Par défaut, le délai d’expiration est défini sur quatre minutes pour les re
 Kusto vous permet d’exécuter des requêtes et d’utiliser autant de ressources processeur que le cluster. Il tente d’effectuer un aller-retour (round robin) juste entre les requêtes si plusieurs sont en cours d’exécution. Cette méthode produit les meilleures performances pour les requêtes ad hoc.
 À d’autres moments, vous avez la possibilité de limiter les ressources processeur utilisées pour une requête particulière. Par exemple, si vous exécutez une tâche en arrière-plan, le système peut tolérer des latences plus élevées pour fournir une priorité élevée aux requêtes ad hoc simultanées.
 
-Kusto prend en charge la spécification de deux [propriétés de demande de client](../api/netfx/request-properties.md) lors de l’exécution d’une requête. Les propriétés sont *query_fanout_threads_percent* et *query_fanout_nodes_percent*.
-Les deux propriétés sont des entiers dont la valeur par défaut est la valeur maximale (100), qui peut être réduite pour une requête spécifique à une autre valeur. 
+Kusto prend en charge la spécification de deux [propriétés de demande de client](../api/netfx/request-properties.md) lors de l’exécution d’une requête.
+Les propriétés sont *query_fanout_threads_percent* et *query_fanout_nodes_percent*.
+Les deux propriétés sont des entiers dont la valeur par défaut est la valeur maximale (100), qui peut être réduite pour une requête spécifique à une autre valeur.
 
-La première propriété, *query_fanout_threads_percent*, contrôle le facteur de fanout pour l’utilisation des threads. Quand elle est de 100 %, le cluster affecte tous les processeurs sur chaque nœud. Par exemple, 16 UC sur un cluster déployé sur des nœuds Azure D14. À 50 %, la moitié des UC est utilisée, et ainsi de suite. Les nombres sont arrondis à un processeur entier.Il est donc possible de le définir sur 0. La deuxième propriété, *query_fanout_nodes_percent*, contrôle le nombre de nœuds de requête du cluster à utiliser par opération de distribution de sous-requête. Elle fonctionne de façon similaire.
+La première propriété, *query_fanout_threads_percent*, contrôle le facteur de fanout pour l’utilisation des threads.
+Quand elle est de 100 %, le cluster affecte tous les processeurs sur chaque nœud. Par exemple, 16 UC sur un cluster déployé sur des nœuds Azure D14.
+À 50 %, la moitié des UC est utilisée, et ainsi de suite.
+Les nombres sont arrondis à un processeur entier.Il est donc possible de le définir sur 0.
+
+La deuxième propriété, *query_fanout_nodes_percent*, contrôle le nombre de nœuds de requête du cluster à utiliser par opération de distribution de sous-requête.
+Elle fonctionne de façon similaire.
+
+Si `query_fanout_nodes_percent` ou `query_fanout_threads_percent` sont définis plusieurs fois, par ex. dans les propriétés de demande client et en utilisant une instruction `set` - la valeur *inférieure* pour chaque propriété est appliquée.
 
 ## <a name="limit-on-query-complexity"></a>Limite de complexité des requêtes
 

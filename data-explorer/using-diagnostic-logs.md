@@ -7,12 +7,12 @@ ms.reviewer: guregini
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/16/2020
-ms.openlocfilehash: fed4027d946792448f2c564d8daa019c991b50d2
-ms.sourcegitcommit: 3af95ea6a6746441ac71b1a217bbb02ee23d5f28
+ms.openlocfilehash: 5dbd1aeb777b067e0c7bee15be838eb2f306086f
+ms.sourcegitcommit: d9e203a54b048030eeb6d05b01a65902ebe4e0b8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/23/2020
-ms.locfileid: "95473576"
+ms.lasthandoff: 12/14/2020
+ms.locfileid: "97371473"
 ---
 # <a name="monitor-azure-data-explorer-ingestion-commands-and-queries-using-diagnostic-logs"></a>Superviser l’ingestion, les commandes et les requêtes Azure Data Explorer à l’aide des journaux de diagnostic
 
@@ -37,6 +37,9 @@ Vous pouvez utiliser les journaux de diagnostic pour configurer la collecte des 
 > Les journaux d’ingestion sont pris en charge pour l’ingestion en file d’attente sur le point de terminaison d’ingestion à l’aide de kits SDK, de connexions de données et de connecteurs.
 >
 > Les journaux d’ingestion ne sont pas pris en charge pour l’ingestion en streaming, l’ingestion directe vers le moteur, l’ingestion à partir d’une requête ou les commandes set-or-append.
+
+> [!NOTE]
+> L’échec des journaux d’ingestion est signalé uniquement pour l’état final d’une opération d’ingestion, contrairement à la métrique (Résultat de l’ingestion) [using-metrics#ingestion-metrics], qui est émise pour les échecs temporaires retentés en interne.
 
 * **Opérations d’ingestion réussies** : Ces journaux contiennent des informations sur les opérations d’ingestion terminées avec succès.
 * **Opérations d’ingestion ayant échoué** : Ces journaux contiennent des informations détaillées sur les échecs d’opérations d’ingestion, notamment les détails des erreurs. 

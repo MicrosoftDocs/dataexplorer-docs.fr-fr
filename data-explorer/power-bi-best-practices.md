@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/26/2019
-ms.openlocfilehash: 47a18e8b8a2ec34207acacfd508114955f28953f
-ms.sourcegitcommit: 88f8ad67711a4f614d65d745af699d013d01af32
+ms.openlocfilehash: 2abdc80a261980723b9f4535fed26758c4895ce6
+ms.sourcegitcommit: d9e203a54b048030eeb6d05b01a65902ebe4e0b8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/16/2020
-ms.locfileid: "94639003"
+ms.lasthandoff: 12/14/2020
+ms.locfileid: "97371490"
 ---
 # <a name="best-practices-for-using-power-bi-to-query-and-visualize-azure-data-explorer-data"></a>Bonnes pratiques relatives à l’utilisation de Power BI pour interroger et visualiser des données Azure Data Explorer
 
@@ -26,7 +26,7 @@ Quand vous travaillez avec plusieurs téraoctets de données brutes actualisées
 
 * **Modèle composite** : utilisez un [modèle composite](/power-bi/desktop-composite-models) pour combiner des données agrégées pour les tableaux de bord de premier niveau avec des données brutes opérationnelles filtrées. Vous pouvez définir clairement quand utiliser des données brutes et quand utiliser une vue agrégée. 
 
-* **Mode Import et mode DirectQuery** : utiliser le mode **Import** pour l’interaction de petits jeux de données. Utilisez le mode **DirectQuery** pour les jeux de données volumineux et fréquemment mis à jour. Par exemple, créez des tables de dimension à l’aide du mode **Import** car elles sont peu volumineuses et ne changent pas souvent. Définissez l’intervalle d’actualisation en fonction de la fréquence attendue des mises à jour des données. Créez des tables de faits à l’aide du mode **DirectQuery** car ces tables sont volumineuses et contiennent des données brutes. Utilisez ces tables pour présenter des données filtrées à l’aide de l’[extraction](/power-bi/desktop-drillthrough) Power BI.
+* **Mode Import et mode [DirectQuery](/power-bi/connect-data/desktop-directquery-about)**  : utiliser le mode **Import** pour l’interaction de petits jeux de données. Utilisez le mode **DirectQuery** pour les jeux de données volumineux et fréquemment mis à jour. Par exemple, créez des tables de dimension à l’aide du mode **Import** car elles sont peu volumineuses et ne changent pas souvent. Définissez l’intervalle d’actualisation en fonction de la fréquence attendue des mises à jour des données. Créez des tables de faits à l’aide du mode **DirectQuery** car ces tables sont volumineuses et contiennent des données brutes. Utilisez ces tables pour présenter des données filtrées à l’aide de l’[extraction](/power-bi/desktop-drillthrough) Power BI. Si vous utilisez **DirectQuery**, vous pouvez utiliser la [**réduction de requête**](/power-bi/connect-data/desktop-directquery-about#report-design-guidance) pour empêcher les rapports de charger des données avant que vous ne soyez prêt.
 
 * **Parallélisme** – Azure Data Explorer est une plateforme de données linéairement scalable. Par conséquent, vous pouvez améliorer les performances du rendu des tableaux de bord en augmentant le parallélisme du flux de bout en bout comme suit :
 

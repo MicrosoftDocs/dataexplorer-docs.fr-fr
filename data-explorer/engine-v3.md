@@ -7,12 +7,12 @@ ms.reviewer: avnera
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/11/2020
-ms.openlocfilehash: e018e8ae6b25437a8665a5b5eb90fc2bac4ce9b9
-ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
+ms.openlocfilehash: 133f01498d4cf430d7fdc2649df88186610b3954
+ms.sourcegitcommit: fcaf3056db2481f0e3f4c2324c4ac956a4afef38
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/13/2020
-ms.locfileid: "92003269"
+ms.lasthandoff: 12/14/2020
+ms.locfileid: "97388968"
 ---
 # <a name="enginev3---preview"></a>EngineV3 - préversion
 
@@ -45,8 +45,8 @@ EngineV3 s’occupe principalement de l’optimisation de cette « partie infé
 
 Les performances améliorées et la rapidité accrue des requêtes proviennent des deux modifications majeures apportées au moteur :
 
-* Nouveau format amélioré du stockage des partitions.
-* Reconception du moteur de requête de partitions de bas niveau.
+* **Nouveau format amélioré du stockage des partitions.** Comme pour EngineV2, le stockage prend la forme d’un magasin de colonnes compressé qui accorde une attention particulière aux types de données non structurées (texte) et semi-structurées. EngineV3 améliore l’encodage de ces différents types de données. Les index ont été remaniés de manière à augmenter leur niveau de précision, ce qui permet d’évaluer certaines parties de la requête en fonction de l’index, sans analyser les données.
+* **Reconception du moteur de requête de partitions de bas niveau.** La nouvelle requête de partition est compilée juste-à-temps sous la forme de code machine très efficace, ce qui se traduit par une logique d’évaluation de requête fusionnée rapide et efficace. La compilation de la requête est guidée par les statistiques de données recueillies à partir de toutes les partitions, et elle est adaptée aux caractéristiques de l’encodage des colonnes.
 
 L’impact sur les performances d’EngineV3 dépend du jeu de données, des modèles de requête, des accès concurrentiels et des références SKU des machines virtuelles utilisées. Dans les tests de performances, un jeu de données de 100 To a été utilisé, et différents scénarios impliquant de l’analytique sur des données structurées, non structurées et semi-structurées ont été explorés. Avec le même niveau d’accès concurrentiel et l’utilisation de la même configuration matérielle, l’amélioration des performances était en moyenne d’un facteur 8. L’amélioration réelle des performances varie en fonction de la requête et du jeu de données.
 
@@ -54,7 +54,7 @@ L’impact sur les performances d’EngineV3 dépend du jeu de données, des mod
 
 Pour [créer un cluster](create-cluster-database-portal.md) avec EngineV3, sous l’onglet **Général** de l’écran de création de cluster, cochez la case **Utiliser EngineV3 (préversion)**  :
 
-:::image type="content" source="media/engine-v3/create-new-cluster-v3.png" alt-text="Représentation schématique de l’architecture Azure Data Explorer/Kusto EngineV3":::
+:::image type="content" source="media/engine-v3/create-new-cluster-v3.png" alt-text="Capture d’écran de la case à cocher Utiliser EngineV3 (préversion) lors de la création d’un cluster":::
 
 ## <a name="next-steps"></a>Étapes suivantes
 
