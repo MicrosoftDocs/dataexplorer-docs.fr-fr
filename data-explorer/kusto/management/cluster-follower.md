@@ -8,18 +8,55 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/18/2020
-ms.openlocfilehash: e05f8204ba1e81b9391b6b63f190b81e1db73338
-ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
+ms.openlocfilehash: efa7c3237ce85938634b1c8b31b1c3e10d01a6f8
+ms.sourcegitcommit: 35236fefb52978ce9a09bc36affd5321acb039a4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/30/2020
-ms.locfileid: "96321044"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97514093"
 ---
 # <a name="cluster-follower-commands"></a>Commandes du suiveur de cluster
 
 Les commandes de contrôle pour la gestion de la configuration du cluster de suivi sont répertoriées ci-dessous. Ces commandes s’exécutent de façon synchrone, mais elles sont appliquées lors de l’actualisation périodique suivante du schéma. Par conséquent, il peut s’écouler quelques minutes avant que la nouvelle configuration ne soit appliquée.
 
 Les commandes de suivi incluent des commandes [au niveau de la base de données](#database-level-commands) et [au niveau](#table-level-commands)de la table.
+
+## <a name="database-policy-overrides"></a>Remplacements de la stratégie de base de données
+
+Une base de données suivie par un cluster de suivi peut avoir des stratégies au niveau de la base de données de la [stratégie de mise en cache](#caching-policy) et des [principaux autorisés](#authorized-principals) remplacés dans le cluster de suivi.
+
+### <a name="caching-policy"></a>Stratégie de mise en cache
+
+La [stratégie de mise en cache](cachepolicy.md) par défaut pour le cluster de suivi conserve la base de données de clusters leader et les stratégies de mise en cache au niveau de la table.
+
+|Option             |Description                                                                                                                                                                                                           |
+|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|**Aucun** (par défaut) |Les stratégies de mise en cache utilisées sont celles définies dans la base de données source (dans le cluster de leader).                                                                                                                           |
+|**replace**        |La base de données source dans la base de données de cluster leader et les stratégies de mise en cache au niveau de la table sont supprimées (avec la valeur `null` ). Elles sont remplacées par celles définies dans la base de données et les stratégies de remplacement au niveau de la table, si elles sont définies.|
+|**union**          |La base de données source dans la base de données de cluster leader et les stratégies de mise en cache au niveau de la table sont mises en Union avec celles définies dans la base de données et les stratégies de remplacement au niveau de la table.                                              |
+
+> [!NOTE]
+>  * Si la collection de la base de données de remplacement et les stratégies de mise en cache au niveau de la table sont *vides*, *tout* est mis en cache par défaut.
+>  * Vous pouvez définir la valeur de remplacement de la stratégie de mise en cache au niveau de la base de données sur `0d` , pour n’avoir *rien* mis en cache par défaut.
+
+### <a name="authorized-principals"></a>Principaux autorisés
+
+Les [principaux autorisés](access-control/index.md#authorization) par défaut conservent la base de données source des principaux autorisés du cluster.
+
+|Option             |Description                                                                                                                              |
+|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+|**Aucun** (par défaut) |Les principaux autorisés utilisés sont ceux définis dans la base de données source (dans le cluster principal).                                         |
+|**replace**        |La base de données source dans les principaux autorisés de cluster de leader est remplacée par celles définies dans les principaux autorisés de remplacement.  |
+|**union**          |La base de données source dans les principaux autorisés de cluster de leader est associée à celles définies dans les principaux autorisés de remplacement. |
+
+> [!NOTE]
+> Si la collection de principaux autorisés de remplacement est *vide*, il n’y aura pas de principal au niveau de la base de données.
+
+## <a name="table-policy-overrides"></a>Remplacements de la stratégie de table
+
+Une table dans une base de données qui est suivie par un cluster de suivi peut avoir la stratégie de [mise en cache](cachepolicy.md) au niveau de la table remplacée dans le cluster de suivi.
+La valeur par défaut conserve la stratégie de mise en cache de la table source. Si cette stratégie existe dans la base de données source, elle reste effective sur le cluster de suivi.
+L' `replace` option est prise en charge : lorsque vous l’utilisez, la stratégie de mise en cache de la table source est remplacée par celle définie comme remplacement.
 
 ## <a name="database-level-commands"></a>Commandes au niveau de la base de données
 
@@ -29,7 +66,7 @@ Affiche une base de données (ou des bases de données) suivie d’un autre clus
 
 **Syntaxe**
 
-`.show` `follower` `database` *nom_base_de_données*
+`.show``follower` `database` *DatabaseName*
 
 `.show``follower` `databases` `(` *DatabaseName1* `,` ...`,` *DatabaseNameN*`)`
 
@@ -50,7 +87,7 @@ Affiche une base de données (ou des bases de données) suivie d’un autre clus
 
 Modifie une stratégie de mise en cache de la base de données, afin de remplacer celle définie sur la base de données source dans le cluster leader. Il nécessite des [autorisations DatabaseAdmin](../management/access-control/role-based-authorization.md).
 
-**Remarques**
+**Notes**
 
 * La valeur par défaut `modification kind` pour les stratégies de mise en cache est `union` . Pour modifier le `modification kind` , utilisez la [`.alter follower database caching-policies-modification-kind`](#alter-follower-database-caching-policies-modification-kind) commande.
 * L’affichage de la stratégie ou des stratégies effectives après la modification peut être effectué à l’aide des `.show` commandes suivantes :
@@ -61,7 +98,7 @@ Modifie une stratégie de mise en cache de la base de données, afin de remplace
 
 **Syntaxe**
 
-`.alter``follower` `database` *DatabaseName* `policy` `caching` `hot` `=` *HotDataSpan* DatabaseName
+`.alter``follower` `database`  `policy` `caching` `hot` `=` *HotDataSpan* DatabaseName
 
 **Exemple**
 
@@ -74,7 +111,7 @@ Modifie une stratégie de mise en cache de la base de données, afin de remplace
 Supprime une stratégie de mise en cache de remplacement de la base de données. En conséquence, la stratégie définie sur la base de données source dans le cluster de leader est la même que celle qui est effective.
 Il nécessite des [autorisations DatabaseAdmin](../management/access-control/role-based-authorization.md). 
 
-**Remarques**
+**Notes**
 
 * L’affichage de la stratégie ou des stratégies effectives après la modification peut être effectué à l’aide des `.show` commandes suivantes :
     * [`.show database policy retention`](../management/retention-policy.md#show-retention-policy)
@@ -84,7 +121,7 @@ Il nécessite des [autorisations DatabaseAdmin](../management/access-control/rol
 
 **Syntaxe**
 
-`.delete` `follower` `database` *nom_base_de_données* `policy` `caching`
+`.delete``follower` `database`  DatabaseName `policy``caching`
 
 **Exemple**
 
@@ -96,7 +133,7 @@ Il nécessite des [autorisations DatabaseAdmin](../management/access-control/rol
 
 Ajoute le ou les principaux autorisés à la collection de bases de données de la base de données principale des principaux autorisés de remplacement. Elle requiert l' [autorisation DatabaseAdmin](../management/access-control/role-based-authorization.md).
 
-**Remarques**
+**Notes**
 
 * La valeur par défaut `modification kind` pour ces principaux autorisés est `none` . Pour modifier l' `modification kind`  [instruction USE ALTER suivra Database principals-modification-genre](#alter-follower-database-principals-modification-kind).
 * L’affichage de la collection effective des principaux après la modification peut être effectué à l’aide des `.show` commandes suivantes :
@@ -106,7 +143,7 @@ Ajoute le ou les principaux autorisés à la collection de bases de données de 
 
 **Syntaxe**
 
-`.add``follower` `database` *DatabaseName* `admins`  |  `users`  |  `viewers`  |  `monitors` Principal1 rôle DatabaseName () `(` *principal1* `,` ... `,` *principaln* `)` [ `'` *Remarques* `'` ]
+`.add``follower` `database`  `admins`  |  `users`  |  `viewers`  |  `monitors` Principal1 rôle DatabaseName () `(`  `,` ... `,` *principaln* `)` [ `'` *Remarques* `'` ]
 
 **Exemple**
 
@@ -119,7 +156,7 @@ Ajoute le ou les principaux autorisés à la collection de bases de données de 
 Supprime le (s) principal (s) autorisé (s) de la collection de bases de données de suivi des principaux autorisés de remplacement.
 Il nécessite des [autorisations DatabaseAdmin](../management/access-control/role-based-authorization.md).
 
-**Remarques**
+**Notes**
 
 * L’affichage de la collection effective des principaux après la modification peut être effectué à l’aide des `.show` commandes suivantes :
     * [`.show database principals`](../management/security-roles.md#managing-database-security-roles)
@@ -140,7 +177,7 @@ Il nécessite des [autorisations DatabaseAdmin](../management/access-control/rol
 
 Modifie le type de modification du principal de la base de données. Il nécessite des [autorisations DatabaseAdmin](../management/access-control/role-based-authorization.md).
 
-**Remarques**
+**Notes**
 
 * L’affichage de la collection effective des principaux après la modification peut être effectué à l’aide des `.show` commandes suivantes :
     * [`.show database principals`](../management/security-roles.md#managing-database-security-roles)
@@ -162,7 +199,7 @@ Modifie le type de modification du principal de la base de données. Il nécessi
 
 Modifie le type de modification de la base de données et des stratégies de mise en cache de table. Il nécessite des [autorisations DatabaseAdmin](../management/access-control/role-based-authorization.md).
 
-**Remarques**
+**Notes**
 
 * L’affichage de la collection efficace de stratégies de mise en cache au niveau de la table ou de la base de données après la modification peut être effectué à l’aide des `.show` commandes standard :
     * [`.show tables details`](show-tables-command.md)
@@ -208,7 +245,7 @@ La commande suivante modifie la configuration de la base de données de suivi po
 Modifie une stratégie de mise en cache au niveau de la table sur la base de données de suivi, pour remplacer la stratégie définie sur la base de données source dans le cluster leader.
 Il nécessite des [autorisations DatabaseAdmin](../management/access-control/role-based-authorization.md). 
 
-**Remarques**
+**Notes**
 
 * L’affichage de la stratégie ou des stratégies effectives après la modification peut être effectué à l’aide des `.show` commandes suivantes :
     * [`.show database policy retention`](../management/retention-policy.md#show-retention-policy)
@@ -220,7 +257,7 @@ Il nécessite des [autorisations DatabaseAdmin](../management/access-control/rol
 
 `.alter``follower` `database` *DatabaseName* table *TableName* `policy` `caching` `hot` `=` *HotDataSpan*
 
-`.alter``follower` `database` *DatabaseName* Tables DatabaseName `(` *TableName1* `,` ... `,` *TableNameN* `)` `policy` `caching` `hot` `=` *HotDataSpan*
+`.alter``follower` `database`  Tables DatabaseName `(` *TableName1* `,` ... `,` *TableNameN* `)` `policy` `caching` `hot` `=` *HotDataSpan*
 
 **Exemple**
 
@@ -232,7 +269,7 @@ Il nécessite des [autorisations DatabaseAdmin](../management/access-control/rol
 
 Supprime une stratégie de mise en cache au niveau de la table de substitution sur la base de données du suiveur, en faisant de la stratégie définie sur la base de données source dans le cluster de leader la stratégie effective. Requiert des [autorisations DatabaseAdmin](../management/access-control/role-based-authorization.md). 
 
-**Remarques**
+**Notes**
 
 * L’affichage de la stratégie ou des stratégies effectives après la modification peut être effectué à l’aide des `.show` commandes suivantes :
     * [`.show database policy retention`](../management/retention-policy.md#show-retention-policy)
@@ -242,9 +279,9 @@ Supprime une stratégie de mise en cache au niveau de la table de substitution s
 
 **Syntaxe**
 
-`.delete``follower` `database` *DatabaseName* , `table` *TableName* table `policy``caching`
+`.delete``follower` `database` *DatabaseName* , `table`  table `policy``caching`
 
-`.delete``follower` `database` *DatabaseName* `tables` `(` *TableName1* DatabaseName `,` ... `,` *TableNameN* `)` `policy``caching`
+`.delete``follower` `database`  `tables` `(` *TableName1* DatabaseName `,` ... `,` *TableNameN* `)` `policy``caching`
 
 **Exemple**
 
@@ -297,8 +334,8 @@ Consultez la configuration actuelle en fonction de laquelle `MyDatabase` est sui
 |LeaderClusterMetadataPath            | `https://storageaccountname.blob.core.windows.net/cluster` |
 |CachingPolicyOverride                | null                                                     |
 |AuthorizedPrincipalsOverride         | []                                                       |
-|AuthorizedPrincipalsModificationKind | Aucun                                                     |
-|IsAutoPrefetchEnabled                | False                                                    |
+|AuthorizedPrincipalsModificationKind | None                                                     |
+|IsAutoPrefetchEnabled                | Faux                                                    |
 |TableMetadataOverrides               |                                                          |
 |CachingPoliciesModificationKind      | Union                                                    |                                                                                                                      |
 
@@ -373,7 +410,7 @@ Seules ces deux tables spécifiques ont des données mises en cache, et les autr
 | {"MyTable1" : {"CachingPolicyOverride" : {"DataHotSpan" : {"value" : "1.00:00:00"}, "IndexHotSpan" : {"value" : "1.00:00:00"}}}} |
 | {"MyTable2" : {"CachingPolicyOverride" : {"DataHotSpan" : {"value" : "3.00:00:00"}, "IndexHotSpan" : {"value" : "3.00:00:00"}}}} |
 
-#### <a name="summary"></a>Résumé
+#### <a name="summary"></a>Récapitulatif
 
 Consultez la configuration actuelle où `MyDatabase` est suivi `MyFollowerCluster` :
 
@@ -389,6 +426,6 @@ Consultez la configuration actuelle où `MyDatabase` est suivi `MyFollowerCluste
 |CachingPolicyOverride                | {"DataHotSpan" : {"value" : "00:00:00"}, "IndexHotSpan" : {"value" : "00:00:00"}}                                                                                                        |
 |AuthorizedPrincipalsOverride         | [{"Principal" : {"FullyQualifiedName" : "aaduser = 87654321-ABCD-efef-1234-350bf486087b",...}, {"principal" : {"FullyQualifiedName" : "aaduser = 54321789-ABCD-efef-1234-350bf486087b",...}] |
 |AuthorizedPrincipalsModificationKind | Replace                                                                                                                                                                         |
-|IsAutoPrefetchEnabled                | False                                                                                                                                                                           |
+|IsAutoPrefetchEnabled                | Faux                                                                                                                                                                           |
 |TableMetadataOverrides               | {"MyTargetTable" : {"CachingPolicyOverride" : {"DataHotSpan" : {"value" : "3.00:00:00"}...}, "MySourceTable" : {"CachingPolicyOverride" : {"DataHotSpan" : {"value" : "1.00:00:00"},...}}}       |
 |CachingPoliciesModificationKind      | Replace                                                                                                                                                                         |
