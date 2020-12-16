@@ -4,12 +4,12 @@ ms.service: data-explorer
 ms.topic: include
 ms.date: 01/07/2020
 ms.author: orspodek
-ms.openlocfilehash: 5187f89a939daf45c0a5826e483de52cb7784103
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: c00ea9998b1ec6f05c36d0e0b926bd3b6f8d3509
+ms.sourcegitcommit: 79d923d7b7e8370726974e67a984183905f323ff
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83383861"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96933894"
 ---
 Azure Data Explorer chiffre toutes les données dans un compte de stockage au repos. Par défaut, les données sont chiffrées avec des clés managées par Microsoft Pour plus de contrôle sur les clés de chiffrement, vous pouvez fournir des clés gérées par le client à utiliser pour le chiffrement des données. 
 
@@ -26,4 +26,4 @@ Pour configurer des clés gérées par le client avec Azure Data Explorer, vous 
 
 ## <a name="assign-an-identity-to-the-cluster"></a>Attribuer une identité au cluster
 
-Pour activer des clés gérées par le client pour votre cluster, attribuez tout d’abord au cluster une identité managée affectée au système. Cette identité managée vous sera utile pour autoriser le cluster à accéder au coffre de clés. Pour configurer des identités managées affectées au système, consultez [Identités managées](../managed-identities.md).
+Pour activer des clés gérées par le client pour votre cluster, attribuez tout d’abord au cluster une identité managée affectée par le système ou par l’utilisateur. Cette identité managée vous sera utile pour autoriser le cluster à accéder au coffre de clés. Pour configurer des identités managées, consultez [Identités managées](../managed-identities.md).
