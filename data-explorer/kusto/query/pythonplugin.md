@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 04/01/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 98888ddd5dd6155c9476163337e7c031e0f84a1e
-ms.sourcegitcommit: afc369ab4c4bcc74f2dce22b397a340572db8ecf
+ms.openlocfilehash: 918d0f2f7fa8667a4cf90b2813bb3b80dd49fa78
+ms.sourcegitcommit: 335e05864e18616c10881db4ef232b9cda285d6a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87528144"
+ms.lasthandoff: 12/16/2020
+ms.locfileid: "97596853"
 ---
 # <a name="python-plugin"></a>Plug-in Python
 
@@ -24,7 +24,7 @@ ms.locfileid: "87528144"
 Le plug-in Python exécute une fonction définie par l’utilisateur (UDF) à l’aide d’un script Python. Le script Python obtient les données tabulaires en tant qu’entrée et est censé produire une sortie tabulaire.
 Le runtime du plug-in est hébergé dans les [bacs à sable (sandbox](../concepts/sandboxes.md)), en cours d’exécution sur les nœuds du cluster.
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>Syntaxe
 
 *T* `|` `evaluate` [ `hint.distribution` `=` ( `single`  |  `per_node` )] `python(` *output_schema* `,` *script* [ `,` *script_parameters*] [ `,` *external_artifacts*]`)`
 
@@ -32,7 +32,7 @@ Le runtime du plug-in est hébergé dans les [bacs à sable (sandbox](../concept
 
 * *output_schema*: `type` littéral qui définit le schéma de sortie des données tabulaires, retourné par le code Python.
     * Le format est : `typeof(` *ColumnName* `:` *ColumnType*[,...] `)` . Par exemple, `typeof(col1:string, col2:long)` .
-    * Pour étendre le schéma d’entrée, utilisez la syntaxe suivante :`typeof(*, col1:string, col2:long)`
+    * Pour étendre le schéma d’entrée, utilisez la syntaxe suivante : `typeof(*, col1:string, col2:long)`
 * *script*: `string` littéral qui est le script Python valide à exécuter.
 * *script_parameters*: littéral facultatif `dynamic` . Il s’agit d’un jeu de propriétés de paires nom/valeur à passer au script Python en tant que `kargs` dictionnaire réservé. Pour plus d’informations, consultez [variables python réservées](#reserved-python-variables).
 * *hint. distribution*: indication facultative pour que l’exécution du plug-in soit distribuée sur plusieurs nœuds de cluster.
@@ -134,7 +134,7 @@ print "This is an example for using 'external_artifacts'"
     * Vous pouvez également utiliser l' [opérateur de partition](partitionoperator.md) pour partitionner le jeu de données d’entrée.
 * Utilisez le langage de requête de Kusto dans la mesure du possible pour implémenter la logique de votre script Python.
 
-    ## <a name="example"></a>Exemple
+    ### <a name="example"></a>Exemple
 
     ```kusto    
     .show operations
@@ -153,13 +153,13 @@ print "This is an example for using 'external_artifacts'"
 * Pour générer des chaînes multilignes contenant le script Python dans `Kusto.Explorer` , copiez votre script Python à partir de votre éditeur Python favori (*Jupyter*, *Visual Studio code*, *PyCharm*, etc.). 
   À présent, effectuez l’une des opérations suivantes :
     * Appuyez sur **F2** pour ouvrir la fenêtre *modifier dans python* . Collez le script dans cette fenêtre. Sélectionnez **OK**. Le script sera décoré avec des guillemets et de nouvelles lignes, il est donc valide dans Kusto et collé automatiquement dans l’onglet requête.
-    * Collez le code python directement dans l’onglet requête. sélectionnez ces lignes, puis appuyez sur **CTRL + K**, **CTRL + S** touches d’accès rapide pour les décorer comme indiqué ci-dessus. Pour inverser, appuyez sur **CTRL + K**, **Ctrl + M** touches d’accès rapide. Consultez la liste complète des [raccourcis](../tools/kusto-explorer-shortcuts.md#query-editor)de l’éditeur de requête.
+    * Collez le code python directement dans l’onglet requête. Sélectionnez ces lignes, puis appuyez sur **CTRL + K**, **CTRL + S** touches d’accès rapide pour les décorer comme indiqué ci-dessus. Pour inverser, appuyez sur **CTRL + K**, **Ctrl + M** touches d’accès rapide. Consultez la liste complète des [raccourcis](../tools/kusto-explorer-shortcuts.md#query-editor)de l’éditeur de requête.
 * Pour éviter les conflits entre les délimiteurs de chaîne Kusto et les littéraux de chaîne Python, utilisez :
      * Guillemets simples ( `'` ) pour les littéraux de chaîne Kusto dans les requêtes Kusto
      * Guillemets doubles ( `"` ) pour les littéraux de chaîne python dans les scripts Python
 * Utilisez l' [ `externaldata` opérateur](externaldata-operator.md) pour obtenir le contenu d’un script que vous avez stocké dans un emplacement externe, tel que le stockage d’objets BLOB Azure.
   
-    ## <a name="example"></a>Exemple
+    ### <a name="example"></a>Exemple
 
     ```kusto
     let script = 

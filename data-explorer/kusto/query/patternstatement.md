@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 1fa4c303624c62b7c43d2ddd0de58977ed6e42aa
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: f8ae6bc55df90dc27fc329e9b49f63430cd77aba
+ms.sourcegitcommit: 335e05864e18616c10881db4ef232b9cda285d6a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92241332"
+ms.lasthandoff: 12/16/2020
+ms.locfileid: "97596819"
 ---
 # <a name="pattern-statement"></a>Pattern (instruction)
 
@@ -46,7 +46,7 @@ app("ApplicationX").StartEvents
 
 Cette requête génère une erreur à partir de Kusto, ce qui indique que les appels de modèle suivants ne peuvent pas être résolus : `app("ApplicationX")["StartEvents"]` et `app("ApplicationX")["StopEvents"]` .
 
-## <a name="syntax"></a>Syntaxe
+## <a name="syntax-of-pattern-declaration"></a>Syntaxe de la déclaration de modèle
 
 `declare``pattern` *PatternName*
 
@@ -67,9 +67,9 @@ app("ApplicationX").StartEvents
 
 L’expression fournie pour chaque modèle mis en correspondance est un nom de table ou une référence à une [instruction Let](letstatement.md).
 
-## <a name="syntax"></a>Syntaxe
+## <a name="syntax-of-pattern-definition"></a>Syntaxe de la définition de modèle
 
-`declare``pattern` *PatternName*  =  PatternName `(` *ArgName* `:` *ArgType* [ `,` ...] `)` [ `[` *Nom de chemin* `:` *PathArgType* `]` ]`{`
+`declare``pattern`   =  PatternName `(` *ArgName* `:` *ArgType* [ `,` ...] `)` [ `[` *Nom de chemin* `:` *PathArgType* `]` ]`{`
 &nbsp;&nbsp;&nbsp;&nbsp;`(` *ArgValue1* [ `,` *ArgValue2* ...] `)` [ `.[` * PathValue `]` ] `=` `{` *expression* `};` &nbsp; &nbsp; &nbsp; &nbsp; [ &nbsp; &nbsp; &nbsp; &nbsp; `(` *ArgValue1_2* [ `,` *ArgValue2_2* ...] `)` [ `.[` *PathValue_2* `]` ] `=` `{` *expression_2* `};` &nbsp; &nbsp; &nbsp; &nbsp; ... &nbsp; &nbsp; &nbsp; &nbsp; ]        `}`
 
 * *PatternName*: nom du mot clé Pattern. La syntaxe qui définit le mot clé uniquement est autorisée : pour la détection de toutes les références de modèle avec un mot clé spécifié.
