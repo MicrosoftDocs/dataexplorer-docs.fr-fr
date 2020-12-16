@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/04/2020
-ms.openlocfilehash: 8f19606a75c388917a5195d0ac5cbb0ecf4335f9
-ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
+ms.openlocfilehash: 166d5f4f4d81957c49fb3fdedd3b2654985648ab
+ms.sourcegitcommit: 35236fefb52978ce9a09bc36affd5321acb039a4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/30/2020
-ms.locfileid: "96321129"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97514059"
 ---
 # <a name="update-policy-overview"></a>Présentation de la stratégie de mise à jour
 
@@ -40,6 +40,7 @@ La requête de mise à jour de stratégie est exécutée dans un mode spécial, 
 * Lorsque vous faites référence à la `Source` table dans la `Query` partie de la stratégie ou dans les fonctions référencées par le `Query` composant :
    * N’utilisez pas le nom qualifié de la table. Utilisez plutôt `TableName`. 
    * N’utilisez pas `database("DatabaseName").TableName` ou `cluster("ClusterName").database("DatabaseName").TableName` .
+* Pour connaître les limitations de la stratégie de mise à jour dans l’ingestion de streaming, consultez limitations d’ingestion de [streaming](../../ingest-data-streaming.md#limitations). 
 
 > [!WARNING]
 > La définition d’une requête incorrecte dans la stratégie de mise à jour peut empêcher la réception des données dans la table source.

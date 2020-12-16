@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b77fe78ec43bce775774ae95c1ea713d03873cf4
-ms.sourcegitcommit: c351c2c8ab6e184827c4702eb0ec8bf783c7bbd3
+ms.openlocfilehash: 4f3639aeb6e401aa37703bbef929af2275960a91
+ms.sourcegitcommit: 35236fefb52978ce9a09bc36affd5321acb039a4
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/18/2020
-ms.locfileid: "94874795"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97513980"
 ---
 # <a name="show-database-schema-commands"></a>. afficher les commandes de schéma de base de données
 
@@ -50,11 +50,11 @@ La base de données « TestDB » a une table appelée « Events ».
 |nom_base_de_données|TableName|ColumnName|ColumnType|IsDefaultTable|IsDefaultColumn|PrettyName|Version
 |---|---|---|---|---|---|---|--- 
 |TestDB||||False|False||v. 1.1       
-|TestDB|Événements|||True|False||       
-|TestDB|Événements| Nom|System.String|True|False||     
-|TestDB|Événements| StartTime|  System.DateTime|True|False||    
-|TestDB|Événements| EndTime|    System.DateTime|True|False||        
-|TestDB|Événements| City|   System.String|True| False||     
+|TestDB|Événements|||Vrai|Faux||       
+|TestDB|Événements| Nom|System.String|Vrai|Faux||     
+|TestDB|Événements| StartTime|  System.DateTime|Vrai|Faux||    
+|TestDB|Événements| EndTime|    System.DateTime|Vrai|Faux||        
+|TestDB|Événements| City|   System.String|Vrai| Faux||     
 |TestDB|Événements| SessionId|  System.Int32|True|  True|| 
 
 **Exemple** 
@@ -70,11 +70,11 @@ Dans l’exemple suivant, la base de données est retournée uniquement s’il s
 |nom_base_de_données|TableName|ColumnName|ColumnType|IsDefaultTable|IsDefaultColumn|PrettyName|Version
 |---|---|---|---|---|---|---|--- 
 |TestDB||||False|False||v. 1.1       
-|TestDB|Événements|||True|False||       
-|TestDB|Événements| Nom|System.String|True|False||     
-|TestDB|Événements| StartTime|  System.DateTime|True|False||    
-|TestDB|Événements| EndTime|    System.DateTime|True|False||        
-|TestDB|Événements| City|   System.String|True| False||     
+|TestDB|Événements|||Vrai|Faux||       
+|TestDB|Événements| Nom|System.String|Vrai|Faux||     
+|TestDB|Événements| StartTime|  System.DateTime|Vrai|Faux||    
+|TestDB|Événements| EndTime|    System.DateTime|Vrai|Faux||        
+|TestDB|Événements| City|   System.String|Vrai| Faux||     
 |TestDB|Événements| SessionId|  System.Int32|True|  True||  
 
 Étant donné qu’une version antérieure à la version actuelle de la base de données a été fournie, le schéma « TestDB » a été retourné. Le fait de fournir une version égale ou supérieure aurait généré un résultat vide.
@@ -112,7 +112,7 @@ Génère un script CSL avec toutes les commandes requises pour créer une copie 
 
 **Syntaxe**
 
-`.show``database` *DatabaseName* `schema` Databasename `as` `csl` `script` [ `with(` *Options* `)` ]
+`.show``database`  `schema` Databasename `as` `csl` `script` [ `with(` *Options* `)` ]
 
 **Arguments**
 
@@ -129,8 +129,6 @@ Les *options* suivantes sont toutes facultatives :
 
 Le script, retourné sous forme de chaîne, contient les éléments suivants :
 
-* Commandes pour créer la base de données et définir son nom convivial, le cas échéant.
-  * La commande générée crée une base de données volatile et est commentée quand elle est ajoutée au script.
 * Commandes pour créer toutes les tables dans la base de données.
 * Commandes pour définir toutes les stratégies de base de données/tables/colonnes pour qu’elles correspondent aux stratégies d’origine.
 * Commandes permettant de créer ou de modifier toutes les fonctions définies par l’utilisateur dans la base de données.
