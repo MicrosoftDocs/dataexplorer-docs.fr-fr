@@ -365,11 +365,11 @@
               href: dealing-with-duplicates.md
     - name: Superviser
       items:
-        - name: 'Utiliser les journaux de diagnostic pour superviser l’ingestion, les commandes et les requêtes'
-          href: using-diagnostic-logs.md
         - name: Superviser Azure Data Explorer avec des métriques
           displayName: 'health, performance'
           href: using-metrics.md
+        - name: 'Utiliser les journaux de diagnostic pour superviser l’ingestion, les commandes et les requêtes'
+          href: using-diagnostic-logs.md
         - name: Utiliser Resource Health pour superviser l’intégrité du cluster
           href: monitor-with-resource-health.md
     - name: Partager des données
@@ -1444,6 +1444,8 @@
                   href: ./kusto/management/show-ingestion-mapping-command.md
                 - name: .create table
                   href: ./kusto/management/create-table-command.md
+                - name: .create table based-on
+                  href: ./kusto/management/create-table-based-on-command.md
                 - name: .create tables
                   href: ./kusto/management/create-tables-command.md
                 - name: .create-merge table
