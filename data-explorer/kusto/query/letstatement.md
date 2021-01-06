@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/09/2020
 ms.localizationpriority: high
-ms.openlocfilehash: c102637adfa1fd0340d28a67b52354956b511ada
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 7723a3ccd06963596744db9c73f499a882b54c3e
+ms.sourcegitcommit: 1530a38181ec92ed1c2c1f3aa2a75f69bd3e9045
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95513310"
+ms.lasthandoff: 12/30/2020
+ms.locfileid: "97822778"
 ---
 # <a name="let-statement"></a>Let, instruction
 
@@ -52,15 +52,15 @@ Les expressions liées par les instructions Let peuvent être :
 
  ou :
 
- [*TabularArgName* `:` `(` `*` `)`]
+ [*TabularArgName* `:` `(` `*` `)`] - indiquant des expressions tabulaires avec des colonnes de variables et inconnues.
 
 `ScalarArguments` - [*ArgName* `:` *ArgType*] [`,` ... ]
 
 
 |Champ  |Définition  |Exemple  |
 |---------|---------|---------|
-| **view** | Peut apparaître uniquement dans une expression lambda sans paramètre, qui n’a pas d’arguments. Elle indique que le nom lié sera inclus lorsque « toutes les tables » sont des requêtes. | Par exemple, lors de l’utilisation de `union *`.|
-| ***TabularArguments** _ | Liste des arguments d’expressions tabulaires formels. 
+| **view** | Peut apparaître uniquement dans une instruction let sans paramètre, qui n’a pas d’arguments. Lorsque le mot clé « view » est utilisé, l’instruction let est incluse dans les requêtes qui utilisent un opérateur `union` avec la sélection de caractères génériques des tables/vues. |  |
+| **_TabularArguments_* _ | Liste des arguments d’expressions tabulaires formels. 
 | Chaque argument tabulaire a :||
 |<ul><li> _TabularArgName*</li></ul> | Nom de l’argument tabulaire formel. Le nom peut apparaître dans *FunctionBody* et est lié à une valeur particulière lorsque l’expression lambda est appelée. ||
 |<ul><li>Définition de schéma de table </li></ul> | Liste d’attributs avec leurs types| AtrName : AtrType|

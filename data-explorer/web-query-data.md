@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: quickstart
 ms.date: 11/22/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 38b67a0843cc38c2cbce7d5a41a8eff85b25ebd5
-ms.sourcegitcommit: 7edce9d9d20f9c0505abda67bb8cc3d2ecd60d15
+ms.openlocfilehash: b20d9a3e6c01f59a9cde44d6462ffeb0072473ed
+ms.sourcegitcommit: 1530a38181ec92ed1c2c1f3aa2a75f69bd3e9045
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/02/2020
-ms.locfileid: "96524298"
+ms.lasthandoff: 12/30/2020
+ms.locfileid: "97822880"
 ---
 # <a name="quickstart-query-data-in-azure-data-explorer-web-ui"></a>Démarrage rapide : Interroger des données dans l’interface utilisateur web Azure Data Explorer
 
@@ -88,7 +88,8 @@ Vous pouvez maintenant exécuter des requêtes sur les deux clusters (en supposa
 1. Copiez et collez la requête ci-après dans la fenêtre de requête, sous la première requête. Notez qu’elle ne se présente pas sur des lignes distinctes comme la première requête.
 
     ```kusto
-    StormEvents | sort by StartTime desc | project StartTime, EndTime, State, EventType, DamageProperty, EpisodeNarrative | take 10
+    StormEvents | sort by StartTime desc 
+    | project StartTime, EndTime, State, EventType, DamageProperty, EpisodeNarrative | take 10
     ```
 
 1. Sélectionnez la nouvelle requête. Appuyez sur *Maj+Alt+F* pour mettre en forme la requête afin qu’elle ressemble à la requête suivante.
@@ -247,6 +248,7 @@ Sous l’onglet **Paramètres**, vous pouvez :
 
 * [Exporter les paramètres d’environnement](#export-environment-settings)
 * [Importer les paramètres d’environnement](#import-environment-settings)
+* [Surligner les niveaux d’erreur](#highlight-error-levels)
 * [Effacer l’état local](#clean-up-resources)
 
 Sélectionnez l’icône des paramètres :::image type="icon" source="media/web-query-data/settings-icon.png" border="false"::: en haut à droite pour ouvrir la fenêtre **Paramètres**.
@@ -277,6 +279,21 @@ Les actions d’exportation et d’importation vous aident à protéger votre en
 
 > [!NOTE]
 > L’**importation** remplace les données et paramètres d’environnement existants.
+
+### <a name="highlight-error-levels"></a>Mise en surbrillance des niveaux d’erreur
+
+Kusto tente d’interpréter le niveau de gravité ou de détail de chaque ligne dans le volet de résultats et de les colorer en conséquence. Pour ce faire, il met en correspondance les valeurs distinctes de chaque colonne avec un ensemble de modèles connus (« Avertissement », « Erreur », etc.). 
+
+Pour activer la mise en surbrillance des niveaux d’erreur :
+
+1. Sélectionnez l’icône **Paramètres** à côté de votre nom d’utilisateur.
+1. Sélectionnez l’onglet **Apparence** et basculez l’option **Activer la mise en surbrillance du niveau d’erreur** à droite. 
+
+:::image type="content" source="media/web-query-data/enable-error-highlighting.gif" alt-text="Image GIF animée montrant comment activer la mise en surbrillance du niveau d’erreur dans les paramètres":::
+
+Jeu de couleurs du niveau d’erreur en mode **Clair** | Jeu de couleurs du niveau d’erreur en mode **Foncé**
+|---|---|
+:::image type="content" source="media/web-query-data/light-mode.png" alt-text="Capture d’écran de la légende de couleur en mode clair"::: | :::image type="content" source="media/web-query-data/dark-mode.png" alt-text="Capture d’écran de la légende de couleur en mode foncé":::
 
 ## <a name="provide-feedback"></a>Fournir des commentaires
 

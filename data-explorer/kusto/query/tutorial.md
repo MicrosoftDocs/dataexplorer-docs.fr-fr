@@ -11,12 +11,12 @@ ms.date: 10/08/2020
 ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 0616c0d4dd2a44ba1d54ac83c699a1c0bac249b0
-ms.sourcegitcommit: f134d51e52504d3ca722bdf6d33baee05118173a
+ms.openlocfilehash: 56f6952be508a79f06077077f6ec479c7a17c13a
+ms.sourcegitcommit: c4ab6f07e2e5363e331ccd4ecfb6ed813edfbc48
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/03/2020
-ms.locfileid: "96563357"
+ms.lasthandoff: 12/21/2020
+ms.locfileid: "97706394"
 ---
 # <a name="tutorial-use-kusto-queries-in-azure-data-explorer-and-azure-monitor"></a>Tutoriel : Utiliser des requêtes Kusto dans Azure Data Explorer et Azure Monitor
 
@@ -165,7 +165,7 @@ Les [expressions scalaires](./scalar-data-types/index.md) peuvent inclure tous l
 
 ## <a name="aggregate-groups-of-rows-summarize"></a>Agréger des groupes de lignes : *summarize*
 
-Compter le nombre d’événements qui se produisent dans chaque pays :
+Compter le nombre d’événements qui se produisent dans chaque État :
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -242,7 +242,7 @@ StormEvents
 
 :::image type="content" source="images/tutorial/event-counts-state.png" alt-text="Capture d’écran montrant un histogramme du nombre d’événements de tempête par État.":::
 
-Bien que nous ayons supprimé `mid` dans l’opération `project`, nous en avons encore besoin si nous voulons que le graphique affiche les pays dans cet ordre.
+Bien que nous ayons supprimé `mid` dans l’opération `project`, nous en avons encore besoin si nous voulons que le graphique affiche les États dans cet ordre.
 
 Strictement parlant, l’opérateur `render` est une fonctionnalité du client plutôt qu’une partie du langage de requête. Toutefois, il est intégré dans le langage et est utile pour visionner vos résultats.
 

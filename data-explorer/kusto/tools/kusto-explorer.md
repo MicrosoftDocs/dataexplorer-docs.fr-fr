@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/19/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 0086fb9f649d7bb3b7031521812c1dff0ca532f7
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 2c23633c13c2a58f3c6e6e9b9daf001942117bfb
+ms.sourcegitcommit: 1530a38181ec92ed1c2c1f3aa2a75f69bd3e9045
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95513061"
+ms.lasthandoff: 12/30/2020
+ms.locfileid: "97822829"
 ---
 # <a name="kustoexplorer-installation-and-user-interface"></a>Installation et interface utilisateur de Kusto.Explorer
 
@@ -325,6 +325,11 @@ Kusto.Explorer tente d’interpréter le niveau de gravité ou de détail de cha
 Pour modifier le modèle de couleurs de résultat ou désactiver ce comportement, dans le menu **Outils**, sélectionnez **Options** > **Visionneuse des résultats** > **Modèle de couleurs de gravité**.
 
 :::image type="content" source="images/kusto-explorer/ke-color-scheme.png" alt-text="Modification du modèle de couleurs Kusto.Explorer":::
+
+
+Légende du jeu de couleurs **Excel**| Légende du jeu de couleurs **vives**
+|---|---
+| :::image type="content" source="images/kusto-explorer/excel-color-scheme.png" alt-text="Capture d’écran de la légende du jeu de couleurs Excel dans Kusto Explorer" border="false"::: |:::image type="content" source="images/kusto-explorer/vivid-color-scheme.png" alt-text="Capture d’écran de la légende du jeu de couleurs vives dans Kusto Explorer" border="false":::
 
 ## <a name="next-steps"></a>Étapes suivantes
 

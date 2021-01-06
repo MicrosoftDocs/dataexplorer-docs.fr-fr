@@ -11,12 +11,12 @@ ms.date: 02/13/2020
 ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: b8ad39e8c1233acc2df6c30059a6926cea85f37a
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 449a5043d26013c8a41ab6fafe0b3c907a22686b
+ms.sourcegitcommit: 1530a38181ec92ed1c2c1f3aa2a75f69bd3e9045
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95512806"
+ms.lasthandoff: 12/30/2020
+ms.locfileid: "97822761"
 ---
 # <a name="union-operator"></a>opérateur union
 
@@ -65,6 +65,10 @@ La valeur par défaut est `isfuzzy=` `false`.
     *  Nom d’une table, par exemple, `Events`
     *  Expression de requête qui doit être placée entre parenthèses, par exemple `(Events | where id==42)`
     *  Ensemble de tables spécifié par un caractère générique. Par exemple, `E*` formerait l’union de toutes les tables de la base de données dont le nom commence par `E`.
+
+> [!NOTE]
+> Quand la liste de tables est connue, affinez en utilisant des caractères génériques. Certains espaces de travail contiennent un très grand nombre de tables susceptibles d’aboutir à une exécution inefficace. Les tables peuvent également être ajoutées au fur et à mesure et aboutir à des résultats imprévisibles.
+    
 * `kind`: 
     * `inner` : le résultat comporte le sous-ensemble de colonnes qui sont communes à toutes les tables d’entrée.
     * `outer` : (par défaut). Le résultat contient toutes les colonnes qui apparaissent dans les entrées. Les cellules qui n’ont pas été définies par une ligne d’entrée ont la valeur `null`.

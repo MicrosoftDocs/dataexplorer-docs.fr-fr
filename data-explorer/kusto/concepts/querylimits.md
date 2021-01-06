@@ -9,21 +9,21 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
 ms.localizationpriority: high
-ms.openlocfilehash: be8d6e9172364d4177e7421e524cc067e4d58d18
-ms.sourcegitcommit: 66577436bcd1106f10fc9c0f233ee17b94478323
+ms.openlocfilehash: 455b3cfc3976566d9c4383890bbd4c20c775cf15
+ms.sourcegitcommit: 4c6bd4cb1eb1f64d84f844d4e7aff2de3a46b009
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/16/2020
-ms.locfileid: "97532185"
+ms.lasthandoff: 12/23/2020
+ms.locfileid: "97756362"
 ---
 # <a name="query-limits"></a>Limites de requête
 
 Kusto est un moteur de requête ad hoc qui héberge des jeux de données volumineux et tente de répondre aux requêtes en conservant toutes les données pertinentes en mémoire.
-Il existe un risque inhérent au fait que les requêtes monopolisent les ressources de service sans limites. Kusto fournit un certain nombre de protections intégrées sous la forme de limites de requête par défaut. Si vous envisagez de supprimer ces limites, déterminez d’abord si cela constitue un réel avantage.
+Il existe un risque inhérent au fait que les requêtes monopolisent les ressources de service sans limites. Kusto fournit plusieurs protections intégrées sous la forme de limites de requête par défaut. Si vous envisagez de supprimer ces limites, déterminez d’abord si cela constitue un réel avantage.
 
 ## <a name="limit-on-query-concurrency"></a>Limite de concurrence des requêtes
 
-La **concurrence des requêtes** est une limite qu’un cluster impose sur un certain nombre de requêtes exécutées en même temps.
+La **concurrence des requêtes** est une limite qu’un cluster impose sur plusieurs requêtes exécutées en même temps.
 
 * La valeur par défaut de la limite de concurrence des requêtes dépend de la référence de cluster sur laquelle elle s’exécute et est calculée comme suit : `Cores-Per-Node x 10`.
   * Par exemple, pour un cluster qui est configuré sur la référence SKU D14v2, où chaque machine a 16 vCores, la limite de concurrence des requêtes par défaut est de `16 cores x10 = 160`.
@@ -47,7 +47,7 @@ The Kusto DataEngine has failed to execute a query: 'Query result set has exceed
 Il existe plusieurs stratégies pour gérer cette erreur.
 
 * Réduisez la taille du jeu de résultats en modifiant la requête pour qu’elle retourne uniquement des données intéressantes. Cette stratégie est utile lorsque la requête initiale ayant échoué est trop « large ». Par exemple, la requête ne projette pas les colonnes de données qui ne sont pas nécessaires.
-* Réduisez la taille du jeu de résultats en décalant le traitement après requête, tel que les agrégations, dans la requête elle-même. La stratégie est utile dans les scénarios où la sortie de la requête est acheminée vers un autre système de traitement, qui effectue ensuite des agrégations supplémentaires.
+* Réduisez la taille du jeu de résultats en décalant le traitement après requête, tel que les agrégations, dans la requête elle-même. La stratégie est utile dans les scénarios où la sortie de la requête est acheminée vers un autre système de traitement, qui effectue ensuite d’autres agrégations.
 * Basculez des requêtes à l’utilisation de l’[exportation de données](../management/data-export/index.md) lorsque vous souhaitez exporter de grands jeux de données à partir du service.
 * Demandez au service de supprimer cette limite de requête à l’aide des instructions `set` listées ci-dessous ou des indicateurs disponibles dans les [propriétés de demande du client](../api/netfx/request-properties.md).
 
@@ -68,7 +68,7 @@ set notruncation;
 MyTable | take 1000000
 ```
 
-Il est également possible d’avoir un contrôle plus fin sur la troncation des résultats en définissant la valeur de `truncationmaxsize` (taille de données maximale en octets, 64 Mo par défaut) et `truncationmaxrecords` (nombre maximal d’enregistrements, 500 000 par défaut). Par exemple, la requête suivante définit la troncation des résultats sur 1 105 enregistrements ou 1 Mo, selon la valeur dépassée.
+Il est également possible d’avoir un contrôle plus fin sur la troncation des résultats en définissant la valeur de `truncationmaxsize` (taille de données maximale en octets, 64 Mo par défaut) et `truncationmaxrecords` (nombre maximal d’enregistrements, 500 000 par défaut). Par exemple, la requête suivante définit la troncation des résultats sur 1 105 enregistrements ou 1 Mo, selon la valeur dépassée.
 
 ```kusto
 set truncationmaxsize=1048576;
@@ -88,7 +88,7 @@ La troncation des résultats est appliquée par défaut, pas uniquement au flux 
 
 Les éléments suivants s’appliquent lors de l’utilisation d’instructions `set` et/ou lors de la spécification d’indicateurs dans les [propriétés de demande du client](../api/netfx/request-properties.md).
 
-* Si `notruncation` est défini et que `truncationmaxsize`, `truncationmaxrecords` ou `query_take_max_records` est également défini, `notruncation` est ignoré.
+* Si `notruncation` est défini et que `truncationmaxsize`, `truncationmaxrecords` ou `query_take_max_records` sont aussi définis - `notruncation` est ignoré.
 * Si `truncationmaxsize`, `truncationmaxrecords` et/ou `query_take_max_records` sont définis plusieurs fois, la valeur *inférieure* de chaque propriété s’applique.
 
 ## <a name="limit-on-memory-per-iterator"></a>Limite de mémoire par itérateur
@@ -128,7 +128,7 @@ T | where rand() < 0.1 | ...
 T | where hash(UserId, 10) == 1 | ...
 ```
 
-Si `maxmemoryconsumptionperiterator` est défini plusieurs fois, par ex. dans les propriétés de demande client et en utilisant une instruction `set` - la valeur *inférieure* est appliquée.
+Si `maxmemoryconsumptionperiterator` est défini plusieurs fois, par exemple dans les propriétés de demande client et en utilisant une instruction `set`, la valeur inférieure est appliquée.
 
 
 ## <a name="limit-on-memory-per-node"></a>Limite de mémoire par nœud
@@ -140,7 +140,7 @@ set max_memory_consumption_per_query_per_node=68719476736;
 MyTable | ...
 ```
 
-Si `max_memory_consumption_per_query_per_node` est défini plusieurs fois, par ex. dans les propriétés de demande client et en utilisant une instruction `set` - la valeur *inférieure* est appliquée.
+Si `max_memory_consumption_per_query_per_node` est défini plusieurs fois, par exemple dans les propriétés de demande client et en utilisant une instruction `set`, la valeur inférieure est appliquée.
 
 ## <a name="limit-on-accumulated-string-sets"></a>Limite sur les ensembles de chaînes accumulés
 
@@ -186,14 +186,14 @@ Les propriétés sont *query_fanout_threads_percent* et *query_fanout_nodes_perc
 Les deux propriétés sont des entiers dont la valeur par défaut est la valeur maximale (100), qui peut être réduite pour une requête spécifique à une autre valeur.
 
 La première propriété, *query_fanout_threads_percent*, contrôle le facteur de fanout pour l’utilisation des threads.
-Quand elle est de 100 %, le cluster affecte tous les processeurs sur chaque nœud. Par exemple, 16 UC sur un cluster déployé sur des nœuds Azure D14.
-À 50 %, la moitié des UC est utilisée, et ainsi de suite.
-Les nombres sont arrondis à un processeur entier.Il est donc possible de le définir sur 0.
+Quand cette propriété est définie sur 100 %, le cluster affecte tous les processeurs sur chaque nœud. Par exemple, 16 UC sur un cluster déployé sur des nœuds Azure D14.
+Quand cette propriété est définie sur 50 %, la moitié des processeurs est utilisée, et ainsi de suite.
+Les nombres sont arrondis à un processeur entier.Il est donc possible de définir la valeur de propriété sur 0.
 
 La deuxième propriété, *query_fanout_nodes_percent*, contrôle le nombre de nœuds de requête du cluster à utiliser par opération de distribution de sous-requête.
 Elle fonctionne de façon similaire.
 
-Si `query_fanout_nodes_percent` ou `query_fanout_threads_percent` sont définis plusieurs fois, par ex. dans les propriétés de demande client et en utilisant une instruction `set` - la valeur *inférieure* pour chaque propriété est appliquée.
+Si `query_fanout_nodes_percent` ou `query_fanout_threads_percent` sont définis plusieurs fois, par exemple dans les propriétés de demande client et en utilisant une instruction `set`, la valeur inférieure pour chaque propriété est appliquée.
 
 ## <a name="limit-on-query-complexity"></a>Limite de complexité des requêtes
 

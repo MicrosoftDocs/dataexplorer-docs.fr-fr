@@ -9,17 +9,16 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 2b034719fa7c2f3714020c722b5717f5cf8590ff
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: a9da3735df9299b387188157bbae3d561f5de631
+ms.sourcegitcommit: f20619fac91f9bb2e6507cac10d41fb8425218e0
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95512959"
+ms.lasthandoff: 12/29/2020
+ms.locfileid: "97811767"
 ---
 # <a name="parse-operator"></a>opérateur parse
 
-évalue une expression de chaîne et analyse sa valeur dans une ou plusieurs colonnes calculées. Les colonnes calculées contiendront des valeurs null pour les chaînes dont l’analyse a échoué.
-Pour plus d’informations, consultez [Opérateur parse-where](parsewhereoperator.md).
+évalue une expression de chaîne et analyse sa valeur dans une ou plusieurs colonnes calculées. Les colonnes calculées contiendront des valeurs null pour les chaînes dont l’analyse a échoué. S’il n’est pas nécessaire d’utiliser des lignes où l’analyse échoue, préférez l’utilisation de l’[opérateur parse-where](parsewhereoperator.md).
 
 ```kusto
 T | parse Text with "ActivityName=" name ", ActivityType=" type
@@ -87,7 +86,7 @@ Table d’entrée, étendue conformément à la liste des colonnes fournies à l
 L’opérateur `parse` offre un moyen simplifié d’étendre (`extend`) une table à l’aide de plusieurs applications `extract` sur la même expression `string`. Ce résultat est utile lorsque la table comporte une colonne `string` qui contient plusieurs valeurs que vous souhaitez décomposer en colonnes individuelles. Par exemple, une colonne qui a été produite par une instruction developer trace (« `printf` »/« `Console.WriteLine` »).
 
 Dans l’exemple ci-dessous, supposons que la colonne `EventText` de la table `Traces` contient des chaînes au format `Event: NotifySliceRelease (resourceName={0}, totalSlices= {1}, sliceNumber={2}, lockTime={3}, releaseTime={4}, previousLockTime={5})`.
-L’opération va étendre la table avec six colonnes : `resourceName`, `totalSlices`, `sliceNumber`, `lockTime `, `releaseTime`, `previousLockTime`, `Month` et `Day`. 
+L’opération va étendre la table avec six colonnes : `resourceName`, `totalSlices`, `sliceNumber`, `lockTime `, `releaseTime` et `previousLockTime`. 
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

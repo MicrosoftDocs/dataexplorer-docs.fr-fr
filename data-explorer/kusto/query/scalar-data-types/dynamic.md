@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/09/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 582683a9261d84fa24d819b5234e58effaf90a97
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 2ef75f2249466a9796fb0313186546bd9088ff07
+ms.sourcegitcommit: 28f18c3500992fd7dcfd95dffe2bae0161a22ca3
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95512024"
+ms.lasthandoff: 12/28/2020
+ms.locfileid: "97792929"
 ---
 # <a name="the-dynamic-data-type"></a>Le type de données dynamiques
 
@@ -163,6 +163,8 @@ En outre, il existe plusieurs fonctions d’agrégation qui créent des tableaux
 * [make_set_if()](../makesetif-aggfunction.md) retourne un tableau contenant toutes les valeurs uniques (avec un prédicat).
 
 ## <a name="operators-and-functions-over-dynamic-types"></a>Opérateurs et fonctions sur des types dynamiques
+
+Pour obtenir la liste complète des fonctions scalaires dynamiques/de tableau, consultez [Fonctions dynamiques/de tableau](../scalarfunctions.md#dynamicarray-functions).
 
 |Opérateur ou fonction|Utilisation avec des types de données dynamiques|
 |---|---|
