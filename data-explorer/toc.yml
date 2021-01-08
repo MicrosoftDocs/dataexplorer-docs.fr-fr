@@ -368,7 +368,7 @@
         - name: Superviser Azure Data Explorer avec des métriques
           displayName: 'health, performance'
           href: using-metrics.md
-        - name: 'Utiliser les journaux de diagnostic pour superviser l’ingestion, les commandes et les requêtes'
+        - name: 'Utiliser les journaux de diagnostic pour superviser l’ingestion, les commandes, les requêtes et les tables'
           href: using-diagnostic-logs.md
         - name: Utiliser Resource Health pour superviser l’intégrité du cluster
           href: monitor-with-resource-health.md
