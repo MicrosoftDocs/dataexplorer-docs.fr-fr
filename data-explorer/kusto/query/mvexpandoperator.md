@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2019
 ms.localizationpriority: high
-ms.openlocfilehash: f14ec4fa24765053711d60f7d2365755b45adbab
-ms.sourcegitcommit: c6cb2b1071048daa872e2fe5a1ac7024762c180e
+ms.openlocfilehash: e439fff119e005e44a0649fe22cadf3614ce036d
+ms.sourcegitcommit: 555f3da35fe250fabd35fcc6014bf055ef8405db
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/07/2020
-ms.locfileid: "96774637"
+ms.lasthandoff: 01/07/2021
+ms.locfileid: "97972496"
 ---
 # <a name="mv-expand-operator"></a>mv-expand, opérateur
 
@@ -33,7 +33,7 @@ L’opérateur `mv-expand` est appliqué à un tableau ou à une colonne de jeu 
 * *ColumnName :* dans le résultat, les tableaux dans la colonne nommée sont développés en plusieurs lignes. 
 * *ArrayExpression :* expression produisant un tableau. Si ce formulaire est utilisé, une nouvelle colonne est ajoutée et la colonne existante est conservée.
 * *Name :* nom de la nouvelle colonne.
-* *Typename :* Indique le type sous-jacent des éléments du tableau, qui devient le type de la colonne produite par l’opérateur `mv-apply`. L’opération d’application de type est uniquement cast et n’inclut pas d’analyse ou de conversion de type. Les éléments de tableau qui ne sont pas conformes au type déclaré deviennent des valeurs `null`.
+* *Typename :* Indique le type sous-jacent des éléments du tableau, qui devient le type de la colonne produite par l’opérateur `mv-expand`. L’opération d’application de type est uniquement cast et n’inclut pas d’analyse ou de conversion de type. Les éléments de tableau qui ne sont pas conformes au type déclaré deviennent des valeurs `null`.
 * *RowLimit :* nombre maximal de lignes générées à partir de chaque ligne d’origine. La valeur par défaut est 2147483647. 
 
   > [!NOTE]
