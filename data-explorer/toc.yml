@@ -1706,6 +1706,8 @@
               href: ./kusto/management/access-control/aad.md
             - name: Rôles du principal
               href: ./kusto/management/access-control/role-based-authorization.md
+            - name: Autoriser les requêtes et les commandes interlocataires
+              href: cross-tenant-query-and-commands.md
             - name: Procédure d’authentification Azure Active Directory
               displayName: 'AAD, Azure AD'
               href: ./kusto/management/access-control/how-to-authenticate-with-aad.md
