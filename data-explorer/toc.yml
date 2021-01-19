@@ -1713,24 +1713,28 @@
               href: ./kusto/management/access-control/how-to-authenticate-with-aad.md
         - name: Gestion avancée des données
           items:
-            - name: Vue d’ensemble des étendues (partitions de données)
-              href: ./kusto/management/extents-overview.md
-            - name: Commandes d’étendues
+            - name: Étendues (partitions de données)
               items:
-                - name: .alter extent
-                  href: ./kusto/management/alter-extent.md
-                - name: .drop extents
-                  href: ./kusto/management/drop-extents.md
-                - name: .drop extent tags
-                  href: ./kusto/management/drop-extent-tags.md
-                - name: .merge extents
-                  href: ./kusto/management/merge-extents.md
-                - name: .move extents
-                  href: ./kusto/management/move-extents.md
-                - name: .replace extents
-                  href: ./kusto/management/replace-extents.md
-                - name: .show extents
-                  href: ./kusto/management/show-extents.md
+                - name: Vue d’ensemble des étendues
+                  href: ./kusto/management/extents-overview.md
+                - name: Commandes d’étendues
+                  items:
+                    - name: .alter extent
+                      href: ./kusto/management/alter-extent.md
+                    - name: .drop extents
+                      href: ./kusto/management/drop-extents.md
+                    - name: .drop extent tags
+                      href: ./kusto/management/drop-extent-tags.md
+                    - name: .merge extents
+                      href: ./kusto/management/merge-extents.md
+                    - name: .move extents
+                      href: ./kusto/management/move-extents.md
+                    - name: .replace extents
+                      href: ./kusto/management/replace-extents.md
+                    - name: .show extents
+                      href: ./kusto/management/show-extents.md
+                - name: Commandes de nettoyage de conteneurs d’étendue
+                  href: ./kusto/management/clean-extent-containers.md
             - name: Abonné aux clusters
               href: ./kusto/management/cluster-follower.md
             - name: Vidage des données

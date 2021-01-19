@@ -11,12 +11,12 @@ ms.date: 10/08/2020
 ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 56f6952be508a79f06077077f6ec479c7a17c13a
-ms.sourcegitcommit: c4ab6f07e2e5363e331ccd4ecfb6ed813edfbc48
+ms.openlocfilehash: 930936bd9839730ccb0c438cc96a67334ea7ac71
+ms.sourcegitcommit: 64b7b320875950dfee8eb1a23d36aa95e27d7297
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/21/2020
-ms.locfileid: "97706394"
+ms.lasthandoff: 01/14/2021
+ms.locfileid: "98207803"
 ---
 # <a name="tutorial-use-kusto-queries-in-azure-data-explorer-and-azure-monitor"></a>Tutoriel : Utiliser des requêtes Kusto dans Azure Data Explorer et Azure Monitor
 
@@ -416,7 +416,7 @@ Nous pouvons voir dans la sortie que :
 
 * 5 % des tempêtes ont une durée inférieure à 5 minutes.
 * 50 % des tempêtes ont duré moins d’une heure et 25 minutes.
-* 5 % des tempêtes ont duré au moins deux heures et 50 minutes.
+* 95 % des tempêtes ont duré au moins deux heures et 50 minutes.
 
 Pour obtenir une répartition distincte pour chaque État, utilisez la colonne `state` séparément avec les deux opérateurs `summarize` :
 

@@ -11,12 +11,12 @@ ms.date: 02/13/2020
 ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 449a5043d26013c8a41ab6fafe0b3c907a22686b
-ms.sourcegitcommit: 1530a38181ec92ed1c2c1f3aa2a75f69bd3e9045
+ms.openlocfilehash: 3ce7c2c09e9cd5449accfabc2a7e1cc21e4ed339
+ms.sourcegitcommit: d4b359e817e002fba7320132732ce6d9cee97415
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/30/2020
-ms.locfileid: "97822761"
+ms.lasthandoff: 01/18/2021
+ms.locfileid: "98541476"
 ---
 # <a name="union-operator"></a>opérateur union
 
@@ -67,7 +67,7 @@ La valeur par défaut est `isfuzzy=` `false`.
     *  Ensemble de tables spécifié par un caractère générique. Par exemple, `E*` formerait l’union de toutes les tables de la base de données dont le nom commence par `E`.
 
 > [!NOTE]
-> Quand la liste de tables est connue, affinez en utilisant des caractères génériques. Certains espaces de travail contiennent un très grand nombre de tables susceptibles d’aboutir à une exécution inefficace. Les tables peuvent également être ajoutées au fur et à mesure et aboutir à des résultats imprévisibles.
+> Quand la liste de tables est connue, évitez d’utiliser des caractères génériques. Certains espaces de travail contiennent un très grand nombre de tables susceptibles d’aboutir à une exécution inefficace. Les tables peuvent également être ajoutées au fur et à mesure et aboutir à des résultats imprévisibles.
     
 * `kind`: 
     * `inner` : le résultat comporte le sous-ensemble de colonnes qui sont communes à toutes les tables d’entrée.

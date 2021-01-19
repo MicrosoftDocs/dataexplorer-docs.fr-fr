@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/19/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 845f0b5c9446f927fadf0141de4568cc28641c8d
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 13dac735127815c00ac8c1128c710e26208406d7
+ms.sourcegitcommit: d4b359e817e002fba7320132732ce6d9cee97415
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "96320687"
+ms.lasthandoff: 01/18/2021
+ms.locfileid: "98541493"
 ---
 # <a name="string-operators"></a>Opérateurs String
 
@@ -30,7 +30,7 @@ Par défaut, chaque valeur `string` se décompose en séquences maximales de car
 Par exemple, dans la `string` suivante, `Kusto`, `WilliamGates3rd` sont des termes, tandis que `ad67d136`, `c1db`, `4f9f`, `88ef`, `d94f3b6b0b5a` sont des substrings.
 
 ```
-Kusto:  ad67d136-c1db-4f9f-88ef-d94f3b6b0b5a;;WilliamGates3rd
+Kusto: ad67d136-c1db-4f9f-88ef-d94f3b6b0b5a;;WilliamGates3rd
 ```
 
 Kusto génère un index composé de tous les termes d'*au moins quatre caractères*, et cet index est utilisé par `has`, `!has`, etc. Si la requête recherche un terme de moins de quatre caractères ou utilise un opérateur `contains`, Kusto recommence à analyser les valeurs de la colonne s'il ne parvient pas à établir de correspondance. Cette méthode est beaucoup plus lente que la recherche du terme dans l'index des termes.
@@ -43,6 +43,9 @@ Kusto génère un index composé de tous les termes d'*au moins quatre caractèr
 > * CG = côté gauche de l'expression
 > 
 > Les opérateurs dotés du suffixe `_cs` respectent la casse.
+
+> [!NOTE]
+> Les opérateurs insensibles à la casse sont actuellement pris en charge uniquement pour le texte ASCII. Pour une comparaison non-ASCII, utilisez la fonction [tolower()](tolowerfunction.md).
 
 Opérateur        |Description                                                       |Respecte la casse|Exemple (génère `true`)
 ----------------|------------------------------------------------------------------|--------------|-----------------------
