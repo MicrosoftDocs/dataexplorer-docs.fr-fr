@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: quickstart
 ms.date: 11/22/2020
 ms.localizationpriority: high
-ms.openlocfilehash: b20d9a3e6c01f59a9cde44d6462ffeb0072473ed
-ms.sourcegitcommit: 1530a38181ec92ed1c2c1f3aa2a75f69bd3e9045
+ms.openlocfilehash: e2c6a54e675c85d31b44b031f78629fd1afcf8a5
+ms.sourcegitcommit: 8c0674d2bc3c2e10eace5314c30adc7c9e4b3d44
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/30/2020
-ms.locfileid: "97822880"
+ms.lasthandoff: 01/19/2021
+ms.locfileid: "98571786"
 ---
 # <a name="quickstart-query-data-in-azure-data-explorer-web-ui"></a>Démarrage rapide : Interroger des données dans l’interface utilisateur web Azure Data Explorer
 
@@ -284,6 +284,8 @@ Les actions d’exportation et d’importation vous aident à protéger votre en
 
 Kusto tente d’interpréter le niveau de gravité ou de détail de chaque ligne dans le volet de résultats et de les colorer en conséquence. Pour ce faire, il met en correspondance les valeurs distinctes de chaque colonne avec un ensemble de modèles connus (« Avertissement », « Erreur », etc.). 
 
+#### <a name="enable-error-level-highlighting"></a>Activer la mise en surbrillance du niveau d’erreur
+
 Pour activer la mise en surbrillance des niveaux d’erreur :
 
 1. Sélectionnez l’icône **Paramètres** à côté de votre nom d’utilisateur.
@@ -295,6 +297,22 @@ Jeu de couleurs du niveau d’erreur en mode **Clair** | Jeu de couleurs du nive
 |---|---|
 :::image type="content" source="media/web-query-data/light-mode.png" alt-text="Capture d’écran de la légende de couleur en mode clair"::: | :::image type="content" source="media/web-query-data/dark-mode.png" alt-text="Capture d’écran de la légende de couleur en mode foncé":::
 
+#### <a name="column-requirements-for-highlighting"></a>Conditions de mise en surbrillance pour les colonnes
+
+Pour les niveaux d’erreur en surbrillance, la colonne doit être de type int, long ou string.
+
+* Si la colonne est de type `long` ou `int` :
+   * Le nom de la colonne doit être *Level*.
+   * Les valeurs peuvent inclure uniquement des nombres compris entre 1 et 5.
+* Si la colonne est de type `string` : 
+   * Le nom de colonne peut éventuellement être *Level* pour améliorer les performances. 
+   * La colonne peut contenir uniquement l’une des valeurs suivantes :
+       * critical, crit, fatal, assert, high
+       * error, e
+       * warning, w, monitor
+       * information
+       * verbose, verb, d
+   
 ## <a name="provide-feedback"></a>Fournir des commentaires
 
 1. En haut à droite de l’application, sélectionnez l’icône de commentaires :::image type="icon" source="media/web-query-data/icon-feedback.png" border="false":::.
