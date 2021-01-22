@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: quickstart
 ms.date: 08/12/2019
 ms.localizationpriority: high
-ms.openlocfilehash: d5cff511a67e122af6b71740bbeaec6b7a3048e4
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 5942cd57d2fbc607a5ab80571b0e2937fa29306b
+ms.sourcegitcommit: 8c0674d2bc3c2e10eace5314c30adc7c9e4b3d44
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95512755"
+ms.lasthandoff: 01/19/2021
+ms.locfileid: "98571718"
 ---
 # <a name="quickstart-ingest-sample-data-into-azure-data-explorer"></a>Démarrage rapide : Ingérer des exemples de données dans l’Explorateur de données Azure
 
@@ -44,7 +44,7 @@ L’exemple de jeu de données **StormEvents** contient des données météorolo
 1. Collez la commande suivante, puis sélectionnez **Exécuter** pour ingérer des données dans la table StormEvents.
 
     ```Kusto
-    .ingest into table StormEvents h'https://kustosamplefiles.blob.core.windows.net/samplefiles/StormEvents.csv?sv=2019-12-12&ss=b&srt=o&sp=r&se=2022-09-05T02:23:52Z&st=2020-09-04T18:23:52Z&spr=https&sig=VrOfQMT1gUrHltJ8uhjYcCequEcfhjyyMX%2FSc3xsCy4%3D' with (ignoreFirstRecord=true)
+    .ingest into table StormEvents 'https://kustosamplefiles.blob.core.windows.net/samplefiles/StormEvents.csv?sv=2019-12-12&ss=b&srt=o&sp=r&se=2022-09-05T02:23:52Z&st=2020-09-04T18:23:52Z&spr=https&sig=VrOfQMT1gUrHltJ8uhjYcCequEcfhjyyMX%2FSc3xsCy4%3D' with (ignoreFirstRecord=true)
     ```
 
 1. Une fois l’ingestion terminée, collez la requête suivante, sélectionnez la requête dans la fenêtre, puis **Exécuter**.
