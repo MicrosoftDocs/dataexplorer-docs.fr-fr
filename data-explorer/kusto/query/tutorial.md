@@ -11,12 +11,12 @@ ms.date: 10/08/2020
 ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 90c1f09710bcfcf9394113a9eca4764fa51c696e
-ms.sourcegitcommit: 3a2d2def8d6bf395bbbb3b84935bc58adae055b8
+ms.openlocfilehash: bb9df9abc14d26d5c9a6faebe9c9d619ec75262b
+ms.sourcegitcommit: d77e52909001f885d14c4d421098a2c492b8c8ac
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/21/2021
-ms.locfileid: "98636022"
+ms.lasthandoff: 01/26/2021
+ms.locfileid: "98772506"
 ---
 # <a name="tutorial-use-kusto-queries-in-azure-data-explorer-and-azure-monitor"></a>Tutoriel : Utiliser des requêtes Kusto dans Azure Data Explorer et Azure Monitor
 
@@ -527,7 +527,7 @@ Voici le format :
 
 La table [AzureActivity](/azure/azure-monitor/reference/tables/azureactivity) contient des entrées du journal d’activité Azure qui fournit une insight de tous les événements au niveau de l’abonnement ou du groupe d’administration qui se sont produits dans Azure. Voyons uniquement les entrées `Critical` durant une semaine spécifique.
 
-L’opérateur [where](/azure/data-explorer/kusto/query/whereoperator) est courant dans le langage de requête Kusto. L’opérateur `where` filtre une table sur des lignes correspondant à des critères spécifiques. L’exemple suivant utilise plusieurs commandes. Tout d’abord, la requête récupère tous les enregistrements de la table. Ensuite, elle filtre les données uniquement pour les enregistrements qui se trouvent dans l’intervalle de temps. Enfin, elle filtre ces résultats uniquement pour les enregistrements qui ont un niveau `Critical`.
+L’opérateur [where](./whereoperator.md) est courant dans le langage de requête Kusto. L’opérateur `where` filtre une table sur des lignes correspondant à des critères spécifiques. L’exemple suivant utilise plusieurs commandes. Tout d’abord, la requête récupère tous les enregistrements de la table. Ensuite, elle filtre les données uniquement pour les enregistrements qui se trouvent dans l’intervalle de temps. Enfin, elle filtre ces résultats uniquement pour les enregistrements qui ont un niveau `Critical`.
 
 > [!NOTE]
 > En plus de spécifier un filtre dans votre requête à l’aide de la colonne `TimeGenerated`, vous pouvez spécifier l’intervalle de temps dans Log Analytics. Pour plus d’informations, consultez [Étendue de requête de journal et intervalle de temps dans la fonctionnalité Log Analytics d’Azure Monitor](/azure/azure-monitor/log-query/scope).
@@ -661,11 +661,11 @@ InsightsMetrics
 
 ## <a name="join-data-from-two-tables"></a>Joindre des données de deux tables
 
-Que se passe-t-il si vous avez besoin de récupérer des données de deux tables dans une seule requête ? Vous pouvez utiliser l’opérateur [join](/azure/data-explorer/kusto/query/joinoperator?pivots=azuremonitor) pour combiner des lignes de plusieurs tables dans un seul jeu de résultats. Chaque table doit avoir une colonne contenant une valeur correspondante afin que la jointure comprenne les lignes à faire correspondre.
+Que se passe-t-il si vous avez besoin de récupérer des données de deux tables dans une seule requête ? Vous pouvez utiliser l’opérateur [join](./joinoperator.md?pivots=azuremonitor) pour combiner des lignes de plusieurs tables dans un seul jeu de résultats. Chaque table doit avoir une colonne contenant une valeur correspondante afin que la jointure comprenne les lignes à faire correspondre.
 
 [VMComputer](/azure/azure-monitor/reference/tables/vmcomputer) est une table qu’Azure Monitor utilise pour les machines virtuelles, afin de stocker des détails sur les machines virtuelles qu’il surveille. [InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics) contient des données de performances collectées à partir de ces machines virtuelles. Une valeur collectée dans *InsightsMetrics* est la mémoire disponible, mais pas le pourcentage de mémoire disponible. Pour calculer le pourcentage, nous avons besoin de la mémoire physique pour chaque machine virtuelle. Cette valeur est dans `VMComputer`.
 
-L’exemple de requête suivant utilise une jointure pour effectuer ce calcul. L’opérateur [distinct](/azure/data-explorer/kusto/query/distinctoperator) est utilisé avec la table `VMComputer`, car des détails sont régulièrement collectés à partir de chaque ordinateur. Par conséquent, plusieurs lignes sont créées pour chaque ordinateur dans la table. Les deux tables sont jointes à l’aide de la colonne `Computer`. Une ligne est créée dans le jeu de résultats qui contient des colonnes des deux tables pour chaque ligne dans `InsightsMetrics`, avec une valeur dans `Computer` qui correspond à la même valeur dans la colonne `Computer` dans `VMComputer`.
+L’exemple de requête suivant utilise une jointure pour effectuer ce calcul. L’opérateur [distinct](./distinctoperator.md) est utilisé avec la table `VMComputer`, car des détails sont régulièrement collectés à partir de chaque ordinateur. Par conséquent, plusieurs lignes sont créées pour chaque ordinateur dans la table. Les deux tables sont jointes à l’aide de la colonne `Computer`. Une ligne est créée dans le jeu de résultats qui contient des colonnes des deux tables pour chaque ligne dans `InsightsMetrics`, avec une valeur dans `Computer` qui correspond à la même valeur dans la colonne `Computer` dans `VMComputer`.
 
 ```kusto
 VMComputer
