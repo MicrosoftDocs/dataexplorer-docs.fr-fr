@@ -1,6 +1,6 @@
 - name: Documentation Azure Data Explorer
   href: index.yml
-- name: Vue d’ensemble
+- name: Vue d'ensemble
   items:
     - name: "Qu’est-ce que l’Explorateur de données Azure\_?"
       href: data-explorer-overview.md
@@ -1405,6 +1405,22 @@
         - name: Vue d’ensemble des commandes de contrôle
           displayName: Management
           href: ./kusto/management/index.md
+        - name: Groupes de charges de travail (préversion)
+          items:
+            - name: Vue d’ensemble des groupes de charges de travail
+              href: ./kusto/management/workload-groups.md
+            - name: Gestion des groupes de charges de travail
+              href: ./kusto/management/workload-groups-commands.md
+            - name: Stratégie de classification des demandes
+              items:
+                - name: Stratégie de classification des demandes
+                  href: ./kusto/management/request-classification-policy.md
+                - name: Commandes de stratégie de classification des demandes
+                  href: ./kusto/management/request-classification-policy-commands.md
+            - name: Stratégie de limites des demandes
+              href: ./kusto/management/request-limits-policy.md
+            - name: Stratégie de limites de taux de demandes
+              href: ./kusto/management/request-rate-limit-policy.md
         - name: schéma
           items:
             - name: Bonnes pratiques pour la gestion de schémas
@@ -1565,12 +1581,6 @@
                   href: ./kusto/management/partitioningpolicy.md
                 - name: Commande de stratégie de partitionnement
                   href: ./kusto/management/partitioning-policy.md
-            - name: Limitation des requêtes
-              items:
-                - name: Stratégie de limitation des requêtes
-                  href: ./kusto/management/query-throttling-policy.md
-                - name: Commandes d’une stratégie de limitation des requêtes
-                  href: ./kusto/management/query-throttling-policy-commands.md
             - name: Rétention
               items:
                 - name: Stratégie de rétention
