@@ -53,6 +53,8 @@
           href: security.md
         - name: Base de référence de la sécurité
           href: security-baseline.md
+        - name: Contrôles de sécurité par Azure Policy
+          href: ./security-controls-policy.md
     - name: Continuité de l’activité
       items:
         - name: Vue d’ensemble
