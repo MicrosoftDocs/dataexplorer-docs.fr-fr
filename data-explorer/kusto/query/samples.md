@@ -11,12 +11,12 @@ ms.date: 10/08/2020
 ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 866df577fa039e8b92c31753197cf4a4fa03f139
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 4da3a7137b170b8048fbf03b6e6b6369eb4785d9
+ms.sourcegitcommit: 62eff65b320ce4ca53eabed6156eb9fe5b77f548
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95783525"
+ms.lasthandoff: 02/01/2021
+ms.locfileid: "99224228"
 ---
 # <a name="samples-for-queries-for-azure-data-explorer-and-azure-monitor"></a>Exemples de requêtes pour Azure Data Explorer et Azure Monitor
 
@@ -255,7 +255,7 @@ Regroupez maintenant les résultats par heure d’échantillonnage et comptez le
 ```kusto
 X
 | mv-expand samples = range(bin(StartTime, 1m), StopTime , 1m)
-| summarize count(SessionId) by bin(todatetime(samples),1m)
+| summarize count_SessionId = count() by bin(todatetime(samples),1m)
 ```
 
 * Utilisez `todatetime()` car [mv-expand](./mvexpandoperator.md) génère une colonne de type dynamique.
