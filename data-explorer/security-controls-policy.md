@@ -1,18 +1,18 @@
 ---
 title: Contrôles de conformité réglementaire Azure Policy pour Azure Data Explorer
 description: Liste les contrôles de conformité réglementaire Azure Policy disponibles pour Azure Data Explorer. Ces définitions de stratégie intégrées fournissent des approches courantes pour la gestion de la conformité de vos ressources Azure.
-ms.date: 01/27/2021
+ms.date: 02/05/2021
 ms.topic: sample
 author: orspod
 ms.author: orspodek
 ms.service: data-explorer
 ms.custom: subject-policy-compliancecontrols
-ms.openlocfilehash: 3d27a642afd13e25fb593a3ca79bf63e78aa408f
-ms.sourcegitcommit: c65080267f32f23205134c4d685908db58fb87c0
+ms.openlocfilehash: 9f52935e235dcf64c5236d3fbdd58b95441aa5c9
+ms.sourcegitcommit: d1c2433df183d0cfbfae4d3b869ee7f9cbf00fe4
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/30/2021
-ms.locfileid: "99099165"
+ms.lasthandoff: 02/05/2021
+ms.locfileid: "99586386"
 ---
 # <a name="azure-policy-regulatory-compliance-controls-for-azure-data-explorer"></a>Contrôles de conformité réglementaire Azure Policy pour Azure Data Explorer
 
@@ -30,10 +30,10 @@ Pour voir comment les composants intégrés Azure Policy de tous les services Az
 |Domain |ID du contrôle |Titre du contrôle |Policy<br /><sub>(Portail Azure)</sub> |Version de la stratégie<br /><sub>(GitHub)</sub>  |
 |---|---|---|---|---|
 |Protection du système et des communications |SC.3.177 |Utiliser le chiffrement validé FIPS quand il est utilisé pour protéger la confidentialité d’informations CUI. |[Le chiffrement au repos Azure Data Explorer doit utiliser une clé gérée par le client](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F81e74cea-30fd-40d5-802f-d72103c2aaaa) |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Data%20Explorer/ADX_CMK.json) |
-|Protection du système et des communications |SC.3.177 |Utiliser le chiffrement validé FIPS quand il est utilisé pour protéger la confidentialité d’informations CUI. |[Le chiffrement de disque doit être activé dans Azure Data Explorer](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Ff4b53539-8df9-40e4-86c6-6b607703bd4e) |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Data%20Explorer/ADX_disk_encrypted.json) |
-|Protection du système et des communications |SC.3.177 |Utiliser le chiffrement validé FIPS quand il est utilisé pour protéger la confidentialité d’informations CUI. |[Le chiffrement double doit être activé dans Azure Data Explorer](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Fec068d99-e9c7-401f-8cef-5bdde4e6ccf1) |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Data%20Explorer/ADX_doubleEncryption.json) |
-|Protection du système et des communications |SC.3.191 |Protéger la confidentialité de CUI au repos. |[Le chiffrement de disque doit être activé dans Azure Data Explorer](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Ff4b53539-8df9-40e4-86c6-6b607703bd4e) |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Data%20Explorer/ADX_disk_encrypted.json) |
-|Protection du système et des communications |SC.3.191 |Protéger la confidentialité de CUI au repos. |[Le chiffrement double doit être activé dans Azure Data Explorer](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Fec068d99-e9c7-401f-8cef-5bdde4e6ccf1) |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Data%20Explorer/ADX_doubleEncryption.json) |
+|Protection du système et des communications |SC.3.177 |Utiliser le chiffrement validé FIPS quand il est utilisé pour protéger la confidentialité d’informations CUI. |[Le chiffrement de disque doit être activé dans Azure Data Explorer](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Ff4b53539-8df9-40e4-86c6-6b607703bd4e) |[2.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Data%20Explorer/ADX_disk_encrypted.json) |
+|Protection du système et des communications |SC.3.177 |Utiliser le chiffrement validé FIPS quand il est utilisé pour protéger la confidentialité d’informations CUI. |[Le chiffrement double doit être activé dans Azure Data Explorer](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Fec068d99-e9c7-401f-8cef-5bdde4e6ccf1) |[2.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Data%20Explorer/ADX_doubleEncryption.json) |
+|Protection du système et des communications |SC.3.191 |Protéger la confidentialité de CUI au repos. |[Le chiffrement de disque doit être activé dans Azure Data Explorer](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Ff4b53539-8df9-40e4-86c6-6b607703bd4e) |[2.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Data%20Explorer/ADX_disk_encrypted.json) |
+|Protection du système et des communications |SC.3.191 |Protéger la confidentialité de CUI au repos. |[Le chiffrement double doit être activé dans Azure Data Explorer](https://portal.azure.com/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Fec068d99-e9c7-401f-8cef-5bdde4e6ccf1) |[2.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Azure%20Data%20Explorer/ADX_doubleEncryption.json) |
 
 ## <a name="next-steps"></a>Étapes suivantes
 
