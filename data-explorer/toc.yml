@@ -507,6 +507,7 @@
         - name: Types de fonction
           href: ./kusto/query/functions/index.md
         - name: Fonctions définies par l’utilisateur
+          displayName: 'Kusto view, views, Kusto function'
           href: ./kusto/query/functions/user-defined-functions.md
     - name: Instructions de requête
       items:
