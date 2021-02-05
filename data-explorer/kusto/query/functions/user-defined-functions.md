@@ -1,6 +1,6 @@
 ---
-title: Fonctions définies par l'utilisateur - Azure Data Explorer | Microsoft Docs
-description: Cet article décrit les fonctions définies par l'utilisateur dans Azure Data Explorer.
+title: Fonctions définies par l’utilisateur - Azure Data Explorer
+description: Cet article décrit les fonctions définies par l’utilisateur (scalaires ou de vues) dans Azure Data Explorer.
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 92627b3325a7a2ba8e2e4d58a82ebf6db3977221
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: c85fd5dc784747314fe843d8f2325db76ee18d2c
+ms.sourcegitcommit: c11e3871d600ecaa2824ad78bce9c8fc5226eef9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95512874"
+ms.lasthandoff: 02/04/2021
+ms.locfileid: "99554667"
 ---
 # <a name="user-defined-functions"></a>Fonctions définies par l’utilisateur
 
@@ -23,7 +23,7 @@ Les **fonctions définies par l'utilisateur** sont des sous-requêtes réutilisa
 Une fonction définie par l'utilisateur appartient à l'une des deux catégories suivantes :
 
 * Fonctions scalaires 
-* Fonctions tabulaires 
+* Fonctions tabulaires, également appelées vues
 
 Les arguments d'entrée et de sortie de la fonction déterminent si elle est scalaire ou tabulaire, ce qui indique ensuite comment elle peut être utilisée. 
 
