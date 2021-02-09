@@ -9,26 +9,26 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 0a25e0a4354798780b652861ba93494135b6d581
-ms.sourcegitcommit: fd034cf3e3440dcbbbb8494eb4914572055afcee
+ms.openlocfilehash: 615b2f681c22237f9d14ad92e285a564c249857e
+ms.sourcegitcommit: d1c2433df183d0cfbfae4d3b869ee7f9cbf00fe4
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/25/2021
-ms.locfileid: "98759719"
+ms.lasthandoff: 02/05/2021
+ms.locfileid: "99586371"
 ---
 # <a name="query-limits"></a>Limites de requête
 
 Kusto est un moteur de requête ad hoc qui héberge des jeux de données volumineux et tente de répondre aux requêtes en conservant toutes les données pertinentes en mémoire.
 Il existe un risque inhérent au fait que les requêtes monopolisent les ressources de service sans limites. Kusto fournit plusieurs protections intégrées sous la forme de limites de requête par défaut. Si vous envisagez de supprimer ces limites, déterminez d’abord si cela constitue un réel avantage.
 
-## <a name="limit-on-query-concurrency"></a>Limite de concurrence des requêtes
+## <a name="limit-on-request-concurrency"></a>Limite sur la concurrence des demandes
 
-La **concurrence des requêtes** est une limite qu’un cluster impose sur plusieurs requêtes exécutées en même temps.
+La **concurrence des demandes** est une limite qu’un cluster impose sur plusieurs demandes exécutées en même temps.
 
-* La valeur par défaut de la limite de concurrence des requêtes dépend de la référence de cluster sur laquelle elle s’exécute et est calculée comme suit : `Cores-Per-Node x 10`.
-  * Par exemple, pour un cluster qui est configuré sur la référence SKU D14v2, où chaque machine a 16 vCores, la limite de concurrence des requêtes par défaut est de `16 cores x10 = 160`.
+* La valeur par défaut de la limite dépend de la référence SKU sur laquelle le cluster s’exécute, et est calculée comme suit : `Cores-Per-Node x 10`.
+  * Par exemple, pour un cluster qui est configuré sur la référence SKU D14v2, où chaque machine a 16 vCores, la limite par défaut est de `16 cores x10 = 160`.
 * La valeur par défaut peut être modifiée en configurant la [stratégie de limites de taux de demandes](../management/request-rate-limit-policy.md) du groupe de charge de travail `default`.
-  * Le nombre réel de requêtes pouvant s’exécuter simultanément sur un cluster dépend de différents facteurs. Les facteurs les plus dominants sont la référence SKU du cluster, les ressources disponibles du cluster et les modèles de requête. La stratégie de limitation des requêtes peut être configurée en fonction des tests de charge effectués sur des modèles de requête de type production.
+  * Le nombre réel de demandes pouvant s’exécuter simultanément sur un cluster dépend de différents facteurs. Les facteurs les plus dominants sont la référence SKU du cluster, les ressources disponibles du cluster et les modèles d’usage. La stratégie peut être configurée en fonction des tests de charge effectués sur des modèles d’usage de type production.
 
 ## <a name="limit-on-result-set-size-result-truncation"></a>Limite de la taille du jeu de résultats (troncation des résultats)
 
@@ -167,7 +167,7 @@ Le délai d’expiration des requêtes en cours d’exécution (requêtes et com
 
 Par défaut, le délai d’expiration est défini sur quatre minutes pour les requêtes et sur 10 minutes pour les commandes de contrôle. Cette valeur peut être augmentée si nécessaire (elle est limitée à une heure).
 
-* Si vous effectuez des requêtes à l’aide de Kusto.Explorer, utilisez **Outils** &gt; **Options** _ &gt; _ *Connexions** &gt; **Délai du serveur de requêtes**.
+* Si vous effectuez des requêtes avec Kusto.Explorer, utilisez **Outils** &gt; **Options*** &gt; **Connexions** &gt; **Délai du serveur de requêtes**.
 * Par programmation, définissez la propriété de demande de client `servertimeout`, une valeur de type `System.TimeSpan`, jusqu’à une heure.
 
 **Remarques sur les délais d’expiration**
