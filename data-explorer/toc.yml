@@ -211,6 +211,8 @@
           items:
             - name: Python
               href: python-query-data.md
+        - name: Optimiser pour une concurrence élevée
+          href: high-concurrency.md
         - name: Analyse des séries chronologiques et machine learning
           items:
             - name: Analyse de série chronologique
