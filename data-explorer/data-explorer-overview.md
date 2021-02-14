@@ -8,12 +8,13 @@ ms.service: data-explorer
 ms.topic: overview
 ms.date: 09/24/2018
 ms.localizationpriority: high
-ms.openlocfilehash: cd2ad1bebf91cacc80e3cb92fd06bc991c05cc7c
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+adobe-target: true
+ms.openlocfilehash: 1318035db174bf49413b71b14ba4c29df5d209a5
+ms.sourcegitcommit: db99b9d0b5f34341ad3be38cc855c9b80b3c0b0e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "96354052"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100359300"
 ---
 # <a name="what-is-azure-data-explorer"></a>Qu’est-ce que l’Explorateur de données Azure ?
 

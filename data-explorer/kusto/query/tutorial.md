@@ -11,12 +11,12 @@ ms.date: 10/08/2020
 ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: bb9df9abc14d26d5c9a6faebe9c9d619ec75262b
-ms.sourcegitcommit: d77e52909001f885d14c4d421098a2c492b8c8ac
+ms.openlocfilehash: d66b8d949e04f6cd672078989c9d047729c9596b
+ms.sourcegitcommit: db99b9d0b5f34341ad3be38cc855c9b80b3c0b0e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/26/2021
-ms.locfileid: "98772506"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100360079"
 ---
 # <a name="tutorial-use-kusto-queries-in-azure-data-explorer-and-azure-monitor"></a>Tutoriel : Utiliser des requêtes Kusto dans Azure Data Explorer et Azure Monitor
 
@@ -688,8 +688,7 @@ Utilisez l’opérateur [let](./letstatement.md) pour faciliter la lecture et la
 ```kusto
 let PhysicalComputer = VMComputer
     | distinct Computer, PhysicalMemoryMB;
-    let AvailableMemory = 
-InsightsMetrics
+let AvailableMemory = InsightsMetrics
     | where Namespace == "Memory" and Name == "AvailableMB"
     | project TimeGenerated, Computer, AvailableMemoryMB = Val;
 PhysicalComputer

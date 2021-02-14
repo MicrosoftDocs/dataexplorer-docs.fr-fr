@@ -9,12 +9,13 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
 ms.localizationpriority: high
-ms.openlocfilehash: 1e0b3f339a755531d8db146ed2dc478ebb5a888d
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+adobe-target: true
+ms.openlocfilehash: 234ae530fcd664d8d12418ed85d8394385bebf75
+ms.sourcegitcommit: db99b9d0b5f34341ad3be38cc855c9b80b3c0b0e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95513027"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100359929"
 ---
 # <a name="function-types"></a>Types de fonction
 

@@ -9,12 +9,13 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 2a49adf8befcd7c20bd4ec1180ccf937c7bfcfff
-ms.sourcegitcommit: fcaf3056db2481f0e3f4c2324c4ac956a4afef38
+adobe-target: true
+ms.openlocfilehash: edca199ed2ba12fa74e69c66f1b1396313606256
+ms.sourcegitcommit: db99b9d0b5f34341ad3be38cc855c9b80b3c0b0e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/14/2020
-ms.locfileid: "97388985"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100359894"
 ---
 # <a name="bin"></a>bin()
 
