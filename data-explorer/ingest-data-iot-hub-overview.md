@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: b76321fd843efe915a6fd55797bd2dc68059b004
-ms.sourcegitcommit: 8ac4717dbff679991b122b09a0c1ed700562a736
+ms.openlocfilehash: 448f6a75223fe4415bae00d145db199aac6f08f1
+ms.sourcegitcommit: c11e3871d600ecaa2824ad78bce9c8fc5226eef9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/15/2020
-ms.locfileid: "97488574"
+ms.lasthandoff: 02/04/2021
+ms.locfileid: "99554648"
 ---
 # <a name="iot-hub-data-connection"></a>Connexion de données IoT Hub
 
@@ -25,7 +25,7 @@ Pour obtenir des informations générales sur l’ingestion de données dans Azu
 
 ## <a name="data-format"></a>Format de données
 
-* Les données sont lues à partir du point de terminaison Event Hub sous forme d’objets [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata?view=azure-dotnet).
+* Les données sont lues à partir du point de terminaison Event Hub sous forme d’objets [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata).
 * Examinez les [formats pris en charge](ingestion-supported-formats.md).
     > [!NOTE]
     > IoT Hub ne prend pas en charge le format .raw.
@@ -34,14 +34,14 @@ Pour obtenir des informations générales sur l’ingestion de données dans Azu
 
 ## <a name="ingestion-properties"></a>Propriétés d’ingestion
 
-Les propriétés d’ingestion déterminent le processus d’ingestion où router les données et comment le traiter. Vous pouvez spécifier les [propriétés d’ingestion](ingestion-properties.md) des événements avec [EventData.Properties](/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties). Vous pouvez définir les propriétés suivantes :
+Les propriétés d’ingestion déterminent le processus d’ingestion où router les données et comment le traiter. Vous pouvez spécifier les [propriétés d’ingestion](ingestion-properties.md) des événements avec [EventData.Properties](/dotnet/api/microsoft.servicebus.messaging.eventdata.properties#Microsoft_ServiceBus_Messaging_EventData_Properties). Vous pouvez définir les propriétés suivantes :
 
 |Propriété |Description|
 |---|---|
 | Table de charge de travail | Nom (sensible à la casse) de la table cible existante. Remplace le paramètre `Table` défini dans le volet `Data Connection`. |
 | Format | Format de données. Remplace le paramètre `Data format` défini dans le volet `Data Connection`. |
 | IngestionMappingReference | Nom du [mappage d’ingestion](kusto/management/create-ingestion-mapping-command.md) existant à utiliser. Remplace le paramètre `Column mapping` défini dans le volet `Data Connection`.|
-| Encodage |  Encodage des données, la valeur par défaut est UTF8. Il peut s’agir de l’un des [encodages pris en charge par .NET](/dotnet/api/system.text.encoding?view=netframework-4.8#remarks). |
+| Encodage |  Encodage des données, la valeur par défaut est UTF8. Il peut s’agir de l’un des [encodages pris en charge par .NET](/dotnet/api/system.text.encoding#remarks). |
 
 > [!NOTE]
 > Seuls les événements mis en file d’attente après que vous avez créé la connexion de données sont ingérés.
@@ -49,7 +49,7 @@ Les propriétés d’ingestion déterminent le processus d’ingestion où route
 ## <a name="events-routing"></a>Routage d’événements
 
 Lors de la configuration d’une connexion Iot Hub au cluster Azure Data Explorer, vous spécifiez les propriétés de la table cible (nom de table, format de données et mappage). Ce paramétrage est le routage par défaut de vos données, également appelé routage statique.
-Vous pouvez également spécifier des propriétés de la table cible pour chaque événement, à l’aide des propriétés d’événement. La connexion route dynamiquement les données comme spécifié dans [EventData.Properties](/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties), en remplaçant les propriétés statiques de cet événement.
+Vous pouvez également spécifier des propriétés de la table cible pour chaque événement, à l’aide des propriétés d’événement. La connexion route dynamiquement les données comme spécifié dans [EventData.Properties](/dotnet/api/microsoft.servicebus.messaging.eventdata.properties#Microsoft_ServiceBus_Messaging_EventData_Properties), en remplaçant les propriétés statiques de cet événement.
 
 > [!Note]
 > Si l’option **Mes données contiennent des informations de routage** est sélectionnée, vous devez fournir les informations de routage nécessaires dans le cadre des propriétés des événements.

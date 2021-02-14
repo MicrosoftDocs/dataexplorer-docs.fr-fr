@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 11/10/2020
-ms.openlocfilehash: 6f7b33941ca38f80249808d14514faa2378c61fb
-ms.sourcegitcommit: 574296b9a84084de031684a65f32b6c1bd1a4858
+ms.openlocfilehash: 983b9c59e6130c58d04e1d4f1a7042a3aa73bba7
+ms.sourcegitcommit: c11e3871d600ecaa2824ad78bce9c8fc5226eef9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/17/2020
-ms.locfileid: "94714969"
+ms.lasthandoff: 02/04/2021
+ms.locfileid: "99554939"
 ---
 # <a name="use-one-click-ingestion-to-create-an-event-hub-data-connection-for-azure-data-explorer"></a>Utiliser l’ingestion en un clic afin de créer une connexion de données Event Hub pour Azure Data Explorer
 
@@ -63,7 +63,7 @@ La fenêtre **Ingérer de nouvelles données** s’ouvre, avec l’onglet **Sour
     | Espace de noms Event Hub |  | Nom unique qui permet d’identifier votre espace de noms. |
     | Event Hub |  | Hub d’événements que vous souhaitez utiliser. |
     | Groupe de consommateurs |  | Groupe de consommateurs défini dans votre hub d’événements. |
-    | Format de données | | Les données sont lues à partir du hub d’événements sous forme d’objets [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata?view=azure-dotnet). Les formats pris en charge sont CSV, JSON, PSV, SCsv, SOHsv TSV et TSVE. |
+    | Format de données | | Les données sont lues à partir du hub d’événements sous forme d’objets [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata). Les formats pris en charge sont CSV, JSON, PSV, SCsv, SOHsv TSV et TSVE. |
     | Propriétés du système d’événements | Sélectionner les propriétés pertinentes | [Propriétés système du hub d’événements](/azure/service-bus-messaging/service-bus-amqp-protocol-guide#message-annotations). S’il existe plusieurs enregistrements par message d’événement, les propriétés système sont ajoutées au premier. Lors de l’ajout des propriétés système, [créez](kusto/management/create-table-command.md) ou [mettez à jour](kusto/management/alter-table-command.md) le schéma de table et le [mappage](kusto/management/mappings.md) pour inclure les propriétés sélectionnées. |
 
 1. Sélectionnez **Modifier le schéma**.

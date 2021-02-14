@@ -7,12 +7,12 @@ ms.reviewer: maraheja
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/20/2020
-ms.openlocfilehash: 857c654c70a2170a42902514718a52fbf7b02944
-ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
+ms.openlocfilehash: 2d3f81b897f264d9f804f545a2155958606dfc79
+ms.sourcegitcommit: 2b0156fc244757e62aaef5d4782c4abebaf09754
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/04/2020
-ms.locfileid: "93349458"
+ms.lasthandoff: 02/08/2021
+ms.locfileid: "99808656"
 ---
 # <a name="use-a-jupyter-notebook-and-kqlmagic-extension-to-analyze-data-in-azure-data-explorer"></a>Utiliser un notebook Jupyter et l’extension kqlmagic pour analyser des données dans Azure Data Explorer
 
@@ -22,7 +22,7 @@ Jupyter Notebook est une application web open source qui vous permet de créer e
 ## <a name="prerequisites"></a>Prérequis
 
 - Un compte e-mail professionnel qui est membre d’Azure Active Directory (Azure AD).
-- Jupyter Notebook installé sur votre ordinateur local ou utiliser [Azure Data Studio](/sql/azure-data-studio/notebooks/notebooks-kqlmagic?view=sql-server-ver15)
+- Jupyter Notebook installé sur votre ordinateur local ou utiliser [Azure Data Studio](/sql/azure-data-studio/notebooks/notebooks-kqlmagic)
 
 ## <a name="install-kqlmagic-library"></a>Installer la bibliothèque kqlmagic
 
@@ -42,7 +42,7 @@ Jupyter Notebook est une application web open source qui vous permet de créer e
     
 ## <a name="connect-to-the-azure-data-explorer-help-cluster"></a>Se connecter au cluster d’aide d’Azure Data Explorer
 
-Utilisez la commande suivante pour vous connecter aux *exemples* de base de données hébergés sur le cluster d’ *aide*. Pour les utilisateurs Azure AD non-Microsoft, remplacez le nom de locataire `Microsoft.com` par votre locataire Azure AD.
+Utilisez la commande suivante pour vous connecter aux *exemples* de base de données hébergés sur le cluster d’*aide*. Pour les utilisateurs Azure AD non-Microsoft, remplacez le nom de locataire `Microsoft.com` par votre locataire Azure AD.
 
 ```python
 %kql AzureDataExplorer://tenant="Microsoft.com";code;cluster='help';database='Samples'
@@ -50,7 +50,7 @@ Utilisez la commande suivante pour vous connecter aux *exemples* de base de donn
 
 > [!Note]
 > Si vous utilisez votre propre cluster ADX, vous devez préciser la région dans la chaîne de connexion :   
-   ```%kql azuredataexplorer://tenant="youecompany.com";code;cluster='mycluster.westus';database='mykustodb'```
+   ```%kql azuredataexplorer://tenant="yourcompany.com";code;cluster='mycluster.westus';database='mykustodb'```
 
 ## <a name="query-and-visualize"></a>Interroger et visualiser
 

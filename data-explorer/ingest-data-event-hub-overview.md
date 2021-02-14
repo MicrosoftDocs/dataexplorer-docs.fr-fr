@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: b8ba6199d5353ffd34081483c2ffbbd73e88a60c
-ms.sourcegitcommit: 3af95ea6a6746441ac71b1a217bbb02ee23d5f28
+ms.openlocfilehash: b511a5ed5ed87d6b1204152e6bbabdb24d25c85b
+ms.sourcegitcommit: c11e3871d600ecaa2824ad78bce9c8fc5226eef9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/23/2020
-ms.locfileid: "95473520"
+ms.lasthandoff: 02/04/2021
+ms.locfileid: "99554817"
 ---
 # <a name="event-hub-data-connection"></a>Connexion de données Event Hub
 
@@ -25,7 +25,7 @@ Pour obtenir des informations générales sur l’ingestion de données dans Azu
 
 ## <a name="data-format"></a>Format de données
 
-* Les données sont lues à partir du hub d’événements sous forme d’objets [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata?view=azure-dotnet).
+* Les données sont lues à partir du hub d’événements sous forme d’objets [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata).
 * Examinez les [formats pris en charge](ingestion-supported-formats.md).
     > [!NOTE]
     > Event Hub ne prend pas en charge le format .raw.
@@ -36,7 +36,7 @@ Pour obtenir des informations générales sur l’ingestion de données dans Azu
   
 ## <a name="ingestion-properties"></a>Propriétés d’ingestion
 
-Les propriétés d’ingestion déterminent le processus d’ingestion, où router les données et comment les traiter. Vous pouvez spécifier les [propriétés d’ingestion](ingestion-properties.md) de l’ingestion des événements avec [EventData.Properties](/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties). Vous pouvez définir les propriétés suivantes :
+Les propriétés d’ingestion déterminent le processus d’ingestion, où router les données et comment les traiter. Vous pouvez spécifier les [propriétés d’ingestion](ingestion-properties.md) de l’ingestion des événements avec [EventData.Properties](/dotnet/api/microsoft.servicebus.messaging.eventdata.properties#Microsoft_ServiceBus_Messaging_EventData_Properties). Vous pouvez définir les propriétés suivantes :
 
 |Propriété |Description|
 |---|---|
@@ -44,7 +44,7 @@ Les propriétés d’ingestion déterminent le processus d’ingestion, où rout
 | Format | Format de données. Remplace le paramètre `Data format` défini dans le volet `Data Connection`. |
 | IngestionMappingReference | Nom du [mappage d’ingestion](kusto/management/create-ingestion-mapping-command.md) existant à utiliser. Remplace le paramètre `Column mapping` défini dans le volet `Data Connection`.|
 | Compression | Compression de données, `None` (par défaut) ou compression `GZip`.|
-| Encodage | Encodage des données, la valeur par défaut est UTF8. Il peut s’agir de l’un des [encodages pris en charge par .NET](/dotnet/api/system.text.encoding?view=netframework-4.8#remarks). |
+| Encodage | Encodage des données, la valeur par défaut est UTF8. Il peut s’agir de l’un des [encodages pris en charge par .NET](/dotnet/api/system.text.encoding#remarks). |
 | Étiquettes | Liste d’[étiquettes](kusto/management/extents-overview.md#extent-tagging) à associer aux données ingérées, sous forme de chaîne de tableau JSON. L’utilisation d’étiquettes a des [répercussions sur les performances](kusto/management/extents-overview.md#performance-notes-1). |
 
 > [!NOTE]
@@ -53,7 +53,7 @@ Les propriétés d’ingestion déterminent le processus d’ingestion, où rout
 ## <a name="events-routing"></a>Routage d’événements
 
 Lors de la configuration d’une connexion Event Hub au cluster Azure Data Explorer, vous spécifiez les propriétés de la table cible (nom de table, format de données, compression et mappage). Le routage par défaut pour vos données est également appelé `static routing`.
-Vous pouvez également spécifier des propriétés de la table cible pour chaque événement, à l’aide des propriétés d’événement. La connexion route dynamiquement les données comme spécifié dans [EventData.Properties](/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties), en remplaçant les propriétés statiques de cet événement.
+Vous pouvez également spécifier des propriétés de la table cible pour chaque événement, à l’aide des propriétés d’événement. La connexion route dynamiquement les données comme spécifié dans [EventData.Properties](/dotnet/api/microsoft.servicebus.messaging.eventdata.properties#Microsoft_ServiceBus_Messaging_EventData_Properties), en remplaçant les propriétés statiques de cet événement.
 
 Dans l’exemple suivant, définissez les détails du hub d’événements et envoyez les données de métriques météorologiques à la table `WeatherMetrics`.
 Les données sont au format `json`. `mapping1` est prédéfini sur la table `WeatherMetrics`.
@@ -83,10 +83,7 @@ eventHubClient.Close();
 
 Les propriétés système stockent les propriétés définies par le service Event Hubs, au moment de la mise en file d’attente de l’événement. La connexion Event Hub Azure Data Explorer incorpore les propriétés sélectionnées dans l’arrivage de données dans votre table.
 
-> [!Note]
-> * Les propriétés système sont prises en charge pour les événements à enregistrement unique.
-> * Les propriétés système ne sont pas prises en charge sur les données compressées.
-> * Pour un mappage `csv`, des propriétés sont ajoutées au début de l’enregistrement dans l’ordre indiqué dans le tableau ci-dessous. Pour un mappage `json`, des propriétés sont ajoutées en fonction des noms de propriété dans le tableau suivant.
+[!INCLUDE [event-hub-system-mapping](includes/event-hub-system-mapping.md)]
 
 ### <a name="system-properties"></a>Propriétés système
 

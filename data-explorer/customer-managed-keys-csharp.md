@@ -7,12 +7,12 @@ ms.reviewer: itsagui
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 01/06/2020
-ms.openlocfilehash: db20566a9aa9b5c720ea9f72ec9c980042db0625
-ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
+ms.openlocfilehash: 7f9256f62b03ac63bdae49afbec236b3a05c67e5
+ms.sourcegitcommit: 8c0674d2bc3c2e10eace5314c30adc7c9e4b3d44
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/13/2020
-ms.locfileid: "92002999"
+ms.lasthandoff: 01/19/2021
+ms.locfileid: "98571758"
 ---
 # <a name="configure-customer-managed-keys-using-c"></a>Configurer des clés gérées par le client à l’aide de C#
 
@@ -72,9 +72,10 @@ Par défaut, le chiffrement Azure Data Explorer utilise des clés gérées par M
     var resourceGroupName = "testrg";
     var clusterName = "mykustocluster";
     var keyName = "myKey";
-    var keyVersion = "5b52b20e8d8a42e6bd7527211ae32654";
+    var keyVersion = "5b52b20e8d8a42e6bd7527211ae32654"; // Optional, leave as NULL for the latest version of the key.
     var keyVaultUri = "https://mykeyvault.vault.azure.net/";
-    var keyVaultProperties = new KeyVaultProperties (keyName, keyVersion, keyVaultUri);
+    var keyVaultIdentity = "/subscriptions/xxxxxxxx-xxxxx-xxxx-xxxx-xxxxxxxxx/resourcegroups/identityResourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identityName"; // Use NULL if you want to use system assigned identity.
+    var keyVaultProperties = new KeyVaultProperties(keyName, keyVaultUri, keyVersion, keyVaultIdentity);
     var clusterUpdate = new ClusterUpdate(keyVaultProperties: keyVaultProperties);
     await kustoManagementClient.Clusters.UpdateAsync(resourceGroupName, clusterName, clusterUpdate);
     ```
@@ -97,5 +98,3 @@ Lors de la création de la nouvelle version d’une clé, vous devez mettre à j
 * [Configurer des identités managées pour votre cluster Azure Data Explorer](managed-identities.md)
 * [Sécuriser votre cluster en utilisant le chiffrement de disque dans Azure Data Explorer – Portail Azure](cluster-disk-encryption.md) en activant le chiffrement au repos.
 * [Configurer des clés gérées par le client à l’aide du modèle Azure Resource Manager](customer-managed-keys-resource-manager.md)
-
-

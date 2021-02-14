@@ -8,19 +8,19 @@ ms.reviewer: jasonh
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 05/05/2019
-ms.openlocfilehash: 14ba0226efc5f38ef3d549f38b2a6224da7c201e
-ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
+ms.openlocfilehash: e64d348387e18d9421632d3ebf6a4772fcf2d82a
+ms.sourcegitcommit: c11e3871d600ecaa2824ad78bce9c8fc5226eef9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/30/2020
-ms.locfileid: "96320721"
+ms.lasthandoff: 02/04/2021
+ms.locfileid: "99554904"
 ---
 # <a name="azure-devops-task-for-azure-data-explorer"></a>Azure DevOps Task pour Azure Data Explorer
 
 [Azure DevOps Services](https://azure.microsoft.com/services/devops/) fournit des outils de développement collaboratifs tels que des pipelines haute performance, référentiels Git privés gratuits, tableaux Kanban configurables et fonctionnalités de test continu et automatisé. [Azure Pipelines](https://azure.microsoft.com/services/devops/pipelines/) est une fonctionnalité Azure DevOps qui vous permet de gérer CI/CD pour déployer votre code avec des pipelines haute performance fonctionnant avec n'importe quel langage, plateforme ou cloud.
 [Azure Data Explorer - Commandes d’administration](https://marketplace.visualstudio.com/items?itemName=Azure-Kusto.PublishToADX) est la tâche Azure Pipelines qui vous permet de créer des pipelines de mise en production et de déployer vos modifications de base de données dans vos bases de données Azure Data Explorer. Il est disponible gratuitement dans [Visual Studio Marketplace](https://marketplace.visualstudio.com/).
 
-Ce document décrit un exemple simple d’utilisation de la tâche **Azure Data Explorer – Commandes d'administration** pour déployer vos modifications de schéma dans votre base de données. Pour les pipelines CI/CD, consultez la [documentation Azure DevOps](/azure/devops/user-guide/what-is-azure-devops?view=azure-devops#vsts).
+Ce document décrit un exemple simple d’utilisation de la tâche **Azure Data Explorer – Commandes d'administration** pour déployer vos modifications de schéma dans votre base de données. Pour les pipelines CI/CD, consultez la [documentation Azure DevOps](/azure/devops/user-guide/what-is-azure-devops#vsts).
 
 ## <a name="prerequisites"></a>Prérequis
 
@@ -30,10 +30,10 @@ Ce document décrit un exemple simple d’utilisation de la tâche **Azure Data 
     * Créez une application Azure Active Directory (Azure AD) en [approvisionnant une application Azure AD](./provision-azure-ad-app.md).
     * Accordez l’accès à votre application Azure AD sur votre base de données Azure Data Explorer via la [gestion des autorisations de base de données Azure Data Explorer](manage-database-permissions.md).
 * Configuration d'Azure DevOps :
-    * [S'inscrire pour une organisation gratuite](/azure/devops/user-guide/sign-up-invite-teammates?view=azure-devops)
-    * [Créer une organisation](/azure/devops/organizations/accounts/create-organization?view=azure-devops)
-    * [Créer un projet dans Azure DevOps](/azure/devops/organizations/projects/create-project?view=azure-devops)
-    * [Coder avec Git](/azure/devops/user-guide/code-with-git?view=azure-devops)
+    * [S'inscrire pour une organisation gratuite](/azure/devops/user-guide/sign-up-invite-teammates)
+    * [Créer une organisation](/azure/devops/organizations/accounts/create-organization)
+    * [Créer un projet dans Azure DevOps](/azure/devops/organizations/projects/create-project)
+    * [Coder avec Git](/azure/devops/user-guide/code-with-git)
 
 ## <a name="create-folders"></a>Créez les dossiers.
 

@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/26/2019
-ms.openlocfilehash: e083303d3d8270f0d673199c3547bff13001174e
-ms.sourcegitcommit: c6cb2b1071048daa872e2fe5a1ac7024762c180e
+ms.openlocfilehash: 880c6114001795f26193e9f16d3d696402e7f3ef
+ms.sourcegitcommit: c11e3871d600ecaa2824ad78bce9c8fc5226eef9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/07/2020
-ms.locfileid: "96774671"
+ms.lasthandoff: 02/04/2021
+ms.locfileid: "99554806"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-by-using-an-azure-resource-manager-template"></a>Créer un cluster et une base de données Azure Data Explorer avec un modèle Azure Resource Manager
 
@@ -72,7 +72,7 @@ Dans cet article, vous utilisez un [modèle de démarrage rapide existant](https
               "tier": "Standard",
               "capacity": 2
           },
-          "apiVersion": "2019-09-07",
+          "apiVersion": "2020-18-09",
           "location": "[parameters('location')]",
           "tags": {
             "Created By": "GitHub quickstart template"
@@ -104,7 +104,7 @@ Dans cet article, vous utilisez un [modèle de démarrage rapide existant](https
       {
           "name": "[concat(parameters('clusters_kustocluster_name'), '/', parameters('databases_kustodb_name'))]",
           "type": "Microsoft.Kusto/clusters/databases",
-          "apiVersion": "2019-09-07",
+          "apiVersion": "2020-18-09",
           "location": "[parameters('location')]",
           "dependsOn": [
               "[resourceId('Microsoft.Kusto/clusters', parameters('clusters_kustocluster_name'))]"
@@ -166,7 +166,7 @@ La création d’un cluster et d’une base de données Azure Data Explorer pren
 
 #### <a name="verify-the-deployment-using-powershell"></a>Vérifier le déploiement à l’aide de PowerShell
 
-Pour vérifier le déploiement, utilisez le script Azure PowerShell suivant.  Si Cloud Shell est toujours ouvert, vous n’avez pas besoin de copier/exécuter la première ligne (Read-Host). Pour plus d’informations sur la gestion des ressources Azure Data Explorer dans PowerShell, consultez [Az.Kusto](/powershell/module/az.kusto/?view=azps-2.7.0). 
+Pour vérifier le déploiement, utilisez le script Azure PowerShell suivant.  Si Cloud Shell est toujours ouvert, vous n’avez pas besoin de copier/exécuter la première ligne (Read-Host). Pour plus d’informations sur la gestion des ressources Azure Data Explorer dans PowerShell, consultez [Az.Kusto](/powershell/module/az.kusto/). 
 
 ```azurepowershell-interactive
 $projectName = Read-Host -Prompt "Enter the same project name that you used in the last procedure"
