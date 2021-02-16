@@ -6,19 +6,21 @@ ms.author: orspodek
 ms.reviewer: olgolden
 ms.service: data-explorer
 ms.topic: quickstart
-ms.date: 11/22/2020
+ms.date: 02/09/2021
 ms.localizationpriority: high
-ms.openlocfilehash: e2c6a54e675c85d31b44b031f78629fd1afcf8a5
-ms.sourcegitcommit: 8c0674d2bc3c2e10eace5314c30adc7c9e4b3d44
+ms.openlocfilehash: d581ade4a9cbba083e8cebf39a30f01586d2635c
+ms.sourcegitcommit: db99b9d0b5f34341ad3be38cc855c9b80b3c0b0e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/19/2021
-ms.locfileid: "98571786"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100360146"
 ---
 # <a name="quickstart-query-data-in-azure-data-explorer-web-ui"></a>Démarrage rapide : Interroger des données dans l’interface utilisateur web Azure Data Explorer
 
 Azure Data Explorer est un service d’analytique données rapide et entièrement managé dédié à l’analyse en temps réel de volumes importants de données. Azure Data Explorer fournit une expérience web qui vous permet de vous connecter à vos clusters Azure Data Explorer et d’écrire, d’exécuter et de partager des requêtes et des commandes de langage de requête Kusto. L’expérience web est disponible dans le portail Azure et en tant qu’application web autonome, l’[interface utilisateur web Azure Data Explorer](https://dataexplorer.azure.com). L’interface utilisateur web Azure Data Explorer peut également être hébergée par d’autres portails web dans un iframe HTML. Pour plus d’informations sur l’hébergement de l’interface utilisateur web et de l’éditeur Monaco, consultez [Intégration de l’IDE Monaco](kusto/api/monaco/monaco-kusto.md).
 Dans ce guide de démarrage rapide, vous allez travailler dans l’interface utilisateur web autonome d’Azure Data Explorer.
+
+:::image type="content" source="media/web-query-data/walkthrough.gif" alt-text="Procédure pas à pas pour l’Explorateur web Kusto":::
 
 ## <a name="prerequisites"></a>Prérequis
 
@@ -65,7 +67,7 @@ Ajoutez maintenant le cluster de test que vous avez créé.
 
 ## <a name="run-queries"></a>Exécuter des requêtes
 
-Vous pouvez maintenant exécuter des requêtes sur les deux clusters (en supposant que vous avez des données dans votre cluster de test). Dans cet article, nous allons nous concentrer sur le cluster d’**aide**.
+Vous pouvez maintenant exécuter des requêtes sur les deux clusters (en supposant que vous avez des données dans votre cluster de test). Dans cet article, nous allons nous concentrer sur le cluster **help**.
 
 1. Dans le volet gauche, sous le cluster **help**, sélectionnez la base de données **Samples**.
 
@@ -125,9 +127,43 @@ Vous pouvez maintenant exécuter des requêtes sur les deux clusters (en supposa
 
 ## <a name="work-with-the-table-grid"></a>Utiliser la grille de table
 
-Maintenant que vous avez vu comment fonctionnent les requêtes simples, voyons comment vous pouvez utiliser la grille de table pour personnaliser les résultats et approfondir les analyses.
+Maintenant que vous avez vu comment fonctionnent les requêtes simples, vous pouvez utiliser la grille de table pour personnaliser les résultats et approfondir les analyses. 
 
-1. Réexécutez la première requête. Placez le curseur de la souris sur la colonne **État**, sélectionnez le menu et **Grouper par état**.
+### <a name="expand-a-cell"></a>Développer une cellule
+
+Développer des cellules est utile pour afficher des chaînes longues ou des champs dynamiques comme du JSON. 
+
+1. Double-cliquez sur une cellule pour ouvrir une vue développée. Cette vue vous permet de lire des chaînes longues et fournit une mise en forme JSON pour les données dynamiques.
+
+    :::image type="content" source="media/web-query-data/expand-cell.png" alt-text="Développement d’une cellule de l’interface utilisateur web d’Azure Data Explorer pour montrer les chaînes longues":::
+
+1. Cliquez sur l’icône en haut à droite de la grille de résultats pour basculer entre les modes du volet de lecture. Choisissez entre les modes suivants du volet de lecture pour une vue développée : inline, volet inférieur et volet droit.
+
+    :::image type="content" source="media/web-query-data/expanded-view-icon.png" alt-text="Icône pour changer le volet de lecture en mode de vue développée - Résultats d’une requête dans l’interface utilisateur web d’Azure Data Explorer":::
+
+### <a name="expand-a-row"></a>Extension d’une ligne
+
+Quand vous utilisez une table avec des dizaines de colonnes, développez la ligne entière pour voir facilement une vue d’ensemble des différentes colonnes et de leur contenu. 
+
+1. Cliquez sur la flèche **>** à gauche de la ligne que vous voulez développer.
+
+    :::image type="content" source="media/web-query-data/expand-row.png" alt-text="Développer une ligne dans l’interface utilisateur web d’Azure Data Explorer":::
+
+1. Dans la ligne développée, certaines colonnes sont développées (flèche pointant vers le bas), et d’autres sont réduites (flèche pointant vers la droite). Cliquez sur ces flèches pour basculer entre ces deux modes.
+
+### <a name="group-column-by-results"></a>Grouper des colonnes par résultats
+
+Dans les résultats, vous pouvez regrouper les résultats selon n’importe quelle colonne.
+
+1. Exécutez la requête suivante :
+     
+    ```kusto
+    StormEvents
+    | sort by StartTime desc
+    | take 10
+    ```
+
+1. Placez le curseur de la souris sur la colonne **État**, sélectionnez le menu et **Grouper par état**.
 
     ![Grouper par état](media/web-query-data/group-by.png)
 
@@ -138,6 +174,34 @@ Maintenant que vous avez vu comment fonctionnent les requêtes simples, voyons c
 1. Placez le curseur de la souris sur la colonne **Grouper**, puis sélectionnez **Réinitialiser les colonnes**. Ce paramètre rétablit la grille à son état d’origine.
 
     ![Rétablir les colonnes](media/web-query-data/reset-columns.png)
+
+#### <a name="use-value-aggregation"></a>Utiliser l’agrégation de valeurs
+
+Une fois que vous avez regroupé selon une colonne, vous pouvez utiliser la fonction d’agrégation de valeurs pour calculer des statistiques simples par groupe.
+
+1. Sélectionnez le menu pour la colonne que vous voulez évaluer.
+1. Sélectionnez **Agrégation de valeurs**, puis sélectionnez le type de fonction que vous voulez appliquer à cette colonne.
+
+    :::image type="content" source="media/web-query-data/aggregate.png" alt-text="Agréger des résultats lors du regroupement de colonne par résultats. ":::
+
+### <a name="filter-columns"></a>Filtrer des colonnes
+
+Vous pouvez utiliser un ou plusieurs opérateurs pour filtrer les résultats d’une colonne.
+
+1. Pour filtrer une colonne spécifique, sélectionnez le menu pour cette colonne.
+1. Sélectionnez l’icône de filtre.
+1. Dans le générateur de filtres, sélectionnez l’opérateur souhaité.
+1. Tapez l’expression sur laquelle vous souhaitez filtrer la colonne. Les résultats sont filtrés à mesure que vous tapez.
+    
+    > [!NOTE] 
+    > Le filtre ne respecte pas la casse.
+
+1. Pour créer un filtre à plusieurs conditions, sélectionnez un opérateur booléen pour ajouter une autre condition
+1. Pour supprimer le filtre, supprimez le texte de la première condition de filtre.
+
+    :::image type="content" source="media/web-query-data/filter-column.gif" alt-text="GIF montrant comment filtrer sur une colonne dans l’interface utilisateur web d’Azure Data Explorer":::
+
+### <a name="run-cell-statistics"></a>Exécuter des statistiques pour des cellules
 
 1. Exécutez la requête suivante.
 
@@ -153,25 +217,42 @@ Maintenant que vous avez vu comment fonctionnent les requêtes simples, voyons c
 
     :::image type="content" source="media/web-query-data/select-stats.png" alt-text="sélection de fonctions"::: 
 
-1. Sur le côté droit de la grille, sélectionnez **Colonnes** pour voir le panneau d’outil de la table. Ce panneau fonctionne comme la liste des champs des tableaux croisés dynamiques dans Excel, ce qui vous permet d’effectuer davantage d’analyses dans la grille elle-même.
+### <a name="filter-to-query-from-grid"></a>Filtrer pour interroger à partir de la grille
+
+Une autre méthode simple pour filtrer la grille consiste à ajouter un opérateur de filtre à la requête directement à partir de la grille.
+
+1. Sélectionnez une cellule avec le contenu pour lequel vous souhaitez créer un filtre de requête.
+1. Cliquez avec le bouton droit pour ouvrir le menu des actions de la cellule. Sélectionnez **Ajouter la sélection comme filtre**.
+    
+    :::image type="content" source="media/web-query-data/add-selection-filter.png" alt-text="Ajouter la sélection comme filtre pour interroger à partir des résultats de la grille dans l’interface utilisateur web d’Azure Data Explorer":::
+
+1. Une clause de requête sera ajoutée à votre requête dans l’éditeur de requête :
+
+    :::image type="content" source="media/web-query-data/add-query-from-filter.png" alt-text="Ajouter une clause de requête à partir du filtrage sur la grille dans l’interface utilisateur web d’Azure Data Explorer":::
+
+### <a name="pivot"></a>Tableau croisé dynamique
+
+La fonctionnalité du mode Pivot est similaire au tableau croisé dynamique d’Excel : elle vous permet d’effectuer des analyses avancées dans la grille elle-même.
+
+Le mode Pivot vous permet de prendre des valeurs de colonne et de les transformer en colonnes. Par exemple, vous pouvez croiser dynamiquement sur *State* pour créer des colonnes pour Floride, Missouri, Alabama, etc.
+
+1. Sur le côté droit de la grille, sélectionnez **Colonnes** pour voir le panneau d’outil de la table.
 
     ![Panneau d’outil de la table](media/web-query-data/tool-panel.png)
 
-1. Sélectionnez **Mode Pivot**, puis faites glisser les colonnes comme suit : **State** sur **Groupes de lignes**, **DamageProperty** sur **Valeurs** et **EventType** sur **Étiquettes de colonne**.  
+1. Sélectionnez **Mode Pivot**, puis faites glisser les colonnes comme suit : **EventType** en **Groupes de lignes**, **DamageProperty** en **Valeurs** et **State** en **Étiquettes de colonnes**.  
 
     ![Mode Pivot](media/web-query-data/pivot-mode.png)
 
-    Le résultat doit ressembler au tableau croisé dynamique suivant.
+    Le résultat doit ressembler au tableau croisé dynamique suivant :
 
     ![Tableau croisé dynamique](media/web-query-data/pivot-table.png)
-
-    Notez que Vermont et Alabama ont chacun deux événements sous la même catégorie, tandis que Texas présente deux événements sous des catégories différentes. Les tableaux croisés dynamiques sont un outil formidable pour une analyse rapide, car ils vous permettent de repérer rapidement ces différences.
 
 ## <a name="search-in-the-results-table"></a>Rechercher dans la table des résultats
 
 Vous pouvez rechercher une expression spécifique dans une table de résultats.
 
-1.  Exécutez la requête suivante :
+1. Exécutez la requête suivante :
 
     ```Kusto
     StormEvents
@@ -195,7 +276,7 @@ Souvent, vous souhaitez partager les requêtes que vous créez.
 
 1. En haut de la fenêtre de la requête, sélectionnez **Partager**. 
 
-:::image type="content" source="media/web-query-data/share-menu.png" alt-text="Menu Partager":::
+    :::image type="content" source="media/web-query-data/share-menu.png" alt-text="Menu Partager":::
 
 Les options suivantes sont disponibles dans le menu déroulant :
 * Lien dans le Presse-papiers
@@ -291,7 +372,7 @@ Pour activer la mise en surbrillance des niveaux d’erreur :
 1. Sélectionnez l’icône **Paramètres** à côté de votre nom d’utilisateur.
 1. Sélectionnez l’onglet **Apparence** et basculez l’option **Activer la mise en surbrillance du niveau d’erreur** à droite. 
 
-:::image type="content" source="media/web-query-data/enable-error-highlighting.gif" alt-text="Image GIF animée montrant comment activer la mise en surbrillance du niveau d’erreur dans les paramètres":::
+    :::image type="content" source="media/web-query-data/enable-error-highlighting.gif" alt-text="Image GIF animée montrant comment activer la mise en surbrillance du niveau d’erreur dans les paramètres":::
 
 Jeu de couleurs du niveau d’erreur en mode **Clair** | Jeu de couleurs du niveau d’erreur en mode **Foncé**
 |---|---|
@@ -299,7 +380,7 @@ Jeu de couleurs du niveau d’erreur en mode **Clair** | Jeu de couleurs du nive
 
 #### <a name="column-requirements-for-highlighting"></a>Conditions de mise en surbrillance pour les colonnes
 
-Pour les niveaux d’erreur en surbrillance, la colonne doit être de type int, long ou string.
+Pour les niveaux d’erreur en surbrillance, la colonne doit être de type int, long ou string. 
 
 * Si la colonne est de type `long` ou `int` :
    * Le nom de la colonne doit être *Level*.

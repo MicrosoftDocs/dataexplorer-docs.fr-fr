@@ -9,12 +9,13 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/03/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 762c3075c162ba35bdba539d0e86460c78f3297e
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+adobe-target: true
+ms.openlocfilehash: 87154368a033afe1da7669e71e269081865b689d
+ms.sourcegitcommit: db99b9d0b5f34341ad3be38cc855c9b80b3c0b0e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95511786"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100359911"
 ---
 # <a name="query-best-practices"></a>Meilleures pratiques relatives aux requêtes
 
@@ -29,6 +30,7 @@ Voici plusieurs meilleures pratiques à suivre pour accélérer l’exécution d
 |  | Utilisez `contains_cs`.         | N’utilisez pas `contains`        | Si vous pouvez utiliser `has`/`has_cs` et n’utilisez pas `contains`/`contains_cs`, c’est encore mieux. |
 | **Recherche de texte**    |    Recherchez dans une colonne spécifique     |    N’utilisez pas `*`    |   `*` effectue une recherche en texte intégral dans toutes les colonnes.    |
 | **Extraire les champs d’[objets dynamiques](./scalar-data-types/dynamic.md) dans plusieurs millions de lignes**    |  Matérialisez votre colonne au moment de l’ingestion si la plupart de vos requêtes extraient des champs d’objets dynamiques dans des millions de lignes.      |         | De cette façon, vous ne payez qu’une seule fois pour l’extraction de colonne.    |
+| **Rechercher les clés/valeurs rares dans des [objets dynamiques](./scalar-data-types/dynamic.md)**    |  Utilisez `MyTable | where DynamicColumn has "Rare value" | where DynamicColumn.SomeKey == "Rare value"`. | N’utilisez pas `MyTable | where DynamicColumn.SomeKey == "Rare value"` | De cette façon, vous filtrez la plupart des enregistrements et vous effectuez l’analyse JSON seulement pour le reste. |
 | Instruction **`let` avec une valeur que vous utilisez plusieurs fois** | Utiliser la [fonction materialize()](./materializefunction.md) |  |   Pour plus d’informations sur l’utilisation de la fonction `materialize()`, consultez [materialize()](materializefunction.md).|
 | **Appliquer des conversions sur plus de 1 milliard d’enregistrements**| Remodelez votre requête pour réduire la quantité de données chargées dans la conversion.| Ne convertissez pas de grandes quantités de données si vous pouvez l’éviter. | |
 | **Nouvelles requêtes** | Utilisez `limit [small number]` ou `count` à la fin. | |     L’exécution de requêtes indépendantes sur un ensemble de données inconnu peut engendrer des Go de résultats à retourner au client, entraînant une réponse lente et un cluster occupé.|

@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 615b2f681c22237f9d14ad92e285a564c249857e
-ms.sourcegitcommit: d1c2433df183d0cfbfae4d3b869ee7f9cbf00fe4
+ms.openlocfilehash: a50900a5ea0f0c3d8f25e68a606572093af07432
+ms.sourcegitcommit: db99b9d0b5f34341ad3be38cc855c9b80b3c0b0e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/05/2021
-ms.locfileid: "99586371"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100359605"
 ---
 # <a name="query-limits"></a>Limites de requête
 
@@ -120,7 +120,9 @@ set maxmemoryconsumptionperiterator=68719476736;
 MyTable | ...
 ```
 
-Dans de nombreux cas, le dépassement de cette limite peut être évité en échantillonnant le jeu de données. Les deux requêtes ci-dessous montrent comment effectuer l’échantillonnage. La première est un échantillonnage statistique qui utilise un générateur de nombres aléatoires. La seconde est un échantillonnage déterministe, effectué par le hachage d’une colonne du jeu de données, généralement un ID.
+Si la requête utilise des opérateurs `summarize`, `join` ou `make-series`, vous pouvez utiliser la stratégie de [requête aléatoire](../query/shufflequery.md) pour réduire la sollicitation de la mémoire sur une même machine.
+
+Dans d’autres cas, vous pouvez échantillonner le jeu de données pour éviter de dépasser cette limite. Les deux requêtes ci-dessous montrent comment effectuer l’échantillonnage. La première requête est un échantillonnage statistique effectuée avec un générateur de nombres aléatoires. La seconde requête est un échantillonnage déterministe, effectué par hachage d’une colonne du jeu de données, généralement un ID.
 
 ```kusto
 T | where rand() < 0.1 | ...
@@ -142,19 +144,7 @@ MyTable | ...
 
 Si `max_memory_consumption_per_query_per_node` est défini plusieurs fois, par exemple dans les propriétés de demande client et en utilisant une instruction `set`, la valeur inférieure est appliquée.
 
-## <a name="limit-on-accumulated-string-sets"></a>Limite sur les ensembles de chaînes accumulés
-
-Dans diverses opérations de requête, Kusto doit « rassembler » des valeurs de chaîne et les mettre en mémoire tampon en interne avant de commencer à produire des résultats. Ces jeux de chaînes accumulés sont limités en taille et dans le nombre d’éléments qu’ils peuvent contenir. En outre, chaque chaîne individuelle ne doit pas dépasser une certaine limite.
-Si vous dépassez l’une de ces limites, l’une des erreurs suivantes se produit :
-
-```
-Runaway query (E_RUNAWAY_QUERY). (message: 'Accumulated string array getting too large and exceeds the limit of ...GB (see https://aka.ms/kustoquerylimits)')
-
-Runaway query (E_RUNAWAY_QUERY). (message: 'Accumulated string array getting too large and exceeds the maximum count of ..GB items (see http://aka.ms/kustoquerylimits)')
-```
-
-Il n’existe actuellement aucun commutateur pour augmenter la taille maximale du jeu de chaînes.
-En guise de solution de contournement, reformulez la requête pour réduire la quantité de données qui doivent être mises en mémoire tampon. Vous pouvez rejeter des colonnes inutiles avant qu’elles ne soient utilisées par des opérateurs tels que join et summarize. Ou vous pouvez utiliser la stratégie de [requête aléatoire](../query/shufflequery.md).
+Si la requête utilise des opérateurs `summarize`, `join` ou `make-series`, vous pouvez utiliser la stratégie de [requête aléatoire](../query/shufflequery.md) pour réduire la sollicitation de la mémoire sur une même machine.
 
 ## <a name="limit-execution-timeout"></a>Limiter l’expiration de l’exécution
 

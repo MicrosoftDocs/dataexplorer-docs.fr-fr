@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/19/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 13dac735127815c00ac8c1128c710e26208406d7
-ms.sourcegitcommit: d4b359e817e002fba7320132732ce6d9cee97415
+ms.openlocfilehash: 0dffa044ff47748d46b3ab4758bb61684bb8bb10
+ms.sourcegitcommit: db99b9d0b5f34341ad3be38cc855c9b80b3c0b0e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/18/2021
-ms.locfileid: "98541493"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100359724"
 ---
 # <a name="string-operators"></a>Opérateurs String
 
@@ -55,6 +55,7 @@ Opérateur        |Description                                                  
 `!~`            |Non égal à                                                        |Non            |`"aBc" !~ "xyz"`
 `has`           |Le terme de droite est un terme entier dans le terme de gauche     |Non            |`"North America" has "america"`
 `!has`          |Le terme de droite n'est pas un terme entier à gauche                                     |Non            |`"North America" !has "amer"` 
+[`has_all`](has-all-operator.md)       |Identique à `has`, mais fonctionne sur tous les éléments                    |Non            |`"North and South America" has_all("south", "north")`
 [`has_any`](has-anyoperator.md)       |Identique à `has` mais fonctionne sur tous les éléments                    |Non            |`"North America" has_any("south", "north")`
 `has_cs`        |Le terme de droite est un terme entier à gauche                                        |Oui           |`"North America" has_cs "America"`
 `!has_cs`       |Le terme de droite n'est pas un terme entier à gauche                                     |Oui           |`"North America" !has_cs "amer"` 
