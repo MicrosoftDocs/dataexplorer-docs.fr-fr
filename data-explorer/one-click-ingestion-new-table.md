@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/29/2020
-ms.openlocfilehash: e2c84649653d6d3762a82c1e4aa3c98c9ef8119d
-ms.sourcegitcommit: d9e203a54b048030eeb6d05b01a65902ebe4e0b8
+ms.openlocfilehash: 3ac9788eda7a75173778ce0533f59820cfd7e7dd
+ms.sourcegitcommit: abbcb27396c6d903b608e7b19edee9e7517877bb
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/14/2020
-ms.locfileid: "97371655"
+ms.lasthandoff: 02/15/2021
+ms.locfileid: "100528238"
 ---
 # <a name="use-one-click-ingestion-to-ingest-csv-data-from-a-container-to-a-new-table-in-azure-data-explorer"></a>Utiliser l’ingestion en un clic pour ingérer des données CSV à partir d’un conteneur dans une nouvelle table d’Azure Data Explorer
 
@@ -33,9 +33,11 @@ Pour plus d’informations sur l’ingestion de données dans une table existant
 
     :::image type="content" source="media/one-click-ingestion-new-table/one-click-ingestion-in-web-ui.png" alt-text="Ingérer de nouvelles données":::
 
-1. Dans la fenêtre **Ingérer de nouvelles données**, l’onglet **Source** est sélectionné. 
+1. Dans la fenêtre **Ingérer de nouvelles données**, l’onglet **Source** est sélectionné. Les champs **Cluster** et **Base de données** sont remplis automatiquement.
 
-1. Sélectionnez **Créer une table** et entrez un nom pour la nouvelle table. Vous pouvez utiliser des caractères alphanumériques, des traits d’union et des traits de soulignement. Les caractères spéciaux ne sont pas pris en charge.
+    [!INCLUDE [one-click-cluster](includes/one-click-cluster.md)]
+
+1. Sélectionnez **Table** > **Créer** et entrez un nom pour la nouvelle table. Vous pouvez utiliser des caractères alphanumériques, des traits d’union et des traits de soulignement. Les caractères spéciaux ne sont pas pris en charge.
 
     > [!NOTE]
     > Les noms de table doivent comprendre entre 1 et 1024 caractères.
@@ -44,9 +46,9 @@ Pour plus d’informations sur l’ingestion de données dans une table existant
 
 ## <a name="select-an-ingestion-type"></a>Sélectionner un type d’ingestion
 
-Sous **Type d’ingestion**, effectuez les étapes suivantes :
+Sous **Type de source**, effectuez les étapes suivantes :
    
-  1. Sélectionnez **À partir du conteneur** (conteneur d’objets blob, conteneur ADLS Gen1, conteneur ADLS Gen2).
+  1. Sélectionnez **À partir du conteneur de blobs** (conteneur de blobs, conteneur ADLS Gen1, conteneur ADLS Gen2). Vous pouvez ingérer jusqu’à 1 000 blobs d’un seul conteneur.
   1. Dans le champ **Lien vers le stockage**, ajoutez l’[URL SAS](/azure/vs-azure-tools-storage-explorer-blobs#get-the-sas-for-a-blob-container) du conteneur, puis entrez éventuellement la taille de l’échantillon. Pour ingérer les données d’un dossier dans ce conteneur, consultez [Ingérer les données d’un dossier dans un conteneur](#ingest-from-folder-in-a-container).
 
       :::image type="content" source="media/one-click-ingestion-new-table/from-container.png" alt-text="Ingestion en un clic à partir d’un conteneur":::
@@ -56,7 +58,7 @@ Sous **Type d’ingestion**, effectuez les étapes suivantes :
 
 ### <a name="ingest-from-folder-in-a-container"></a>Ingérer les données d’un dossier dans un conteneur
 
-Pour ingérer les données d’un dossier dans un conteneur, générez une chaîne au format suivant :
+Pour ingérer les données d’un dossier spécifique dans un conteneur, [générez une chaîne au format suivant](kusto/api/connection-strings/storage.md#azure-data-lake-store) :
 
 *container_path*`/`*folder_path*`;`*access_key_1*
 

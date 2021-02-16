@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/29/2020
-ms.openlocfilehash: 41e0e50b2e91280c79941340ebfc855ef6cab27e
-ms.sourcegitcommit: f71801764fdccb061f3cf1e3cfe43ec1557e4e0f
+ms.openlocfilehash: b5b6c199c1b374caa40a07e277a06591edccdd59
+ms.sourcegitcommit: abbcb27396c6d903b608e7b19edee9e7517877bb
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/03/2020
-ms.locfileid: "93293405"
+ms.lasthandoff: 02/15/2021
+ms.locfileid: "100528403"
 ---
 # <a name="use-one-click-ingestion-to-ingest-json-data-from-a-local-file-to-an-existing-table-in-azure-data-explorer"></a>Utiliser l’ingestion en un clic pour ingérer des données JSON à partir d’un fichier local dans une table existante d’Azure Data Explorer
 
@@ -38,53 +38,35 @@ Dans le menu de gauche de l’interface utilisateur web, cliquez avec le bouton 
 
 1. Dans la fenêtre **Ingérer de nouvelles données**, l’onglet **Source** est sélectionné.
 
+1. Si les champs **Cluster** et **Base de données** sont automatiquement remplis, sélectionnez un nom de cluster et de base de données existant dans le menu déroulant.
+    
+    [!INCLUDE [one-click-cluster](includes/one-click-cluster.md)]
+
 1. Si le champ **Table** n’est pas renseigné automatiquement, sélectionnez un nom de table existant dans le menu déroulant.
 
-    > [!NOTE]
-    > Si vous sélectionnez **Ingérer de nouvelles données** sur une ligne de *table*, le nom de la table sélectionnée apparaît dans les **Détails du projet**.
-
-1. Sous **Type d’ingestion**, effectuez les étapes suivantes :
+1. Sous **Type de source**, effectuez les étapes suivantes :
 
    1. Sélectionnez **à partir d’un fichier**.  
-   1. Sélectionnez **Parcourir** pour localiser le fichier ou faites glisser ce dernier dans le champ.
+   1. Sélectionnez **Parcourir** pour localiser jusqu’à 10 fichiers ou faites-les glisser dans le champ. Vous pouvez choisir le fichier de définition de schéma en utilisant l’étoile bleue.
     
       :::image type="content" source="media/one-click-ingestion-existing-table/from-file.png" alt-text="Ingestion en un clic à partir d’un fichier":::
 
- 1. Un échantillon des données s’affiche. Filtrez les données pour ingérer uniquement les fichiers qui commencent ou finissent par des caractères spécifiques. 
-
-    >[!NOTE] 
-    >Quand vous ajustez les filtres, l’aperçu est mis à jour automatiquement.
-  
-> [!TIP]
-> Pour effectuer une ingestion **à partir d’un conteneur**, consultez [Utiliser l’ingestion en un clic pour ingérer des données CSV à partir d’un conteneur dans une nouvelle table d’Azure Data Explorer](one-click-ingestion-new-table.md#select-an-ingestion-type).
-
 ## <a name="edit-the-schema"></a>Modifier le schéma
 
-Sélectionnez **Modifier le schéma** pour afficher et modifier la configuration de colonne de votre table.
+Sélectionnez **Modifier le schéma** pour afficher et modifier la configuration de colonne de votre table. Sous l’onglet **Schéma** :
 
-### <a name="map-columns"></a>Mapper les colonnes 
-
-1. La boîte de dialogue **Mapper les colonnes** s’ouvre. Attachez un ou plusieurs attributs ou colonnes sources à vos colonnes Azure Data Explorer.
-    * Les nouveaux mappages sont définis automatiquement ou utilisent un mappage existant. 
-    * Dans les champs **Colonnes sources**, entrez les noms des colonnes à mapper aux **Colonnes cibles**.
-    * Pour supprimer une colonne du mappage, sélectionnez l’icône de la corbeille.
-
-      :::image type="content" source="media/one-click-ingestion-existing-table/map-columns.png" alt-text="Fenêtre Mapper les colonnes"::: 
-    
-1. Sélectionnez **Update**.
-1. Sous l’onglet **Schéma** :
-    * Le **type de compression** est sélectionné automatiquement par le nom de fichier source. Dans ce cas, le type de compression est **JSON**.
+   * Le **type de compression** est sélectionné automatiquement par le nom de fichier source. Dans ce cas, le type de compression est **JSON**.
         
-    * Quand vous sélectionnez **JSON**, vous devez également sélectionner **Niveaux JSON**, entre 1 et 10. Les niveaux déterminent la division des données dans les colonnes de la table.
+   * Quand vous sélectionnez **JSON**, vous devez aussi sélectionner **Niveaux imbriqués**, entre 1 et 10. Les niveaux déterminent la division des données dans les colonnes de la table.
 
-        :::image type="content" source="media/one-click-ingestion-existing-table/json-levels.png" alt-text="Sélectionner un des niveaux JSON":::
+        :::image type="content" source="media/one-click-ingestion-existing-table/json-levels.png" alt-text="Sélectionner les niveaux imbriqués":::
     
        > [!TIP]
        > Si vous souhaitez utiliser des fichiers **CSV**, consultez [Utiliser l’ingestion en un clic pour ingérer des données CSV à partir d’un conteneur dans une nouvelle table d’Azure Data Explorer](one-click-ingestion-new-table.md#edit-the-schema).
 
-#### <a name="add-nested-json-data"></a>Ajouter des données JSON imbriquées 
+### <a name="add-nested-json-data"></a>Ajouter des données JSON imbriquées 
 
-Pour ajouter des colonnes de niveaux JSON différents des **niveaux JSON** principaux sélectionnés ci-dessus, effectuez les étapes suivantes :
+Pour ajouter des colonnes de niveaux JSON différents des **niveaux imbriqués** principaux sélectionnés ci-dessus, effectuez les étapes suivantes :
 
 1. Cliquez sur la flèche en regard d’un nom de colonne, puis sélectionnez **Nouvelle colonne**.
 
@@ -105,13 +87,11 @@ Pour ajouter des colonnes de niveaux JSON différents des **niveaux JSON** princ
 
 ### <a name="edit-the-table"></a>Modifier la table 
 
-Lors de l’ingestion de données dans une table existante, vous êtes plus limité dans les modifications que vous pouvez apporter à la table.
-
-Dans le tableau : 
-* Sélectionnez les nouveaux en-têtes de colonne pour ajouter une **Nouvelle colonne**, **Supprimer la colonne**, **Trier par ordre croissant** ou **Trier par ordre décroissant**. 
-* Sur les colonnes existantes, seul le tri des données est disponible.
-
 [!INCLUDE [data-explorer-one-click-column-table](includes/data-explorer-one-click-column-table.md)]
+
+> [!NOTE]
+> * Pour les formats tabulaires, vous ne pouvez pas mapper deux fois une même colonne. Pour effectuer un mappage à une colonne existante, commencez par supprimer la nouvelle colonne.
+> * Vous ne pouvez pas changer un type de colonne existant. Si vous essayez de mapper à une colonne avec un format différent, vous risquez de vous retrouver avec des colonnes vides.
 
 [!INCLUDE [data-explorer-one-click-command-editor](includes/data-explorer-one-click-command-editor.md)]
 

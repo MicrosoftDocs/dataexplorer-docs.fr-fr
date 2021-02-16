@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/29/2020
-ms.openlocfilehash: bf6dced9b0df0b90b0b1ff87389c9dab31ebe7c0
-ms.sourcegitcommit: f7bebd245081a5cdc08e88fa4f9a769c18e13e5d
+ms.openlocfilehash: 5ebd3ee711baa24c6f73facfdab361e2de5ada20
+ms.sourcegitcommit: abbcb27396c6d903b608e7b19edee9e7517877bb
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/17/2020
-ms.locfileid: "94644635"
+ms.lasthandoff: 02/15/2021
+ms.locfileid: "100528142"
 ---
 # <a name="what-is-one-click-ingestion"></a>Présentation de l’ingestion en un clic
 
@@ -26,7 +26,7 @@ Les fonctionnalités suivantes rendent l’ingestion en un clic particulièremen
 * Ingestion des données dans divers [formats](#file-formats)
 * Ingestion des données dans des tables nouvelles ou existantes
 * Schéma et mappage de table suggérés et faciles à changer
-* Ingestion continue aisée et rapide à partir d’un conteneur avec Event Grid
+* Ingestion continue facile et rapide à partir d’un conteneur avec [Event Grid](one-click-ingestion-new-table.md#create-continuous-ingestion-for-container)
 
 L’ingestion en un clic est particulièrement utile lorsque vous procédez à l’ingestion de données pour la première fois, ou lorsque le schéma de vos données ne vous est pas familier.
 
@@ -40,13 +40,19 @@ L’ingestion en un clic est particulièrement utile lorsque vous procédez à l
 
 L’Assistant Ingestion en un clic vous guide tout au long du processus d’ingestion en un clic.
 
+* Pour accéder à l’Assistant de l’[interface utilisateur web Azure Data Explorer](https://dataexplorer.azure.com/), utilisez l’une des méthodes suivantes :
+    * Dans le volet de gauche, sélectionnez **Données**. Dans la page **Gestion des données**, sélectionnez un type d’ingestion et cliquez sur **Ingérer**. 
+      
+      :::image type="content" source="media/ingest-data-one-click/data-management.png" alt-text="Ingérer des données à partir de la fenêtre Gestion des données de l’interface WebUI - Azure Data Explorer" lightbox="media/ingest-data-one-click/data-management.png":::
+   
+     * Dans le menu de gauche de l’interface utilisateur web Azure Data Explorer, cliquez avec le bouton droit sur la ligne de **base de données** ou de **table**, puis sélectionnez **Ingérer de nouvelles données**.
+        
+        :::image type="content" source="media/ingest-data-one-click/one-click-ingestion-in-webui.png" alt-text="Sélectionner l’ingestion en un clic dans l’interface utilisateur web":::
+
 * Pour accéder à l’Assistant Ingestion en un clic à partir de l’écran d’accueil **Bienvenue dans Azure Data Explorer** de votre cluster, effectuez les deux premières étapes ([création de cluster et création de base de données](#prerequisites)), puis sélectionnez **Ingérer de nouvelles données**.
 
     :::image type="content" source="media/ingest-data-one-click/welcome-ingestion.png" alt-text="Ingérer de nouvelles données à partir de l’écran de bienvenue dans Azure Data Explorer":::
 
-* Pour accéder à l’Assistant à partir de l’[interface utilisateur web d’Azure Data Explorer](https://dataexplorer.azure.com/), dans le menu de gauche, cliquez avec le bouton droit sur la ligne de **base de données** ou de **table**, puis sélectionnez **Ingérer de nouvelles données**.
-
-    :::image type="content" source="media/ingest-data-one-click/one-click-ingestion-in-webui.png" alt-text="Sélectionner l’ingestion en un clic dans l’interface utilisateur web":::
 
 * Pour accéder à l’Assistant à partir du portail Azure, sélectionnez **Requête** dans le menu gauche, cliquez avec le bouton droit sur la **base de données** ou la **table**, puis sélectionnez **Ingérer de nouvelles données**.
 
@@ -65,10 +71,9 @@ L’Assistant vous guide dans les options suivantes :
    * Ingérer dans une [table existante](one-click-ingestion-existing-table.md)
    * Ingérer dans une [nouvelle table](one-click-ingestion-new-table.md)
    * Ingérer des données depuis un :
-      * Stockage d'objets blob
-      * [Fichier local](one-click-ingestion-existing-table.md)
-      * [Conteneur](one-click-ingestion-new-table.md)
-
+      * Stockage Blob : jusqu’à 10 blobs
+      * [Fichier local](one-click-ingestion-existing-table.md) : jusqu’à 10 fichiers
+      * [Conteneur](one-click-ingestion-new-table.md) (conteneur de blobs, conteneur ADLS Gen1, conteneur ADLS Gen2)
 
 ### <a name="schema-mapping"></a>Mappage de schéma
 
@@ -77,6 +82,7 @@ Le service génère automatiquement les propriétés de schéma et d’ingestion
 Sous l’onglet **Schéma**, effectuez les actions suivantes :
    * Vérifier le type de compression généré automatiquement
    * Choisir le [format de vos données](#file-formats) Les formats différents vous permettront d’apporter des modifications supplémentaires.
+   * Changez le mappage dans la [fenêtre Éditeur](#editor-window).
 
 #### <a name="file-formats"></a>Formats de fichiers
 
@@ -84,12 +90,9 @@ L’ingestion en un clic prend en charge l’ingestion à partir de données sou
 
 ### <a name="editor-window"></a>Fenêtre Éditeur
 
-Dans la fenêtre **Éditeur**, vous pouvez ajuster les colonnes de la table de données, si nécessaire. 
+Dans la fenêtre **Éditeur** de l’onglet **Schéma**, vous pouvez ajuster les colonnes de la table de données, si nécessaire. 
 
-|Type de la table  |Ajustements de colonne disponibles  |
-|---------|---------|
-|Nouveau     | Nouvelle colonne, Supprimer la colonne, Mettre à jour la colonne, Tri croissant, Tri décroissant  |
-|Existing     | Nouvelle colonne, Mettre à jour la colonne, Tri croissant, Tri décroissant  |
+[!INCLUDE [data-explorer-one-click-column-table](includes/data-explorer-one-click-column-table.md)]
 
 >[!NOTE]
 > À tout moment, vous pouvez ouvrir l’[éditeur de commande](one-click-ingestion-new-table.md#command-editor) au-dessus du volet **Éditeur**. Dans l’éditeur de commande, vous pouvez afficher et copier les commandes automatiques générées à partir de vos entrées.
@@ -104,7 +107,7 @@ Les transformations de mappage peuvent être effectuées sur une colonne de **ty
 * DateTimeFromUnixMicroseconds
 * DateTimeFromUnixNanoseconds
 
-Pour plus d'informations, consultez [Transformations de mappage](kusto/management/mappings.md#mapping-transformations).
+Pour plus d'informations, consultez [Transformations de mappage](#mapping-transformations).
 
 ### <a name="data-ingestion"></a>Ingestion de données
 
