@@ -7,12 +7,12 @@ ms.reviewer: basaba
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/31/2019
-ms.openlocfilehash: 196d1f5a72b0b99186f4739ce6b6a25c23b6c325
-ms.sourcegitcommit: 2bdb904e6253c9ceb8f1eaa2da35fcf27e13a2cd
+ms.openlocfilehash: 834cd41548155dfbc73c8b501c49a028b4eff182
+ms.sourcegitcommit: 8468c6886dc097032ef6db86992a5e8c9b18786e
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/10/2020
-ms.locfileid: "97091366"
+ms.lasthandoff: 01/27/2021
+ms.locfileid: "98912044"
 ---
 # <a name="deploy-azure-data-explorer-cluster-into-your-virtual-network"></a>Déployer un cluster Azure Data Explorer dans votre réseau virtuel
 
@@ -131,7 +131,7 @@ Les [groupes de sécurité réseau (NSG)](/azure/virtual-network/security-overvi
 | OuJapon Est | 40.81.184.86 |
 | Centre de la Corée | 40.82.156.149 |
 | Corée du Sud | 40.80.234.9 |
-| Centre-Nord des États-Unis | 40.81.45.254 |
+| Centre-Nord des États-Unis | 40.81.43.47 |
 | Europe Nord | 52.142.91.221 |
 | Afrique du Sud Nord | 102.133.129.138 |
 | Afrique du Sud Ouest | 102.133.0.97 |
@@ -194,7 +194,7 @@ Les [groupes de sécurité réseau (NSG)](/azure/virtual-network/security-overvi
 | Centre-USA Ouest | 168.61.212.201, 23.101.115.123 |
 | Europe Ouest | 23.97.212.5, 213.199.136.176 |
 | Inde Ouest | 23.99.5.162 |
-| USA Ouest | 23.99.5.162, 13.88.13.50 |
+| USA Ouest | 23.99.5.162, 13.88.13.50, 104.210.32.14 |
 | USA Ouest 2 | 23.99.5.162, 104.210.32.14, 52.183.35.124 |
 
 ## <a name="disable-access-to-azure-data-explorer-from-the-public-ip"></a>Désactiver l’accès à Azure Data Explorer à partir de l’adresse IP publique

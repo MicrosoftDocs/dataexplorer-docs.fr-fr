@@ -7,13 +7,13 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/19/2020
-ms.custom: contperfq1
-ms.openlocfilehash: e92717e68794b21a0c991806aa7319e528433afb
-ms.sourcegitcommit: c6cb2b1071048daa872e2fe5a1ac7024762c180e
+ms.custom: contperf-fy21q1
+ms.openlocfilehash: fb428e443559b579bab4764283ce124f9d9ec192
+ms.sourcegitcommit: 62eff65b320ce4ca53eabed6156eb9fe5b77f548
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/07/2020
-ms.locfileid: "96774518"
+ms.lasthandoff: 02/01/2021
+ms.locfileid: "99224211"
 ---
 # <a name="monitor-azure-data-explorer-performance-health-and-usage-with-metrics"></a>Superviser les performances, l’intégrité et l’utilisation d’Azure Data Explorer avec des métriques
 
@@ -92,18 +92,31 @@ Utilisation de l’exportation |    Pourcentage | Max   | Capacité d’exportat
 
 Les métriques d’ingestion permettent d’effectuer le suivi de l’intégrité générale et des performances des opérations d’ingestion telles que la latence, les résultats et le volume.
 
+> [!NOTE]
+> * [Appliquer des filtres aux graphiques](/azure/azure-monitor/platform/metrics-charts#apply-filters-to-charts) pour tracer des données partielles par dimensions. Par exemple, explorez l’ingestion dans un `Database` spécifique.
+> * [Appliquer un fractionnement à un graphique](/azure/azure-monitor/platform/metrics-charts#apply-splitting-to-a-chart) pour visualiser les données selon différents composants. Ce processus est utile pour analyser les métriques signalées par chaque étape du pipeline d’ingestion, par exemple `Blobs received`.
+
 |**Mesure** | **Unité** | **Agrégation** | **Description de la métrique** | **Dimensions** |
 |---|---|---|---|---|
-| Nombre d’objets blob du lot | Count | Moy, Max, Min | Nombre de sources de données d’un lot effectué pour l’ingestion. | Base de données |
-| Durée du lot | Secondes | Moy, Max, Min | Durée de la phase de traitement par lot du flux d’ingestion  | Base de données |
-| Taille du lot | Octets | Moy, Max, Min | Taille de données attendue non compressée dans un lot agrégé pour l’ingestion. | Base de données |
-| Lots traités | Count | Moy, Max, Min | Nombre de lots effectués pour l’ingestion. `Batching Type` : indique si le lot a atteint la limite du temps de traitement par lot, de taille des données ou de nombre de fichiers définie par la [stratégie de traitement par lot](./kusto/management/batchingpolicy.md). | Base de données, type de traitement par lot |
-| Latence de découverte | Secondes | Moy, Max, Min | Temps depuis l’empilement des données jusqu’à la découverte par la connexion de données. Ce temps n’est pas inclus dans la **durée totale d’ingestion d’Azure Data Explorer** ni dans **KustoEventAge (latence d’ingestion)** | Base de données, table, type de connexion de données, nom de connexion de données |
-| Événements traités (pour Event/IoT Hubs) | Count | Max, Min, Somme | Nombre total d’événements lus à partir de hubs d’événements et traités par le cluster. Les événements sont divisés en événements rejetés et en événements acceptés par le moteur de cluster. | EventStatus |
+| Nombre d’objets blob du lot  | Count | Moy, Max, Min | Nombre de sources de données d’un lot effectué pour l’ingestion. | Base de données |
+| Durée du lot    | Secondes | Moy, Max, Min | Durée de la phase de traitement par lot du flux d’ingestion.  | Base de données |
+| Taille du lot        | Octets | Moy, Max, Min | Taille de données attendue non compressée dans un lot agrégé pour l’ingestion. | Base de données |
+| Lots traités | Count | Sum, Max, Min | Nombre de lots effectués pour l’ingestion. <br> `Batching Type` : indique si la complétion du lot était basée sur le temps de traitement par lot, la taille des données ou la limite du nombre de fichiers, tel que défini par la [stratégie de traitement par lot](./kusto/management/batchingpolicy.md). | Base de données, type de traitement par lot |
+| Objets blob reçus    | Count | Sum, Max, Min | Nombre d’objets blob reçus du flux d’entrée par un composant. <br> <br> Utilisez **Appliquer le fractionnement** pour analyser chaque composant. | Base de données, type de composant, nom du composant |
+| Objets blob traités   | Count | Sum, Max, Min | Nombre d’objets blob traités par un composant. <br> <br> Utilisez **Appliquer le fractionnement** pour analyser chaque composant. | Base de données, type de composant, nom du composant |
+| Objets blob supprimés     | Count | Sum, Max, Min | Nombre d’objets blob définitivement supprimés par un composant. Pour chacun de ces objets blob, une métrique `Ingestion result` avec un motif d’échec est envoyée. <br> <br> Utilisez **Appliquer le fractionnement** pour analyser chaque composant. | Base de données, type de composant, nom du composant |
+| Latence de découverte | Secondes | Avg | Délai entre la mise en file d’attente des données et la découverte par les connexions de données. Ce délai n’est pas inclus dans les métriques **Latence des étapes** ni **Latence d’ingestion** | Type de composant, nom du composant |
+| Événements reçus   | Count | Sum, Max, Min | Nombre d’événements reçus par les connexions de données à partir d’un flux d’entrée. | Type de composant, nom du composant |
+| Événements traités  | Count | Sum, Max, Min | Nombre d’événements traités par les connexions de données. | Type de composant, nom du composant | 
+| Événements supprimés    | Count | Sum, Max, Min | Nombre d’événements définitivement supprimés par les connexions de données. | Type de composant, nom du composant | 
+| Événements traités (pour Event/IoT Hubs) | Count | Max, Min, Somme | Nombre total d’événements lus à partir d’Event Hubs et traités par le cluster. Ces événements sont fractionnés en deux groupes : événements rejetés et événements acceptés par le moteur de cluster. | Statut |
 | Latence d’ingestion | Secondes | Moy, Max, Min | Latence des données ingérées, depuis la réception des données dans le cluster jusqu’à ce qu’elles soient prêtes à être interrogées. La période de latence d’ingestion varie en fonction du scénario d’ingestion. | None |
-| Résultat de l’ingestion | Count | Count | Nombre total d’opérations d’ingestion ayant échoué et réussi. <br> <br> Utilisez **Appliquer la division** pour créer des compartiments de résultats de réussite et d’échec, et analyser les dimensions (**Valeur** > **État**).| État |
+| Résultat de l’ingestion  | Count | SUM | Nombre total d’opérations d’ingestion ayant échoué ou réussi. <br> <br> Utilisez **Appliquer le fractionnement** pour créer des compartiments de résultats de réussite et d’échec, et analyser les dimensions (**Valeur** > **État**). <br>Pour plus d’informations sur les résultats d’échec possibles, consultez [Codes d’erreur d’ingestion dans Azure Data Explorer](error-codes.md)| État |
 | Volume d’ingestion (en Mo) | Count | Max, Sum | Taille totale des données ingérées dans le cluster (en Mo) avant la compression. | Base de données |
-| Latence des étapes | Secondes | Moy, Max, Min | Temps nécessaire à un composant particulier pour traiter ce lot de données. La latence totale des étapes pour tous les composants d’un lot de données est égale à sa latence d’ingestion. | Base de données, type de connexion de données, nom de connexion de données|
+| Longueur de la file d’attente | Count | Avg | Nombre de messages en attente dans la file d’attente d’entrée d’un composant. | Type de composant |
+| Message le plus ancien de la file d’attente | Secondes | Avg | Durée en secondes à partir du moment où le message le plus ancien dans la file d’attente d’entrée d’un composant a été inséré. | Type de composant | 
+| Taille des données reçues en octets | Octets | Avg, Sum | Taille des données reçues par les connexions de données à partir d’un flux d’entrée. | Type de composant, nom du composant |
+| Latence des étapes | Secondes | Avg | Durée à partir du moment où un message est découvert par Azure Data Explorer jusqu’à ce que son contenu soit reçu par un composant d’ingestion pour traitement. <br> <br> Utilisez **Appliquer des filtres** et sélectionnez **Type de composant > EngineStorage** pour afficher la latence d’ingestion totale.| Base de données, type de composant | 
 
 ## <a name="streaming-ingest-metrics"></a>Métriques d’ingestion de streaming
 
@@ -124,7 +137,7 @@ Les métriques de performances des requêtes effectuent le suivi de la durée de
 |---|---|---|---|---|
 | Durée de la requête | Millisecondes | Moy, Min, Max, Somme | Durée totale jusqu’à réception des résultats de requête (n’inclut pas la latence du réseau). | QueryStatus |
 | Nombre total de demandes simultanées | Count | Moy, Max, Min, Somme | Nombre de requêtes exécutées en parallèle dans le cluster. Cette métrique est un bon moyen d’estimer la charge sur le cluster. | None |
-| Nombre total de demandes limitées | Count | Moy, Max, Min, Somme | Nombre de requêtes limitées (rejetées) dans le cluster. Le nombre maximal de requêtes simultanées (parallèles) autorisées est défini dans la stratégie de requête simultanée. | None |
+| Nombre total de demandes limitées | Count | Moy, Max, Min, Somme | Nombre de requêtes limitées (rejetées) dans le cluster. Le nombre maximal de requêtes simultanées (parallèles) autorisées est défini dans la stratégie de limites de taux de demandes. | None |
 
 ## <a name="materialized-view-metrics"></a>Métriques de vue matérialisée
 

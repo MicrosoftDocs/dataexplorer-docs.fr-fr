@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
 ms.localizationpriority: high
-ms.openlocfilehash: a50900a5ea0f0c3d8f25e68a606572093af07432
-ms.sourcegitcommit: db99b9d0b5f34341ad3be38cc855c9b80b3c0b0e
+ms.openlocfilehash: 160846f1f543b5c5ae3e156c410551bd8d59a627
+ms.sourcegitcommit: abbcb27396c6d903b608e7b19edee9e7517877bb
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/14/2021
-ms.locfileid: "100359605"
+ms.lasthandoff: 02/15/2021
+ms.locfileid: "100528052"
 ---
 # <a name="query-limits"></a>Limites de requête
 
@@ -29,6 +29,10 @@ La **concurrence des demandes** est une limite qu’un cluster impose sur plusie
   * Par exemple, pour un cluster qui est configuré sur la référence SKU D14v2, où chaque machine a 16 vCores, la limite par défaut est de `16 cores x10 = 160`.
 * La valeur par défaut peut être modifiée en configurant la [stratégie de limites de taux de demandes](../management/request-rate-limit-policy.md) du groupe de charge de travail `default`.
   * Le nombre réel de demandes pouvant s’exécuter simultanément sur un cluster dépend de différents facteurs. Les facteurs les plus dominants sont la référence SKU du cluster, les ressources disponibles du cluster et les modèles d’usage. La stratégie peut être configurée en fonction des tests de charge effectués sur des modèles d’usage de type production.
+
+Le dépassement de la limite de concurrence des demandes entraîne le comportement suivant :
+* Les commandes qui sont refusées en raison de la stratégie de limite de taux de demandes génèrent une `ControlCommandThrottledException` (code d’erreur = 429).
+* Les requêtes qui sont refusées en raison de la stratégie de limite de taux de demandes génèrent une `QueryThrottledException` (code d’erreur = 429).
 
 ## <a name="limit-on-result-set-size-result-truncation"></a>Limite de la taille du jeu de résultats (troncation des résultats)
 

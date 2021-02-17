@@ -1,40 +1,40 @@
 ---
-title: Utiliser la fonctionnalité de base de données follower pour joindre des bases de données dans Azure Data Explorer
-description: Découvrez comment joindre des bases de données dans Azure Data Explorer à l’aide de la fonctionnalité de base de données follower.
+title: Utiliser la fonctionnalité de base de données d’abonné pour joindre des bases de données dans Azure Data Explorer
+description: Découvrez comment joindre des bases de données dans Azure Data Explorer à l’aide de la fonctionnalité de base de données d’abonné.
 author: orspod
 ms.author: orspodek
 ms.reviewer: gabilehner
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/06/2020
-ms.openlocfilehash: 4d8574e0b68c234f1cef0ba49b37eb869e61c142
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 359758cfc8a394aa7c9d9d7a3db3e6a62d84120a
+ms.sourcegitcommit: 4c6bd4cb1eb1f64d84f844d4e7aff2de3a46b009
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92342601"
+ms.lasthandoff: 12/23/2020
+ms.locfileid: "97756413"
 ---
-# <a name="use-follower-database-to-attach-databases-in-azure-data-explorer"></a>Utiliser une base de données follower pour joindre des bases de données dans Azure Data Explorer
+# <a name="use-follower-database-to-attach-databases-in-azure-data-explorer"></a>Utiliser une base de données d’abonné pour joindre des bases de données dans Azure Data Explorer
 
-La fonctionnalité de **base de données follower** vous permet de joindre une base de données située dans un cluster différent à votre cluster Azure Data Explorer. La **base de données follower** est jointe en mode *lecture seule* , ce qui permet d’afficher les données et d’exécuter des requêtes sur les données ingérées dans la **base de données leader** . La base de données follower synchronise les modifications apportées aux bases de données leader. En raison de la synchronisation, on constate un décalage de données de quelques secondes à quelques minutes au niveau de la disponibilité des données. La durée du décalage dépend de la taille globale des métadonnées de la base de données leader. Les bases de données leader et follower utilisent le même compte de stockage pour extraire les données. Le stockage appartient à la base de données leader. La base de données follower affiche les données sans qu’il soit nécessaire de les ingérer. Étant donné que la base de données jointe est une base de données en lecture seule, les données, les tables et les stratégies de la base de données ne peuvent pas être modifiées, à l’exception de la [stratégie de mise en cache](#configure-caching-policy), des [principaux](#manage-principals) et des [autorisations](#manage-permissions). Les bases de données jointes ne peuvent pas être supprimées. Elles doivent être détachées par le leader ou le follower avant de pouvoir être supprimées. 
+La fonctionnalité de **base de données d’abonné** vous permet de joindre une base de données située dans un cluster différent à votre cluster Azure Data Explorer. La **base de données d’abonné** est jointe en mode *lecture seule*, ce qui permet d’afficher les données et d’exécuter des requêtes sur les données ingérées dans la **base de données du responsable**. La base de données d’abonné synchronise les modifications apportées aux bases de données de responsable. En raison de la synchronisation, il existe un décalage de données de quelques secondes à quelques minutes au niveau de la disponibilité des données. La durée du décalage dépend de la taille globale des métadonnées de la base de données du responsable. Les bases de données de responsable et d’abonné utilisent le même compte de stockage pour extraire les données. Le stockage appartient à la base de données de responsable. La base de données d’abonné affiche les données sans qu’il soit nécessaire de les ingérer. Étant donné que la base de données jointe est une base de données en lecture seule, les données, les tables et les stratégies de la base de données ne peuvent pas être modifiées, à l’exception de la [stratégie de mise en cache](#configure-caching-policy), des [principaux](#manage-principals) et des [autorisations](#manage-permissions). Les bases de données jointes ne peuvent pas être supprimées. Elles doivent être détachées par le responsable ou l’abonné avant de pouvoir être supprimées. 
 
-L’attachement d’une base de données à un autre cluster à l’aide de la fonctionnalité de follower est utilisé en tant qu’infrastructure pour partager des données entre les organisations et les équipes. La fonctionnalité est utile pour séparer les ressources de calcul afin de protéger un environnement de production contre les cas d’utilisation hors production. Le follower peut également être utilisé pour associer le coût du cluster Azure Data Explorer au tiers qui exécute des requêtes sur les données.
+L’attachement d’une base de données à un autre cluster à l’aide de la fonctionnalité de l’abonné est utilisé en tant qu’infrastructure pour partager des données entre les organisations et les équipes. La fonctionnalité est utile pour séparer les ressources de calcul afin de protéger un environnement de production contre les cas d’utilisation hors production. L’abonné peut également être utilisé pour associer le coût du cluster Azure Data Explorer au tiers qui exécute des requêtes sur les données.
 
 ## <a name="which-databases-are-followed"></a>Quelles sont les bases de données suivies ?
 
-* Un cluster peut suivre une base de données, plusieurs bases de données ou toutes les bases de données d’un cluster leader. 
-* Un cluster unique peut suivre des bases de données à partir de plusieurs clusters leader. 
-* Un cluster peut contenir à la fois des bases de données follower et des bases de données leader
+* Un cluster peut suivre une base de données, plusieurs bases de données ou toutes les bases de données d’un cluster de responsable. 
+* Un cluster unique peut suivre des bases de données à partir de plusieurs clusters de responsable. 
+* Un cluster peut contenir à la fois des bases de données d’abonné et des bases de données de responsable
 
 ## <a name="prerequisites"></a>Prérequis
 
 1. Si vous ne disposez pas d’abonnement Azure, créez un [compte gratuit](https://azure.microsoft.com/free/) avant de commencer.
-1. [Créez un cluster et une base de données](create-cluster-database-portal.md) pour le leader et le follower.
-1. [Ingérez des données](ingest-sample-data.md) dans la base de données leader à l’aide de l’une des différentes méthodes présentées dans [Vue d’ensemble de l’ingestion](./ingest-data-overview.md).
+1. [Créez un cluster et une base de données](create-cluster-database-portal.md) pour le responsable et l’abonné.
+1. [Ingérez des données](ingest-sample-data.md) dans la base de données de responsable à l’aide de l’une des différentes méthodes présentées dans [Vue d’ensemble de l’ingestion](./ingest-data-overview.md).
 
 ## <a name="attach-a-database"></a>Attacher une base de données
 
-Vous pouvez utiliser différentes méthodes pour joindre une base de données. Dans cet article, nous traitons de l’attachement d’une base de données en utilisant C#, Python, PowerShell ou un modèle Azure Resource Manager. Pour attacher une base de données, vous devez disposer d’un utilisateur, d’un groupe, d’un principal du service ou d’une identité managée avec au moins le rôle de contributeur sur le cluster leader et le cluster follower. Vous pouvez ajouter ou supprimer des attributions de rôles avec le [portail Azure](/azure/role-based-access-control/role-assignments-portal), [PowerShell](/azure/role-based-access-control/role-assignments-powershell), [Azure CLI](/azure/role-based-access-control/role-assignments-cli) et un [modèle ARM](/azure/role-based-access-control/role-assignments-template). Vous pouvez en savoir plus sur le [Contrôle d’accès en fonction du rôle Azure (Azure RBAC)](/azure/role-based-access-control/overview) et les [différents rôles](/azure/role-based-access-control/rbac-and-directory-admin-roles). 
+Vous pouvez utiliser différentes méthodes pour joindre une base de données. Dans cet article, nous traitons de l’attachement d’une base de données en utilisant C#, Python, PowerShell ou un modèle Azure Resource Manager. Pour attacher une base de données, vous devez disposer d’un utilisateur, d’un groupe, d’un principal du service ou d’une identité managée avec au moins le rôle de contributeur sur le cluster du responsable et le cluster de l’abonné. Vous pouvez ajouter ou supprimer des attributions de rôles avec le [portail Azure](/azure/role-based-access-control/role-assignments-portal), [PowerShell](/azure/role-based-access-control/role-assignments-powershell), [Azure CLI](/azure/role-based-access-control/role-assignments-cli) et un [modèle ARM](/azure/role-based-access-control/role-assignments-template). Vous pouvez en savoir plus sur le [Contrôle d’accès en fonction du rôle Azure (Azure RBAC)](/azure/role-based-access-control/overview) et les [différents rôles](/azure/role-based-access-control/rbac-and-directory-admin-roles). 
 
 
 # <a name="c"></a>[C#](#tab/csharp)
@@ -130,7 +130,7 @@ attached_database_configuration_properties = AttachedDatabaseConfiguration(clust
 poller = kusto_management_client.attached_database_configurations.create_or_update(follower_resource_group_name, follower_cluster_name, attached_database_Configuration_name, attached_database_configuration_properties)
 ```
 
-# <a name="powershell"></a>[Powershell](#tab/azure-powershell)
+# <a name="powershell"></a>[PowerShell](#tab/azure-powershell)
 
 ### <a name="attach-a-database-using-powershell"></a>Attacher une base de données en utilisant PowerShell
 
@@ -177,7 +177,7 @@ New-AzKustoAttachedDatabaseConfiguration -ClusterName $FollowerClustername `
 
 ### <a name="attach-a-database-using-an-azure-resource-manager-template"></a>Joindre une base de données à l’aide d’un modèle Azure Resource Manager
 
-Dans cette section, vous allez apprendre à attacher une base de données à un cluster existant à l’aide d’un [modèle de Azure Resource Manager](/azure/azure-resource-manager/management/overview). 
+Dans cette section, vous allez apprendre à attacher une base de données à un cluster existant à l’aide d’un [modèle Azure Resource Manager](/azure/azure-resource-manager/management/overview). 
 
 ```json
 {
@@ -246,7 +246,7 @@ Dans cette section, vous allez apprendre à attacher une base de données à un 
 
 ### <a name="deploy-the-template"></a>Déployer le modèle 
 
-Vous pouvez déployer le modèle Azure Resource Manager [à l’aide du Portail Azure](https://portal.azure.com) ou à l’aide de PowerShell.
+Vous pouvez déployer le modèle Azure Resource Manager en [utilisant le portail Azure](https://portal.azure.com) ou PowerShell.
 
    ![déploiement de modèle](media/follower/template-deployment.png)
 
@@ -412,7 +412,7 @@ cluster_resource_id = "/subscriptions/" + follower_subscription_id + "/resourceG
 poller = kusto_management_client.clusters.detach_follower_databases(resource_group_name = leader_resource_group_name, cluster_name = leader_cluster_name, cluster_resource_id = cluster_resource_id, attached_database_configuration_name = attached_database_configuration_name)
 ```
 
-# <a name="powershell"></a>[Powershell](#tab/azure-powershell)
+# <a name="powershell"></a>[PowerShell](#tab/azure-powershell)
 
 ### <a name="detach-a-database-using-powershell"></a>Détacher une base de données en utilisant PowerShell
 
@@ -451,9 +451,9 @@ Lors de l’attachement d’une base de données, spécifiez le **« type de mo
 
 |**Type** |**Description**  |
 |---------|---------|
-|**Union**     |   Les principaux de la base de données attachée incluent toujours les principaux de la base de données d’origine, ainsi que les nouveaux principaux ajoutés à la base de données follower.      |
+|**Union**     |   Les principaux de la base de données attachée incluent toujours les principaux de la base de données d’origine ainsi que d’autres nouveaux principaux ajoutés à la base de données d’abonné.      |
 |**Replace**   |    Aucun héritage des principaux de la base de données d’origine. De nouveaux principaux doivent être créés pour la base de données attachée.     |
-|**Aucun**   |   Les principaux de la base de données attachée incluent uniquement les principaux de la base de données d’origine sans principaux supplémentaires.      |
+|**Aucun**   |   Les principaux de la base de données attachée incluent uniquement les principaux de la base de données d’origine sans aucun autre principal.      |
 
 Pour plus d’informations sur l’utilisation des commandes de contrôle pour configurer les principaux autorisés, consultez [Commandes de contrôle pour la gestion du cluster follower](kusto/management/cluster-follower.md).
 
@@ -465,11 +465,19 @@ La gestion de l’autorisation de base de données en lecture seule est identiqu
 
 L’administrateur de base de données follower peut modifier la [stratégie de mise en cache](kusto/management/cache-policy.md) de la base de données attachée ou de l’une de ses tables sur le cluster hôte. Le type par défaut conserve la collection de bases de données leader et les stratégies de mise en cache au niveau de la table. Vous pouvez, par exemple, disposer d’une stratégie de mise en cache de 30 jours sur la base de données leader pour exécuter des rapports mensuels et d’une stratégie de mise en cache de trois jours sur la base de données follower pour interroger uniquement les données récentes pour la résolution des problèmes. Pour plus d’informations sur l’utilisation des commandes de contrôle pour configurer la stratégie de mise en cache sur la table ou la base de données follower, consultez [Commandes de contrôle pour la gestion du cluster follower](kusto/management/cluster-follower.md).
 
+## <a name="notes"></a>Remarques
+
+* En cas de conflits entre les bases de données de clusters de responsable/d’abonné, lorsque toutes les bases de données sont suivies par le cluster d’abonné, elles sont résolues comme suit :
+  * Une base de données nommée *DB* créée sur le cluster d’abonné est prioritaire sur une base de données portant le même nom et créée sur le cluster de responsable. C’est pourquoi la base de données *DB* dans le cluster d’abonné doit être supprimée ou renommée pour que le cluster d’abonné inclue la base de données *DB* du responsable.
+  * Une base de données nommée *DB* suivie à partir d’au moins deux clusters de responsable est choisie arbitrairement à partir d’*un* des clusters de responsable et n’est pas suivie plusieurs fois.
+* Les commandes permettant d’afficher [l’historique et le journal d’activité du cluster](kusto/management/systeminfo.md) et exécutées sur un cluster d’abonné montrent l’activité et l’historique sur le cluster d’abonné et leurs jeux de résultats n’incluent pas les résultats du ou des clusters de responsable.
+  * Par exemple : une commande `.show queries` exécutée sur le cluster d’abonné affiche uniquement les requêtes exécutées sur les bases de données suivies par le cluster d’abonné et non les requêtes exécutées sur la même base de données dans le cluster de responsable.
+  
 ## <a name="limitations"></a>Limites
 
 * Les clusters follower et leader doivent se trouver dans la région.
 * [L’ingestion de streaming](ingest-data-streaming.md) ne peut pas être utilisée sur une base de données suivie.
-* Le chiffrement des données à l’aide de [clés gérées par le client](security.md#customer-managed-keys-with-azure-key-vault) n’est pas pris en charge sur les clusters principaux et les clusters suivants. 
+* Le chiffrement des données à l’aide de [clés gérées par le client](security.md#customer-managed-keys-with-azure-key-vault) n’est pas pris en charge sur les clusters d’abonné ni de responsable. 
 * Vous ne pouvez pas supprimer une base de données attachée à un autre cluster avant de la détacher.
 * Vous ne pouvez pas supprimer un cluster qui dispose d’une base de données attachée à un autre cluster avant de la détacher.
 

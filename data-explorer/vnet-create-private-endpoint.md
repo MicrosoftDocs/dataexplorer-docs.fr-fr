@@ -7,12 +7,12 @@ ms.reviewer: elbirnbo
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/09/2020
-ms.openlocfilehash: 42203d1a7a89cc86a83ed94e03b1505b21476e83
-ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
+ms.openlocfilehash: de07600bc775abcf149b89e2858907915aa997ec
+ms.sourcegitcommit: c4ab6f07e2e5363e331ccd4ecfb6ed813edfbc48
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/28/2020
-ms.locfileid: "92902439"
+ms.lasthandoff: 12/21/2020
+ms.locfileid: "97706377"
 ---
 # <a name="create-a-private-endpoint-in-your-azure-data-explorer-cluster-in-your-virtual-network-preview"></a>Créer un point de terminaison privé dans votre cluster Azure Data Explorer dans votre réseau virtuel (préversion)
 
@@ -34,11 +34,11 @@ Pour établir une liaison sécurisée à tous les services dans votre cluster, v
 
 1. Sélectionnez le bouton **+ Créer une ressource** dans le coin supérieur gauche du portail.
 1. Recherchez *Service de liaison privée*.
-1. Sous **Service de liaison privée** , sélectionnez **Créer**.
+1. Sous **Service de liaison privée**, sélectionnez **Créer**.
 
     :::image type="content" source="media/vnet-create-private-endpoint/create-service.gif" alt-text="Image GIF montrant les trois premières étapes de création d’un service de liaison privée dans le portail Azure Data Explorer":::
 
-1. Dans le volet **Créer un service de liaison privée** , renseignez les champs suivants :
+1. Dans le volet **Créer un service de liaison privée**, renseignez les champs suivants :
 
     :::image type="content" source="media/vnet-create-private-endpoint/private-link-basics.png" alt-text="Onglet 1 dans Créer un service de liaison privée – Bases":::
 
@@ -49,17 +49,17 @@ Pour établir une liaison sécurisée à tous les services dans votre cluster, v
     | Nom | AzureDataExplorerPLS | Choisissez un nom qui identifie votre service de liaison privée dans le groupe de ressources. |
     | Région | Identique au réseau virtuel | Sélectionnez la région qui correspond à la région de votre réseau virtuel. |
 
-1. Dans le volet **Paramètres sortants** , renseignez les champs suivants :
+1. Dans le volet **Paramètres sortants**, renseignez les champs suivants :
 
     :::image type="content" source="media/vnet-create-private-endpoint/private-link-outbound.png" alt-text="Onglet 2 de liaison privée – Paramètres sortants":::
 
     |**Paramètre** | **Valeur suggérée** | **Description du champ**
     |---|---|---|
-    | Load Balancer | Votre moteur ou équilibreur de charge de *gestion des données* | Sélectionnez l’équilibreur de charge créé pour votre moteur de cluster, équilibreur de charge qui pointe vers l’adresse IP publique de votre moteur.  Le nom du moteur d’équilibrage de charge sera au format suivant : kucompute-{clustername}-elb <br> *Le nom de gestion des données de l’équilibreur de charge sera au format suivant : kudatamgmt-{clustername}-elb*|
-    | Adresse IP front-end de l’équilibreur de charge | Adresse IP publique de gestion de données ou de votre moteur. | Sélectionnez l’adresse IP publique de l’équilibreur de charge. |
+    | Équilibrage de charge | Votre moteur ou équilibreur de charge de *gestion des données* | Sélectionnez l’équilibreur de charge créé pour votre moteur de cluster. Vous pouvez utiliser l’équilibreur de charge externe ou interne.  <br> **Le nom du moteur de l’équilibreur de charge sera au format suivant :** <br> Équilibreur de charge externe : *kucompute-{clustername}-elb* <br> Équilibreur de charge interne : *kucompute-{clustername}-ilb* <br> **Le nom de gestion des données de l’équilibreur de charge sera au format suivant :** <br> kudatamgmt-{clustername}-elb <br> kudatamgmt-{clustername}-ilb*|
+    | Adresse IP front-end de l’équilibreur de charge | Adresse IP de gestion des données ou de votre moteur. | Sélectionnez l’adresse IP de l’équilibreur de charge. |
     | Sous-réseau NAT source | Sous-réseau du cluster | Votre sous-réseau où le cluster est déployé.
     
-1. Dans le volet **Sécurité d’accès** , choisissez les utilisateurs qui peuvent demander l’accès à votre service de liaison privée.
+1. Dans le volet **Sécurité d’accès**, choisissez les utilisateurs qui peuvent demander l’accès à votre service de liaison privée.
 1. Sélectionnez **Vérifier + créer** pour passer en revue la configuration de votre service de liaison privée. Sélectionnez **Créer** pour créer le service de liaison privée.
 1. Une fois le service de liaison privée créé, ouvrez la ressource et enregistrez l’alias de liaison privée pour l’étape suivante, **Créer un point de terminaison privé**. L’exemple d’alias est : *AzureDataExplorerPLS.111-222-333.westus.azure.privatelinkservice*
 
@@ -69,8 +69,8 @@ Pour établir une liaison sécurisée à tous les services dans votre cluster, v
 
 1. Sélectionnez le bouton **+ Créer une ressource** dans le coin supérieur gauche du portail.
 1. Recherchez *Point de terminaison privé*.
-1. Sous **Point de terminaison privé** , sélectionnez **Créer**.
-1. Dans le volet **Créer un point de terminaison privé** , renseignez les champs suivants :
+1. Sous **Point de terminaison privé**, sélectionnez **Créer**.
+1. Dans le volet **Créer un point de terminaison privé**, renseignez les champs suivants :
 
     :::image type="content" source="media/vnet-create-private-endpoint/step-one-basics.png" alt-text="Étape 1 du formulaire de création d’un point de terminaison privé – Bases":::
 
@@ -81,7 +81,7 @@ Pour établir une liaison sécurisée à tous les services dans votre cluster, v
     | Nom | AzureDataExplorerPE | Choisissez un nom qui identifie votre réseau virtuel dans le groupe de ressources.
     | Région | *USA Ouest* | Sélectionnez la région qui répond le mieux à vos besoins.
     
-1. Dans le volet **Ressource** , renseignez les champs suivants :
+1. Dans le volet **Ressource**, renseignez les champs suivants :
 
     :::image type="content" source="media/vnet-create-private-endpoint/step-two-resource.png" alt-text="Étape 2 du formulaire de création d’un réseau virtuel – Ressource":::
 
@@ -92,7 +92,7 @@ Pour établir une liaison sécurisée à tous les services dans votre cluster, v
     
 1. Sélectionnez **Vérifier + créer** pour passer en revue votre configuration Private Endpoint et **Créer** le service Private Endpoint.
 1. Pour créer le point de terminaison privé pour l’ingestion (gestion des données), suivez les mêmes instructions avec la modification suivante :
-    1. Dans le volet **Ressource** , choisissez l’alias de votre service de liaison privée d’ingestion (gestion des données).
+    1. Dans le volet **Ressource**, choisissez l’alias de votre service de liaison privée d’ingestion (gestion des données).
 
 > [!NOTE]
 > Vous pouvez vous connecter au service de liaison privée à partir de plusieurs points de terminaison privés.
@@ -109,12 +109,12 @@ Pour établir une liaison sécurisée à tous les services dans votre cluster, v
 
 ## <a name="set-dns-configuration"></a>Définir la configuration DNS
 
-Lorsque vous déployez un cluster Azure Data Explorer dans votre réseau virtuel, nous mettons à jour l’ [entrée DNS](/azure/private-link/private-endpoint-dns) pour pointer vers le nom canonique avec *privatelink* entre le nom d’enregistrement et le nom d’hôte de la zone. Cette entrée est mise à jour à la fois pour le moteur et l’ingestion (gestion des données). 
+Lorsque vous déployez un cluster Azure Data Explorer dans votre réseau virtuel, nous mettons à jour l’[entrée DNS](/azure/private-link/private-endpoint-dns) pour pointer vers le nom canonique avec *privatelink* entre le nom d’enregistrement et le nom d’hôte de la zone. Cette entrée est mise à jour à la fois pour le moteur et l’ingestion (gestion des données). 
 
 Par exemple, si le nom DNS de votre moteur est myadx.westus.kusto.windows.net, la résolution de noms est la suivante :
 
-* **nom**  : myadx.westus.kusto.windows.net   <br> **type** : CNAME   <br> **valeur**  : myadx.privatelink.westus.kusto.windows.net
-* **nom**  : myadx.privatelink.westus.kusto.windows.net   <br> **type** : A   <br> **value**  : 40.122.110.154
+* **nom** : myadx.westus.kusto.windows.net   <br> **type** : CNAME   <br> **valeur** : myadx.privatelink.westus.kusto.windows.net
+* **nom** : myadx.privatelink.westus.kusto.windows.net   <br> **type** : A   <br> **value** : 40.122.110.154
     > [!NOTE]
     > Cette valeur correspond à l’adresse IP publique de requête (moteur) que vous avez fournie quand vous avez créé le cluster.
 
@@ -124,8 +124,8 @@ Créez la zone DNS suivante : **privatelink.region.kusto.windows.net**. La zone
 
 Voici des exemples de résolution des noms :
 
-* **nom**  : myadx.westus.kusto.windows.net   <br>**type** : CNAME   <br>**valeur**  : myadx.privatelink.westus.kusto.windows.net
-* **nom**  : myadx.privatelink.westus.kusto.windows.net   <br>**type** : A   <br>**value**  : 10.3.0.9
+* **nom** : myadx.westus.kusto.windows.net   <br>**type**: CNAME   <br>**valeur** : myadx.privatelink.westus.kusto.windows.net
+* **nom** : myadx.privatelink.westus.kusto.windows.net   <br>**type** : A   <br>**value** : 10.3.0.9
     > [!NOTE]
     > Cette valeur est l’adresse IP de votre point de terminaison privé. Vous avez déjà connecté l’adresse IP au service de liaison privée de requête (moteur).
 

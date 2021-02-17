@@ -8,12 +8,12 @@ ms.reviewer: kedamari
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/05/2020
-ms.openlocfilehash: e8ec0a07549a8db4027beab8d512f58e3ab6a780
-ms.sourcegitcommit: 4d5628b52b84f7564ea893f621bdf1a45113c137
+ms.openlocfilehash: 5ea03b982a42232eb1dda728e1df04952fc1183d
+ms.sourcegitcommit: 3a2d2def8d6bf395bbbb3b84935bc58adae055b8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "96444159"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98635937"
 ---
 # <a name="manually-create-resources-for-event-grid-ingestion"></a>Créer manuellement des ressources pour l’ingestion Event Grid
 
@@ -57,7 +57,7 @@ Dans cet article, vous découvrez comment créer manuellement les ressources né
     | Type de rubrique | *Compte de stockage* | Type de rubrique Event Grid. Rempli automatiquement.|
     | Ressource source | *gridteststorage1* | nom de votre compte de stockage. Rempli automatiquement.|
     | Nom de la rubrique système | *gridteststorage1...* | Rubrique système où Stockage Azure publie les événements. Cette rubrique système transfère ensuite l’événement à un abonné qui reçoit et traite des événements. Rempli automatiquement.|
-    | Filtrer les types d’événements | *Objet blob créé* | De quels événements spécifiques être notifié. Lors de la création de l’abonnement, sélectionnez un des types actuellement pris en charge : Microsoft.Storage.BlobCreated. ou Microsoft.Storage.BlobRenamed|
+    | Filtrer les types d’événements | *Objet blob créé* | De quels événements spécifiques être notifié. Lors de la création de l’abonnement, sélectionnez l’un des types pris en charge : Microsoft.Storage.BlobCreated ou Microsoft.Storage.BlobRenamed. Le renommage d’objets blob est pris en charge uniquement pour le stockage ADLSv2. |
 
 1. Dans **DÉTAILS DES POINTS DE TERMINAISON**, sélectionnez **Event Hubs**.
 

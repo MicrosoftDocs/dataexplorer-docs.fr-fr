@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/16/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 6357afeb0a5673584e27b84a231e3c65f897b8fc
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 29fdacc9483c21c4a8a148d2134f4082d439bb89
+ms.sourcegitcommit: ee49cd8186d4aecd5de1ed6d24db6c7b7a079ac4
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95512364"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100549001"
 ---
 # <a name="make-series-operator"></a>opérateur make-series
 
@@ -87,6 +87,7 @@ Il est recommandé d'utiliser la syntaxe principale de make-series plutôt que l
 |[maxif()](maxif-aggfunction.md)|Renvoie la valeur maximale avec le prédicat du groupe|
 |[min()](min-aggfunction.md)|Retourne la valeur minimale dans l'ensemble du groupe|
 |[minif()](minif-aggfunction.md)|Renvoie la valeur minimale avec le prédicat du groupe|
+|[percentile()](percentiles-aggfunction.md)|Retourne la valeur de percentile dans l’ensemble du groupe|
 |[stdev()](stdev-aggfunction.md)|Renvoie l'écart type dans l'ensemble du groupe|
 |[sum()](sum-aggfunction.md)|Renvoie la somme des éléments du groupe|
 |[sumif()](sumif-aggfunction.md)|Renvoie la somme des éléments avec le prédicat du groupe|
@@ -107,7 +108,9 @@ Il est recommandé d'utiliser la syntaxe principale de make-series plutôt que l
 |[series_periods_validate()](series-periods-validatefunction.md)|Vérifie si une série chronologique contient des modèles périodiques de longueurs données|
 |[series_stats_dynamic()](series-stats-dynamicfunction.md)|Renvoie plusieurs colonnes comportant les statistiques courantes (min/max/variance/stdev/average)|
 |[series_stats()](series-statsfunction.md)|Génère une valeur dynamique avec les statistiques courantes (min/max/variance/stdev/average)|
-  
+
+Pour une liste complète des fonctions d’analyse de séries, consultez : [Fonctions de traitement des séries](scalarfunctions.md#series-processing-functions)
+
 ## <a name="list-of-series-interpolation-functions"></a>Liste des fonctions d'interpolation des séries
 
 |Fonction|Description|

@@ -7,12 +7,12 @@ ms.reviewer: herauch
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 04/01/2020
-ms.openlocfilehash: 5cffee705c6a9225112e7ada8154084de40035c4
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 4a8c3cbceb4fa16b8f1ddefc53447ad52f0166f7
+ms.sourcegitcommit: 6e2fb2d7284c9b260034454236e669b2358383fb
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88875019"
+ms.lasthandoff: 02/03/2021
+ms.locfileid: "99522987"
 ---
 # <a name="create-an-azure-active-directory-application-registration-in-azure-data-explorer"></a>Créer une inscription d’application Azure Active Directory dans Azure Data Explorer
 
@@ -83,7 +83,7 @@ Si votre application doit accéder à Azure Data Explorer à l’aide des inform
 
 ## <a name="grant-the-service-principal-access-to-an-azure-data-explorer-database"></a>Accorder au principal du service l’accès à une base de données Azure Data Explorer
 
-À présent que l’inscription de votre application de principal du service est créée, vous devez accorder au principal du service correspondant l’accès à votre base de données Azure Data Explorer. 
+À présent que l’inscription de votre application de principal du service est créée, vous devez accorder au principal du service correspondant l’accès à votre base de données Azure Data Explorer. L’exemple suivant donne accès à l’observateur. Pour les autres rôles, consultez [Gérer les autorisations de base de données d’Azure Data Explorer](manage-database-permissions.md). 
 
 1. Dans l’[interface utilisateur web](https://dataexplorer.azure.com/), connectez-vous à votre base de données, puis ouvrez un onglet de requête.
 

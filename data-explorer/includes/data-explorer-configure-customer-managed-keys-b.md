@@ -4,12 +4,12 @@ ms.service: data-explorer
 ms.topic: include
 ms.date: 03/25/2020
 ms.author: orspodek
-ms.openlocfilehash: 081ba777f6ab19be774f127383e359ff761e7f0e
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 6e9c489850d77155ca4832275883c7749edd6284
+ms.sourcegitcommit: 79d923d7b7e8370726974e67a984183905f323ff
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492841"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "98571757"
 ---
 ## <a name="create-a-new-key-vault"></a>Créer un coffre de clés
 
@@ -25,13 +25,24 @@ $keyVault = New-AzKeyVault -Name <key-vault> `
 
 ## <a name="configure-the-key-vault-access-policy"></a>Configurer la stratégie d’accès au coffre de clés
 
-Configurez ensuite la stratégie d’accès au coffre de clés de sorte que le cluster dispose des autorisations nécessaires pour y accéder. À cette étape, vous utiliserez l’identité managée affectée au système que vous avez précédemment attribuée au cluster. Pour définir la stratégie d’accès du coffre de clés, appelez la commande [Set-AzKeyVaultAccessPolicy](/powershell/module/az.keyvault/set-azkeyvaultaccesspolicy). Remplacez les valeurs d’espace réservé entre crochets par vos propres valeurs et utilisez les variables définies dans les exemples précédents.
+Configurez ensuite la stratégie d’accès au coffre de clés de sorte que le cluster dispose des autorisations nécessaires pour y accéder. À cette étape, vous utiliserez l’identité managée affectée par le système ou affectée par l’utilisateur que vous avez précédemment affectée au cluster. Pour définir la stratégie d’accès du coffre de clés, appelez la commande [Set-AzKeyVaultAccessPolicy](/powershell/module/az.keyvault/set-azkeyvaultaccesspolicy). Remplacez les valeurs d’espace réservé entre crochets par vos propres valeurs et utilisez les variables définies dans les exemples précédents.
+
+Pour l’identité affectée par le système, utilisez le PrincipalID du cluster :
 
 ```azurepowershell-interactive
 Set-AzKeyVaultAccessPolicy `
     -VaultName $keyVault.VaultName `
     -ObjectId $cluster.Identity.PrincipalId `
-    -PermissionsToKeys wrapkey,unwrapkey,get,recover
+    -PermissionsToKeys wrapkey,unwrapkey,get
+```
+
+Pour l’identité affectée par l’utilisateur, utilisez le PrincipalID de l’identité :
+
+```azurepowershell-interactive
+Set-AzKeyVaultAccessPolicy `
+    -VaultName $keyVault.VaultName `
+    -ObjectId $userIdentity.Properties.PrincipalId `
+    -PermissionsToKeys wrapkey,unwrapkey,get
 ```
 
 ## <a name="create-a-new-key"></a>Créer une clé

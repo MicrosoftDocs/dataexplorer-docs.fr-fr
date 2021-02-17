@@ -7,12 +7,12 @@ ms.reviewer: avnera
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/13/2020
-ms.openlocfilehash: 44c115cd509b72d5f83b1c1109ae09dc050d1a74
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 930271d2d7c2b46b3ac873449338dda98472c36d
+ms.sourcegitcommit: c11e3871d600ecaa2824ad78bce9c8fc5226eef9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92337446"
+ms.lasthandoff: 02/04/2021
+ms.locfileid: "99554869"
 ---
 # <a name="select-the-correct-compute-sku-for-your-azure-data-explorer-cluster"></a>Sélectionner la bonne référence SKU de calcul pour votre cluster Azure Data Explorer 
 
@@ -31,7 +31,7 @@ Cet article décrit différentes options de référence SKU de calcul et fournit
 
 Azure Data Explorer offre deux types de clusters :
 
-* **Production**  : Les clusters de production contiennent deux nœuds pour les clusters de moteur et de gestion de données et sont utilisés conformément au [contrat de niveau de service (SLA)](https://azure.microsoft.com/support/legal/sla/data-explorer/v1_0/) Azure Data Explorer.
+* **Production** : Les clusters de production contiennent deux nœuds pour les clusters de moteur et de gestion de données et sont utilisés conformément au [contrat de niveau de service (SLA)](https://azure.microsoft.com/support/legal/sla/data-explorer/v1_0/) Azure Data Explorer.
 
 * **Développement/test (aucun SLA)**  : Les clusters de développement/test ont un seul nœud pour le moteur et le cluster de gestion des données. Ce type de cluster représente la configuration la moins chère en raison de son faible nombre d’instances et de l’absence de frais de balisage moteur. Il n’existe pas de SLA pour cette configuration de cluster, car elle manque de redondance.
 
@@ -94,31 +94,32 @@ Les spécifications techniques des machines virtuelles du cluster Azure Data Exp
 |**Nom**| **Catégorie** | **Taille du disque SSD** | **Cœurs** | **RAM** | **Disques de stockage Premium (1&nbsp;To)**| **Nombre minimum d'instances par cluster** | **Nombre maximum d'instances par cluster**
 |---|---|---|---|---|---|---|---
 |Dev(No SLA) Standard_D11_v2| Optimisé pour le calcul | 75&nbsp;Go    | 1 | 14&nbsp;Go | 0 | 1 | 1
-|Dev(No SLA) Standard_E2a_v4| Optimisé pour le calcul | 18&nbsp;Go    | 1 | 14&nbsp;Go | 0 | 1 | 1
+|Dev(No SLA) Standard_E2a_v4| Optimisé pour le calcul | 18&nbsp;Go    | 1 | 16&nbsp;Go | 0 | 1 | 1
 |Standard_D11_v2| Optimisé pour le calcul | 75&nbsp;Go    | 2 | 14&nbsp;Go | 0 | 2 | 8 
 |Standard_D12_v2| Optimisé pour le calcul | 150&nbsp;Go   | 4 | 28&nbsp;Go | 0 | 2 | 16
 |Standard_D13_v2| Optimisé pour le calcul | 307&nbsp;Go   | 8 | 56&nbsp;Go | 0 | 2 | 1 000
 |Standard_D14_v2| Optimisé pour le calcul | 614&nbsp;Go   | 16| 112&nbsp;Go | 0 | 2 | 1 000
-|Standard_E2a_v4| calcul intensif | 18&nbsp;Go    | 2 | 14&nbsp;Go | 0 | 2 | 8 
-|Standard_E4a_v4| calcul intensif | 54&nbsp;Go   | 4 | 28&nbsp;Go | 0 | 2 | 16
-|Standard_E8a_v4| calcul intensif | 127&nbsp;Go   | 8 | 56&nbsp;Go | 0 | 2 | 1 000
-|Standard_E16a_v4| calcul intensif | 273&nbsp;Go   | 16| 112&nbsp;Go | 0 | 2 | 1 000
+|Standard_E2a_v4| calcul intensif | 18&nbsp;Go    | 2 | 16&nbsp;Go | 0 | 2 | 8 
+|Standard_E4a_v4| calcul intensif | 54&nbsp;Go   | 4 | 32&nbsp;Go | 0 | 2 | 16
+|Standard_E8a_v4| calcul intensif | 127&nbsp;Go   | 8 | 64&nbsp;Go | 0 | 2 | 1 000
+|Standard_E16a_v4| calcul intensif | 273&nbsp;Go   | 16| 128&nbsp;Go | 0 | 2 | 1 000
 |Standard_DS13_v2 + 1&nbsp;To&nbsp;PS| Optimisé pour le stockage | 1&nbsp;To | 8 | 56&nbsp;Go | 1 | 2 | 1 000
 |Standard_DS13_v2 + 2&nbsp;To&nbsp;PS| Optimisé pour le stockage | 2&nbsp;To | 8 | 56&nbsp;Go | 2 | 2 | 1 000
 |Standard_DS14_v2 + 3&nbsp;To&nbsp;PS| Optimisé pour le stockage | 3&nbsp;To | 16 | 112&nbsp;Go | 2 | 2 | 1 000
 |Standard_DS14_v2 + 4&nbsp;To&nbsp;PS| Optimisé pour le stockage | 4&nbsp;To | 16 | 112&nbsp;Go | 4 | 2 | 1 000
-|Standard_E8as_v4 + 1&nbsp;To&nbsp;PS| Optimisé pour le stockage | 1&nbsp;To | 8 | 56&nbsp;Go | 1 | 2 | 1 000
-|Standard_E8as_v4 + 2&nbsp;To&nbsp;PS| Optimisé pour le stockage | 2&nbsp;To | 8 | 56&nbsp;Go | 2 | 2 | 1 000
-|Standard_E16as_v4 + 3&nbsp;To&nbsp;PS| Optimisé pour le stockage | 3&nbsp;To | 16 | 112&nbsp;Go | 3 | 2 | 1 000
-|Standard_E16as_v4 + 4&nbsp;To&nbsp;PS| Optimisé pour le stockage | 4&nbsp;To | 16 | 112&nbsp;Go | 4 | 2 | 1 000
+|Standard_E8as_v4 + 1&nbsp;To&nbsp;PS| Optimisé pour le stockage | 1&nbsp;To | 8 | 64&nbsp;Go | 1 | 2 | 1 000
+|Standard_E8as_v4 + 2&nbsp;To&nbsp;PS| Optimisé pour le stockage | 2&nbsp;To | 8 | 64&nbsp;Go | 2 | 2 | 1 000
+|Standard_E16as_v4 + 3&nbsp;To&nbsp;PS| Optimisé pour le stockage | 3&nbsp;To | 16 | 128&nbsp;Go | 3 | 2 | 1 000
+|Standard_E16as_v4 + 4&nbsp;To&nbsp;PS| Optimisé pour le stockage | 4&nbsp;To | 16 | 128&nbsp;Go | 4 | 2 | 1 000
 |Standard_L4s| Optimisé pour le stockage | 650&nbsp;Go | 4 | 32&nbsp;Go | 0 | 2 | 16
 |Standard_L8s| Optimisé pour le stockage | 1,3&nbsp;To | 8 | 64&nbsp;Go | 0 | 2 | 1 000
 |Standard_L16s| Optimisé pour le stockage | 2,6&nbsp;To | 16| 128&nbsp;Go | 0 | 2 | 1 000
 |Standard_L8s_v2| Optimisé pour le stockage | 1,7&nbsp;To | 8 | 64&nbsp;Go | 0 | 2 | 1 000
-|Standard_L16s_v2| Optimisé pour le stockage | 3,5&nbsp;To | 16| 128&nbsp;Go | 0 | 2 | 1 000
-|Standard_E64i1_v3| calcul isolé | 1,1&nbsp;To | 16| 128&nbsp;Go | 0 | 2 | 1 000
+|Standard_L16s_v2| Optimisé pour le stockage | 3,5&nbsp;To | 16| 128&nbsp;Go | 0 | 2 | 1 000
+|Standard_E64i_v3| calcul isolé | 1,1&nbsp;To | 64 | 432&nbsp;Go | 0 | 2 | 1 000
+|Standard_E80ids_v4| calcul isolé | 1,8&nbsp;To | 80 | 504&nbsp;Go | 0 | 2 | 1 000
 
-* Vous pouvez visualiser la liste mise à jour des références SKU de calcul par région en utilisant l’[API ListSkus](/dotnet/api/microsoft.azure.management.kusto.clustersoperationsextensions.listskus?view=azure-dotnet) d’Azure Data Explorer. 
+* Vous pouvez visualiser la liste mise à jour des références SKU de calcul par région en utilisant l’[API ListSkus](/dotnet/api/microsoft.azure.management.kusto.clustersoperationsextensions.listskus) d’Azure Data Explorer. 
 * Découvrez-en plus sur les [différentes références SKU](/azure/virtual-machines/windows/sizes). 
 
 ## <a name="next-steps"></a>Étapes suivantes

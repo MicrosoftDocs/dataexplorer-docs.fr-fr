@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/19/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 0dffa044ff47748d46b3ab4758bb61684bb8bb10
-ms.sourcegitcommit: db99b9d0b5f34341ad3be38cc855c9b80b3c0b0e
+ms.openlocfilehash: 9e8197d3af25da0b0e2488b4a5c70f5cfa2dde17
+ms.sourcegitcommit: abbcb27396c6d903b608e7b19edee9e7517877bb
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/14/2021
-ms.locfileid: "100359724"
+ms.lasthandoff: 02/15/2021
+ms.locfileid: "100528069"
 ---
 # <a name="string-operators"></a>Opérateurs String
 
@@ -27,13 +27,16 @@ Kusto indexe toutes les colonnes, y compris les colonnes de type `string`. Des i
 ### <a name="what-is-a-term"></a>Qu'est-ce qu'un terme ? 
 
 Par défaut, chaque valeur `string` se décompose en séquences maximales de caractères alphanumériques ASCII, et chacune de ces séquences est transformée en un terme.
-Par exemple, dans la `string` suivante, `Kusto`, `WilliamGates3rd` sont des termes, tandis que `ad67d136`, `c1db`, `4f9f`, `88ef`, `d94f3b6b0b5a` sont des substrings.
+Par exemple, dans la `string` suivante, `Kusto`, `KustoExplorerQueryRun` sont des termes, tandis que `ad67d136`, `c1db`, `4f9f`, `88ef`, `d94f3b6b0b5a` sont des substrings.
 
 ```
-Kusto: ad67d136-c1db-4f9f-88ef-d94f3b6b0b5a;;WilliamGates3rd
+Kusto: ad67d136-c1db-4f9f-88ef-d94f3b6b0b5a;KustoExplorerQueryRun
 ```
 
-Kusto génère un index composé de tous les termes d'*au moins quatre caractères*, et cet index est utilisé par `has`, `!has`, etc. Si la requête recherche un terme de moins de quatre caractères ou utilise un opérateur `contains`, Kusto recommence à analyser les valeurs de la colonne s'il ne parvient pas à établir de correspondance. Cette méthode est beaucoup plus lente que la recherche du terme dans l'index des termes.
+Kusto génère un index composé de tous les termes d’*au moins trois caractères*, et cet index est utilisé par les opérateurs de chaîne `has`, `!has` et ainsi de suite.  Si la requête recherche un terme de moins de trois caractères ou utilise un opérateur `contains`, elle recommence à analyser les valeurs de la colonne. L’analyse est beaucoup plus lente que la recherche du terme dans l’index des termes.
+
+> [!NOTE]
+> Dans EngineV2, un terme se compose de quatre caractères ou plus.
 
 ## <a name="operators-on-strings"></a>Opérateurs utilisés sur les chaînes
 

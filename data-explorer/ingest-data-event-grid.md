@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: 2c5c5cbb15e55b585bae632a960909070c724eb8
-ms.sourcegitcommit: 4d5628b52b84f7564ea893f621bdf1a45113c137
+ms.openlocfilehash: 2881bbf1397aaf8aeb410598fbf080d8b9d3fbda
+ms.sourcegitcommit: 3a2d2def8d6bf395bbbb3b84935bc58adae055b8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "96444218"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98635994"
 ---
 # <a name="ingest-blobs-into-azure-data-explorer-by-subscribing-to-event-grid-notifications"></a>Ingérer des objets blob dans Azure Data Explorer en s’abonnant à des notifications Event Grid
 
@@ -83,7 +83,7 @@ Connectez maintenant le compte de stockage à Azure Data Explorer afin que le fl
     | Nom de la connexion de données | *test-grid-connection* | Nom de la connexion que vous souhaitez créer dans Azure Data Explorer.|
     | Abonnement du compte de stockage | Votre ID d’abonnement | ID d’abonnement où se trouve votre compte de stockage.|
     | Compte de stockage | *gridteststorage1* | Nom du compte de stockage que vous avez créé précédemment.|
-    | Type d'événement | *Objet blob créé* ou *Objet blob renommé* | Type d’événement qui déclenche l’ingestion. |
+    | Type d'événement | *Objet blob créé* ou *Objet blob renommé* | Type d’événement qui déclenche l’ingestion. Le *renommage d’objets blob* est pris en charge uniquement pour le stockage ADLSv2. Types pris en charge : Microsoft.Storage.BlobCreated ou Microsoft.Storage.BlobRenamed. |
     | Création de ressources | *Automatique* | Spécifiez si vous voulez qu’Azure Data Explorer crée un abonnement Event Grid, un espace de noms Event Hub et un hub d’événements pour vous. Pour créer manuellement des ressources, consultez [Créer manuellement des ressources pour l’ingestion Event Grid](ingest-data-event-grid-manual.md).|
 
 1. Sélectionnez **Paramètres de filtre** si vous voulez suivre des sujets spécifiques. Définissez les filtres pour les notifications comme suit :
@@ -131,7 +131,9 @@ Attendez la fin du déploiement. Si votre déploiement a échoué, sélectionnez
 
 ## <a name="generate-sample-data"></a>Générer un exemple de données
 
-Maintenant qu’Azure Data Explorer et le compte de stockage sont connectés, vous pouvez créer des exemples de données et les charger dans le conteneur de stockage.
+Maintenant qu’Azure Data Explorer et le compte de stockage sont connectés, vous pouvez créer des exemples de données.
+
+### <a name="upload-blob-to-the-storage-container"></a>Charger l’objet blob sur le conteneur de stockage
 
 Nous allons maintenant utiliser un petit script de shell qui exécute quelques commandes Azure CLI de base pour interagir avec les ressources de Stockage Azure. Ce script effectue les actions suivantes : 
 1. Crée un nouveau conteneur dans votre compte de stockage.
@@ -172,6 +174,12 @@ Enregistrez les données dans un fichier et chargez celui-ci avec ce script :
 
 > [!NOTE]
 > Pour obtenir les meilleures performances d’ingestion, la taille *non compressée* des objets blob compressés soumis pour l’ingestion doit être communiquée. Étant donné que les notifications Event Grid contiennent uniquement des détails de base, les informations de taille doivent être communiquées explicitement. Les informations de taille non compressée peuvent être fournies en définissant la propriété `rawSizeBytes` sur les métadonnées d’objet blob avec la taille de données *non compressée* en octets.
+
+### <a name="rename-blob"></a>Renommer l’objet blob
+
+Si vous ingérez des données à partir du stockage ADLSv2 et que vous avez défini le *renommage d’objets blob* comme type d’événement pour la connexion de données, le déclencheur pour l’ingestion d’objets blob est le renommage d’objets blob. Pour renommer un objet blob, accédez à l’objet blob dans le portail Azure, cliquez dessus avec le bouton droit, puis sélectionnez **Renommer** :
+
+   :::image type="content" source="media/ingest-data-event-grid/rename-blob-in-the-portal.png" alt-text="Renommer l’objet blob dans le portail Azure":::
 
 ### <a name="ingestion-properties"></a>Propriétés d’ingestion
 

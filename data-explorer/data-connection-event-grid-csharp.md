@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/07/2019
-ms.openlocfilehash: 824556388c2f3f70f006ab372e06967c42117f06
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 3c79d95575e88e7f4d3969ad0cf521703db536e9
+ms.sourcegitcommit: c11e3871d600ecaa2824ad78bce9c8fc5226eef9
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92343060"
+ms.lasthandoff: 02/04/2021
+ms.locfileid: "99554694"
 ---
 # <a name="create-an-event-grid-data-connection-for-azure-data-explorer-by-using-c"></a>Créer une connexion de données à Event Grid pour Azure Data Explorer à l’aide de C#
 
@@ -73,9 +73,10 @@ var location = "Central US";
 var tableName = "StormEvents";
 var mappingRuleName = "StormEvents_CSV_Mapping";
 var dataFormat = DataFormat.CSV;
+var blobStorageEventType = "Microsoft.Storage.BlobCreated";
 
 await kustoManagementClient.DataConnections.CreateOrUpdateAsync(resourceGroupName, clusterName, databaseName, dataConnectionName,
-    new EventGridDataConnection(storageAccountResourceId, eventHubResourceId, consumerGroup, tableName: tableName, location: location, mappingRuleName: mappingRuleName, dataFormat: dataFormat));
+    new EventGridDataConnection(storageAccountResourceId, eventHubResourceId, consumerGroup, tableName: tableName, location: location, mappingRuleName: mappingRuleName, dataFormat: dataFormat, blobStorageEventType: blobStorageEventType));
 ```
 
 |**Paramètre** | **Valeur suggérée** | **Description du champ**|
@@ -95,6 +96,7 @@ await kustoManagementClient.DataConnections.CreateOrUpdateAsync(resourceGroupNam
 | storageAccountResourceId | *ID de ressource* | ID de ressource de votre compte de stockage qui contient les données à des fins d’ingestion. |
 | consumerGroup | *$Default* | Groupe de consommateurs de votre hub d’événements.|
 | location | *USA Centre* | Emplacement de la ressource de connexion de données.|
+| blobStorageEventType | *Microsoft.Storage.BlobCreated* | Type d’événement qui déclenche l’ingestion. Les événements pris en charge sont les suivants : Microsoft.Storage.BlobCreated ou Microsoft.Storage.BlobRenamed. Le renommage d’objets blob est pris en charge uniquement pour le stockage ADLSv2.|
 
 ## <a name="generate-sample-data"></a>Générer un exemple de données
 
@@ -134,7 +136,7 @@ var blobs = container.ListBlobs();
 
 ### <a name="upload-file-using-azure-data-lake-sdk"></a>Charger un fichier en utilisant le kit SDK Azure Data Lake
 
-Lorsque vous utilisez Data Lake Storage Gen2, vous pouvez utiliser le [SDK Azure Data Lake](https://www.nuget.org/packages/Azure.Storage.Files.DataLake/) pour charger des fichiers dans le stockage. L’extrait de code suivant crée un nouveau système de fichiers dans votre stockage Azure Data Lake et charge un fichier local avec les métadonnées de ce système de fichiers.
+Lorsque vous utilisez Data Lake Storage Gen2, vous pouvez utiliser le [SDK Azure Data Lake](https://www.nuget.org/packages/Azure.Storage.Files.DataLake/) pour charger des fichiers dans le stockage. L’extrait de code suivant utilise Azure.Storage.Files.DataLake v12.5.0 pour créer un système de fichiers dans le stockage Azure Data Lake et charger un fichier local avec les métadonnées sur ce système de fichiers.
 
 ```csharp
 var accountName = <storage_account_name>;
@@ -149,24 +151,54 @@ var sharedKeyCredential = new StorageSharedKeyCredential(accountName, accountKey
 var dfsUri = "https://" + accountName + ".dfs.core.windows.net";
 var dataLakeServiceClient = new DataLakeServiceClient(new Uri(dfsUri), sharedKeyCredential);
 
-// Create the filesystem and an empty file
+// Create the filesystem
 var dataLakeFileSystemClient = dataLakeServiceClient.CreateFileSystem(fileSystemName).Value;
-var dataLakeFileClient = dataLakeFileSystemClient.CreateFile(fileName).Value;
 
-// Set metadata
+// Define metadata
 IDictionary<String, String> metadata = new Dictionary<string, string>();
 metadata.Add("rawSizeBytes", uncompressedSizeInBytes);
 metadata.Add("kustoIngestionMappingReference", mapping);
-dataLakeFileClient.SetMetadata(metadata);
 
-// Write to the file and close it
-var fileStream = File.OpenRead(localFileName);
-var fileSize = fileStream.Length;
-dataLakeFileClient.Append(fileStream, offset: 0);
-dataLakeFileClient.Flush(position: fileSize, close: true); // Note: This line triggers the event being processed by the data connection
+// Set uploading options
+var uploadOptions = new DataLakeFileUploadOptions
+{
+    Metadata = metadata,
+    Close = true // Note: The close option triggers the event being processed by the data connection
+};
+
+// Write to the file
+var dataLakeFileClient = dataLakeFileSystemClient.GetFileClient(fileName);
+dataLakeFileClient.Upload(localFileName, uploadOptions);
 ```
 
 > [!NOTE]
-> Quand vous utilisez le [SDK Azure Data Lake](https://www.nuget.org/packages/Azure.Storage.Files.DataLake/) pour charger un fichier, le premier appel à [CreateFile](/dotnet/api/azure.storage.files.datalake.datalakefilesystemclient.createfile?view=azure-dotnet) déclenche un événement Event Grid avec la taille 0 et cet événement est ignoré par Azure Data Explorer. Un autre événement est déclenché lors de l’appel du vidage avec un paramètre « Close » défini sur « true ». Cet événement indique qu’il s’agit de la mise à jour finale et que le flux de fichier a été fermé. Cet événement est traité par la connexion de données Event Grid. Pour plus d’informations sur le vidage, consultez [Méthode de vidage Azure Data Lake](/dotnet/api/azure.storage.files.datalake.datalakefileclient.flush?view=azure-dotnet).
+> Quand vous utilisez le [SDK Azure Data Lake](https://www.nuget.org/packages/Azure.Storage.Files.DataLake/) pour charger un fichier, la création du fichier déclenche un événement Event Grid avec la taille 0 et cet événement est ignoré par Azure Data Explorer. Le vidage de fichier déclenche un autre événement si le paramètre *Close* a la valeur *true*. Cet événement indique qu’il s’agit de la mise à jour finale et que le flux de fichier a été fermé. Cet événement est traité par la connexion de données Event Grid. Dans l’extrait de code ci-dessus, la méthode Upload déclenche un vidage lorsque le chargement de fichier est terminé. Par conséquent, un paramètre *Close* avec la valeur *true* doit être défini. Pour plus d’informations sur le vidage, consultez [Méthode de vidage Azure Data Lake](/dotnet/api/azure.storage.files.datalake.datalakefileclient.flush).
+
+### <a name="rename-file-using-azure-data-lake-sdk"></a>Renommer un fichier en utilisant le kit SDK Azure Data Lake
+
+L’extrait de code suivant utilise le [SDK Azure Data Lake](https://www.nuget.org/packages/Azure.Storage.Files.DataLake/) pour renommer un objet blob dans un compte de stockage ADLSv2.
+
+```csharp
+var accountName = <storage_account_name>;
+var accountKey = <storage_account_key>;
+var fileSystemName = <file_system_name>;
+var sourceFilePath = <source_file_path>;
+var destinationFilePath = <destination_file_path>;
+
+var sharedKeyCredential = new StorageSharedKeyCredential(accountName, accountKey);
+var dfsUri = "https://" + accountName + ".dfs.core.windows.net";
+var dataLakeServiceClient = new DataLakeServiceClient(new Uri(dfsUri), sharedKeyCredential);
+
+// Get a client to the the filesystem
+var dataLakeFileSystemClient = dataLakeServiceClient.GetFileSystemClient(fileSystemName);
+
+// Rename a file in the file system
+var dataLakeFileClient = dataLakeFileSystemClient.GetFileClient(sourceFilePath);
+dataLakeFileClient.Rename(destinationFilePath);
+```
+
+> [!NOTE]
+> * Le renommage de répertoire est possible dans ADLSv2, mais ne déclenche pas d’événements de *renommage d’objets blob* ni l’ingestion d’objets blob dans le répertoire. Pour ingérer les objets blob suite au renommage, renommez directement les objets blob souhaités.
+> * Si vous avez défini des filtres pour suivre des sujets spécifiques pendant la [création de la connexion de données](ingest-data-event-grid.md#create-an-event-grid-data-connection-in-azure-data-explorer) ou lors de la création manuelle des [ressources Event Grid](ingest-data-event-grid-manual.md#create-an-event-grid-subscription), ces filtres sont appliqués sur le chemin du fichier de destination.
 
 [!INCLUDE [data-explorer-data-connection-clean-resources-csharp](includes/data-explorer-data-connection-clean-resources-csharp.md)]

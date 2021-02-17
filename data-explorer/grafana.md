@@ -6,13 +6,13 @@ ms.author: orspodek
 ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
-ms.date: 09/09/2020
-ms.openlocfilehash: 08093fd06fed1facc1d8e55d98785abb952632c8
-ms.sourcegitcommit: 95527c793eb873f0135c4f0e9a2f661ca55305e3
+ms.date: 01/05/2021
+ms.openlocfilehash: 523fc2d9fcde2ec0626225c3179676a9cc2d653d
+ms.sourcegitcommit: 18092550a9f55de314dd337b7ee7e00e8733a35f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90534054"
+ms.lasthandoff: 01/06/2021
+ms.locfileid: "97941298"
 ---
 # <a name="visualize-data-from-azure-data-explorer-in-grafana"></a>Visualiser des données Azure Data Explorer dans Grafana
 
@@ -52,7 +52,7 @@ Maintenant que le principal de service est affecté au rôle *observateurs*, vou
 
     ![Nom et type de la connexion](media/grafana/connection-name-type.png)
 
-1. Entrez le nom de votre cluster au format https://{ClusterName}.{Region{Region}.kusto.windows.net. Entrez les autres valeurs à partir du portail Azure ou de l’interface CLI. Consultez le tableau situé sous l’image suivante pour obtenir un mappage.
+1. Dans **Paramètres** > **Informations de connexion**, entrez le nom de votre cluster sous la forme https://{ClusterName}.{Region}.kusto.windows.net. Entrez les autres valeurs à partir du portail Azure ou de l’interface CLI. Consultez le tableau situé sous l’image suivante pour obtenir un mappage.
 
     ![Propriétés de connexion](media/grafana/connection-properties.png)
 
@@ -67,6 +67,31 @@ Maintenant que le principal de service est affecté au rôle *observateurs*, vou
 1. Sélectionnez **Enregistrer et tester**.
 
     Si le test est réussi, passez à la section suivante. Si vous rencontrez des problèmes, vérifiez les valeurs que vous avez spécifiées dans Grafana, puis vérifiez les étapes précédentes.
+
+### <a name="optimize-queries"></a>Optimiser les requêtes
+
+Deux fonctionnalités peuvent être utilisées pour l’optimisation des requêtes :
+* [Optimiser les performances de rendu des requêtes de tableau de bord](#optimize-dashboard-query-rendering-performance-using-query-results-caching)
+* [Activer une cohérence faible](#enable-weak-consistency)
+
+Pour effectuer l’optimisation, dans **Sources de données** > **Paramètres** > **Optimisations de requêtes**, apportez les modifications nécessaires.
+
+:::image type="content" source="media/grafana/query-optimization.PNG" alt-text="Volet Optimisations de requêtes":::
+
+#### <a name="optimize-dashboard-query-rendering-performance-using-query-results-caching"></a>Optimiser les performances de rendu des requêtes de tableau de bord avec la mise en cache des résultats de la requête 
+
+Quand un tableau de bord ou un visuel est rendu plusieurs fois par un ou plusieurs utilisateurs, Grafana envoie par défaut au moins une requête à Azure Data Explorer. Activez la [mise en cache des résultats de la requête](kusto/query/query-results-cache.md) pour améliorer les performances de rendu des tableaux de bord et réduire la charge sur le cluster Azure Data Explorer. Pendant l’intervalle de temps spécifié, Azure Data Explorer utilise le cache des résultats pour récupérer les résultats précédents et n’exécute pas une requête inutile. Cette fonctionnalité est particulièrement efficace pour réduire la charge sur les ressources et améliorer les performances lorsque plusieurs utilisateurs emploient le même tableau de bord.
+
+Pour permettre le rendu du cache des résultats, procédez comme suit dans le volet **Optimisations de requêtes** :
+1. Désactivez **Use dynamic caching** (Utiliser la mise en cache dynamique). 
+1. Dans **Âge maximum du cache**, entrez le nombre de minutes pendant lesquelles vous souhaitez utiliser les résultats mis en cache.
+
+#### <a name="enable-weak-consistency"></a>Activer une cohérence faible
+
+Les clusters sont configurés avec une cohérence forte. Cela garantit que les résultats de la requête sont à jour avec toutes les modifications apportées au cluster.
+Lors de l’activation de la cohérence faible, les résultats de la requête peuvent avoir un décalage de 1 à 2 minutes après les modifications de cluster. En revanche, une cohérence faible peut améliorer le temps de rendu visuel. Par conséquent, si une cohérence immédiate n’est pas essentielle et que les performances sont marginales, activez une cohérence faible pour améliorer les performances. Pour plus d’informations sur la cohérence des requêtes, consultez [Cohérence des requêtes](kusto/concepts/queryconsistency.md).
+
+Pour activer une cohérence faible, dans le volet **Optimisations de requêtes** > **Cohérence des données**, sélectionnez **Faible**.
 
 ## <a name="visualize-data"></a>Visualiser les données
 

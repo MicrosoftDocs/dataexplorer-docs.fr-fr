@@ -7,12 +7,12 @@ ms.reviewer: itsagui
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/26/2020
-ms.openlocfilehash: 0f77782b5174683d091685064afa7debff7ae777
-ms.sourcegitcommit: 202357f866801aafd92e3e29a84bb312e17aebc7
+ms.openlocfilehash: dc94b3712b51336b8ef069329a2f1aa48aae0bb2
+ms.sourcegitcommit: ab318bcb8f40c9d10395d1dc3e0cf7a1be1a549f
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/09/2020
-ms.locfileid: "96933907"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98625563"
 ---
 # <a name="configure-customer-managed-keys-using-the-azure-portal"></a>Configurer des clés gérées par le client à l’aide du Portail Azure
 
@@ -39,7 +39,9 @@ Cet article explique comment activer le chiffrement des clés gérées par le cl
 1. Dans la fenêtre **Sélectionner une clé à partir d’Azure Key Vault**, sélectionnez un **Coffre de clés** existant dans la liste déroulante. Si vous sélectionnez **Créer nouveau** pour créer un nouveau [Coffre de clés](/azure/key-vault/quick-create-portal#create-a-vault), vous êtes dirigé vers l’écran **Créer un coffre de clés**.
 
 1. Sélectionner **Clé**.
-1. Sélectionner **Version**.
+1. Version :
+    * Pour garantir que cette clé utilise toujours la dernière version de la clé, cochez la case **Toujours utiliser la version actuelle de la clé**.
+    * Sinon, sélectionnez **Version**.
 1. Cliquez sur **Sélectionner**.
 
     :::image type="content" source="media/customer-managed-keys-portal/customer-managed-key-key-vault.png" alt-text="Sélectionner une clé dans Azure Key Vault":::

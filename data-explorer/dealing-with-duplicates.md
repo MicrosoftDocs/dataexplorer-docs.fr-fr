@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 12/19/2018
-ms.openlocfilehash: fd277cd46a183606e35219f733dbf86b094d62f8
-ms.sourcegitcommit: 4b061374c5b175262d256e82e3ff4c0cbb779a7b
+ms.openlocfilehash: 9f5e6ce09fb6d0f7c41162505fe3d124ff901030
+ms.sourcegitcommit: d640e9c54e6b7baa9f999b957a76076bbbcd56d6
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/09/2020
-ms.locfileid: "94373797"
+ms.lasthandoff: 02/10/2021
+ms.locfileid: "100088327"
 ---
 # <a name="handle-duplicate-data-in-azure-data-explorer"></a>Traiter des données en double dans Azure Data Explorer
 
@@ -68,9 +68,18 @@ DeviceEventsAll
 }
 ```
 
-### <a name="solution-3-filter-duplicates-during-the-ingestion-process"></a>Solution 3 : Filtrer les doublons lors du processus d’ingestion
+### <a name="solution-3-use-materialized-views-to-deduplicate"></a>Solution 3 : Utiliser des vues matérialisées pour la déduplication
 
-Une autre solution consiste à filtrer les doublons pendant le processus d’ingestion. Le système ignore les données en double lors de l’ingestion dans les tables Kusto. Les données sont ingérées dans une table intermédiaire, puis copiées dans une autre table après la suppression des lignes en double. L’avantage de cette solution est que les performances des requêtes sont considérablement meilleures par rapport à la solution précédente. Les inconvénients sont des temps d’ingestion accrus et des coûts supplémentaires de stockage des données. Par ailleurs, cette solution ne fonctionne que si les doublons ne sont pas ingérés simultanément. S’il existe plusieurs ingestions simultanées contenant des enregistrements en double, elles peuvent toutes être ingérées, car le processus de déduplication ne trouvera pas d’enregistrements correspondants existant dans la table.    
+Les [vues matérialisées](kusto/management/materialized-views/materialized-view-overview.md) peuvent servir pour la déduplication, en utilisant les fonctions d’agrégation [any()](kusto/query/any-aggfunction.md)/[arg_min()](kusto/query/arg-min-aggfunction.md)/[arg_max()](kusto/query/arg-max-aggfunction.md) (consultez l’exemple 4 de la [commande de création d’une vue matérialisée](kusto/management/materialized-views/materialized-view-create.md#examples)). 
+
+> [!NOTE]
+> Les vues matérialisées présentent un coût lié à la consommation des ressources du cluster, qui peut ne pas être négligeable. Pour plus d’informations, consultez les [considérations relatives aux performances](kusto/management/materialized-views/materialized-view-overview.md#performance-considerations) des vues matérialisées.
+
+### <a name="solution-4-filter-duplicates-during-the-ingestion-process"></a>Solution 4 : Filtrer les doublons lors du processus d’ingestion
+
+Lorsque vous filtrez des doublons pendant le processus d’ingestion, le système ignore les données en double lors de l’ingestion dans les tables Kusto. Les données sont ingérées dans une table intermédiaire, puis copiées dans une autre table après la suppression des lignes en double. Cette solution peut améliorer les performances des requêtes, car les enregistrements sont déjà dédupliqués pendant la durée de la requête. 
+
+Toutefois, cette option augmente le temps d’ingestion et entraîne des coûts de stockage de données supplémentaires. Par ailleurs, cette solution ne fonctionne que si les doublons ne sont pas ingérés simultanément. Avec plusieurs ingestions simultanées contenant des enregistrements en double, le processus de déduplication ne trouvera pas d’enregistrements correspondants dans la table et peut ingérer tous les enregistrements.
 
 L’exemple suivant décrit cette méthode :
 
