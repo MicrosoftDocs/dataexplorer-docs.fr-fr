@@ -4,6 +4,8 @@
   items:
     - name: "Qu’est-ce que l’Explorateur de données Azure\_?"
       href: data-explorer-overview.md
+    - name: Nouveautés d’Azure Data Explorer
+      href: whats-new.md
 - name: Démarrages rapides
   expanded: true
   items:
