@@ -7,12 +7,12 @@ ms.reviewer: miwalia
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/11/2021
-ms.openlocfilehash: 2fd45c2608e83c46b39d65fd8d3d564ca1b2df29
-ms.sourcegitcommit: 2b0156fc244757e62aaef5d4782c4abebaf09754
+ms.openlocfilehash: 340d8b953ba9d56da2de1198c32bde71d4edb738
+ms.sourcegitcommit: abbcb27396c6d903b608e7b19edee9e7517877bb
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/08/2021
-ms.locfileid: "99808684"
+ms.lasthandoff: 02/15/2021
+ms.locfileid: "100528085"
 ---
 # <a name="optimize-for-high-concurrency-with-azure-data-explorer"></a>Optimiser pour une haute simultanéité avec Azure Data Explorer
 
@@ -43,7 +43,7 @@ Pour une haute simultanéité, les requêtes doivent consommer le moins de resso
 Utilisez les suggestions de conception de schéma de table suivantes pour réduire au minimum les ressources processeur utilisées :
 
 * Faites correspondre le type de données des colonnes de manière optimale aux données réelles stockées dans ces colonnes. Par exemple, ne stockez pas de valeurs datetime dans une colonne de chaîne.
-* Évitez les grandes tables éparses avec de nombreuses colonnes et l’utilisation de colonnes dynamiques pour stocker des propriétés éparses.
+* Évitez les grandes tables éparses avec de nombreuses colonnes et utilisez des colonnes dynamiques pour stocker des propriétés éparses.
 * Stockez les propriétés fréquemment utilisées dans leur propre colonne avec un type de données non dynamique.
 * Dénormalisez les données pour éviter les jointures nécessitant des ressources processeur relativement volumineuses.
 
@@ -72,7 +72,7 @@ La base de données d’abonné est une fonctionnalité qui suit une base de don
 Utilisez le modèle responsable-abonné pour définir des ressources de calcul pour différentes charges de travail. Par exemple, configurez un cluster pour les ingestions, un cluster pour l’interrogation ou le traitement des tableaux de bord ou des applications, et un cluster qui traite les charges de travail de science des données. Dans ce cas, chaque charge de travail aura des ressources de calcul dédiées qui peuvent être mises à l’échelle de manière indépendante ainsi que des configurations de sécurité et de mise en cache différentes. Tous les clusters utilisent les mêmes données, avec le responsable qui écrit les données, et les abonnés qui les utilisent en mode lecture seule.
 
 > [!NOTE]
-> Les bases de données d’abonnés ont un décalage par rapport au responsable, généralement quelques minutes. Si votre solution requiert les données les plus récentes sans latence, la solution suivante peut être utile : Utilisez une vue sur le cluster d’abonné qui réunit les données du responsable et de l’abonné, en interrogeant les données les plus récentes à partir du responsable et le reste des données à partir de l’abonné.
+> Les bases de données d’abonnés ont un décalage par rapport au responsable, généralement quelques secondes. Si votre solution requiert les données les plus récentes sans latence, la solution suivante peut être utile : Utilisez une vue sur le cluster d’abonné qui réunit les données du responsable et de l’abonné, en interrogeant les données les plus récentes à partir du responsable et le reste des données à partir de l’abonné.
 
 Pour améliorer les performances des requêtes sur le cluster d’abonné, vous pouvez activer la [configuration de prefetch-extents](kusto/management/cluster-follower.md#alter-follower-database-prefetch-extents). Toutefois, utilisez cette configuration avec précaution, car elle peut avoir un impact sur l’actualisation des données dans la base de données d’abonné.
 
@@ -90,16 +90,13 @@ Quand plusieurs utilisateurs chargent le même tableau de bord au même moment, 
 
 Il existe deux modèles de cohérence des requêtes : *forte* (par défaut) et *faible*. Avec une cohérence forte, seul un état de données cohérent à jour est visible, quel que soit le nœud de calcul qui reçoit la requête. Avec une cohérence faible, les nœuds actualisent régulièrement leur copie des métadonnées, ce qui aboutit à une latence de 1 à 2 minutes dans la synchronisation des modifications de métadonnées. Le modèle faible vous permet de réduire la charge sur le nœud qui gère les modifications des métadonnées, ce qui assure une simultanéité plus haute que la cohérence forte par défaut. Définissez cette configuration dans les [propriétés de demande de client](kusto/api/netfx/request-properties.md) et dans les configurations de source de données Grafana.
 
-> [!NOTE]
-> Si vous avez besoin de réduire encore davantage le décalage pour l’actualisation des métadonnées, ouvrez un ticket de support.
-
 ### <a name="optimize-queries"></a>Optimiser les requêtes
 
 Suivez les [bonnes pratiques relatives aux requêtes](kusto/query/best-practices.md) afin que vos requêtes soient aussi efficaces que possible.
 
 ## <a name="set-cluster-policies"></a>Définir des stratégies de cluster
 
-Le nombre de requêtes simultanées est limité par défaut et contrôlé par la [stratégie de limites de taux de demandes](kusto/management/request-rate-limit-policy.md) afin que le cluster ne soit pas surchargé. Vous pouvez ajuster cette stratégie pour les situations de haute simultanéité, mais uniquement après des tests rigoureux, de préférence sur des jeux de données et modèles de requête de type production. Les tests garantissent que le cluster peut supporter la valeur modifiée. Cette limite peut être configurée en fonction des besoins de l’application.
+Le nombre de demandes simultanées est limité par défaut et contrôlé par la [stratégie de limites de taux de demandes](kusto/management/request-rate-limit-policy.md) afin que le cluster ne soit pas surchargé. Vous pouvez ajuster cette stratégie pour les situations de haute simultanéité, mais uniquement après des tests rigoureux, de préférence sur des jeux de données et modèles d’usage de type production. Les tests garantissent que le cluster peut supporter la valeur modifiée. Cette limite peut être configurée en fonction des besoins de l’application.
 
 ## <a name="monitor-azure-data-explorer-clusters"></a>Superviser les clusters Azure Data Explorer
 

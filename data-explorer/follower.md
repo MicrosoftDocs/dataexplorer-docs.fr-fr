@@ -7,12 +7,12 @@ ms.reviewer: gabilehner
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/06/2020
-ms.openlocfilehash: 359758cfc8a394aa7c9d9d7a3db3e6a62d84120a
-ms.sourcegitcommit: 4c6bd4cb1eb1f64d84f844d4e7aff2de3a46b009
+ms.openlocfilehash: 218d4962c1b7317f4ed94fb86c576da336ba93ee
+ms.sourcegitcommit: abbcb27396c6d903b608e7b19edee9e7517877bb
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/23/2020
-ms.locfileid: "97756413"
+ms.lasthandoff: 02/15/2021
+ms.locfileid: "100528120"
 ---
 # <a name="use-follower-database-to-attach-databases-in-azure-data-explorer"></a>Utiliser une base de données d’abonné pour joindre des bases de données dans Azure Data Explorer
 
@@ -24,17 +24,18 @@ L’attachement d’une base de données à un autre cluster à l’aide de la f
 
 * Un cluster peut suivre une base de données, plusieurs bases de données ou toutes les bases de données d’un cluster de responsable. 
 * Un cluster unique peut suivre des bases de données à partir de plusieurs clusters de responsable. 
-* Un cluster peut contenir à la fois des bases de données d’abonné et des bases de données de responsable
+* Un cluster peut contenir à la fois des bases de données d’abonné et des bases de données de responsable.
+* Les clusters EngineV3 peuvent être uniquement abonnés aux clusters EngineV3, tout comme les clusters EngineV2 qui peuvent être uniquement abonnés aux clusters V2.
 
 ## <a name="prerequisites"></a>Prérequis
 
 1. Si vous ne disposez pas d’abonnement Azure, créez un [compte gratuit](https://azure.microsoft.com/free/) avant de commencer.
-1. [Créez un cluster et une base de données](create-cluster-database-portal.md) pour le responsable et l’abonné.
-1. [Ingérez des données](ingest-sample-data.md) dans la base de données de responsable à l’aide de l’une des différentes méthodes présentées dans [Vue d’ensemble de l’ingestion](./ingest-data-overview.md).
+1. [Créez un cluster et une base de données](create-cluster-database-portal.md) pour le leader et le follower.
+1. [Ingérez des données](ingest-sample-data.md) dans la base de données leader à l’aide de l’une des différentes méthodes présentées dans [Vue d’ensemble de l’ingestion](./ingest-data-overview.md).
 
 ## <a name="attach-a-database"></a>Attacher une base de données
 
-Vous pouvez utiliser différentes méthodes pour joindre une base de données. Dans cet article, nous traitons de l’attachement d’une base de données en utilisant C#, Python, PowerShell ou un modèle Azure Resource Manager. Pour attacher une base de données, vous devez disposer d’un utilisateur, d’un groupe, d’un principal du service ou d’une identité managée avec au moins le rôle de contributeur sur le cluster du responsable et le cluster de l’abonné. Vous pouvez ajouter ou supprimer des attributions de rôles avec le [portail Azure](/azure/role-based-access-control/role-assignments-portal), [PowerShell](/azure/role-based-access-control/role-assignments-powershell), [Azure CLI](/azure/role-based-access-control/role-assignments-cli) et un [modèle ARM](/azure/role-based-access-control/role-assignments-template). Vous pouvez en savoir plus sur le [Contrôle d’accès en fonction du rôle Azure (Azure RBAC)](/azure/role-based-access-control/overview) et les [différents rôles](/azure/role-based-access-control/rbac-and-directory-admin-roles). 
+Vous pouvez utiliser différentes méthodes pour joindre une base de données. Dans cet article, nous traitons de l’attachement d’une base de données en utilisant C#, Python, PowerShell ou un modèle Azure Resource Manager. Pour attacher une base de données, vous devez disposer d’un utilisateur, d’un groupe, d’un principal du service ou d’une identité managée avec au moins le rôle de contributeur sur le cluster leader et le cluster follower. Vous pouvez ajouter ou supprimer des attributions de rôles avec le [portail Azure](/azure/role-based-access-control/role-assignments-portal), [PowerShell](/azure/role-based-access-control/role-assignments-powershell), [Azure CLI](/azure/role-based-access-control/role-assignments-cli) et un [modèle ARM](/azure/role-based-access-control/role-assignments-template). Vous pouvez en savoir plus sur le [Contrôle d’accès en fonction du rôle Azure (Azure RBAC)](/azure/role-based-access-control/overview) et les [différents rôles](/azure/role-based-access-control/rbac-and-directory-admin-roles). 
 
 
 # <a name="c"></a>[C#](#tab/csharp)
@@ -465,7 +466,7 @@ La gestion de l’autorisation de base de données en lecture seule est identiqu
 
 L’administrateur de base de données follower peut modifier la [stratégie de mise en cache](kusto/management/cache-policy.md) de la base de données attachée ou de l’une de ses tables sur le cluster hôte. Le type par défaut conserve la collection de bases de données leader et les stratégies de mise en cache au niveau de la table. Vous pouvez, par exemple, disposer d’une stratégie de mise en cache de 30 jours sur la base de données leader pour exécuter des rapports mensuels et d’une stratégie de mise en cache de trois jours sur la base de données follower pour interroger uniquement les données récentes pour la résolution des problèmes. Pour plus d’informations sur l’utilisation des commandes de contrôle pour configurer la stratégie de mise en cache sur la table ou la base de données follower, consultez [Commandes de contrôle pour la gestion du cluster follower](kusto/management/cluster-follower.md).
 
-## <a name="notes"></a>Remarques
+## <a name="notes"></a>Notes
 
 * En cas de conflits entre les bases de données de clusters de responsable/d’abonné, lorsque toutes les bases de données sont suivies par le cluster d’abonné, elles sont résolues comme suit :
   * Une base de données nommée *DB* créée sur le cluster d’abonné est prioritaire sur une base de données portant le même nom et créée sur le cluster de responsable. C’est pourquoi la base de données *DB* dans le cluster d’abonné doit être supprimée ou renommée pour que le cluster d’abonné inclue la base de données *DB* du responsable.
