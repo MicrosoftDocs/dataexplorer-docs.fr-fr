@@ -7,12 +7,12 @@ ms.reviewer: toleibov
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/11/2020
-ms.openlocfilehash: 4949190befdc8adcec9f8115305a2a403994395f
-ms.sourcegitcommit: 88291fd9cebc26e5210463cb95be5540bf84eef8
+ms.openlocfilehash: 4a26f0544e8ec718fb0e44dd5afef5652a58673b
+ms.sourcegitcommit: 25d42ba55d04108fecf0ee6559caed8593096082
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/22/2020
-ms.locfileid: "92437395"
+ms.lasthandoff: 02/17/2021
+ms.locfileid: "100638822"
 ---
 # <a name="enable-infrastructure-encryption-double-encryption-during-cluster-creation-in-azure-data-explorer"></a>Activer le chiffrement d’infrastructure (double chiffrement) lors de la création de cluster dans Azure Data Explorer
   
@@ -25,7 +25,7 @@ Lorsque vous créez un cluster, son stockage est [automatiquement chiffré au ni
 # <a name="azure-portal"></a>[Portail Azure](#tab/portal)
 
 1. [Créez un cluster Azure Data Explorer](create-cluster-database-portal.md#create-a-cluster). 
-1. Sous l’onglet **Sécurité** > **Activer le chiffrement double** , sélectionnez **Activé** . Pour supprimer le chiffrement double, sélectionnez **Désactivé** .
+1. Sous l’onglet **Sécurité** > **Activer le chiffrement double**, sélectionnez **Activé**. Pour supprimer le chiffrement double, sélectionnez **Désactivé**.
 1. Sélectionnez **Suivant : Réseau >** ou **Vérifier + créer** pour créer le cluster.
 
     :::image type="content" source="media/double-encryption/double-encryption-portal.png" alt-text="chiffrement double et nouveau cluster":::
@@ -91,9 +91,8 @@ Vous pouvez utiliser un modèle Azure Resource Manager pour automatiser le dépl
 
 ## <a name="add-a-system-assigned-identity-using-an-azure-resource-manager-template"></a>Ajouter une identité affectée par le système à l’aide d’un modèle Azure Resource Manager
 
-1. Ajoutez le type « EnableDoubleEncryption » pour indiquer à Azure d’activer le chiffrement d’infrastructure (chiffrement double) pour votre cluster.
-    
-    ```json
+Ajoutez le type « EnableDoubleEncryption » pour indiquer à Azure d’activer le chiffrement d’infrastructure (chiffrement double) pour votre cluster.    
+```json
     {
         "apiVersion": "2020-06-14",
         "type": "Microsoft.Kusto/clusters",
@@ -108,17 +107,7 @@ Vous pouvez utiliser un modèle Azure Resource Manager pour automatiser le dépl
             "enableDoubleEncryption": true,
         }
     }
-    ```
-
-1. Quand le cluster est créé, il a les propriétés supplémentaires suivantes :
-
-    ```json
-    "identity": {
-        "type": "SystemAssigned",
-        "tenantId": "<TENANTID>",
-        "principalId": "<PRINCIPALID>"
-    }
-    ```
+```
 ---
 
 ## <a name="next-steps"></a>Étapes suivantes

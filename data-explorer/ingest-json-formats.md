@@ -7,12 +7,12 @@ ms.reviewer: kerend
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 05/19/2020
-ms.openlocfilehash: 5c0de46e6b6b14be7076533204e63504368e71ad
-ms.sourcegitcommit: d77e52909001f885d14c4d421098a2c492b8c8ac
+ms.openlocfilehash: e0a9808e7fc8dc2c0fc2233911d467d20a64986a
+ms.sourcegitcommit: 25d42ba55d04108fecf0ee6559caed8593096082
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 01/26/2021
-ms.locfileid: "98772481"
+ms.lasthandoff: 02/17/2021
+ms.locfileid: "100638796"
 ---
 # <a name="ingest-json-formatted-sample-data-into-azure-data-explorer"></a>Ingérer des exemples de données au format JSON dans Azure Data Explorer
 
@@ -79,7 +79,7 @@ Utilisez le langage de requête Kusto pour ingérer des données au format JSON 
 1. Ingérez des données dans la table `RawEvents`.
 
     ```kusto
-    .ingest into table RawEvents ('https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/simple.json') with '{"format":"json", "ingestionMappingReference":"DiagnosticRawRecordsMapping"}'
+    .ingest into table RawEvents ('https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/simple.json') with '{"format":"json", "ingestionMappingReference":"RawEventMapping"}'
     ```
 
 # <a name="c"></a>[C#](#tab/c-sharp)
@@ -413,7 +413,7 @@ Les données de type tableau sont des collections ordonnées de valeurs. L’ing
     ```kusto
     .create function EventRecordsExpand() {
         RawEvents
-        | mv-expand records = Event
+        | mv-expand records = Event.records
         | project
             Time = todatetime(records["timestamp"]),
             Device = tostring(records["deviceId"]),
