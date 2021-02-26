@@ -7,12 +7,12 @@ ms.reviewer: avnera
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/13/2020
-ms.openlocfilehash: 930271d2d7c2b46b3ac873449338dda98472c36d
-ms.sourcegitcommit: c11e3871d600ecaa2824ad78bce9c8fc5226eef9
+ms.openlocfilehash: 73ba99c71139a38b32b2242d33e9901f3f79df82
+ms.sourcegitcommit: ee49cd8186d4aecd5de1ed6d24db6c7b7a079ac4
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/04/2021
-ms.locfileid: "99554869"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100548950"
 ---
 # <a name="select-the-correct-compute-sku-for-your-azure-data-explorer-cluster"></a>Sélectionner la bonne référence SKU de calcul pour votre cluster Azure Data Explorer 
 
@@ -93,15 +93,15 @@ Les spécifications techniques des machines virtuelles du cluster Azure Data Exp
 
 |**Nom**| **Catégorie** | **Taille du disque SSD** | **Cœurs** | **RAM** | **Disques de stockage Premium (1&nbsp;To)**| **Nombre minimum d'instances par cluster** | **Nombre maximum d'instances par cluster**
 |---|---|---|---|---|---|---|---
-|Dev(No SLA) Standard_D11_v2| Optimisé pour le calcul | 75&nbsp;Go    | 1 | 14&nbsp;Go | 0 | 1 | 1
-|Dev(No SLA) Standard_E2a_v4| Optimisé pour le calcul | 18&nbsp;Go    | 1 | 16&nbsp;Go | 0 | 1 | 1
-|Standard_D11_v2| Optimisé pour le calcul | 75&nbsp;Go    | 2 | 14&nbsp;Go | 0 | 2 | 8 
-|Standard_D12_v2| Optimisé pour le calcul | 150&nbsp;Go   | 4 | 28&nbsp;Go | 0 | 2 | 16
-|Standard_D13_v2| Optimisé pour le calcul | 307&nbsp;Go   | 8 | 56&nbsp;Go | 0 | 2 | 1 000
-|Standard_D14_v2| Optimisé pour le calcul | 614&nbsp;Go   | 16| 112&nbsp;Go | 0 | 2 | 1 000
-|Standard_E2a_v4| calcul intensif | 18&nbsp;Go    | 2 | 16&nbsp;Go | 0 | 2 | 8 
-|Standard_E4a_v4| calcul intensif | 54&nbsp;Go   | 4 | 32&nbsp;Go | 0 | 2 | 16
-|Standard_E8a_v4| calcul intensif | 127&nbsp;Go   | 8 | 64&nbsp;Go | 0 | 2 | 1 000
+|Dev(No SLA) Standard_D11_v2| Optimisé pour le calcul | 80&nbsp;Go    | 1 | 14&nbsp;Go | 0 | 1 | 1
+|Dev(No SLA) Standard_E2a_v4| Optimisé pour le calcul | 24&nbsp;Go    | 1 | 16&nbsp;Go | 0 | 1 | 1
+|Standard_D11_v2| Optimisé pour le calcul | 80&nbsp;Go    | 2 | 14&nbsp;Go | 0 | 2 | 8 
+|Standard_D12_v2| Optimisé pour le calcul | 160&nbsp;Go   | 4 | 28&nbsp;Go | 0 | 2 | 16
+|Standard_D13_v2| Optimisé pour le calcul | 317&nbsp;Go   | 8 | 56&nbsp;Go | 0 | 2 | 1 000
+|Standard_D14_v2| Optimisé pour le calcul | 628&nbsp;Go   | 16| 112&nbsp;Go | 0 | 2 | 1 000
+|Standard_E2a_v4| calcul intensif | 24&nbsp;Go    | 2 | 16&nbsp;Go | 0 | 2 | 8 
+|Standard_E4a_v4| calcul intensif | 60&nbsp;Go   | 4 | 32&nbsp;Go | 0 | 2 | 16
+|Standard_E8a_v4| calcul intensif | 137&nbsp;Go   | 8 | 64&nbsp;Go | 0 | 2 | 1 000
 |Standard_E16a_v4| calcul intensif | 273&nbsp;Go   | 16| 128&nbsp;Go | 0 | 2 | 1 000
 |Standard_DS13_v2 + 1&nbsp;To&nbsp;PS| Optimisé pour le stockage | 1&nbsp;To | 8 | 56&nbsp;Go | 1 | 2 | 1 000
 |Standard_DS13_v2 + 2&nbsp;To&nbsp;PS| Optimisé pour le stockage | 2&nbsp;To | 8 | 56&nbsp;Go | 2 | 2 | 1 000
