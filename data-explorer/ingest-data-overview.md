@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/18/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 5304d2fcce23d6143faebb9326a6ab960a964f22
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 147fe77b25229a4d2854fee5b7c15e05ec8a2f9f
+ms.sourcegitcommit: 40f86b7f085152c21b6a1ee877f3ab324b59b88b
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95512398"
+ms.lasthandoff: 03/04/2021
+ms.locfileid: "101838335"
 ---
 # <a name="azure-data-explorer-data-ingestion-overview"></a>Vue d’ensemble de l’ingestion des données dans Azure Data Explorer 
 
@@ -87,7 +87,7 @@ L’Explorateur de données Azure fournit des SDK qui peuvent être utilisées p
 
 * [REST API](kusto/api/netfx/kusto-ingest-client-rest.md)
 
-* [API GO](kusto/api/golang/kusto-golang-client-library.md)
+* [SDK GO](kusto/api/golang/kusto-golang-client-library.md)
 
 ### <a name="tools"></a>Outils
 
