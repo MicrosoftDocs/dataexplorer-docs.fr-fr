@@ -11,12 +11,12 @@ ms.date: 12/08/2020
 ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 8370e69914b2bc5e141321a6bc6722bba6f1fd4d
-ms.sourcegitcommit: 79d923d7b7e8370726974e67a984183905f323ff
+ms.openlocfilehash: ee0a307967f1c9834e832de24e574e63f9e55471
+ms.sourcegitcommit: 483f6902735f399bf889035cbc41ddb68d1a71b8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/08/2020
-ms.locfileid: "96868601"
+ms.lasthandoff: 03/05/2021
+ms.locfileid: "102189201"
 ---
 # <a name="render-operator"></a>render, opérateur
 
