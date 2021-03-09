@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/17/2020
 ms.localizationpriority: high
-ms.openlocfilehash: ec62c1d0dfe439ac77d7fce9e69af8e5c8a7a8a0
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: df9c20fc19a2d3c33d440df72ee33b1449b5c60b
+ms.sourcegitcommit: 600c3430c00eb62d52540fe08dab386a860193cc
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95512789"
+ms.lasthandoff: 03/08/2021
+ms.locfileid: "102472159"
 ---
 # <a name="query-data-in-azure-data-lake-using-azure-data-explorer"></a>Interroger des données dans Azure Data Lake à l'aide d'Azure Data Explorer
 
@@ -201,7 +201,7 @@ Cette section présente la requête utilisée pour créer la table externe *Taxi
   dropoff_puma: string
 )
 kind=blob 
-partition by bin(pickup_datetime, 1d)
+partition by (Date:datetime = bin(pickup_datetime, 1d))   
 dataformat=csv
 ( 
     h@'https://storageaccount.blob.core.windows.net/container1;secretKey'
