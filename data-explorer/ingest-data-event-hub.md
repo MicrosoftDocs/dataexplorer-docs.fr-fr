@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 798a8b201ee87d5c43aeb31d6af515d41c516bef
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 3ffead54d87354b9c7f6a6a370fccfaeac670207
+ms.sourcegitcommit: d19b4214625eeb1ec7aec4fd6c92007a07c76ebc
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95512211"
+ms.lasthandoff: 12/22/2020
+ms.locfileid: "102472198"
 ---
 # <a name="ingest-data-from-event-hub-into-azure-data-explorer"></a>Ingérer des données Event Hub dans Azure Data Explorer
 
@@ -128,7 +128,7 @@ Vous vous connectez maintenant au hub d’événements depuis l’Explorateur de
     | Espace de noms Event Hub | Nom unique de l’espace de noms | Nom choisi précédemment qui identifie votre espace de noms. |
     | Event Hub | *test-hub* | Hub d’événements que vous avez créé. |
     | Groupe de consommateurs | *test-group* | Groupe de consommateurs défini dans le hub d’événements que vous avez créé. |
-    | Propriétés du système d’événements | Sélectionner les propriétés pertinentes | [Propriétés système du hub d’événements](/azure/service-bus-messaging/service-bus-amqp-protocol-guide#message-annotations). S’il existe plusieurs enregistrements par message d’événement, les propriétés système sont ajoutées au premier. Lors de l’ajout des propriétés système, [créez](kusto/management/create-table-command.md) ou [mettez à jour](kusto/management/alter-table-command.md) le schéma de table et le [mappage](kusto/management/mappings.md) pour inclure les propriétés sélectionnées. |
+    | Propriétés du système d’événements | Sélectionner les propriétés pertinentes | [Propriétés système du hub d’événements](/azure/service-bus-messaging/service-bus-amqp-protocol-guide#message-annotations). Lors de l’ajout des propriétés système, [créez](kusto/management/create-table-command.md) ou [mettez à jour](kusto/management/alter-table-command.md) le schéma de table et le [mappage](kusto/management/mappings.md) pour inclure les propriétés sélectionnées. Pour plus d’informations sur les limitations des propriétés système, consultez [Mappage des propriétés du système d’événements](#event-system-properties-mapping). |
     | Compression | *Aucun* | Type de compression de la charge utile des messages Event Hub. Types de compression pris en charge : *Aucun, GZip*.|
     
 #### <a name="target-table"></a>Table cible
@@ -153,9 +153,7 @@ Deux options sont disponibles pour le routage des données ingérées : *statiq
 
 ### <a name="event-system-properties-mapping"></a>Mappage des propriétés du système d’événements
 
-> [!Note]
-> * Les propriétés système sont prises en charge pour les événements à enregistrement unique.
-> * Pour un mappage `csv`, des propriétés sont ajoutées au début de l’enregistrement. Pour un mappage `json`, des propriétés sont ajoutées en fonction du nom qui s’affiche dans la liste déroulante.
+[!INCLUDE [event-hub-system-mapping](includes/event-hub-system-mapping.md)]
 
 Si vous avez sélectionné **Propriétés du système d’événements** dans la section **Source de données** de la table, vous devez inclure des [propriétés système](ingest-data-event-hub-overview.md#system-properties) dans le schéma et le mappage de table.
 
@@ -215,7 +213,7 @@ Avec l’application générant des données, vous pouvez maintenant voir le flu
     ![Jeu de résultats des messages](media/ingest-data-event-hub/message-result-set.png)
 
     > [!NOTE]
-    > * Azure Data Explorer est associé à une stratégie d’agrégation (traitement par lot) conçue pour optimiser le processus d’ingestion des données. La stratégie est configurée sur 5 minutes ou 500 Mo de données, ce qui peut entraîner une certaine latence. Consultez la [stratégie de traitement par lot](kusto/management/batchingpolicy.md) pour les options d’agrégation. 
+    > * Azure Data Explorer est associé à une stratégie d’agrégation (traitement par lot) conçue pour optimiser le processus d’ingestion des données. La stratégie de traitement par lot par défaut est configurée pour sceller un lot une fois que l’une des conditions suivantes est remplie pour le lot : délai maximal de 5 minutes, taille totale de 1 Go ou 1 000 objets blob. Il existe donc un risque de latence. Pour plus d’informations, consultez [Méthodes de traitement par lot](kusto/management/batchingpolicy.md). 
     > * L’ingestion de Event Hub comprend le temps de réponse de Event Hub de 10 secondes ou 1 Mo. 
     > * Configurez votre tableau pour prendre en charge la diffusion en continu et supprimez le décalage dans le temps de réponse. Consultez la [stratégie de diffusion en continu](kusto/management/streamingingestionpolicy.md). 
 

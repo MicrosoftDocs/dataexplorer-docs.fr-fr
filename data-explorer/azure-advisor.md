@@ -8,12 +8,12 @@ ms.reviewer: lizlotor
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/14/2020
-ms.openlocfilehash: 1d7fafcab3293a66bafb4b60f86413d00ee9c354
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: f2439097258ea6c8b4780bf04dd358d47b42d480
+ms.sourcegitcommit: 483f6902735f399bf889035cbc41ddb68d1a71b8
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92241888"
+ms.lasthandoff: 03/05/2021
+ms.locfileid: "102189184"
 ---
 # <a name="use-azure-advisor-recommendations-to-optimize-your-azure-data-explorer-cluster-preview"></a>Utiliser les recommandations d’Azure Advisor pour optimiser votre cluster Azure Data Explorer (préversion)
 
@@ -26,33 +26,33 @@ Il existe deux façons d’accéder aux recommandations d’Azure Advisor.
 ### <a name="view-azure-advisor-recommendations-for-your-azure-data-explorer-cluster"></a>Visualiser les recommandations d’Azure Advisor pour votre cluster Azure Data Explorer
 
 1. Dans le portail Azure, accédez à la page de votre cluster Azure Data Explorer. 
-1. Dans le menu de gauche, sous **Supervision** , sélectionnez **Recommandations du conseiller** . Une liste de recommandations s’ouvre pour ce cluster.
+1. Dans le menu de gauche, sous **Supervision**, sélectionnez **Recommandations du conseiller**. Une liste de recommandations s’ouvre pour ce cluster.
 
     :::image type="content" source="media/azure-advisor/resource-group-advisor-recommendations.png" alt-text="Recommandations d’Azure Advisor pour votre cluster Azure Data Explorer"::: 
 
 ### <a name="view-azure-advisor-recommendations-for-all-clusters-in-your-subscription"></a>Visualiser les recommandations d’Azure Advisor pour tous les clusters de votre abonnement
 
 1. Dans le portail Azure, accédez à la page [Ressource Advisor](https://ms.portal.azure.com/#blade/Microsoft_Azure_Expert/AdvisorMenuBlade/overview). 
-1. Dans **Vue d’ensemble** , sélectionnez le ou les abonnements pour lesquels vous souhaitez obtenir des recommandations. 
+1. Dans **Vue d’ensemble**, sélectionnez le ou les abonnements pour lesquels vous souhaitez obtenir des recommandations. 
 1. Sélectionnez **Clusters Azure Data Explorer** et **Bases de données Azure Data Explorer** dans la deuxième liste déroulante.
  
-    :::image type="content" source="media/azure-advisor/advisor-resource.png" alt-text="Recommandations d’Azure Advisor pour votre cluster Azure Data Explorer":::
+    :::image type="content" source="media/azure-advisor/advisor-resource.png" alt-text="Ressource Azure Advisor":::
 
 ## <a name="use-the-azure-advisor-recommendations"></a>Utiliser les recommandations d’Azure Advisor
 
 Il existe plusieurs types de recommandations d’Azure Advisor. Utilisez le type de recommandation approprié pour optimiser votre cluster. 
 
-1. Dans **Advisor** , sous **Recommandations** , sélectionnez **Coût** pour les recommandations relatives au coût.
+1. Dans **Advisor**, sous **Recommandations**, sélectionnez **Coût** pour les recommandations relatives au coût.
 
-    :::image type="content" source="media/azure-advisor/select-recommendation-type.png" alt-text="Recommandations d’Azure Advisor pour votre cluster Azure Data Explorer":::
+    :::image type="content" source="media/azure-advisor/select-recommendation-type.png" alt-text="Sélectionner un type de recommandation":::
 
 1. Sélectionnez une recommandation dans la liste. 
 
-    :::image type="content" source="media/azure-advisor/select-recommendation.png" alt-text="Recommandations d’Azure Advisor pour votre cluster Azure Data Explorer":::
+    :::image type="content" source="media/azure-advisor/select-recommendation.png" alt-text="Sélectionner une recommandation":::
 
 1. La fenêtre suivante contient la liste des clusters pour lesquels la recommandation est pertinente. Les détails de la recommandation sont différents pour chaque cluster et incluent l’action recommandée.
 
-    :::image type="content" source="media/azure-advisor/clusters-with-recommendations.png" alt-text="Recommandations d’Azure Advisor pour votre cluster Azure Data Explorer":::
+    :::image type="content" source="media/azure-advisor/clusters-with-recommendations.png" alt-text="Liste de clusters avec des recommandations":::
 
 ## <a name="recommendation-types"></a>Types de recommandation
 
@@ -69,6 +69,7 @@ Les recommandations relatives au **coût** sont disponibles pour les clusters qu
 * [Clusters Azure Data Explorer contenant des données avec une faible activité](#azure-data-explorer-clusters-containing-data-with-low-activity)
 * [Dimensionner correctement un cluster Azure Data Explorer pour optimiser les coûts](#correctly-size-azure-data-explorer-clusters-to-optimize-cost)
 * [Réduire la période de mise en cache des tables Azure Data Explorer](#reduce-cache-for-azure-data-explorer-tables)
+* [Exécuter une commande de nettoyage pour supprimer les artefacts de stockage inutilisés](#delete-unused-storage-artifacts)
 
 #### <a name="azure-data-explorer-unused-cluster"></a>Cluster Azure Data Explorer inutilisé
 
@@ -90,6 +91,14 @@ Il est recommandé d’utiliser une [Configuration de mise à l’échelle autom
 #### <a name="reduce-cache-for-azure-data-explorer-tables"></a>Réduire la période de mise en cache des tables Azure Data Explorer
 
 La recommandation **Réduire la période de cache des tables Azure Data Explorer pour l’optimisation des coûts du cluster** est donnée pour un cluster qui peut réduire la [stratégie de cache](kusto/management/cachepolicy.md) de sa table. Cette recommandation est basée sur la période de recherche dans l’antériorité des requêtes au cours des 30 derniers jours. Vous voyez les 10 premières tables avec des économies potentielles dans le cache. Cette recommandation est proposée seulement si le cluster peut effectuer un scale-in ou un scale-down à la suite de la modification de la stratégie de cache. Advisor vérifie si le cluster est « délimité par les données », ce qui signifie que le cluster a une faible utilisation du processeur et une faible ingestion, mais qu’en raison d’une capacité de données élevée, le cluster ne peut pas faire l’objet d’un scale-in ou d’un scale-down.
+
+#### <a name="delete-unused-storage-artifacts"></a>Supprimer les artefacts de stockage inutilisés
+
+La recommandation **Supprimer les artefacts de stockage inutilisés** est donnée pour un cluster avec des artefacts de stockage inutilisés qui sont le résultat d’opérations de maintenance et d’arrière-plan sur des [partitions de données](kusto/management/extents-overview.md). Au fil du temps, les opérations de fusion de partitions internes peuvent accumuler des artefacts de stockage redondants et inutilisés qui persistent au-delà de la période de conservation des données. Bien que ces données non référencées n’aient pas d’impact négatif sur les performances, elles peuvent entraîner une utilisation du stockage plus importante que nécessaire.
+L’action recommandée consiste à exécuter la commande [clean databases extentcontainers](kusto/management/clean-extent-containers.md#clean-databases-extentcontainers) pour détecter et supprimer les artefacts de stockage inutilisés et réduire les coûts. 
+
+> [!IMPORTANT]
+> La récupération des données est réinitialisée à l’heure du nettoyage, ce qui signifie que les données créées avant l’exécution du nettoyage ne pourront pas être récupérées.
 
 ### <a name="performance-recommendations"></a>Recommandations en matière de performances
 

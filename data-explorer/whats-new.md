@@ -7,14 +7,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/17/2021
-ms.openlocfilehash: b3cc6d5562f7332723ba63edf5a07a89578f95a2
-ms.sourcegitcommit: 24efef3c1d64ddc57ac449d5e9332f472f93b466
+ms.openlocfilehash: 8217843a36fd8c60b48b47f5200361155d9e8c85
+ms.sourcegitcommit: 40f86b7f085152c21b6a1ee877f3ab324b59b88b
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 02/18/2021
-ms.locfileid: "100655303"
+ms.lasthandoff: 03/04/2021
+ms.locfileid: "101838908"
 ---
-# <a name="whats-new-in-azure-data-explorer"></a>Nouveautés d’Azure Data Explorer
+# <a name="whats-new-in-azure-data-explorer-documentation"></a>Nouveautés de la documentation d’Azure Data Explorer
 
 Bienvenue dans les nouveautés d’Azure Data Explorer. Cet article détaille le contenu nouveau et mis à jour de façon significative dans la documentation Azure Data Explorer.
 
