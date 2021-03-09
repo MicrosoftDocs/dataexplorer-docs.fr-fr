@@ -7,12 +7,12 @@ ms.reviewer: ankhanol
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/05/2020
-ms.openlocfilehash: 2dcb1fb83d592ff7fd81fcfc5f51cf6fc95254b7
-ms.sourcegitcommit: a36981785765b85a961f275be24d297d38e498fd
+ms.openlocfilehash: b1e8188e78e3b2c6b4c56ce59f1294261ff54ab1
+ms.sourcegitcommit: 40f86b7f085152c21b6a1ee877f3ab324b59b88b
 ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 11/30/2020
-ms.locfileid: "96310032"
+ms.lasthandoff: 03/04/2021
+ms.locfileid: "101838437"
 ---
 # <a name="business-continuity-and-disaster-recovery-overview"></a>Vue d’ensemble de la continuité d'activité et de la reprise d'activité
 
@@ -107,7 +107,7 @@ Cette configuration est identique à la [Configuration Active-Active-Active](#ac
 
 | **Configuration** | **RPO** | **RTO** | **Effort** | **Coût** |
 | --- | --- | --- | --- | --- |
-| **Active-Active** | None | None | Moins grand | Élevé |
+| **Active-Active** | 0 heure | 0 heure | Moins grand | Élevé |
 
 ### <a name="active-hot-standby-configuration"></a>Configuration de secours active
 
@@ -134,7 +134,7 @@ Cette solution offre le moins de résilience (RPO et RTO les plus élevés), son
 | **Configuration** | **Résilience** | **RPO** | **RTO** | **Effort** | **Coût** |
 | --- | --- | --- | --- | --- | --- |
 | **Active-Active-Active-n** | Le plus élevé | 0 heure | 0 heure | Moins grand | Le plus élevé |
-| **Active-Active** | Élevé | None | None | Moins grand | Élevé |
+| **Active-Active** | Élevé | 0 heure | 0 heure | Moins grand | Élevé |
 | **Configuration de secours active** | Moyenne | Faible | Faible | Moyenne | Moyenne |
 | **Cluster de récupération de données à la demande** | Minimale | Le plus élevé | Le plus élevé | Le plus élevé | Minimale |
 
